@@ -1,0 +1,4 @@
+# Assigner les owners quand l'équipe est désignée (DS-062).
+# Exemple :
+# packages/ui/ @dudaloglobal/frontend
+# .github/ @dudaloglobal/devops
