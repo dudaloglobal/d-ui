@@ -7,6 +7,8 @@
 3. PR vers `main`. La CI doit être verte. Une revue est requise.
 4. Ne pas pousser directement sur `main`.
 
+L’auteur de la PR est assigné automatiquement. Reviewers demandés : `@Angelo-Cosme`, `@fruitizz`.
+
 Messages de commit en **anglais**, style conventional : `feat(button): …`, `fix(a11y): …`, `chore(ci): …`.
 
 Ne pas ajouter de trailer `Co-authored-by` (ni attribution d’outil). Installer les hooks une fois :

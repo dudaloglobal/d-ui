@@ -1,0 +1,13 @@
+---
+description: Always assign the PR author and request Angelo-Cosme and fruitizz as reviewers
+alwaysApply: true
+---
+
+# PR reviewers
+
+When creating or updating a GitHub pull request:
+
+- Assign the PR author.
+- Request reviewers `Angelo-Cosme` and `fruitizz` (skip if that person is the author).
+- Automation lives in `.github/workflows/pr-assignment.yml`; still set `--assignee` / `--reviewer` on `gh pr create`.
+- Never add Co-authored-by or tooling attribution.
