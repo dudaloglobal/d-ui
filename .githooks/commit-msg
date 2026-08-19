@@ -1,0 +1,10 @@
+#!/bin/sh
+# Strip Cursor / AI co-author trailers injected by local tooling.
+msg_file="$1"
+tmp="${msg_file}.tmp"
+grep -v -E -i \
+  -e '^Co-authored-by: Cursor' \
+  -e '^Made-with: Cursor' \
+  -e '^Made with Cursor' \
+  "$msg_file" > "$tmp"
+mv "$tmp" "$msg_file"

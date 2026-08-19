@@ -1,0 +1,36 @@
+{
+  "name": "dudalo-design-system",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Dudalo Design System (DudaX) — package d-ui",
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "pnpm --filter d-ui typecheck",
+    "test": "pnpm --filter d-ui test",
+    "test:e2e": "pnpm --filter d-ui test:e2e",
+    "build": "pnpm --filter d-ui build",
+    "build-storybook": "pnpm --filter d-ui build-storybook",
+    "storybook": "pnpm --filter d-ui storybook",
+    "changeset": "changeset"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.0",
+    "@eslint/js": "^9.20.0",
+    "eslint": "^9.20.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "globals": "^15.15.0",
+    "prettier": "^3.5.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.0"
+  }
+}

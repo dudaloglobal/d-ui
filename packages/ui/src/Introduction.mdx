@@ -1,0 +1,21 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# Introduction
+
+Storybook du package **d-ui** (Dudalo Design System).
+
+## Contrat public
+
+Les applications consommatrices utilisent :
+
+1. les composants React (`Button`, `ThemeProvider`, …)
+2. les **variables CSS** `--d-ui-*`
+3. la feuille `d-ui/styles.css`
+
+Ne pas dépendre des classes Tailwind internes du package.
+
+## Accessibilité
+
+Cible **WCAG 2.2 AA**. Chaque story est contrôlée avec l’addon a11y. Voir `docs/accessibility.md`.
