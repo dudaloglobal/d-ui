@@ -9,11 +9,10 @@
 
 Messages de commit en **anglais**, style conventional : `feat(button): …`, `fix(a11y): …`, `chore(ci): …`.
 
-Ne pas ajouter de `Co-authored-by` automatique. Copier le hook local une fois :
+Ne pas ajouter de trailer `Co-authored-by` (ni attribution d’outil). Installer les hooks une fois :
 
 ```bash
-cp .githooks/commit-msg .git/hooks/commit-msg
-chmod +x .git/hooks/commit-msg
+sh .githooks/install.sh
 ```
 
 ## Preview Storybook (obligatoire)
