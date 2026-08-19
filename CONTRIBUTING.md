@@ -7,6 +7,8 @@
 3. PR vers `main`. La CI doit être verte. Une revue est requise.
 4. Ne pas pousser directement sur `main`.
 
+L’auteur de la PR est assigné automatiquement. Reviewers demandés : `@Angelo-Cosme`, `@fruitizz`.
+
 Voir aussi [docs/github-admin.md](./docs/github-admin.md) (labels, milestones, protection de `main`).
 
 Messages de commit en **anglais**, style conventional : `feat(button): …`, `fix(a11y): …`, `chore(ci): …`.
