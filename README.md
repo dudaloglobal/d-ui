@@ -41,3 +41,5 @@ Voir [CONTRIBUTING.md](./CONTRIBUTING.md), [docs/accessibility.md](./docs/access
 ## Roadmap
 
 Backlog GitHub : [issues](https://github.com/dudaloglobal/design-system/issues) · projet [Design System DudaX](https://github.com/orgs/dudaloglobal/projects/2).
+
+Admin GitHub (labels, protection de `main`) : [docs/github-admin.md](./docs/github-admin.md).

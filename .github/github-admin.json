@@ -1,0 +1,156 @@
+{
+  "labels": [
+    {
+      "name": "area:foundation",
+      "color": "6F42C1",
+      "description": "Foundations, tokens, theme, primitives"
+    },
+    {
+      "name": "area:component",
+      "color": "1D76DB",
+      "description": "Generic UI components"
+    },
+    {
+      "name": "area:forms",
+      "color": "0E8A16",
+      "description": "Form controls and field system"
+    },
+    {
+      "name": "area:navigation",
+      "color": "5319E7",
+      "description": "Navigation and app shell"
+    },
+    {
+      "name": "area:feedback",
+      "color": "D93F0B",
+      "description": "Feedback, status, overlays"
+    },
+    {
+      "name": "area:data",
+      "color": "006B75",
+      "description": "Data display"
+    },
+    {
+      "name": "area:media",
+      "color": "BF4B8A",
+      "description": "Media and file preview"
+    },
+    {
+      "name": "area:lms",
+      "color": "FBCA04",
+      "description": "LMS / education domain"
+    },
+    {
+      "name": "area:accessibility",
+      "color": "0052CC",
+      "description": "Accessibility"
+    },
+    {
+      "name": "area:testing",
+      "color": "C5DEF5",
+      "description": "Testing strategy and suites"
+    },
+    {
+      "name": "area:documentation",
+      "color": "0075CA",
+      "description": "Docs and Storybook"
+    },
+    {
+      "name": "area:devops",
+      "color": "24292F",
+      "description": "CI/CD and tooling"
+    },
+    {
+      "name": "area:release",
+      "color": "EDEDED",
+      "description": "NPM packaging and release"
+    },
+    {
+      "name": "priority:p0",
+      "color": "B60205",
+      "description": "P0 Critical"
+    },
+    {
+      "name": "priority:p1",
+      "color": "D93F0B",
+      "description": "P1 High"
+    },
+    {
+      "name": "priority:p2",
+      "color": "FBCA04",
+      "description": "P2 Medium"
+    },
+    {
+      "name": "priority:p3",
+      "color": "0E8A16",
+      "description": "P3 Low"
+    },
+    {
+      "name": "type:feature",
+      "color": "A2EEEF",
+      "description": "New feature"
+    },
+    {
+      "name": "type:chore",
+      "color": "FEF2C0",
+      "description": "Chore / tooling"
+    },
+    {
+      "name": "type:bug",
+      "color": "D73A4A",
+      "description": "Bug"
+    },
+    {
+      "name": "type:documentation",
+      "color": "0075CA",
+      "description": "Documentation"
+    },
+    {
+      "name": "type:architecture",
+      "color": "5319E7",
+      "description": "Architecture / RFC"
+    },
+    {
+      "name": "complexity:xs",
+      "color": "C2E0C6",
+      "description": "XS"
+    },
+    {
+      "name": "complexity:s",
+      "color": "BFDADC",
+      "description": "S"
+    },
+    {
+      "name": "complexity:m",
+      "color": "FEF2C0",
+      "description": "M"
+    },
+    {
+      "name": "complexity:l",
+      "color": "F9D0C4",
+      "description": "L"
+    },
+    {
+      "name": "complexity:xl",
+      "color": "B60205",
+      "description": "XL"
+    }
+  ],
+  "milestones": [
+    "Sprint 0 — Discovery",
+    "Sprint 1 — Foundations",
+    "Sprint 2 — Core",
+    "Sprint 3 — Forms",
+    "Sprint 4 — Navigation",
+    "Sprint 5 — Feedback",
+    "Sprint 6 — Data",
+    "Sprint 7 — Media",
+    "Sprint 8 — Advanced",
+    "Sprint 9 — Integration",
+    "Sprint 10 — v1.0"
+  ],
+  "required_status_checks": [
+    "Lint, types, tests, build",
+    "Build, deploy, require preview URL"
+  ]
+}
