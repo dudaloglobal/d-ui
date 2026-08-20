@@ -1,12 +1,16 @@
-import type { ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import { cx } from '../../lib/cx';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonIconPosition = 'start' | 'end';
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  loading?: boolean;
+  icon?: ReactNode;
+  iconPosition?: ButtonIconPosition;
 };
 
 const variantClass: Record<ButtonVariant, string> = {
@@ -21,19 +25,40 @@ const sizeClass: Record<ButtonSize, string> = {
   lg: 'h-12 px-5 text-lg',
 };
 
+function Spinner() {
+  return <span className="d-ui-button-spinner" aria-hidden="true" />;
+}
+
+function IconSlot({ children }: { children: ReactNode }) {
+  return (
+    <span className="inline-flex shrink-0" aria-hidden="true">
+      {children}
+    </span>
+  );
+}
+
 export function Button({
   variant = 'primary',
   size = 'md',
   type = 'button',
   className,
   disabled,
+  loading = false,
+  icon,
+  iconPosition = 'start',
   children,
   ...rest
 }: ButtonProps) {
+  const isDisabled = Boolean(disabled || loading);
+  const showStartIcon = !loading && icon && iconPosition === 'start';
+  const showEndIcon = !loading && icon && iconPosition === 'end';
+
   return (
     <button
+      {...rest}
       type={type}
-      disabled={disabled}
+      disabled={isDisabled}
+      aria-busy={loading || undefined}
       className={cx(
         'inline-flex items-center justify-center gap-2 rounded-md font-medium',
         'transition-colors',
@@ -43,9 +68,11 @@ export function Button({
         sizeClass[size],
         className,
       )}
-      {...rest}
     >
+      {loading ? <Spinner /> : null}
+      {showStartIcon ? <IconSlot>{icon}</IconSlot> : null}
       {children}
+      {showEndIcon ? <IconSlot>{icon}</IconSlot> : null}
     </button>
   );
 }
