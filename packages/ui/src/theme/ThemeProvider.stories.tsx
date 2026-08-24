@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../components/Button/Button';
-import { ThemeProvider } from './ThemeProvider';
+import { ThemeProvider, type ThemePreference } from './ThemeProvider';
 
 const meta = {
   title: 'Foundations/Theme',
@@ -10,9 +10,17 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+function toolbarMode(theme: unknown): ThemePreference {
+  if (theme === 'dark' || theme === 'system') {
+    return theme;
+  }
+  return 'light';
+}
+
 export const BrandOverride: Story = {
-  render: () => (
+  render: (_args, { globals }) => (
     <ThemeProvider
+      mode={toolbarMode(globals.theme)}
       tokens={{
         brand: '#7c3aed',
         brandHover: '#6d28d9',

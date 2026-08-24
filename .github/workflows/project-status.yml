@@ -27,11 +27,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
-      GH_TOKEN: ${{ secrets.PROJECT_TOKEN || github.token }}
+      GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
     steps:
+      - name: Require PROJECT_TOKEN
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "Set repository secret PROJECT_TOKEN (classic PAT with project scope) to update the org board."
+            exit 1
+          fi
       - uses: actions/checkout@v5
       - name: Sync project status
-        continue-on-error: true
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: python3 .github/scripts/sync-project-status.py

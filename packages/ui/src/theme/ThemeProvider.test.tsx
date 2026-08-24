@@ -1,20 +1,21 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it, vi, afterEach } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ThemeProvider } from './ThemeProvider';
 
 function stubMatchMedia(matches: boolean) {
-  const addEventListener = vi.fn();
-  const removeEventListener = vi.fn();
-  window.matchMedia = vi.fn().mockReturnValue({
-    matches,
-    media: '(prefers-color-scheme: dark)',
-    addEventListener,
-    removeEventListener,
-    addListener: vi.fn(),
-    removeListener: vi.fn(),
-    dispatchEvent: vi.fn(),
-    onchange: null,
-  }) as unknown as typeof window.matchMedia;
+  vi.stubGlobal(
+    'matchMedia',
+    vi.fn().mockReturnValue({
+      matches,
+      media: '(prefers-color-scheme: dark)',
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+      onchange: null,
+    }),
+  );
 }
 
 afterEach(() => {
@@ -34,6 +35,19 @@ describe('ThemeProvider', () => {
     );
   });
 
+  it('keeps an explicit light mode when the OS is dark', () => {
+    stubMatchMedia(true);
+    render(
+      <ThemeProvider mode="light">
+        <p>Hello</p>
+      </ThemeProvider>,
+    );
+    expect(screen.getByText('Hello').parentElement).toHaveAttribute(
+      'data-d-ui-theme',
+      'light',
+    );
+  });
+
   it('resolves system preference to dark when the OS is dark', () => {
     stubMatchMedia(true);
     render(
@@ -44,6 +58,19 @@ describe('ThemeProvider', () => {
     expect(screen.getByText('Hello').parentElement).toHaveAttribute(
       'data-d-ui-theme',
       'dark',
+    );
+  });
+
+  it('resolves system preference to light when the OS is light', () => {
+    stubMatchMedia(false);
+    render(
+      <ThemeProvider mode="system">
+        <p>Hello</p>
+      </ThemeProvider>,
+    );
+    expect(screen.getByText('Hello').parentElement).toHaveAttribute(
+      'data-d-ui-theme',
+      'light',
     );
   });
 
