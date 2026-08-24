@@ -29,4 +29,6 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
+      - name: Dry-run pack
+        run: pnpm --filter d-ui exec npm pack --dry-run
       - run: pnpm build-storybook

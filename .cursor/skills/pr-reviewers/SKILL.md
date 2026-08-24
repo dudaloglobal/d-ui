@@ -17,4 +17,12 @@ Prefer GitHub Action `.github/workflows/pr-assignment.yml` (runs on `opened` / `
 gh pr create --assignee @me --reviewer Angelo-Cosme,fruitizz
 ```
 
+After create or edit, move linked issues on the project board:
+
+```bash
+.github/scripts/sync-project-status.sh <pr-number>
+```
+
+Use `Closes #N` for finished work (board: En revue, then Terminé on merge) and `Related to #N` for unfinished work (board: En cours). See `.cursor/rules/project-status.mdc`.
+
 Do not leave a PR without author assignee or those two reviewers.

@@ -6,15 +6,28 @@ import { Meta } from '@storybook/blocks';
 
 Storybook du package **d-ui** (Dudalo Design System).
 
+## Information architecture
+
+| Section           | Contenu                      |
+| ----------------- | ---------------------------- |
+| **Introduction**  | Contrat public, consommation |
+| **Foundations**   | Tokens, thème                |
+| **Components**    | API visuelle (Button, …)     |
+| **Accessibility** | `VisuallyHidden`, `SkipLink` |
+
 ## Contrat public
 
 Les applications consommatrices utilisent :
 
-1. les composants React (`Button`, `ThemeProvider`, …)
+1. les composants React (`Button`, `ThemeProvider`, `SkipLink`, …)
 2. les **variables CSS** `--d-ui-*`
 3. la feuille `d-ui/styles.css`
 
 Ne pas dépendre des classes Tailwind internes du package.
+
+## Consommation
+
+Guide : [docs/consume.md](https://github.com/dudaloglobal/d-ui/blob/main/docs/consume.md).
 
 ## Accessibilité
 

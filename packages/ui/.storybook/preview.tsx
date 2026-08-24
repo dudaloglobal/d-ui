@@ -12,13 +12,22 @@ const preview: Preview = {
         items: [
           { value: 'light', title: 'Light' },
           { value: 'dark', title: 'Dark' },
+          { value: 'system', title: 'System' },
         ],
       },
     },
   },
   decorators: [
     (Story, context) => (
-      <ThemeProvider mode={context.globals.theme === 'dark' ? 'dark' : 'light'}>
+      <ThemeProvider
+        mode={
+          context.globals.theme === 'dark'
+            ? 'dark'
+            : context.globals.theme === 'system'
+              ? 'system'
+              : 'light'
+        }
+      >
         <Story />
       </ThemeProvider>
     ),

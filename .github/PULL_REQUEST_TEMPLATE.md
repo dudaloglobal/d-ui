@@ -2,6 +2,8 @@
 
 Closes #
 
+<!-- Related to #  for work started in this PR but not finished. -->
+
 ## Résumé
 
 <!-- Quoi et pourquoi, pas le diff ligne à ligne. -->
