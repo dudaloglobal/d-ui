@@ -20,6 +20,8 @@
   --color-border: var(--d-ui-color-border);
   --color-border-subtle: var(--d-ui-color-border-subtle);
   --color-focus: var(--d-ui-color-focus);
+  --color-link: var(--d-ui-color-link);
+  --color-link-visited: var(--d-ui-color-link-visited);
   --color-danger: var(--d-ui-color-danger);
   --color-on-danger: var(--d-ui-color-on-danger);
   --color-warning: var(--d-ui-color-warning);

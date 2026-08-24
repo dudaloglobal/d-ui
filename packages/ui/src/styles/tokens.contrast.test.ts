@@ -109,7 +109,17 @@ function contrast(a: string, b: string): number {
 const REQUIREMENTS = [
   { fg: 'fg', bg: 'bg', ratio: 4.5, rule: '1.4.3 texte courant' },
   { fg: 'fg', bg: 'surface-muted', ratio: 4.5, rule: '1.4.3 texte sur surface' },
+  { fg: 'fg-muted', bg: 'bg', ratio: 4.5, rule: '1.4.3 texte secondaire' },
+  {
+    fg: 'fg-muted',
+    bg: 'surface-muted',
+    ratio: 4.5,
+    rule: '1.4.3 texte secondaire sur surface',
+  },
   { fg: 'on-brand', bg: 'brand', ratio: 4.5, rule: '1.4.3 texte sur marque' },
+  { fg: 'link', bg: 'bg', ratio: 4.5, rule: '1.4.3 lien' },
+  { fg: 'link', bg: 'surface-muted', ratio: 4.5, rule: '1.4.3 lien sur surface' },
+  { fg: 'link-visited', bg: 'bg', ratio: 4.5, rule: '1.4.3 lien visité' },
   { fg: 'border', bg: 'bg', ratio: 3, rule: '1.4.11 frontière de contrôle' },
   {
     fg: 'border',
