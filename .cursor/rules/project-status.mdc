@@ -29,7 +29,7 @@ Unstarted issues stay in Backlog.
 
 1. Put `Closes #N` / `Related to #N` in the Ticket section (never only “Related to” for finished work).
 2. Run `.github/scripts/sync-project-status.sh <pr-number>` after `gh pr create` or `gh pr edit`.
-3. CI workflow `.github/workflows/project-status.yml` does the same on GitHub events.
-4. Strip any “Made with Cursor” / Co-authored-by text from the PR body.
+3. CI workflow `.github/workflows/project-status.yml` does the same when secret `PROJECT_TOKEN` is set (PAT with `project` scope).
+4. Strip any tooling attribution from the PR body.
 
 Do not add Co-authored-by or tooling attribution.

@@ -16,7 +16,7 @@ export function App() {
   return (
     <ThemeProvider mode="light">
       <SkipLink />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Button>Save</Button>
       </main>
     </ThemeProvider>

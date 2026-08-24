@@ -7,20 +7,10 @@ export type SkipLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'
 
 const DEFAULT_LABEL = 'Skip to main content';
 
-function focusTarget(id: string) {
-  const target = document.getElementById(id);
-  if (!target) {
-    return;
-  }
-  if (!target.hasAttribute('tabindex')) {
-    target.setAttribute('tabindex', '-1');
-  }
-  target.focus();
-}
-
 /**
  * First focusable control in an app shell. Visible on keyboard focus only.
- * Point `href` at a `main` landmark (`id="main"`).
+ * Point `href` at a landmark that is already focusable, e.g.
+ * `<main id="main" tabIndex={-1}>`.
  */
 export function SkipLink({
   href = '#main',
@@ -38,16 +28,20 @@ export function SkipLink({
     if (!id) {
       return;
     }
+    const target = document.getElementById(id);
+    if (!target) {
+      return;
+    }
     event.preventDefault();
-    focusTarget(id);
+    target.focus();
   }
 
   return (
     <a
+      {...rest}
       href={href}
       className={cx('d-ui-skip-link', className)}
       onClick={handleClick}
-      {...rest}
     >
       {children}
     </a>
