@@ -39,7 +39,7 @@
     "@storybook/addon-essentials": "8.6.18",
     "@storybook/addon-interactions": "8.6.18",
     "@storybook/react": "8.6.18",
-    "@storybook/react-vite": "8.6.18",
+    "@storybook/react-vite": "10.5.10",
     "@storybook/test": "8.6.18",
     "@tailwindcss/vite": "^4.0.9",
     "@testing-library/jest-dom": "^6.6.3",
