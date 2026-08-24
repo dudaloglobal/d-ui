@@ -1,0 +1,117 @@
+name: Preview Storybook
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+  pages: write
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    name: Build, deploy, require preview URL
+    runs-on: ubuntu-latest
+    env:
+      PREVIEW_DIR: prs/${{ github.event.pull_request.number }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build-storybook
+
+      - name: Deploy preview
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: packages/ui/storybook-static
+          destination_dir: ${{ env.PREVIEW_DIR }}
+          keep_files: true
+          commit_message: 'docs(preview): storybook PR ${{ github.event.pull_request.number }}'
+
+      - name: Preview URL
+        id: url
+        run: |
+          owner="${{ github.repository_owner }}"
+          repo="${{ github.event.repository.name }}"
+          echo "url=https://${owner}.github.io/${repo}/${PREVIEW_DIR}/" >> "$GITHUB_OUTPUT"
+
+      - name: Publier l'URL de preview dans la PR
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const url = '${{ steps.url.outputs.url }}';
+            const marker = '<!-- d-ui-storybook-preview -->';
+            const commentBody = [
+              marker,
+              '## Preview Storybook',
+              '',
+              `URL : ${url}`,
+            ].join('\n');
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find((c) => c.body?.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body: commentBody,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: commentBody,
+              });
+            }
+
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            let body = pr.data.body ?? '';
+            if (!/## Preview Storybook/i.test(body)) {
+              body += `\n\n## Preview Storybook\n\nURL du preview : ${url}\n`;
+            } else if (/URL du preview :\s*$/im.test(body) || /URL du preview :\s*$/i.test(body)) {
+              body = body.replace(/URL du preview :\s*/i, `URL du preview : ${url}\n`);
+            } else if (!/URL du preview :\s*https?:\/\//i.test(body)) {
+              body = body.replace(
+                /URL du preview :.*/i,
+                `URL du preview : ${url}`,
+              );
+            }
+
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              body,
+            });
+
+            const updated = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            const finalBody = updated.data.body ?? '';
+            if (!/https?:\/\/\S+/i.test(finalBody) || !/preview\s+storybook/i.test(finalBody)) {
+              core.setFailed(
+                'Impossible de publier le lien Preview Storybook dans la description de PR.',
+              );
+            }

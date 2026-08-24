@@ -1,0 +1,8 @@
+#!/bin/sh
+# Same filter as commit-msg (some tools inject trailers before commit-msg).
+set -e
+msg_file="$1"
+if [ -z "$msg_file" ] || [ ! -f "$msg_file" ]; then
+  exit 0
+fi
+"$(dirname "$0")/commit-msg" "$msg_file"

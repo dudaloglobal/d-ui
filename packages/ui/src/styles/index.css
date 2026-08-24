@@ -1,0 +1,65 @@
+@import './tokens.css';
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: var(--d-ui-color-bg);
+  --color-fg: var(--d-ui-color-fg);
+  --color-brand: var(--d-ui-color-brand);
+  --color-brand-hover: var(--d-ui-color-brand-hover);
+  --color-on-brand: var(--d-ui-color-on-brand);
+  --color-surface-muted: var(--d-ui-color-surface-muted);
+  --color-surface-hover: var(--d-ui-color-surface-hover);
+  --color-border: var(--d-ui-color-border);
+  --color-focus: var(--d-ui-color-focus);
+  --font-sans: var(--d-ui-font-sans);
+  --radius-md: var(--d-ui-radius-md);
+}
+
+.d-ui-root {
+  color: var(--d-ui-color-fg);
+  background-color: var(--d-ui-color-bg);
+  font-family: var(--d-ui-font-sans);
+  color-scheme: light;
+}
+
+.d-ui-root[data-d-ui-theme='dark'] {
+  color-scheme: dark;
+}
+
+@keyframes d-ui-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.d-ui-button-spinner {
+  box-sizing: border-box;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 9999px;
+  animation: d-ui-spin 0.6s linear infinite;
+}
+
+.d-ui-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d-ui-root *,
+  .d-ui-root *::before,
+  .d-ui-root *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
