@@ -9,6 +9,8 @@
 
 L’auteur de la PR est assigné automatiquement. Reviewers demandés : `@Angelo-Cosme`, `@fruitizz`.
 
+Voir aussi [docs/github-admin.md](./docs/github-admin.md) (labels, milestones, protection de `main`).
+
 Messages de commit en **anglais**, style conventional : `feat(button): …`, `fix(a11y): …`, `chore(ci): …`.
 
 Ne pas ajouter de trailer `Co-authored-by` (ni attribution d’outil). Installer les hooks une fois :
