@@ -18,3 +18,8 @@ blob-report
 !.vscode/extensions.json
 *.tsbuildinfo
 .pnpm-store
+*.tgz
+
+__pycache__/
+*.pyc
+

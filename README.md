@@ -6,11 +6,13 @@ Package UI générique de Dudalo (**DudaX**). Pas de logique métier Education.
 
 Les apps consommatrices dépendent de :
 
-1. l’API React (`Button`, `ThemeProvider`, …)
+1. l’API React (`Button`, `ThemeProvider`, `SkipLink`, …)
 2. les variables CSS `--d-ui-*`
 3. `import 'd-ui/styles.css'`
 
 Les classes Tailwind internes ne font **pas** partie du contrat.
+
+Usage : [docs/consume.md](./docs/consume.md). Tokens : [docs/tokens.md](./docs/tokens.md).
 
 ## Prérequis
 
@@ -36,7 +38,7 @@ pnpm storybook
 
 ## Contribution
 
-Voir [CONTRIBUTING.md](./CONTRIBUTING.md), [docs/accessibility.md](./docs/accessibility.md) et [SECURITY.md](./SECURITY.md).
+Voir [CONTRIBUTING.md](./CONTRIBUTING.md), [docs/component-conventions.md](./docs/component-conventions.md), [docs/accessibility.md](./docs/accessibility.md) et [SECURITY.md](./SECURITY.md).
 
 ## Roadmap
 

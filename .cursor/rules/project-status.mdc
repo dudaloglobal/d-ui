@@ -1,0 +1,35 @@
+---
+description: Move GitHub Project cards when creating or updating a pull request
+alwaysApply: true
+---
+
+# Project board status on every PR
+
+The backlog lives on [Design System DudaX](https://github.com/orgs/dudaloglobal/projects/2). On every PR create or update, move linked issues to the matching Status. Do not leave completed work in Backlog.
+
+## Keywords in the PR body
+
+- `Closes #N` — work for that issue is done in this PR.
+- `Related to #N` — work started but the issue is not finished.
+
+Branch name `feature/DS-XXX-…` is a hint, not a close.
+
+## Status mapping
+
+| PR state | `Closes #N` | `Related to #N` |
+|---|---|---|
+| Draft | En cours | En cours |
+| Open, ready for review | En revue | En cours |
+| Merged | Terminé (issue closes via `Closes`) | En cours |
+| Closed without merge | En cours | En cours |
+
+Unstarted issues stay in Backlog.
+
+## How
+
+1. Put `Closes #N` / `Related to #N` in the Ticket section (never only “Related to” for finished work).
+2. Run `.github/scripts/sync-project-status.sh <pr-number>` after `gh pr create` or `gh pr edit`.
+3. CI workflow `.github/workflows/project-status.yml` does the same on GitHub events.
+4. Strip any “Made with Cursor” / Co-authored-by text from the PR body.
+
+Do not add Co-authored-by or tooling attribution.

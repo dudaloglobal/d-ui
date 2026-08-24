@@ -11,4 +11,5 @@ When creating or updating a GitHub pull request:
 - Assign the PR author.
 - Request reviewers as the other two of `fruitizz`, `Angelo-Cosme`, and `noukpoherve` (from the PR or ticket assignee). Skip a login if it is the author.
 - Automation lives in `.github/workflows/pr-assignment.yml`; still set `--assignee` / `--reviewer` on `gh pr create`.
+- Put `Closes #N` or `Related to #N` in the PR body and run `.github/scripts/sync-project-status.sh <pr-number>` so the project board moves (see `project-status.mdc`).
 - Never add Co-authored-by or tooling attribution.

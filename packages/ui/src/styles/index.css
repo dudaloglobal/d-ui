@@ -5,6 +5,8 @@
 @theme inline {
   --color-bg: var(--d-ui-color-bg);
   --color-fg: var(--d-ui-color-fg);
+  --color-fg-muted: var(--d-ui-color-fg-muted);
+  --color-fg-disabled: var(--d-ui-color-fg-disabled);
   --color-brand: var(--d-ui-color-brand);
   --color-brand-hover: var(--d-ui-color-brand-hover);
   --color-on-brand: var(--d-ui-color-on-brand);
@@ -13,9 +15,15 @@
   --color-field: var(--d-ui-color-field);
   --color-field-hover: var(--d-ui-color-field-hover);
   --color-border: var(--d-ui-color-border);
-  --color-danger: var(--d-ui-color-danger);
-  --color-success: var(--d-ui-color-success);
   --color-focus: var(--d-ui-color-focus);
+  --color-danger: var(--d-ui-color-danger);
+  --color-on-danger: var(--d-ui-color-on-danger);
+  --color-warning: var(--d-ui-color-warning);
+  --color-on-warning: var(--d-ui-color-on-warning);
+  --color-success: var(--d-ui-color-success);
+  --color-on-success: var(--d-ui-color-on-success);
+  --color-info: var(--d-ui-color-info);
+  --color-on-info: var(--d-ui-color-on-info);
   --font-sans: var(--d-ui-font-sans);
   --radius-md: var(--d-ui-radius-md);
 }
@@ -158,6 +166,34 @@
 
 .d-ui-option[data-active] {
   background-color: var(--d-ui-color-surface-hover);
+}
+
+.d-ui-skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  z-index: 100;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.d-ui-skip-link:focus,
+.d-ui-skip-link:focus-visible {
+  width: auto;
+  height: auto;
+  padding: 0.5rem 0.75rem;
+  overflow: visible;
+  clip: auto;
+  color: var(--d-ui-color-on-brand);
+  background-color: var(--d-ui-color-brand);
+  border-radius: var(--d-ui-radius-md);
+  outline: 2px solid var(--d-ui-color-focus);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

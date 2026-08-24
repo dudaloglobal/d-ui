@@ -1,0 +1,13 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundations/Tokens" />
+
+# Tokens
+
+Les couleurs sémantiques vivent dans `packages/ui/src/styles/tokens.css` (hex **uniquement ici**).
+
+Les composants consomment `var(--d-ui-*)` via le pont Tailwind `@theme` dans `styles/index.css`.
+
+Ajouter un token : voir [docs/tokens.md](https://github.com/dudaloglobal/d-ui/blob/main/docs/tokens.md).
+
+Les noms TypeScript publics sont `tokenNames` (`import { tokenNames } from 'd-ui'`).
