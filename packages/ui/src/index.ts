@@ -12,6 +12,16 @@ export { IconButton } from './components/Button/IconButton';
 export type { IconButtonProps } from './components/Button/IconButton';
 export { Divider } from './components/Divider/Divider';
 export type { DividerOrientation, DividerProps } from './components/Divider/Divider';
+export { Field } from './components/Field/Field';
+export type { FieldProps } from './components/Field/Field';
+export { FieldDescription } from './components/Field/FieldDescription';
+export type { FieldDescriptionProps } from './components/Field/FieldDescription';
+export { FieldError } from './components/Field/FieldError';
+export type { FieldErrorProps } from './components/Field/FieldError';
+export { Label } from './components/Field/Label';
+export type { LabelProps } from './components/Field/Label';
+export { useFieldControl } from './components/Field/useFieldControl';
+export type { FieldControlProps } from './components/Field/useFieldControl';
 export { Heading } from './components/Heading/Heading';
 export type {
   HeadingLevel,
