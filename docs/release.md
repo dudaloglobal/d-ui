@@ -33,7 +33,7 @@ Le tarball doit lister `dist/index.js`, `dist/index.d.ts`, `dist/d-ui.css`. Pas 
 | --------------- | --------------------- | ----------------------------------------------------------------------------------------------- |
 | `NPM_TOKEN`     | Actions repo (ou org) | `npm publish` de `d-ui`. **Sans ce secret, aucune publication.**                                |
 | `GITHUB_TOKEN`  | fourni par Actions    | PR de version, tags                                                                             |
-| `PROJECT_TOKEN` | Actions repo          | PAT avec scope `project` pour le board org (`project-status.yml`). **Requis** pour ce workflow. |
+| `PROJECT_TOKEN` | Actions repo | PAT avec scope `project` pour synchroniser le board org. Optionnel : sans lui, le workflow `project-status` est ignoré (la CI reste verte). |
 
 Ne pas coller de token dans le dépôt. Ne pas publier à la main depuis un laptop.
 
