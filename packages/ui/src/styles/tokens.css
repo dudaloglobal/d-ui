@@ -9,7 +9,8 @@
   --d-ui-color-on-brand: #ffffff;
   --d-ui-color-surface-muted: #f1f5f9;
   --d-ui-color-surface-hover: #e2e8f0;
-  --d-ui-color-border: #cbd5e1;
+  /* Frontière de contrôle : WCAG 2.2 AA 1.4.11 impose 3:1 contre le fond. */
+  --d-ui-color-border: #64748b;
   --d-ui-color-focus: #0f5c4c;
   --d-ui-color-danger: #b42318;
   --d-ui-color-on-danger: #ffffff;
@@ -40,7 +41,7 @@
   --d-ui-color-on-brand: #042f2e;
   --d-ui-color-surface-muted: #1e293b;
   --d-ui-color-surface-hover: #334155;
-  --d-ui-color-border: #475569;
+  --d-ui-color-border: #64748b;
   --d-ui-color-focus: #5eead4;
   --d-ui-color-danger: #f97066;
   --d-ui-color-on-danger: #1d0403;
