@@ -1,0 +1,80 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Fondations/Icônes" />
+
+# Icônes
+
+`d-ui` **ne dépend d'aucune librairie d'icônes**. `Icon` reçoit le composant SVG en prop :
+
+```tsx
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { Icon } from 'd-ui';
+
+<Icon as={ChevronDownIcon} size="md" />;
+```
+
+Trois conséquences voulues : le contrat public ne se verrouille pas sur une
+dépendance tierce, aucun jeu d'icônes n'est jamais importé en bloc, et une
+application qui a déjà les siennes consomme `d-ui` sans doublon de bundle.
+
+Le jeu recommandé est **Heroicons** (MIT, Tailwind Labs). Il n'est ici qu'une
+`devDependency`, pour les stories.
+
+## Tailles
+
+Alignées sur les hauteurs de `Button`.
+
+| `size` | Rendu | Classe   | Usage                       |
+| ------ | ----- | -------- | --------------------------- |
+| `sm`   | 16 px | `size-4` | dans un bouton, une puce    |
+| `md`   | 20 px | `size-5` | par défaut, texte courant   |
+| `lg`   | 24 px | `size-6` | titre de section, état vide |
+
+## Couleur
+
+Aucune prop de couleur, et c'est délibéré : le SVG hérite de `currentColor`,
+donc de la couleur du texte qui le porte. Il suit le thème sans token dédié.
+Pour le colorer, on colore son conteneur.
+
+## Le piège Heroicons v2
+
+Heroicons ne fournit l'**outline qu'en 24 px**. Les jeux 20 et 16 sont **solid
+uniquement**. Mapper `size="sm"` sur `@heroicons/react/16/solid` ferait donc
+basculer la silhouette en plein sans prévenir, au milieu d'une interface en
+outline.
+
+La règle : importer depuis `24/outline` et laisser `size` réduire en CSS.
+Ne descendre sur `20/solid` ou `16/solid` que lorsqu'on veut explicitement du
+solid.
+
+```tsx
+// ✅ même silhouette à toutes les tailles
+import { BellIcon } from '@heroicons/react/24/outline';
+<Icon as={BellIcon} size="sm" />;
+
+// ❌ bascule silencieusement en solid
+import { BellIcon } from '@heroicons/react/16/solid';
+```
+
+## Accessibilité
+
+- **Décorative par défaut.** Sans `label`, l'icône porte `aria-hidden="true"` et
+  `focusable="false"` — ce dernier neutralise un vieux bug d'Internet Explorer et
+  Edge legacy qui rendait les SVG focusables au clavier.
+- **`label` uniquement quand l'icône porte le sens à elle seule.** Une icône
+  posée à côté de son libellé n'a pas de `label` : elle le répéterait au lecteur
+  d'écran.
+- **Dans un `Button`, ne mets jamais de `label`.** Le slot `icon` du bouton est
+  déjà `aria-hidden` et le bouton porte son propre nom accessible. Un `label` y
+  serait ignoré silencieusement.
+- **`IconButton` porte le nom sur le bouton**, via son `aria-label` obligatoire —
+  pas sur l'icône.
+
+## À faire / à éviter
+
+| ✅ À faire                                             | ❌ À éviter                                             |
+| ------------------------------------------------------ | ------------------------------------------------------- |
+| `<Icon as={BellIcon} />` à côté d'un libellé           | `<Icon as={BellIcon} label="Notifications" />` idem     |
+| `<IconButton icon={<Icon …/>} aria-label="Supprimer">` | `<IconButton>` sans `aria-label`                        |
+| Import depuis `24/outline`                             | Import depuis `16/solid` pour obtenir une petite taille |
+| Colorer le conteneur                                   | Passer `fill` ou `stroke` en dur                        |
