@@ -1,7 +1,21 @@
 @import './tokens.css';
 @import 'tailwindcss';
 
-@theme {
+/*
+ * `inline` est obligatoire.
+ *
+ * Sans lui, Tailwind déclare `--color-fg: var(--d-ui-color-fg)` sur `:root` et
+ * les utilitaires pointent vers `--color-fg`. Or une custom property est
+ * substituée sur l'élément qui la déclare : la variable se fige donc sur la
+ * palette claire, et l'override `[data-d-ui-theme='dark']` posé par
+ * `ThemeProvider` plus bas dans l'arbre ne l'atteint jamais. Même cause pour
+ * l'override de marque passé en `style` sur le wrapper.
+ *
+ * Avec `inline`, l'utilitaire généré est `color: var(--d-ui-color-fg)` : la
+ * résolution a lieu sur l'élément porteur de la classe, donc sous le thème
+ * et la marque actifs.
+ */
+@theme inline {
   --color-bg: var(--d-ui-color-bg);
   --color-fg: var(--d-ui-color-fg);
   --color-fg-muted: var(--d-ui-color-fg-muted);
