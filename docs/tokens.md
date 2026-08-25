@@ -22,11 +22,14 @@ Ne pas exposer les classes Tailwind (`bg-brand`, …) aux apps : elles ne font p
 
 Valeurs mesurées sur le bootstrap actuel — le gel Figma (DS-006) les remplacera **sans renommer** les variables si possible.
 
-| Paire                         | Light  | Dark   | Cible AA                                                      |
-| ----------------------------- | ------ | ------ | ------------------------------------------------------------- |
-| Body `fg` / `bg`              | 16.1:1 | 15.4:1 | ≥ 4.5:1                                                       |
-| Heading = body `fg`           | idem   | idem   | ≥ 4.5:1                                                       |
-| Inverse `on-brand` / `brand`  | 8.6:1  | 9.8:1  | ≥ 4.5:1                                                       |
-| Disabled `fg-disabled` / `bg` | 2.5:1  | 3.6:1  | UI non-texte ≥ 3:1 ; le texte disabled peut rester sous 4.5:1 |
+Ratios calculés avec la formule WCAG 2.1 (luminance relative, `(L1 + 0.05) / (L2 + 0.05)`) sur les hex de `tokens.css`. Cette table est tenue à la main : elle dérive dès qu'une valeur change. DS-006 la remplacera par un test qui recalcule les paires à chaque CI.
+
+| Paire                         | Light   | Dark    | Cible AA                                                      |
+| ----------------------------- | ------- | ------- | ------------------------------------------------------------- |
+| Body `fg` / `bg`              | 17.85:1 | 17.09:1 | ≥ 4.5:1                                                       |
+| Heading = body `fg`           | idem    | idem    | ≥ 4.5:1                                                       |
+| Inverse `on-brand` / `brand`  | 7.91:1  | 9.78:1  | ≥ 4.5:1                                                       |
+| Bordure `border` / `bg`       | 4.76:1  | 3.93:1  | ≥ 3:1 (1.4.11, frontière de contrôle)                         |
+| Disabled `fg-disabled` / `bg` | 2.56:1  | 3.93:1  | UI non-texte ≥ 3:1 ; le texte disabled peut rester sous 4.5:1 |
 
 White-label : passer `tokens` à `ThemeProvider` (`brand`, `brandHover`, `onBrand`, `focus`).
