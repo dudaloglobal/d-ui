@@ -95,4 +95,28 @@ describe('SkipLink', () => {
     await user.click(screen.getByRole('link'));
     expect(main).not.toHaveAttribute('tabindex');
   });
+
+  it('falls back to native navigation when the target cannot take focus', async () => {
+    const user = userEvent.setup();
+    render(
+      <div>
+        <SkipLink />
+        <main id="main">Contenu</main>
+      </div>,
+    );
+
+    const link = screen.getByRole('link');
+    const seen = vi.fn();
+    link.addEventListener('click', (event) => {
+      seen(event.defaultPrevented);
+    });
+
+    await user.click(link);
+
+    // `focus()` ne peut pas aboutir sur un `main` sans tabIndex. Le composant
+    // rend alors la main au navigateur au lieu d'annuler le saut d'ancre et de
+    // ne rien faire — sinon le premier contrôle de la page reste sans effet.
+    expect(document.getElementById('main')).not.toHaveFocus();
+    expect(seen).toHaveBeenCalledWith(false);
+  });
 });
