@@ -15,6 +15,7 @@
   --color-field: var(--d-ui-color-field);
   --color-field-hover: var(--d-ui-color-field-hover);
   --color-border: var(--d-ui-color-border);
+  --color-border-subtle: var(--d-ui-color-border-subtle);
   --color-focus: var(--d-ui-color-focus);
   --color-danger: var(--d-ui-color-danger);
   --color-on-danger: var(--d-ui-color-on-danger);

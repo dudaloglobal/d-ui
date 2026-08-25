@@ -12,7 +12,10 @@
   --d-ui-color-surface-hover: #e2e8f0;
   --d-ui-color-field: rgba(15, 23, 42, 0.03);
   --d-ui-color-field-hover: rgba(15, 23, 42, 0.12);
-  --d-ui-color-border: #cbd5e1;
+  /* Frontière de contrôle : WCAG 2.2 AA 1.4.11 impose 3:1 contre le fond. */
+  --d-ui-color-border: #64748b;
+  /* Trait décoratif uniquement (séparateurs, filets), jamais la limite d'un contrôle. */
+  --d-ui-color-border-subtle: #cbd5e1;
   --d-ui-color-focus: #0f5c4c;
   --d-ui-color-danger: #b91c1c;
   --d-ui-color-on-danger: #ffffff;
@@ -46,7 +49,8 @@
   --d-ui-color-surface-hover: #334155;
   --d-ui-color-field: rgba(241, 245, 249, 0.03);
   --d-ui-color-field-hover: rgba(241, 245, 249, 0.12);
-  --d-ui-color-border: #475569;
+  --d-ui-color-border: #64748b;
+  --d-ui-color-border-subtle: #334155;
   --d-ui-color-focus: #5eead4;
   --d-ui-color-danger: #f87171;
   --d-ui-color-on-danger: #1d0403;
