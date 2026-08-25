@@ -22,4 +22,15 @@ describe('Divider', () => {
 
     expect(screen.getByRole('separator')).toHaveAttribute('aria-orientation', 'vertical');
   });
+
+  it('does not let a caller override the accessibility semantics', () => {
+    // Le type autorise ces attributs — c'est précisément pour ça que le
+    // composant les réaffirme après `rest` plutôt que de compter sur TypeScript.
+    render(<Divider data-testid="divider" aria-hidden={false} role="separator" />);
+
+    const divider = screen.getByTestId('divider');
+    expect(divider).toHaveAttribute('aria-hidden', 'true');
+    expect(divider).toHaveAttribute('role', 'none');
+    expect(screen.queryByRole('separator')).not.toBeInTheDocument();
+  });
 });

@@ -26,6 +26,11 @@ export function Divider({
   className,
   ...rest
 }: DividerProps) {
+  /**
+   * Étalé **après** `rest` : la sémantique découle de `label` et ne doit pas
+   * pouvoir être écrasée par l'appelant. Un `aria-hidden={false}` passé de
+   * l'extérieur exposerait un séparateur anonyme aux lecteurs d'écran.
+   */
   const semantics = label
     ? { role: 'separator', 'aria-orientation': orientation, 'aria-label': label }
     : { role: 'none', 'aria-hidden': true };
@@ -36,18 +41,18 @@ export function Divider({
   if (orientation === 'vertical') {
     return (
       <div
+        {...rest}
         {...semantics}
         className={cx('bg-border-subtle', shape, className)}
-        {...rest}
       />
     );
   }
 
   return (
     <hr
+      {...rest}
       {...semantics}
       className={cx('bg-border-subtle border-0', shape, className)}
-      {...rest}
     />
   );
 }
