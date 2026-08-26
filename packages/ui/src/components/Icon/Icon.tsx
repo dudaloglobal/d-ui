@@ -41,15 +41,38 @@ const sizeClass: Record<IconSize, string> = {
  * elle suit le thème sans prop de couleur ni token dédié.
  */
 export function Icon({ as: Svg, size = 'md', label, className, ...rest }: IconProps) {
+  /*
+   * Étalée **après** `rest` : la sémantique découle de `label` et ne doit pas
+   * pouvoir être écrasée par l'appelant. Un `aria-hidden={false}` venu de
+   * l'extérieur exposerait une icône décorative aux lecteurs d'écran.
+   *
+   * Les deux branches déclarent **le même jeu d'attributs**, à `undefined`
+   * quand ils ne s'appliquent pas : sans ça, un `role` passé par l'appelant
+   * survivrait en mode décoratif, faute d'être écrasé.
+   *
+   * `focusable="false"` est posé dans les deux cas, `label` ou non : l'attribut
+   * retire le SVG de l'ordre de tabulation, ce qui est indépendant du fait
+   * qu'il soit nommé.
+   */
   const semantics = label
-    ? { role: 'img' as const, 'aria-label': label }
-    : { 'aria-hidden': true, focusable: false as const };
+    ? {
+        role: 'img' as const,
+        'aria-label': label,
+        'aria-hidden': undefined,
+        focusable: false as const,
+      }
+    : {
+        role: undefined,
+        'aria-label': undefined,
+        'aria-hidden': true,
+        focusable: false as const,
+      };
 
   return (
     <Svg
+      {...rest}
       {...semantics}
       className={cx('inline-block shrink-0', sizeClass[size], className)}
-      {...rest}
     />
   );
 }
