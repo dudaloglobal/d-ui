@@ -4,6 +4,7 @@ import { cx } from '../../lib/cx';
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 export type ButtonIconPosition = 'start' | 'end';
+export type ButtonLoadingIndicator = 'spinner' | 'bounce';
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   /**
@@ -13,8 +14,10 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant;
   /** `"sm"` when space is constrained. `"md"` by default. `"lg"` for spacious actions. */
   size?: ButtonSize;
-  /** Replaces the icon with a spinner and sets `aria-busy`. The label stays visible. */
+  /** Replaces the icon with a loading indicator and sets `aria-busy`. The label stays visible. */
   loading?: boolean;
+  /** `"spinner"` (default) or `"bounce"` (three dots). Only used when `loading` is set. */
+  loadingIndicator?: ButtonLoadingIndicator;
   icon?: ReactNode;
   iconPosition?: ButtonIconPosition;
   /** Stretch to the width of the container. */
@@ -43,6 +46,16 @@ function Spinner() {
   return <span className="d-ui-button-spinner" aria-hidden="true" />;
 }
 
+function Bounce() {
+  return (
+    <span className="d-ui-button-bounce" aria-hidden="true">
+      <span />
+      <span />
+      <span />
+    </span>
+  );
+}
+
 function IconSlot({ children }: { children: ReactNode }) {
   return (
     <span className="inline-flex shrink-0" aria-hidden="true">
@@ -63,6 +76,7 @@ export function Button({
   className,
   disabled,
   loading = false,
+  loadingIndicator = 'spinner',
   icon,
   iconPosition = 'start',
   fullWidth = false,
@@ -93,7 +107,7 @@ export function Button({
         className,
       )}
     >
-      {loading ? <Spinner /> : null}
+      {loading ? loadingIndicator === 'bounce' ? <Bounce /> : <Spinner /> : null}
       {showStartIcon ? <IconSlot>{icon}</IconSlot> : null}
       {children}
       {showEndIcon ? <IconSlot>{icon}</IconSlot> : null}

@@ -3,6 +3,7 @@ import './styles/index.css';
 export { Button } from './components/Button/Button';
 export type {
   ButtonIconPosition,
+  ButtonLoadingIndicator,
   ButtonProps,
   ButtonSize,
   ButtonVariant,

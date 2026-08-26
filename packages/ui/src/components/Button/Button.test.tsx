@@ -46,8 +46,46 @@ describe('Button', () => {
     const button = screen.getByRole('button', { name: 'Enregistrer' });
     expect(button).toHaveAttribute('aria-busy', 'true');
     expect(button).toBeDisabled();
+    expect(button.querySelector('.d-ui-button-spinner')).not.toBeNull();
     await user.click(button);
     expect(onClick).not.toHaveBeenCalled();
+  });
+
+  it('uses bounce dots when loadingIndicator is bounce', () => {
+    render(
+      <Button loading loadingIndicator="bounce">
+        Enregistrer
+      </Button>,
+    );
+    const button = screen.getByRole('button', { name: 'Enregistrer' });
+    expect(button).toHaveAttribute('aria-busy', 'true');
+    expect(button).toBeDisabled();
+    const bounce = button.querySelector('.d-ui-button-bounce');
+    expect(bounce).not.toBeNull();
+    expect(bounce).toHaveAttribute('aria-hidden', 'true');
+    expect(bounce?.children).toHaveLength(3);
+    expect(button.querySelector('.d-ui-button-spinner')).toBeNull();
+    expect(button).not.toHaveAttribute('loadingindicator');
+  });
+
+  it('does not show bounce unless loading is set', () => {
+    render(<Button loadingIndicator="bounce">Enregistrer</Button>);
+    expect(
+      screen
+        .getByRole('button', { name: 'Enregistrer' })
+        .querySelector('.d-ui-button-bounce'),
+    ).toBeNull();
+  });
+
+  it('replaces the icon with the loading indicator', () => {
+    render(
+      <Button loading icon={<PlusIcon />}>
+        Ajouter
+      </Button>,
+    );
+    const button = screen.getByRole('button', { name: 'Ajouter' });
+    expect(button.querySelector('svg')).toBeNull();
+    expect(button.querySelector('.d-ui-button-spinner')).not.toBeNull();
   });
 
   it('keeps the text name when an icon is present', () => {
@@ -90,5 +128,21 @@ describe('IconButton', () => {
   it('requires an accessible name via aria-label', () => {
     render(<IconButton icon={<PlusIcon />} aria-label="Ajouter" />);
     expect(screen.getByRole('button', { name: 'Ajouter' })).toBeInTheDocument();
+  });
+
+  it('shows bounce loading while keeping the accessible name', () => {
+    render(
+      <IconButton
+        loading
+        loadingIndicator="bounce"
+        icon={<PlusIcon />}
+        aria-label="Ajouter"
+      />,
+    );
+    const button = screen.getByRole('button', { name: 'Ajouter' });
+    expect(button).toHaveAttribute('aria-busy', 'true');
+    expect(button).toBeDisabled();
+    expect(button.querySelector('.d-ui-button-bounce')?.children).toHaveLength(3);
+    expect(button.querySelector('svg')).toBeNull();
   });
 });

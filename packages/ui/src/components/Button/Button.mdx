@@ -14,7 +14,7 @@ Les exemples suivent la **langue** de la barre d’outils Storybook (**Français
 
 Utilisez le fort emphasis (`variant="primary"`) pour aider à identifier l’action principale. Il ne doit pas y avoir plus d’un bouton high emphasis dans une vue.
 
-Cas d’usage : Par défaut, Désactivé, Avec icône, Menu, Fractionné.
+Cas d’usage : Par défaut, Désactivé, Chargement, Avec icône, Menu, Fractionné.
 
 <Canvas of={ButtonStories.HighEmphasis} sourceState="shown" />
 
@@ -34,9 +34,15 @@ Les boutons medium ont une option supplémentaire : `isSelected`. Utilisez `isSe
 
 Quand la vue contient déjà un bouton primary et un medium, utilisez le low emphasis (`variant="ghost"`) pour les actions de moindre priorité. Autrement, utilisez-le lorsqu’il n’y a qu’un seul niveau de priorité.
 
-Cas d’usage : Par défaut, Désactivé, Avec icône, Menu (pas de fractionné).
+Cas d’usage : Par défaut, Désactivé, Chargement, Avec icône, Menu (pas de fractionné).
 
 <Canvas of={ButtonStories.LowEmphasis} sourceState="shown" />
+
+## Loading
+
+`loading` affiche un indicateur, conserve le libellé, pose `aria-busy` et désactive le contrôle. L’icône est remplacée par l’indicateur. `loadingIndicator="spinner"` (défaut) ou `"bounce"`.
+
+<Canvas of={ButtonStories.Loading} sourceState="shown" />
 
 ## Small size
 
@@ -63,7 +69,7 @@ Cas d’usage accessibilité :
 - **Bouton natif** — `Button` rend un `<button type="button">`. Pour la navigation, utilisez un lien (`Link`, DS-019).
 - **Toggle** — état actif/inactif via `isSelected`. Si le libellé change selon l’état (`S'abonner` / `Abonné`), ce nom suffit. Si le libellé ne change pas, `aria-pressed` est posé depuis `isSelected`.
 - **Menu** — si le bouton ouvre une liste : `aria-haspopup="true"`, `aria-expanded` selon l’ouverture, et `aria-controls` vers l’id du menu uniquement si le menu est dans le DOM.
-- **Chargement** — `loading` conserve le libellé, pose `aria-busy` et désactive le contrôle.
+- **Chargement** — `loading` conserve le libellé, pose `aria-busy` et désactive le contrôle. `loadingIndicator` choisit spinner ou bounce.
 
 #### IconButton
 
@@ -85,6 +91,7 @@ Les attributs natifs `<button>` (`disabled`, `type`, `className`, `aria-haspopup
     'variant',
     'size',
     'loading',
+    'loadingIndicator',
     'icon',
     'iconPosition',
     'fullWidth',
@@ -95,7 +102,7 @@ Les attributs natifs `<button>` (`disabled`, `type`, `className`, `aria-haspopup
 
 ### IconButton
 
-`IconButton` exige `aria-label`. `icon`, `variant`, `size`, `loading`, `fullWidth` et `isSelected` sont les mêmes que `Button`.
+`IconButton` exige `aria-label`. `icon`, `variant`, `size`, `loading`, `loadingIndicator`, `fullWidth` et `isSelected` sont les mêmes que `Button`.
 
 <ArgTypes
   of={IconButton}
@@ -106,6 +113,7 @@ Les attributs natifs `<button>` (`disabled`, `type`, `className`, `aria-haspopup
     'size',
     'disabled',
     'loading',
+    'loadingIndicator',
     'fullWidth',
     'isSelected',
   ]}

@@ -120,6 +120,9 @@ function EmphasisUseCases({
       <Button variant={variant} size={size} disabled>
         {copy.disabled}
       </Button>
+      <Button variant={variant} size={size} loading>
+        {copy.saving}
+      </Button>
       <Button variant={variant} size={size} icon={<PlusIcon />}>
         {copy.withIcon}
       </Button>
@@ -146,7 +149,12 @@ const meta = {
     loading: {
       control: 'boolean',
       description:
-        'Shows a spinner, keeps the label, sets aria-busy, and disables the control.',
+        'Shows a loading indicator, keeps the label, sets aria-busy, and disables the control.',
+    },
+    loadingIndicator: {
+      control: 'inline-radio',
+      options: ['spinner', 'bounce'],
+      description: 'Spinner (default) or bounce dots. Used when loading is true.',
     },
     iconPosition: {
       control: 'inline-radio',
@@ -172,6 +180,7 @@ const meta = {
         'size',
         'disabled',
         'loading',
+        'loadingIndicator',
         'iconPosition',
         'fullWidth',
         'isSelected',
@@ -196,6 +205,7 @@ export const HighEmphasis: Story = {
       source: {
         code: `<Button>Par défaut</Button>
 <Button disabled>Désactivé</Button>
+<Button loading>Enregistrement</Button>
 <Button icon={<PlusIcon />}>Avec icône</Button>
 <Button icon={<ChevronIcon />} iconPosition="end" aria-haspopup="true">
   Menu
@@ -214,6 +224,7 @@ export const MediumEmphasis: Story = {
       source: {
         code: `<Button variant="secondary">Par défaut</Button>
 <Button variant="secondary" disabled>Désactivé</Button>
+<Button variant="secondary" loading>Enregistrement</Button>
 <Button variant="secondary" icon={<PlusIcon />}>Avec icône</Button>`,
       },
     },
@@ -253,6 +264,7 @@ export const LowEmphasis: Story = {
       source: {
         code: `<Button variant="ghost">Par défaut</Button>
 <Button variant="ghost" disabled>Désactivé</Button>
+<Button variant="ghost" loading>Enregistrement</Button>
 <Button variant="ghost" icon={<PlusIcon />}>Avec icône</Button>`,
       },
     },
@@ -325,12 +337,52 @@ export const FullWidth: Story = {
 };
 
 export const Loading: Story = {
-  render: (args, { globals }) => {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Button loading>Enregistrement</Button>
+<Button loading variant="secondary">Enregistrement</Button>
+<Button loading variant="ghost">Enregistrement</Button>
+<IconButton loading icon={<PlusIcon />} aria-label="Ajouter" />
+<Button loading loadingIndicator="bounce">Enregistrement</Button>
+<Button loading loadingIndicator="bounce" variant="secondary">Enregistrement</Button>
+<Button loading loadingIndicator="bounce" variant="ghost">Enregistrement</Button>
+<IconButton loading loadingIndicator="bounce" icon={<PlusIcon />} aria-label="Ajouter" />`,
+      },
+    },
+  },
+  render: (_, { globals }) => {
     const copy = buttonCopy(docsLocale(globals.locale));
     return (
-      <Button {...args} loading>
-        {copy.saving}
-      </Button>
+      <div className="flex flex-col gap-4">
+        <UseCaseRow>
+          <Button loading>{copy.saving}</Button>
+          <Button loading variant="secondary">
+            {copy.saving}
+          </Button>
+          <Button loading variant="ghost">
+            {copy.saving}
+          </Button>
+          <IconButton loading icon={<PlusIcon />} aria-label={copy.add} />
+        </UseCaseRow>
+        <UseCaseRow>
+          <Button loading loadingIndicator="bounce">
+            {copy.saving}
+          </Button>
+          <Button loading loadingIndicator="bounce" variant="secondary">
+            {copy.saving}
+          </Button>
+          <Button loading loadingIndicator="bounce" variant="ghost">
+            {copy.saving}
+          </Button>
+          <IconButton
+            loading
+            loadingIndicator="bounce"
+            icon={<PlusIcon />}
+            aria-label={copy.add}
+          />
+        </UseCaseRow>
+      </div>
     );
   },
 };

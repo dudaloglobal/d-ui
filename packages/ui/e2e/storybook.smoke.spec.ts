@@ -150,25 +150,69 @@ test('Dark docs source does not use lime or brand teal for JSX tags', async ({
   expect(tagColor).not.toBe(darkBrand);
 });
 
-test('Button high emphasis covers Default, Disabled, With Icon, Dropdown and Split', async ({
+test('Button high emphasis covers Default, Disabled, Loading, With Icon, Dropdown and Split', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto('/iframe.html?id=components-button--high-emphasis');
   await expect(page.getByRole('button', { name: 'Par défaut' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Désactivé' })).toBeDisabled();
+  const loading = page.getByRole('button', { name: 'Enregistrement' });
+  await expect(loading).toBeDisabled();
+  await expect(loading).toHaveAttribute('aria-busy', 'true');
+  await expect(loading.locator('.d-ui-button-spinner')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Avec icône' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Menu' })).toHaveAttribute(
     'aria-haspopup',
     'true',
   );
   await expect(page.getByRole('button', { name: "Plus d'actions" })).toBeVisible();
-  const labels = ['Par défaut', 'Désactivé', 'Avec icône', 'Menu', "Plus d'actions"];
+  const labels = [
+    'Par défaut',
+    'Désactivé',
+    'Enregistrement',
+    'Avec icône',
+    'Menu',
+    "Plus d'actions",
+  ];
   const boxes = await Promise.all(
     labels.map((name) => page.getByRole('button', { name }).boundingBox()),
   );
   const ys = boxes.map((box) => box?.y ?? -1);
   expect(Math.max(...ys) - Math.min(...ys)).toBeLessThan(2);
+});
+
+test('Button loading story shows spinner and bounce on each emphasis and IconButton', async ({
+  page,
+}) => {
+  await page.goto('/iframe.html?id=components-button--loading');
+  const labeled = page.getByRole('button', { name: 'Enregistrement' });
+  await expect(labeled).toHaveCount(6);
+  for (const button of await labeled.all()) {
+    await expect(button).toHaveAttribute('aria-busy', 'true');
+    await expect(button).toBeDisabled();
+  }
+  await expect(page.locator('.d-ui-button-spinner')).toHaveCount(4);
+  await expect(page.locator('.d-ui-button-bounce')).toHaveCount(4);
+  const iconOnly = page.getByRole('button', { name: 'Ajouter' });
+  await expect(iconOnly).toHaveCount(2);
+  await expect(iconOnly.nth(0).locator('.d-ui-button-spinner')).toBeVisible();
+  await expect(iconOnly.nth(1).locator('.d-ui-button-bounce')).toBeVisible();
+  await expect(page.locator('.d-ui-button-bounce > span')).toHaveCount(12);
+  const spinnerDuration = await page
+    .locator('.d-ui-button-spinner')
+    .first()
+    .evaluate((el) => getComputedStyle(el).animationDuration);
+  expect(spinnerDuration === '0.9s' || spinnerDuration === '900ms').toBeTruthy();
+  const bounceDot = page.locator('.d-ui-button-bounce > span').first();
+  const { width, fontSize } = await bounceDot.evaluate((el) => {
+    const parent = el.parentElement;
+    return {
+      width: parseFloat(getComputedStyle(el).width),
+      fontSize: parseFloat(getComputedStyle(parent ?? el).fontSize),
+    };
+  });
+  expect(width).toBeCloseTo(fontSize * 0.38, 1);
 });
 
 test('Button full width use cases sit on aligned rows', async ({ page }) => {
