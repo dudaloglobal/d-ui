@@ -13,3 +13,5 @@ export { ThemeProvider } from './theme/ThemeProvider';
 export type { ThemeMode, ThemeProviderProps } from './theme/ThemeProvider';
 export { VisuallyHidden } from './a11y/VisuallyHidden';
 export type { VisuallyHiddenProps } from './a11y/VisuallyHidden';
+export { TimeAgo } from './components/TimeAgo/TimeAgo';
+export type { TimeAgoProps, TimeAgoSize } from './components/TimeAgo/TimeAgo';

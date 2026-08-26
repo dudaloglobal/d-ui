@@ -1,0 +1,79 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import * as TimeAgoStories from './TimeAgo.stories';
+
+<Meta of={TimeAgoStories} />
+
+# Time ago
+
+Time ago displays a **relative** timestamp (`3 minutes ago`) while keeping the **absolute** instant available to people and machines. Copy is formatted with `Intl` — there is no `date-fns` locale bundle. Hover the timestamp for the absolute time; screen readers get both the relative phrase and the absolute date.
+
+<Canvas of={TimeAgoStories.Default} sourceState="shown" />
+
+## Locale
+
+Pass a BCP 47 `locale` string to control relative wording and absolute formatting. Locales that use 24-hour conventions (e.g. `fr`) format the tooltip without an AM/PM suffix. `locale` also sets the `lang` attribute so assistive tech uses the right voice (WCAG 3.1.2).
+
+The runtime locale is used when `locale` is omitted. Inject the app language (`locale={i18n.language}`) rather than hard-coding a design-system default.
+
+<Canvas of={TimeAgoStories.Locale} sourceState="shown" />
+
+## Live updates
+
+The `live` prop refreshes the visible relative text on a **coarse** interval so the label stays meaningful while the view is open:
+
+- under 1 minute — every 10 seconds
+- under 1 hour — every 30 seconds
+- under 1 day — every minute
+- older — every hour
+
+Updates are visual only. `live` does **not** set `aria-live`, so screen readers are not flooded. Pass `aria-live="polite"` to opt into announcements (avoid this on long lists).
+
+Leave `live` off in discussion threads, tables, and any list that can contain many timestamps.
+
+<Canvas of={TimeAgoStories.Live} sourceState="shown" />
+
+## Past and future
+
+`Intl.RelativeTimeFormat` with `numeric: "auto"` produces natural phrasing (`yesterday`, `now`, `in 3 hours`) in both directions.
+
+<Canvas of={TimeAgoStories.PastAndFuture} />
+
+## Size
+
+`size` adjusts the text scale. Compose TimeAgo inside `Text` / `Heading` when those primitives are available; the built-in sizes cover standalone use.
+
+- `"sm"` — compact metadata (cards, comments)
+- `"md"` (default) — body-sized timestamps
+
+<Canvas of={TimeAgoStories.Sizes} />
+
+## Date values
+
+`date` accepts a `Date`, an ISO-8601 string, or epoch milliseconds. The component always writes a valid global datetime on `<time datetime>`.
+
+An invalid value does not render `<time>`: a `<span>` with an em dash is used instead, so the markup stays semantically honest.
+
+```tsx
+<TimeAgo date={submission.createdAt} locale="fr" />
+<TimeAgo date="2026-08-26T12:00:00.000Z" locale="en" />
+<TimeAgo date={1_724_673_600_000} locale="en" />
+```
+
+## Accessibility concerns
+
+`TimeAgo` is a native `<time>` element. It has no extra ARIA role.
+
+- Always pass a valid `date` so `datetime` is a machine-readable ISO-8601 instant.
+- Pass `locale` whenever the copy is not in the document language. The element’s `lang` follows `locale`.
+- Visible text is relative. The absolute instant is in `title` (pointer tooltip) **and** in a visually hidden phrase (assistive tech — `title` is not a reliable accessible name).
+- Do not wrap TimeAgo in a live region that re-announces every tick. `live` is silent by default.
+- Opt-in announcements: `aria-live="polite"` on the component. Keep the interval coarse.
+- Relative text depends on “now”: the element sets `suppressHydrationWarning` so SSR and the client may differ by one unit without crashing hydration.
+
+## Properties
+
+### TimeAgo
+
+Native `<time>` attributes (`className`, `aria-live`, …) are forwarded. `dateTime` and `children` are owned by the component.
+
+<ArgTypes of={TimeAgoStories} include={['date', 'locale', 'live', 'size', 'title']} />
