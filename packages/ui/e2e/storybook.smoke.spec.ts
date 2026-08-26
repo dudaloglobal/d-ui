@@ -21,6 +21,14 @@ test('Storybook page title uses d-ui', async ({ page }) => {
   await expect(page.locator('img[alt="d-ui"]')).toHaveAttribute('src', /favicon\.svg/);
 });
 
+test('Dark theme applies to Storybook chrome and the story canvas', async ({ page }) => {
+  await page.goto('/?path=/docs/components-button--docs&globals=theme:dark');
+  await expect(page.locator('body')).toHaveClass(/d-ui-manager-dark/);
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.locator('[data-d-ui-theme="dark"]').first()).toBeVisible();
+  await expect(preview.getByRole('button', { name: 'Par défaut' }).first()).toBeVisible();
+});
+
 test('Button high emphasis covers Default, Disabled, With Icon, Dropdown and Split', async ({
   page,
 }) => {

@@ -1,19 +1,21 @@
 import { addons } from '@storybook/manager-api';
-import { create } from '@storybook/theming';
+import { darkTheme, docsThemeMode, lightTheme, themeModeFromSearch } from './themes';
 
-addons.setConfig({
-  theme: create({
-    base: 'light',
-    brandTitle: 'd-ui',
-    brandUrl: './',
-    brandImage: './favicon.svg',
-    brandTarget: '_self',
-    colorPrimary: '#0f5c4c',
-    colorSecondary: '#0f5c4c',
-    appBg: '#ffffff',
-    appBorderRadius: 6,
-    barSelectedColor: '#0f5c4c',
-  }),
+function applyManagerTheme(value: unknown) {
+  const mode = docsThemeMode(value);
+  const dark = mode === 'dark';
+  addons.setConfig({ theme: dark ? darkTheme : lightTheme });
+  document.body.classList.toggle('d-ui-manager-dark', dark);
+  document.documentElement.classList.toggle('d-ui-manager-dark', dark);
+}
+
+applyManagerTheme(themeModeFromSearch());
+
+addons.register('d-ui/manager-theme', (api) => {
+  applyManagerTheme(api.getGlobals()?.theme ?? themeModeFromSearch());
+  api.on('globalsUpdated', ({ globals }: { globals?: { theme?: string } }) => {
+    applyManagerTheme(globals?.theme);
+  });
 });
 
 const applyDuiTitle = () => {

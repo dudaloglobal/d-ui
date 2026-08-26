@@ -1,0 +1,54 @@
+html[data-d-ui-theme],
+html.d-ui-root,
+body {
+  background-color: var(--d-ui-color-bg);
+  color: var(--d-ui-color-fg);
+}
+
+#storybook-root,
+#storybook-docs {
+  min-height: 100%;
+  background-color: var(--d-ui-color-bg);
+  color: var(--d-ui-color-fg);
+}
+
+.d-ui-docs-page {
+  min-height: 100vh;
+}
+
+.sbdocs.sbdocs-wrapper,
+.sbdocs-preview,
+.docs-story,
+.docblock-argstable,
+.docblock-argstable-body,
+.docblock-source {
+  background: var(--d-ui-color-bg) !important;
+  color: var(--d-ui-color-fg) !important;
+}
+
+.sbdocs-preview {
+  border-color: var(--d-ui-color-border) !important;
+}
+
+.sbdocs h1,
+.sbdocs h2,
+.sbdocs h3,
+.sbdocs h4,
+.sbdocs p,
+.sbdocs li,
+.sbdocs td,
+.sbdocs th {
+  color: var(--d-ui-color-fg) !important;
+}
+
+.sbdocs code,
+.sbdocs pre,
+.docblock-source pre {
+  background: var(--d-ui-color-surface-muted) !important;
+  color: var(--d-ui-color-fg) !important;
+}
+
+.innerZoomElementWrapper > div {
+  background: transparent !important;
+  border: 0 !important;
+}

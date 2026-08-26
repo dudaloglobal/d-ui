@@ -1,7 +1,65 @@
+import { DocsContainer, type DocsContainerProps } from '@storybook/blocks';
 import type { Preview } from '@storybook/react';
+import { useEffect, useLayoutEffect, useState, type ReactNode } from 'react';
 import { ThemeProvider } from '../src/theme/ThemeProvider';
 import { docsLocale } from './docs-locale';
+import { darkTheme, docsThemeMode, lightTheme, themeModeFromSearch } from './themes';
 import '../src/styles/index.css';
+import './preview.css';
+
+function applyPreviewDocumentTheme(mode: 'light' | 'dark') {
+  const root = document.documentElement;
+  root.setAttribute('data-d-ui-theme', mode);
+  root.classList.add('d-ui-root');
+  document.body.setAttribute('data-d-ui-theme', mode);
+  document.body.classList.add('d-ui-root');
+}
+
+function DuiDocsContainer({ children, context }: DocsContainerProps) {
+  const [mode, setMode] = useState<'light' | 'dark'>(themeModeFromSearch);
+
+  useLayoutEffect(() => {
+    applyPreviewDocumentTheme(mode);
+  }, [mode]);
+
+  useEffect(() => {
+    const channel = context.channel;
+    if (!channel) return undefined;
+    const onUpdate = ({ globals }: { globals?: { theme?: string } }) => {
+      setMode(docsThemeMode(globals?.theme));
+    };
+    channel.on('globalsUpdated', onUpdate);
+    return () => {
+      channel.off('globalsUpdated', onUpdate);
+    };
+  }, [context.channel]);
+
+  return (
+    <ThemeProvider mode={mode} className="d-ui-docs-page">
+      <DocsContainer context={context} theme={mode === 'dark' ? darkTheme : lightTheme}>
+        {children}
+      </DocsContainer>
+    </ThemeProvider>
+  );
+}
+
+function WithDuiTheme(
+  Story: () => ReactNode,
+  context: { globals: { theme?: string; locale?: unknown } },
+) {
+  const mode = docsThemeMode(context.globals.theme);
+  useLayoutEffect(() => {
+    applyPreviewDocumentTheme(mode);
+  }, [mode]);
+
+  return (
+    <ThemeProvider mode={mode}>
+      <div lang={docsLocale(context.globals.locale)} className="d-ui-docs">
+        <Story />
+      </div>
+    </ThemeProvider>
+  );
+}
 
 const preview: Preview = {
   globalTypes: {
@@ -10,10 +68,12 @@ const preview: Preview = {
       defaultValue: 'light',
       toolbar: {
         title: 'Thème',
+        icon: 'contrast',
         items: [
-          { value: 'light', title: 'Light' },
-          { value: 'dark', title: 'Dark' },
+          { value: 'light', title: 'Light', right: 'clair' },
+          { value: 'dark', title: 'Dark', right: 'sombre' },
         ],
+        dynamicTitle: true,
       },
     },
     locale: {
@@ -30,24 +90,22 @@ const preview: Preview = {
       },
     },
   },
-  decorators: [
-    (Story, context) => (
-      <ThemeProvider mode={context.globals.theme === 'dark' ? 'dark' : 'light'}>
-        <div lang={docsLocale(context.globals.locale)} className="d-ui-docs">
-          <Story />
-        </div>
-      </ThemeProvider>
-    ),
-  ],
+  decorators: [WithDuiTheme],
   parameters: {
     a11y: {
       test: 'todo',
+    },
+    backgrounds: {
+      disable: true,
     },
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+    },
+    docs: {
+      container: DuiDocsContainer,
     },
   },
 };
