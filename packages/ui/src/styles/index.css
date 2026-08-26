@@ -1,7 +1,8 @@
 @import './tokens.css';
 @import 'tailwindcss';
 
-@theme {
+/* inline: utilities read --d-ui-* on the themed node, not a :root snapshot. */
+@theme inline {
   --color-bg: var(--d-ui-color-bg);
   --color-fg: var(--d-ui-color-fg);
   --color-brand: var(--d-ui-color-brand);

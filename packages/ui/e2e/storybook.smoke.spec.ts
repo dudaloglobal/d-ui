@@ -21,12 +21,31 @@ test('Storybook page title uses d-ui', async ({ page }) => {
   await expect(page.locator('img[alt="d-ui"]')).toHaveAttribute('src', /favicon\.svg/);
 });
 
+const darkBrand = 'rgb(94, 234, 212)';
+const lightBrand = 'rgb(15, 92, 76)';
+
 test('Dark theme applies to Storybook chrome and the story canvas', async ({ page }) => {
   await page.goto('/?path=/docs/components-button--docs&globals=theme:dark');
   await expect(page.locator('body')).toHaveClass(/d-ui-manager-dark/);
   const preview = page.frameLocator('#storybook-preview-iframe');
   await expect(preview.locator('[data-d-ui-theme="dark"]').first()).toBeVisible();
-  await expect(preview.getByRole('button', { name: 'Par défaut' }).first()).toBeVisible();
+  const button = preview.getByRole('button', { name: 'Par défaut' }).first();
+  await expect(button).toBeVisible();
+  await expect(button).toHaveCSS('background-color', darkBrand);
+});
+
+test('Static iframe dark globals use dark brand tokens', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-button--primary&globals=theme:dark');
+  const button = page.getByRole('button', { name: 'Continuer' });
+  await expect(page.locator('html')).toHaveAttribute('data-d-ui-theme', 'dark');
+  await expect(button).toHaveCSS('background-color', darkBrand);
+});
+
+test('Static iframe light globals keep the light brand token', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-button--primary&globals=theme:light');
+  const button = page.getByRole('button', { name: 'Continuer' });
+  await expect(page.locator('html')).toHaveAttribute('data-d-ui-theme', 'light');
+  await expect(button).toHaveCSS('background-color', lightBrand);
 });
 
 test('Button high emphasis covers Default, Disabled, With Icon, Dropdown and Split', async ({
