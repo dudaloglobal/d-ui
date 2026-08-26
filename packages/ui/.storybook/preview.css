@@ -20,8 +20,7 @@ body {
 .sbdocs-preview,
 .docs-story,
 .docblock-argstable,
-.docblock-argstable-body,
-.docblock-source {
+.docblock-argstable-body {
   background: var(--d-ui-color-bg) !important;
   color: var(--d-ui-color-fg) !important;
 }
@@ -41,9 +40,7 @@ body {
   color: var(--d-ui-color-fg) !important;
 }
 
-.sbdocs code,
-.sbdocs pre,
-.docblock-source pre {
+.sbdocs :not(pre) > code {
   background: var(--d-ui-color-surface-muted) !important;
   color: var(--d-ui-color-fg) !important;
 }
@@ -51,4 +48,82 @@ body {
 .innerZoomElementWrapper > div {
   background: transparent !important;
   border: 0 !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs,
+html[data-d-ui-theme='light'] .docblock-source,
+html[data-d-ui-theme='light'] .docblock-source pre {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.plain-text,
+html[data-d-ui-theme='light'] pre.prismjs .token.punctuation {
+  color: #334155 !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.tag,
+html[data-d-ui-theme='light'] pre.prismjs .token.class-name,
+html[data-d-ui-theme='light'] pre.prismjs .token.function,
+html[data-d-ui-theme='light'] pre.prismjs .token.selector {
+  color: #0f5c4c !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.attr-name,
+html[data-d-ui-theme='light'] pre.prismjs .token.property {
+  color: #0c4a3e !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.attr-value,
+html[data-d-ui-theme='light'] pre.prismjs .token.string {
+  color: #1d4ed8 !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.keyword,
+html[data-d-ui-theme='light'] pre.prismjs .token.boolean {
+  color: #6d28d9 !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.comment,
+html[data-d-ui-theme='light'] pre.prismjs .token.prolog {
+  color: #64748b !important;
+}
+
+html[data-d-ui-theme='dark'] pre.prismjs,
+html[data-d-ui-theme='dark'] .docblock-source,
+html[data-d-ui-theme='dark'] .docblock-source pre {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+}
+
+html[data-d-ui-theme='dark'] pre.prismjs .token.plain-text,
+html[data-d-ui-theme='dark'] pre.prismjs .token.punctuation {
+  color: #e2e8f0 !important;
+}
+
+html[data-d-ui-theme='dark'] pre.prismjs .token.tag,
+html[data-d-ui-theme='dark'] pre.prismjs .token.class-name,
+html[data-d-ui-theme='dark'] pre.prismjs .token.function,
+html[data-d-ui-theme='dark'] pre.prismjs .token.selector {
+  color: #5eead4 !important;
+}
+
+html[data-d-ui-theme='dark'] pre.prismjs .token.attr-name,
+html[data-d-ui-theme='dark'] pre.prismjs .token.property {
+  color: #99f6e4 !important;
+}
+
+html[data-d-ui-theme='dark'] pre.prismjs .token.attr-value,
+html[data-d-ui-theme='dark'] pre.prismjs .token.string {
+  color: #93c5fd !important;
+}
+
+html[data-d-ui-theme='dark'] pre.prismjs .token.keyword,
+html[data-d-ui-theme='dark'] pre.prismjs .token.boolean {
+  color: #c4b5fd !important;
+}
+
+html[data-d-ui-theme='dark'] pre.prismjs .token.comment,
+html[data-d-ui-theme='dark'] pre.prismjs .token.prolog {
+  color: #94a3b8 !important;
 }

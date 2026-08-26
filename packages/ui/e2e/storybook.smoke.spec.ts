@@ -92,6 +92,19 @@ test('Static iframe light globals keep the light brand token', async ({ page }) 
   await expect(button).toHaveCSS('background-color', lightBrand);
 });
 
+test('Light mode docs source tokens stay readable on the code block', async ({
+  page,
+}) => {
+  await page.goto(
+    '/iframe.html?id=components-button--docs&viewMode=docs&globals=theme:light',
+  );
+  const pre = page.locator('pre.prismjs').first();
+  await expect(pre).toBeVisible();
+  await expect(pre).toHaveCSS('background-color', 'rgb(241, 245, 249)');
+  const token = pre.locator('.token.class-name').first();
+  await expect(token).toHaveCSS('color', 'rgb(15, 92, 76)');
+});
+
 test('Button high emphasis covers Default, Disabled, With Icon, Dropdown and Split', async ({
   page,
 }) => {
