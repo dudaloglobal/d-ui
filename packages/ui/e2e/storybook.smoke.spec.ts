@@ -6,9 +6,11 @@ test('Storybook serves the Button story', async ({ page }) => {
 });
 
 test('Storybook serves the d-ui favicon', async ({ page }) => {
-  const response = await page.request.get('/favicon.svg');
-  expect(response.ok()).toBeTruthy();
-  expect(await response.text()).toContain('#0f5c4c');
+  const svg = await page.request.get('/favicon.svg');
+  expect(svg.ok()).toBeTruthy();
+  expect(await svg.text()).toContain('#0f5c4c');
+  const png = await page.request.get('/favicon.png');
+  expect(png.ok()).toBeTruthy();
 });
 
 test('Storybook page title uses d-ui', async ({ page }) => {
@@ -16,6 +18,7 @@ test('Storybook page title uses d-ui', async ({ page }) => {
   await expect(page).toHaveTitle(/d-ui/);
   await expect(page).not.toHaveTitle(/Storybook/);
   await expect(page.getByRole('link', { name: 'd-ui' })).toBeVisible();
+  await expect(page.locator('img[alt="d-ui"]')).toHaveAttribute('src', /favicon\.svg/);
 });
 
 test('Button high emphasis covers Default, Disabled, With Icon, Dropdown and Split', async ({

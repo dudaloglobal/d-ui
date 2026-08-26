@@ -1,2 +1,25 @@
 <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="./favicon.png" type="image/png" sizes="32x32" />
+<link rel="shortcut icon" href="./favicon.png" />
+<link rel="apple-touch-icon" href="./favicon.png" />
 <link rel="mask-icon" href="./favicon.svg" color="#0f5c4c" />
+<style>
+  img[alt='d-ui'] {
+    width: 28px;
+    height: 28px;
+    display: block;
+  }
+  a:has(> img[alt='d-ui']) {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    color: #0f5c4c !important;
+  }
+  a:has(> img[alt='d-ui'])::after {
+    content: 'd-ui';
+  }
+</style>

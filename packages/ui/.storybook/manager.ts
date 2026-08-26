@@ -6,7 +6,7 @@ addons.setConfig({
     base: 'light',
     brandTitle: 'd-ui',
     brandUrl: './',
-    brandImage: './logo.svg',
+    brandImage: './favicon.svg',
     brandTarget: '_self',
     colorPrimary: '#0f5c4c',
     colorSecondary: '#0f5c4c',
