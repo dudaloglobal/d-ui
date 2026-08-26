@@ -1,0 +1,8 @@
+---
+description: When the user says next task, next ticket, prochaine tâche, or prochain ticket, pick and start the next GitHub issue with no open PR.
+alwaysApply: true
+---
+
+# Next task
+
+If the user says **next task** (or next ticket / prochaine tâche / prochain ticket), follow `.cursor/skills/next-task/SKILL.md`: pick the next open issue with no open PR and start it immediately.
