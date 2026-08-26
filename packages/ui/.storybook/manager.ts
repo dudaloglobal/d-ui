@@ -1,20 +1,31 @@
 import { addons } from '@storybook/manager-api';
+import { GLOBALS_UPDATED } from 'storybook/internal/core-events';
 import { darkTheme, docsThemeMode, lightTheme, themeModeFromSearch } from './themes';
 
-function applyManagerTheme(value: unknown) {
+let applied: 'light' | 'dark' | undefined;
+
+function applyManagerTheme(
+  value: unknown,
+  api?: { setOptions: (options: { theme: typeof darkTheme }) => void },
+) {
   const mode = docsThemeMode(value);
   const dark = mode === 'dark';
-  addons.setConfig({ theme: dark ? darkTheme : lightTheme });
+  const theme = dark ? darkTheme : lightTheme;
   document.body.classList.toggle('d-ui-manager-dark', dark);
   document.documentElement.classList.toggle('d-ui-manager-dark', dark);
+  document.documentElement.setAttribute('data-d-ui-theme', mode);
+  if (applied === mode) return;
+  applied = mode;
+  addons.setConfig({ theme });
+  api?.setOptions({ theme });
 }
 
 applyManagerTheme(themeModeFromSearch());
 
 addons.register('d-ui/manager-theme', (api) => {
-  applyManagerTheme(api.getGlobals()?.theme ?? themeModeFromSearch());
-  api.on('globalsUpdated', ({ globals }: { globals?: { theme?: string } }) => {
-    applyManagerTheme(globals?.theme);
+  applyManagerTheme(api.getGlobals()?.theme ?? themeModeFromSearch(), api);
+  api.on(GLOBALS_UPDATED, ({ globals }: { globals?: { theme?: string } }) => {
+    applyManagerTheme(globals?.theme, api);
   });
 });
 

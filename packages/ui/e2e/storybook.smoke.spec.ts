@@ -23,15 +23,59 @@ test('Storybook page title uses d-ui', async ({ page }) => {
 
 const darkBrand = 'rgb(94, 234, 212)';
 const lightBrand = 'rgb(15, 92, 76)';
+const darkAppBg = 'rgb(11, 18, 32)';
+const darkBarBg = 'rgb(30, 41, 59)';
+const lightSidebar = 'rgb(241, 245, 249)';
 
-test('Dark theme applies to Storybook chrome and the story canvas', async ({ page }) => {
+test('Dark theme applies to manager chrome, docs, and the story canvas', async ({
+  page,
+}) => {
   await page.goto('/?path=/docs/components-button--docs&globals=theme:dark');
+  await expect(page.locator('html')).toHaveClass(/d-ui-manager-dark/);
   await expect(page.locator('body')).toHaveClass(/d-ui-manager-dark/);
+  await expect(page.locator('nav.sidebar-container')).toHaveCSS(
+    'background-color',
+    darkAppBg,
+  );
+  await expect(page.locator('.sb-bar').first()).toHaveCSS('background-color', darkBarBg);
   const preview = page.frameLocator('#storybook-preview-iframe');
   await expect(preview.locator('[data-d-ui-theme="dark"]').first()).toBeVisible();
   const button = preview.getByRole('button', { name: 'Par défaut' }).first();
   await expect(button).toBeVisible();
   await expect(button).toHaveCSS('background-color', darkBrand);
+});
+
+test('Dark theme applies on a story route, not only docs', async ({ page }) => {
+  await page.goto('/?path=/story/components-button--primary&globals=theme:dark');
+  await expect(page.locator('nav.sidebar-container')).toHaveCSS(
+    'background-color',
+    darkAppBg,
+  );
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('button', { name: 'Continuer' })).toHaveCSS(
+    'background-color',
+    darkBrand,
+  );
+});
+
+test('Toolbar Dark restyles manager chrome, not only the iframe', async ({ page }) => {
+  await page.goto('/?path=/docs/components-button--docs&globals=theme:light');
+  await expect(page.locator('nav.sidebar-container')).toHaveCSS(
+    'background-color',
+    lightSidebar,
+  );
+  await page.getByRole('button', { name: /Light/i }).first().click();
+  await page.getByText('Dark', { exact: true }).first().click();
+  await expect(page.locator('nav.sidebar-container')).toHaveCSS(
+    'background-color',
+    darkAppBg,
+  );
+  await expect(page.locator('.sb-bar').first()).toHaveCSS('background-color', darkBarBg);
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('button', { name: 'Par défaut' }).first()).toHaveCSS(
+    'background-color',
+    darkBrand,
+  );
 });
 
 test('Static iframe dark globals use dark brand tokens', async ({ page }) => {
