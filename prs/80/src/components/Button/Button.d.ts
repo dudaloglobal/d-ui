@@ -2,6 +2,7 @@ import { ButtonHTMLAttributes, ReactNode } from '../../../../../node_modules/.pn
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 export type ButtonIconPosition = 'start' | 'end';
+export type ButtonLoadingIndicator = 'spinner' | 'bounce';
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     /**
      * Emphasis. `"primary"` is high, `"secondary"` is medium, `"ghost"` is low.
@@ -10,8 +11,10 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: ButtonVariant;
     /** `"sm"` when space is constrained. `"md"` by default. `"lg"` for spacious actions. */
     size?: ButtonSize;
-    /** Replaces the icon with a spinner and sets `aria-busy`. The label stays visible. */
+    /** Replaces the icon with a loading indicator and sets `aria-busy`. The label stays visible. */
     loading?: boolean;
+    /** `"spinner"` (default) or `"bounce"` (three dots). Only used when `loading` is set. */
+    loadingIndicator?: ButtonLoadingIndicator;
     icon?: ReactNode;
     iconPosition?: ButtonIconPosition;
     /** Stretch to the width of the container. */
@@ -23,4 +26,4 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
      */
     isSelected?: boolean;
 };
-export declare function Button({ variant, size, type, className, disabled, loading, icon, iconPosition, fullWidth, isSelected, children, ...rest }: ButtonProps): import("react").JSX.Element;
+export declare function Button({ variant, size, type, className, disabled, loading, loadingIndicator, icon, iconPosition, fullWidth, isSelected, children, ...rest }: ButtonProps): import("react").JSX.Element;
