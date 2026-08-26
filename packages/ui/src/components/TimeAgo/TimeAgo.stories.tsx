@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ReactNode } from 'react';
+import { componentSource } from '../../../.storybook/docs-source';
 import { docsLocale, timeAgoCopy } from '../../../.storybook/docs-locale';
 import { TimeAgo } from './TimeAgo';
 
@@ -71,13 +72,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  parameters: {
-    docs: {
-      source: {
-        code: '<TimeAgo date={submission.createdAt} locale="fr" />',
-      },
-    },
-  },
+  parameters: componentSource(
+    "import { TimeAgo } from 'd-ui';",
+    '<TimeAgo date={submission.createdAt} locale="fr" />',
+  ),
   render: (args, { globals }) => {
     const locale = docsLocale(globals.locale);
     const copy = timeAgoCopy(locale);
@@ -90,14 +88,11 @@ export const Default: Story = {
 };
 
 export const Locale: Story = {
-  parameters: {
-    docs: {
-      source: {
-        code: `<TimeAgo date={createdAt} locale="en" />
+  parameters: componentSource(
+    "import { TimeAgo } from 'd-ui';",
+    `<TimeAgo date={createdAt} locale="en" />
 <TimeAgo date={createdAt} locale="fr" />`,
-      },
-    },
-  },
+  ),
   render: (_, { globals }) => {
     const copy = timeAgoCopy(docsLocale(globals.locale));
     return (
@@ -114,13 +109,10 @@ export const Locale: Story = {
 };
 
 export const Live: Story = {
-  parameters: {
-    docs: {
-      source: {
-        code: '<TimeAgo date={lastSeenAt} locale="fr" live />',
-      },
-    },
-  },
+  parameters: componentSource(
+    "import { TimeAgo } from 'd-ui';",
+    '<TimeAgo date={lastSeenAt} locale="fr" live />',
+  ),
   render: (args, { globals }) => {
     const locale = docsLocale(globals.locale);
     const copy = timeAgoCopy(locale);
@@ -133,14 +125,11 @@ export const Live: Story = {
 };
 
 export const Sizes: Story = {
-  parameters: {
-    docs: {
-      source: {
-        code: `<TimeAgo date={createdAt} locale="fr" size="sm" />
+  parameters: componentSource(
+    "import { TimeAgo } from 'd-ui';",
+    `<TimeAgo date={createdAt} locale="fr" size="sm" />
 <TimeAgo date={createdAt} locale="fr" size="md" />`,
-      },
-    },
-  },
+  ),
   render: (args, { globals }) => {
     const locale = docsLocale(globals.locale);
     const copy = timeAgoCopy(locale);
@@ -158,14 +147,11 @@ export const Sizes: Story = {
 };
 
 export const PastAndFuture: Story = {
-  parameters: {
-    docs: {
-      source: {
-        code: `<TimeAgo date={fiveHoursAgo} locale="fr" />
+  parameters: componentSource(
+    "import { TimeAgo } from 'd-ui';",
+    `<TimeAgo date={fiveHoursAgo} locale="fr" />
 <TimeAgo date={inThreeHours} locale="fr" />`,
-      },
-    },
-  },
+  ),
   render: (args, { globals }) => {
     const locale = docsLocale(globals.locale);
     const copy = timeAgoCopy(locale);

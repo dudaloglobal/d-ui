@@ -106,6 +106,12 @@ const preview: Preview = {
     },
     docs: {
       container: DuiDocsContainer,
+      canvas: {
+        sourceState: 'hidden',
+      },
+      source: {
+        state: 'closed',
+      },
     },
   },
 };

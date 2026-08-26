@@ -88,3 +88,61 @@ export type TimeAgoDocsCopy = typeof timeAgoFr;
 export function timeAgoCopy(locale: DocsLocale): TimeAgoDocsCopy {
   return locale === 'en' ? timeAgoEn : timeAgoFr;
 }
+
+const inputFr = {
+  fieldLabel: 'Libellé du champ',
+  textareaLabel: 'Libellé de la zone de texte',
+  numberLabel: 'Nombre',
+  name: 'Nom',
+  email: 'Email',
+  password: 'Mot de passe',
+  search: 'Recherche',
+  quantity: 'Quantité',
+  site: 'Site',
+  placeholder: 'Texte de substitution',
+  placeholderName: 'Ada Lovelace',
+  helper: 'Texte d’aide',
+  validValue: 'Valeur valide',
+  invalidValue: 'Valeur invalide',
+  filledValue: 'Valeur',
+  small: 'Petite',
+  medium: 'Moyenne',
+  large: 'Grande',
+  clear: 'Effacer',
+  revealPassword: 'Afficher le mot de passe',
+  hidePassword: 'Masquer le mot de passe',
+  countRemaining: (n: number) =>
+    n === 1 ? '1 caractère restant' : `${n} caractères restants`,
+};
+
+const inputEn = {
+  fieldLabel: 'Text field label',
+  textareaLabel: 'Text area label',
+  numberLabel: 'Number',
+  name: 'Name',
+  email: 'Email',
+  password: 'Password',
+  search: 'Search',
+  quantity: 'Quantity',
+  site: 'Site',
+  placeholder: 'Placeholder text',
+  placeholderName: 'Ada Lovelace',
+  helper: 'Helper text',
+  validValue: 'Valid value',
+  invalidValue: 'Invalid value',
+  filledValue: 'Value',
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+  clear: 'Clear',
+  revealPassword: 'Show password',
+  hidePassword: 'Hide password',
+  countRemaining: (n: number) =>
+    n === 1 ? '1 character remaining' : `${n} characters remaining`,
+};
+
+export type InputDocsCopy = typeof inputFr;
+
+export function inputCopy(locale: DocsLocale): InputDocsCopy {
+  return locale === 'en' ? inputEn : inputFr;
+}

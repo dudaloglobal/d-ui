@@ -11,6 +11,8 @@
   --color-surface-muted: var(--d-ui-color-surface-muted);
   --color-surface-hover: var(--d-ui-color-surface-hover);
   --color-border: var(--d-ui-color-border);
+  --color-danger: var(--d-ui-color-danger);
+  --color-success: var(--d-ui-color-success);
   --color-focus: var(--d-ui-color-focus);
   --font-sans: var(--d-ui-font-sans);
   --radius-md: var(--d-ui-radius-md);
@@ -77,6 +79,11 @@
 
 .d-ui-button-bounce > span:nth-child(3) {
   animation-delay: 0.24s;
+}
+
+.d-ui-root input[type='search']::-webkit-search-decoration,
+.d-ui-root input[type='search']::-webkit-search-cancel-button {
+  appearance: none;
 }
 
 .d-ui-visually-hidden {

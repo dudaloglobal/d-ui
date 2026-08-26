@@ -150,6 +150,46 @@ test('Dark docs source does not use lime or brand teal for JSX tags', async ({
   expect(tagColor).not.toBe(darkBrand);
 });
 
+test('Docs source stays hidden until Show code is clicked', async ({ page }) => {
+  await page.goto('/?path=/docs/components-input--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('textbox', { name: 'Libellé du champ' })).toBeVisible();
+  await expect(preview.locator('pre.prismjs')).toHaveCount(0);
+  await preview
+    .getByRole('button', { name: /Show code|Afficher/i })
+    .first()
+    .click();
+  await expect(preview.locator('pre.prismjs').first()).toBeVisible();
+});
+
+test('Button docs Show code imports Button from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-button--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Button, IconButton } from 'd-ui'");
+  await expect(source).toContainText('export default () =>');
+  await expect(source).toContainText('<Button');
+  await expect(source).not.toContainText('EmphasisUseCases');
+  await expect(source).not.toContainText('PlusIcon');
+});
+
+test('Input docs Show code imports Input from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-input--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Input } from 'd-ui'");
+  await expect(source).toContainText('export default () =>');
+  await expect(source).toContainText('<Input');
+  await expect(source).not.toContainText('DefaultDemo');
+  await expect(source).not.toContainText('Labeled');
+});
+
+test('TimeAgo docs Show code imports TimeAgo from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-timeago--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { TimeAgo } from 'd-ui'");
+  await expect(source).toContainText('<TimeAgo');
+  await expect(source).not.toContainText('Example');
+});
+
 test('Button high emphasis covers Default, Disabled, Loading, With Icon, Dropdown and Split', async ({
   page,
 }) => {
@@ -263,4 +303,53 @@ test('TimeAgo English locale story renders relative English copy', async ({ page
 test('TimeAgo sizes story renders small and medium timestamps', async ({ page }) => {
   await page.goto('/iframe.html?id=components-timeago--sizes');
   await expect(page.locator('time')).toHaveCount(2);
+});
+
+test('Storybook serves the Input story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-input--default');
+  await expect(page.getByRole('textbox', { name: 'Libellé du champ' })).toBeVisible();
+});
+
+test('Input password story toggles visibility with an accessible name', async ({
+  page,
+}) => {
+  await page.goto('/iframe.html?id=components-input--password');
+  const password = page.getByRole('textbox', { name: 'Mot de passe' });
+  await expect(password).toHaveAttribute('type', 'password');
+  await page.getByRole('button', { name: 'Afficher le mot de passe' }).click();
+  await expect(password).toHaveAttribute('type', 'text');
+});
+
+test('Input icon story exposes a search field', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-input--icon');
+  await expect(page.getByRole('searchbox', { name: 'Libellé du champ' })).toBeVisible();
+});
+
+test('Input number story renders a spinbutton', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-input--number');
+  await expect(page.getByRole('spinbutton', { name: 'Nombre' })).toBeVisible();
+});
+
+test('Input clearable story empties the field from the named control', async ({
+  page,
+}) => {
+  await page.goto('/iframe.html?id=components-input--clearable');
+  const input = page.getByRole('textbox', { name: 'Libellé du champ' });
+  await expect(input).toHaveValue('Ada Lovelace');
+  await page.getByRole('button', { name: 'Effacer' }).click();
+  await expect(input).toHaveValue('');
+});
+
+test('Input character count is described on the textbox', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-input--max-length');
+  const input = page.getByRole('textbox', { name: 'Libellé du champ' });
+  await expect(input).toHaveAttribute('aria-describedby', /.+/);
+  await expect(page.getByText('50 caractères restants')).toBeVisible();
+});
+
+test('Textarea story renders a labeled multiline control', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-input--multiline');
+  const area = page.getByRole('textbox', { name: 'Libellé de la zone de texte' });
+  await expect(area).toBeVisible();
+  await expect(area).toHaveJSProperty('tagName', 'TEXTAREA');
 });

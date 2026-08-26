@@ -9,7 +9,7 @@ TimeAgo affiche un horodatage **relatif** (`il y a 3 minutes`) tout en gardant l
 
 Les exemples suivent la **langue** de la barre d’outils Storybook (**Français** par défaut).
 
-<Canvas of={TimeAgoStories.Default} sourceState="shown" />
+<Canvas of={TimeAgoStories.Default} />
 
 ## Locale
 
@@ -17,7 +17,7 @@ Passez une chaîne BCP 47 `locale` pour contrôler le libellé relatif et le for
 
 Sans `locale`, c’est la locale d’exécution. Injectez la langue de l’app (`locale={i18n.language}`) plutôt que de figer une valeur dans le design system.
 
-<Canvas of={TimeAgoStories.Locale} sourceState="shown" />
+<Canvas of={TimeAgoStories.Locale} />
 
 ## Live updates
 
@@ -32,7 +32,7 @@ Les mises à jour sont visuelles uniquement. `live` ne pose **pas** `aria-live`,
 
 Laissez `live` désactivé dans les fils de discussion, les tableaux, et toute liste qui peut contenir beaucoup d’horodatages.
 
-<Canvas of={TimeAgoStories.Live} sourceState="shown" />
+<Canvas of={TimeAgoStories.Live} />
 
 ## Past and future
 
