@@ -1,0 +1,14 @@
+---
+description: Run the CI quality job (especially pnpm format:check) before every git push
+alwaysApply: true
+---
+
+# Pre-push CI
+
+Before every `git push`, run the same commands as `.github/workflows/ci.yml` (job **Lint, types, tests, build**), in order:
+
+`pnpm lint` → `pnpm format:check` → `pnpm typecheck` → `pnpm test` → `pnpm build` → `pnpm build-storybook`
+
+If `format:check` fails: `pnpm format`, commit the result, re-check, then push. Do not `--no-verify`.
+
+Known failure: [PR #80 CI](https://github.com/dudaloglobal/d-ui/actions/runs/32976631529/job/98202841713?pr=80) — `prettier --check .` on `docs-locale.ts` and `TimeAgo.stories.tsx`.

@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ReactNode } from 'react';
-import {
-  docsLocale,
-  timeAgoCopy,
-} from '../../../.storybook/docs-locale';
+import { docsLocale, timeAgoCopy } from '../../../.storybook/docs-locale';
 import { TimeAgo } from './TimeAgo';
 
 const minute = 60 * 1000;

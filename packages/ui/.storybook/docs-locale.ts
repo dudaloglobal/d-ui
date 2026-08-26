@@ -68,8 +68,7 @@ const timeAgoFr = {
 const timeAgoEn = {
   submitted: 'Submitted',
   lastSeen: 'Last seen',
-  liveHint:
-    'live — relative text updates; assistive tech is not announced on each tick',
+  liveHint: 'live — relative text updates; assistive tech is not announced on each tick',
   english: 'English',
   french: 'French',
   englishHint: 'locale="en"',
