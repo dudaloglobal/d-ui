@@ -11,6 +11,7 @@ Cible : **WCAG 2.2 niveau AA** (RGAA comme grille de contrôle interne).
 5. Clavier : Tab, Shift+Tab, Enter/Espace, Escape pour fermer un overlay.
 6. `prefers-reduced-motion` : pas d’animation obligatoire.
 7. Ne pas reposer uniquement sur la couleur pour l’état (erreur, succès).
+8. `TimeAgo` : `<time datetime>` (ISO-8601) + texte relatif visible, `lang` aligné sur `locale`. Date invalide → `<span>`, pas un `<time>` sans valeur. Instant absolu : `title` et `VisuallyHidden`. `live` sans `aria-live` sauf opt-in.
 
 ## Outils
 

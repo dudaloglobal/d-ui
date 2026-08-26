@@ -1,0 +1,81 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import * as TimeAgoStories from './TimeAgo.stories';
+
+<Meta of={TimeAgoStories} />
+
+# TimeAgo
+
+TimeAgo affiche un horodatage **relatif** (`il y a 3 minutes`) tout en gardant l’instant **absolu** disponible pour les personnes et les machines. Le texte est formaté avec `Intl` — il n’y a pas de bundle `date-fns`. Survolez l’horodatage pour l’heure absolue ; les lecteurs d’écran reçoivent la phrase relative **et** la date absolue.
+
+Les exemples suivent la **langue** de la barre d’outils Storybook (**Français** par défaut).
+
+<Canvas of={TimeAgoStories.Default} sourceState="shown" />
+
+## Locale
+
+Passez une chaîne BCP 47 `locale` pour contrôler le libellé relatif et le formatage absolu. Les locales en 24 h (ex. `fr`) formatent l’infobulle sans suffixe AM/PM. `locale` pose aussi l’attribut `lang` pour que les technologies d’assistance utilisent la bonne voix (WCAG 3.1.2).
+
+Sans `locale`, c’est la locale d’exécution. Injectez la langue de l’app (`locale={i18n.language}`) plutôt que de figer une valeur dans le design system.
+
+<Canvas of={TimeAgoStories.Locale} sourceState="shown" />
+
+## Live updates
+
+La prop `live` rafraîchit le texte relatif visible sur un intervalle **grossier** pour que le libellé reste pertinent tant que la vue est ouverte :
+
+- moins d’1 minute — toutes les 10 secondes
+- moins d’1 heure — toutes les 30 secondes
+- moins d’1 jour — toutes les minutes
+- plus ancien — toutes les heures
+
+Les mises à jour sont visuelles uniquement. `live` ne pose **pas** `aria-live`, donc les lecteurs d’écran ne sont pas saturés. Passez `aria-live="polite"` pour opt-in des annonces (à éviter sur les longues listes).
+
+Laissez `live` désactivé dans les fils de discussion, les tableaux, et toute liste qui peut contenir beaucoup d’horodatages.
+
+<Canvas of={TimeAgoStories.Live} sourceState="shown" />
+
+## Past and future
+
+`Intl.RelativeTimeFormat` avec `numeric: "auto"` produit une formulation naturelle (`hier`, `maintenant`, `dans 3 heures`) dans les deux directions.
+
+<Canvas of={TimeAgoStories.PastAndFuture} />
+
+## Size
+
+`size` ajuste l’échelle du texte. Composez TimeAgo dans `Text` / `Heading` lorsque ces primitifs existent ; les tailles intégrées couvrent l’usage autonome.
+
+- `"sm"` — métadonnées compactes (cartes, commentaires)
+- `"md"` (défaut) — horodatage au corps de texte
+
+<Canvas of={TimeAgoStories.Sizes} />
+
+## Date values
+
+`date` accepte un `Date`, une chaîne ISO-8601, ou des millisecondes epoch. Le composant écrit toujours un datetime global valide sur `<time datetime>`.
+
+Une valeur invalide ne rend pas de `<time>` : un `<span>` avec un tiret cadratin est utilisé à la place, pour que le markup reste sémantiquement honnête.
+
+```tsx
+<TimeAgo date={submission.createdAt} locale="fr" />
+<TimeAgo date="2026-08-26T12:00:00.000Z" locale="en" />
+<TimeAgo date={1_724_673_600_000} locale="en" />
+```
+
+## Accessibility concerns
+
+`TimeAgo` est un élément natif `<time>`. Il n’a pas de rôle ARIA supplémentaire.
+
+- Passez toujours un `date` valide pour que `datetime` soit un instant ISO-8601 lisible par une machine.
+- Passez `locale` dès que le texte n’est pas dans la langue du document. Le `lang` de l’élément suit `locale`.
+- Le texte visible est relatif. L’instant absolu est dans `title` (infobulle pointeur) **et** dans une phrase masquée visuellement (technologies d’assistance — `title` n’est pas un nom accessible fiable).
+- Ne placez pas TimeAgo dans une région live qui ré-annonce chaque tick. `live` est silencieux par défaut.
+- Annonces en opt-in : `aria-live="polite"` sur le composant. Gardez l’intervalle grossier.
+- Le texte relatif dépend de « maintenant » : l’élément pose `suppressHydrationWarning` pour que SSR et client puissent différer d’une unité sans casser l’hydratation.
+
+## Properties
+
+### TimeAgo
+
+Les attributs natifs `<time>` (`className`, `aria-live`, …) sont transmis. `dateTime` et `children` sont gérés par le composant.
+
+<ArgTypes of={TimeAgoStories} include={['date', 'locale', 'live', 'size', 'title']} />

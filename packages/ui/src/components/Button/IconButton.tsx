@@ -10,6 +10,7 @@ const iconOnlySizeClass: Record<NonNullable<ButtonProps['size']>, string> = {
 
 export type IconButtonProps = Omit<ButtonProps, 'children' | 'icon' | 'iconPosition'> & {
   icon: ReactNode;
+  /** Accessible name. Required because the button has no visible text. */
   'aria-label': string;
 };
 

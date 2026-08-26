@@ -1,0 +1,67 @@
+<link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="./favicon.png" type="image/png" sizes="32x32" />
+<link rel="shortcut icon" href="./favicon.png" />
+<link rel="apple-touch-icon" href="./favicon.png" />
+<link rel="mask-icon" href="./favicon.svg" color="#0f5c4c" />
+<style>
+  :root {
+    --d-ui-manager-brand: #0f5c4c;
+    --d-ui-manager-bg: #ffffff;
+    --d-ui-manager-fg: #0f172a;
+    --d-ui-manager-bar: #ffffff;
+    --d-ui-manager-muted: #f1f5f9;
+    --d-ui-manager-border: #cbd5e1;
+  }
+  html.d-ui-manager-dark,
+  .d-ui-manager-dark {
+    --d-ui-manager-brand: #5eead4;
+    --d-ui-manager-bg: #0b1220;
+    --d-ui-manager-fg: #f1f5f9;
+    --d-ui-manager-bar: #1e293b;
+    --d-ui-manager-muted: #1e293b;
+    --d-ui-manager-border: #475569;
+    color-scheme: dark;
+  }
+  html.d-ui-manager-dark,
+  html.d-ui-manager-dark body {
+    background: var(--d-ui-manager-bg) !important;
+    color: var(--d-ui-manager-fg) !important;
+  }
+  html.d-ui-manager-dark .sidebar-container,
+  html.d-ui-manager-dark #storybook-explorer-menu,
+  html.d-ui-manager-dark #storybook-explorer-tree,
+  html.d-ui-manager-dark #storybook-preview-wrapper,
+  html.d-ui-manager-dark #panel-tab-content,
+  html.d-ui-manager-dark [role='main'] {
+    background: var(--d-ui-manager-bg) !important;
+    color: var(--d-ui-manager-fg) !important;
+  }
+  html.d-ui-manager-dark .sb-bar {
+    background: var(--d-ui-manager-bar) !important;
+    color: var(--d-ui-manager-fg) !important;
+  }
+  html.d-ui-manager-dark .sidebar-container input,
+  html.d-ui-manager-dark .sb-bar input {
+    background: var(--d-ui-manager-muted) !important;
+    color: var(--d-ui-manager-fg) !important;
+    border-color: var(--d-ui-manager-border) !important;
+  }
+  img[alt='d-ui'] {
+    width: 28px;
+    height: 28px;
+    display: block;
+  }
+  a:has(> img[alt='d-ui']) {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    color: var(--d-ui-manager-brand) !important;
+  }
+  a:has(> img[alt='d-ui'])::after {
+    content: 'd-ui';
+  }
+</style>

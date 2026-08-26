@@ -1,8 +1,10 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 import tailwindcss from '@tailwindcss/vite';
 
-const config: StorybookConfig = {
+const config: StorybookConfig & { title: string } = {
+  title: 'd-ui',
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(ts|tsx)'],
+  staticDirs: ['./public'],
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-a11y',
