@@ -25,6 +25,94 @@ body {
   color: var(--d-ui-color-fg) !important;
 }
 
+/*
+  Preview always mounts Source with dark={true} (lime JSX tags #A8FF60).
+  The highlighter does not keep .docblock-source on the <pre>, so tokens are
+  targeted on pre.prismjs. Light docs use Storybook's light syntax palette.
+*/
+html[data-d-ui-theme='light'] .sbdocs-preview > *:has(pre.prismjs),
+html[data-d-ui-theme='light'] .sbdocs-preview > *:has(pre.prismjs) button,
+html[data-d-ui-theme='light'] pre.prismjs {
+  background: #f6f8fa !important;
+  color: #393a34 !important;
+  box-shadow: none !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.comment,
+html[data-d-ui-theme='light'] pre.prismjs .token.prolog,
+html[data-d-ui-theme='light'] pre.prismjs .token.doctype,
+html[data-d-ui-theme='light'] pre.prismjs .token.cdata {
+  color: #6a737d !important;
+  font-style: italic;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.tag,
+html[data-d-ui-theme='light'] pre.prismjs .token.selector {
+  color: #800000 !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.string {
+  color: #a31515 !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.url,
+html[data-d-ui-theme='light'] pre.prismjs .token.symbol,
+html[data-d-ui-theme='light'] pre.prismjs .token.number,
+html[data-d-ui-theme='light'] pre.prismjs .token.boolean,
+html[data-d-ui-theme='light'] pre.prismjs .token.variable,
+html[data-d-ui-theme='light'] pre.prismjs .token.constant,
+html[data-d-ui-theme='light'] pre.prismjs .token.inserted {
+  color: #36acaa !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.atrule,
+html[data-d-ui-theme='light'] pre.prismjs .token.keyword,
+html[data-d-ui-theme='light'] pre.prismjs .token.attr-value {
+  color: #0000ff !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.punctuation,
+html[data-d-ui-theme='light'] pre.prismjs .token.operator,
+html[data-d-ui-theme='light'] pre.prismjs .token.function {
+  color: #393a34 !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.deleted {
+  color: #9a050f !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.class-name {
+  color: #2b91af !important;
+}
+
+html[data-d-ui-theme='light'] pre.prismjs .token.attr-name,
+html[data-d-ui-theme='light'] pre.prismjs .token.property,
+html[data-d-ui-theme='light'] pre.prismjs .token.regex,
+html[data-d-ui-theme='light'] pre.prismjs .token.entity {
+  color: #ff0000 !important;
+}
+
+html[data-d-ui-theme='dark'] pre.prismjs .token.tag,
+html[data-d-ui-theme='dark'] pre.prismjs .token.selector {
+  color: #e06c75 !important;
+}
+
+html[data-d-ui-theme='dark'] pre.prismjs .token.class-name {
+  color: #ffffb6 !important;
+}
+
+html[data-d-ui-theme='dark'] pre.prismjs .token.punctuation {
+  color: #ededed !important;
+}
+
+html[data-d-ui-theme='dark'] pre.prismjs .token.attr-name {
+  color: #96cbfe !important;
+}
+
+html[data-d-ui-theme='dark'] pre.prismjs .token.attr-value {
+  color: #b474dd !important;
+}
+
 .sbdocs-preview {
   border-color: var(--d-ui-color-border) !important;
 }

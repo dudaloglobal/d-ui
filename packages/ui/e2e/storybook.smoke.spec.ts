@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 
 test('Storybook serves the Button story', async ({ page }) => {
   await page.goto('/iframe.html?id=components-button--primary');
@@ -26,6 +26,22 @@ const lightBrand = 'rgb(15, 92, 76)';
 const darkAppBg = 'rgb(11, 18, 32)';
 const darkBarBg = 'rgb(30, 41, 59)';
 const lightSidebar = 'rgb(241, 245, 249)';
+const lightSyntaxTag = 'rgb(128, 0, 0)';
+const lightSyntaxClass = 'rgb(43, 145, 175)';
+const storybookLimeTag = 'rgb(168, 255, 96)';
+
+async function docsSource(page: Page) {
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  const source = preview.locator('pre.prismjs').first();
+  if (!(await source.isVisible().catch(() => false))) {
+    await preview
+      .getByRole('button', { name: /Show code|Afficher/i })
+      .first()
+      .click();
+  }
+  await expect(source).toBeVisible();
+  return { preview, source };
+}
 
 test('Dark theme applies to manager chrome, docs, and the story canvas', async ({
   page,
@@ -90,6 +106,48 @@ test('Static iframe light globals keep the light brand token', async ({ page }) 
   const button = page.getByRole('button', { name: 'Continuer' });
   await expect(page.locator('html')).toHaveAttribute('data-d-ui-theme', 'light');
   await expect(button).toHaveCSS('background-color', lightBrand);
+});
+
+test('Light docs source uses Storybook light syntax, not lime or brand green', async ({
+  page,
+}) => {
+  await page.goto('/?path=/docs/components-button--docs&globals=theme:light');
+  const { preview, source } = await docsSource(page);
+  await expect(source).toHaveCSS('color', 'rgb(57, 58, 52)');
+  await expect(source).toHaveCSS('background-color', 'rgb(246, 248, 250)');
+  const className = preview.locator('pre.prismjs .token.class-name').first();
+  await expect(className).toHaveCSS('color', lightSyntaxClass);
+  const tagColor = await source.evaluate((pre) => {
+    const el = [...pre.querySelectorAll('.token.tag')].find(
+      (node) =>
+        !node.classList.contains('class-name') &&
+        !node.classList.contains('punctuation') &&
+        !node.classList.contains('attr-name'),
+    );
+    return el ? getComputedStyle(el).color : '';
+  });
+  expect(tagColor).toBe(lightSyntaxTag);
+  expect(tagColor).not.toBe(storybookLimeTag);
+  expect(tagColor).not.toBe(lightBrand);
+});
+
+test('Dark docs source does not use lime or brand teal for JSX tags', async ({
+  page,
+}) => {
+  await page.goto('/?path=/docs/components-button--docs&globals=theme:dark');
+  const { source } = await docsSource(page);
+  const tagColor = await source.evaluate((pre) => {
+    const el = [...pre.querySelectorAll('.token.tag')].find(
+      (node) =>
+        !node.classList.contains('class-name') &&
+        !node.classList.contains('punctuation') &&
+        !node.classList.contains('attr-name'),
+    );
+    return el ? getComputedStyle(el).color : '';
+  });
+  expect(tagColor).toBe('rgb(224, 108, 117)');
+  expect(tagColor).not.toBe(storybookLimeTag);
+  expect(tagColor).not.toBe(darkBrand);
 });
 
 test('Button high emphasis covers Default, Disabled, With Icon, Dropdown and Split', async ({
