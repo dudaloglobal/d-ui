@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react';
 import { ThemeProvider } from '../src/theme/ThemeProvider';
+import { docsLocale } from './docs-locale';
 import '../src/styles/index.css';
 
 const preview: Preview = {
@@ -15,11 +16,26 @@ const preview: Preview = {
         ],
       },
     },
+    locale: {
+      description: 'Langue des exemples',
+      defaultValue: 'fr',
+      toolbar: {
+        title: 'Langue',
+        icon: 'globe',
+        items: [
+          { value: 'fr', title: 'Français', right: 'FR' },
+          { value: 'en', title: 'English', right: 'EN' },
+        ],
+        dynamicTitle: true,
+      },
+    },
   },
   decorators: [
     (Story, context) => (
       <ThemeProvider mode={context.globals.theme === 'dark' ? 'dark' : 'light'}>
-        <Story />
+        <div lang={docsLocale(context.globals.locale)} className="d-ui-docs">
+          <Story />
+        </div>
       </ThemeProvider>
     ),
   ],

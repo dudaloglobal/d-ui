@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ReactNode } from 'react';
+import {
+  docsLocale,
+  timeAgoCopy,
+} from '../../../.storybook/docs-locale';
 import { TimeAgo } from './TimeAgo';
 
 const minute = 60 * 1000;
@@ -37,7 +41,6 @@ const meta = {
   component: TimeAgo,
   args: {
     date: fromNow(-3 * minute),
-    locale: 'en',
   },
   argTypes: {
     date: {
@@ -71,9 +74,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    locale: 'fr',
-  },
   parameters: {
     docs: {
       source: {
@@ -81,11 +81,15 @@ export const Default: Story = {
       },
     },
   },
-  render: (args) => (
-    <Example label="Submitted">
-      <TimeAgo {...args} />
-    </Example>
-  ),
+  render: (args, { globals }) => {
+    const locale = docsLocale(globals.locale);
+    const copy = timeAgoCopy(locale);
+    return (
+      <Example label={copy.submitted}>
+        <TimeAgo {...args} locale={locale} />
+      </Example>
+    );
+  },
 };
 
 export const Locale: Story = {
@@ -97,77 +101,89 @@ export const Locale: Story = {
       },
     },
   },
-  render: () => (
-    <div className="flex flex-col gap-6">
-      <Example label="English" hint='locale="en"'>
-        <TimeAgo date={fromNow(-3 * minute)} locale="en" />
-      </Example>
-      <Example label="Français" hint='locale="fr" — 24h absolute time, no AM/PM'>
-        <TimeAgo date={fromNow(-3 * minute)} locale="fr" />
-      </Example>
-    </div>
-  ),
+  render: (_, { globals }) => {
+    const copy = timeAgoCopy(docsLocale(globals.locale));
+    return (
+      <div className="flex flex-col gap-6">
+        <Example label={copy.english} hint={copy.englishHint}>
+          <TimeAgo date={fromNow(-3 * minute)} locale="en" />
+        </Example>
+        <Example label={copy.french} hint={copy.frenchHint}>
+          <TimeAgo date={fromNow(-3 * minute)} locale="fr" />
+        </Example>
+      </div>
+    );
+  },
 };
 
 export const Live: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<TimeAgo date={lastSeenAt} locale="en" live />',
+        code: '<TimeAgo date={lastSeenAt} locale="fr" live />',
       },
     },
   },
-  render: (args) => (
-    <Example
-      label="Last seen"
-      hint="live — relative text updates; assistive tech is not announced on each tick"
-    >
-      <TimeAgo {...args} date={fromNow(-15 * 1000)} live />
-    </Example>
-  ),
+  render: (args, { globals }) => {
+    const locale = docsLocale(globals.locale);
+    const copy = timeAgoCopy(locale);
+    return (
+      <Example label={copy.lastSeen} hint={copy.liveHint}>
+        <TimeAgo {...args} date={fromNow(-15 * 1000)} locale={locale} live />
+      </Example>
+    );
+  },
 };
 
 export const Sizes: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<TimeAgo date={createdAt} size="sm" />
-<TimeAgo date={createdAt} size="md" />`,
+        code: `<TimeAgo date={createdAt} locale="fr" size="sm" />
+<TimeAgo date={createdAt} locale="fr" size="md" />`,
       },
     },
   },
-  render: (args) => (
-    <div className="flex flex-col gap-4">
-      <Example label="Small" hint='size="sm"'>
-        <TimeAgo {...args} date={fromNow(-3 * minute)} size="sm" />
-      </Example>
-      <Example label="Medium" hint='size="md" (default)'>
-        <TimeAgo {...args} date={fromNow(-3 * minute)} size="md" />
-      </Example>
-    </div>
-  ),
+  render: (args, { globals }) => {
+    const locale = docsLocale(globals.locale);
+    const copy = timeAgoCopy(locale);
+    return (
+      <div className="flex flex-col gap-4">
+        <Example label={copy.small} hint='size="sm"'>
+          <TimeAgo {...args} date={fromNow(-3 * minute)} locale={locale} size="sm" />
+        </Example>
+        <Example label={copy.medium} hint={copy.mediumHint}>
+          <TimeAgo {...args} date={fromNow(-3 * minute)} locale={locale} size="md" />
+        </Example>
+      </div>
+    );
+  },
 };
 
 export const PastAndFuture: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<TimeAgo date={fiveHoursAgo} locale="en" />
-<TimeAgo date={inThreeHours} locale="en" />`,
+        code: `<TimeAgo date={fiveHoursAgo} locale="fr" />
+<TimeAgo date={inThreeHours} locale="fr" />`,
       },
     },
   },
-  render: () => (
-    <div className="flex flex-col gap-6">
-      <Example label="Past" hint="Five hours ago">
-        <TimeAgo date={fromNow(-5 * hour)} locale="en" />
-      </Example>
-      <Example label="Future" hint="In three hours">
-        <TimeAgo date={fromNow(3 * hour)} locale="en" />
-      </Example>
-      <Example label="Yesterday">
-        <TimeAgo date={fromNow(-2 * day)} locale="en" />
-      </Example>
-    </div>
-  ),
+  render: (args, { globals }) => {
+    const locale = docsLocale(globals.locale);
+    const copy = timeAgoCopy(locale);
+    return (
+      <div className="flex flex-col gap-6">
+        <Example label={copy.past} hint={copy.pastHint}>
+          <TimeAgo date={fromNow(-5 * hour)} locale={locale} />
+        </Example>
+        <Example label={copy.future} hint={copy.futureHint}>
+          <TimeAgo date={fromNow(3 * hour)} locale={locale} />
+        </Example>
+        <Example label={copy.yesterday}>
+          <TimeAgo date={fromNow(-2 * day)} locale={locale} />
+        </Example>
+      </div>
+    );
+  },
 };

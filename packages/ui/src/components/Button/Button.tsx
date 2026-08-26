@@ -6,11 +6,25 @@ export type ButtonSize = 'sm' | 'md' | 'lg';
 export type ButtonIconPosition = 'start' | 'end';
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  /**
+   * Emphasis. `"primary"` is high, `"secondary"` is medium, `"ghost"` is low.
+   * There should not be more than one high-emphasis button in a view.
+   */
   variant?: ButtonVariant;
+  /** `"sm"` when space is constrained. `"md"` by default. `"lg"` for spacious actions. */
   size?: ButtonSize;
+  /** Replaces the icon with a spinner and sets `aria-busy`. The label stays visible. */
   loading?: boolean;
   icon?: ReactNode;
   iconPosition?: ButtonIconPosition;
+  /** Stretch to the width of the container. */
+  fullWidth?: boolean;
+  /**
+   * Toggle state for medium/low emphasis (subscribe, notification on/off).
+   * Sets `aria-pressed`. If the label already changes with the state, that is enough
+   * for the name; `aria-pressed` still exposes the pressed state.
+   */
+  isSelected?: boolean;
 };
 
 const variantClass: Record<ButtonVariant, string> = {
@@ -37,6 +51,11 @@ function IconSlot({ children }: { children: ReactNode }) {
   );
 }
 
+const selectedClass: Partial<Record<ButtonVariant, string>> = {
+  secondary: 'bg-surface-hover border-brand',
+  ghost: 'bg-surface-muted',
+};
+
 export function Button({
   variant = 'primary',
   size = 'md',
@@ -46,6 +65,8 @@ export function Button({
   loading = false,
   icon,
   iconPosition = 'start',
+  fullWidth = false,
+  isSelected,
   children,
   ...rest
 }: ButtonProps) {
@@ -59,6 +80,7 @@ export function Button({
       type={type}
       disabled={isDisabled}
       aria-busy={loading || undefined}
+      aria-pressed={typeof isSelected === 'boolean' ? isSelected : undefined}
       className={cx(
         'inline-flex items-center justify-center gap-2 rounded-md font-medium',
         'transition-colors',
@@ -66,6 +88,8 @@ export function Button({
         'disabled:pointer-events-none disabled:opacity-50',
         variantClass[variant],
         sizeClass[size],
+        fullWidth && 'w-full min-w-0',
+        isSelected ? selectedClass[variant] : undefined,
         className,
       )}
     >

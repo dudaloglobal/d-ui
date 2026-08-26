@@ -1,0 +1,112 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { IconButton } from './IconButton';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+Les boutons déclenchent une action en un clic.
+
+Les exemples suivent la **langue** de la barre d’outils Storybook (**Français** par défaut).
+
+## High emphasis
+
+Utilisez le fort emphasis (`variant="primary"`) pour aider à identifier l’action principale. Il ne doit pas y avoir plus d’un bouton high emphasis dans une vue.
+
+Cas d’usage : Par défaut, Désactivé, Avec icône, Menu, Fractionné.
+
+<Canvas of={ButtonStories.HighEmphasis} sourceState="shown" />
+
+## Medium emphasis
+
+Utilisez le medium emphasis (`variant="secondary"`) pour les actions secondaires.
+
+<Canvas of={ButtonStories.MediumEmphasis} sourceState="shown" />
+
+### Toggled button
+
+Les boutons medium ont une option supplémentaire : `isSelected`. Utilisez `isSelected` pour des actions à bascule (activation de notifications, abonnement à un flux). Décrivez l’action le plus clairement possible dans le libellé.
+
+<Canvas of={ButtonStories.Toggled} sourceState="shown" />
+
+## Low emphasis
+
+Quand la vue contient déjà un bouton primary et un medium, utilisez le low emphasis (`variant="ghost"`) pour les actions de moindre priorité. Autrement, utilisez-le lorsqu’il n’y a qu’un seul niveau de priorité.
+
+Cas d’usage : Par défaut, Désactivé, Avec icône, Menu (pas de fractionné).
+
+<Canvas of={ButtonStories.LowEmphasis} sourceState="shown" />
+
+## Small size
+
+Utilisez la petite taille (`size="sm"`) lorsque l’espace est contraint.
+
+<Canvas of={ButtonStories.SmallSize} />
+
+## Full width
+
+Utilisez `fullWidth` lorsque le bouton doit occuper toute la largeur du conteneur.
+
+<Canvas of={ButtonStories.FullWidth} sourceState="shown" />
+
+Menu et fractionné sont des **compositions** de `Button` / `IconButton` (chevron, `aria-haspopup`). Le menu déroulant complet arrive avec Menu (DS-030).
+
+### Accessibility concerns
+
+#### Button
+
+Le bouton utilise le texte visible comme nom accessible. S’il n’y a pas de texte (icône seule, image, …), passez un `aria-label` qui décrit l’action.
+
+Cas d’usage accessibilité :
+
+- **Bouton natif** — `Button` rend un `<button type="button">`. Pour la navigation, utilisez un lien (`Link`, DS-019).
+- **Toggle** — état actif/inactif via `isSelected`. Si le libellé change selon l’état (`S'abonner` / `Abonné`), ce nom suffit. Si le libellé ne change pas, `aria-pressed` est posé depuis `isSelected`.
+- **Menu** — si le bouton ouvre une liste : `aria-haspopup="true"`, `aria-expanded` selon l’ouverture, et `aria-controls` vers l’id du menu uniquement si le menu est dans le DOM.
+- **Chargement** — `loading` conserve le libellé, pose `aria-busy` et désactive le contrôle.
+
+#### IconButton
+
+Toutes les règles de `Button` s’appliquent. Comme il n’y a pas de texte, `aria-label` est obligatoire.
+
+<Canvas of={ButtonStories.IconOnly} />
+
+Thème sombre : barre d’outils **Thème**. Langue des exemples : barre d’outils **Langue**.
+
+## Properties
+
+### Button
+
+Les attributs natifs `<button>` (`disabled`, `type`, `className`, `aria-haspopup`, …) sont transmis.
+
+<ArgTypes
+  of={ButtonStories}
+  include={[
+    'variant',
+    'size',
+    'loading',
+    'icon',
+    'iconPosition',
+    'fullWidth',
+    'isSelected',
+    'disabled',
+  ]}
+/>
+
+### IconButton
+
+`IconButton` exige `aria-label`. `icon`, `variant`, `size`, `loading`, `fullWidth` et `isSelected` sont les mêmes que `Button`.
+
+<ArgTypes
+  of={IconButton}
+  include={[
+    'icon',
+    'aria-label',
+    'variant',
+    'size',
+    'disabled',
+    'loading',
+    'fullWidth',
+    'isSelected',
+  ]}
+/>

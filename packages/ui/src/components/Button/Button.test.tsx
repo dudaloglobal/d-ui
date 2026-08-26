@@ -54,6 +54,36 @@ describe('Button', () => {
     render(<Button icon={<PlusIcon />}>Ajouter</Button>);
     expect(screen.getByRole('button', { name: 'Ajouter' })).toBeInTheDocument();
   });
+
+  it('exposes toggle state with aria-pressed', () => {
+    const { rerender } = render(
+      <Button variant="secondary" isSelected={false}>
+        Subscribe
+      </Button>,
+    );
+    expect(screen.getByRole('button', { name: 'Subscribe' })).toHaveAttribute(
+      'aria-pressed',
+      'false',
+    );
+
+    rerender(
+      <Button variant="secondary" isSelected>
+        Subscribed
+      </Button>,
+    );
+    expect(screen.getByRole('button', { name: 'Subscribed' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
+  });
+
+  it('stretches to the container when fullWidth is set', () => {
+    render(<Button fullWidth>Continuer</Button>);
+    expect(screen.getByRole('button', { name: 'Continuer' })).toHaveClass(
+      'w-full',
+      'min-w-0',
+    );
+  });
 });
 
 describe('IconButton', () => {
