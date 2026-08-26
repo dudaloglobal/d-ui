@@ -61,6 +61,16 @@ Dans ce mode, `useFieldControl()` ne renvoie ni `id` ni `aria-describedby` :
 c'est le `fieldset` qui les porte. Les poser sur chaque option ferait répéter
 l'aide à chaque case.
 
+**`Label` doit rester le premier enfant du `Field group`.** Une `legend` ne
+nomme son `fieldset` que si elle en est le premier élément ; placée plus bas,
+elle devient un texte ordinaire et le groupe perd son nom accessible.
+
+**`required` ne descend pas sur les contrôles d'un groupe.** Sur une case à
+cocher, `required` veut dire « cette case-ci doit être cochée » : le poser sur
+chacune exigerait de toutes les cocher, alors que l'intention est « au moins un
+choix ». Dans un groupe, `required` ne pilote donc que l'astérisque de la
+légende, et la contrainte réelle revient à la validation du formulaire.
+
 ## Accessibilité
 
 - **`aria-describedby` ne référence que ce qui existe.** `FieldDescription` et
@@ -71,7 +81,10 @@ l'aide à chaque case.
   masqué visuellement mais présent reste lu par les technologies d'assistance.
   `FieldError` ne rend `null` que sur `invalid={false}`.
 - **`role="alert"` sur l'erreur** : elle est annoncée à son apparition, sans
-  attendre que l'utilisateur revienne sur le champ.
+  attendre que l'utilisateur revienne sur le champ. Contrepartie assumée : le
+  message étant aussi cité par `aria-describedby`, il peut être annoncé deux
+  fois — une fois à l'apparition, une fois au retour du focus sur le contrôle.
+  Entendre l'erreur en double vaut mieux que ne pas l'entendre du tout.
 - **L'astérisque de champ requis est décoratif** (`aria-hidden`). C'est
   l'attribut `required` du contrôle qui porte l'information. Ajouter en plus un
   texte masqué « requis » ferait annoncer la contrainte deux fois.

@@ -11,6 +11,11 @@ function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return <input {...field} {...props} />;
 }
 
+function Checkbox(props: React.InputHTMLAttributes<HTMLInputElement>) {
+  const field = useFieldControl();
+  return <input type="checkbox" {...field} {...props} />;
+}
+
 describe('Field', () => {
   it('associates the label with the control', () => {
     render(
@@ -137,6 +142,35 @@ describe('Field', () => {
     );
 
     expect(screen.getByLabelText('Adresse e-mail')).toBeDisabled();
+  });
+
+  it('does not mark each control of a required group as required', () => {
+    render(
+      <Field group required>
+        <Label>Notifications</Label>
+        <FieldDescription>Choisissez au moins un canal.</FieldDescription>
+        <Checkbox aria-label="E-mail" />
+        <Checkbox aria-label="SMS" />
+      </Field>,
+    );
+
+    // `required` sur chaque case voudrait dire « toutes doivent être cochées »,
+    // alors que l'intention est « au moins une ». Dans un groupe, `required`
+    // ne pilote que l'astérisque de la légende.
+    expect(screen.getByRole('checkbox', { name: 'E-mail' })).not.toBeRequired();
+    expect(screen.getByRole('checkbox', { name: 'SMS' })).not.toBeRequired();
+    expect(screen.getByRole('group').querySelector('legend')).toHaveTextContent('*');
+  });
+
+  it('still disables every control of a disabled group', () => {
+    render(
+      <Field group disabled>
+        <Label>Notifications</Label>
+        <Checkbox aria-label="E-mail" />
+      </Field>,
+    );
+
+    expect(screen.getByRole('checkbox', { name: 'E-mail' })).toBeDisabled();
   });
 
   it('names a group with a legend instead of a label', () => {

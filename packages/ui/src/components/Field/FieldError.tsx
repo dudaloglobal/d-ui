@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from 'react';
-import { useEffect } from 'react';
 import { Text } from '../Text/Text';
+import { useIsomorphicLayoutEffect } from '../../lib/useIsomorphicLayoutEffect';
 import { useFieldContext } from './FieldContext';
 
 export type FieldErrorProps = HTMLAttributes<HTMLParagraphElement>;
@@ -19,7 +19,7 @@ export function FieldError({ className, children, ...rest }: FieldErrorProps) {
   const field = useFieldContext('FieldError');
   const { setHasError, invalid } = field;
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!invalid) {
       return;
     }
