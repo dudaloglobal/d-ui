@@ -12,7 +12,10 @@ export declare const tokenNames: {
     readonly colorField: "--d-ui-color-field";
     readonly colorFieldHover: "--d-ui-color-field-hover";
     readonly colorBorder: "--d-ui-color-border";
+    readonly colorBorderSubtle: "--d-ui-color-border-subtle";
     readonly colorFocus: "--d-ui-color-focus";
+    readonly colorLink: "--d-ui-color-link";
+    readonly colorLinkVisited: "--d-ui-color-link-visited";
     readonly colorDanger: "--d-ui-color-danger";
     readonly colorOnDanger: "--d-ui-color-on-danger";
     readonly colorWarning: "--d-ui-color-warning";
