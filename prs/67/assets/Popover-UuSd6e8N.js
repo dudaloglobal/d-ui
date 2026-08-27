@@ -1,0 +1,35 @@
+import{j as o}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as l}from"./index-AGuS8-Lw.js";import{M as x,C as s,A as j}from"./index-CJCLRiXQ.js";import{H as c,P as e,a as n,b as p,U as a}from"./docs-i18n-DX1cFyj7.js";import{P as i,D as d,a as k,A as u,C as f,W as v,b as h,c as b}from"./Popover.stories-D9OozUzR.js";import"./index-DQxMMF7O.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-BznWdal5.js";import"./index-W1VnaOaO.js";import"./index-DTrdMgma.js";import"./index-DgH-xKnr.js";import"./index-Bhqu_tAV.js";import"./docs-source-OU1RIk5-.js";import"./cx-XQLYb_SV.js";import"./Button-DFW2QH4u.js";import"./Popover-DrF4puRN.js";import"./floating-Dyi1yUX-.js";function m(r){return o.jsxs(o.Fragment,{children:[o.jsx(x,{of:i}),`
+`,o.jsx(c,{k:"popover.title"}),`
+`,o.jsx(e,{k:"popover.intro"}),`
+`,o.jsx(e,{k:"chrome.examplesFollow"}),`
+`,o.jsx(s,{of:d}),`
+`,o.jsx(n,{k:"chrome.placement"}),`
+`,o.jsx(e,{k:"popover.usePlacement"}),`
+`,o.jsx(s,{of:k}),`
+`,o.jsx(n,{k:"chrome.alignments"}),`
+`,o.jsx(e,{k:"popover.useAlignments"}),`
+`,o.jsx(s,{of:u}),`
+`,o.jsx(n,{k:"chrome.controlled"}),`
+`,o.jsx(e,{k:"popover.useControlled"}),`
+`,o.jsx(s,{of:f}),`
+`,o.jsx(n,{k:"popover.focusTrap"}),`
+`,o.jsx(e,{k:"popover.useFocusTrap"}),`
+`,o.jsx(s,{of:v}),`
+`,o.jsx(n,{k:"chrome.specialStates"}),`
+`,o.jsx(p,{k:"chrome.disabled"}),`
+`,o.jsx(e,{k:"chrome.useDisabled"}),`
+`,o.jsx(s,{of:h}),`
+`,o.jsx(p,{k:"chrome.collision"}),`
+`,o.jsx(e,{k:"popover.useCollision"}),`
+`,o.jsx(s,{of:b}),`
+`,o.jsx(n,{k:"chrome.accessibility"}),`
+`,o.jsx(e,{k:"popover.a11yBody"}),`
+`,o.jsx(e,{k:"popover.a11yKeys"}),`
+`,o.jsx(p,{k:"chrome.do"}),`
+`,o.jsx(a,{items:["popover.doLabel","popover.doTrap","popover.doEscape"]}),`
+`,o.jsx(p,{k:"chrome.dont"}),`
+`,o.jsx(a,{items:["popover.dontTooltip","popover.dontTrapEmpty","popover.dontDialog"]}),`
+`,o.jsx(e,{k:"chrome.themeLang"}),`
+`,o.jsx(n,{k:"chrome.properties"}),`
+`,o.jsx(e,{k:"popover.propsBody"}),`
+`,o.jsx(j,{of:i,include:["content","placement","open","defaultOpen","trapFocus","disabled","aria-label","aria-labelledby"]})]})}function W(r={}){const{wrapper:t}={...l(),...r.components};return t?o.jsx(t,{...r,children:o.jsx(m,{...r})}):m()}export{W as default};

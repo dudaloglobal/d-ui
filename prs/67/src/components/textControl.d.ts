@@ -1,0 +1,54 @@
+import { ReactNode } from '../../../../node_modules/.pnpm/react@19.2.8/node_modules/react';
+export type TextControlSize = 'sm' | 'md' | 'lg';
+export declare const inputHeightClass: Record<TextControlSize, string>;
+export declare function mergeDescribedBy(...ids: Array<string | undefined | false>): string | undefined;
+export declare function stringifyValue(value: string | number | readonly string[] | undefined): string;
+export declare function defaultCountMessage(count: number, maxLength?: number): string;
+export declare function frameClass({ size, invalid, valid, disabled, multiline, focusShadow, }: {
+    size: TextControlSize;
+    invalid: boolean;
+    valid?: boolean;
+    disabled: boolean;
+    multiline?: boolean;
+    focusShadow?: boolean;
+}): string;
+export declare function TextFieldLayout({ id, label, helper, error, required, invalid, valid, disabled, fullWidth, size, className, showCount, count, maxLength, countMessage, countId, helperId, multiline, focusShadow, children, }: {
+    id?: string;
+    label?: ReactNode;
+    helper?: ReactNode;
+    error?: ReactNode;
+    required?: boolean;
+    invalid: boolean;
+    valid?: boolean;
+    disabled: boolean;
+    fullWidth: boolean;
+    size: TextControlSize;
+    className?: string;
+    showCount?: boolean;
+    count: number;
+    maxLength?: number;
+    countMessage: (count: number, maxLength?: number) => string;
+    countId: string;
+    helperId: string;
+    multiline?: boolean;
+    focusShadow?: boolean;
+    children: ReactNode;
+}): import("react").JSX.Element;
+export declare function ChromeButton({ label, pressed, disabled, onClick, children, }: {
+    label: string;
+    pressed?: boolean;
+    disabled?: boolean;
+    onClick: () => void;
+    children: ReactNode;
+}): import("react").JSX.Element;
+export declare function ClearIcon(): import("react").JSX.Element;
+export declare function EyeIcon(): import("react").JSX.Element;
+export declare function EyeOffIcon(): import("react").JSX.Element;
+export declare function SearchIcon(): import("react").JSX.Element;
+export declare function CheckIcon(): import("react").JSX.Element;
+export declare function AlertIcon(): import("react").JSX.Element;
+export declare function StatusIcon({ invalid, valid }: {
+    invalid: boolean;
+    valid?: boolean;
+}): import("react").JSX.Element | null;
+export declare const nativeInputClass = "min-w-0 flex-1 resize-none border-0 bg-transparent p-0 text-sm leading-5 text-inherit outline-none placeholder:text-fg/60";
