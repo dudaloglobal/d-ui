@@ -69,6 +69,10 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Select | Dudalo Design System');
   await page.goto('/?path=/docs/components-combobox--docs');
   await expect(page).toHaveTitle('Combobox | Dudalo Design System');
+  await page.goto('/?path=/docs/accessibility-skiplink--docs');
+  await expect(page).toHaveTitle('SkipLink | Dudalo Design System');
+  await page.goto('/?path=/docs/foundations-themeprovider--docs');
+  await expect(page).toHaveTitle('ThemeProvider | Dudalo Design System');
 });
 
 test('component docs H1 is the component name, like Link', async ({ page }) => {

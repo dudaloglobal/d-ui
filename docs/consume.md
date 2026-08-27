@@ -15,9 +15,9 @@ import { Button, SkipLink, ThemeProvider } from 'd-ui';
 export function App() {
   return (
     <ThemeProvider mode="light">
-      <SkipLink />
+      <SkipLink>Aller au contenu principal</SkipLink>
       <main id="main" tabIndex={-1}>
-        <Button>Save</Button>
+        <Button>Enregistrer</Button>
       </main>
     </ThemeProvider>
   );

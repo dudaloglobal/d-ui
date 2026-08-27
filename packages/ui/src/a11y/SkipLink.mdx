@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { H2, H3, P, Ul } from '../../.storybook/docs-i18n';
+import * as SkipLinkStories from './SkipLink.stories';
+
+<Meta of={SkipLinkStories} />
+
+# SkipLink
+
+<P k="skipLink.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={SkipLinkStories.Keyboard} />
+
+<H2 k="skipLink.target" />
+
+<P k="skipLink.targetBody" />
+
+<Canvas of={SkipLinkStories.CustomHref} />
+
+<H2 k="skipLink.label" />
+
+<P k="skipLink.labelBody" />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="skipLink.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['skipLink.doMain', 'skipLink.doOnce', 'skipLink.doHref']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['skipLink.dontTabIndex', 'skipLink.dontButton', 'skipLink.dontDuplicate']} />
+
+<H2 k="chrome.properties" />
+
+<P k="skipLink.props" />
+
+<ArgTypes of={SkipLinkStories} include={['href', 'children']} />

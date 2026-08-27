@@ -11,11 +11,24 @@ packages/ui/src/components/Name/
   Name.tsx
   Name.test.tsx
   Name.stories.tsx
+  Name.mdx
 ```
 
-Primitives transverses (`VisuallyHidden`, `SkipLink`) : `packages/ui/src/a11y/`.  
+Primitives transverses (`VisuallyHidden`, `SkipLink`) : `packages/ui/src/a11y/` (mêmes quatre fichiers).  
 Thème : `packages/ui/src/theme/`.  
 Exporter depuis `packages/ui/src/index.ts`.
+
+## Storybook (documentation)
+
+La page docs n’est pas de l’autodocs seul. Suivre `Button.mdx` / `TextInput.mdx` / `TimeAgo.mdx` :
+
+- MDX en **français** (titre de composant = nom d’API anglais).
+- Une section = une capacité, avec `<Canvas of={Stories.X} />`.
+- `Accessibilité` + `À faire` / `À éviter` + `Propriétés` (`ArgTypes` avec `include`).
+- Stories : `name` français, id d’export anglais, copy via `docs-locale.ts`, snippet **Show code** via `componentSource` (`import { Name } from 'd-ui'`).
+- Descriptions d’ArgTypes en français dans `.storybook/arg-types.ts`.
+
+Détail agent : `.cursor/skills/storybook-docs/SKILL.md` et `.cursor/skills/docs-locale/SKILL.md`.
 
 ## Props
 
@@ -30,7 +43,7 @@ Exporter depuis `packages/ui/src/index.ts`.
 
 Pas de `asChild` tant qu’un cas réel l’exige (YAGNI). Button n’est pas un lien : `Link` est DS-019.
 
-Chaînes visibles : aucune copie figée dans le composant sauf fallback a11y en **anglais** (`Skip to main content`). Les stories peuvent être en français (langue produit).
+Chaînes visibles : aucune copie figée dans le composant sauf fallback a11y en **anglais** (`Skip to main content`). Les stories passent par `docs-locale.ts` (français par défaut, anglais via la barre Langue).
 
 ## Accessibilité (nommage)
 
@@ -46,5 +59,5 @@ Nouvelle primitive, dépendance runtime, changement du contrat CSS public (`--d-
 
 1. HTML sémantique, focus visible, clavier.
 2. Couleurs via tokens, jamais un hex dans le TSX.
-3. Tests Testing Library (`getByRole`) + story autodocs.
-4. `pnpm lint` / `typecheck` / `test`.
+3. Tests Testing Library (`getByRole`) + story + MDX (pas autodocs seul).
+4. `pnpm lint` / `format:check` / `typecheck` / `test`.

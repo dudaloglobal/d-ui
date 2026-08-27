@@ -1,0 +1,10 @@
+---
+description: Storybook MDX must match the Button/TextInput/TimeAgo documentation bar (French, Canvas per section, ArgTypes, Show code).
+alwaysApply: true
+---
+
+# Storybook docs
+
+When adding or editing a component, MDX, stories, ArgTypes, or `docs-locale.ts`, follow `.cursor/skills/storybook-docs/SKILL.md`.
+
+Match `Button.mdx` / `TextInput.mdx` / `TimeAgo.mdx`: French sections, one Canvas per capability, Accessibilité + À faire / À éviter, explicit ArgTypes, `componentSource` from `d-ui`. Autodocs tags are not enough.

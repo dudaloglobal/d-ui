@@ -37,7 +37,7 @@ Un composant n’est pas fini sans :
 - API exportée depuis `d-ui`
 - tokens (aucun hex sémantique dans le TSX)
 - HTML sémantique, clavier, focus visible, nom accessible — [docs/accessibility.md](./docs/accessibility.md)
-- tests Testing Library + story
+- tests Testing Library + story **et** MDX (voir [docs/component-conventions.md](./docs/component-conventions.md))
 - conventions : [docs/component-conventions.md](./docs/component-conventions.md)
 
 ## Qualité (KISS, SOLID, DRY)

@@ -26,7 +26,9 @@ Valeurs mesurées sur le bootstrap actuel — le gel Figma (DS-006) les remplace
 | ----------------------------- | ------ | ------ | ------------------------------------------------------------- |
 | Body `fg` / `bg`              | 16.1:1 | 15.4:1 | ≥ 4.5:1                                                       |
 | Heading = body `fg`           | idem   | idem   | ≥ 4.5:1                                                       |
+| Muted `fg-muted` / `bg`       | ~7.5:1 | ~7.0:1 | ≥ 4.5:1                                                       |
 | Inverse `on-brand` / `brand`  | 8.6:1  | 9.8:1  | ≥ 4.5:1                                                       |
+| Erreur `danger` / `bg`        | ≥ 4.5  | ≥ 4.5  | ≥ 4.5:1                                                       |
 | Disabled `fg-disabled` / `bg` | 2.5:1  | 3.6:1  | UI non-texte ≥ 3:1 ; le texte disabled peut rester sous 4.5:1 |
 
 White-label : passer `tokens` à `ThemeProvider` (`brand`, `brandHover`, `onBrand`, `focus`).

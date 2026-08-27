@@ -446,3 +446,34 @@ export const comboboxArgTypes = {
       'Nom accessible du bouton chevron. Défaut : `"Afficher les suggestions"`. Omis : pas de chevron.',
   },
 };
+
+export const skipLinkArgTypes = {
+  href: {
+    description:
+      'Cible du lien, un identifiant de page (`#main` par défaut). Le landmark doit déjà être focusable (`tabIndex={-1}`).',
+  },
+  children: {
+    description:
+      'Libellé visible au focus. Défaut anglais : `"Skip to main content"`. Passez la langue de l’app.',
+  },
+};
+
+export const visuallyHiddenArgTypes = {
+  children: {
+    description:
+      'Texte lu par les technologies d’assistance, masqué visuellement. Obligatoire : c’est le nom accessible.',
+  },
+};
+
+export const themeArgTypes = {
+  mode: {
+    control: 'inline-radio' as const,
+    options: ['light', 'dark', 'system'],
+    description:
+      '`light` / `dark` explicites, ou `system` (suit `prefers-color-scheme`). Pose `data-d-ui-theme` sur l’enveloppe, pas sur `document.documentElement`.',
+  },
+  tokens: {
+    description:
+      'Surcharge white-label : `brand`, `brandHover`, `onBrand`, `focus`. Écrit les variables `--d-ui-color-*` en inline.',
+  },
+};
