@@ -22,6 +22,7 @@ Une exception AA exige un sign-off Accessibilité **et** une décision produit �
 13. `Popover` : `aria-expanded` / `aria-haspopup` / `aria-controls` sur le déclencheur. `trapFocus` seulement si le panneau contient des contrôles focusables (`role="dialog"` + nom accessible). Escape et clic extérieur ferment. Le portail recopie `data-d-ui-theme`.
 14. `EmojiPopover` : barre de neuf réactions (boutons nommés). `role="dialog"` + `trapFocus`. `onSelect` ferme le panneau. Déclencheur icône avec `aria-label`.
 15. `Select` / `Combobox` : `role="combobox"` + listbox nommée (`aria-labelledby` du libellé). Flèches, typeahead (Select), filtre (Combobox), Escape, Entrée. Options `disabled` ignorées par le clavier. `name` / `form` sur un `<select>` natif masqué. L’option active est défilée dans la vue. `Combobox` : bouton chevron `tabIndex={-1}` (`toggleLabel`), effacement optionnel, `multiple` (chips nommés, `aria-multiselectable`), `listStatus` (région live `loadingMessage`).
+16. `Link` : soulignement permanent (1.4.1). `external` pose `rel="noopener noreferrer"` et un fallback anglais `(opens in a new tab)`. `Heading` sépare `level` (structure) et `size` (visuel) — ne pas sauter de niveau (1.3.1).
 
 ## Overlays — revue de PR
 

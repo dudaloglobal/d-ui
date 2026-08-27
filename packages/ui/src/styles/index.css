@@ -1,7 +1,10 @@
 @import './tokens.css';
 @import 'tailwindcss';
 
-/* inline: utilities read --d-ui-* on the themed node, not a :root snapshot. */
+/*
+ * `inline` is required: without it Tailwind snapshots `--color-fg` on `:root`
+ * and dark / brand overrides on a descendant never reach the utilities.
+ */
 @theme inline {
   --color-bg: var(--d-ui-color-bg);
   --color-fg: var(--d-ui-color-fg);
@@ -15,7 +18,10 @@
   --color-field: var(--d-ui-color-field);
   --color-field-hover: var(--d-ui-color-field-hover);
   --color-border: var(--d-ui-color-border);
+  --color-border-subtle: var(--d-ui-color-border-subtle);
   --color-focus: var(--d-ui-color-focus);
+  --color-link: var(--d-ui-color-link);
+  --color-link-visited: var(--d-ui-color-link-visited);
   --color-danger: var(--d-ui-color-danger);
   --color-on-danger: var(--d-ui-color-on-danger);
   --color-warning: var(--d-ui-color-warning);

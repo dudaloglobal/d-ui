@@ -1,0 +1,51 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as TextStories from './Text.stories';
+
+<Meta of={TextStories} />
+
+# Text
+
+<P k="text.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={TextStories.Default} />
+
+<H2 k="text.sizes" />
+
+<P k="text.sizesBody" />
+
+<Canvas of={TextStories.Sizes} />
+
+<H2 k="text.tones" />
+
+<P k="text.tonesBody" />
+
+<Canvas of={TextStories.Tones} />
+
+<H2 k="text.weights" />
+
+<P k="text.weightsBody" />
+
+<Canvas of={TextStories.Weights} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="text.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['text.doMuted', 'text.doSpan']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['text.dontClass', 'text.dontHeading']} />
+
+<H2 k="chrome.properties" />
+
+<P k="text.props" />
+
+<ArgTypes of={TextStories} include={['as', 'size', 'tone', 'weight']} />

@@ -67,6 +67,15 @@ export const storyNameEn: Record<string, string> = {
   'Nom d’un bouton icône': 'Icon-only button name',
   'Surcharge de marque': 'Brand override',
   Système: 'System',
+  Horizontal: 'Horizontal',
+  Vertical: 'Vertical',
+  Labellisé: 'Labelled',
+  Externe: 'External',
+  'Dans un paragraphe': 'In a paragraph',
+  Tons: 'Tones',
+  Graisses: 'Weights',
+  Niveaux: 'Levels',
+  'Taille découplée': 'Decoupled size',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -496,4 +505,68 @@ export type ThemeDocsCopy = typeof themeFr;
 
 export function themeCopy(locale: DocsLocale): ThemeDocsCopy {
   return locale === 'en' ? themeEn : themeFr;
+}
+
+const typographyFr = {
+  sample:
+    'Le design system fournit les primitives typographiques pour que les écrans n’inventent pas leurs propres tailles.',
+  body: 'body — texte courant',
+  bodySm: 'body-sm — texte secondaire, aides de saisie',
+  caption: 'caption — légendes, métadonnées',
+  toneDefault: 'tone="default" — contraste maximal',
+  toneMuted: 'tone="muted" — reste au-dessus de 4.5:1',
+  heading: 'Parcours d’apprentissage',
+  level1: 'Niveau 1 — display',
+  level2: 'Niveau 2 — title',
+  level3: 'Niveau 3 — subtitle',
+  level4: 'Niveau 4 — body',
+  sizeDecoupledDisplay: 'h2 rendu en display',
+  sizeDecoupledSubtitle: 'h1 rendu en subtitle',
+  catalogue: 'Consulter le catalogue',
+  inTextBefore: 'Le soulignement est permanent :',
+  inTextLink: 'ce lien',
+  inTextAfter: 'reste identifiable même sans percevoir la couleur.',
+  docs: 'Documentation Dudalo',
+  previous: 'Section précédente',
+  next: 'Section suivante',
+  drafts: 'Brouillons',
+  published: 'Publiés',
+  labelled: 'Fin des résultats pertinents',
+  relevant: 'Résultats pertinents',
+  other: 'Autres résultats',
+};
+
+const typographyEn = {
+  sample:
+    'The design system provides typography primitives so screens do not invent their own sizes.',
+  body: 'body — running text',
+  bodySm: 'body-sm — secondary text, field help',
+  caption: 'caption — captions, metadata',
+  toneDefault: 'tone="default" — maximum contrast',
+  toneMuted: 'tone="muted" — stays above 4.5:1',
+  heading: 'Learning path',
+  level1: 'Level 1 — display',
+  level2: 'Level 2 — title',
+  level3: 'Level 3 — subtitle',
+  level4: 'Level 4 — body',
+  sizeDecoupledDisplay: 'h2 rendered as display',
+  sizeDecoupledSubtitle: 'h1 rendered as subtitle',
+  catalogue: 'Browse the catalogue',
+  inTextBefore: 'The underline is permanent:',
+  inTextLink: 'this link',
+  inTextAfter: 'stays identifiable even without perceiving colour.',
+  docs: 'Dudalo documentation',
+  previous: 'Previous section',
+  next: 'Next section',
+  drafts: 'Drafts',
+  published: 'Published',
+  labelled: 'End of relevant results',
+  relevant: 'Relevant results',
+  other: 'Other results',
+};
+
+export type TypographyDocsCopy = typeof typographyFr;
+
+export function typographyCopy(locale: DocsLocale): TypographyDocsCopy {
+  return locale === 'en' ? typographyEn : typographyFr;
 }

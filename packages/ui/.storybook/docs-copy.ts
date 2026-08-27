@@ -90,8 +90,8 @@ export const docsCopy = {
       en: 'Consuming apps use:',
     },
     itemComponents: {
-      fr: 'les composants React (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
-      en: 'the React components (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      fr: 'les composants React (`Button`, `Text`, `Heading`, `Link`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      en: 'the React components (`Button`, `Text`, `Heading`, `Link`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
     },
     itemCssVars: {
       fr: 'les **variables CSS** `--d-ui-*`',
@@ -304,6 +304,227 @@ export const docsCopy = {
     dontDecor: {
       fr: 'Un token « décoratif » réutilisé comme frontière de contrôle',
       en: 'A “decorative” token reused as a control boundary',
+    },
+  },
+  text: {
+    intro: {
+      fr: '`Text` est le texte courant du design system. Utilisez `Heading` pour un titre, `Link` pour une navigation.',
+      en: '`Text` is the running text of the design system. Use `Heading` for a title, `Link` for navigation.',
+    },
+    sizes: { fr: 'Tailles', en: 'Sizes' },
+    sizesBody: {
+      fr: '`body` pour le paragraphe, `body-sm` pour une aide de saisie, `caption` pour une métadonnée. L’échelle est celle de Tailwind, exposée sous des rôles — pas de `text-[17px]`.',
+      en: '`body` for a paragraph, `body-sm` for field help, `caption` for metadata. The scale is Tailwind’s, exposed as roles — no `text-[17px]`.',
+    },
+    tones: { fr: 'Tons', en: 'Tones' },
+    tonesBody: {
+      fr: '`tone` est une prop, jamais un `className`. `cx()` ne résout pas les conflits Tailwind : `className="text-slate-400"` laisserait `text-fg` gagner. `muted` reste au-dessus de 4.5:1 dans les deux thèmes.',
+      en: '`tone` is a prop, never a `className`. `cx()` does not resolve Tailwind conflicts: `className="text-slate-400"` would let `text-fg` win. `muted` stays above 4.5:1 in both themes.',
+    },
+    weights: { fr: 'Graisses', en: 'Weights' },
+    weightsBody: {
+      fr: '`regular`, `medium`, `semibold`.',
+      en: '`regular`, `medium`, `semibold`.',
+    },
+    a11yBody: {
+      fr: '`Text` rend un `<p>` par défaut. Passez `as="span"` en ligne. Ce n’est pas un titre : un `Text size="body"` avec `font-semibold` ne remplace pas un `Heading`.',
+      en: '`Text` renders a `<p>` by default. Pass `as="span"` inline. It is not a heading: `Text size="body"` with `font-semibold` does not replace `Heading`.',
+    },
+    doMuted: {
+      fr: '`<Text tone="muted" size="body-sm">Mis à jour hier</Text>`',
+      en: '`<Text tone="muted" size="body-sm">Updated yesterday</Text>`',
+    },
+    doSpan: {
+      fr: '`as="span"` dans un bouton ou un lien',
+      en: '`as="span"` inside a button or a link',
+    },
+    dontClass: {
+      fr: '`<Text className="text-slate-400">` pour un ton',
+      en: '`<Text className="text-slate-400">` for a tone',
+    },
+    dontHeading: {
+      fr: '`<Text as="h2">` — utiliser `Heading`',
+      en: '`<Text as="h2">` — use `Heading`',
+    },
+    props: {
+      fr: 'Les attributs natifs de l’élément (`id`, `className`, …) sont transmis.',
+      en: 'Native element attributes (`id`, `className`, …) are forwarded.',
+    },
+  },
+  heading: {
+    intro: {
+      fr: '`Heading` porte la structure du document : un vrai `h1`…`h6`. La taille visuelle (`size`) est une prop **distincte** pour ne pas sauter un niveau afin d’obtenir le bon corps (WCAG 1.3.1).',
+      en: '`Heading` carries document structure: a real `h1`…`h6`. Visual size (`size`) is a **separate** prop so you do not skip a level to get the right type size (WCAG 1.3.1).',
+    },
+    levels: { fr: 'Niveaux', en: 'Levels' },
+    levelsBody: {
+      fr: 'Par défaut, la taille suit le niveau : `h1` → display, `h2` → title, `h3` → subtitle, `h4`–`h6` → body.',
+      en: 'By default, size follows the level: `h1` → display, `h2` → title, `h3` → subtitle, `h4`–`h6` → body.',
+    },
+    decoupled: { fr: 'Taille découplée', en: 'Decoupled size' },
+    decoupledBody: {
+      fr: 'Un `h2` peut avoir l’allure d’un display. Un `h1` peut rester discret. Ne posez **qu’un** `h1` par vue.',
+      en: 'An `h2` can look like display. An `h1` can stay small. Put **only one** `h1` per view.',
+    },
+    a11yBody: {
+      fr: 'Le composant rend `<h1>`…`<h6>`. Pas de `role="heading"` sur un `div`.',
+      en: 'The component renders `<h1>`…`<h6>`. No `role="heading"` on a `div`.',
+    },
+    doSize: {
+      fr: '`<Heading level={2} size="display">` si le visuel est grand mais le niveau est 2',
+      en: '`<Heading level={2} size="display">` when the visual is large but the level is 2',
+    },
+    doOneH1: {
+      fr: 'Un seul `level={1}` par page',
+      en: 'A single `level={1}` per page',
+    },
+    dontSkip: {
+      fr: 'Sauter de `h1` à `h3` pour une question de taille',
+      en: 'Skipping from `h1` to `h3` for size',
+    },
+    dontTwoH1: {
+      fr: 'Deux `h1` sur le même écran',
+      en: 'Two `h1`s on the same screen',
+    },
+    props: {
+      fr: 'Les attributs natifs du titre (`id`, `className`, …) sont transmis.',
+      en: 'Native heading attributes (`id`, `className`, …) are forwarded.',
+    },
+  },
+  link: {
+    intro: {
+      fr: '`Link` est un `<a>`. Le soulignement est **permanent** : la couleur seule ne distingue pas un lien dans un paragraphe (WCAG 1.4.1). Pour une action, utilisez `Button`.',
+      en: '`Link` is an `<a>`. The underline is **permanent**: colour alone cannot distinguish a link in a paragraph (WCAG 1.4.1). For an action, use `Button`.',
+    },
+    inText: { fr: 'Dans un paragraphe', en: 'In a paragraph' },
+    inTextBody: {
+      fr: 'Composez `Link` dans `Text`. Le soulignement et `visited:text-link-visited` restent.',
+      en: 'Compose `Link` inside `Text`. The underline and `visited:text-link-visited` remain.',
+    },
+    external: { fr: 'Externe', en: 'External' },
+    externalBody: {
+      fr: '`external` ouvre un nouvel onglet, pose `rel="noopener noreferrer"`, et annonce l’ouverture. Le fallback masqué est anglais (`(opens in a new tab)`) — passez `externalLabel` dans la langue de l’app.',
+      en: '`external` opens a new tab, sets `rel="noopener noreferrer"`, and announces the opening. The hidden fallback is English (`(opens in a new tab)`) — pass `externalLabel` in the app language.',
+    },
+    a11yBody: {
+      fr: 'Contrôle natif `<a href>`. Focus visible via l’anneau `focus`. Tab / Entrée activent le lien.',
+      en: 'Native `<a href>` control. Visible focus via the `focus` ring. Tab / Enter activate the link.',
+    },
+    doHref: {
+      fr: '`<Link href="/catalogue">Catalogue</Link>`',
+      en: '`<Link href="/catalogue">Catalogue</Link>`',
+    },
+    doExternal: {
+      fr: '`<Link href="https://…" external externalLabel="(ouvre dans un nouvel onglet)">`',
+      en: '`<Link href="https://…" external externalLabel="(opens in a new tab)">`',
+    },
+    dontBlank: {
+      fr: '`target="_blank"` sans `rel`',
+      en: '`target="_blank"` without `rel`',
+    },
+    dontButton: {
+      fr: 'Un `Button` pour de la navigation, ou un `Link` pour soumettre un formulaire',
+      en: 'A `Button` for navigation, or a `Link` to submit a form',
+    },
+    props: {
+      fr: 'Les attributs natifs `<a>` (`className`, `download`, …) sont transmis.',
+      en: 'Native `<a>` attributes (`className`, `download`, …) are forwarded.',
+    },
+  },
+  divider: {
+    intro: {
+      fr: '`Divider` est un filet de séparation qui **occupe tout l’espace disponible** du parent (`w-full` en horizontal, `self-stretch` en vertical). Par défaut il est **décoratif** (`aria-hidden`) : un séparateur visuel n’est pas une frontière de contrôle, donc `--d-ui-color-border-subtle` (pas le seuil 3:1 de 1.4.11). C’est un `div`, jamais un `<hr>` (le preflight Tailwind casse hauteur et largeur du `<hr>`).',
+      en: '`Divider` is a separating rule that **fills the parent’s available space** (`w-full` horizontally, `self-stretch` vertically). By default it is **decorative** (`aria-hidden`): a visual separator is not a control boundary, so `--d-ui-color-border-subtle` (not the 3:1 1.4.11 threshold). It is a `div`, never an `<hr>` (Tailwind preflight breaks `<hr>` height and width).',
+    },
+    vertical: { fr: 'Vertical', en: 'Vertical' },
+    verticalBody: {
+      fr: 'Un parent flex est requis (`self-stretch`) pour que le filet prenne toute la hauteur disponible.',
+      en: 'A flex parent is required (`self-stretch`) so the rule takes all available height.',
+    },
+    labelled: { fr: 'Labellisé', en: 'Labelled' },
+    labelledBody: {
+      fr: 'Avec `label`, le trait devient un `separator` annoncé. En horizontal, le libellé est visible au centre ; les deux filets grandissent (`flex-1`) pour remplir le parent. À réserver aux ruptures porteuses de sens (« fin des résultats pertinents »), pas à chaque ligne d’une liste.',
+      en: 'With `label`, the rule becomes an announced `separator`. Horizontally, the label is visible in the centre; both rules grow (`flex-1`) to fill the parent. Reserve it for meaningful breaks (“end of relevant results”), not every list row.',
+    },
+    a11yBody: {
+      fr: 'Sans `label` : `role="none"` et `aria-hidden`. Avec `label` : `role="separator"`, `aria-orientation` et `aria-label`. Le texte visible en horizontal est `aria-hidden` pour ne pas doubler l’annonce.',
+      en: 'Without `label`: `role="none"` and `aria-hidden`. With `label`: `role="separator"`, `aria-orientation` and `aria-label`. The visible horizontal text is `aria-hidden` so it is not announced twice.',
+    },
+    doPlain: {
+      fr: '`<Divider />` entre deux blocs visuels',
+      en: '`<Divider />` between two visual blocks',
+    },
+    doLabel: {
+      fr: '`<Divider label="Fin des résultats" />` seulement si la rupture a un sens',
+      en: '`<Divider label="End of results" />` only if the break is meaningful',
+    },
+    dontBorder: {
+      fr: 'Un `border-border` sur un `div` bricolé',
+      en: 'A homemade `div` with `border-border`',
+    },
+    dontEvery: {
+      fr: 'Labelliser chaque filet décoratif',
+      en: 'Labelling every decorative rule',
+    },
+    props: {
+      fr: 'Les attributs natifs (`className`, `data-*`) sont transmis **avant** la sémantique a11y, qui ne peut pas être écrasée.',
+      en: 'Native attributes (`className`, `data-*`) are forwarded **before** a11y semantics, which cannot be overwritten.',
+    },
+  },
+  typography: {
+    intro: {
+      fr: '`Text`, `Heading`, `Link` et `Divider` sont les primitives sur lesquelles reposent les autres composants. Un écran qui écrit `text-[17px]` ou `#475569` en dur ne passe pas la revue. Les pages détaillées sont sous **Components** : Text, Heading, Link, Divider.',
+      en: '`Text`, `Heading`, `Link` and `Divider` are the primitives other components rest on. A screen that hard-codes `text-[17px]` or `#475569` does not pass review. Detail pages live under **Components**: Text, Heading, Link, Divider.',
+    },
+    scale: { fr: 'Échelle', en: 'Scale' },
+    scaleBody: {
+      fr: 'L’échelle est celle de Tailwind, exposée sous des rôles sémantiques.',
+      en: 'The scale is Tailwind’s, exposed as semantic roles.',
+    },
+    composition: { fr: 'Composition', en: 'Composition' },
+    a11yLevel: {
+      fr: 'Le niveau de titre porte la structure, pas l’apparence. `Heading` sépare `level` de `size` (WCAG 1.3.1).',
+      en: 'Heading level carries structure, not appearance. `Heading` separates `level` from `size` (WCAG 1.3.1).',
+    },
+    a11yUnderline: {
+      fr: 'Les liens sont soulignés en permanence (WCAG 1.4.1).',
+      en: 'Links are underlined permanently (WCAG 1.4.1).',
+    },
+    a11yExternal: {
+      fr: 'Un lien externe s’annonce. `external` ajoute `rel="noopener noreferrer"` et un fallback anglais `(opens in a new tab)`.',
+      en: 'An external link is announced. `external` adds `rel="noopener noreferrer"` and an English fallback `(opens in a new tab)`.',
+    },
+    a11yDivider: {
+      fr: '`Divider` est décoratif par défaut.',
+      en: '`Divider` is decorative by default.',
+    },
+    a11yMuted: {
+      fr: '`tone="muted"` reste au-dessus de 4.5:1. Le test `tokens.contrast.test.ts` le vérifie.',
+      en: '`tone="muted"` stays above 4.5:1. The `tokens.contrast.test.ts` test checks it.',
+    },
+    doHeading: {
+      fr: '`<Heading level={2} size="display">`',
+      en: '`<Heading level={2} size="display">`',
+    },
+    doMuted: {
+      fr: '`<Text tone="muted">` pour une métadonnée',
+      en: '`<Text tone="muted">` for metadata',
+    },
+    doExternal: {
+      fr: '`<Link external>` pour une cible hors application',
+      en: '`<Link external>` for a target outside the app',
+    },
+    dontTwoH1: {
+      fr: '`<Heading level={1}>` deux fois sur une page',
+      en: '`<Heading level={1}>` twice on a page',
+    },
+    dontClass: {
+      fr: '`<Text className="text-slate-400">`',
+      en: '`<Text className="text-slate-400">`',
+    },
+    dontBlank: {
+      fr: '`target="_blank"` sans `rel`',
+      en: '`target="_blank"` without `rel`',
     },
   },
   button: {

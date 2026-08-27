@@ -10,6 +10,24 @@ export type {
 } from './components/Button/Button';
 export { IconButton } from './components/Button/IconButton';
 export type { IconButtonProps } from './components/Button/IconButton';
+export { Divider } from './components/Divider/Divider';
+export type { DividerOrientation, DividerProps } from './components/Divider/Divider';
+export { Heading } from './components/Heading/Heading';
+export type {
+  HeadingLevel,
+  HeadingProps,
+  HeadingSize,
+} from './components/Heading/Heading';
+export { Link } from './components/Link/Link';
+export type { LinkProps } from './components/Link/Link';
+export { Text } from './components/Text/Text';
+export type {
+  TextElement,
+  TextProps,
+  TextSize,
+  TextTone,
+  TextWeight,
+} from './components/Text/Text';
 export { ThemeProvider } from './theme/ThemeProvider';
 export type {
   ThemeMode,

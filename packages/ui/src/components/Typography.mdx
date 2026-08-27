@@ -1,0 +1,59 @@
+import { Meta } from '@storybook/blocks';
+import { H2, H3, P, Ul } from '../../.storybook/docs-i18n';
+
+<Meta title="Foundations/Typography" />
+
+# Typographie
+
+<P k="typography.intro" />
+
+<H2 k="typography.scale" />
+
+<P k="typography.scaleBody" />
+
+| Rôle       | Composant          | Classe      |
+| ---------- | ------------------ | ----------- |
+| `display`  | `Heading`          | `text-4xl`  |
+| `title`    | `Heading`          | `text-2xl`  |
+| `subtitle` | `Heading`          | `text-xl`   |
+| `body`     | `Text` / `Heading` | `text-base` |
+| `body-sm`  | `Text`             | `text-sm`   |
+| `caption`  | `Text`             | `text-xs`   |
+
+<H2 k="typography.composition" />
+
+```tsx
+import { Divider, Heading, Link, Text } from 'd-ui';
+import 'd-ui/styles.css';
+
+<article>
+  <Heading level={1}>Parcours d’apprentissage</Heading>
+  <Text tone="muted" size="body-sm">
+    Mis à jour il y a deux jours
+  </Text>
+  <Divider />
+  <Text>
+    Consultez le <Link href="/catalogue">catalogue</Link> pour choisir un module.
+  </Text>
+</article>;
+```
+
+<H2 k="chrome.accessibility" />
+
+<Ul
+  items={[
+    'typography.a11yLevel',
+    'typography.a11yUnderline',
+    'typography.a11yExternal',
+    'typography.a11yDivider',
+    'typography.a11yMuted',
+  ]}
+/>
+
+<H3 k="chrome.do" />
+
+<Ul items={['typography.doHeading', 'typography.doMuted', 'typography.doExternal']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['typography.dontTwoH1', 'typography.dontClass', 'typography.dontBlank']} />

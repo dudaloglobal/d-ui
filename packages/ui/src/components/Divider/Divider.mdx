@@ -1,0 +1,45 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as DividerStories from './Divider.stories';
+
+<Meta of={DividerStories} />
+
+# Divider
+
+<P k="divider.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={DividerStories.Default} />
+
+<H2 k="divider.vertical" />
+
+<P k="divider.verticalBody" />
+
+<Canvas of={DividerStories.Vertical} />
+
+<H2 k="divider.labelled" />
+
+<P k="divider.labelledBody" />
+
+<Canvas of={DividerStories.Labelled} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="divider.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['divider.doPlain', 'divider.doLabel']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['divider.dontBorder', 'divider.dontEvery']} />
+
+<H2 k="chrome.properties" />
+
+<P k="divider.props" />
+
+<ArgTypes of={DividerStories} include={['orientation', 'label']} />
