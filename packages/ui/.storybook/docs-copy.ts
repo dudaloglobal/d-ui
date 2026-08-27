@@ -433,22 +433,22 @@ export const docsCopy = {
   },
   divider: {
     intro: {
-      fr: '`Divider` est un filet de séparation. Par défaut il est **décoratif** (`aria-hidden`) : un séparateur visuel n’est pas une frontière de contrôle, donc `--d-ui-color-border-subtle` (pas le seuil 3:1 de 1.4.11).',
-      en: '`Divider` is a separating rule. By default it is **decorative** (`aria-hidden`): a visual separator is not a control boundary, so `--d-ui-color-border-subtle` (not the 3:1 1.4.11 threshold).',
+      fr: '`Divider` est un filet de séparation qui **occupe tout l’espace disponible** du parent (`w-full` en horizontal, `self-stretch` en vertical). Par défaut il est **décoratif** (`aria-hidden`) : un séparateur visuel n’est pas une frontière de contrôle, donc `--d-ui-color-border-subtle` (pas le seuil 3:1 de 1.4.11). C’est un `div`, jamais un `<hr>` (le preflight Tailwind casse hauteur et largeur du `<hr>`).',
+      en: '`Divider` is a separating rule that **fills the parent’s available space** (`w-full` horizontally, `self-stretch` vertically). By default it is **decorative** (`aria-hidden`): a visual separator is not a control boundary, so `--d-ui-color-border-subtle` (not the 3:1 1.4.11 threshold). It is a `div`, never an `<hr>` (Tailwind preflight breaks `<hr>` height and width).',
     },
     vertical: { fr: 'Vertical', en: 'Vertical' },
     verticalBody: {
-      fr: 'Un parent flex est requis (`self-stretch`). Rend un `div`, pas un `<hr>`.',
-      en: 'A flex parent is required (`self-stretch`). Renders a `div`, not an `<hr>`.',
+      fr: 'Un parent flex est requis (`self-stretch`) pour que le filet prenne toute la hauteur disponible.',
+      en: 'A flex parent is required (`self-stretch`) so the rule takes all available height.',
     },
     labelled: { fr: 'Labellisé', en: 'Labelled' },
     labelledBody: {
-      fr: 'Avec `label`, le trait devient un `separator` annoncé. À réserver aux ruptures porteuses de sens (« fin des résultats pertinents »), pas à chaque ligne d’une liste.',
-      en: 'With `label`, the rule becomes an announced `separator`. Reserve it for meaningful breaks (“end of relevant results”), not every list row.',
+      fr: 'Avec `label`, le trait devient un `separator` annoncé. En horizontal, le libellé est visible au centre ; les deux filets grandissent (`flex-1`) pour remplir le parent. À réserver aux ruptures porteuses de sens (« fin des résultats pertinents »), pas à chaque ligne d’une liste.',
+      en: 'With `label`, the rule becomes an announced `separator`. Horizontally, the label is visible in the centre; both rules grow (`flex-1`) to fill the parent. Reserve it for meaningful breaks (“end of relevant results”), not every list row.',
     },
     a11yBody: {
-      fr: 'Sans `label` : `role="none"` et `aria-hidden`. Avec `label` : `role="separator"` et `aria-orientation`.',
-      en: 'Without `label`: `role="none"` and `aria-hidden`. With `label`: `role="separator"` and `aria-orientation`.',
+      fr: 'Sans `label` : `role="none"` et `aria-hidden`. Avec `label` : `role="separator"`, `aria-orientation` et `aria-label`. Le texte visible en horizontal est `aria-hidden` pour ne pas doubler l’annonce.',
+      en: 'Without `label`: `role="none"` and `aria-hidden`. With `label`: `role="separator"`, `aria-orientation` and `aria-label`. The visible horizontal text is `aria-hidden` so it is not announced twice.',
     },
     doPlain: {
       fr: '`<Divider />` entre deux blocs visuels',

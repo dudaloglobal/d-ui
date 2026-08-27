@@ -8,6 +8,7 @@ describe('Divider', () => {
 
     expect(screen.queryByRole('separator')).not.toBeInTheDocument();
     expect(screen.getByTestId('divider')).toHaveAttribute('aria-hidden', 'true');
+    expect(screen.getByTestId('divider')).toHaveClass('w-full');
   });
 
   it('becomes a named separator when labelled', () => {
@@ -15,6 +16,8 @@ describe('Divider', () => {
 
     const separator = screen.getByRole('separator', { name: 'Fin des résultats' });
     expect(separator).toHaveAttribute('aria-orientation', 'horizontal');
+    expect(separator).toHaveClass('w-full');
+    expect(separator).toHaveTextContent('Fin des résultats');
   });
 
   it('reports its orientation when vertical', () => {

@@ -535,10 +535,11 @@ export const dividerArgTypes = {
   orientation: {
     control: 'inline-radio' as const,
     options: ['horizontal', 'vertical'],
-    description: '`horizontal` (`<hr>`) ou `vertical` (`div`).',
+    description:
+      '`horizontal` : `div` en `w-full` (100 % du parent). `vertical` : `div` en `self-stretch` dans un flex.',
   },
   label: {
     description:
-      'Nom accessible. Sans `label`, le trait est décoratif (`aria-hidden`). Ne le renseigner que si la séparation porte du sens.',
+      'Nom accessible. Sans `label`, le trait est décoratif (`aria-hidden`). Avec `label` en horizontal, le texte est visible au centre et les filets remplissent le parent. Ne le renseigner que si la séparation porte du sens.',
   },
 };

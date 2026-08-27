@@ -20,7 +20,7 @@ export const Default: Story = {
   render: (args, { globals }) => {
     const copy = typographyCopy(docsLocale(globals.locale));
     return (
-      <div className="flex max-w-prose flex-col gap-4">
+      <div className="flex w-full flex-col gap-4">
         <Text>{copy.previous}</Text>
         <Divider {...args} />
         <Text>{copy.next}</Text>
@@ -58,7 +58,7 @@ export const Labelled: Story = {
   render: (args, { globals }) => {
     const copy = typographyCopy(docsLocale(globals.locale));
     return (
-      <div className="flex max-w-prose flex-col gap-4">
+      <div className="flex w-full flex-col gap-4">
         <Text>{copy.relevant}</Text>
         <Divider {...args} label={copy.labelled} />
         <Text tone="muted">{copy.other}</Text>
