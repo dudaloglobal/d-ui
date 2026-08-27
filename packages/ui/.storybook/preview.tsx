@@ -1,5 +1,5 @@
-import { DocsContainer, type DocsContainerProps } from '@storybook/blocks';
-import type { Preview } from '@storybook/react';
+import { DocsContainer, type DocsContainerProps } from '@storybook/addon-docs/blocks';
+import type { Preview } from '@storybook/react-vite';
 import { useEffect, useLayoutEffect, useState, type ReactNode } from 'react';
 import { ThemeProvider } from '../src/theme/ThemeProvider';
 import { DocsLocaleProvider } from './docs-i18n';
@@ -116,7 +116,7 @@ const preview: Preview = {
       test: 'todo',
     },
     backgrounds: {
-      disable: true,
+      disabled: true,
     },
     controls: {
       matchers: {

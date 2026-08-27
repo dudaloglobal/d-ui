@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { themeArgTypes } from '../../.storybook/arg-types';
 import { componentSource } from '../../.storybook/docs-source';
 import { docsLocale, themeCopy } from '../../.storybook/docs-locale';

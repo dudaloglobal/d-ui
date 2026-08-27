@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { emojiPopoverArgTypes } from '../../../.storybook/arg-types';
 import { docsLocale, overlayCopy } from '../../../.storybook/docs-locale';
 import { componentSource } from '../../../.storybook/docs-source';
