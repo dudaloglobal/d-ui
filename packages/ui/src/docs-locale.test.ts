@@ -1,7 +1,17 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { buttonCopy, inputCopy, timeAgoCopy } from '../.storybook/docs-locale';
+import { collectDocsCopyLeaves, docsCopy, docsString } from '../.storybook/docs-copy';
+import {
+  buttonCopy,
+  inputCopy,
+  localeFromSearch,
+  selectionCopy,
+  storyNameEn,
+  storyLabel,
+  toolbarLabel,
+  timeAgoCopy,
+} from '../.storybook/docs-locale';
 
 /** English MDX headings that must not appear: docs default language is French. */
 const ENGLISH_HEADINGS = [
@@ -58,6 +68,7 @@ describe('docs locale', () => {
     expect(keysOf(buttonCopy('fr'))).toEqual(keysOf(buttonCopy('en')));
     expect(keysOf(inputCopy('fr'))).toEqual(keysOf(inputCopy('en')));
     expect(keysOf(timeAgoCopy('fr'))).toEqual(keysOf(timeAgoCopy('en')));
+    expect(keysOf(selectionCopy('fr'))).toEqual(keysOf(selectionCopy('en')));
   });
 
   it('writes MDX section headings in French', () => {
@@ -89,5 +100,114 @@ describe('docs locale', () => {
     }
     expect(text).toContain('Emphase : `primary`');
     expect(text).toContain('Libellé visible au-dessus du champ');
+    expect(text).toContain('`"Effacer"`');
+    expect(text).not.toContain('"Clear"');
+    expect(text).not.toContain('Show password');
+    expect(text).not.toContain('character remaining');
+  });
+
+  it('keeps MDX prose free of leftover English', () => {
+    const files = collectMdx(join(process.cwd(), 'src'));
+    const phrases = [
+      'high emphasis',
+      'medium emphasis',
+      'low emphasis',
+      'fort emphasis',
+      '**Toggle**',
+      'on / off',
+      'Tree checkbox',
+      'Segmented control',
+      'Accessibility concerns',
+    ];
+    for (const file of files) {
+      const text = readFileSync(file, 'utf8');
+      for (const phrase of phrases) {
+        expect(text, `${file} still has "${phrase}"`).not.toContain(phrase);
+      }
+    }
+  });
+
+  it('pairs French and English on every docs-copy leaf', () => {
+    const leaves = collectDocsCopyLeaves(docsCopy);
+    expect(leaves.length).toBeGreaterThan(50);
+    for (const { path, fr, en } of leaves) {
+      expect(fr.trim(), path).not.toBe('');
+      expect(en.trim(), path).not.toBe('');
+    }
+    expect(docsString(docsCopy, 'button.high', 'fr')).toBe('Forte emphase');
+    expect(docsString(docsCopy, 'button.high', 'en')).toBe('High emphasis');
+  });
+
+  it('maps every story name to English for the Langue toolbar', () => {
+    const stories: string[] = [];
+    const walk = (dir: string) => {
+      for (const name of readdirSync(dir)) {
+        const path = join(dir, name);
+        if (statSync(path).isDirectory()) walk(path);
+        else if (name.endsWith('.stories.tsx')) stories.push(path);
+      }
+    };
+    walk(join(process.cwd(), 'src'));
+    const names = new Set<string>();
+    for (const file of stories) {
+      const text = readFileSync(file, 'utf8');
+      for (const match of text.matchAll(/name:\s*'([^']+)'/g)) {
+        const name = match[1];
+        if (name) names.add(name);
+      }
+    }
+    expect(names.size).toBeGreaterThan(0);
+    for (const name of names) {
+      expect(storyNameEn[name], `missing storyNameEn for "${name}"`).toBeTruthy();
+    }
+    expect(storyLabel('Forte emphase', 'en')).toBe('High emphasis');
+    expect(storyLabel('High emphasis', 'fr')).toBe('Forte emphase');
+    expect(storyLabel('Par défaut', 'fr')).toBe('Par défaut');
+  });
+
+  it('translates the Theme toolbar with Langue', () => {
+    expect(toolbarLabel('Clair', 'en')).toBe('Light');
+    expect(toolbarLabel('Sombre', 'en')).toBe('Dark');
+    expect(toolbarLabel('Thème', 'en')).toBe('Theme');
+    expect(toolbarLabel('Light', 'fr')).toBe('Clair');
+    expect(toolbarLabel('Dark', 'fr')).toBe('Sombre');
+    expect(toolbarLabel('Clair', 'fr')).toBe('Clair');
+    expect(storyLabel('Langue', 'en')).toBe('Locale');
+    expect(toolbarLabel('Langue', 'en')).toBe('Language');
+  });
+
+  it('wires every MDX docs page to docs-i18n', () => {
+    const files = collectMdx(join(process.cwd(), 'src'));
+    expect(files.length).toBeGreaterThan(0);
+    for (const file of files) {
+      const text = readFileSync(file, 'utf8');
+      expect(text, `${file} does not import docs-i18n`).toContain('docs-i18n');
+    }
+  });
+
+  it('parses locale from the Storybook globals search param', () => {
+    expect(localeFromSearch('?globals=locale:en')).toBe('en');
+    expect(localeFromSearch('?globals=theme:dark;locale:en')).toBe('en');
+    expect(localeFromSearch('?globals=locale:fr')).toBe('fr');
+    expect(localeFromSearch('?id=components-button--docs')).toBe('fr');
+  });
+
+  it('wires every story file to the Langue toolbar', () => {
+    const stories: string[] = [];
+    const walk = (dir: string) => {
+      for (const name of readdirSync(dir)) {
+        const path = join(dir, name);
+        if (statSync(path).isDirectory()) walk(path);
+        else if (name.endsWith('.stories.tsx')) stories.push(path);
+      }
+    };
+    walk(join(process.cwd(), 'src'));
+    expect(stories.length).toBeGreaterThan(0);
+    for (const file of stories) {
+      const text = readFileSync(file, 'utf8');
+      expect(text, `${file} does not read globals.locale`).toContain(
+        'docsLocale(globals.locale)',
+      );
+    }
   });
 });

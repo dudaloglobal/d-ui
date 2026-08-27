@@ -111,9 +111,16 @@ describe('Textarea', () => {
       />,
     );
     const area = screen.getByRole('textbox', { name: 'Commentaire' });
-    expect(area).toHaveAccessibleDescription('15 characters remaining');
+    expect(area).toHaveAccessibleDescription('15 caractères restants');
     await user.click(screen.getByRole('button', { name: 'Effacer' }));
     expect(area).toHaveValue('');
-    expect(area).toHaveAccessibleDescription('20 characters remaining');
+    expect(area).toHaveAccessibleDescription('20 caractères restants');
+  });
+
+  it('opts into the focus glow only when focusShadow is passed', () => {
+    const { container, rerender } = render(<Textarea label="Commentaire" />);
+    expect(container.innerHTML).not.toContain('d-ui-shadow-focus');
+    rerender(<Textarea label="Commentaire" focusShadow />);
+    expect(container.innerHTML).toContain('d-ui-shadow-focus');
   });
 });

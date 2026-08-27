@@ -85,7 +85,7 @@ function nextIntervalMs(diffMs: number): number {
   return 3_600_000;
 }
 
-/** BCP 47 tag for WCAG 3.1.2 when copy is not in the document language. */
+/** Balise BCP 47 pour WCAG 3.1.2 lorsque le texte n’est pas dans la langue du document. */
 function langFromLocale(locale?: Intl.LocalesArgument): string | undefined {
   if (typeof locale === 'string') return locale;
   if (Array.isArray(locale)) {

@@ -1,0 +1,86 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { H1, H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as RadioStories from './Radio.stories';
+
+<Meta of={RadioStories} />
+
+<H1 k="radio.title" />
+
+<P k="radio.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={RadioStories.Default} />
+
+<H2 k="chrome.specialStates" />
+
+<P k="chrome.twoStates" />
+
+<H3 k="chrome.disabled" />
+
+<P k="radio.useDisabled" />
+
+<Canvas of={RadioStories.Disabled} />
+
+<H3 k="chrome.invalid" />
+
+<P k="radio.useInvalid" />
+
+<Canvas of={RadioStories.Invalid} />
+
+<H2 k="chrome.options" />
+
+<H3 k="chrome.required" />
+
+<P k="radio.useRequired" />
+
+<Canvas of={RadioStories.Required} />
+
+<H3 k="chrome.helper" />
+
+<P k="chrome.useHelper" />
+
+<Canvas of={RadioStories.Helper} />
+
+<H3 k="chrome.sizes" />
+
+<P k="chrome.useSizes" />
+
+<Canvas of={RadioStories.Sizes} />
+
+<H2 k="chrome.group" />
+
+<P k="radio.groupBody" />
+
+<Canvas of={RadioStories.Default} />
+
+<H3 k="chrome.layout" />
+
+<P k="chrome.useHorizontal" />
+
+<Canvas of={RadioStories.Horizontal} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="radio.a11yBody" />
+
+<P k="radio.a11yLabel" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['radio.doGroup', 'radio.doName', 'radio.doInvalid']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['radio.dontUngrouped', 'radio.dontSegmented', 'radio.dontCheckboxes']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="radio.nativeForward" />
+
+<ArgTypes
+  of={RadioStories}
+  include={['size', 'label', 'value', 'disabled', 'required']}
+/>

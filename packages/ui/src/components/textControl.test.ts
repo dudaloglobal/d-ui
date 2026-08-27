@@ -32,9 +32,9 @@ describe('defaultCountMessage', () => {
   });
 
   it('uses singular remaining copy at one', () => {
-    expect(defaultCountMessage(9, 10)).toBe('1 character remaining');
-    expect(defaultCountMessage(8, 10)).toBe('2 characters remaining');
-    expect(defaultCountMessage(12, 10)).toBe('0 characters remaining');
+    expect(defaultCountMessage(9, 10)).toBe('1 caractère restant');
+    expect(defaultCountMessage(8, 10)).toBe('2 caractères restants');
+    expect(defaultCountMessage(12, 10)).toBe('0 caractères restants');
   });
 });
 
@@ -63,5 +63,18 @@ describe('frameClass', () => {
     expect(frameClass({ ...base, valid: true })).toContain('ring-success');
     expect(frameClass({ ...base, valid: true, invalid: true })).toContain('ring-danger');
     expect(frameClass({ ...base, disabled: true })).toContain('opacity-50');
+  });
+
+  it('uses a soft focus glow only when focusShadow is set', () => {
+    expect(frameClass(base)).not.toContain(
+      'focus-within:shadow-[var(--d-ui-shadow-focus)]',
+    );
+    expect(frameClass(base)).toContain('focus-within:ring-focus');
+    expect(frameClass({ ...base, focusShadow: true })).toContain(
+      'focus-within:shadow-[var(--d-ui-shadow-focus)]',
+    );
+    expect(frameClass({ ...base, focusShadow: true, invalid: true })).not.toContain(
+      'focus-within:shadow-[var(--d-ui-shadow-focus)]',
+    );
   });
 });

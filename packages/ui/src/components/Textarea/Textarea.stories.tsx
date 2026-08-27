@@ -70,6 +70,7 @@ const meta = {
         'clearable',
         'showCount',
         'fullWidth',
+        'focusShadow',
         'maxLength',
         'rows',
       ],
@@ -186,5 +187,19 @@ export const MaxLength: Story = {
         countMessage={remainingMessage(copy)}
       />
     );
+  },
+};
+
+export const FocusShadow: Story = {
+  name: 'Halo de focus',
+  parameters: textareaSource(`<Textarea
+    label="Libellé de la zone de texte"
+    value={value}
+    focusShadow
+    onChange={(event) => setValue(event.target.value)}
+/>`),
+  render: (_, { globals }) => {
+    const copy = inputCopy(docsLocale(globals.locale));
+    return <ControlledTextarea label={copy.textareaLabel} focusShadow />;
   },
 };

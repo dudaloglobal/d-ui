@@ -24,3 +24,13 @@ export type {
 } from './components/TextInput/TextInput';
 export { Textarea } from './components/Textarea/Textarea';
 export type { TextareaProps, TextareaSize } from './components/Textarea/Textarea';
+export { Checkbox, CheckboxGroup } from './components/Checkbox/Checkbox';
+export type {
+  CheckboxGroupProps,
+  CheckboxProps,
+  CheckboxSize,
+} from './components/Checkbox/Checkbox';
+export { Radio, RadioGroup } from './components/Radio/Radio';
+export type { RadioGroupProps, RadioProps, RadioSize } from './components/Radio/Radio';
+export { Switch } from './components/Switch/Switch';
+export type { SwitchProps, SwitchSize } from './components/Switch/Switch';

@@ -1,0 +1,89 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { H1, H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as SwitchStories from './Switch.stories';
+
+<Meta of={SwitchStories} />
+
+<H1 k="switch.title" />
+
+<P k="switch.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={SwitchStories.Default} />
+
+<H2 k="chrome.specialStates" />
+
+<P k="switch.threeStates" />
+
+<H3 k="chrome.enabled" />
+
+<P k="switch.useOn" />
+
+<Canvas of={SwitchStories.On} />
+
+<H3 k="chrome.disabled" />
+
+<P k="chrome.useDisabled" />
+
+<Canvas of={SwitchStories.Disabled} />
+
+<H3 k="chrome.invalid" />
+
+<P k="switch.useInvalid" />
+
+<Canvas of={SwitchStories.Invalid} />
+
+<H2 k="chrome.options" />
+
+<H3 k="chrome.required" />
+
+<P k="switch.useRequired" />
+
+<Canvas of={SwitchStories.Required} />
+
+<H3 k="chrome.helper" />
+
+<P k="chrome.useHelper" />
+
+<Canvas of={SwitchStories.Helper} />
+
+<H3 k="chrome.sizes" />
+
+<P k="chrome.useSizes" />
+
+<Canvas of={SwitchStories.Sizes} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="switch.a11yBody" />
+
+<P k="switch.a11yKeys" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['switch.doLabel', 'switch.doAria', 'switch.doInvalid']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['switch.dontUnnamed', 'switch.dontRadioRow', 'switch.dontSegmented']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="chrome.nativeInput" />
+
+<ArgTypes
+  of={SwitchStories}
+  include={[
+    'size',
+    'label',
+    'helper',
+    'error',
+    'invalid',
+    'disabled',
+    'required',
+    'checked',
+  ]}
+/>

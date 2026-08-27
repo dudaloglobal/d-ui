@@ -4,6 +4,77 @@ export function docsLocale(value: unknown): DocsLocale {
   return value === 'en' ? 'en' : 'fr';
 }
 
+export function localeFromSearch(search = window.location.search): DocsLocale {
+  const globals = new URLSearchParams(search).get('globals') ?? '';
+  return docsLocale(
+    globals
+      .split(/[;,&]/)
+      .find((part) => part.startsWith('locale:'))
+      ?.slice('locale:'.length),
+  );
+}
+
+/** Sidebar / canvas story titles. Source names stay French; English via Langue. */
+export const storyNameEn: Record<string, string> = {
+  'Par défaut': 'Default',
+  'Forte emphase': 'High emphasis',
+  'Emphase moyenne': 'Medium emphasis',
+  'Bouton bascule': 'Toggle button',
+  'Faible emphase': 'Low emphasis',
+  'Petite taille': 'Small size',
+  'Pleine largeur': 'Full width',
+  Chargement: 'Loading',
+  'Icône seule': 'Icon only',
+  Désactivé: 'Disabled',
+  Invalide: 'Invalid',
+  Requis: 'Required',
+  Aide: 'Helper',
+  Indéterminé: 'Indeterminate',
+  Tailles: 'Sizes',
+  Groupe: 'Group',
+  'Groupe horizontal': 'Horizontal group',
+  Valide: 'Valid',
+  'Texte de substitution': 'Placeholder',
+  Icône: 'Icon',
+  Effaçable: 'Clearable',
+  'Longueur maximale': 'Max length',
+  'Préfixe et suffixe': 'Prefix and suffix',
+  'Halo de focus': 'Focus glow',
+  Nombre: 'Number',
+  'Mot de passe': 'Password',
+  Activé: 'On',
+  Langue: 'Locale',
+  'Mises à jour en direct': 'Live updates',
+  Taille: 'Size',
+  'Passé et futur': 'Past and future',
+};
+
+const storyNameFr: Record<string, string> = Object.fromEntries(
+  Object.entries(storyNameEn).map(([fr, en]) => [en, fr]),
+);
+
+export function storyLabel(name: string, locale: DocsLocale): string {
+  if (locale === 'en') return storyNameEn[name] ?? name;
+  return storyNameFr[name] ?? name;
+}
+
+/** Manager toolbar labels. Source titles stay French; English via Langue. */
+export const toolbarLabelEn: Record<string, string> = {
+  Thème: 'Theme',
+  Clair: 'Light',
+  Sombre: 'Dark',
+  Langue: 'Language',
+};
+
+const toolbarLabelFr: Record<string, string> = Object.fromEntries(
+  Object.entries(toolbarLabelEn).map(([fr, en]) => [en, fr]),
+);
+
+export function toolbarLabel(name: string, locale: DocsLocale): string {
+  if (locale === 'en') return toolbarLabelEn[name] ?? name;
+  return toolbarLabelFr[name] ?? name;
+}
+
 const fr = {
   default: 'Par défaut',
   disabled: 'Désactivé',
@@ -145,4 +216,56 @@ export type InputDocsCopy = typeof inputFr;
 
 export function inputCopy(locale: DocsLocale): InputDocsCopy {
   return locale === 'en' ? inputEn : inputFr;
+}
+
+const selectionFr = {
+  checkboxLabel: 'Recevoir les notifications',
+  terms: 'J’accepte les conditions',
+  helper: 'Vous pourrez changer d’avis.',
+  error: 'Ce champ est requis.',
+  groupError: 'Choisissez au moins une option.',
+  radioError: 'Choisissez une formule.',
+  selectAll: 'Tout sélectionner',
+  channels: 'Canaux de notification',
+  email: 'Email',
+  sms: 'SMS',
+  push: 'Push',
+  plan: 'Formule',
+  monthly: 'Mensuel',
+  yearly: 'Annuel',
+  team: 'Équipe',
+  switchLabel: 'Mode compact',
+  switchHelper: 'Réduit les marges de l’interface.',
+  small: 'Petite',
+  medium: 'Moyenne',
+  large: 'Grande',
+};
+
+const selectionEn = {
+  checkboxLabel: 'Receive notifications',
+  terms: 'I accept the terms',
+  helper: 'You can change this later.',
+  error: 'This field is required.',
+  groupError: 'Choose at least one option.',
+  radioError: 'Choose a plan.',
+  selectAll: 'Select all',
+  channels: 'Notification channels',
+  email: 'Email',
+  sms: 'SMS',
+  push: 'Push',
+  plan: 'Plan',
+  monthly: 'Monthly',
+  yearly: 'Yearly',
+  team: 'Team',
+  switchLabel: 'Compact mode',
+  switchHelper: 'Reduces spacing in the interface.',
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+};
+
+export type SelectionDocsCopy = typeof selectionFr;
+
+export function selectionCopy(locale: DocsLocale): SelectionDocsCopy {
+  return locale === 'en' ? selectionEn : selectionFr;
 }

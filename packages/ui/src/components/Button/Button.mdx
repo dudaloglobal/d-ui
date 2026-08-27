@@ -1,88 +1,93 @@
 import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { H1, H2, H3, H4, P, Ul } from '../../../.storybook/docs-i18n';
 import * as ButtonStories from './Button.stories';
 
 <Meta of={ButtonStories} />
 
-# Button
+<H1 k="button.title" />
 
-Les boutons déclenchent une action en un clic.
+<P k="button.intro" />
 
-Les exemples suivent la **langue** de la barre d’outils Storybook (**Français** par défaut).
+<P k="chrome.examplesFollow" />
 
-## Forte emphase
+<H2 k="button.high" />
 
-Utilisez le fort emphasis (`variant="primary"`) pour aider à identifier l’action principale. Il ne doit pas y avoir plus d’un bouton high emphasis dans une vue.
+<P k="button.highBody" />
 
-Cas d’usage : Par défaut, Désactivé, Chargement, Avec icône, Menu, Fractionné.
+<P k="button.highUse" />
 
 <Canvas of={ButtonStories.HighEmphasis} />
 
-## Emphase moyenne
+<H2 k="button.medium" />
 
-Utilisez le medium emphasis (`variant="secondary"`) pour les actions secondaires.
+<P k="button.mediumBody" />
 
 <Canvas of={ButtonStories.MediumEmphasis} />
 
-### Bouton bascule
+<H3 k="button.toggle" />
 
-Les boutons medium ont une option supplémentaire : `isSelected`. Utilisez `isSelected` pour des actions à bascule (activation de notifications, abonnement à un flux). Décrivez l’action le plus clairement possible dans le libellé.
+<P k="button.toggleBody" />
 
 <Canvas of={ButtonStories.Toggled} />
 
-## Faible emphase
+<H2 k="button.low" />
 
-Quand la vue contient déjà un bouton primary et un medium, utilisez le low emphasis (`variant="ghost"`) pour les actions de moindre priorité. Autrement, utilisez-le lorsqu’il n’y a qu’un seul niveau de priorité.
+<P k="button.lowBody" />
 
-Cas d’usage : Par défaut, Désactivé, Chargement, Avec icône, Menu (pas de fractionné).
+<P k="button.lowUse" />
 
 <Canvas of={ButtonStories.LowEmphasis} />
 
-## Chargement
+<H2 k="button.loading" />
 
-`loading` affiche un indicateur, conserve le libellé, pose `aria-busy` et désactive le contrôle. L’icône est remplacée par l’indicateur. `loadingIndicator="spinner"` (défaut) ou `"bounce"`.
+<P k="button.loadingBody" />
 
 <Canvas of={ButtonStories.Loading} />
 
-## Petite taille
+<H2 k="button.small" />
 
-Utilisez la petite taille (`size="sm"`) lorsque l’espace est contraint.
+<P k="button.smallBody" />
 
 <Canvas of={ButtonStories.SmallSize} />
 
-## Pleine largeur
+<H2 k="button.fullWidth" />
 
-Utilisez `fullWidth` lorsque le bouton doit occuper toute la largeur du conteneur.
+<P k="button.fullWidthBody" />
 
 <Canvas of={ButtonStories.FullWidth} />
 
-Menu et fractionné sont des **compositions** de `Button` / `IconButton` (chevron, `aria-haspopup`). Le menu déroulant complet arrive avec Menu (DS-030).
+<P k="button.compositions" />
 
-### Accessibilité
+<H3 k="chrome.accessibility" />
 
-#### Button
+<H4 k="button.a11yButton" />
 
-Le bouton utilise le texte visible comme nom accessible. S’il n’y a pas de texte (icône seule, image, …), passez un `aria-label` qui décrit l’action.
+<P k="button.a11yButtonBody" />
 
-Cas d’usage accessibilité :
+<P k="button.a11yUse" />
 
-- **Bouton natif** — `Button` rend un `<button type="button">`. Pour la navigation, utilisez un lien (`Link`, DS-019).
-- **Toggle** — état actif/inactif via `isSelected`. Si le libellé change selon l’état (`S'abonner` / `Abonné`), ce nom suffit. Si le libellé ne change pas, `aria-pressed` est posé depuis `isSelected`.
-- **Menu** — si le bouton ouvre une liste : `aria-haspopup="true"`, `aria-expanded` selon l’ouverture, et `aria-controls` vers l’id du menu uniquement si le menu est dans le DOM.
-- **Chargement** — `loading` conserve le libellé, pose `aria-busy` et désactive le contrôle. `loadingIndicator` choisit spinner ou bounce.
+<Ul
+  items={[
+    'button.a11yNative',
+    'button.a11yToggle',
+    'button.a11yMenu',
+    'button.a11yLoading',
+  ]}
+/>
 
-#### IconButton
+<H4 k="button.a11yIcon" />
 
-Toutes les règles de `Button` s’appliquent. Comme il n’y a pas de texte, `aria-label` est obligatoire.
+<P k="button.a11yIconBody" />
 
 <Canvas of={ButtonStories.IconOnly} />
 
-Thème sombre : barre d’outils **Thème**. Langue des exemples : barre d’outils **Langue**.
+<P k="chrome.themeLang" />
 
-## Propriétés
+<H2 k="chrome.properties" />
 
-### Button
+<H3 k="button.propsButton" />
 
-Les attributs natifs `<button>` (`disabled`, `type`, `className`, `aria-haspopup`, …) sont transmis.
+<P k="button.propsButtonBody" />
 
 <ArgTypes
   of={ButtonStories}
@@ -99,9 +104,9 @@ Les attributs natifs `<button>` (`disabled`, `type`, `className`, `aria-haspopup
   ]}
 />
 
-### IconButton
+<H3 k="button.propsIcon" />
 
-`IconButton` exige `aria-label`. `icon`, `variant`, `size`, `loading`, `loadingIndicator`, `fullWidth` et `isSelected` sont les mêmes que `Button`.
+<P k="button.propsIconBody" />
 
 <ArgTypes
   of={ButtonStories}

@@ -28,7 +28,7 @@ export function stringifyValue(
 export function defaultCountMessage(count: number, maxLength?: number): string {
   if (maxLength == null) return String(count);
   const remaining = Math.max(0, maxLength - count);
-  return remaining === 1 ? '1 character remaining' : `${remaining} characters remaining`;
+  return remaining === 1 ? '1 caractère restant' : `${remaining} caractères restants`;
 }
 
 export function frameClass({
@@ -37,12 +37,14 @@ export function frameClass({
   valid,
   disabled,
   multiline,
+  focusShadow,
 }: {
   size: TextControlSize;
   invalid: boolean;
   valid?: boolean;
   disabled: boolean;
   multiline?: boolean;
+  focusShadow?: boolean;
 }): string {
   return cx(
     'flex w-full min-w-0 gap-2 rounded px-3 text-sm leading-5 text-fg',
@@ -52,7 +54,10 @@ export function frameClass({
       ? 'ring-2 ring-danger'
       : valid
         ? 'ring-2 ring-success'
-        : 'focus-within:bg-transparent focus-within:ring-2 focus-within:ring-focus',
+        : cx(
+            'focus-within:bg-transparent focus-within:ring-2 focus-within:ring-focus',
+            focusShadow && 'focus-within:shadow-[var(--d-ui-shadow-focus)]',
+          ),
     !disabled && !invalid && !valid && 'hover:bg-field-hover',
     disabled && 'pointer-events-none opacity-50',
   );
@@ -77,6 +82,7 @@ export function TextFieldLayout({
   countId,
   helperId,
   multiline,
+  focusShadow,
   children,
 }: {
   id?: string;
@@ -97,6 +103,7 @@ export function TextFieldLayout({
   countId: string;
   helperId: string;
   multiline?: boolean;
+  focusShadow?: boolean;
   children: ReactNode;
 }) {
   const description = invalid ? error : helper;
@@ -140,6 +147,7 @@ export function TextFieldLayout({
           valid: Boolean(valid) && !invalid,
           disabled,
           multiline,
+          focusShadow,
         })}
       >
         {children}

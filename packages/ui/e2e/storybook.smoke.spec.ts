@@ -131,10 +131,10 @@ test('Toolbar Dark restyles manager chrome, not only the iframe', async ({ page 
     lightSidebar,
   );
   await page
-    .getByRole('button', { name: /Clair|Light/i })
+    .getByRole('button', { name: /Clair|Light/ })
     .first()
     .click();
-  await page.getByText('Sombre', { exact: true }).first().click();
+  await page.getByRole('button', { name: /^(Sombre|Dark)$/ }).click();
   await expect(page.locator('nav.sidebar-container')).toHaveCSS(
     'background-color',
     darkAppBg,
@@ -226,6 +226,8 @@ test('French TextInput docs do not leak English headings or example copy', async
   await expect(preview.getByText('Text field label')).toHaveCount(0);
   await expect(preview.getByText('Helper text')).toHaveCount(0);
   await expect(preview.getByText('characters remaining')).toHaveCount(0);
+  await expect(preview.getByText('"Clear"')).toHaveCount(0);
+  await expect(preview.getByText('Show password')).toHaveCount(0);
   await expect(
     preview.getByRole('textbox', { name: 'Libellé du champ' }).first(),
   ).toBeVisible();
@@ -243,10 +245,14 @@ test('French Properties tables use French descriptions', async ({ page }) => {
   await page.goto('/?path=/docs/components-textinput--docs');
   await expect(preview.getByText(/Libellé visible au-dessus du champ/)).toBeVisible();
   await expect(preview.getByText('Emphasis: primary')).toHaveCount(0);
+  await expect(preview.getByText('"Effacer"')).toBeVisible();
 
   await page.goto('/?path=/docs/components-button--docs');
   await expect(preview.getByText(/Emphase/)).toBeVisible();
   await expect(preview.getByText('Stretch to the container width.')).toHaveCount(0);
+  await expect(preview.getByText('high emphasis')).toHaveCount(0);
+  await expect(preview.getByText('medium emphasis')).toHaveCount(0);
+  await expect(preview.getByText('low emphasis')).toHaveCount(0);
 
   await page.goto('/?path=/docs/components-timeago--docs');
   await expect(preview.getByText(/Instant à afficher/)).toBeVisible();
@@ -494,4 +500,150 @@ test('TextInput helper story describes the field', async ({ page }) => {
   await page.goto('/iframe.html?id=components-textinput--helper');
   const input = page.getByRole('textbox', { name: 'Libellé du champ' });
   await expect(input).toHaveAccessibleDescription(/.+/);
+});
+
+test('Storybook serves the Checkbox story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-checkbox--default');
+  await expect(
+    page.getByRole('checkbox', { name: 'Recevoir les notifications' }),
+  ).toBeVisible();
+});
+
+test('Checkbox group story exposes a labelled fieldset', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-checkbox--group');
+  await expect(page.getByRole('group', { name: 'Canaux de notification' })).toBeVisible();
+  await expect(page.getByRole('checkbox', { name: 'Email' })).toBeChecked();
+  await page.getByRole('checkbox', { name: 'SMS' }).click();
+  await expect(page.getByRole('checkbox', { name: 'SMS' })).toBeChecked();
+});
+
+test('Checkbox invalid story exposes aria-invalid', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-checkbox--invalid');
+  const input = page.getByRole('checkbox', { name: 'J’accepte les conditions' });
+  await expect(input).toHaveAttribute('aria-invalid', 'true');
+  await expect(page.getByText('Ce champ est requis.')).toBeVisible();
+});
+
+test('Storybook serves the Radio story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-radio--default');
+  await expect(page.getByRole('group', { name: 'Formule' })).toBeVisible();
+  await expect(page.getByRole('radio', { name: 'Mensuel' })).toBeChecked();
+  await page.getByRole('radio', { name: 'Annuel' }).click();
+  await expect(page.getByRole('radio', { name: 'Annuel' })).toBeChecked();
+  await expect(page.getByRole('radio', { name: 'Mensuel' })).not.toBeChecked();
+});
+
+test('Storybook serves the Switch story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-switch--default');
+  const control = page.getByRole('switch', { name: 'Mode compact' });
+  await expect(control).toBeVisible();
+  await expect(control).toHaveAttribute('aria-checked', 'false');
+  await control.click();
+  await expect(control).toHaveAttribute('aria-checked', 'true');
+});
+
+test('Switch on story is checked', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-switch--on');
+  await expect(page.getByRole('switch', { name: 'Mode compact' })).toBeChecked();
+});
+
+test('component docs use Checkbox, Radio, and Switch titles', async ({ page }) => {
+  await page.goto('/?path=/docs/components-checkbox--docs');
+  await expect(page).toHaveTitle('Checkbox | Dudalo Design System');
+  await page.goto('/?path=/docs/components-radio--docs');
+  await expect(page).toHaveTitle('Radio | Dudalo Design System');
+  await page.goto('/?path=/docs/components-switch--docs');
+  await expect(page).toHaveTitle('Switch | Dudalo Design System');
+});
+
+test('French Checkbox docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-checkbox--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(
+    preview.getByRole('heading', { name: 'États particuliers' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Accessibilité' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Special states' })).toHaveCount(0);
+  await expect(preview.getByText('Receive notifications')).toHaveCount(0);
+});
+
+test('Checkbox docs Show code imports Checkbox from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-checkbox--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Checkbox } from 'd-ui'");
+  await expect(source).toContainText('<Checkbox');
+  await expect(source).not.toContainText('ChannelsGroup');
+});
+
+test('Radio docs Show code imports Radio from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-radio--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Radio, RadioGroup } from 'd-ui'");
+  await expect(source).toContainText('<RadioGroup');
+  await expect(source).not.toContainText('PlanGroup');
+});
+
+test('Switch docs Show code imports Switch from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-switch--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Switch } from 'd-ui'");
+  await expect(source).toContainText('<Switch');
+  await expect(source).not.toContainText('ControlledSwitch');
+});
+
+test('French selection Properties tables use French descriptions', async ({ page }) => {
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await page.goto('/?path=/docs/components-checkbox--docs');
+  await expect(preview.getByText(/Libellé visible à côté du contrôle/)).toBeVisible();
+  await page.goto('/?path=/docs/components-switch--docs');
+  await expect(preview.getByText(/Pose `aria-checked`/)).toBeVisible();
+});
+
+test('English globals switch example copy on every component canvas', async ({
+  page,
+}) => {
+  const cases = [
+    { id: 'components-button--high-emphasis', en: 'Default', fr: 'Par défaut' },
+    {
+      id: 'components-textinput--default',
+      en: 'Text field label',
+      fr: 'Libellé du champ',
+    },
+    {
+      id: 'components-textarea--default',
+      en: 'Text area label',
+      fr: 'Libellé de la zone de texte',
+    },
+    { id: 'components-timeago--default', en: 'Submitted', fr: 'Soumis' },
+    {
+      id: 'components-checkbox--default',
+      en: 'Receive notifications',
+      fr: 'Recevoir les notifications',
+    },
+    { id: 'components-radio--default', en: 'Monthly', fr: 'Mensuel' },
+    { id: 'components-switch--default', en: 'Compact mode', fr: 'Mode compact' },
+  ] as const;
+  for (const { id, en, fr } of cases) {
+    await page.goto(`/iframe.html?id=${id}&globals=locale:en`);
+    await expect(page.getByText(en, { exact: true }).first()).toBeVisible();
+    await expect(page.getByText(fr, { exact: true })).toHaveCount(0);
+  }
+});
+
+test('Langue toolbar remounts docs canvases in English', async ({ page }) => {
+  await page.goto('/?path=/docs/components-button--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { name: 'Forte emphase' })).toBeVisible();
+  await expect(preview.getByRole('button', { name: 'Par défaut' }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Forte emphase' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Clair' })).toBeVisible();
+  await page.getByRole('button', { name: 'Français' }).click();
+  await page.getByRole('button', { name: /English/ }).click();
+  await expect(preview.getByRole('heading', { name: 'High emphasis' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Forte emphase' })).toHaveCount(0);
+  await expect(preview.getByRole('button', { name: 'Default' }).first()).toBeVisible();
+  await expect(preview.getByRole('button', { name: 'Par défaut' })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'High emphasis' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Light' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Clair' })).toHaveCount(0);
 });

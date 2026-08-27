@@ -1,68 +1,72 @@
 import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { H1, H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
 import * as TextareaStories from './Textarea.stories';
 
 <Meta of={TextareaStories} />
 
-# Textarea
+<H1 k="textarea.title" />
 
-Utilisez `Textarea` lorsque la saisie dépasse une ligne. Le cadre reste compact (deux lignes par défaut), en pleine largeur.
+<P k="textarea.intro" />
 
-Les exemples suivent la **langue** de la barre d’outils Storybook (**Français** par défaut).
+<P k="chrome.examplesFollow" />
 
-`label` est une prop du composant : le libellé s’affiche au-dessus du cadre.
+<P k="textarea.labelProp" />
 
 <Canvas of={TextareaStories.Default} />
 
-## États particuliers
+<H2 k="chrome.specialStates" />
 
-### Désactivé
+<H3 k="chrome.disabled" />
 
-Utilisez `disabled` lorsque la valeur ne peut pas être modifiée.
+<P k="chrome.useDisabled" />
 
 <Canvas of={TextareaStories.Disabled} />
 
-### Valide
+<H3 k="chrome.valid" />
 
-Utilisez `valid` pour indiquer que la valeur saisie est considérée comme correcte.
+<P k="chrome.useValid" />
 
 <Canvas of={TextareaStories.Valid} />
 
-### Invalide
+<H3 k="chrome.invalid" />
 
-Utilisez `invalid` (et `error` pour le message) pour indiquer que la valeur saisie est considérée comme incorrecte. `invalid` pose `aria-invalid`.
+<P k="textInput.useInvalid" />
 
 <Canvas of={TextareaStories.Invalid} />
 
-## Longueur maximale
+<H2 k="chrome.maxLength" />
 
-Utilisez `maxLength` lorsque la longueur de saisie est limitée. Le compteur (caractères restants) s’affiche à droite du libellé. Localisez le texte avec `countMessage`.
+<P k="chrome.useMaxLength" />
 
 <Canvas of={TextareaStories.MaxLength} />
 
-Thème sombre : barre d’outils **Thème**. Langue des exemples : barre d’outils **Langue**.
+<H2 k="chrome.focusGlow" />
 
-## Accessibilité
+<P k="chrome.useFocusGlow" />
 
-`Textarea` rend un `<textarea>` natif.
+<Canvas of={TextareaStories.FocusShadow} />
 
-Associez toujours un label visible : prop `label`, `aria-labelledby`, ou un `<label htmlFor>` externe. Un placeholder ne suffit pas.
+<P k="chrome.themeLang" />
 
-Lorsque `maxLength` est posé, fournissez `countMessage` localisé (par exemple « n caractères restants »). Le compteur est lié par `aria-describedby` : il n’y a pas d’`aria-live` à chaque frappe.
+<H2 k="chrome.accessibility" />
 
-### À faire
+<P k="textarea.a11yNative" />
 
-- `<Textarea label="Commentaire" />`
-- `countMessage` localisé lorsque `maxLength` est posé
-- `invalid` **et** un message `error` (ne pas se fier à la couleur seule)
+<P k="textInput.a11yLabel" />
 
-### À éviter
+<P k="textInput.a11yCount" />
 
-- Une zone identifiée seulement par le placeholder
-- Un `TextInput` multiligne — utilisez `Textarea`
+<H3 k="chrome.do" />
 
-## Propriétés
+<Ul items={['textarea.doComment', 'textarea.doCount', 'textarea.doInvalid']} />
 
-Les attributs natifs `<textarea>` (`name`, `required`, `className`, …) sont transmis au contrôle.
+<H3 k="chrome.dont" />
+
+<Ul items={['textarea.dontPlaceholder', 'textarea.dontMultilineInput']} />
+
+<H2 k="chrome.properties" />
+
+<P k="textarea.nativeForward" />
 
 <ArgTypes
   of={TextareaStories}
@@ -80,6 +84,7 @@ Les attributs natifs `<textarea>` (`name`, `required`, `className`, …) sont tr
     'prefix',
     'suffix',
     'fullWidth',
+    'focusShadow',
     'clearable',
     'clearLabel',
     'showCount',
