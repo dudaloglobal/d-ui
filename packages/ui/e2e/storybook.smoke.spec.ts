@@ -63,6 +63,8 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Tooltip | Dudalo Design System');
   await page.goto('/?path=/docs/components-popover--docs');
   await expect(page).toHaveTitle('Popover | Dudalo Design System');
+  await page.goto('/?path=/docs/components-emojipopover--docs');
+  await expect(page).toHaveTitle('EmojiPopover | Dudalo Design System');
 });
 
 test('Storybook page title uses Dudalo Design System', async ({ page }) => {
@@ -628,6 +630,7 @@ test('English globals switch example copy on every component canvas', async ({
     { id: 'components-switch--default', en: 'Compact mode', fr: 'Mode compact' },
     { id: 'components-tooltip--default', en: 'Help', fr: 'Aide' },
     { id: 'components-popover--default', en: 'Open', fr: 'Ouvrir' },
+    { id: 'components-emojipopover--default', en: 'React', fr: 'Réagir' },
   ] as const;
   for (const { id, en, fr } of cases) {
     await page.goto(`/iframe.html?id=${id}&globals=locale:en`);
@@ -659,6 +662,8 @@ test('component docs use Tooltip and Popover titles', async ({ page }) => {
   await expect(page).toHaveTitle('Tooltip | Dudalo Design System');
   await page.goto('/?path=/docs/components-popover--docs');
   await expect(page).toHaveTitle('Popover | Dudalo Design System');
+  await page.goto('/?path=/docs/components-emojipopover--docs');
+  await expect(page).toHaveTitle('EmojiPopover | Dudalo Design System');
 });
 
 test('Storybook serves the Tooltip story', async ({ page }) => {
@@ -750,4 +755,30 @@ test('Popover docs Show code imports Popover from d-ui', async ({ page }) => {
   await expect(source).toContainText('<Popover');
   await expect(source).not.toContainText('ControlledPopover');
   await expect(source).not.toContainText('DirectedPopover');
+});
+
+test('Storybook serves the EmojiPopover story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-emojipopover--default');
+  await expect(page.getByRole('button', { name: 'Réagir' })).toBeVisible();
+  const bar = page.getByRole('dialog', { name: 'Réactions' });
+  await expect(bar).toBeVisible();
+  await expect(bar.getByRole('button')).toHaveCount(9);
+  await page.getByRole('button', { name: 'Pouce en l’air' }).click();
+  await expect(bar).toHaveCount(0);
+});
+
+test('French EmojiPopover docs do not leak English reaction names', async ({ page }) => {
+  await page.goto('/?path=/docs/components-emojipopover--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { name: 'EmojiPopover' })).toBeVisible();
+  await expect(preview.getByText('Sparkling heart')).toHaveCount(0);
+  await expect(preview.getByText('Thumbs up')).toHaveCount(0);
+});
+
+test('EmojiPopover docs Show code imports EmojiPopover from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-emojipopover--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Button, EmojiPopover } from 'd-ui'");
+  await expect(source).toContainText('<EmojiPopover');
+  await expect(source).not.toContainText('SmileIcon');
 });

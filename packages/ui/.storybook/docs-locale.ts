@@ -292,6 +292,17 @@ const overlayFr = {
   alignStart: 'Aligné au début du haut',
   alignEnd: 'Aligné à la fin du haut',
   action: 'Confirmer',
+  react: 'Réagir',
+  reactions: 'Réactions',
+  emojiHeart: 'Cœur étincelant',
+  emojiThumbsUp: 'Pouce en l’air',
+  emojiParty: 'Cotillons',
+  emojiClap: 'Applaudissements',
+  emojiJoy: 'Larmes de joie',
+  emojiWow: 'Surprise',
+  emojiCry: 'Larmes',
+  emojiThink: 'Réflexion',
+  emojiThumbsDown: 'Pouce en bas',
 };
 
 const overlayEn = {
@@ -310,6 +321,17 @@ const overlayEn = {
   alignStart: 'Aligned to the start of the top side',
   alignEnd: 'Aligned to the end of the top side',
   action: 'Confirm',
+  react: 'React',
+  reactions: 'Reactions',
+  emojiHeart: 'Sparkling heart',
+  emojiThumbsUp: 'Thumbs up',
+  emojiParty: 'Party popper',
+  emojiClap: 'Clapping hands',
+  emojiJoy: 'Face with tears of joy',
+  emojiWow: 'Astonished face',
+  emojiCry: 'Crying face',
+  emojiThink: 'Thinking face',
+  emojiThumbsDown: 'Thumbs down',
 };
 
 export type OverlayDocsCopy = typeof overlayFr;

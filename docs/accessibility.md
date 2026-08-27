@@ -16,6 +16,7 @@ Cible : **WCAG 2.2 niveau AA** (RGAA comme grille de contrôle interne).
 10. `Checkbox` / `Radio` / `Switch` : contrôles natifs (`input`) avec label visible. Les groupes (`CheckboxGroup`, `RadioGroup`) utilisent `fieldset` + `legend`. `Switch` pose `role="switch"` et `aria-checked`. `indeterminate` pose `aria-checked="mixed"`. `invalid` / `error` ne reposent pas sur la couleur seule.
 11. `Tooltip` : `role="tooltip"`, `aria-describedby` sur le déclencheur, contenu non interactif (`pointer-events-none`). Escape ferme. Pas d’information indispensable uniquement dans le tooltip.
 12. `Popover` : `aria-expanded` / `aria-haspopup` / `aria-controls` sur le déclencheur. `trapFocus` seulement si le panneau contient des contrôles focusables (`role="dialog"` + nom accessible). Escape et clic extérieur ferment. Le portail recopie `data-d-ui-theme`.
+13. `EmojiPopover` : barre de neuf réactions (boutons nommés). `role="dialog"` + `trapFocus`. `onSelect` ferme le panneau. Déclencheur icône avec `aria-label`.
 
 ## Outils
 

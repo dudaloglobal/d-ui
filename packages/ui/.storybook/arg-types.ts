@@ -305,3 +305,16 @@ export const popoverArgTypes = {
     description: 'Id d’un titre visible qui nomme le panneau.',
   },
 };
+
+export const emojiPopoverArgTypes = {
+  placement: overlaySharedArgTypes.placement,
+  open: overlaySharedArgTypes.open,
+  defaultOpen: overlaySharedArgTypes.defaultOpen,
+  disabled: overlaySharedArgTypes.disabled,
+  onSelect: {
+    description: 'Appelé avec l’emoji choisi. Le panneau se ferme ensuite.',
+  },
+  'aria-label': {
+    description: 'Nom accessible de la barre. Défaut : « Réactions ».',
+  },
+};

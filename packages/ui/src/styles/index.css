@@ -107,6 +107,43 @@
   stroke: var(--d-ui-color-border);
 }
 
+.d-ui-emoji-popover {
+  max-width: none;
+  padding: 0.35rem 0.4rem;
+  border: 0;
+  border-radius: 9999px;
+  background: #202124;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.35);
+}
+
+.d-ui-emoji-popover-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    background-color 0.12s ease;
+}
+
+.d-ui-emoji-popover-btn:hover {
+  background: rgb(255 255 255 / 0.12);
+  transform: scale(1.18);
+}
+
+.d-ui-emoji-popover-btn:focus-visible {
+  outline: 2px solid var(--d-ui-color-focus);
+  outline-offset: 2px;
+}
+
 .d-ui-visually-hidden {
   position: absolute;
   width: 1px;
@@ -122,7 +159,10 @@
 @media (prefers-reduced-motion: reduce) {
   .d-ui-root *,
   .d-ui-root *::before,
-  .d-ui-root *::after {
+  .d-ui-root *::after,
+  .d-ui-overlay *,
+  .d-ui-overlay *::before,
+  .d-ui-overlay *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

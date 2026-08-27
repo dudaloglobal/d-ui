@@ -53,6 +53,7 @@ const ENGLISH_HEADINGS = [
   'Portal',
   'Focus trap',
   'Alignments',
+  'Reactions',
 ];
 
 function collectMdx(dir: string): string[] {

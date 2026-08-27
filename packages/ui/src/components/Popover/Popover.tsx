@@ -51,6 +51,12 @@ export type PopoverProps = {
   trapFocus?: boolean;
   /** Empêche l’ouverture. */
   disabled?: boolean;
+  /** Flèche vers le déclencheur. Défaut : `true`. */
+  arrow?: boolean;
+  /**
+   * Sans chrome (fond, bordure, padding). Le style vient de `className`.
+   */
+  unstyled?: boolean;
   className?: string;
   'aria-label'?: string;
   'aria-labelledby'?: string;
@@ -65,6 +71,8 @@ export function Popover({
   onOpenChange,
   trapFocus = false,
   disabled = false,
+  arrow: arrowEnabled = true,
+  unstyled = false,
   className,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
@@ -87,10 +95,10 @@ export function Popover({
     onOpenChange: setOpen,
     placement,
     middleware: [
-      offset(OVERLAY_ARROW_HEIGHT + 4),
+      offset(arrowEnabled ? OVERLAY_ARROW_HEIGHT + 4 : OVERLAY_PADDING),
       flip({ padding: OVERLAY_PADDING, fallbackAxisSideDirection: 'start' }),
       shift({ padding: OVERLAY_PADDING }),
-      arrow({ element: arrowRef, padding: 6 }),
+      ...(arrowEnabled ? [arrow({ element: arrowRef, padding: 6 })] : []),
     ],
     whileElementsMounted: autoUpdate,
   });
@@ -127,7 +135,8 @@ export function Popover({
       id={panelId}
       className={cx(
         portal.className,
-        'max-w-sm rounded-md border border-border bg-bg px-3 py-3 text-fg shadow-lg',
+        !unstyled &&
+          'max-w-sm rounded-md border border-border bg-bg px-3 py-3 text-fg shadow-lg',
         'outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg',
         className,
       )}
@@ -135,16 +144,18 @@ export function Popover({
       aria-labelledby={ariaLabelledBy}
     >
       {content}
-      <FloatingArrow
-        ref={arrowRef}
-        context={context}
-        width={OVERLAY_ARROW_WIDTH}
-        height={OVERLAY_ARROW_HEIGHT}
-        strokeWidth={1}
-        className="d-ui-popover-arrow"
-        data-d-ui-popover-arrow=""
-        aria-hidden
-      />
+      {arrowEnabled ? (
+        <FloatingArrow
+          ref={arrowRef}
+          context={context}
+          width={OVERLAY_ARROW_WIDTH}
+          height={OVERLAY_ARROW_HEIGHT}
+          strokeWidth={1}
+          className="d-ui-popover-arrow"
+          data-d-ui-popover-arrow=""
+          aria-hidden
+        />
+      ) : null}
     </div>
   );
 

@@ -38,3 +38,5 @@ export { Tooltip } from './components/Tooltip/Tooltip';
 export type { TooltipPlacement, TooltipProps } from './components/Tooltip/Tooltip';
 export { Popover } from './components/Popover/Popover';
 export type { PopoverPlacement, PopoverProps } from './components/Popover/Popover';
+export { EmojiPopover, REACTION_EMOJIS } from './components/Popover/EmojiPopover';
+export type { EmojiPopoverProps, ReactionEmoji } from './components/Popover/EmojiPopover';

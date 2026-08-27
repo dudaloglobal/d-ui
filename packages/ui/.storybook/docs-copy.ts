@@ -90,8 +90,8 @@ export const docsCopy = {
       en: 'Consuming apps use:',
     },
     itemComponents: {
-      fr: 'les composants React (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Tooltip`, `Popover`, `TimeAgo`, `ThemeProvider`, …)',
-      en: 'the React components (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Tooltip`, `Popover`, `TimeAgo`, `ThemeProvider`, …)',
+      fr: 'les composants React (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, …)',
+      en: 'the React components (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, …)',
     },
     itemCssVars: {
       fr: 'les **variables CSS** `--d-ui-*`',
@@ -758,6 +758,49 @@ export const docsCopy = {
     propsBody: {
       fr: '`children` doit être un seul élément React (le déclencheur). `content` est le panneau.',
       en: '`children` must be a single React element (the trigger). `content` is the panel.',
+    },
+  },
+  emojiPopover: {
+    title: { fr: 'EmojiPopover', en: 'EmojiPopover' },
+    intro: {
+      fr: '`EmojiPopover` ouvre une barre de réactions au clic, avec les neuf emojis de Google Meet (`💖 👍 🎉 👏 😂 😮 😢 🤔 👎`). `onSelect` reçoit l’emoji choisi et le panneau se ferme.',
+      en: '`EmojiPopover` opens a reaction bar on click, with Google Meet’s nine emojis (`💖 👍 🎉 👏 😂 😮 😢 🤔 👎`). `onSelect` receives the chosen emoji and the panel closes.',
+    },
+    a11yBody: {
+      fr: 'Le déclencheur pose `aria-expanded` / `aria-haspopup` / `aria-controls`. La barre a `role="dialog"` et un nom (`aria-label`, défaut « Réactions »). Chaque emoji est un bouton nommé.',
+      en: 'The trigger sets `aria-expanded` / `aria-haspopup` / `aria-controls`. The bar has `role="dialog"` and a name (`aria-label`, default “Reactions”). Each emoji is a named button.',
+    },
+    a11yKeys: {
+      fr: 'Clic (ou Entrée/Espace) ouvre. Tab parcourt les emojis. Escape et clic extérieur ferment. Choisir un emoji ferme la barre.',
+      en: 'Click (or Enter/Space) opens. Tab moves through emojis. Escape and outside click close. Choosing an emoji dismisses the bar.',
+    },
+    doLabel: {
+      fr: 'Un nom accessible sur le déclencheur (bouton icône) et sur la barre',
+      en: 'An accessible name on the trigger (icon button) and on the bar',
+    },
+    doSelect: {
+      fr: 'Réagir à `onSelect` (envoyer la réaction, animer, …)',
+      en: 'Handle `onSelect` (send the reaction, animate, …)',
+    },
+    doEscape: {
+      fr: 'Escape et clic extérieur ferment la barre',
+      en: 'Escape and outside click dismiss the bar',
+    },
+    dontUnnamed: {
+      fr: 'Déclencheur icône sans `aria-label`',
+      en: 'An icon trigger without `aria-label`',
+    },
+    dontTooltip: {
+      fr: 'Un `Tooltip` pour choisir une réaction',
+      en: 'A `Tooltip` to pick a reaction',
+    },
+    dontFullPicker: {
+      fr: 'En faire un clavier emoji complet — le jeu est fixe (neuf réactions)',
+      en: 'Turning it into a full emoji keyboard — the set is fixed (nine reactions)',
+    },
+    propsBody: {
+      fr: '`children` est le déclencheur. `labels` surcharge les noms accessibles des emojis (français par défaut).',
+      en: '`children` is the trigger. `labels` overrides the emoji accessible names (French by default).',
     },
   },
 } as const;
