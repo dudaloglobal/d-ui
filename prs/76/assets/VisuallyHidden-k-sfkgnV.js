@@ -1,0 +1,1 @@
+import{j as i}from"./jsx-runtime-D_zvdyIk.js";import{c as a}from"./cx-BmrDAEIN.js";function n({className:e,...s}){return i.jsx("span",{className:a("d-ui-visually-hidden",e),...s})}n.__docgenInfo={description:"Texte destiné aux lecteurs d’écran, masqué visuellement.",methods:[],displayName:"VisuallyHidden"};export{n as V};

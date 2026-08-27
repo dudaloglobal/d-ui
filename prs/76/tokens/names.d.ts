@@ -1,0 +1,42 @@
+/** Public CSS custom property names. Source of truth: `styles/tokens.css`. */
+export declare const tokenNames: {
+    readonly colorBg: "--d-ui-color-bg";
+    readonly colorFg: "--d-ui-color-fg";
+    readonly colorFgMuted: "--d-ui-color-fg-muted";
+    readonly colorFgDisabled: "--d-ui-color-fg-disabled";
+    readonly colorBrand: "--d-ui-color-brand";
+    readonly colorBrandHover: "--d-ui-color-brand-hover";
+    readonly colorOnBrand: "--d-ui-color-on-brand";
+    readonly colorSurfaceMuted: "--d-ui-color-surface-muted";
+    readonly colorSurfaceHover: "--d-ui-color-surface-hover";
+    readonly colorField: "--d-ui-color-field";
+    readonly colorFieldHover: "--d-ui-color-field-hover";
+    readonly colorBorder: "--d-ui-color-border";
+    readonly colorBorderSubtle: "--d-ui-color-border-subtle";
+    readonly colorFocus: "--d-ui-color-focus";
+    readonly colorLink: "--d-ui-color-link";
+    readonly colorLinkVisited: "--d-ui-color-link-visited";
+    readonly colorDanger: "--d-ui-color-danger";
+    readonly colorOnDanger: "--d-ui-color-on-danger";
+    readonly colorWarning: "--d-ui-color-warning";
+    readonly colorOnWarning: "--d-ui-color-on-warning";
+    readonly colorSuccess: "--d-ui-color-success";
+    readonly colorOnSuccess: "--d-ui-color-on-success";
+    readonly colorInfo: "--d-ui-color-info";
+    readonly colorOnInfo: "--d-ui-color-on-info";
+    readonly fontSans: "--d-ui-font-sans";
+    readonly radiusMd: "--d-ui-radius-md";
+    readonly space1: "--d-ui-space-1";
+    readonly space2: "--d-ui-space-2";
+    readonly space3: "--d-ui-space-3";
+    readonly space4: "--d-ui-space-4";
+    readonly shadowFocus: "--d-ui-shadow-focus";
+};
+export type TokenName = (typeof tokenNames)[keyof typeof tokenNames];
+export type BrandTokens = Partial<{
+    brand: string;
+    brandHover: string;
+    onBrand: string;
+    focus: string;
+}>;
+export declare function brandTokensToStyle(tokens: BrandTokens | undefined): Record<string, string> | undefined;
