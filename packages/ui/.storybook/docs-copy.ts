@@ -208,8 +208,8 @@ export const docsCopy = {
     },
     system: { fr: 'Mode système', en: 'System mode' },
     systemBody: {
-      fr: '`mode="system"` suit `prefers-color-scheme` et se met à jour si l’OS change. Le mode résolu reste `\'light\' | \'dark\'` sur l’attribut. Utilisez `light` ou `dark` quand l’app a son propre sélecteur.',
-      en: '`mode="system"` follows `prefers-color-scheme` and updates if the OS changes. The resolved mode stays `\'light\' | \'dark\'` on the attribute. Use `light` or `dark` when the app has its own picker.',
+      fr: "`mode=\"system\"` suit `prefers-color-scheme` et se met à jour si l’OS change. Le mode résolu reste `'light' | 'dark'` sur l’attribut. Utilisez `light` ou `dark` quand l’app a son propre sélecteur.",
+      en: "`mode=\"system\"` follows `prefers-color-scheme` and updates if the OS changes. The resolved mode stays `'light' | 'dark'` on the attribute. Use `light` or `dark` when the app has its own picker.",
     },
     brand: { fr: 'Surcharge de marque', en: 'Brand override' },
     brandBody: {
@@ -251,13 +251,13 @@ export const docsCopy = {
   },
   tokens: {
     intro: {
-      fr: 'Les couleurs sémantiques vivent dans `packages/ui/src/styles/tokens.css`. Les hex n’existent **que là**. Les composants consomment `var(--d-ui-*)` via le pont Tailwind `@theme inline` dans `styles/index.css` — `inline` est obligatoire pour que le thème sombre suive `data-d-ui-theme` et ne fige pas les valeurs du thème clair. Les noms TypeScript publics sont `tokenNames` (`import { tokenNames } from \'d-ui\'`).',
-      en: 'Semantic colours live in `packages/ui/src/styles/tokens.css`. Hex values exist **only there**. Components consume `var(--d-ui-*)` through the Tailwind `@theme inline` bridge in `styles/index.css` — `inline` is required so dark theme follows `data-d-ui-theme` and does not freeze light values. Public TypeScript names are `tokenNames` (`import { tokenNames } from \'d-ui\'`).',
+      fr: "Les couleurs sémantiques vivent dans `packages/ui/src/styles/tokens.css`. Les hex n’existent **que là**. Les composants consomment `var(--d-ui-*)` via le pont Tailwind `@theme inline` dans `styles/index.css` — `inline` est obligatoire pour que le thème sombre suive `data-d-ui-theme` et ne fige pas les valeurs du thème clair. Les noms TypeScript publics sont `tokenNames` (`import { tokenNames } from 'd-ui'`).",
+      en: "Semantic colours live in `packages/ui/src/styles/tokens.css`. Hex values exist **only there**. Components consume `var(--d-ui-*)` through the Tailwind `@theme inline` bridge in `styles/index.css` — `inline` is required so dark theme follows `data-d-ui-theme` and does not freeze light values. Public TypeScript names are `tokenNames` (`import { tokenNames } from 'd-ui'`).",
     },
     contract: { fr: 'Contrat', en: 'Contract' },
     contractBody: {
-      fr: '`--d-ui-<famille>-<rôle>` — exemple `--d-ui-color-brand`. Clair : `:root` + `[data-d-ui-theme=\'light\']`. Sombre : `[data-d-ui-theme=\'dark\']`. Les classes Tailwind internes (`bg-brand`, `text-fg`, …) **ne font pas** partie du contrat consommateur. Les apps utilisent les variables CSS, ou les composants.',
-      en: '`--d-ui-<family>-<role>` — example `--d-ui-color-brand`. Light: `:root` + `[data-d-ui-theme=\'light\']`. Dark: `[data-d-ui-theme=\'dark\']`. Internal Tailwind classes (`bg-brand`, `text-fg`, …) are **not** part of the consumer contract. Apps use CSS variables, or the components.',
+      fr: "`--d-ui-<famille>-<rôle>` — exemple `--d-ui-color-brand`. Clair : `:root` + `[data-d-ui-theme='light']`. Sombre : `[data-d-ui-theme='dark']`. Les classes Tailwind internes (`bg-brand`, `text-fg`, …) **ne font pas** partie du contrat consommateur. Les apps utilisent les variables CSS, ou les composants.",
+      en: "`--d-ui-<family>-<role>` — example `--d-ui-color-brand`. Light: `:root` + `[data-d-ui-theme='light']`. Dark: `[data-d-ui-theme='dark']`. Internal Tailwind classes (`bg-brand`, `text-fg`, …) are **not** part of the consumer contract. Apps use CSS variables, or the components.",
     },
     add: { fr: 'Ajouter un token', en: 'Add a token' },
     add1: {
