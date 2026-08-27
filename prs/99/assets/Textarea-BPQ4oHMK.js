@@ -1,0 +1,34 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{c as t,l as n,n as r,r as i}from"./blocks-CMuIxJza.js";import{t as a}from"./jsx-runtime-DeHZSEgm.js";import{i as o,r as s}from"./react-Bl2r1tuC.js";import{c,i as l,l as u,r as d,s as f}from"./iframe-ilJZjlXm.js";import{a as p,c as m,i as h,n as g,o as _,r as v,s as y,t as b}from"./Textarea.stories-CUW2zuJT.js";function x(e){let n={h1:`h1`,...o(),...e.components};return(0,C.jsxs)(C.Fragment,{children:[(0,C.jsx)(t,{of:_}),`
+`,(0,C.jsx)(n.h1,{id:`textarea`,children:`Textarea`}),`
+`,(0,C.jsx)(f,{k:`textarea.intro`}),`
+`,(0,C.jsx)(f,{k:`chrome.examplesFollow`}),`
+`,(0,C.jsx)(f,{k:`textarea.labelProp`}),`
+`,(0,C.jsx)(i,{of:b}),`
+`,(0,C.jsx)(d,{k:`chrome.specialStates`}),`
+`,(0,C.jsx)(l,{k:`chrome.disabled`}),`
+`,(0,C.jsx)(f,{k:`chrome.useDisabled`}),`
+`,(0,C.jsx)(i,{of:g}),`
+`,(0,C.jsx)(l,{k:`chrome.valid`}),`
+`,(0,C.jsx)(f,{k:`chrome.useValid`}),`
+`,(0,C.jsx)(i,{of:y}),`
+`,(0,C.jsx)(l,{k:`chrome.invalid`}),`
+`,(0,C.jsx)(f,{k:`textInput.useInvalid`}),`
+`,(0,C.jsx)(i,{of:h}),`
+`,(0,C.jsx)(d,{k:`chrome.maxLength`}),`
+`,(0,C.jsx)(f,{k:`chrome.useMaxLength`}),`
+`,(0,C.jsx)(i,{of:p}),`
+`,(0,C.jsx)(d,{k:`chrome.focusGlow`}),`
+`,(0,C.jsx)(f,{k:`chrome.useFocusGlow`}),`
+`,(0,C.jsx)(i,{of:v}),`
+`,(0,C.jsx)(f,{k:`chrome.themeLang`}),`
+`,(0,C.jsx)(d,{k:`chrome.accessibility`}),`
+`,(0,C.jsx)(f,{k:`textarea.a11yNative`}),`
+`,(0,C.jsx)(f,{k:`textInput.a11yLabel`}),`
+`,(0,C.jsx)(f,{k:`textInput.a11yCount`}),`
+`,(0,C.jsx)(l,{k:`chrome.do`}),`
+`,(0,C.jsx)(c,{items:[`textarea.doComment`,`textarea.doCount`,`textarea.doInvalid`]}),`
+`,(0,C.jsx)(l,{k:`chrome.dont`}),`
+`,(0,C.jsx)(c,{items:[`textarea.dontPlaceholder`,`textarea.dontMultilineInput`]}),`
+`,(0,C.jsx)(d,{k:`chrome.properties`}),`
+`,(0,C.jsx)(f,{k:`textarea.nativeForward`}),`
+`,(0,C.jsx)(r,{of:_,include:[`size`,`label`,`helper`,`error`,`placeholder`,`invalid`,`valid`,`disabled`,`required`,`icon`,`prefix`,`suffix`,`fullWidth`,`focusShadow`,`clearable`,`clearLabel`,`showCount`,`countMessage`,`maxLength`,`rows`]})]})}function S(e={}){let{wrapper:t}={...o(),...e.components};return t?(0,C.jsx)(t,{...e,children:(0,C.jsx)(x,{...e})}):x(e)}var C;function w(){return(w=e((()=>{C=a(),s(),n(),u(),m()})))()}w();export{S as default};

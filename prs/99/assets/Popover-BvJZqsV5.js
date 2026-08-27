@@ -1,0 +1,35 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{c as t,l as n,n as r,r as i}from"./blocks-CMuIxJza.js";import{t as a}from"./jsx-runtime-DeHZSEgm.js";import{i as o,r as s}from"./react-Bl2r1tuC.js";import{c,i as l,l as u,r as d,s as f}from"./iframe-ilJZjlXm.js";import{a as p,c as m,i as h,l as g,n as _,o as v,r as y,s as b,t as x}from"./Popover.stories-KCRsHk5P.js";function S(e){let n={h1:`h1`,...o(),...e.components};return(0,w.jsxs)(w.Fragment,{children:[(0,w.jsx)(t,{of:b}),`
+`,(0,w.jsx)(n.h1,{id:`popover`,children:`Popover`}),`
+`,(0,w.jsx)(f,{k:`popover.intro`}),`
+`,(0,w.jsx)(f,{k:`chrome.examplesFollow`}),`
+`,(0,w.jsx)(i,{of:h}),`
+`,(0,w.jsx)(d,{k:`chrome.placement`}),`
+`,(0,w.jsx)(f,{k:`popover.usePlacement`}),`
+`,(0,w.jsx)(i,{of:v}),`
+`,(0,w.jsx)(d,{k:`chrome.alignments`}),`
+`,(0,w.jsx)(f,{k:`popover.useAlignments`}),`
+`,(0,w.jsx)(i,{of:x}),`
+`,(0,w.jsx)(d,{k:`chrome.controlled`}),`
+`,(0,w.jsx)(f,{k:`popover.useControlled`}),`
+`,(0,w.jsx)(i,{of:y}),`
+`,(0,w.jsx)(d,{k:`popover.focusTrap`}),`
+`,(0,w.jsx)(f,{k:`popover.useFocusTrap`}),`
+`,(0,w.jsx)(i,{of:m}),`
+`,(0,w.jsx)(d,{k:`chrome.specialStates`}),`
+`,(0,w.jsx)(l,{k:`chrome.disabled`}),`
+`,(0,w.jsx)(f,{k:`chrome.useDisabled`}),`
+`,(0,w.jsx)(i,{of:p}),`
+`,(0,w.jsx)(l,{k:`chrome.collision`}),`
+`,(0,w.jsx)(f,{k:`popover.useCollision`}),`
+`,(0,w.jsx)(i,{of:_}),`
+`,(0,w.jsx)(d,{k:`chrome.accessibility`}),`
+`,(0,w.jsx)(f,{k:`popover.a11yBody`}),`
+`,(0,w.jsx)(f,{k:`popover.a11yKeys`}),`
+`,(0,w.jsx)(l,{k:`chrome.do`}),`
+`,(0,w.jsx)(c,{items:[`popover.doLabel`,`popover.doTrap`,`popover.doEscape`]}),`
+`,(0,w.jsx)(l,{k:`chrome.dont`}),`
+`,(0,w.jsx)(c,{items:[`popover.dontTooltip`,`popover.dontTrapEmpty`,`popover.dontDialog`]}),`
+`,(0,w.jsx)(f,{k:`chrome.themeLang`}),`
+`,(0,w.jsx)(d,{k:`chrome.properties`}),`
+`,(0,w.jsx)(f,{k:`popover.propsBody`}),`
+`,(0,w.jsx)(r,{of:b,include:[`content`,`placement`,`open`,`defaultOpen`,`trapFocus`,`disabled`,`aria-label`,`aria-labelledby`]})]})}function C(e={}){let{wrapper:t}={...o(),...e.components};return t?(0,w.jsx)(t,{...e,children:(0,w.jsx)(S,{...e})}):S(e)}var w;function T(){return(T=e((()=>{w=a(),s(),n(),u(),g()})))()}T();export{C as default};

@@ -1,0 +1,32 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{c as t,l as n,n as r,r as i}from"./blocks-CMuIxJza.js";import{t as a}from"./jsx-runtime-DeHZSEgm.js";import{i as o,r as s}from"./react-Bl2r1tuC.js";import{c,i as l,l as u,r as d,s as f}from"./iframe-ilJZjlXm.js";import{a as p,c as m,i as h,n as g,o as _,r as v,s as y,t as b}from"./Tooltip.stories-BCxXJiHl.js";function x(e){let n={h1:`h1`,...o(),...e.components};return(0,C.jsxs)(C.Fragment,{children:[(0,C.jsx)(t,{of:y}),`
+`,(0,C.jsx)(n.h1,{id:`tooltip`,children:`Tooltip`}),`
+`,(0,C.jsx)(f,{k:`tooltip.intro`}),`
+`,(0,C.jsx)(f,{k:`chrome.examplesFollow`}),`
+`,(0,C.jsx)(i,{of:v}),`
+`,(0,C.jsx)(d,{k:`chrome.placement`}),`
+`,(0,C.jsx)(f,{k:`tooltip.usePlacement`}),`
+`,(0,C.jsx)(i,{of:p}),`
+`,(0,C.jsx)(d,{k:`chrome.controlled`}),`
+`,(0,C.jsx)(f,{k:`tooltip.useControlled`}),`
+`,(0,C.jsx)(i,{of:g}),`
+`,(0,C.jsx)(d,{k:`chrome.specialStates`}),`
+`,(0,C.jsx)(l,{k:`chrome.disabled`}),`
+`,(0,C.jsx)(f,{k:`chrome.useDisabled`}),`
+`,(0,C.jsx)(i,{of:h}),`
+`,(0,C.jsx)(l,{k:`chrome.collision`}),`
+`,(0,C.jsx)(f,{k:`tooltip.useCollision`}),`
+`,(0,C.jsx)(i,{of:b}),`
+`,(0,C.jsx)(l,{k:`chrome.portal`}),`
+`,(0,C.jsx)(f,{k:`tooltip.usePortal`}),`
+`,(0,C.jsx)(i,{of:_}),`
+`,(0,C.jsx)(d,{k:`chrome.accessibility`}),`
+`,(0,C.jsx)(f,{k:`tooltip.a11yBody`}),`
+`,(0,C.jsx)(f,{k:`tooltip.a11yKeys`}),`
+`,(0,C.jsx)(l,{k:`chrome.do`}),`
+`,(0,C.jsx)(c,{items:[`tooltip.doHover`,`tooltip.doDescribed`,`tooltip.doEscape`]}),`
+`,(0,C.jsx)(l,{k:`chrome.dont`}),`
+`,(0,C.jsx)(c,{items:[`tooltip.dontInteractive`,`tooltip.dontEssential`,`tooltip.dontTitle`]}),`
+`,(0,C.jsx)(f,{k:`chrome.themeLang`}),`
+`,(0,C.jsx)(d,{k:`chrome.properties`}),`
+`,(0,C.jsx)(f,{k:`tooltip.propsBody`}),`
+`,(0,C.jsx)(r,{of:y,include:[`content`,`placement`,`open`,`defaultOpen`,`delayMs`,`disabled`]})]})}function S(e={}){let{wrapper:t}={...o(),...e.components};return t?(0,C.jsx)(t,{...e,children:(0,C.jsx)(x,{...e})}):x(e)}var C;function w(){return(w=e((()=>{C=a(),s(),n(),u(),m()})))()}w();export{S as default};

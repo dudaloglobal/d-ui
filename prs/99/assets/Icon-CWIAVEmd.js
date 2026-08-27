@@ -1,0 +1,29 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{c as t,l as n,n as r,r as i}from"./blocks-CMuIxJza.js";import{t as a}from"./jsx-runtime-DeHZSEgm.js";import{i as o,r as s}from"./react-Bl2r1tuC.js";import{c,i as l,l as u,r as d,s as f}from"./iframe-ilJZjlXm.js";import{a as p,c as m,i as h,n as g,o as _,r as v,s as y,t as b}from"./Icon.stories-DmIDY9ux.js";function x(e){let n={h1:`h1`,...o(),...e.components};return(0,C.jsxs)(C.Fragment,{children:[(0,C.jsx)(t,{of:g}),`
+`,(0,C.jsx)(n.h1,{id:`icon`,children:`Icon`}),`
+`,(0,C.jsx)(f,{k:`iconPage.intro`}),`
+`,(0,C.jsx)(f,{k:`chrome.examplesFollow`}),`
+`,(0,C.jsx)(i,{of:b}),`
+`,(0,C.jsx)(d,{k:`iconPage.sizes`}),`
+`,(0,C.jsx)(f,{k:`iconPage.sizesBody`}),`
+`,(0,C.jsx)(i,{of:y}),`
+`,(0,C.jsx)(d,{k:`iconPage.color`}),`
+`,(0,C.jsx)(f,{k:`iconPage.colorBody`}),`
+`,(0,C.jsx)(i,{of:v}),`
+`,(0,C.jsx)(d,{k:`iconPage.set`}),`
+`,(0,C.jsx)(f,{k:`iconPage.setBody`}),`
+`,(0,C.jsx)(f,{k:`iconPage.setOutline`}),`
+`,(0,C.jsx)(f,{k:`iconPage.setImport`}),`
+`,(0,C.jsx)(i,{of:_}),`
+`,(0,C.jsx)(d,{k:`chrome.accessibility`}),`
+`,(0,C.jsx)(f,{k:`iconPage.a11yBody`}),`
+`,(0,C.jsx)(f,{k:`iconPage.a11yButton`}),`
+`,(0,C.jsx)(l,{k:`chrome.do`}),`
+`,(0,C.jsx)(c,{items:[`iconPage.doBeside`,`iconPage.doIconButton`,`iconPage.doOutline`]}),`
+`,(0,C.jsx)(l,{k:`chrome.dont`}),`
+`,(0,C.jsx)(c,{items:[`iconPage.dontLabel`,`iconPage.dontNameless`,`iconPage.dontSolid`,`iconPage.dontFill`]}),`
+`,(0,C.jsx)(i,{of:p}),`
+`,(0,C.jsx)(i,{of:h}),`
+`,(0,C.jsx)(f,{k:`chrome.themeLang`}),`
+`,(0,C.jsx)(d,{k:`chrome.properties`}),`
+`,(0,C.jsx)(f,{k:`iconPage.props`}),`
+`,(0,C.jsx)(r,{of:g,include:[`as`,`size`,`label`]})]})}function S(e={}){let{wrapper:t}={...o(),...e.components};return t?(0,C.jsx)(t,{...e,children:(0,C.jsx)(x,{...e})}):x(e)}var C;function w(){return(w=e((()=>{C=a(),s(),n(),u(),m()})))()}w();export{S as default};
