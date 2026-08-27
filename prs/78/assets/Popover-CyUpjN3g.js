@@ -1,0 +1,35 @@
+import{j as o}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as l}from"./index-AGuS8-Lw.js";import{M as x,C as s,A as c}from"./index-xxiSHfhw.js";import{P as e,a as n,b as t,U as a}from"./docs-i18n-D3ZiU-L1.js";import{P as m,D as j,a as d,A as k,C as u,W as h,b as f,c as v}from"./Popover.stories-aetIG74v.js";import"./index-DQxMMF7O.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-C4t9bl2k.js";import"./index-W1VnaOaO.js";import"./index-DTrdMgma.js";import"./index-DgH-xKnr.js";import"./index-Bhqu_tAV.js";import"./docs-source-yoOHPaqB.js";import"./cx-DCCm14g-.js";import"./Button-D_irj1Bu.js";import"./Popover-CJpvB_qE.js";import"./floating-By5IdYG5.js";function i(r){const p={h1:"h1",...l(),...r.components};return o.jsxs(o.Fragment,{children:[o.jsx(x,{of:m}),`
+`,o.jsx(p.h1,{id:"popover",children:"Popover"}),`
+`,o.jsx(e,{k:"popover.intro"}),`
+`,o.jsx(e,{k:"chrome.examplesFollow"}),`
+`,o.jsx(s,{of:j}),`
+`,o.jsx(n,{k:"chrome.placement"}),`
+`,o.jsx(e,{k:"popover.usePlacement"}),`
+`,o.jsx(s,{of:d}),`
+`,o.jsx(n,{k:"chrome.alignments"}),`
+`,o.jsx(e,{k:"popover.useAlignments"}),`
+`,o.jsx(s,{of:k}),`
+`,o.jsx(n,{k:"chrome.controlled"}),`
+`,o.jsx(e,{k:"popover.useControlled"}),`
+`,o.jsx(s,{of:u}),`
+`,o.jsx(n,{k:"popover.focusTrap"}),`
+`,o.jsx(e,{k:"popover.useFocusTrap"}),`
+`,o.jsx(s,{of:h}),`
+`,o.jsx(n,{k:"chrome.specialStates"}),`
+`,o.jsx(t,{k:"chrome.disabled"}),`
+`,o.jsx(e,{k:"chrome.useDisabled"}),`
+`,o.jsx(s,{of:f}),`
+`,o.jsx(t,{k:"chrome.collision"}),`
+`,o.jsx(e,{k:"popover.useCollision"}),`
+`,o.jsx(s,{of:v}),`
+`,o.jsx(n,{k:"chrome.accessibility"}),`
+`,o.jsx(e,{k:"popover.a11yBody"}),`
+`,o.jsx(e,{k:"popover.a11yKeys"}),`
+`,o.jsx(t,{k:"chrome.do"}),`
+`,o.jsx(a,{items:["popover.doLabel","popover.doTrap","popover.doEscape"]}),`
+`,o.jsx(t,{k:"chrome.dont"}),`
+`,o.jsx(a,{items:["popover.dontTooltip","popover.dontTrapEmpty","popover.dontDialog"]}),`
+`,o.jsx(e,{k:"chrome.themeLang"}),`
+`,o.jsx(n,{k:"chrome.properties"}),`
+`,o.jsx(e,{k:"popover.propsBody"}),`
+`,o.jsx(c,{of:m,include:["content","placement","open","defaultOpen","trapFocus","disabled","aria-label","aria-labelledby"]})]})}function U(r={}){const{wrapper:p}={...l(),...r.components};return p?o.jsx(p,{...r,children:o.jsx(i,{...r})}):i(r)}export{U as default};

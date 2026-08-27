@@ -1,0 +1,32 @@
+import{j as o}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as p}from"./index-AGuS8-Lw.js";import{M as x,C as e,A as c}from"./index-xxiSHfhw.js";import{P as t,a as n,b as i,U as l}from"./docs-i18n-D3ZiU-L1.js";import{T as a,D as j,P as d,C as k,a as h,b as f,c as u}from"./Tooltip.stories-BCQlAmJd.js";import"./index-DQxMMF7O.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-C4t9bl2k.js";import"./index-W1VnaOaO.js";import"./index-DTrdMgma.js";import"./index-DgH-xKnr.js";import"./index-Bhqu_tAV.js";import"./docs-source-yoOHPaqB.js";import"./cx-DCCm14g-.js";import"./Button-D_irj1Bu.js";import"./floating-By5IdYG5.js";function m(s){const r={h1:"h1",...p(),...s.components};return o.jsxs(o.Fragment,{children:[o.jsx(x,{of:a}),`
+`,o.jsx(r.h1,{id:"tooltip",children:"Tooltip"}),`
+`,o.jsx(t,{k:"tooltip.intro"}),`
+`,o.jsx(t,{k:"chrome.examplesFollow"}),`
+`,o.jsx(e,{of:j}),`
+`,o.jsx(n,{k:"chrome.placement"}),`
+`,o.jsx(t,{k:"tooltip.usePlacement"}),`
+`,o.jsx(e,{of:d}),`
+`,o.jsx(n,{k:"chrome.controlled"}),`
+`,o.jsx(t,{k:"tooltip.useControlled"}),`
+`,o.jsx(e,{of:k}),`
+`,o.jsx(n,{k:"chrome.specialStates"}),`
+`,o.jsx(i,{k:"chrome.disabled"}),`
+`,o.jsx(t,{k:"chrome.useDisabled"}),`
+`,o.jsx(e,{of:h}),`
+`,o.jsx(i,{k:"chrome.collision"}),`
+`,o.jsx(t,{k:"tooltip.useCollision"}),`
+`,o.jsx(e,{of:f}),`
+`,o.jsx(i,{k:"chrome.portal"}),`
+`,o.jsx(t,{k:"tooltip.usePortal"}),`
+`,o.jsx(e,{of:u}),`
+`,o.jsx(n,{k:"chrome.accessibility"}),`
+`,o.jsx(t,{k:"tooltip.a11yBody"}),`
+`,o.jsx(t,{k:"tooltip.a11yKeys"}),`
+`,o.jsx(i,{k:"chrome.do"}),`
+`,o.jsx(l,{items:["tooltip.doHover","tooltip.doDescribed","tooltip.doEscape"]}),`
+`,o.jsx(i,{k:"chrome.dont"}),`
+`,o.jsx(l,{items:["tooltip.dontInteractive","tooltip.dontEssential","tooltip.dontTitle"]}),`
+`,o.jsx(t,{k:"chrome.themeLang"}),`
+`,o.jsx(n,{k:"chrome.properties"}),`
+`,o.jsx(t,{k:"tooltip.propsBody"}),`
+`,o.jsx(c,{of:a,include:["content","placement","open","defaultOpen","delayMs","disabled"]})]})}function L(s={}){const{wrapper:r}={...p(),...s.components};return r?o.jsx(r,{...s,children:o.jsx(m,{...s})}):m(s)}export{L as default};
