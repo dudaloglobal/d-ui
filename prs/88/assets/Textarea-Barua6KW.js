@@ -1,0 +1,34 @@
+import{j as e}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as l}from"./index-AGuS8-Lw.js";import{M as j,C as a,A as c}from"./index-Dx6GPVfm.js";import{H as d,P as t,a as s,b as o,U as x}from"./docs-i18n-H93nM3rI.js";import{T as i,D as p,a as u,V as h,I as k,M as f,F as b}from"./Textarea.stories-D9St0en9.js";import"./index-DQxMMF7O.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-CdThWndO.js";import"./index-W1VnaOaO.js";import"./index-DTrdMgma.js";import"./index-DgH-xKnr.js";import"./index-Bhqu_tAV.js";import"./docs-source-CuvzGT6e.js";import"./cx-DZL12kEg.js";import"./textControl-QmjPGioz.js";function m(n){return e.jsxs(e.Fragment,{children:[e.jsx(j,{of:i}),`
+`,e.jsx(d,{k:"textarea.title"}),`
+`,e.jsx(t,{k:"textarea.intro"}),`
+`,e.jsx(t,{k:"chrome.examplesFollow"}),`
+`,e.jsx(t,{k:"textarea.labelProp"}),`
+`,e.jsx(a,{of:p}),`
+`,e.jsx(s,{k:"chrome.specialStates"}),`
+`,e.jsx(o,{k:"chrome.disabled"}),`
+`,e.jsx(t,{k:"chrome.useDisabled"}),`
+`,e.jsx(a,{of:u}),`
+`,e.jsx(o,{k:"chrome.valid"}),`
+`,e.jsx(t,{k:"chrome.useValid"}),`
+`,e.jsx(a,{of:h}),`
+`,e.jsx(o,{k:"chrome.invalid"}),`
+`,e.jsx(t,{k:"textInput.useInvalid"}),`
+`,e.jsx(a,{of:k}),`
+`,e.jsx(s,{k:"chrome.maxLength"}),`
+`,e.jsx(t,{k:"chrome.useMaxLength"}),`
+`,e.jsx(a,{of:f}),`
+`,e.jsx(s,{k:"chrome.focusGlow"}),`
+`,e.jsx(t,{k:"chrome.useFocusGlow"}),`
+`,e.jsx(a,{of:b}),`
+`,e.jsx(t,{k:"chrome.themeLang"}),`
+`,e.jsx(s,{k:"chrome.accessibility"}),`
+`,e.jsx(t,{k:"textarea.a11yNative"}),`
+`,e.jsx(t,{k:"textInput.a11yLabel"}),`
+`,e.jsx(t,{k:"textInput.a11yCount"}),`
+`,e.jsx(o,{k:"chrome.do"}),`
+`,e.jsx(x,{items:["textarea.doComment","textarea.doCount","textarea.doInvalid"]}),`
+`,e.jsx(o,{k:"chrome.dont"}),`
+`,e.jsx(x,{items:["textarea.dontPlaceholder","textarea.dontMultilineInput"]}),`
+`,e.jsx(s,{k:"chrome.properties"}),`
+`,e.jsx(t,{k:"textarea.nativeForward"}),`
+`,e.jsx(c,{of:i,include:["size","label","helper","error","placeholder","invalid","valid","disabled","required","icon","prefix","suffix","fullWidth","focusShadow","clearable","clearLabel","showCount","countMessage","maxLength","rows"]})]})}function X(n={}){const{wrapper:r}={...l(),...n.components};return r?e.jsx(r,{...n,children:e.jsx(m,{...n})}):m()}export{X as default};

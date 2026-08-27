@@ -1,0 +1,34 @@
+import{j as o}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as c}from"./index-AGuS8-Lw.js";import{M as l,C as n,A as j}from"./index-Dx6GPVfm.js";import{H as p,P as s,a as r,b as e,U as a}from"./docs-i18n-H93nM3rI.js";import{C as i,D as d,a as b,I as u,S as k,G as h,E as f}from"./Combobox.stories-Dp7A8Hxf.js";import"./index-DQxMMF7O.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-CdThWndO.js";import"./index-W1VnaOaO.js";import"./index-DTrdMgma.js";import"./index-DgH-xKnr.js";import"./index-Bhqu_tAV.js";import"./docs-source-CuvzGT6e.js";import"./cx-DZL12kEg.js";import"./floating-By5IdYG5.js";import"./textControl-QmjPGioz.js";import"./useSelectOverlay-DAzNVQzp.js";function x(t){return o.jsxs(o.Fragment,{children:[o.jsx(l,{of:i}),`
+`,o.jsx(p,{k:"combobox.title"}),`
+`,o.jsx(s,{k:"combobox.intro"}),`
+`,o.jsx(s,{k:"chrome.examplesFollow"}),`
+`,o.jsx(n,{of:d}),`
+`,o.jsx(r,{k:"chrome.specialStates"}),`
+`,o.jsx(e,{k:"chrome.disabled"}),`
+`,o.jsx(s,{k:"chrome.useDisabled"}),`
+`,o.jsx(n,{of:b}),`
+`,o.jsx(e,{k:"chrome.invalid"}),`
+`,o.jsx(s,{k:"select.useInvalid"}),`
+`,o.jsx(n,{of:u}),`
+`,o.jsx(r,{k:"chrome.options"}),`
+`,o.jsx(e,{k:"chrome.sizes"}),`
+`,o.jsx(s,{k:"chrome.useSizes"}),`
+`,o.jsx(n,{of:k}),`
+`,o.jsx(e,{k:"select.groups"}),`
+`,o.jsx(s,{k:"select.useGroups"}),`
+`,o.jsx(n,{of:h}),`
+`,o.jsx(e,{k:"combobox.empty"}),`
+`,o.jsx(s,{k:"combobox.useEmpty"}),`
+`,o.jsx(n,{of:f}),`
+`,o.jsx(s,{k:"chrome.themeLang"}),`
+`,o.jsx(r,{k:"chrome.accessibility"}),`
+`,o.jsx(s,{k:"combobox.a11yBody"}),`
+`,o.jsx(s,{k:"combobox.a11yKeys"}),`
+`,o.jsx(s,{k:"select.a11yForm"}),`
+`,o.jsx(e,{k:"chrome.do"}),`
+`,o.jsx(a,{items:["combobox.doFilter","select.doLabel","select.doName"]}),`
+`,o.jsx(e,{k:"chrome.dont"}),`
+`,o.jsx(a,{items:["combobox.dontAsync","select.dontMulti","combobox.dontPlaceholder"]}),`
+`,o.jsx(r,{k:"chrome.properties"}),`
+`,o.jsx(s,{k:"combobox.propsBody"}),`
+`,o.jsx(j,{of:i,include:["options","value","defaultValue","onValueChange","name","form","placeholder","emptyMessage","size","label","helper","error","invalid","valid","disabled","required","fullWidth"]})]})}function B(t={}){const{wrapper:m}={...c(),...t.components};return m?o.jsx(m,{...t,children:o.jsx(x,{...t})}):x()}export{B as default};

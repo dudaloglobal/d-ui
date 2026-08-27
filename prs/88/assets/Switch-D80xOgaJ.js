@@ -1,0 +1,37 @@
+import{j as s}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as x}from"./index-AGuS8-Lw.js";import{M as j,C as o,A as h}from"./index-Dx6GPVfm.js";import{H as d,P as e,a as i,b as n,U as a}from"./docs-i18n-H93nM3rI.js";import{S as m,D as p,O as l,a as k,I as u,R as f,H as w,b}from"./Switch.stories-DJYjpn8t.js";import"./index-DQxMMF7O.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-CdThWndO.js";import"./index-W1VnaOaO.js";import"./index-DTrdMgma.js";import"./index-DgH-xKnr.js";import"./index-Bhqu_tAV.js";import"./docs-source-CuvzGT6e.js";import"./cx-DZL12kEg.js";import"./selectionControl-BtOrjR3a.js";function c(t){return s.jsxs(s.Fragment,{children:[s.jsx(j,{of:m}),`
+`,s.jsx(d,{k:"switch.title"}),`
+`,s.jsx(e,{k:"switch.intro"}),`
+`,s.jsx(e,{k:"chrome.examplesFollow"}),`
+`,s.jsx(o,{of:p}),`
+`,s.jsx(i,{k:"chrome.specialStates"}),`
+`,s.jsx(e,{k:"switch.threeStates"}),`
+`,s.jsx(n,{k:"chrome.enabled"}),`
+`,s.jsx(e,{k:"switch.useOn"}),`
+`,s.jsx(o,{of:l}),`
+`,s.jsx(n,{k:"chrome.disabled"}),`
+`,s.jsx(e,{k:"chrome.useDisabled"}),`
+`,s.jsx(o,{of:k}),`
+`,s.jsx(n,{k:"chrome.invalid"}),`
+`,s.jsx(e,{k:"switch.useInvalid"}),`
+`,s.jsx(o,{of:u}),`
+`,s.jsx(i,{k:"chrome.options"}),`
+`,s.jsx(n,{k:"chrome.required"}),`
+`,s.jsx(e,{k:"switch.useRequired"}),`
+`,s.jsx(o,{of:f}),`
+`,s.jsx(n,{k:"chrome.helper"}),`
+`,s.jsx(e,{k:"chrome.useHelper"}),`
+`,s.jsx(o,{of:w}),`
+`,s.jsx(n,{k:"chrome.sizes"}),`
+`,s.jsx(e,{k:"chrome.useSizes"}),`
+`,s.jsx(o,{of:b}),`
+`,s.jsx(i,{k:"chrome.accessibility"}),`
+`,s.jsx(e,{k:"switch.a11yBody"}),`
+`,s.jsx(e,{k:"switch.a11yKeys"}),`
+`,s.jsx(n,{k:"chrome.do"}),`
+`,s.jsx(a,{items:["switch.doLabel","switch.doAria","switch.doInvalid"]}),`
+`,s.jsx(n,{k:"chrome.dont"}),`
+`,s.jsx(a,{items:["switch.dontUnnamed","switch.dontRadioRow","switch.dontSegmented"]}),`
+`,s.jsx(e,{k:"chrome.themeLang"}),`
+`,s.jsx(i,{k:"chrome.properties"}),`
+`,s.jsx(e,{k:"chrome.nativeInput"}),`
+`,s.jsx(h,{of:m,include:["size","label","helper","error","invalid","disabled","required","checked"]})]})}function U(t={}){const{wrapper:r}={...x(),...t.components};return r?s.jsx(r,{...t,children:s.jsx(c,{...t})}):c()}export{U as default};
