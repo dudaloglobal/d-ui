@@ -23,7 +23,8 @@ Une exception AA exige un sign-off Accessibilité **et** une décision produit �
 14. `EmojiPopover` : barre de neuf réactions (boutons nommés). `role="dialog"` + `trapFocus`. `onSelect` ferme le panneau. Déclencheur icône avec `aria-label`.
 15. `Select` / `Combobox` : `role="combobox"` + listbox nommée (`aria-labelledby` du libellé). Flèches, typeahead (Select), filtre (Combobox), Escape, Entrée. Options `disabled` ignorées par le clavier. `name` / `form` sur un `<select>` natif masqué. L’option active est défilée dans la vue. `Combobox` : bouton chevron `tabIndex={-1}` (`toggleLabel`), effacement optionnel, `multiple` (chips nommés, `aria-multiselectable`), `listStatus` (région live `loadingMessage`).
 16. `Link` : soulignement permanent (1.4.1). `external` pose `rel="noopener noreferrer"` et un fallback anglais `(opens in a new tab)`. `Heading` sépare `level` (structure) et `size` (visuel) — ne pas sauter de niveau (1.3.1).
-17. `Field` : `Label` visible ; `group` rend un `fieldset` et `Label` (legend) doit être le premier enfant. `required` ne descend pas sur les contrôles d’un groupe. `FieldError` hors DOM si `invalid={false}`. `aria-describedby` ne cite que des ids rendus.
+17. `Icon` : décorative par défaut (`aria-hidden`, `focusable="false"`). `label` uniquement quand aucun texte voisin ne porte le sens. Jamais de `label` dans le slot `icon` d’un `Button` ; `IconButton` porte le nom sur le bouton.
+18. `Field` : `Label` visible ; `group` rend un `fieldset` et `Label` (legend) doit être le premier enfant. `required` ne descend pas sur les contrôles d’un groupe. `FieldError` hors DOM si `invalid={false}`. `aria-describedby` ne cite que des ids rendus.
 
 ## Overlays — revue de PR
 

@@ -465,6 +465,24 @@ export const visuallyHiddenArgTypes = {
   },
 };
 
+export const iconArgTypes = {
+  as: {
+    control: false as const,
+    description:
+      'Composant SVG à rendre. Jamais importé par `d-ui` : le bundle ne garde que ce que l’app passe.',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md', 'lg'],
+    description:
+      'Aligné sur `Button` : `sm` 16 px, `md` 20 px (défaut), `lg` 24 px. Réduit le SVG en CSS, sans changer de jeu Heroicons.',
+  },
+  label: {
+    description:
+      'Nom accessible. Absent : icône décorative (`aria-hidden`, `focusable="false"`). Présent : `role="img"`. Ne pas l’utiliser à côté d’un libellé visible, ni dans le slot `icon` d’un `Button`.',
+  },
+};
+
 export const themeArgTypes = {
   mode: {
     control: 'inline-radio' as const,

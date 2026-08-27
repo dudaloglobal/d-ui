@@ -90,8 +90,8 @@ export const docsCopy = {
       en: 'Consuming apps use:',
     },
     itemComponents: {
-      fr: 'les composants React (`Button`, `Text`, `Heading`, `Link`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
-      en: 'the React components (`Button`, `Text`, `Heading`, `Link`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      fr: 'les composants React (`Button`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      en: 'the React components (`Button`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
     },
     itemCssVars: {
       fr: 'les **variables CSS** `--d-ui-*`',
@@ -600,6 +600,75 @@ export const docsCopy = {
     props: {
       fr: 'Les attributs natifs de l’enveloppe (`className`, `id`, …) sont transmis. `Label`, `FieldDescription` et `FieldError` n’exposent pas d’API au-delà du HTML.',
       en: 'Native wrapper attributes (`className`, `id`, …) are forwarded. `Label`, `FieldDescription` and `FieldError` expose no API beyond HTML.',
+    },
+  },
+  iconPage: {
+    intro: {
+      fr: 'Enveloppe un SVG pour une taille alignée sur `Button` et la bonne sémantique d’accessibilité. `d-ui` **ne dépend d’aucune librairie d’icônes** : on passe le composant (`as`), il n’est jamais importé en bloc.',
+      en: 'Wraps an SVG for a size aligned with `Button` and the right accessibility semantics. `d-ui` **does not depend on any icon library**: you pass the component (`as`); it is never imported as a bundle.',
+    },
+    sizes: { fr: 'Tailles', en: 'Sizes' },
+    sizesBody: {
+      fr: '`size` suit les hauteurs de `Button` : `sm` 16 px, `md` 20 px (défaut), `lg` 24 px. Utilisez `sm` dans un bouton, `lg` sur un état vide ou un titre.',
+      en: '`size` follows `Button` heights: `sm` 16 px, `md` 20 px (default), `lg` 24 px. Use `sm` in a button, `lg` on an empty state or a title.',
+    },
+    color: { fr: 'Couleur', en: 'Color' },
+    colorBody: {
+      fr: 'Aucune prop de couleur : le SVG hérite de `currentColor`, donc du texte qui le porte, et suit le thème sans token dédié. Pour le colorer, colorez le conteneur.',
+      en: 'No colour prop: the SVG inherits `currentColor` from surrounding text, and follows the theme without a dedicated token. To colour it, colour the container.',
+    },
+    set: { fr: 'Jeu recommandé', en: 'Recommended set' },
+    setBody: {
+      fr: 'Le jeu recommandé est **Heroicons** (MIT, Tailwind Labs). Il n’est ici qu’une `devDependency`, pour les stories.',
+      en: 'The recommended set is **Heroicons** (MIT, Tailwind Labs). It is only a `devDependency` here, for stories.',
+    },
+    setOutline: {
+      fr: 'Heroicons ne fournit l’**outline qu’en 24 px**. Les jeux 20 et 16 sont **solid uniquement**. Mapper `size="sm"` sur `@heroicons/react/16/solid` ferait basculer la silhouette en plein sans prévenir.',
+      en: 'Heroicons ships **outline only at 24 px**. The 20 and 16 sets are **solid only**. Mapping `size="sm"` to `@heroicons/react/16/solid` would silently switch the silhouette to filled.',
+    },
+    setImport: {
+      fr: 'Importer depuis `24/outline` et laisser `size` réduire en CSS. Ne descendre sur `20/solid` ou `16/solid` que lorsqu’on veut explicitement du solid.',
+      en: 'Import from `24/outline` and let `size` scale in CSS. Drop to `20/solid` or `16/solid` only when you explicitly want solid.',
+    },
+    a11yBody: {
+      fr: 'Sans `label`, l’icône est décorative : `aria-hidden` et `focusable="false"` (retire le SVG de l’ordre de tabulation, y compris sur les anciens Edge). Avec `label`, elle devient une image nommée (`role="img"`). Ces attributs sont **réaffirmés après** les props consommateur.',
+      en: 'Without `label`, the icon is decorative: `aria-hidden` and `focusable="false"` (removes the SVG from the tab order, including on older Edge). With `label`, it becomes a named image (`role="img"`). These attributes are **reasserted after** consumer props.',
+    },
+    a11yButton: {
+      fr: 'Dans un `Button`, ne passez **jamais** `label` : le slot `icon` est déjà `aria-hidden` et le bouton porte son nom. `IconButton` porte le nom sur le bouton (`aria-label` obligatoire), pas sur l’icône.',
+      en: 'Inside a `Button`, **never** pass `label`: the `icon` slot is already `aria-hidden` and the button carries the name. `IconButton` names the button (`aria-label` required), not the icon.',
+    },
+    doBeside: {
+      fr: '`<Icon as={BellIcon} />` à côté d’un libellé visible',
+      en: '`<Icon as={BellIcon} />` next to a visible label',
+    },
+    doIconButton: {
+      fr: '`<IconButton icon={<Icon as={TrashIcon} />} aria-label="Supprimer" />`',
+      en: '`<IconButton icon={<Icon as={TrashIcon} />} aria-label="Delete" />`',
+    },
+    doOutline: {
+      fr: 'Import depuis `@heroicons/react/24/outline` pour garder la même silhouette',
+      en: 'Import from `@heroicons/react/24/outline` to keep the same silhouette',
+    },
+    dontLabel: {
+      fr: '`<Icon as={BellIcon} label="Notifications" />` à côté du même mot',
+      en: '`<Icon as={BellIcon} label="Notifications" />` next to the same word',
+    },
+    dontNameless: {
+      fr: '`IconButton` sans `aria-label`',
+      en: '`IconButton` without `aria-label`',
+    },
+    dontSolid: {
+      fr: 'Import `@heroicons/react/16/solid` uniquement pour obtenir une petite taille',
+      en: 'Import `@heroicons/react/16/solid` only to get a small size',
+    },
+    dontFill: {
+      fr: '`fill` ou `stroke` en dur à la place de `currentColor`',
+      en: 'Hard-coded `fill` or `stroke` instead of `currentColor`',
+    },
+    props: {
+      fr: 'Les attributs SVG natifs (`className`, `data-*`, …) sont transmis. `role`, `aria-hidden`, `aria-label` et `focusable` ne peuvent pas être écrasés.',
+      en: 'Native SVG attributes (`className`, `data-*`, …) are forwarded. `role`, `aria-hidden`, `aria-label` and `focusable` cannot be overwritten.',
     },
   },
   button: {

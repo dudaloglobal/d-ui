@@ -4,8 +4,11 @@ import { describe, expect, it } from 'vitest';
 import { collectDocsCopyLeaves, docsCopy, docsString } from '../.storybook/docs-copy';
 import {
   buttonCopy,
+  iconCopy,
   inputCopy,
   localeFromSearch,
+  overlayCopy,
+  selectCopy,
   selectionCopy,
   skipLinkCopy,
   storyNameEn,
@@ -13,8 +16,6 @@ import {
   toolbarLabel,
   themeCopy,
   timeAgoCopy,
-  overlayCopy,
-  selectCopy,
   typographyCopy,
   fieldCopy,
   visuallyHiddenCopy,
@@ -32,7 +33,6 @@ const ENGLISH_HEADINGS = [
   'Full width',
   'Helper',
   'High emphasis',
-  'Icon',
   'Invalid',
   'Live updates',
   'Loading',
@@ -104,6 +104,7 @@ describe('docs locale', () => {
     expect(keysOf(visuallyHiddenCopy('fr'))).toEqual(keysOf(visuallyHiddenCopy('en')));
     expect(keysOf(themeCopy('fr'))).toEqual(keysOf(themeCopy('en')));
     expect(keysOf(typographyCopy('fr'))).toEqual(keysOf(typographyCopy('en')));
+    expect(keysOf(iconCopy('fr'))).toEqual(keysOf(iconCopy('en')));
     expect(keysOf(fieldCopy('fr'))).toEqual(keysOf(fieldCopy('en')));
   });
 
@@ -139,6 +140,7 @@ describe('docs locale', () => {
     expect(text).toContain('`"Effacer"`');
     expect(text).toContain('Cible du lien, un identifiant de page');
     expect(text).toContain('Niveau sémantique : rend un vrai');
+    expect(text).toContain('Composant SVG à rendre');
     expect(text).toContain('Rend un `fieldset`');
     expect(text).not.toContain('"Clear"');
     expect(text).not.toContain('Show password');

@@ -77,6 +77,10 @@ export const storyNameEn: Record<string, string> = {
   Niveaux: 'Levels',
   'Taille découplée': 'Decoupled size',
   'Avec aide': 'With helper',
+  'Couleur héritée': 'Inherited color',
+  'Même silhouette': 'Same silhouette',
+  Nomée: 'Named',
+  'Dans un bouton': 'Inside a button',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -612,4 +616,24 @@ export type FieldDocsCopy = typeof fieldFr;
 
 export function fieldCopy(locale: DocsLocale): FieldDocsCopy {
   return locale === 'en' ? fieldEn : fieldFr;
+}
+
+const iconFr = {
+  continue: 'Continuer',
+  filter: 'Filtrer',
+  delete: 'Supprimer',
+  deleteForever: 'Supprimer définitivement',
+};
+
+const iconEn = {
+  continue: 'Continue',
+  filter: 'Filter',
+  delete: 'Delete',
+  deleteForever: 'Delete permanently',
+};
+
+export type IconDocsCopy = typeof iconFr;
+
+export function iconCopy(locale: DocsLocale): IconDocsCopy {
+  return locale === 'en' ? iconEn : iconFr;
 }

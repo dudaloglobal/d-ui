@@ -28,6 +28,8 @@ export type {
   HeadingProps,
   HeadingSize,
 } from './components/Heading/Heading';
+export { Icon } from './components/Icon/Icon';
+export type { IconProps, IconSize } from './components/Icon/Icon';
 export { Link } from './components/Link/Link';
 export type { LinkProps } from './components/Link/Link';
 export { Text } from './components/Text/Text';
