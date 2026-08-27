@@ -1,0 +1,37 @@
+import{j as s}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as h}from"./index-AGuS8-Lw.js";import{M as x,C as o,A as j}from"./index-CQ5xb4Ph.js";import{P as e,a as r,b as n,U as a}from"./docs-i18n-KGRX_s54.js";import{S as c,D as d,O as l,a as p,I as k,R as u,H as w,b as f}from"./Switch.stories-ClUKlFo8.js";import"./index-DQxMMF7O.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-DKmHsuII.js";import"./index-W1VnaOaO.js";import"./index-DTrdMgma.js";import"./index-DgH-xKnr.js";import"./index-Bhqu_tAV.js";import"./docs-source-CpGeTe7M.js";import"./cx-Dh08zBtx.js";import"./selectionControl-Bu8seLdz.js";function m(t){const i={h1:"h1",...h(),...t.components};return s.jsxs(s.Fragment,{children:[s.jsx(x,{of:c}),`
+`,s.jsx(i.h1,{id:"switch",children:"Switch"}),`
+`,s.jsx(e,{k:"switch.intro"}),`
+`,s.jsx(e,{k:"chrome.examplesFollow"}),`
+`,s.jsx(o,{of:d}),`
+`,s.jsx(r,{k:"chrome.specialStates"}),`
+`,s.jsx(e,{k:"switch.threeStates"}),`
+`,s.jsx(n,{k:"chrome.enabled"}),`
+`,s.jsx(e,{k:"switch.useOn"}),`
+`,s.jsx(o,{of:l}),`
+`,s.jsx(n,{k:"chrome.disabled"}),`
+`,s.jsx(e,{k:"chrome.useDisabled"}),`
+`,s.jsx(o,{of:p}),`
+`,s.jsx(n,{k:"chrome.invalid"}),`
+`,s.jsx(e,{k:"switch.useInvalid"}),`
+`,s.jsx(o,{of:k}),`
+`,s.jsx(r,{k:"chrome.options"}),`
+`,s.jsx(n,{k:"chrome.required"}),`
+`,s.jsx(e,{k:"switch.useRequired"}),`
+`,s.jsx(o,{of:u}),`
+`,s.jsx(n,{k:"chrome.helper"}),`
+`,s.jsx(e,{k:"chrome.useHelper"}),`
+`,s.jsx(o,{of:w}),`
+`,s.jsx(n,{k:"chrome.sizes"}),`
+`,s.jsx(e,{k:"chrome.useSizes"}),`
+`,s.jsx(o,{of:f}),`
+`,s.jsx(r,{k:"chrome.accessibility"}),`
+`,s.jsx(e,{k:"switch.a11yBody"}),`
+`,s.jsx(e,{k:"switch.a11yKeys"}),`
+`,s.jsx(n,{k:"chrome.do"}),`
+`,s.jsx(a,{items:["switch.doLabel","switch.doAria","switch.doInvalid"]}),`
+`,s.jsx(n,{k:"chrome.dont"}),`
+`,s.jsx(a,{items:["switch.dontUnnamed","switch.dontRadioRow","switch.dontSegmented"]}),`
+`,s.jsx(e,{k:"chrome.themeLang"}),`
+`,s.jsx(r,{k:"chrome.properties"}),`
+`,s.jsx(e,{k:"chrome.nativeInput"}),`
+`,s.jsx(j,{of:c,include:["size","label","helper","error","invalid","disabled","required","checked"]})]})}function O(t={}){const{wrapper:i}={...h(),...t.components};return i?s.jsx(i,{...t,children:s.jsx(m,{...t})}):m(t)}export{O as default};
