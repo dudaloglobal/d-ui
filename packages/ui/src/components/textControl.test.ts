@@ -32,9 +32,9 @@ describe('defaultCountMessage', () => {
   });
 
   it('uses singular remaining copy at one', () => {
-    expect(defaultCountMessage(9, 10)).toBe('1 character remaining');
-    expect(defaultCountMessage(8, 10)).toBe('2 characters remaining');
-    expect(defaultCountMessage(12, 10)).toBe('0 characters remaining');
+    expect(defaultCountMessage(9, 10)).toBe('1 caractère restant');
+    expect(defaultCountMessage(8, 10)).toBe('2 caractères restants');
+    expect(defaultCountMessage(12, 10)).toBe('0 caractères restants');
   });
 });
 

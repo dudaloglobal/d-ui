@@ -49,7 +49,7 @@ export type TextInputProps = Omit<
   /** Bouton d’effacement dès que la valeur n’est pas vide. */
   clearable?: boolean;
   onClear?: () => void;
-  /** Nom accessible du bouton d’effacement. Défaut `"Clear"`. */
+  /** Nom accessible du bouton d’effacement. Défaut `"Effacer"`. */
   clearLabel?: string;
   /**
    * Compteur de caractères (restants si `maxLength` est posé).
@@ -58,9 +58,9 @@ export type TextInputProps = Omit<
   showCount?: boolean;
   /** Libellé du compteur. Reçoit le nombre de caractères et `maxLength`. */
   countMessage?: (count: number, maxLength?: number) => string;
-  /** Nom accessible pour afficher le mot de passe. Défaut `"Show password"`. */
+  /** Nom accessible pour afficher le mot de passe. Défaut `"Afficher le mot de passe"`. */
   revealPasswordLabel?: string;
-  /** Nom accessible pour masquer le mot de passe. Défaut `"Hide password"`. */
+  /** Nom accessible pour masquer le mot de passe. Défaut `"Masquer le mot de passe"`. */
   hidePasswordLabel?: string;
 };
 
@@ -81,11 +81,11 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function T
     focusShadow,
     clearable = false,
     onClear,
-    clearLabel = 'Clear',
+    clearLabel = 'Effacer',
     showCount,
     countMessage = defaultCountMessage,
-    revealPasswordLabel = 'Show password',
-    hidePasswordLabel = 'Hide password',
+    revealPasswordLabel = 'Afficher le mot de passe',
+    hidePasswordLabel = 'Masquer le mot de passe',
     className,
     disabled,
     readOnly,

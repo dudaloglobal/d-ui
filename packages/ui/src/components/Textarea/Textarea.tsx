@@ -43,7 +43,7 @@ export type TextareaProps = Omit<
   /** Bouton d’effacement dès que la valeur n’est pas vide. */
   clearable?: boolean;
   onClear?: () => void;
-  /** Nom accessible du bouton d’effacement. Défaut `"Clear"`. */
+  /** Nom accessible du bouton d’effacement. Défaut `"Effacer"`. */
   clearLabel?: string;
   /**
    * Compteur de caractères (restants si `maxLength` est posé).
@@ -72,7 +72,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
     focusShadow,
     clearable = false,
     onClear,
-    clearLabel = 'Clear',
+    clearLabel = 'Effacer',
     showCount,
     countMessage = defaultCountMessage,
     className,

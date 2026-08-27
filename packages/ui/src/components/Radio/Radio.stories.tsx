@@ -30,7 +30,6 @@ const meta = {
   component: Radio,
   args: {
     value: 'monthly',
-    label: 'Mensuel',
   },
   argTypes: radioArgTypes,
   parameters: {

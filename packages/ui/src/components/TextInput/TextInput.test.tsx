@@ -118,6 +118,24 @@ describe('TextInput', () => {
     expect(screen.getByRole('textbox', { name: 'Site' })).toHaveAccessibleName('Site');
   });
 
+  it('clears the value with the default French accessible name', async () => {
+    const user = userEvent.setup();
+    render(<TextInput label="Nom" clearable defaultValue="Ada" />);
+    await user.click(screen.getByRole('button', { name: 'Effacer' }));
+    expect(screen.getByRole('textbox', { name: 'Nom' })).toHaveValue('');
+  });
+
+  it('toggles password visibility with the default French accessible name', async () => {
+    const user = userEvent.setup();
+    render(<TextInput label="Mot de passe" type="password" defaultValue="secret" />);
+    const input = screen.getByLabelText('Mot de passe', { selector: 'input' });
+    await user.click(screen.getByRole('button', { name: 'Afficher le mot de passe' }));
+    expect(input).toHaveAttribute('type', 'text');
+    expect(
+      screen.getByRole('button', { name: 'Masquer le mot de passe' }),
+    ).toBeInTheDocument();
+  });
+
   it('clears the value with an accessible control', async () => {
     const user = userEvent.setup();
     const onClear = vi.fn();
@@ -190,9 +208,9 @@ describe('TextInput', () => {
     const user = userEvent.setup();
     render(<TextInput label="Bio" maxLength={10} defaultValue="hey" />);
     const input = screen.getByRole('textbox', { name: 'Bio' });
-    expect(input).toHaveAccessibleDescription('7 characters remaining');
+    expect(input).toHaveAccessibleDescription('7 caractères restants');
     await user.type(input, '!');
-    expect(input).toHaveAccessibleDescription('6 characters remaining');
+    expect(input).toHaveAccessibleDescription('6 caractères restants');
   });
 
   it('renders a number input as a spinbutton', () => {
@@ -218,8 +236,8 @@ describe('TextInput', () => {
   it('can hide the character count when maxLength is set', () => {
     render(<TextInput label="Bio" maxLength={10} defaultValue="hey" showCount={false} />);
     const input = screen.getByRole('textbox', { name: 'Bio' });
-    expect(input).not.toHaveAccessibleDescription('7 characters remaining');
-    expect(screen.queryByText(/characters remaining/)).not.toBeInTheDocument();
+    expect(input).not.toHaveAccessibleDescription('7 caractères restants');
+    expect(screen.queryByText(/caractères restants/)).not.toBeInTheDocument();
   });
 
   it('uses a localized countMessage', () => {

@@ -1,96 +1,101 @@
 import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { H1, H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
 import * as CheckboxStories from './Checkbox.stories';
 
 <Meta of={CheckboxStories} />
 
-# Checkbox
+<H1 k="checkbox.title" />
 
-`Checkbox` est une case à cocher native. Pour plusieurs options indépendantes, utilisez `CheckboxGroup`.
+<P k="checkbox.intro" />
 
-Les exemples suivent la **langue** de la barre d’outils Storybook (**Français** par défaut).
+<P k="chrome.examplesFollow" />
 
 <Canvas of={CheckboxStories.Default} />
 
-## États particuliers
+<H2 k="chrome.specialStates" />
 
-Deux états particuliers : `disabled` et `invalid`.
+<P k="chrome.twoStates" />
 
-### Désactivé
+<H3 k="chrome.disabled" />
 
-Utilisez `disabled` lorsque la valeur ne peut pas être modifiée.
+<P k="chrome.useDisabled" />
 
 <Canvas of={CheckboxStories.Disabled} />
 
-### Invalide
+<H3 k="chrome.invalid" />
 
-Utilisez `invalid` (et `error` pour le message) pour indiquer que la valeur est considérée comme incorrecte. `invalid` pose `aria-invalid`.
+<P k="checkbox.useInvalid" />
 
 <Canvas of={CheckboxStories.Invalid} />
 
-## Options
+<H2 k="chrome.options" />
 
-### Requis
+<H3 k="chrome.required" />
 
-Utilisez `required` pour indiquer que la case doit être cochée avant l’envoi du formulaire. Un astérisque est affiché à côté du libellé.
+<P k="checkbox.useRequired" />
 
 <Canvas of={CheckboxStories.Required} />
 
-### Aide
+<H3 k="chrome.helper" />
 
-Utilisez `helper` pour donner une indication.
+<P k="chrome.useHelper" />
 
 <Canvas of={CheckboxStories.Helper} />
 
-### État indéterminé
+<H3 k="chrome.indeterminate" />
 
-`indeterminate` représente un état mixte (ni tout coché, ni tout décoché), typiquement sur « Tout sélectionner ». Pose `aria-checked="mixed"`.
+<P k="checkbox.useIndeterminate" />
 
 <Canvas of={CheckboxStories.Indeterminate} />
 
-### Tailles
+<H3 k="chrome.sizes" />
 
-`sm` lorsque l’espace est contraint, `md` par défaut, `lg` pour les formulaires aérés.
+<P k="chrome.useSizes" />
 
 <Canvas of={CheckboxStories.Sizes} />
 
-## Groupe
+<H2 k="chrome.group" />
 
-`CheckboxGroup` enveloppe les options dans un `fieldset` nommé par `label` (`<legend>`). La valeur est un tableau de chaînes.
+<P k="checkbox.groupBody" />
 
 <Canvas of={CheckboxStories.Group} />
 
-### Disposition
+<H3 k="chrome.layout" />
 
-`orientation="horizontal"` aligne les options sur une ligne.
+<P k="chrome.useHorizontal" />
 
 <Canvas of={CheckboxStories.HorizontalGroup} />
 
-## Accessibilité
+<H2 k="chrome.accessibility" />
 
-`Checkbox` rend un `<input type="checkbox">` natif. Associez toujours un label visible : prop `label`, `aria-labelledby`, ou un `<label htmlFor>` externe.
+<P k="checkbox.a11yBody" />
 
-`CheckboxGroup` pose `fieldset` + `legend`. Ne pas simuler un groupe avec des `div` et `role="group"` si un `fieldset` suffit.
+<P k="checkbox.a11yGroup" />
 
-Le champ peut être désactivé : `disabled` n’est plus focusable. Indiquez autrement pourquoi le contrôle est là.
+<P k="checkbox.a11yDisabled" />
 
-### À faire
+<H3 k="chrome.do" />
 
-- `<Checkbox label="J’accepte les conditions" required />`
-- `CheckboxGroup` pour plusieurs options liées
-- `invalid` **et** un message `error` (ne pas se fier à la couleur seule)
-- `indeterminate` pour un parent « tout sélectionner »
+<Ul
+  items={[
+    'checkbox.doTerms',
+    'checkbox.doGroup',
+    'checkbox.doInvalid',
+    'checkbox.doIndeterminate',
+  ]}
+/>
 
-### À éviter
+<H3 k="chrome.dont" />
 
-- Une case identifiée seulement par la proximité d’un texte
-- Tree checkbox (hors périmètre)
-- `required` sur chaque option d’un groupe multi-sélection
+<Ul
+  items={['checkbox.dontProximity', 'checkbox.dontTree', 'checkbox.dontRequiredEach']}
+/>
 
-Thème sombre : barre d’outils **Thème**. Langue des exemples : barre d’outils **Langue**.
+<P k="chrome.themeLang" />
 
-## Propriétés
+<H2 k="chrome.properties" />
 
-Les attributs natifs `<input>` (`name`, `value`, `className`, …) sont transmis au contrôle.
+<P k="chrome.nativeInput" />
 
 <ArgTypes
   of={CheckboxStories}

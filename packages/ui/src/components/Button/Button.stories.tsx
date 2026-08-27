@@ -82,15 +82,25 @@ function SplitButton({
   variant?: ButtonVariant;
   size?: ButtonSize;
 }) {
+  const outlined = variant === 'secondary';
   return (
-    <div className="inline-flex overflow-hidden rounded-md">
-      <Button variant={variant} size={size} className="rounded-none">
+    <div
+      className={cx(
+        'inline-flex overflow-hidden rounded-md',
+        outlined && 'ring-1 ring-inset ring-border',
+      )}
+    >
+      <Button
+        variant={variant}
+        size={size}
+        className={cx('!rounded-none', outlined && '!border-0')}
+      >
         {copy.split}
       </Button>
       <span
         className={cx(
           'w-px shrink-0 self-stretch',
-          variant === 'secondary' || variant === 'ghost' ? 'bg-border' : 'bg-on-brand/30',
+          outlined ? 'bg-border' : 'bg-on-brand/30',
         )}
         aria-hidden="true"
       />
@@ -101,7 +111,7 @@ function SplitButton({
         aria-label={copy.moreActions}
         aria-haspopup="true"
         aria-expanded={false}
-        className="rounded-none"
+        className={cx('!rounded-none', outlined && '!border-0')}
       />
     </div>
   );

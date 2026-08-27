@@ -1,87 +1,84 @@
 import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { H1, H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
 import * as RadioStories from './Radio.stories';
 
 <Meta of={RadioStories} />
 
-# Radio
+<H1 k="radio.title" />
 
-`Radio` est un bouton radio natif. Utilisez-le dans un `RadioGroup` pour un choix exclusif.
+<P k="radio.intro" />
 
-Les exemples suivent la **langue** de la barre d’outils Storybook (**Français** par défaut).
+<P k="chrome.examplesFollow" />
 
 <Canvas of={RadioStories.Default} />
 
-## États particuliers
+<H2 k="chrome.specialStates" />
 
-Deux états particuliers : `disabled` et `invalid`.
+<P k="chrome.twoStates" />
 
-### Désactivé
+<H3 k="chrome.disabled" />
 
-Utilisez `disabled` sur le groupe lorsque la valeur ne peut pas être modifiée.
+<P k="radio.useDisabled" />
 
 <Canvas of={RadioStories.Disabled} />
 
-### Invalide
+<H3 k="chrome.invalid" />
 
-Utilisez `invalid` (et `error` pour le message) pour indiquer qu’aucune option n’est considérée comme correcte. Le groupe pose `aria-invalid` sur le `fieldset`.
+<P k="radio.useInvalid" />
 
 <Canvas of={RadioStories.Invalid} />
 
-## Options
+<H2 k="chrome.options" />
 
-### Requis
+<H3 k="chrome.required" />
 
-Utilisez `required` sur le groupe pour exiger une sélection avant l’envoi du formulaire. Un astérisque est affiché à côté de la légende.
+<P k="radio.useRequired" />
 
 <Canvas of={RadioStories.Required} />
 
-### Aide
+<H3 k="chrome.helper" />
 
-Utilisez `helper` pour donner une indication.
+<P k="chrome.useHelper" />
 
 <Canvas of={RadioStories.Helper} />
 
-### Tailles
+<H3 k="chrome.sizes" />
 
-`sm` lorsque l’espace est contraint, `md` par défaut, `lg` pour les formulaires aérés.
+<P k="chrome.useSizes" />
 
 <Canvas of={RadioStories.Sizes} />
 
-## Groupe
+<H2 k="chrome.group" />
 
-`RadioGroup` enveloppe les options dans un `fieldset` nommé par `label` (`<legend>`). Toutes les radios partagent le même `name`. La valeur est une chaîne.
+<P k="radio.groupBody" />
 
 <Canvas of={RadioStories.Default} />
 
-### Disposition
+<H3 k="chrome.layout" />
 
-`orientation="horizontal"` aligne les options sur une ligne.
+<P k="chrome.useHorizontal" />
 
 <Canvas of={RadioStories.Horizontal} />
 
-## Accessibilité
+<H2 k="chrome.accessibility" />
 
-`Radio` rend un `<input type="radio">` natif. Le groupe utilise `fieldset` + `legend`. Les flèches déplacent la sélection dans le groupe.
+<P k="radio.a11yBody" />
 
-Associez toujours un label visible par option. La légende du groupe nomme l’ensemble, pas chaque radio.
+<P k="radio.a11yLabel" />
 
-### À faire
+<H3 k="chrome.do" />
 
-- `RadioGroup` + `Radio` avec `value` distinctes
-- Un `name` **par groupe** sur la page (ou omettre `name` : un identifiant est généré)
-- `invalid` **et** un message `error` (ne pas se fier à la couleur seule)
+<Ul items={['radio.doGroup', 'radio.doName', 'radio.doInvalid']} />
 
-### À éviter
+<H3 k="chrome.dont" />
 
-- Des radios sans groupe nommé
-- Segmented control (hors périmètre)
-- Simuler un choix exclusif avec des cases à cocher
+<Ul items={['radio.dontUngrouped', 'radio.dontSegmented', 'radio.dontCheckboxes']} />
 
-Thème sombre : barre d’outils **Thème**. Langue des exemples : barre d’outils **Langue**.
+<P k="chrome.themeLang" />
 
-## Propriétés
+<H2 k="chrome.properties" />
 
-Les attributs natifs `<input>` (`name`, `className`, …) sont transmis au contrôle. `value` est obligatoire.
+<P k="radio.nativeForward" />
 
 <ArgTypes
   of={RadioStories}

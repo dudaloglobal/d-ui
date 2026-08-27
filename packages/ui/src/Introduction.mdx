@@ -1,21 +1,20 @@
 import { Meta } from '@storybook/blocks';
+import { H1, H2, Ol, P } from '../.storybook/docs-i18n';
 
 <Meta title="Introduction" />
 
-# d-ui
+<H1 k="intro.title" />
 
-Storybook du package **d-ui** (Dudalo Design System).
+<P k="intro.lead" />
 
-## Contrat public
+<H2 k="intro.contract" />
 
-Les applications consommatrices utilisent :
+<P k="intro.consume" />
 
-1. les composants React (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `TimeAgo`, `ThemeProvider`, …)
-2. les **variables CSS** `--d-ui-*`
-3. la feuille `d-ui/styles.css`
+<Ol items={['intro.itemComponents', 'intro.itemCssVars', 'intro.itemStyles']} />
 
-Ne pas dépendre des classes Tailwind internes du package.
+<P k="intro.noTailwind" />
 
-## Accessibilité
+<H2 k="intro.a11y" />
 
-Cible **WCAG 2.2 AA**. Chaque story est contrôlée avec l’addon a11y. Voir `docs/accessibility.md`.
+<P k="intro.a11yBody" />

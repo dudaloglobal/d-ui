@@ -131,10 +131,10 @@ test('Toolbar Dark restyles manager chrome, not only the iframe', async ({ page 
     lightSidebar,
   );
   await page
-    .getByRole('button', { name: /Clair|Light/i })
+    .getByRole('button', { name: /Clair|Light/ })
     .first()
     .click();
-  await page.getByText('Sombre', { exact: true }).first().click();
+  await page.getByRole('button', { name: /^(Sombre|Dark)$/ }).click();
   await expect(page.locator('nav.sidebar-container')).toHaveCSS(
     'background-color',
     darkAppBg,
@@ -226,6 +226,8 @@ test('French TextInput docs do not leak English headings or example copy', async
   await expect(preview.getByText('Text field label')).toHaveCount(0);
   await expect(preview.getByText('Helper text')).toHaveCount(0);
   await expect(preview.getByText('characters remaining')).toHaveCount(0);
+  await expect(preview.getByText('"Clear"')).toHaveCount(0);
+  await expect(preview.getByText('Show password')).toHaveCount(0);
   await expect(
     preview.getByRole('textbox', { name: 'Libellé du champ' }).first(),
   ).toBeVisible();
@@ -243,10 +245,14 @@ test('French Properties tables use French descriptions', async ({ page }) => {
   await page.goto('/?path=/docs/components-textinput--docs');
   await expect(preview.getByText(/Libellé visible au-dessus du champ/)).toBeVisible();
   await expect(preview.getByText('Emphasis: primary')).toHaveCount(0);
+  await expect(preview.getByText('"Effacer"')).toBeVisible();
 
   await page.goto('/?path=/docs/components-button--docs');
   await expect(preview.getByText(/Emphase/)).toBeVisible();
   await expect(preview.getByText('Stretch to the container width.')).toHaveCount(0);
+  await expect(preview.getByText('high emphasis')).toHaveCount(0);
+  await expect(preview.getByText('medium emphasis')).toHaveCount(0);
+  await expect(preview.getByText('low emphasis')).toHaveCount(0);
 
   await page.goto('/?path=/docs/components-timeago--docs');
   await expect(preview.getByText(/Instant à afficher/)).toBeVisible();
@@ -591,4 +597,53 @@ test('French selection Properties tables use French descriptions', async ({ page
   await expect(preview.getByText(/Libellé visible à côté du contrôle/)).toBeVisible();
   await page.goto('/?path=/docs/components-switch--docs');
   await expect(preview.getByText(/Pose `aria-checked`/)).toBeVisible();
+});
+
+test('English globals switch example copy on every component canvas', async ({
+  page,
+}) => {
+  const cases = [
+    { id: 'components-button--high-emphasis', en: 'Default', fr: 'Par défaut' },
+    {
+      id: 'components-textinput--default',
+      en: 'Text field label',
+      fr: 'Libellé du champ',
+    },
+    {
+      id: 'components-textarea--default',
+      en: 'Text area label',
+      fr: 'Libellé de la zone de texte',
+    },
+    { id: 'components-timeago--default', en: 'Submitted', fr: 'Soumis' },
+    {
+      id: 'components-checkbox--default',
+      en: 'Receive notifications',
+      fr: 'Recevoir les notifications',
+    },
+    { id: 'components-radio--default', en: 'Monthly', fr: 'Mensuel' },
+    { id: 'components-switch--default', en: 'Compact mode', fr: 'Mode compact' },
+  ] as const;
+  for (const { id, en, fr } of cases) {
+    await page.goto(`/iframe.html?id=${id}&globals=locale:en`);
+    await expect(page.getByText(en, { exact: true }).first()).toBeVisible();
+    await expect(page.getByText(fr, { exact: true })).toHaveCount(0);
+  }
+});
+
+test('Langue toolbar remounts docs canvases in English', async ({ page }) => {
+  await page.goto('/?path=/docs/components-button--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { name: 'Forte emphase' })).toBeVisible();
+  await expect(preview.getByRole('button', { name: 'Par défaut' }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Forte emphase' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Clair' })).toBeVisible();
+  await page.getByRole('button', { name: 'Français' }).click();
+  await page.getByRole('button', { name: /English/ }).click();
+  await expect(preview.getByRole('heading', { name: 'High emphasis' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Forte emphase' })).toHaveCount(0);
+  await expect(preview.getByRole('button', { name: 'Default' }).first()).toBeVisible();
+  await expect(preview.getByRole('button', { name: 'Par défaut' })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'High emphasis' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Light' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Clair' })).toHaveCount(0);
 });

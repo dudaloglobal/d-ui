@@ -28,7 +28,7 @@ export function stringifyValue(
 export function defaultCountMessage(count: number, maxLength?: number): string {
   if (maxLength == null) return String(count);
   const remaining = Math.max(0, maxLength - count);
-  return remaining === 1 ? '1 character remaining' : `${remaining} characters remaining`;
+  return remaining === 1 ? '1 caractère restant' : `${remaining} caractères restants`;
 }
 
 export function frameClass({

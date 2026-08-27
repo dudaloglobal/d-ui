@@ -137,7 +137,7 @@ export const textFieldArgTypes = {
     description: 'Bouton d’effacement dès que la valeur n’est pas vide.',
   },
   clearLabel: {
-    description: 'Nom accessible du bouton d’effacement. Défaut : `"Clear"`.',
+    description: 'Nom accessible du bouton d’effacement. Défaut : `"Effacer"`.',
   },
   showCount: {
     control: 'boolean' as const,
@@ -148,8 +148,12 @@ export const textFieldArgTypes = {
     description: 'Longueur maximale. Affiche le compteur sauf si `showCount={false}`.',
   },
   countMessage: {
+    control: { disable: true },
     description:
-      'Libellé du compteur. Reçoit le nombre de caractères et `maxLength`. À localiser.',
+      'Libellé du compteur. Reçoit le nombre de caractères et `maxLength`. Défaut : « n caractères restants ». À remplacer pour une autre langue.',
+    table: {
+      defaultValue: { summary: 'n caractères restants' },
+    },
   },
 };
 
@@ -163,11 +167,11 @@ export const textInputArgTypes = {
   },
   revealPasswordLabel: {
     description:
-      'Nom accessible pour afficher le mot de passe. Défaut : `"Show password"`.',
+      'Nom accessible pour afficher le mot de passe. Défaut : `"Afficher le mot de passe"`.',
   },
   hidePasswordLabel: {
     description:
-      'Nom accessible pour masquer le mot de passe. Défaut : `"Hide password"`.',
+      'Nom accessible pour masquer le mot de passe. Défaut : `"Masquer le mot de passe"`.',
   },
 };
 
