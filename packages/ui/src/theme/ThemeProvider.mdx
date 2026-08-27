@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { H2, H3, P, Ul } from '../../.storybook/docs-i18n';
+import * as ThemeStories from './ThemeProvider.stories';
+
+<Meta of={ThemeStories} />
+
+# ThemeProvider
+
+<P k="theme.intro" />
+
+<P k="theme.toolbar" />
+
+<Canvas of={ThemeStories.BrandOverride} />
+
+<H2 k="theme.system" />
+
+<P k="theme.systemBody" />
+
+<Canvas of={ThemeStories.System} />
+
+<H2 k="theme.brand" />
+
+<P k="theme.brandBody" />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="theme.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['theme.doRoot', 'theme.doSystem', 'theme.doTokens']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['theme.dontDocument', 'theme.dontHex', 'theme.dontNest']} />
+
+<H2 k="chrome.properties" />
+
+<P k="theme.props" />
+
+<ArgTypes of={ThemeStories} include={['mode', 'tokens']} />

@@ -29,4 +29,8 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
+      - name: Types entry matches package.json
+        run: test -f packages/ui/dist/index.d.ts
+      - name: Dry-run pack
+        run: pnpm --filter d-ui exec npm pack --dry-run
       - run: pnpm build-storybook

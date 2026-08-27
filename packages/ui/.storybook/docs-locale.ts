@@ -62,6 +62,11 @@ export const storyNameEn: Record<string, string> = {
   'Erreur de liste': 'List error',
   'Types de filtre': 'Filter types',
   Descriptions: 'Descriptions',
+  Clavier: 'Keyboard',
+  'Cible personnalisée': 'Custom target',
+  'Nom d’un bouton icône': 'Icon-only button name',
+  'Surcharge de marque': 'Brand override',
+  Système: 'System',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -433,4 +438,62 @@ export type OverlayDocsCopy = typeof overlayFr;
 
 export function overlayCopy(locale: DocsLocale): OverlayDocsCopy {
   return locale === 'en' ? overlayEn : overlayFr;
+}
+
+const skipLinkFr = {
+  label: 'Aller au contenu principal',
+  customLabel: 'Aller au contenu',
+  hint: 'Tabulation une fois — le lien d’évitement devient visible. Entrée envoie le focus vers le contenu principal.',
+  main: 'Contenu principal',
+  customTarget: 'Zone de contenu',
+  customHint: 'href="#content" — même comportement, autre cible.',
+};
+
+const skipLinkEn = {
+  label: 'Skip to main content',
+  customLabel: 'Skip to content',
+  hint: 'Tab once — the skip link becomes visible. Enter moves focus to the main landmark.',
+  main: 'Main content',
+  customTarget: 'Content area',
+  customHint: 'href="#content" — same behaviour, different target.',
+};
+
+export type SkipLinkDocsCopy = typeof skipLinkFr;
+
+export function skipLinkCopy(locale: DocsLocale): SkipLinkDocsCopy {
+  return locale === 'en' ? skipLinkEn : skipLinkFr;
+}
+
+const visuallyHiddenFr = {
+  close: 'Fermer',
+};
+
+const visuallyHiddenEn = {
+  close: 'Close',
+};
+
+export type VisuallyHiddenDocsCopy = typeof visuallyHiddenFr;
+
+export function visuallyHiddenCopy(locale: DocsLocale): VisuallyHiddenDocsCopy {
+  return locale === 'en' ? visuallyHiddenEn : visuallyHiddenFr;
+}
+
+const themeFr = {
+  brand: 'Marque violet',
+  system: 'Suit le système',
+  systemHint:
+    'mode="system" — suit prefers-color-scheme, sans toucher document.documentElement.',
+};
+
+const themeEn = {
+  brand: 'Purple brand',
+  system: 'Follows the system',
+  systemHint:
+    'mode="system" — follows prefers-color-scheme, without touching document.documentElement.',
+};
+
+export type ThemeDocsCopy = typeof themeFr;
+
+export function themeCopy(locale: DocsLocale): ThemeDocsCopy {
+  return locale === 'en' ? themeEn : themeFr;
 }

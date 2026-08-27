@@ -2,6 +2,9 @@
 [data-d-ui-theme='light'] {
   --d-ui-color-bg: #ffffff;
   --d-ui-color-fg: #0f172a;
+  /* Texte secondaire : hiérarchie visuelle, jamais en dessous de 4.5:1. */
+  --d-ui-color-fg-muted: #475569;
+  --d-ui-color-fg-disabled: #94a3b8;
   --d-ui-color-brand: #0f5c4c;
   --d-ui-color-brand-hover: #0c4a3e;
   --d-ui-color-on-brand: #ffffff;
@@ -10,20 +13,32 @@
   --d-ui-color-field: rgba(15, 23, 42, 0.03);
   --d-ui-color-field-hover: rgba(15, 23, 42, 0.12);
   --d-ui-color-border: #cbd5e1;
-  --d-ui-color-danger: #b91c1c;
-  --d-ui-color-success: #15803d;
   --d-ui-color-focus: #0f5c4c;
-  --d-ui-shadow-focus: 0 0 0 4px rgb(15 92 76 / 0.2), 0 0 10px 2px rgb(15 92 76 / 0.18);
+  --d-ui-color-danger: #b91c1c;
+  --d-ui-color-on-danger: #ffffff;
+  --d-ui-color-warning: #b54708;
+  --d-ui-color-on-warning: #ffffff;
+  --d-ui-color-success: #15803d;
+  --d-ui-color-on-success: #ffffff;
+  --d-ui-color-info: #175cd3;
+  --d-ui-color-on-info: #ffffff;
   --d-ui-font-sans:
     ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
     sans-serif;
   --d-ui-radius-md: 0.375rem;
   --d-ui-z-overlay: 1100;
+  --d-ui-space-1: 0.25rem;
+  --d-ui-space-2: 0.5rem;
+  --d-ui-space-3: 0.75rem;
+  --d-ui-space-4: 1rem;
+  --d-ui-shadow-focus: 0 0 0 4px rgb(15 92 76 / 0.2), 0 0 10px 2px rgb(15 92 76 / 0.18);
 }
 
 [data-d-ui-theme='dark'] {
   --d-ui-color-bg: #0b1220;
   --d-ui-color-fg: #f1f5f9;
+  --d-ui-color-fg-muted: #94a3b8;
+  --d-ui-color-fg-disabled: #64748b;
   --d-ui-color-brand: #5eead4;
   --d-ui-color-brand-hover: #2dd4bf;
   --d-ui-color-on-brand: #042f2e;
@@ -32,9 +47,15 @@
   --d-ui-color-field: rgba(241, 245, 249, 0.03);
   --d-ui-color-field-hover: rgba(241, 245, 249, 0.12);
   --d-ui-color-border: #475569;
-  --d-ui-color-danger: #f87171;
-  --d-ui-color-success: #4ade80;
   --d-ui-color-focus: #5eead4;
+  --d-ui-color-danger: #f87171;
+  --d-ui-color-on-danger: #1d0403;
+  --d-ui-color-warning: #fdb022;
+  --d-ui-color-on-warning: #1d0f02;
+  --d-ui-color-success: #4ade80;
+  --d-ui-color-on-success: #052e1c;
+  --d-ui-color-info: #84caff;
+  --d-ui-color-on-info: #06243e;
   --d-ui-shadow-focus:
     0 0 0 4px rgb(94 234 212 / 0.28), 0 0 12px 2px rgb(94 234 212 / 0.22);
 }

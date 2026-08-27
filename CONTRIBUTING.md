@@ -30,15 +30,21 @@ La CI :
 
 Ne pas merger une PR sans ce lien.
 
+## Definition of Done
+
+Un composant n’est pas fini sans :
+
+- API exportée depuis `d-ui`
+- tokens (aucun hex sémantique dans le TSX)
+- HTML sémantique, clavier, focus visible, nom accessible — [docs/accessibility.md](./docs/accessibility.md)
+- tests Testing Library + story **et** MDX (voir [docs/component-conventions.md](./docs/component-conventions.md))
+- conventions : [docs/component-conventions.md](./docs/component-conventions.md)
+
 ## Qualité (KISS, SOLID, DRY)
 
 - Un module = un job. Pas d’abstraction « au cas où ».
 - Réutiliser tokens, `cx`, `ThemeProvider` plutôt que de recréer des couleurs ou des classNames.
 - Le domaine Education n’entre pas dans `d-ui`.
-
-## Accessibilité
-
-Cible WCAG 2.2 AA. Checklist dans le template de PR et dans [docs/accessibility.md](./docs/accessibility.md).
 
 ## Tests
 
@@ -46,4 +52,4 @@ Pour un composant interactif : test Testing Library (rôle, nom accessible, clav
 
 ## Release
 
-Changesets (`pnpm changeset`). Publication NPM : ticket dédié, pas depuis une PR de composant.
+Changesets (`pnpm changeset`). Détail : [docs/release.md](./docs/release.md).

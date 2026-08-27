@@ -7,12 +7,15 @@ import {
   inputCopy,
   localeFromSearch,
   selectionCopy,
+  skipLinkCopy,
   storyNameEn,
   storyLabel,
   toolbarLabel,
+  themeCopy,
   timeAgoCopy,
   overlayCopy,
   selectCopy,
+  visuallyHiddenCopy,
 } from '../.storybook/docs-locale';
 
 /** English MDX headings that must not appear: docs default language is French. */
@@ -65,6 +68,12 @@ const ENGLISH_HEADINGS = [
   'Filter types',
   'Loading more',
   'Input options',
+  'Keyboard',
+  'Brand override',
+  'Adding a token',
+  'Contrast',
+  'Usage',
+  'Overview',
 ];
 
 function collectMdx(dir: string): string[] {
@@ -89,6 +98,9 @@ describe('docs locale', () => {
     expect(keysOf(selectionCopy('fr'))).toEqual(keysOf(selectionCopy('en')));
     expect(keysOf(overlayCopy('fr'))).toEqual(keysOf(overlayCopy('en')));
     expect(keysOf(selectCopy('fr'))).toEqual(keysOf(selectCopy('en')));
+    expect(keysOf(skipLinkCopy('fr'))).toEqual(keysOf(skipLinkCopy('en')));
+    expect(keysOf(visuallyHiddenCopy('fr'))).toEqual(keysOf(visuallyHiddenCopy('en')));
+    expect(keysOf(themeCopy('fr'))).toEqual(keysOf(themeCopy('en')));
   });
 
   it('writes MDX section headings in French', () => {
@@ -121,6 +133,7 @@ describe('docs locale', () => {
     expect(text).toContain('Emphase : `primary`');
     expect(text).toContain('Libellé visible au-dessus du champ');
     expect(text).toContain('`"Effacer"`');
+    expect(text).toContain('Cible du lien, un identifiant de page');
     expect(text).not.toContain('"Clear"');
     expect(text).not.toContain('Show password');
     expect(text).not.toContain('character remaining');

@@ -90,8 +90,8 @@ export const docsCopy = {
       en: 'Consuming apps use:',
     },
     itemComponents: {
-      fr: 'les composants React (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, …)',
-      en: 'the React components (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, …)',
+      fr: 'les composants React (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      en: 'the React components (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
     },
     itemCssVars: {
       fr: 'les **variables CSS** `--d-ui-*`',
@@ -109,6 +109,201 @@ export const docsCopy = {
     a11yBody: {
       fr: 'Cible **WCAG 2.2 AA**. Chaque story est contrôlée avec l’addon a11y. Voir `docs/accessibility.md`.',
       en: 'Target **WCAG 2.2 AA**. Every story is checked with the a11y addon. See `docs/accessibility.md`.',
+    },
+  },
+  skipLink: {
+    intro: {
+      fr: '`SkipLink` est le premier contrôle focusable d’une coquille d’application. Invisible tant qu’on n’utilise pas le clavier, il apparaît au focus et envoie vers le landmark principal — pour ne pas tabuler tout le chrome (WCAG 2.4.1).',
+      en: '`SkipLink` is the first focusable control in an app shell. Hidden until the keyboard is used, it appears on focus and jumps to the main landmark — so you do not tab through all the chrome (WCAG 2.4.1).',
+    },
+    target: { fr: 'Cible', en: 'Target' },
+    targetBody: {
+      fr: '`href` pointe un identifiant déjà focusable, en général `<main id="main" tabIndex={-1}>`. Le composant **ne pose pas** `tabIndex` sur la cible : c’est à l’application de rendre le landmark focusable. Si la cible est absente **ou** ne peut pas recevoir le focus, le clic n’est pas annulé : le navigateur suit l’ancre.',
+      en: '`href` points at an already-focusable id, usually `<main id="main" tabIndex={-1}>`. The component does **not** set `tabIndex` on the target: the app must make the landmark focusable. If the target is missing **or** cannot take focus, the click is not cancelled: the browser follows the hash.',
+    },
+    label: { fr: 'Libellé', en: 'Label' },
+    labelBody: {
+      fr: 'Le texte par défaut est anglais (`Skip to main content`) — c’est le seul fallback a11y autorisé dans un composant. Passez `children` dans la langue de l’app (`Aller au contenu principal`).',
+      en: 'The default text is English (`Skip to main content`) — the only a11y fallback allowed in a component. Pass `children` in the app language (`Skip to main content`).',
+    },
+    a11yBody: {
+      fr: '`SkipLink` rend un `<a href="#main">`. Pas de `role`, pas de `div` cliquable. Au clic / Entrée, si la cible existe, le focus y est déplacé sans muter le DOM hôte. `SkipLink` n’est **pas** un overlay : pas de piège de Tab, pas d’`aria-modal`.',
+      en: '`SkipLink` renders an `<a href="#main">`. No `role`, no clickable `div`. On click / Enter, if the target exists, focus moves there without mutating the host DOM. `SkipLink` is **not** an overlay: no Tab trap, no `aria-modal`.',
+    },
+    doMain: {
+      fr: '`<SkipLink>Aller au contenu principal</SkipLink>` avec `<main id="main" tabIndex={-1}>`',
+      en: '`<SkipLink>Skip to main content</SkipLink>` with `<main id="main" tabIndex={-1}>`',
+    },
+    doOnce: {
+      fr: 'Un seul skip link, tout en haut du `ThemeProvider`',
+      en: 'A single skip link, at the top of `ThemeProvider`',
+    },
+    doHref: {
+      fr: '`href="#content"` seulement si le landmark s’appelle `content`',
+      en: '`href="#content"` only if the landmark is named `content`',
+    },
+    dontTabIndex: {
+      fr: 'Omettre `tabIndex={-1}` sur `main` (le focus n’ira pas ; le saut d’ancre natif prend le relais)',
+      en: 'Omitting `tabIndex={-1}` on `main` (focus will not move; native hash navigation takes over)',
+    },
+    dontButton: {
+      fr: 'Un `<button>` ou un `div` + `onKeyDown` à la place du lien',
+      en: 'A `<button>` or a `div` + `onKeyDown` instead of the link',
+    },
+    dontDuplicate: {
+      fr: 'Dupliquer le lien dans chaque page alors que la coquille l’a déjà',
+      en: 'Duplicating the link on every page when the shell already has it',
+    },
+    props: {
+      fr: 'Les attributs natifs `<a>` (`className`, `onClick`, …) sont transmis. `href` doit rester une ancre (`#…`).',
+      en: 'Native `<a>` attributes (`className`, `onClick`, …) are forwarded. `href` must stay a hash (`#…`).',
+    },
+  },
+  visuallyHidden: {
+    intro: {
+      fr: '`VisuallyHidden` masque un texte à l’écran tout en le laissant aux technologies d’assistance. C’est le nom accessible d’un contrôle sans libellé visible (bouton icône, pagination « page 3 sur 12 »).',
+      en: '`VisuallyHidden` hides text on screen while leaving it for assistive technologies. It is the accessible name of a control with no visible label (icon button, pagination “page 3 of 12”).',
+    },
+    notTooltip: {
+      fr: 'Ce n’est **pas** un tooltip, ni un `title`, ni `aria-label` à la place d’un texte qui pourrait être visible. Si le libellé peut tenir à l’écran, affichez-le.',
+      en: 'This is **not** a tooltip, a `title`, or `aria-label` in place of text that could be visible. If the label fits on screen, show it.',
+    },
+    a11yBody: {
+      fr: 'Le composant rend un `<span>` avec la classe `d-ui-visually-hidden` (clip, pas `display: none` — `display: none` retire le texte de l’arbre d’accessibilité). Pour un bouton icône du design system, préférez `IconButton` (`aria-label` obligatoire). `VisuallyHidden` sert quand vous composez un contrôle natif vous-même.',
+      en: 'The component renders a `<span>` with the `d-ui-visually-hidden` class (clip, not `display: none` — `display: none` removes the text from the accessibility tree). For a design-system icon button, prefer `IconButton` (required `aria-label`). Use `VisuallyHidden` when you compose a native control yourself.',
+    },
+    doClose: {
+      fr: '`<button type="button"><span aria-hidden="true">×</span><VisuallyHidden>Fermer</VisuallyHidden></button>`',
+      en: '`<button type="button"><span aria-hidden="true">×</span><VisuallyHidden>Close</VisuallyHidden></button>`',
+    },
+    doReinforce: {
+      fr: 'Masquer uniquement le texte de **renfort** (unité, contexte), pas tout le contenu d’une vue',
+      en: 'Hide only **reinforcing** text (unit, context), not a whole view’s content',
+    },
+    dontDisplayNone: {
+      fr: '`display: none` / `hidden` / `aria-hidden` sur le texte à annoncer',
+      en: '`display: none` / `hidden` / `aria-hidden` on the text to announce',
+    },
+    dontReplaceLabel: {
+      fr: 'Remplacer un `label` visible de champ par `VisuallyHidden`',
+      en: 'Replacing a visible field `label` with `VisuallyHidden`',
+    },
+    dontDuplicate: {
+      fr: 'Dupliquer un nom déjà porté par `aria-label` (double annonce)',
+      en: 'Duplicating a name already provided by `aria-label` (double announcement)',
+    },
+    props: {
+      fr: 'Les attributs natifs `<span>` (`className`, `id`, …) sont transmis.',
+      en: 'Native `<span>` attributes (`className`, `id`, …) are forwarded.',
+    },
+  },
+  theme: {
+    intro: {
+      fr: '`ThemeProvider` pose `data-d-ui-theme` sur une enveloppe (`d-ui-root`). Il ne touche **pas** `document.documentElement` : plusieurs racines peuvent coexister (app + Storybook, micro-frontends).',
+      en: '`ThemeProvider` sets `data-d-ui-theme` on a wrapper (`d-ui-root`). It does **not** touch `document.documentElement`: several roots can coexist (app + Storybook, micro-frontends).',
+    },
+    toolbar: {
+      fr: 'Les exemples et cette page suivent la langue choisie dans la barre d’outils. En plus, la barre **Thème** (Clair / Sombre) pilote le canvas entier.',
+      en: 'Examples and this page follow the language chosen in the toolbar. In addition, the **Theme** toolbar (Light / Dark) drives the whole canvas.',
+    },
+    system: { fr: 'Mode système', en: 'System mode' },
+    systemBody: {
+      fr: "`mode=\"system\"` suit `prefers-color-scheme` et se met à jour si l’OS change. Le mode résolu reste `'light' | 'dark'` sur l’attribut. Utilisez `light` ou `dark` quand l’app a son propre sélecteur.",
+      en: "`mode=\"system\"` follows `prefers-color-scheme` and updates if the OS changes. The resolved mode stays `'light' | 'dark'` on the attribute. Use `light` or `dark` when the app has its own picker.",
+    },
+    brand: { fr: 'Surcharge de marque', en: 'Brand override' },
+    brandBody: {
+      fr: '`tokens` écrit `--d-ui-color-brand`, `--d-ui-color-brand-hover`, `--d-ui-color-on-brand` et `--d-ui-color-focus` en style inline. C’est le white-label : pas de nouveau nom de token, seulement des valeurs.',
+      en: '`tokens` writes `--d-ui-color-brand`, `--d-ui-color-brand-hover`, `--d-ui-color-on-brand` and `--d-ui-color-focus` as inline style. That is white-label: no new token names, only values.',
+    },
+    a11yBody: {
+      fr: 'Le thème n’est pas un widget. Le contraste des paires token doit rester AA en clair **et** en sombre (`docs/tokens.md`). Un override `brand` trop clair sur `on-brand` casse 1.4.3 — c’est à l’app de garder le rapport. `color-scheme` est posé sur `.d-ui-root` pour que les contrôles natifs (scrollbars, inputs) suivent le thème.',
+      en: 'Theme is not a widget. Token pair contrast must stay AA in light **and** dark (`docs/tokens.md`). A `brand` override that is too light on `on-brand` breaks 1.4.3 — the app must keep the ratio. `color-scheme` is set on `.d-ui-root` so native controls (scrollbars, inputs) follow the theme.',
+    },
+    doRoot: {
+      fr: 'Un `ThemeProvider` à la racine de l’app, `mode` branché sur le sélecteur utilisateur',
+      en: 'One `ThemeProvider` at the app root, `mode` wired to the user picker',
+    },
+    doSystem: {
+      fr: '`mode="system"` tant qu’il n’y a pas de préférence stockée',
+      en: '`mode="system"` until a stored preference exists',
+    },
+    doTokens: {
+      fr: '`tokens={{ brand, brandHover, onBrand, focus }}` pour un client white-label',
+      en: '`tokens={{ brand, brandHover, onBrand, focus }}` for a white-label client',
+    },
+    dontDocument: {
+      fr: 'Écrire `data-d-ui-theme` à la main sur `document.documentElement`',
+      en: 'Writing `data-d-ui-theme` by hand on `document.documentElement`',
+    },
+    dontHex: {
+      fr: 'Un hex de marque dans chaque bouton au lieu de `tokens`',
+      en: 'A brand hex in every button instead of `tokens`',
+    },
+    dontNest: {
+      fr: 'Nidifier des `ThemeProvider` pour « juste un bouton » — préférez `tokens` sur le plus proche ancêtre utile',
+      en: 'Nesting `ThemeProvider` for “just one button” — prefer `tokens` on the nearest useful ancestor',
+    },
+    props: {
+      fr: '`children` est obligatoire. `className` est fusionné sur l’enveloppe.',
+      en: '`children` is required. `className` is merged on the wrapper.',
+    },
+  },
+  tokens: {
+    intro: {
+      fr: "Les couleurs sémantiques vivent dans `packages/ui/src/styles/tokens.css`. Les hex n’existent **que là**. Les composants consomment `var(--d-ui-*)` via le pont Tailwind `@theme inline` dans `styles/index.css` — `inline` est obligatoire pour que le thème sombre suive `data-d-ui-theme` et ne fige pas les valeurs du thème clair. Les noms TypeScript publics sont `tokenNames` (`import { tokenNames } from 'd-ui'`).",
+      en: "Semantic colours live in `packages/ui/src/styles/tokens.css`. Hex values exist **only there**. Components consume `var(--d-ui-*)` through the Tailwind `@theme inline` bridge in `styles/index.css` — `inline` is required so dark theme follows `data-d-ui-theme` and does not freeze light values. Public TypeScript names are `tokenNames` (`import { tokenNames } from 'd-ui'`).",
+    },
+    contract: { fr: 'Contrat', en: 'Contract' },
+    contractBody: {
+      fr: "`--d-ui-<famille>-<rôle>` — exemple `--d-ui-color-brand`. Clair : `:root` + `[data-d-ui-theme='light']`. Sombre : `[data-d-ui-theme='dark']`. Les classes Tailwind internes (`bg-brand`, `text-fg`, …) **ne font pas** partie du contrat consommateur. Les apps utilisent les variables CSS, ou les composants.",
+      en: "`--d-ui-<family>-<role>` — example `--d-ui-color-brand`. Light: `:root` + `[data-d-ui-theme='light']`. Dark: `[data-d-ui-theme='dark']`. Internal Tailwind classes (`bg-brand`, `text-fg`, …) are **not** part of the consumer contract. Apps use CSS variables, or the components.",
+    },
+    add: { fr: 'Ajouter un token', en: 'Add a token' },
+    add1: {
+      fr: 'Déclarer la variable clair **et** sombre dans `tokens.css`.',
+      en: 'Declare the variable in light **and** dark in `tokens.css`.',
+    },
+    add2: {
+      fr: 'L’exposer dans `@theme inline` si un utilitaire interne en a besoin.',
+      en: 'Expose it in `@theme inline` if an internal utility needs it.',
+    },
+    add3: {
+      fr: 'L’ajouter à `packages/ui/src/tokens/names.ts`.',
+      en: 'Add it to `packages/ui/src/tokens/names.ts`.',
+    },
+    add4: {
+      fr: 'Documenter le contraste si c’est une paire texte / fond (`docs/tokens.md`).',
+      en: 'Document contrast if it is a text / background pair (`docs/tokens.md`).',
+    },
+    whiteLabel: {
+      fr: 'White-label : passer `tokens` à `ThemeProvider` (`brand`, `brandHover`, `onBrand`, `focus`). Cela n’ajoute pas de nouveaux noms, ça surcharge les valeurs.',
+      en: 'White-label: pass `tokens` to `ThemeProvider` (`brand`, `brandHover`, `onBrand`, `focus`). That does not add new names, it overrides values.',
+    },
+    contrast: { fr: 'Contraste', en: 'Contrast' },
+    contrastBody: {
+      fr: 'Cible release : **WCAG 2.2 AA** — 4.5:1 pour le texte, 3:1 pour l’UI non texte. Les valeurs actuelles sont un bootstrap ; le gel Figma (DS-006) les remplaçera **sans renommer** les variables si possible.',
+      en: 'Release target: **WCAG 2.2 AA** — 4.5:1 for text, 3:1 for non-text UI. Current values are a bootstrap; the Figma freeze (DS-006) will replace them **without renaming** variables if possible.',
+    },
+    doColor: {
+      fr: '`color: var(--d-ui-color-fg)` ou `className="text-fg"` **dans** le package',
+      en: '`color: var(--d-ui-color-fg)` or `className="text-fg"` **inside** the package',
+    },
+    doHex: {
+      fr: 'Un hex nouveau uniquement dans `tokens.css`, light **et** dark',
+      en: 'A new hex only in `tokens.css`, light **and** dark',
+    },
+    dontHex: {
+      fr: '`#0f172a` (ou n’importe quel hex) dans un `.tsx`',
+      en: '`#0f172a` (or any hex) in a `.tsx` file',
+    },
+    dontExpose: {
+      fr: 'Exposer `bg-brand` aux applications',
+      en: 'Exposing `bg-brand` to apps',
+    },
+    dontDecor: {
+      fr: 'Un token « décoratif » réutilisé comme frontière de contrôle',
+      en: 'A “decorative” token reused as a control boundary',
     },
   },
   button: {

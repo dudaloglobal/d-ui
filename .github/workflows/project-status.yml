@@ -1,0 +1,38 @@
+name: Project status
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - edited
+      - synchronize
+      - converted_to_draft
+      - ready_for_review
+      - closed
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: project-status-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    name: Move linked issues on the project board
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      secrets.PROJECT_TOKEN != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Sync project status
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: python3 .github/scripts/sync-project-status.py
