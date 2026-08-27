@@ -30,11 +30,11 @@ git merge-base HEAD origin/main
 
 List three sets and tell the user:
 
-| Set | Meaning |
-| --- | --- |
-| **This branch** | `git diff --name-only origin/main...HEAD` |
-| **Incoming (main)** | files changed on `origin/main` since the merge-base |
-| **Overlap** | intersection — will conflict or need a manual keep-both |
+| Set                 | Meaning                                                 |
+| ------------------- | ------------------------------------------------------- |
+| **This branch**     | `git diff --name-only origin/main...HEAD`               |
+| **Incoming (main)** | files changed on `origin/main` since the merge-base     |
+| **Overlap**         | intersection — will conflict or need a manual keep-both |
 
 Incoming unique files (Icon, typography, tokens, …) stay as on main. This-branch unique files (the ticket’s component, changeset, stories) stay as on this branch.
 
