@@ -112,6 +112,27 @@ const preview: Preview = {
   },
   decorators: [WithDuiTheme],
   parameters: {
+    options: {
+      // Must be inline (Storybook indexes this AST). Keep in sync with story-sort.ts.
+      storySort: (a, b) => {
+        const aRoot = a.title.split('/')[0] ?? '';
+        const bRoot = b.title.split('/')[0] ?? '';
+        if (aRoot !== bRoot) {
+          if (aRoot === 'Introduction') return -1;
+          if (bRoot === 'Introduction') return 1;
+          return aRoot.localeCompare(bRoot, 'en');
+        }
+        const aComponent = a.title.split('/').slice(1).join('/');
+        const bComponent = b.title.split('/').slice(1).join('/');
+        if (aComponent !== bComponent) {
+          return aComponent.localeCompare(bComponent, 'en', {
+            numeric: true,
+            sensitivity: 'base',
+          });
+        }
+        return 0;
+      },
+    },
     a11y: {
       test: 'todo',
     },

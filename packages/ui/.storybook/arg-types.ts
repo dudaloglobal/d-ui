@@ -583,3 +583,93 @@ export const dividerArgTypes = {
       'Nom accessible. Sans `label`, le trait est décoratif (`aria-hidden`). Avec `label` en horizontal, le texte est visible au centre et les filets remplissent le parent. Ne le renseigner que si la séparation porte du sens.',
   },
 };
+
+export const calendarArgTypes = {
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md', 'lg'],
+    description:
+      '`sm` si l’espace est contraint, `md` par défaut, `lg` pour les vues aérées.',
+  },
+  locale: {
+    control: 'text' as const,
+    description:
+      'Locale BCP 47 pour `Intl` et `lang`. Défaut : `fr`. Les flèches passent en anglais si la locale commence par `en`.',
+  },
+  weekStartsOn: {
+    control: { type: 'inline-radio' as const },
+    options: [0, 1, 2, 3, 4, 5, 6],
+    description:
+      'Premier jour de la semaine (0 = dimanche, 1 = lundi). Défaut : `weekStartFromLocale(locale)`.',
+  },
+  numberOfMonths: {
+    control: { type: 'inline-radio' as const },
+    options: [1, 2, 3],
+    description:
+      'Nombre de mois côte à côte (1 à 3). Défaut : 1, ou 2 si `selectionMode="range"`.',
+  },
+  disabled: {
+    control: 'boolean' as const,
+    description: 'Désactive la grille et la navigation.',
+  },
+  value: {
+    description:
+      'Sélection contrôlée : `{ year, month, day }` ou `{ start, end }` si `selectionMode="range"`. `null` = aucune.',
+  },
+  defaultValue: {
+    description: 'Sélection au montage (non contrôlé). Date unique ou `{ start, end }`.',
+  },
+  onValueChange: {
+    description: 'Appelé lorsqu’un jour disponible est choisi (date ou plage).',
+  },
+  month: {
+    description: 'Premier mois affiché (contrôlé). Le jour est ignoré.',
+  },
+  defaultMonth: {
+    description: 'Premier mois affiché au montage.',
+  },
+  onMonthChange: {
+    description: 'Appelé lorsque l’utilisateur change de mois.',
+  },
+  today: {
+    description:
+      'Date « aujourd’hui » (`aria-current="date"`). Défaut : date civile locale. À figer dans les tests.',
+  },
+  minValue: {
+    description:
+      'Première date sélectionnable (incluse). Borne aussi le sélecteur d’année.',
+  },
+  maxValue: {
+    description:
+      'Dernière date sélectionnable (incluse). Borne aussi le sélecteur d’année.',
+  },
+  selectionMode: {
+    control: 'inline-radio' as const,
+    options: ['single', 'range'],
+    description:
+      '`single` (défaut) : une date. `range` : début puis fin (`{ start, end }`).',
+  },
+  isDateUnavailable: {
+    description:
+      'Fonction `(date) => boolean` pour exclure des jours (week-ends, fériés).',
+  },
+  previousMonthLabel: {
+    description: 'Nom accessible du bouton mois précédent. Défaut : « Mois précédent ».',
+  },
+  nextMonthLabel: {
+    description: 'Nom accessible du bouton mois suivant. Défaut : « Mois suivant ».',
+  },
+  monthSelectLabel: {
+    description: 'Nom accessible du sélecteur de mois. Défaut : « Mois ».',
+  },
+  yearSelectLabel: {
+    description: 'Nom accessible du sélecteur d’année. Défaut : « Année ».',
+  },
+  name: {
+    description: 'Nom du champ masqué `YYYY-MM-DD` (date unique, ou début de plage).',
+  },
+  nameEnd: {
+    description:
+      'Nom du champ masqué de fin de plage. Utilisé si `selectionMode="range"`.',
+  },
+};

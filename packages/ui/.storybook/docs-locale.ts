@@ -81,6 +81,12 @@ export const storyNameEn: Record<string, string> = {
   'Même silhouette': 'Same silhouette',
   Nomée: 'Named',
   'Dans un bouton': 'Inside a button',
+  'Dates restreintes': 'Restricted dates',
+  'Début de semaine': 'Week start',
+  'Plusieurs mois': 'Multiple months',
+  'Week-ends indisponibles': 'Unavailable weekends',
+  Année: 'Year',
+  'Plage de dates': 'Date range',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -636,4 +642,30 @@ export type IconDocsCopy = typeof iconFr;
 
 export function iconCopy(locale: DocsLocale): IconDocsCopy {
   return locale === 'en' ? iconEn : iconFr;
+}
+
+const calendarFr = {
+  weekMonday: 'Semaine le lundi',
+  weekSunday: 'Semaine le dimanche',
+  french: 'Français',
+  english: 'Anglais',
+  small: 'Petite',
+  medium: 'Moyenne',
+  large: 'Grande',
+};
+
+const calendarEn = {
+  weekMonday: 'Week starts Monday',
+  weekSunday: 'Week starts Sunday',
+  french: 'French',
+  english: 'English',
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+};
+
+export type CalendarDocsCopy = typeof calendarFr;
+
+export function calendarCopy(locale: DocsLocale): CalendarDocsCopy {
+  return locale === 'en' ? calendarEn : calendarFr;
 }

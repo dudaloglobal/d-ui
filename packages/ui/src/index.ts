@@ -91,5 +91,27 @@ export type {
   ComboboxProps,
   ComboboxSize,
 } from './components/Select/Combobox';
+export { Calendar } from './components/Calendar/Calendar';
+export type {
+  CalendarProps,
+  CalendarRangeValue,
+  CalendarSelectionMode,
+  CalendarSize,
+} from './components/Calendar/Calendar';
+export {
+  calendarDate,
+  calendarDateFromIso,
+  calendarDateToIso,
+  fromCalendarDate,
+  isCalendarRangeValue,
+  toCalendarDate,
+  todayCalendarDate,
+  weekStartFromLocale,
+} from './components/Calendar/calendarDate';
+export type {
+  CalendarDate,
+  CalendarDateTimeZone,
+  CalendarWeekday,
+} from './components/Calendar/calendarDate';
 export { brandTokensToStyle, tokenNames } from './tokens/names';
 export type { BrandTokens, TokenName } from './tokens/names';

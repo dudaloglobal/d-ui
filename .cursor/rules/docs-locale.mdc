@@ -5,4 +5,4 @@ alwaysApply: true
 
 # Docs locale
 
-If you add or edit Storybook MDX, stories, `docs-locale.ts`, `docs-copy.ts`, or `.storybook/arg-types.ts`, follow `.cursor/skills/docs-locale/SKILL.md`: bilingual docs-copy keys, French story `name` plus `storyNameEn`, example copy in docs-locale.ts, no English leftovers when Langue is Français.
+If you add or edit Storybook MDX, stories, `docs-locale.ts`, `docs-copy.ts`, or `.storybook/arg-types.ts`, follow `.cursor/skills/docs-locale/SKILL.md`: bilingual docs-copy keys, French story `name` plus `storyNameEn`, example copy in docs-locale.ts, no English leftovers when Langue is Français. The Components sidebar stays alphabetical (`story-sort.ts`).

@@ -25,6 +25,7 @@ Une exception AA exige un sign-off Accessibilité **et** une décision produit �
 16. `Link` : soulignement permanent (1.4.1). `external` pose `rel="noopener noreferrer"` et un fallback anglais `(opens in a new tab)`. `Heading` sépare `level` (structure) et `size` (visuel) — ne pas sauter de niveau (1.3.1).
 17. `Icon` : décorative par défaut (`aria-hidden`, `focusable="false"`). `label` uniquement quand aucun texte voisin ne porte le sens. Jamais de `label` dans le slot `icon` d’un `Button` ; `IconButton` porte le nom sur le bouton.
 18. `Field` : `Label` visible ; `group` rend un `fieldset` et `Label` (legend) doit être le premier enfant. `required` ne descend pas sur les contrôles d’un groupe. `FieldError` hors DOM si `invalid={false}`. `aria-describedby` ne cite que des ids rendus.
+19. `Calendar` : `role="grid"` nommée par le mois. Sélecteurs natifs **Mois** / **Année** (`<select>` nommés). Jours en `button` dans des `gridcell`. Flèches, Début/Fin, Page préc./suiv. (Maj : année). Jour choisi : `aria-selected`. Aujourd’hui : `aria-current="date"`. `selectionMode="range"` : `aria-multiselectable`, `{ start, end }`. Un seul jour tabulable ; nom accessible = date complète. Dates hors plage / `isDateUnavailable` : `aria-disabled`. Dates civiles `{ year, month, day }` via `toCalendarDate` / `fromCalendarDate` (`local` | `utc`). Pas d’événements LMS.
 
 ## Overlays — revue de PR
 

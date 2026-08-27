@@ -90,8 +90,8 @@ export const docsCopy = {
       en: 'Consuming apps use:',
     },
     itemComponents: {
-      fr: 'les composants React (`Button`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
-      en: 'the React components (`Button`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      fr: 'les composants React (`Button`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Calendar`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      en: 'the React components (`Button`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Calendar`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
     },
     itemCssVars: {
       fr: 'les **variables CSS** `--d-ui-*`',
@@ -1516,6 +1516,84 @@ export const docsCopy = {
     propsBody: {
       fr: '`options` (plate, groupée, `icon`, `description`). `multiple` + chips dans le champ. `listStatus`, `filter`, `renderOption` / `beforeOptions`. `placeholder` ne nomme pas le champ.',
       en: '`options` (flat, grouped, `icon`, `description`). `multiple` + chips in the field. `listStatus`, `filter`, `renderOption` / `beforeOptions`. `placeholder` does not name the field.',
+    },
+  },
+  calendar: {
+    title: { fr: 'Calendar', en: 'Calendar' },
+    intro: {
+      fr: '`Calendar` est une grille de mois headless : navigation clavier, dates min/max, jours indisponibles, début de semaine paramétrable. Ce n’est pas un DatePicker ni un calendrier d’événements LMS.',
+      en: '`Calendar` is a headless month grid: keyboard navigation, min/max dates, unavailable days, configurable week start. It is not a DatePicker or an LMS event calendar.',
+    },
+    restricted: { fr: 'Dates restreintes', en: 'Restricted dates' },
+    restrictedBody: {
+      fr: '`minValue` / `maxValue` bornent la sélection (dates min et max). `isDateUnavailable` exclut des jours précis (week-ends, jours fériés). Ces jours restent visibles, avec `aria-disabled`.',
+      en: '`minValue` / `maxValue` bound selection (min and max dates). `isDateUnavailable` excludes specific days (weekends, holidays). Those days stay visible, with `aria-disabled`.',
+    },
+    year: { fr: 'Année', en: 'Year' },
+    yearBody: {
+      fr: 'Le sélecteur **Année** (et **Mois**) dans l’en-tête change le mois affiché. Les années proposées suivent `minValue` / `maxValue` lorsqu’ils sont posés.',
+      en: 'The **Year** (and **Month**) select in the header changes the displayed month. Offered years follow `minValue` / `maxValue` when set.',
+    },
+    range: { fr: 'Plage de dates', en: 'Date range' },
+    rangeBody: {
+      fr: '`selectionMode="range"` : premier clic = début, second = fin (réordonnés si besoin), y compris dans deux mois différents. Deux mois s’affichent par défaut (`numberOfMonths={2}`) ; les flèches et **Mois** / **Année** déplacent la vue. Un troisième clic recommence. `minValue` / `maxValue` bornent la plage si besoin. `name` / `nameEnd` pour la soumission HTML.',
+      en: '`selectionMode="range"`: first click = start, second = end (reordered if needed), including across two different months. Two months show by default (`numberOfMonths={2}`); arrows and **Month** / **Year** move the view. A third click starts over. `minValue` / `maxValue` bound the range if needed. `name` / `nameEnd` for HTML submit.',
+    },
+    weekStart: { fr: 'Début de semaine', en: 'Week start' },
+    weekStartBody: {
+      fr: '`weekStartsOn` fixe le premier jour (0 = dimanche, 1 = lundi). Sans valeur, le début suit `weekStartFromLocale(locale)` (`Intl.Locale`).',
+      en: '`weekStartsOn` sets the first day (0 = Sunday, 1 = Monday). If omitted, the start follows `weekStartFromLocale(locale)` (`Intl.Locale`).',
+    },
+    locale: { fr: 'Langue', en: 'Locale' },
+    localeBody: {
+      fr: '`locale` formate les jours et le mois via `Intl`, et pose `lang` (WCAG 3.1.2). Les libellés des flèches suivent le français par défaut, l’anglais si `locale` commence par `en`.',
+      en: '`locale` formats days and the month via `Intl`, and sets `lang` (WCAG 3.1.2). Arrow labels default to French, English if `locale` starts with `en`.',
+    },
+    multipleMonths: { fr: 'Plusieurs mois', en: 'Multiple months' },
+    multipleMonthsBody: {
+      fr: '`numberOfMonths` (1 à 3) affiche des grilles côte à côte. Les flèches décalent le premier mois.',
+      en: '`numberOfMonths` (1 to 3) shows grids side by side. The arrows shift the first month.',
+    },
+    adapter: { fr: 'Adaptateur de dates', en: 'Date adapter' },
+    adapterBody: {
+      fr: 'L’API publique est une date civile `{ year, month, day }` (mois 1–12), sans bibliothèque de fuseau. Convertissez un `Date` avec `toCalendarDate(date, "local" | "utc")` et l’inverse avec `fromCalendarDate`.',
+      en: 'The public API is a civil date `{ year, month, day }` (month 1–12), with no timezone library. Convert a `Date` with `toCalendarDate(date, "local" | "utc")` and the reverse with `fromCalendarDate`.',
+    },
+    a11yBody: {
+      fr: 'La grille a `role="grid"`, nommée par le mois. Les sélecteurs **Mois** et **Année** sont des `<select>` natifs nommés. Le jour choisi a `aria-selected` ; aujourd’hui a `aria-current="date"`. En `range`, `aria-multiselectable`. Un seul jour est tabulable ; le nom accessible est la date complète.',
+      en: 'The grid has `role="grid"`, named by the month. **Month** and **Year** are named native `<select>`s. The chosen day has `aria-selected`; today has `aria-current="date"`. In `range`, `aria-multiselectable`. Only one day is in the tab order; the accessible name is the full date.',
+    },
+    a11yKeys: {
+      fr: 'Flèches : jour / semaine. Début / Fin : semaine. Page préc. / suiv. : mois (Maj : année). Entrée ou clic : sélection.',
+      en: 'Arrows: day / week. Home / End: week. Page Up / Down: month (Shift: year). Enter or click: select.',
+    },
+    doGrid: {
+      fr: 'Laisser le focus sur un `button` dans une `gridcell`, pas un `div` cliquable',
+      en: 'Keep focus on a `button` inside a `gridcell`, not a clickable `div`',
+    },
+    doAdapter: {
+      fr: '`toCalendarDate` / `fromCalendarDate` au bord de l’app, jamais un instant ISO ambigu dans la grille',
+      en: '`toCalendarDate` / `fromCalendarDate` at the app boundary, never an ambiguous ISO instant in the grid',
+    },
+    doUnavailable: {
+      fr: '`isDateUnavailable` + `minValue` / `maxValue` plutôt que de retirer des jours de la grille',
+      en: '`isDateUnavailable` + `minValue` / `maxValue` rather than removing days from the grid',
+    },
+    dontEvents: {
+      fr: 'Le rendu d’événements LMS — c’est DS-050, hors de `d-ui`',
+      en: 'LMS event rendering — that is DS-050, outside `d-ui`',
+    },
+    dontPicker: {
+      fr: 'Un champ texte + overlay — c’est le DatePicker (DS-028), qui réutilisera `Calendar`',
+      en: 'A text field + overlay — that is DatePicker (DS-028), which will reuse `Calendar`',
+    },
+    dontTimezone: {
+      fr: 'Luxon, date-fns-tz ou un `Date` local implicite dans les props',
+      en: 'Luxon, date-fns-tz, or an implicit local `Date` in the props',
+    },
+    propsBody: {
+      fr: '`value` / `onValueChange` pour un état contrôlé (`CalendarDate` ou `{ start, end }`). `selectionMode="range"` pour une plage. `today` pour figer « aujourd’hui » dans les tests. `name` / `nameEnd` posent des champs masqués `YYYY-MM-DD`.',
+      en: '`value` / `onValueChange` for controlled state (`CalendarDate` or `{ start, end }`). `selectionMode="range"` for a range. `today` to freeze “today” in tests. `name` / `nameEnd` set hidden `YYYY-MM-DD` fields.',
     },
   },
 } as const;

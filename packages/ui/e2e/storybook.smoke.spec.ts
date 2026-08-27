@@ -69,6 +69,8 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Select | Dudalo Design System');
   await page.goto('/?path=/docs/components-combobox--docs');
   await expect(page).toHaveTitle('Combobox | Dudalo Design System');
+  await page.goto('/?path=/docs/components-calendar--docs');
+  await expect(page).toHaveTitle('Calendar | Dudalo Design System');
   await page.goto('/?path=/docs/components-text--docs');
   await expect(page).toHaveTitle('Text | Dudalo Design System');
   await page.goto('/?path=/docs/components-heading--docs');
@@ -91,6 +93,7 @@ test('component docs H1 is the component name, like Link', async ({ page }) => {
     { id: 'components-textinput--docs', name: 'TextInput' },
     { id: 'components-select--docs', name: 'Select' },
     { id: 'components-combobox--docs', name: 'Combobox' },
+    { id: 'components-calendar--docs', name: 'Calendar' },
   ]) {
     await page.goto(`/?path=/docs/${id}`);
     const heading = page
@@ -112,6 +115,25 @@ test('Storybook page title uses Dudalo Design System', async ({ page }) => {
   await expect(page.locator('img[alt="d-ui"]')).toHaveAttribute('src', /favicon\.svg/);
   await expect(page.locator('img[alt="d-ui"]')).toHaveCSS('width', '32px');
   await expect(page.locator('img[alt="d-ui"]')).toHaveCSS('height', '32px');
+});
+
+test('Components sidebar is alphabetical', async ({ page }) => {
+  await page.goto('/');
+  const group = page
+    .locator('[data-nodetype="group"]')
+    .filter({ hasText: /^Components$/ });
+  if ((await group.getAttribute('aria-expanded')) === 'false') {
+    await group.click();
+  }
+  const names = (await page.locator('[data-nodetype="component"]').allTextContents())
+    .map((name) => name.trim())
+    .filter(Boolean);
+  expect(names.length).toBeGreaterThan(1);
+  expect(names).toEqual(
+    [...names].sort((a, b) =>
+      a.localeCompare(b, 'en', { numeric: true, sensitivity: 'base' }),
+    ),
+  );
 });
 
 const darkBrand = 'rgb(94, 234, 212)';
@@ -941,6 +963,30 @@ test('French Combobox docs do not leak English headings', async ({ page }) => {
     0,
   );
   await expect(preview.getByText('No options')).toHaveCount(0);
+});
+
+test('French Calendar docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-calendar--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(
+    preview.getByRole('heading', { level: 1, name: 'Calendar' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Dates restreintes' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Année' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Plage de dates' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Début de semaine' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Plusieurs mois' })).toBeVisible();
+  await expect(
+    preview.getByRole('heading', { name: 'Adaptateur de dates' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Restricted dates' })).toHaveCount(0);
+  await expect(preview.getByRole('heading', { name: 'Week start' })).toHaveCount(0);
+});
+
+test('Storybook serves the Calendar story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-calendar--default');
+  await expect(page.getByRole('grid', { name: /mars 2026/i })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Mois précédent' })).toBeVisible();
 });
 
 test('Select docs Show code imports Select from d-ui', async ({ page }) => {

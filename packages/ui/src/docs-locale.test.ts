@@ -19,6 +19,7 @@ import {
   typographyCopy,
   fieldCopy,
   visuallyHiddenCopy,
+  calendarCopy,
 } from '../.storybook/docs-locale';
 
 /** English MDX headings that must not appear: docs default language is French. */
@@ -76,6 +77,12 @@ const ENGLISH_HEADINGS = [
   'Contrast',
   'Usage',
   'Overview',
+  'Restricted dates',
+  'Week start',
+  'Multiple months',
+  'Date adapter',
+  'Date range',
+  'Year',
 ];
 
 function collectMdx(dir: string): string[] {
@@ -106,6 +113,7 @@ describe('docs locale', () => {
     expect(keysOf(typographyCopy('fr'))).toEqual(keysOf(typographyCopy('en')));
     expect(keysOf(iconCopy('fr'))).toEqual(keysOf(iconCopy('en')));
     expect(keysOf(fieldCopy('fr'))).toEqual(keysOf(fieldCopy('en')));
+    expect(keysOf(calendarCopy('fr'))).toEqual(keysOf(calendarCopy('en')));
   });
 
   it('writes MDX section headings in French', () => {
