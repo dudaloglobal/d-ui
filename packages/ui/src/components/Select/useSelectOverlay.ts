@@ -47,12 +47,21 @@ export function useSelectOverlay(
   });
   const theme = useInheritedTheme(referenceEl);
   const portal = overlayPortalProps(theme);
-  const dismiss = useDismiss(context);
-  const { getReferenceProps, getFloatingProps } = useInteractions([dismiss]);
+  const dismiss = useDismiss(context, { bubbles: false });
+  const { getReferenceProps: getReferencePropsRaw, getFloatingProps } = useInteractions([
+    dismiss,
+  ]);
 
   function setReference(node: Element | null) {
     refs.setReference(node);
     setReferenceEl(node);
+  }
+
+  /** Frame owns `setReference`; do not let interaction props retarget the ref to the input. */
+  function getReferenceProps(userProps?: object) {
+    const props = getReferencePropsRaw(userProps) as Record<string, unknown>;
+    const { ref: _ignored, ...rest } = props;
+    return rest;
   }
 
   return {
@@ -63,6 +72,11 @@ export function useSelectOverlay(
     portal,
     setReference,
   };
+}
+
+/** Unmount after the pointer event so the click cannot open a field underneath. */
+export function closeSelectOverlay(close: () => void) {
+  queueMicrotask(close);
 }
 
 export function scrollOptionIntoView(listId: string, index: number) {

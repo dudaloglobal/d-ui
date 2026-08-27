@@ -15,7 +15,12 @@ import {
   TextFieldLayout,
   type TextControlSize,
 } from '../textControl';
-import { ChevronIcon, NativeSelectMirror, SelectListbox } from './SelectListbox';
+import {
+  ChevronIcon,
+  NativeSelectMirror,
+  SelectListbox,
+  SelectOptionIcon,
+} from './SelectListbox';
 import {
   findOptionIndex,
   flattenSelectItems,
@@ -23,7 +28,11 @@ import {
   nextEnabledIndex,
   type SelectItem,
 } from './selectOptions';
-import { scrollOptionIntoView, useSelectOverlay } from './useSelectOverlay';
+import {
+  closeSelectOverlay,
+  scrollOptionIntoView,
+  useSelectOverlay,
+} from './useSelectOverlay';
 
 export type { SelectItem, SelectOption, SelectOptionGroup } from './selectOptions';
 
@@ -99,7 +108,7 @@ export function Select({
   const setValue = (next: string) => {
     if (!isControlled) setUncontrolled(next);
     onValueChange?.(next);
-    setOpen(false);
+    closeSelectOverlay(() => setOpen(false));
   };
 
   const {
@@ -213,6 +222,7 @@ export function Select({
       countMessage={() => ''}
       countId={`${generatedId}-count`}
       helperId={helperId}
+      frameRef={setReference}
     >
       <NativeSelectMirror
         name={name}
@@ -250,10 +260,12 @@ export function Select({
           onClick: () => setOpen((next) => !next),
           onKeyDown,
         })}
-        ref={setReference}
       >
-        <span className="min-w-0 flex-1 truncate">
-          {selected ? selected.label : placeholder}
+        <span className="flex min-w-0 flex-1 items-center gap-2">
+          {selected ? <SelectOptionIcon icon={selected.icon} /> : null}
+          <span className="min-w-0 flex-1 truncate">
+            {selected ? selected.label : placeholder}
+          </span>
         </span>
         <span
           className={cx('ml-2 inline-flex shrink-0 text-fg/70', open && 'rotate-180')}
@@ -276,7 +288,7 @@ export function Select({
               ariaLabel={listLabelledBy ? undefined : ariaLabel}
               items={options}
               activeIndex={activeIndex}
-              selectedValue={value}
+              selectedValues={value ? [value] : []}
               emptyMessage={emptyMessage}
               listRef={() => undefined}
               setActiveIndex={setActiveIndex}

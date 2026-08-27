@@ -35,6 +35,13 @@ describe('selectOptions', () => {
     ]);
   });
 
+  it('filters by option description', () => {
+    const withDescription: SelectItem[] = [
+      { value: 'fr', label: 'France', description: 'Capitale' },
+    ];
+    expect(filterSelectItems(withDescription, 'capit')).toEqual(withDescription);
+  });
+
   it('skips disabled options when moving', () => {
     const flat = flattenSelectItems(items);
     expect(nextEnabledIndex(flat, 0, 1)).toBe(2);

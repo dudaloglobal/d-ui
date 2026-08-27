@@ -49,4 +49,9 @@ export type {
   SelectSize,
 } from './components/Select/Select';
 export { Combobox } from './components/Select/Combobox';
-export type { ComboboxProps, ComboboxSize } from './components/Select/Combobox';
+export type {
+  ComboboxFilter,
+  ComboboxListStatus,
+  ComboboxProps,
+  ComboboxSize,
+} from './components/Select/Combobox';

@@ -3,6 +3,8 @@ import type { ReactNode } from 'react';
 export type SelectOption = {
   value: string;
   label: ReactNode;
+  description?: ReactNode;
+  icon?: ReactNode;
   disabled?: boolean;
 };
 
@@ -31,6 +33,16 @@ export function optionText(label: ReactNode): string {
   return '';
 }
 
+export function optionSearchText(option: SelectOption): string {
+  return `${optionText(option.label)} ${optionText(option.description)}`.trim();
+}
+
+export function asSelectValues(value: string | readonly string[] | undefined): string[] {
+  if (value == null || value === '') return [];
+  if (typeof value === 'string') return [value];
+  return [...value];
+}
+
 export function flattenSelectItems(items: readonly SelectItem[]): FlatOption[] {
   const out: FlatOption[] = [];
   for (const item of items) {
@@ -55,10 +67,10 @@ export function filterSelectItems(
   for (const item of items) {
     if (isSelectGroup(item)) {
       const options = item.options.filter((option) =>
-        optionText(option.label).toLowerCase().includes(needle),
+        optionSearchText(option).toLowerCase().includes(needle),
       );
       if (options.length > 0) out.push({ ...item, options });
-    } else if (optionText(item.label).toLowerCase().includes(needle)) {
+    } else if (optionSearchText(item).toLowerCase().includes(needle)) {
       out.push(item);
     }
   }

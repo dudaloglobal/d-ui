@@ -332,16 +332,18 @@ const selectSharedArgTypes = {
   options: {
     control: { disable: true },
     description:
-      'Liste d’options `{ value, label, disabled? }` ou de groupes `{ label, options }`.',
+      'Liste d’options `{ value, label, icon?, description?, disabled? }` ou de groupes `{ label, options }`.',
   },
   value: {
-    description: 'Valeur contrôlée (`string`). Sinon `defaultValue`.',
+    description:
+      'Valeur contrôlée (`string` ou `string[]` si `multiple`). Sinon `defaultValue`.',
   },
   defaultValue: {
     description: 'Valeur initiale en mode non contrôlé.',
   },
   onValueChange: {
-    description: 'Appelé avec la valeur choisie.',
+    description:
+      'Appelé avec une `string` (sélection unique) ou `string[]` (`multiple`).',
   },
   name: {
     description:
@@ -370,5 +372,77 @@ export const comboboxArgTypes = {
     ...textFieldArgTypes.placeholder,
     description:
       'Texte de recherche. Ne remplace pas le libellé. Défaut : « Rechercher ».',
+  },
+  multiple: {
+    control: 'boolean' as const,
+    description:
+      'Sélection multiple. Les valeurs s’affichent en chips dans le champ. Défaut : `false`.',
+  },
+  filter: {
+    control: 'inline-radio' as const,
+    options: ['auto', 'manual', 'off'],
+    description:
+      '`auto` masque les non-correspondances, `manual` laisse la liste intacte (`onSearch`), `off` empêche la saisie.',
+  },
+  onSearch: {
+    description: 'Appelé avec le texte saisi (recherche distante, `filter="manual"`).',
+  },
+  listStatus: {
+    control: 'inline-radio' as const,
+    options: ['idle', 'loading', 'loadingMore', 'error'],
+    description:
+      'État du panneau : `idle`, `loading` (placeholders), `loadingMore`, `error`.',
+  },
+  loadingMessage: {
+    description: 'Message annoncé pendant le chargement. Défaut : `"Chargement"`.',
+  },
+  listErrorMessage: {
+    description: 'Titre d’erreur de liste si `listStatus="error"`.',
+  },
+  listErrorRetryMessage: {
+    description: 'Texte secondaire sous l’erreur de liste.',
+  },
+  emptyMessage: {
+    description:
+      'Liste vide. Chaîne, nœud, ou `(query) => …`. Défaut : « Aucune option ».',
+  },
+  beforeOptions: {
+    description: 'Contenu injecté en tête de liste (action **Créer**, etc.).',
+  },
+  renderOption: {
+    description: 'Rendu custom d’une option. Reçoit l’option et `selected`.',
+  },
+  renderSectionTitle: {
+    description: 'Rendu custom du libellé de groupe.',
+  },
+  renderChip: {
+    description: 'Rendu custom d’un chip (`multiple`).',
+  },
+  chipGroupLabel: {
+    description: 'Nom accessible du groupe de chips. Défaut : le `label`.',
+  },
+  chipRemoveLabel: {
+    description: 'Suffixe du bouton de retrait d’un chip. Défaut : `"Retirer"`.',
+  },
+  defaultOpen: {
+    control: 'boolean' as const,
+    description: 'Ouvre la liste au montage.',
+  },
+  openOnFocus: {
+    control: 'boolean' as const,
+    description: 'Ouvre la liste au focus. Utile avec `filter="off"`.',
+  },
+  icon: textFieldArgTypes.icon,
+  clearable: {
+    control: 'boolean' as const,
+    description:
+      'Bouton d’effacement dès qu’une valeur unique est choisie. Ignoré si `multiple`. Défaut : `true`.',
+  },
+  clearLabel: {
+    description: 'Nom accessible du bouton d’effacement. Défaut : `"Effacer"`.',
+  },
+  toggleLabel: {
+    description:
+      'Nom accessible du bouton chevron. Défaut : `"Afficher les suggestions"`. Omis : pas de chevron.',
   },
 };

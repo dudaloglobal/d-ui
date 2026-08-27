@@ -58,6 +58,13 @@ const ENGLISH_HEADINGS = [
   'Empty state',
   'Disabled options',
   'Option groups',
+  'Single selection',
+  'Multiple selection',
+  'Custom rendering',
+  'List states',
+  'Filter types',
+  'Loading more',
+  'Input options',
 ];
 
 function collectMdx(dir: string): string[] {

@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode, Ref } from 'react';
 import { cx } from '../lib/cx';
 
 export type TextControlSize = 'sm' | 'md' | 'lg';
@@ -83,6 +83,8 @@ export function TextFieldLayout({
   helperId,
   multiline,
   focusShadow,
+  frameRef,
+  afterFrame,
   children,
 }: {
   id?: string;
@@ -104,6 +106,8 @@ export function TextFieldLayout({
   helperId: string;
   multiline?: boolean;
   focusShadow?: boolean;
+  frameRef?: Ref<HTMLDivElement>;
+  afterFrame?: ReactNode;
   children: ReactNode;
 }) {
   const description = invalid ? error : helper;
@@ -142,6 +146,7 @@ export function TextFieldLayout({
         </div>
       ) : null}
       <div
+        ref={frameRef}
         className={frameClass({
           size,
           invalid,
@@ -153,6 +158,7 @@ export function TextFieldLayout({
       >
         {children}
       </div>
+      {afterFrame}
       {description ? (
         <p
           id={helperId}
