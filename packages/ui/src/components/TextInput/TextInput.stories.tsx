@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ChangeEvent } from 'react';
 import { useState } from 'react';
+import { textInputArgTypes } from '../../../.storybook/arg-types';
 import {
   componentSource,
   componentSourceFn,
@@ -11,22 +12,23 @@ import {
   inputCopy,
   type InputDocsCopy,
 } from '../../../.storybook/docs-locale';
-import { Input, type InputProps } from './Input';
-import { Textarea, type TextareaProps } from './Textarea';
-import { SearchIcon, stringifyValue } from './textControl';
+import { SearchIcon, stringifyValue } from '../textControl';
+import { TextInput, type TextInputProps } from './TextInput';
 
-const importInput = "import { useState } from 'react';\nimport { Input } from 'd-ui';";
-const importTextarea =
-  "import { useState } from 'react';\nimport { Textarea } from 'd-ui';";
+const importTextInput =
+  "import { useState } from 'react';\nimport { TextInput } from 'd-ui';";
 
 function remainingMessage(copy: InputDocsCopy) {
   return (count: number, maxLength?: number) =>
     copy.countRemaining(Math.max(0, (maxLength ?? 0) - count));
 }
 
-function inputSource(jsx: string, initial = ''): ReturnType<typeof componentSourceFn> {
+function textInputSource(
+  jsx: string,
+  initial = '',
+): ReturnType<typeof componentSourceFn> {
   return componentSourceFn(
-    importInput,
+    importTextInput,
     `const [value, setValue] = useState(${JSON.stringify(initial)});
 return (
 ${jsx
@@ -38,29 +40,15 @@ ${jsx
   );
 }
 
-function textareaSource(jsx: string, initial = ''): ReturnType<typeof componentSourceFn> {
-  return componentSourceFn(
-    importTextarea,
-    `const [value, setValue] = useState(${JSON.stringify(initial)});
-return (
-${jsx
-  .trim()
-  .split('\n')
-  .map((line) => `    ${line}`)
-  .join('\n')}
-);`,
-  );
-}
-
-function ControlledInput({
+function ControlledTextInput({
   defaultValue,
   value: valueProp,
   onChange,
   ...props
-}: InputProps) {
+}: TextInputProps) {
   const [value, setValue] = useState(() => stringifyValue(valueProp ?? defaultValue));
   return (
-    <Input
+    <TextInput
       {...props}
       value={value}
       onChange={(event: ChangeEvent<HTMLInputElement>) => {
@@ -71,45 +59,10 @@ function ControlledInput({
   );
 }
 
-function ControlledTextarea({
-  defaultValue,
-  value: valueProp,
-  onChange,
-  ...props
-}: TextareaProps) {
-  const [value, setValue] = useState(() => stringifyValue(valueProp ?? defaultValue));
-  return (
-    <Textarea
-      {...props}
-      value={value}
-      onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
-        setValue(event.target.value);
-        onChange?.(event);
-      }}
-    />
-  );
-}
-
 const meta = {
-  title: 'Components/Input',
-  component: Input,
-  argTypes: {
-    type: {
-      control: 'select',
-      options: ['text', 'email', 'password', 'search', 'number', 'tel', 'url'],
-    },
-    size: {
-      control: 'inline-radio',
-      options: ['sm', 'md', 'lg'],
-    },
-    invalid: { control: 'boolean' },
-    valid: { control: 'boolean' },
-    disabled: { control: 'boolean' },
-    required: { control: 'boolean' },
-    clearable: { control: 'boolean' },
-    showCount: { control: 'boolean' },
-    fullWidth: { control: 'boolean' },
-  },
+  title: 'Components/TextInput',
+  component: TextInput,
+  argTypes: textInputArgTypes,
   parameters: {
     controls: {
       include: [
@@ -129,26 +82,28 @@ const meta = {
       ],
     },
   },
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof TextInput>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  parameters: inputSource(`<Input
+  name: 'Par défaut',
+  parameters: textInputSource(`<TextInput
     label="Libellé du champ"
     value={value}
     onChange={(event) => setValue(event.target.value)}
 />`),
   render: (args, { globals }) => {
     const copy = inputCopy(docsLocale(globals.locale));
-    return <ControlledInput {...args} label={args.label ?? copy.fieldLabel} />;
+    return <ControlledTextInput {...args} label={args.label ?? copy.fieldLabel} />;
   },
 };
 
 export const Disabled: Story = {
-  parameters: inputSource(
-    `<Input
+  name: 'Désactivé',
+  parameters: textInputSource(
+    `<TextInput
     label="Libellé du champ"
     value={value}
     disabled
@@ -159,14 +114,19 @@ export const Disabled: Story = {
   render: (_, { globals }) => {
     const copy = inputCopy(docsLocale(globals.locale));
     return (
-      <ControlledInput label={copy.fieldLabel} defaultValue={copy.filledValue} disabled />
+      <ControlledTextInput
+        label={copy.fieldLabel}
+        defaultValue={copy.filledValue}
+        disabled
+      />
     );
   },
 };
 
 export const Valid: Story = {
-  parameters: inputSource(
-    `<Input
+  name: 'Valide',
+  parameters: textInputSource(
+    `<TextInput
     label="Libellé du champ"
     value={value}
     valid
@@ -177,14 +137,19 @@ export const Valid: Story = {
   render: (_, { globals }) => {
     const copy = inputCopy(docsLocale(globals.locale));
     return (
-      <ControlledInput label={copy.fieldLabel} defaultValue={copy.filledValue} valid />
+      <ControlledTextInput
+        label={copy.fieldLabel}
+        defaultValue={copy.filledValue}
+        valid
+      />
     );
   },
 };
 
 export const Invalid: Story = {
-  parameters: inputSource(
-    `<Input
+  name: 'Invalide',
+  parameters: textInputSource(
+    `<TextInput
     label="Libellé du champ"
     value={value}
     invalid
@@ -196,7 +161,7 @@ export const Invalid: Story = {
   render: (_, { globals }) => {
     const copy = inputCopy(docsLocale(globals.locale));
     return (
-      <ControlledInput
+      <ControlledTextInput
         label={copy.fieldLabel}
         defaultValue={copy.filledValue}
         invalid
@@ -207,7 +172,8 @@ export const Invalid: Story = {
 };
 
 export const Required: Story = {
-  parameters: inputSource(`<Input
+  name: 'Requis',
+  parameters: textInputSource(`<TextInput
     label="Libellé du champ"
     value={value}
     required
@@ -215,12 +181,13 @@ export const Required: Story = {
 />`),
   render: (_, { globals }) => {
     const copy = inputCopy(docsLocale(globals.locale));
-    return <ControlledInput label={copy.fieldLabel} required />;
+    return <ControlledTextInput label={copy.fieldLabel} required />;
   },
 };
 
 export const Helper: Story = {
-  parameters: inputSource(`<Input
+  name: 'Aide',
+  parameters: textInputSource(`<TextInput
     label="Libellé du champ"
     helper="Texte d’aide"
     value={value}
@@ -228,12 +195,13 @@ export const Helper: Story = {
 />`),
   render: (_, { globals }) => {
     const copy = inputCopy(docsLocale(globals.locale));
-    return <ControlledInput label={copy.fieldLabel} helper={copy.helper} />;
+    return <ControlledTextInput label={copy.fieldLabel} helper={copy.helper} />;
   },
 };
 
 export const Placeholder: Story = {
-  parameters: inputSource(`<Input
+  name: 'Texte de substitution',
+  parameters: textInputSource(`<TextInput
     label="Libellé du champ"
     placeholder="Texte de substitution"
     value={value}
@@ -241,18 +209,19 @@ export const Placeholder: Story = {
 />`),
   render: (_, { globals }) => {
     const copy = inputCopy(docsLocale(globals.locale));
-    return <ControlledInput label={copy.fieldLabel} placeholder={copy.placeholder} />;
+    return <ControlledTextInput label={copy.fieldLabel} placeholder={copy.placeholder} />;
   },
 };
 
 export const Icon: Story = {
+  name: 'Icône',
   parameters: componentSourceFn(
-    importInput,
+    importTextInput,
     `${searchIconSource}
 
 const [value, setValue] = useState('');
 return (
-    <Input
+    <TextInput
         type="search"
         label="Libellé du champ"
         icon={search}
@@ -264,7 +233,7 @@ return (
   render: (_, { globals }) => {
     const copy = inputCopy(docsLocale(globals.locale));
     return (
-      <ControlledInput
+      <ControlledTextInput
         label={copy.fieldLabel}
         type="search"
         icon={<SearchIcon />}
@@ -275,8 +244,9 @@ return (
 };
 
 export const Clearable: Story = {
-  parameters: inputSource(
-    `<Input
+  name: 'Effaçable',
+  parameters: textInputSource(
+    `<TextInput
     label="Libellé du champ"
     value={value}
     clearable
@@ -289,7 +259,7 @@ export const Clearable: Story = {
   render: (_, { globals }) => {
     const copy = inputCopy(docsLocale(globals.locale));
     return (
-      <ControlledInput
+      <ControlledTextInput
         label={copy.fieldLabel}
         defaultValue={copy.placeholderName}
         clearable
@@ -300,7 +270,8 @@ export const Clearable: Story = {
 };
 
 export const MaxLength: Story = {
-  parameters: inputSource(`<Input
+  name: 'Longueur maximale',
+  parameters: textInputSource(`<TextInput
     label="Libellé du champ"
     value={value}
     maxLength={50}
@@ -312,7 +283,7 @@ export const MaxLength: Story = {
   render: (_, { globals }) => {
     const copy = inputCopy(docsLocale(globals.locale));
     return (
-      <ControlledInput
+      <ControlledTextInput
         label={copy.fieldLabel}
         maxLength={50}
         countMessage={remainingMessage(copy)}
@@ -322,14 +293,15 @@ export const MaxLength: Story = {
 };
 
 export const PrefixSuffix: Story = {
+  name: 'Préfixe et suffixe',
   parameters: componentSource(
-    "import { Input } from 'd-ui';",
-    '<Input label="Site" prefix="https://" suffix=".com" />',
+    "import { TextInput } from 'd-ui';",
+    '<TextInput label="Site" prefix="https://" suffix=".com" />',
   ),
   render: (_, { globals }) => {
     const copy = inputCopy(docsLocale(globals.locale));
     return (
-      <ControlledInput
+      <ControlledTextInput
         label={copy.site}
         prefix="https://"
         suffix=".com"
@@ -340,88 +312,28 @@ export const PrefixSuffix: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Tailles',
   parameters: componentSource(
-    "import { Input } from 'd-ui';",
-    `<Input size="sm" label="Libellé du champ" />
-<Input size="md" label="Libellé du champ" />
-<Input size="lg" label="Libellé du champ" />`,
+    "import { TextInput } from 'd-ui';",
+    `<TextInput size="sm" label="Libellé du champ" />
+<TextInput size="md" label="Libellé du champ" />
+<TextInput size="lg" label="Libellé du champ" />`,
   ),
   render: (_, { globals }) => {
     const copy = inputCopy(docsLocale(globals.locale));
     return (
       <div className="flex flex-col gap-4">
-        <ControlledInput label={`${copy.fieldLabel} (${copy.small})`} size="sm" />
-        <ControlledInput label={`${copy.fieldLabel} (${copy.medium})`} size="md" />
-        <ControlledInput label={`${copy.fieldLabel} (${copy.large})`} size="lg" />
+        <ControlledTextInput label={`${copy.fieldLabel} (${copy.small})`} size="sm" />
+        <ControlledTextInput label={`${copy.fieldLabel} (${copy.medium})`} size="md" />
+        <ControlledTextInput label={`${copy.fieldLabel} (${copy.large})`} size="lg" />
       </div>
     );
   },
 };
 
-export const Multiline: Story = {
-  parameters: textareaSource(`<Textarea
-    label="Libellé de la zone de texte"
-    value={value}
-    onChange={(event) => setValue(event.target.value)}
-/>`),
-  render: (_, { globals }) => {
-    const copy = inputCopy(docsLocale(globals.locale));
-    return <ControlledTextarea label={copy.textareaLabel} rows={4} />;
-  },
-};
-
-export const TextareaValid: Story = {
-  parameters: textareaSource(
-    `<Textarea
-    label="Libellé de la zone de texte"
-    value={value}
-    valid
-    helper="Valeur valide"
-    onChange={(event) => setValue(event.target.value)}
-/>`,
-    'Valeur',
-  ),
-  render: (_, { globals }) => {
-    const copy = inputCopy(docsLocale(globals.locale));
-    return (
-      <ControlledTextarea
-        label={copy.textareaLabel}
-        defaultValue={copy.filledValue}
-        valid
-        helper={copy.validValue}
-        rows={4}
-      />
-    );
-  },
-};
-
-export const TextareaInvalid: Story = {
-  parameters: textareaSource(
-    `<Textarea
-    label="Libellé de la zone de texte"
-    value={value}
-    invalid
-    error="Valeur invalide"
-    onChange={(event) => setValue(event.target.value)}
-/>`,
-    'Valeur',
-  ),
-  render: (_, { globals }) => {
-    const copy = inputCopy(docsLocale(globals.locale));
-    return (
-      <ControlledTextarea
-        label={copy.textareaLabel}
-        defaultValue={copy.filledValue}
-        invalid
-        error={copy.invalidValue}
-        rows={4}
-      />
-    );
-  },
-};
-
 export const Number: Story = {
-  parameters: inputSource(`<Input
+  name: 'Nombre',
+  parameters: textInputSource(`<TextInput
     type="number"
     inputMode="numeric"
     label="Nombre"
@@ -430,13 +342,16 @@ export const Number: Story = {
 />`),
   render: (_, { globals }) => {
     const copy = inputCopy(docsLocale(globals.locale));
-    return <ControlledInput type="number" inputMode="numeric" label={copy.numberLabel} />;
+    return (
+      <ControlledTextInput type="number" inputMode="numeric" label={copy.numberLabel} />
+    );
   },
 };
 
 export const Password: Story = {
-  parameters: inputSource(
-    `<Input
+  name: 'Mot de passe',
+  parameters: textInputSource(
+    `<TextInput
     type="password"
     autoComplete="current-password"
     label="Mot de passe"
@@ -450,7 +365,7 @@ export const Password: Story = {
   render: (_, { globals }) => {
     const copy = inputCopy(docsLocale(globals.locale));
     return (
-      <ControlledInput
+      <ControlledTextInput
         type="password"
         autoComplete="current-password"
         label={copy.password}

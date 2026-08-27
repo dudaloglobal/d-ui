@@ -12,7 +12,7 @@ Cible : **WCAG 2.2 niveau AA** (RGAA comme grille de contrôle interne).
 6. `prefers-reduced-motion` : pas d’animation obligatoire.
 7. Ne pas reposer uniquement sur la couleur pour l’état (erreur, succès).
 8. `TimeAgo` : `<time datetime>` (ISO-8601) + texte relatif visible, `lang` aligné sur `locale`. Date invalide → `<span>`, pas un `<time>` sans valeur. Instant absolu : `title` et `VisuallyHidden`. `live` sans `aria-live` sauf opt-in.
-9. `Input` / `Textarea` : label visible (prop `label`, `aria-labelledby`, ou `<label for>`). `invalid` pose `aria-invalid` ; `error` / `helper` sont liés par `aria-describedby`. Le compteur (caractères restants) n’utilise pas `aria-live`. Le bouton d’effacement et le basculeur mot de passe ont un nom accessible. `autoComplete` et `inputMode` sont transmis.
+9. `TextInput` / `Textarea` : label visible (prop `label`, `aria-labelledby`, ou `<label for>`). `invalid` pose `aria-invalid` ; `error` / `helper` sont liés par `aria-describedby`. Le compteur (caractères restants) n’utilise pas `aria-live`. Le bouton d’effacement et le basculeur mot de passe ont un nom accessible. `autoComplete` et `inputMode` sont transmis.
 
 ## Outils
 

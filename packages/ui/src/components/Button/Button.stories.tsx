@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ReactNode } from 'react';
+import { buttonArgTypes } from '../../../.storybook/arg-types';
 import {
   chevronIconSource,
   componentSource,
@@ -140,43 +141,7 @@ function EmphasisUseCases({
 const meta = {
   title: 'Components/Button',
   component: Button,
-  argTypes: {
-    variant: {
-      control: 'inline-radio',
-      options: ['primary', 'secondary', 'ghost'],
-      description: 'Emphasis: primary (high), secondary (medium), ghost (low).',
-    },
-    size: {
-      control: 'inline-radio',
-      options: ['sm', 'md', 'lg'],
-      description: 'Use sm when space is constrained.',
-    },
-    loading: {
-      control: 'boolean',
-      description:
-        'Shows a loading indicator, keeps the label, sets aria-busy, and disables the control.',
-    },
-    loadingIndicator: {
-      control: 'inline-radio',
-      options: ['spinner', 'bounce'],
-      description: 'Spinner (default) or bounce dots. Used when loading is true.',
-    },
-    iconPosition: {
-      control: 'inline-radio',
-      options: ['start', 'end'],
-    },
-    fullWidth: {
-      control: 'boolean',
-      description: 'Stretch to the container width.',
-    },
-    isSelected: {
-      control: 'boolean',
-      description: 'Toggle state for medium/low emphasis. Sets aria-pressed.',
-    },
-    disabled: {
-      control: 'boolean',
-    },
-  },
+  argTypes: buttonArgTypes,
   parameters: {
     controls: {
       include: [
@@ -198,6 +163,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
+  name: 'Par défaut',
   render: (args, { globals }) => {
     const copy = buttonCopy(docsLocale(globals.locale));
     return <Button {...args}>{args.children ?? copy.continue}</Button>;
@@ -205,6 +171,7 @@ export const Primary: Story = {
 };
 
 export const HighEmphasis: Story = {
+  name: 'Forte emphase',
   parameters: componentSource(
     "import { Button, IconButton } from 'd-ui';",
     `<Button>Par défaut</Button>
@@ -225,6 +192,7 @@ export const HighEmphasis: Story = {
 };
 
 export const MediumEmphasis: Story = {
+  name: 'Emphase moyenne',
   parameters: componentSource(
     "import { Button } from 'd-ui';",
     `<Button variant="secondary">Par défaut</Button>
@@ -245,6 +213,7 @@ export const MediumEmphasis: Story = {
 };
 
 export const Toggled: Story = {
+  name: 'Bouton bascule',
   parameters: componentSource(
     "import { Button } from 'd-ui';",
     `<Button variant="secondary">S'abonner</Button>
@@ -266,6 +235,7 @@ export const Toggled: Story = {
 };
 
 export const LowEmphasis: Story = {
+  name: 'Faible emphase',
   parameters: componentSource(
     "import { Button } from 'd-ui';",
     `<Button variant="ghost">Par défaut</Button>
@@ -290,6 +260,7 @@ export const LowEmphasis: Story = {
 };
 
 export const SmallSize: Story = {
+  name: 'Petite taille',
   parameters: componentSource(
     "import { Button } from 'd-ui';",
     `<Button size="sm">Par défaut</Button>
@@ -313,6 +284,7 @@ export const SmallSize: Story = {
 };
 
 export const FullWidth: Story = {
+  name: 'Pleine largeur',
   parameters: componentSource(
     "import { Button } from 'd-ui';",
     `<Button fullWidth>Bouton pleine largeur</Button>
@@ -348,6 +320,7 @@ export const FullWidth: Story = {
 };
 
 export const Loading: Story = {
+  name: 'Chargement',
   parameters: componentSource(
     "import { Button, IconButton } from 'd-ui';",
     `<Button loading>Enregistrement</Button>
@@ -407,6 +380,7 @@ export const Loading: Story = {
 };
 
 export const IconOnly: Story = {
+  name: 'Icône seule',
   parameters: componentSource(
     "import { IconButton } from 'd-ui';",
     '<IconButton icon={plus} aria-label="Ajouter" />',

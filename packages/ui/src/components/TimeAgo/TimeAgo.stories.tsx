@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type { ReactNode } from 'react';
+import { timeAgoArgTypes } from '../../../.storybook/arg-types';
 import { componentSource } from '../../../.storybook/docs-source';
 import { docsLocale, timeAgoCopy } from '../../../.storybook/docs-locale';
 import { TimeAgo } from './TimeAgo';
@@ -40,27 +41,7 @@ const meta = {
   args: {
     date: fromNow(-3 * minute),
   },
-  argTypes: {
-    date: {
-      description: 'Instant to display (`Date`, ISO string, or epoch ms).',
-    },
-    locale: {
-      control: 'text',
-      description: 'BCP 47 locale forwarded to Intl and to the `lang` attribute.',
-    },
-    live: {
-      control: 'boolean',
-      description: 'Refresh relative text on a coarse interval (visual only).',
-    },
-    size: {
-      control: 'inline-radio',
-      options: ['sm', 'md'],
-      description: 'Text size.',
-    },
-    title: {
-      description: 'Native tooltip. Defaults to the absolute formatted time.',
-    },
-  },
+  argTypes: timeAgoArgTypes,
   parameters: {
     controls: {
       include: ['date', 'locale', 'live', 'size', 'title', 'className'],
@@ -72,6 +53,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  name: 'Par défaut',
   parameters: componentSource(
     "import { TimeAgo } from 'd-ui';",
     '<TimeAgo date={submission.createdAt} locale="fr" />',
@@ -88,6 +70,7 @@ export const Default: Story = {
 };
 
 export const Locale: Story = {
+  name: 'Langue',
   parameters: componentSource(
     "import { TimeAgo } from 'd-ui';",
     `<TimeAgo date={createdAt} locale="en" />
@@ -109,6 +92,7 @@ export const Locale: Story = {
 };
 
 export const Live: Story = {
+  name: 'Mises à jour en direct',
   parameters: componentSource(
     "import { TimeAgo } from 'd-ui';",
     '<TimeAgo date={lastSeenAt} locale="fr" live />',
@@ -125,6 +109,7 @@ export const Live: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Taille',
   parameters: componentSource(
     "import { TimeAgo } from 'd-ui';",
     `<TimeAgo date={createdAt} locale="fr" size="sm" />
@@ -147,6 +132,7 @@ export const Sizes: Story = {
 };
 
 export const PastAndFuture: Story = {
+  name: 'Passé et futur',
   parameters: componentSource(
     "import { TimeAgo } from 'd-ui';",
     `<TimeAgo date={fiveHoursAgo} locale="fr" />

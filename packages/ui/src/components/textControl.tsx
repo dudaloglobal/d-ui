@@ -1,12 +1,12 @@
 import type { ReactNode } from 'react';
-import { cx } from '../../lib/cx';
+import { cx } from '../lib/cx';
 
 export type TextControlSize = 'sm' | 'md' | 'lg';
 
 export const inputHeightClass: Record<TextControlSize, string> = {
-  sm: 'h-8',
-  md: 'h-10',
-  lg: 'h-12',
+  sm: 'min-h-8',
+  md: 'min-h-9',
+  lg: 'min-h-12',
 };
 
 export function mergeDescribedBy(
@@ -45,16 +45,16 @@ export function frameClass({
   multiline?: boolean;
 }): string {
   return cx(
-    'flex gap-2 rounded-md border bg-bg px-3 text-sm text-fg',
-    multiline ? 'min-h-24 items-start py-2' : cx('items-center', inputHeightClass[size]),
+    'flex w-full min-w-0 gap-2 rounded px-3 text-sm leading-5 text-fg',
+    'bg-field ring-1 ring-inset ring-fg/40',
+    multiline ? 'items-start py-2' : cx('items-center', inputHeightClass[size]),
     invalid
-      ? 'border-danger focus-within:border-danger focus-within:shadow-[inset_0_0_0_1px_var(--d-ui-color-danger)]'
+      ? 'ring-2 ring-danger'
       : valid
-        ? 'border-success focus-within:border-success focus-within:shadow-[inset_0_0_0_1px_var(--d-ui-color-success)]'
-        : 'border-border focus-within:border-focus focus-within:shadow-[inset_0_0_0_1px_var(--d-ui-color-focus)]',
-    !disabled && !invalid && !valid && 'hover:border-fg/40',
-    disabled && 'pointer-events-none',
-    'w-full min-w-0',
+        ? 'ring-2 ring-success'
+        : 'focus-within:bg-transparent focus-within:ring-2 focus-within:ring-focus',
+    !disabled && !invalid && !valid && 'hover:bg-field-hover',
+    disabled && 'pointer-events-none opacity-50',
   );
 }
 
@@ -107,14 +107,19 @@ export function TextFieldLayout({
       className={cx(
         'flex flex-col',
         fullWidth ? 'w-full min-w-0' : 'w-80 max-w-full',
-        disabled && 'opacity-50',
         className,
       )}
     >
       {showHeader ? (
-        <div className="mb-1 flex items-baseline gap-3">
+        <div className="mb-2 flex items-center gap-4">
           {label ? (
-            <label htmlFor={id} className="min-w-0 flex-1 text-sm text-fg/70">
+            <label
+              htmlFor={id}
+              className={cx(
+                'min-w-0 flex-1 text-sm leading-5',
+                disabled ? 'text-fg/40' : 'text-fg',
+              )}
+            >
               {label}
               {required ? <span aria-hidden="true"> *</span> : null}
             </label>
@@ -122,7 +127,7 @@ export function TextFieldLayout({
             <span className="flex-1" />
           )}
           {showCount ? (
-            <span id={countId} className="shrink-0 text-sm text-fg/70">
+            <span id={countId} className="shrink-0 text-sm leading-5 text-fg/70">
               {countMessage(count, maxLength)}
             </span>
           ) : null}
@@ -142,7 +147,10 @@ export function TextFieldLayout({
       {description ? (
         <p
           id={helperId}
-          className={cx('mt-1 text-sm', invalid && error ? 'text-danger' : 'text-fg/70')}
+          className={cx(
+            'mt-2 text-sm leading-5',
+            invalid && error ? 'text-danger' : 'text-fg/70',
+          )}
         >
           {description}
         </p>
@@ -287,4 +295,4 @@ export function StatusIcon({ invalid, valid }: { invalid: boolean; valid?: boole
 }
 
 export const nativeInputClass =
-  'min-w-0 flex-1 border-0 bg-transparent p-0 text-inherit outline-none placeholder:text-fg/50';
+  'min-w-0 flex-1 resize-none border-0 bg-transparent p-0 text-sm leading-5 text-inherit outline-none placeholder:text-fg/60';

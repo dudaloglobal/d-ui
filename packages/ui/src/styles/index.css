@@ -10,6 +10,8 @@
   --color-on-brand: var(--d-ui-color-on-brand);
   --color-surface-muted: var(--d-ui-color-surface-muted);
   --color-surface-hover: var(--d-ui-color-surface-hover);
+  --color-field: var(--d-ui-color-field);
+  --color-field-hover: var(--d-ui-color-field-hover);
   --color-border: var(--d-ui-color-border);
   --color-danger: var(--d-ui-color-danger);
   --color-success: var(--d-ui-color-success);

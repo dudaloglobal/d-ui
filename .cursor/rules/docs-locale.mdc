@@ -1,0 +1,8 @@
+---
+description: Storybook docs are French by default; example copy goes through docs-locale.ts.
+alwaysApply: true
+---
+
+# Docs locale
+
+If you add or edit Storybook MDX, stories, `docs-locale.ts`, or `.storybook/arg-types.ts`, follow `.cursor/skills/docs-locale/SKILL.md`: French headings, story names, and ArgTypes descriptions; bilingual example copy with matching keys; no English leftovers when Langue is Français.

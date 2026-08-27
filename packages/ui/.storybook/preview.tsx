@@ -3,7 +3,10 @@ import type { Preview } from '@storybook/react';
 import { useEffect, useLayoutEffect, useState, type ReactNode } from 'react';
 import { ThemeProvider } from '../src/theme/ThemeProvider';
 import { docsLocale } from './docs-locale';
+import { applyRenamedStoryUrl } from './renamed-stories';
 import { darkTheme, docsThemeMode, lightTheme, themeModeFromSearch } from './themes';
+
+applyRenamedStoryUrl();
 import '../src/styles/index.css';
 import './preview.css';
 
@@ -70,8 +73,8 @@ const preview: Preview = {
         title: 'Thème',
         icon: 'contrast',
         items: [
-          { value: 'light', title: 'Light', right: 'clair' },
-          { value: 'dark', title: 'Dark', right: 'sombre' },
+          { value: 'light', title: 'Clair', right: 'light' },
+          { value: 'dark', title: 'Sombre', right: 'dark' },
         ],
         dynamicTitle: true,
       },

@@ -2,4 +2,4 @@
 'd-ui': minor
 ---
 
-Add Input and Textarea as outlined text fields with built-in label, helper, valid/invalid states, optional clear, and remaining-character count.
+Add TextInput and Textarea as full-width filled text fields with built-in label, helper, valid/invalid states, optional clear, and remaining-character count.

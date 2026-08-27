@@ -1,6 +1,9 @@
 import { addons } from '@storybook/manager-api';
 import { GLOBALS_UPDATED } from 'storybook/internal/core-events';
+import { applyRenamedStoryUrl } from './renamed-stories';
 import { darkTheme, docsThemeMode, lightTheme, themeModeFromSearch } from './themes';
+
+applyRenamedStoryUrl();
 
 let applied: 'light' | 'dark' | undefined;
 

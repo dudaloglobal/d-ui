@@ -1,10 +1,8 @@
-import type { ChangeEvent, InputHTMLAttributes, ReactNode } from 'react';
+import type { ChangeEvent, ReactNode, TextareaHTMLAttributes } from 'react';
 import { forwardRef, useId, useState } from 'react';
 import {
   ChromeButton,
   ClearIcon,
-  EyeIcon,
-  EyeOffIcon,
   StatusIcon,
   TextFieldLayout,
   defaultCountMessage,
@@ -12,55 +10,53 @@ import {
   nativeInputClass,
   stringifyValue,
   type TextControlSize,
-} from './textControl';
+} from '../textControl';
 
-export type InputSize = TextControlSize;
-export type InputType =
-  'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url';
+export type TextareaSize = TextControlSize;
 
-export type InputProps = Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  'prefix' | 'size' | 'type'
+export type TextareaProps = Omit<
+  TextareaHTMLAttributes<HTMLTextAreaElement>,
+  'prefix' | 'size'
 > & {
-  type?: InputType;
-  size?: InputSize;
-  /** Visible label above the control. Prefer this, or an external `htmlFor` / `aria-labelledby`. */
+  /** `"sm"` si l’espace est contraint. `"md"` par défaut. `"lg"` pour les formulaires aérés. */
+  size?: TextareaSize;
+  /** Libellé visible au-dessus du champ. Sinon, un `<label htmlFor>` externe ou `aria-labelledby`. */
   label?: ReactNode;
-  /** Guidance under the control. Replaced by `error` when the field is invalid. */
+  /** Texte d’aide sous le champ. Remplacé par `error` si le champ est invalide. */
   helper?: ReactNode;
-  /** Error text under the control. Also sets `aria-invalid`. */
+  /** Message d’erreur sous le champ. Pose aussi `aria-invalid`. */
   error?: ReactNode;
-  /** Maps to `aria-invalid`. Prefer this name so it matches Field (`invalid`). */
+  /** État d’erreur : `aria-invalid`. Même nom que `Field` (`invalid`). */
   invalid?: boolean;
-  /** Success state: green outline and check. Ignored when `invalid`. */
+  /** État de succès : contour vert et icône. Ignoré si `invalid`. */
   valid?: boolean;
-  /** Decorative icon at the start of the field. Complements `label`, does not replace it. */
+  /** Icône décorative au début du champ. Complète `label`, ne le remplace pas. */
   icon?: ReactNode;
+  /** Contenu au début du champ. Ne remplace pas le libellé. */
   prefix?: ReactNode;
+  /** Contenu à la fin du champ. Ne remplace pas le libellé. */
   suffix?: ReactNode;
-  /** Stretch the control to the container width. */
+  /** Étend le champ à la largeur du conteneur. Défaut : `true`. */
   fullWidth?: boolean;
-  /** Show a clear control when the value is not empty. */
+  /** Bouton d’effacement dès que la valeur n’est pas vide. */
   clearable?: boolean;
   onClear?: () => void;
-  /** Accessible name of the clear control. Default `"Clear"`. */
+  /** Nom accessible du bouton d’effacement. Défaut `"Clear"`. */
   clearLabel?: string;
   /**
-   * Visible character count in the header (remaining when `maxLength` is set).
-   * Defaults to on when `maxLength` is set. Associate via `aria-describedby`.
+   * Compteur de caractères (restants si `maxLength` est posé).
+   * Activé par défaut avec `maxLength`. Lié via `aria-describedby`.
    */
   showCount?: boolean;
+  /** Libellé du compteur. Reçoit le nombre de caractères et `maxLength`. */
   countMessage?: (count: number, maxLength?: number) => string;
-  /** Accessible name while the password is hidden. Default `"Show password"`. */
-  revealPasswordLabel?: string;
-  /** Accessible name while the password is visible. Default `"Hide password"`. */
-  hidePasswordLabel?: string;
+  /** Nombre de lignes visibles. Défaut : `2`. */
+  rows?: number;
 };
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(
   {
     id,
-    type = 'text',
     size = 'md',
     label,
     helper,
@@ -70,14 +66,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     icon,
     prefix,
     suffix,
-    fullWidth = false,
+    fullWidth = true,
     clearable = false,
     onClear,
     clearLabel = 'Clear',
     showCount,
     countMessage = defaultCountMessage,
-    revealPasswordLabel = 'Show password',
-    hidePasswordLabel = 'Hide password',
     className,
     disabled,
     readOnly,
@@ -86,10 +80,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     defaultValue,
     onChange,
     maxLength,
+    rows = 2,
     'aria-invalid': ariaInvalid,
     'aria-describedby': ariaDescribedBy,
     ...rest
-  }: InputProps,
+  }: TextareaProps,
   ref,
 ) {
   const generatedId = useId();
@@ -98,17 +93,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const helperId = `${generatedId}-helper`;
   const isControlled = value !== undefined;
   const [uncontrolled, setUncontrolled] = useState(() => stringifyValue(defaultValue));
-  const [passwordVisible, setPasswordVisible] = useState(false);
   const current = isControlled ? stringifyValue(value) : uncontrolled;
   const isInvalid =
     Boolean(invalid) || Boolean(error) || ariaInvalid === true || ariaInvalid === 'true';
-  const isPassword = type === 'password';
   const showClear = clearable && current.length > 0 && !disabled && !readOnly;
   const displayCount = showCount ?? maxLength != null;
   const description = isInvalid ? error : helper;
-  const inputType = isPassword && passwordVisible ? 'text' : type;
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     if (!isControlled) setUncontrolled(event.target.value);
     onChange?.(event);
   }
@@ -119,7 +111,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     onChange?.({
       target: { value: '', name: rest.name },
       currentTarget: { value: '', name: rest.name },
-    } as ChangeEvent<HTMLInputElement>);
+    } as ChangeEvent<HTMLTextAreaElement>);
   }
 
   return (
@@ -141,19 +133,26 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       countMessage={countMessage}
       countId={countId}
       helperId={helperId}
+      multiline
     >
-      {icon ? <span className="inline-flex shrink-0 text-fg/70">{icon}</span> : null}
-      {prefix ? <span className="inline-flex shrink-0 text-fg/70">{prefix}</span> : null}
-      <input
+      {icon ? (
+        <span className="inline-flex shrink-0 pt-0.5 text-fg/70" aria-hidden="true">
+          {icon}
+        </span>
+      ) : null}
+      {prefix ? (
+        <span className="inline-flex shrink-0 pt-0.5 text-fg/70">{prefix}</span>
+      ) : null}
+      <textarea
         {...rest}
         ref={ref}
         id={controlId}
-        type={inputType}
         disabled={disabled}
         readOnly={readOnly}
         required={required}
         value={current}
         maxLength={maxLength}
+        rows={rows}
         aria-invalid={isInvalid || undefined}
         aria-describedby={mergeDescribedBy(
           ariaDescribedBy,
@@ -168,18 +167,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           <ClearIcon />
         </ChromeButton>
       ) : null}
-      {isPassword ? (
-        <ChromeButton
-          label={passwordVisible ? hidePasswordLabel : revealPasswordLabel}
-          pressed={passwordVisible}
-          disabled={disabled}
-          onClick={() => setPasswordVisible((visible) => !visible)}
-        >
-          {passwordVisible ? <EyeOffIcon /> : <EyeIcon />}
-        </ChromeButton>
-      ) : null}
       <StatusIcon invalid={isInvalid} valid={valid} />
-      {suffix ? <span className="inline-flex shrink-0 text-fg/70">{suffix}</span> : null}
+      {suffix ? (
+        <span className="inline-flex shrink-0 pt-0.5 text-fg/70">{suffix}</span>
+      ) : null}
     </TextFieldLayout>
   );
 });

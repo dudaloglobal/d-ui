@@ -1,124 +1,109 @@
 import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
-import { Textarea } from './Textarea';
-import * as InputStories from './Input.stories';
+import * as TextInputStories from './TextInput.stories';
 
-<Meta of={InputStories} />
+<Meta of={TextInputStories} />
 
-# Input
+# TextInput
 
-Les champs de saisie (`Input` et `Textarea`) collectent du texte.
+`TextInput` est le champ de saisie d’une ligne, en pleine largeur. Pour plusieurs lignes, utilisez `Textarea`.
 
 Les exemples suivent la **langue** de la barre d’outils Storybook (**Français** par défaut).
 
 `label` est une prop du composant : le libellé s’affiche au-dessus du cadre. Vous pouvez aussi attacher un `<label htmlFor>` externe ou `aria-labelledby` (par exemple via `Field`, DS-022).
 
-<Canvas of={InputStories.Default} />
+<Canvas of={TextInputStories.Default} />
 
-## Special states
+## États particuliers
 
 Trois états particuliers : `disabled`, `valid` et `invalid`.
 
-### Disabled
+### Désactivé
 
 Utilisez `disabled` lorsque la valeur ne peut pas être modifiée.
 
-<Canvas of={InputStories.Disabled} />
+<Canvas of={TextInputStories.Disabled} />
 
-### Valid
+### Valide
 
 Utilisez `valid` pour indiquer que la valeur saisie est considérée comme correcte.
 
-<Canvas of={InputStories.Valid} />
+<Canvas of={TextInputStories.Valid} />
 
-### Invalid
+### Invalide
 
 Utilisez `invalid` (et `error` pour le message) pour indiquer que la valeur saisie est considérée comme incorrecte. `invalid` pose `aria-invalid`.
 
-<Canvas of={InputStories.Invalid} />
+<Canvas of={TextInputStories.Invalid} />
 
 ## Options
 
 Options : `required`, `helper`, `placeholder`, `icon`, `clearable`, `maxLength`. Les chips sont hors périmètre.
 
-### Required
+### Requis
 
 Utilisez `required` pour indiquer que le champ doit être renseigné avant l’envoi du formulaire. Un astérisque est affiché à côté du libellé.
 
-<Canvas of={InputStories.Required} />
+<Canvas of={TextInputStories.Required} />
 
-### Helper
+### Aide
 
 Utilisez `helper` pour donner une indication.
 
-<Canvas of={InputStories.Helper} />
+<Canvas of={TextInputStories.Helper} />
 
-### Placeholder
+### Texte de substitution
 
 Utilisez `placeholder` pour donner un exemple de valeur attendue ou inviter à remplir le champ.
 
-<Canvas of={InputStories.Placeholder} />
+<Canvas of={TextInputStories.Placeholder} />
 
-### Icon
+### Icône
 
 Utilisez `icon` pour illustrer le champ. `icon` complète `label` mais ne le remplace pas.
 
-<Canvas of={InputStories.Icon} />
+<Canvas of={TextInputStories.Icon} />
 
-### Clearable
+### Effaçable
 
 `clearable` affiche un bouton d’effacement dès que la valeur n’est pas vide. Passez `clearLabel` (nom accessible) et `onClear` si la valeur est contrôlée.
 
-<Canvas of={InputStories.Clearable} />
+<Canvas of={TextInputStories.Clearable} />
 
-### Max length
+### Longueur maximale
 
 Utilisez `maxLength` lorsque la longueur de saisie est limitée. Le compteur (caractères restants) s’affiche à droite du libellé. Localisez le texte avec `countMessage`.
 
-<Canvas of={InputStories.MaxLength} />
+<Canvas of={TextInputStories.MaxLength} />
 
-### Prefix and suffix
+### Préfixe et suffixe
 
 Les slots `prefix` et `suffix` illustrent le champ (unité, schéma d’URL). Ils ne remplacent pas le label.
 
-<Canvas of={InputStories.PrefixSuffix} />
+<Canvas of={TextInputStories.PrefixSuffix} />
 
-### Sizes
+### Tailles
 
 `sm` lorsque l’espace est contraint, `md` par défaut, `lg` pour les formulaires aérés.
 
-<Canvas of={InputStories.Sizes} />
+<Canvas of={TextInputStories.Sizes} />
 
-## Textarea
-
-Utilisez `Textarea` lorsque la saisie dépasse une ligne.
-
-<Canvas of={InputStories.Multiline} />
-
-### Valid
-
-<Canvas of={InputStories.TextareaValid} />
-
-### Invalid
-
-<Canvas of={InputStories.TextareaInvalid} />
-
-## Number
+## Nombre
 
 Utilisez `type="number"` lorsque la valeur attendue est numérique. `inputMode="numeric"` aide le clavier logiciel.
 
-<Canvas of={InputStories.Number} />
+<Canvas of={TextInputStories.Number} />
 
-## Password
+## Mot de passe
 
 `type="password"` masque la saisie et propose un basculeur de visibilité nommé (pas seulement une icône).
 
-<Canvas of={InputStories.Password} />
+<Canvas of={TextInputStories.Password} />
 
 Thème sombre : barre d’outils **Thème**. Langue des exemples : barre d’outils **Langue**.
 
-## Accessibility concerns
+## Accessibilité
 
-`Input` rend un `<input>` natif, `Textarea` un `<textarea>`.
+`TextInput` rend un `<input>` natif. Pour plusieurs lignes, utilisez `Textarea`.
 
 Associez toujours un label visible : prop `label`, `aria-labelledby`, ou un `<label htmlFor>` externe. Un placeholder ne suffit pas.
 
@@ -129,28 +114,26 @@ Le champ peut être désactivé de deux façons :
 - `disabled` désactive complètement le champ : il n’est plus focusable et les événements pointeur sont ignorés. Indiquez autrement pourquoi le champ est là et pourquoi il est désactivé.
 - `readOnly` / `aria-disabled` empêche l’édition tout en laissant le focus. Expliquez la raison via `helper`, un tooltip ou une description ARIA.
 
-### Do
+### À faire
 
-- `<Input label="Email" type="email" autoComplete="email" />`
+- `<TextInput label="Email" type="email" autoComplete="email" />`
 - `clearLabel` / `revealPasswordLabel` dans la langue de l’app
 - `countMessage` localisé lorsque `maxLength` est posé
 - `invalid` **et** un message `error` (ne pas se fier à la couleur seule)
 
-### Don’t
+### À éviter
 
 - Un champ identifié seulement par le placeholder
 - Remplacer le label par `icon`
 - Masquer le mot de passe derrière une icône sans nom accessible
 - Saisie masquée (carte), texte riche, OTP, chips — hors périmètre
 
-## Properties
-
-### Input
+## Propriétés
 
 Les attributs natifs `<input>` (`autoComplete`, `inputMode`, `name`, `required`, `className`, …) sont transmis au contrôle.
 
 <ArgTypes
-  of={InputStories}
+  of={TextInputStories}
   include={[
     'type',
     'size',
@@ -169,34 +152,7 @@ Les attributs natifs `<input>` (`autoComplete`, `inputMode`, `name`, `required`,
     'clearable',
     'clearLabel',
     'showCount',
+    'countMessage',
     'maxLength',
-  ]}
-/>
-
-### Textarea
-
-Même contrat, sans `type` ni basculeur mot de passe.
-
-<ArgTypes
-  of={Textarea}
-  include={[
-    'size',
-    'label',
-    'helper',
-    'error',
-    'placeholder',
-    'invalid',
-    'valid',
-    'disabled',
-    'required',
-    'icon',
-    'prefix',
-    'suffix',
-    'fullWidth',
-    'clearable',
-    'clearLabel',
-    'showCount',
-    'maxLength',
-    'rows',
   ]}
 />

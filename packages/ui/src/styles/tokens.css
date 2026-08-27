@@ -7,6 +7,8 @@
   --d-ui-color-on-brand: #ffffff;
   --d-ui-color-surface-muted: #f1f5f9;
   --d-ui-color-surface-hover: #e2e8f0;
+  --d-ui-color-field: rgba(15, 23, 42, 0.03);
+  --d-ui-color-field-hover: rgba(15, 23, 42, 0.12);
   --d-ui-color-border: #cbd5e1;
   --d-ui-color-danger: #b91c1c;
   --d-ui-color-success: #15803d;
@@ -25,6 +27,8 @@
   --d-ui-color-on-brand: #042f2e;
   --d-ui-color-surface-muted: #1e293b;
   --d-ui-color-surface-hover: #334155;
+  --d-ui-color-field: rgba(241, 245, 249, 0.03);
+  --d-ui-color-field-hover: rgba(241, 245, 249, 0.12);
   --d-ui-color-border: #475569;
   --d-ui-color-danger: #f87171;
   --d-ui-color-success: #4ade80;
