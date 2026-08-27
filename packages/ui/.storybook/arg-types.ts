@@ -318,3 +318,57 @@ export const emojiPopoverArgTypes = {
     description: 'Nom accessible de la barre. Défaut : « Réactions ».',
   },
 };
+
+const selectSharedArgTypes = {
+  size: textFieldArgTypes.size,
+  label: textFieldArgTypes.label,
+  helper: textFieldArgTypes.helper,
+  error: textFieldArgTypes.error,
+  invalid: textFieldArgTypes.invalid,
+  valid: textFieldArgTypes.valid,
+  disabled: textFieldArgTypes.disabled,
+  required: textFieldArgTypes.required,
+  fullWidth: textFieldArgTypes.fullWidth,
+  options: {
+    control: { disable: true },
+    description:
+      'Liste d’options `{ value, label, disabled? }` ou de groupes `{ label, options }`.',
+  },
+  value: {
+    description: 'Valeur contrôlée (`string`). Sinon `defaultValue`.',
+  },
+  defaultValue: {
+    description: 'Valeur initiale en mode non contrôlé.',
+  },
+  onValueChange: {
+    description: 'Appelé avec la valeur choisie.',
+  },
+  name: {
+    description:
+      'Nom du `<select>` natif masqué, pour la soumission HTML (`name` / `form`).',
+  },
+  form: {
+    description: 'Id du formulaire hôte si le champ est rendu hors du `<form>`.',
+  },
+  emptyMessage: {
+    description: 'Texte affiché lorsque la liste est vide. Défaut : « Aucune option ».',
+  },
+};
+
+export const selectArgTypes = {
+  ...selectSharedArgTypes,
+  placeholder: {
+    ...textFieldArgTypes.placeholder,
+    description:
+      'Texte du déclencheur lorsqu’aucune valeur n’est choisie. Défaut : « Choisir ».',
+  },
+};
+
+export const comboboxArgTypes = {
+  ...selectSharedArgTypes,
+  placeholder: {
+    ...textFieldArgTypes.placeholder,
+    description:
+      'Texte de recherche. Ne remplace pas le libellé. Défaut : « Rechercher ».',
+  },
+};

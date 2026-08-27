@@ -122,6 +122,7 @@ export function TextFieldLayout({
           {label ? (
             <label
               htmlFor={id}
+              id={id ? `${id}-label` : undefined}
               className={cx(
                 'min-w-0 flex-1 text-sm leading-5',
                 disabled ? 'text-fg/40' : 'text-fg',

@@ -65,6 +65,10 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Popover | Dudalo Design System');
   await page.goto('/?path=/docs/components-emojipopover--docs');
   await expect(page).toHaveTitle('EmojiPopover | Dudalo Design System');
+  await page.goto('/?path=/docs/components-select--docs');
+  await expect(page).toHaveTitle('Select | Dudalo Design System');
+  await page.goto('/?path=/docs/components-combobox--docs');
+  await expect(page).toHaveTitle('Combobox | Dudalo Design System');
 });
 
 test('Storybook page title uses Dudalo Design System', async ({ page }) => {
@@ -631,6 +635,8 @@ test('English globals switch example copy on every component canvas', async ({
     { id: 'components-tooltip--default', en: 'Help', fr: 'Aide' },
     { id: 'components-popover--default', en: 'Open', fr: 'Ouvrir' },
     { id: 'components-emojipopover--default', en: 'React', fr: 'Réagir' },
+    { id: 'components-select--default', en: 'Country', fr: 'Pays' },
+    { id: 'components-combobox--default', en: 'City', fr: 'Ville' },
   ] as const;
   for (const { id, en, fr } of cases) {
     await page.goto(`/iframe.html?id=${id}&globals=locale:en`);
@@ -781,4 +787,65 @@ test('EmojiPopover docs Show code imports EmojiPopover from d-ui', async ({ page
   await expect(source).toContainText("import { Button, EmojiPopover } from 'd-ui'");
   await expect(source).toContainText('<EmojiPopover');
   await expect(source).not.toContainText('SmileIcon');
+});
+
+test('Storybook serves the Select story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-select--default');
+  const control = page.getByRole('combobox', { name: 'Pays' });
+  await expect(control).toBeVisible();
+  await expect(control).toHaveAttribute('aria-expanded', 'false');
+  await control.click();
+  await expect(control).toHaveAttribute('aria-expanded', 'true');
+  const list = page.getByRole('listbox', { name: 'Pays' });
+  await expect(list).toBeVisible();
+  await page.getByRole('option', { name: 'Belgique' }).click();
+  await expect(list).toHaveCount(0);
+  await expect(control).toContainText('Belgique');
+});
+
+test('Storybook serves the Combobox story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-combobox--default');
+  const control = page.getByRole('combobox', { name: 'Ville' });
+  await expect(control).toBeVisible();
+  await control.click();
+  await control.fill('ly');
+  const list = page.getByRole('listbox', { name: 'Ville' });
+  await expect(list.getByRole('option', { name: 'Lyon' })).toBeVisible();
+  await expect(list.getByRole('option', { name: 'Paris' })).toHaveCount(0);
+  await page.keyboard.press('Enter');
+  await expect(list).toHaveCount(0);
+  await expect(control).toHaveValue('Lyon');
+});
+
+test('French Select docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-select--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { name: 'Groupes d’options' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Option groups' })).toHaveCount(0);
+  await expect(preview.getByText('Country of residence.')).toHaveCount(0);
+});
+
+test('French Combobox docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-combobox--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { name: 'État vide' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Empty state' })).toHaveCount(0);
+  await expect(preview.getByText('No options')).toHaveCount(0);
+});
+
+test('Select docs Show code imports Select from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-select--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { useState } from 'react'");
+  await expect(source).toContainText("import { Select } from 'd-ui'");
+  await expect(source).toContainText('<Select');
+  await expect(source).not.toContainText('ControlledSelect');
+});
+
+test('Combobox docs Show code imports Combobox from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-combobox--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Combobox } from 'd-ui'");
+  await expect(source).toContainText('<Combobox');
+  await expect(source).not.toContainText('ControlledCombobox');
 });

@@ -90,8 +90,8 @@ export const docsCopy = {
       en: 'Consuming apps use:',
     },
     itemComponents: {
-      fr: 'les composants React (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, …)',
-      en: 'the React components (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, …)',
+      fr: 'les composants React (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, …)',
+      en: 'the React components (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, …)',
     },
     itemCssVars: {
       fr: 'les **variables CSS** `--d-ui-*`',
@@ -801,6 +801,107 @@ export const docsCopy = {
     propsBody: {
       fr: '`children` est le déclencheur. `labels` surcharge les noms accessibles des emojis (français par défaut).',
       en: '`children` is the trigger. `labels` overrides the emoji accessible names (French by default).',
+    },
+  },
+  select: {
+    title: { fr: 'Select', en: 'Select' },
+    intro: {
+      fr: '`Select` ouvre une liste fermée d’options. Pour filtrer en tapant, utilisez `Combobox`. Les deux partagent `options`, les groupes et `onValueChange`.',
+      en: '`Select` opens a closed list of options. To filter while typing, use `Combobox`. Both share `options`, groups, and `onValueChange`.',
+    },
+    useInvalid: {
+      fr: '`invalid` et `error` posent `aria-invalid` et remplacent `helper`. L’erreur ne repose pas sur la couleur seule.',
+      en: '`invalid` and `error` set `aria-invalid` and replace `helper`. The error does not rely on colour alone.',
+    },
+    useRequired: {
+      fr: '`required` affiche un astérisque à côté du libellé et pose `aria-required`.',
+      en: '`required` shows an asterisk next to the label and sets `aria-required`.',
+    },
+    groups: { fr: 'Groupes d’options', en: 'Option groups' },
+    useGroups: {
+      fr: 'Passez `{ label, options }` pour regrouper. Le libellé du groupe est exposé via `role="group"`.',
+      en: 'Pass `{ label, options }` to group items. The group label is exposed via `role="group"`.',
+    },
+    disabledOptions: { fr: 'Options désactivées', en: 'Disabled options' },
+    useDisabledOptions: {
+      fr: '`disabled: true` sur une option la rend non sélectionnable. Les flèches la sautent.',
+      en: '`disabled: true` on an option makes it unselectable. Arrow keys skip it.',
+    },
+    a11yBody: {
+      fr: 'Le déclencheur a `role="combobox"` (`aria-autocomplete="none"`), `aria-expanded`, `aria-controls` et `aria-activedescendant`. La liste a `role="listbox"` et le même nom que le champ.',
+      en: 'The trigger has `role="combobox"` (`aria-autocomplete="none"`), `aria-expanded`, `aria-controls`, and `aria-activedescendant`. The list has `role="listbox"` and the same name as the field.',
+    },
+    a11yKeys: {
+      fr: 'Flèches, Début/Fin, saisie prédictive, Entrée/Espace pour choisir, Escape pour fermer. L’option active est défilée dans la vue.',
+      en: 'Arrows, Home/End, typeahead, Enter/Space to choose, Escape to close. The active option is scrolled into view.',
+    },
+    a11yForm: {
+      fr: '`name` et `form` sont posés sur un `<select>` natif visuellement masqué, pour la soumission HTML. Documentez-les dans le formulaire hôte.',
+      en: '`name` and `form` are set on a visually hidden native `<select>` for HTML submission. Document them on the host form.',
+    },
+    doLabel: {
+      fr: 'Un libellé visible (`label`, `aria-labelledby`, ou `<label for>`)',
+      en: 'A visible label (`label`, `aria-labelledby`, or `<label for>`)',
+    },
+    doName: {
+      fr: '`name` (et `form` si le champ est hors du `<form>`) pour la soumission native',
+      en: '`name` (and `form` if the field sits outside the `<form>`) for native submit',
+    },
+    doDisabled: {
+      fr: '`disabled` sur l’option plutôt que de la retirer sans explication',
+      en: '`disabled` on the option rather than removing it without explanation',
+    },
+    dontTitle: {
+      fr: '`title` natif à la place d’un libellé',
+      en: 'A native `title` instead of a label',
+    },
+    dontMulti: {
+      fr: 'La sélection multiple — hors périmètre',
+      en: 'Multi-select — out of scope',
+    },
+    dontNativeOnly: {
+      fr: 'Un `<select>` nu sans les tokens et états d-ui lorsque le design system s’applique',
+      en: 'A bare `<select>` without d-ui tokens and states when the design system applies',
+    },
+    propsBody: {
+      fr: '`options` est la liste (plate ou groupée). `value` / `onValueChange` pour un état contrôlé.',
+      en: '`options` is the list (flat or grouped). `value` / `onValueChange` for controlled state.',
+    },
+  },
+  combobox: {
+    title: { fr: 'Combobox', en: 'Combobox' },
+    intro: {
+      fr: '`Combobox` filtre la liste en tapant. Même API que `Select` (`options`, groupes, `onValueChange`). Pas de client d’autocomplete asynchrone.',
+      en: '`Combobox` filters the list as you type. Same API as `Select` (`options`, groups, `onValueChange`). No async autocomplete client.',
+    },
+    empty: { fr: 'État vide', en: 'Empty state' },
+    useEmpty: {
+      fr: '`emptyMessage` s’affiche lorsque la requête ne correspond à aucune option (ou si `options` est vide).',
+      en: '`emptyMessage` shows when the query matches no option (or when `options` is empty).',
+    },
+    a11yBody: {
+      fr: 'Le champ a `role="combobox"` et `aria-autocomplete="list"`. La listbox filtrée est nommée comme le champ. Le focus reste dans le champ.',
+      en: 'The field has `role="combobox"` and `aria-autocomplete="list"`. The filtered listbox is named like the field. Focus stays in the field.',
+    },
+    a11yKeys: {
+      fr: 'Taper filtre. Flèches parcourent les résultats. Entrée choisit. Escape ferme et rétablit la valeur sélectionnée.',
+      en: 'Typing filters. Arrows move through results. Enter chooses. Escape closes and restores the selected value.',
+    },
+    doFilter: {
+      fr: 'Filtrer localement avec `options` déjà chargées',
+      en: 'Filter locally with `options` already loaded',
+    },
+    dontAsync: {
+      fr: 'Un client d’API asynchrone dans le composant (hors périmètre)',
+      en: 'An async API client inside the component (out of scope)',
+    },
+    dontPlaceholder: {
+      fr: 'Un placeholder à la place du libellé',
+      en: 'A placeholder instead of the label',
+    },
+    propsBody: {
+      fr: 'Même contrat que `Select`. `placeholder` guide la recherche ; il ne nomme pas le champ.',
+      en: 'Same contract as `Select`. `placeholder` guides the search; it does not name the field.',
     },
   },
 } as const;

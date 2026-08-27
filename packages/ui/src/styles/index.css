@@ -156,6 +156,10 @@
   border: 0;
 }
 
+.d-ui-option[data-active] {
+  background-color: var(--d-ui-color-surface-hover);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .d-ui-root *,
   .d-ui-root *::before,

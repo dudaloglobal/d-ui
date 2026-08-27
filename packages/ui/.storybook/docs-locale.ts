@@ -53,6 +53,8 @@ export const storyNameEn: Record<string, string> = {
   Portail: 'Portal',
   'Sans piège de focus': 'Without focus trap',
   Alignements: 'Alignments',
+  'Options désactivées': 'Disabled options',
+  'État vide': 'Empty state',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -274,6 +276,58 @@ export type SelectionDocsCopy = typeof selectionFr;
 
 export function selectionCopy(locale: DocsLocale): SelectionDocsCopy {
   return locale === 'en' ? selectionEn : selectionFr;
+}
+
+const selectFr = {
+  country: 'Pays',
+  city: 'Ville',
+  choose: 'Choisir',
+  search: 'Rechercher',
+  empty: 'Aucune option',
+  helper: 'Le pays de résidence.',
+  error: 'Ce champ est requis.',
+  france: 'France',
+  belgium: 'Belgique',
+  canada: 'Canada',
+  switzerland: 'Suisse',
+  europe: 'Europe',
+  americas: 'Amériques',
+  paris: 'Paris',
+  lyon: 'Lyon',
+  marseille: 'Marseille',
+  brussels: 'Bruxelles',
+  small: 'Petite',
+  medium: 'Moyenne',
+  large: 'Grande',
+};
+
+const selectEn = {
+  country: 'Country',
+  city: 'City',
+  choose: 'Choose',
+  search: 'Search',
+  empty: 'No options',
+  helper: 'Country of residence.',
+  error: 'This field is required.',
+  france: 'France',
+  belgium: 'Belgium',
+  canada: 'Canada',
+  switzerland: 'Switzerland',
+  europe: 'Europe',
+  americas: 'Americas',
+  paris: 'Paris',
+  lyon: 'Lyon',
+  marseille: 'Marseille',
+  brussels: 'Brussels',
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+};
+
+export type SelectDocsCopy = typeof selectFr;
+
+export function selectCopy(locale: DocsLocale): SelectDocsCopy {
+  return locale === 'en' ? selectEn : selectFr;
 }
 
 const overlayFr = {

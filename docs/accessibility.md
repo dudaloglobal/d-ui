@@ -17,6 +17,7 @@ Cible : **WCAG 2.2 niveau AA** (RGAA comme grille de contrôle interne).
 11. `Tooltip` : `role="tooltip"`, `aria-describedby` sur le déclencheur, contenu non interactif (`pointer-events-none`). Escape ferme. Pas d’information indispensable uniquement dans le tooltip.
 12. `Popover` : `aria-expanded` / `aria-haspopup` / `aria-controls` sur le déclencheur. `trapFocus` seulement si le panneau contient des contrôles focusables (`role="dialog"` + nom accessible). Escape et clic extérieur ferment. Le portail recopie `data-d-ui-theme`.
 13. `EmojiPopover` : barre de neuf réactions (boutons nommés). `role="dialog"` + `trapFocus`. `onSelect` ferme le panneau. Déclencheur icône avec `aria-label`.
+14. `Select` / `Combobox` : `role="combobox"` + listbox nommée (`aria-labelledby` du libellé). Flèches, typeahead (Select), filtre (Combobox), Escape, Entrée. Options `disabled` ignorées par le clavier. `name` / `form` sur un `<select>` natif masqué. L’option active est défilée dans la vue.
 
 ## Outils
 
