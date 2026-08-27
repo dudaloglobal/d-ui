@@ -20,7 +20,7 @@ function DemoInput(props: InputHTMLAttributes<HTMLInputElement>) {
     <input
       {...field}
       {...props}
-      className="border-border text-fg bg-bg focus-visible:ring-focus focus-visible:ring-offset-bg h-10 rounded-md border px-3 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50 aria-invalid:border-2 aria-invalid:border-(--d-ui-color-danger)"
+      className="text-fg bg-field hover:bg-field-hover h-9 w-full min-w-0 rounded px-3 text-sm ring-1 ring-inset ring-fg/40 focus:bg-transparent focus:ring-2 focus:ring-focus focus:outline-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-2 aria-invalid:ring-danger"
     />
   );
 }
