@@ -127,6 +127,11 @@ export const textFieldArgTypes = {
     control: 'boolean' as const,
     description: 'Pleine largeur par défaut. Passez `false` pour une largeur fixe.',
   },
+  focusShadow: {
+    control: 'boolean' as const,
+    description:
+      'Halo de focus (ombre douce autour du cadre). Inactif sauf si la prop est `true`.',
+  },
   clearable: {
     control: 'boolean' as const,
     description: 'Bouton d’effacement dès que la valeur n’est pas vide.',

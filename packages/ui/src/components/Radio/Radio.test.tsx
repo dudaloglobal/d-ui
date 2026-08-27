@@ -90,4 +90,26 @@ describe('RadioGroup', () => {
     expect(radio).toBeRequired();
     expect(radio).toHaveAccessibleDescription('Choisissez une formule');
   });
+
+  it('does not steal selection from another group when name is omitted', async () => {
+    const user = userEvent.setup();
+    render(
+      <>
+        <RadioGroup label="Formule A" defaultValue="a1">
+          <Radio value="a1" label="A1" />
+          <Radio value="a2" label="A2" />
+        </RadioGroup>
+        <RadioGroup label="Formule B" defaultValue="b1">
+          <Radio value="b1" label="B1" />
+          <Radio value="b2" label="B2" />
+        </RadioGroup>
+      </>,
+    );
+
+    await user.click(screen.getByRole('radio', { name: 'A2' }));
+    expect(screen.getByRole('radio', { name: 'A2' })).toBeChecked();
+    expect(screen.getByRole('radio', { name: 'A1' })).not.toBeChecked();
+    expect(screen.getByRole('radio', { name: 'B1' })).toBeChecked();
+    expect(screen.getByRole('radio', { name: 'B2' })).not.toBeChecked();
+  });
 });

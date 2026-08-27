@@ -223,7 +223,6 @@ function PlanGroup({
   return (
     <RadioGroup
       label={copy.plan}
-      name="plan"
       value={value}
       onChange={setValue}
       disabled={disabled}

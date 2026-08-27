@@ -39,6 +39,12 @@ Utilisez `maxLength` lorsque la longueur de saisie est limitée. Le compteur (ca
 
 <Canvas of={TextareaStories.MaxLength} />
 
+## Halo de focus
+
+`focusShadow` ajoute un halo doux autour du cadre au focus. Inactif par défaut : passez `focusShadow` pour l’activer.
+
+<Canvas of={TextareaStories.FocusShadow} />
+
 Thème sombre : barre d’outils **Thème**. Langue des exemples : barre d’outils **Langue**.
 
 ## Accessibilité
@@ -80,6 +86,7 @@ Les attributs natifs `<textarea>` (`name`, `required`, `className`, …) sont tr
     'prefix',
     'suffix',
     'fullWidth',
+    'focusShadow',
     'clearable',
     'clearLabel',
     'showCount',

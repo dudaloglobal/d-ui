@@ -168,7 +168,8 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
             className={cx(
               'pointer-events-none flex size-full items-center justify-center rounded-full',
               'bg-field text-on-brand',
-              'peer-hover:bg-field-hover peer-focus-visible:ring-2 peer-focus-visible:ring-focus',
+              'peer-hover:bg-field-hover peer-checked:peer-hover:bg-brand',
+              'peer-focus-visible:ring-2 peer-focus-visible:ring-focus',
               '[&_.d-ui-radio-dot]:hidden peer-checked:[&_.d-ui-radio-dot]:block',
               'peer-checked:bg-brand peer-checked:ring-brand',
               isInvalid

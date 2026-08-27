@@ -44,6 +44,8 @@ export type TextInputProps = Omit<
   suffix?: ReactNode;
   /** Étend le champ à la largeur du conteneur. Défaut : `true`. */
   fullWidth?: boolean;
+  /** Halo de focus (ombre douce). Inactif sauf si `true`. */
+  focusShadow?: boolean;
   /** Bouton d’effacement dès que la valeur n’est pas vide. */
   clearable?: boolean;
   onClear?: () => void;
@@ -76,6 +78,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function T
     prefix,
     suffix,
     fullWidth = true,
+    focusShadow,
     clearable = false,
     onClear,
     clearLabel = 'Clear',
@@ -138,6 +141,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function T
       valid={valid}
       disabled={Boolean(disabled)}
       fullWidth={fullWidth}
+      focusShadow={focusShadow}
       size={size}
       className={className}
       showCount={displayCount}

@@ -87,6 +87,12 @@ Les slots `prefix` et `suffix` illustrent le champ (unité, schéma d’URL). Il
 
 <Canvas of={TextInputStories.Sizes} />
 
+## Halo de focus
+
+`focusShadow` ajoute un halo doux autour du cadre au focus. Inactif par défaut : passez `focusShadow` pour l’activer.
+
+<Canvas of={TextInputStories.FocusShadow} />
+
 ## Nombre
 
 Utilisez `type="number"` lorsque la valeur attendue est numérique. `inputMode="numeric"` aide le clavier logiciel.
@@ -149,6 +155,7 @@ Les attributs natifs `<input>` (`autoComplete`, `inputMode`, `name`, `required`,
     'prefix',
     'suffix',
     'fullWidth',
+    'focusShadow',
     'clearable',
     'clearLabel',
     'showCount',

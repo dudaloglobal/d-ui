@@ -13,6 +13,7 @@
   --d-ui-color-danger: #b91c1c;
   --d-ui-color-success: #15803d;
   --d-ui-color-focus: #0f5c4c;
+  --d-ui-shadow-focus: 0 0 0 4px rgb(15 92 76 / 0.2), 0 0 10px 2px rgb(15 92 76 / 0.18);
   --d-ui-font-sans:
     ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
     sans-serif;
@@ -33,4 +34,6 @@
   --d-ui-color-danger: #f87171;
   --d-ui-color-success: #4ade80;
   --d-ui-color-focus: #5eead4;
+  --d-ui-shadow-focus:
+    0 0 0 4px rgb(94 234 212 / 0.28), 0 0 12px 2px rgb(94 234 212 / 0.22);
 }

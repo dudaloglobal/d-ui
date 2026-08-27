@@ -38,6 +38,8 @@ export type TextareaProps = Omit<
   suffix?: ReactNode;
   /** Étend le champ à la largeur du conteneur. Défaut : `true`. */
   fullWidth?: boolean;
+  /** Halo de focus (ombre douce). Inactif sauf si `true`. */
+  focusShadow?: boolean;
   /** Bouton d’effacement dès que la valeur n’est pas vide. */
   clearable?: boolean;
   onClear?: () => void;
@@ -67,6 +69,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
     prefix,
     suffix,
     fullWidth = true,
+    focusShadow,
     clearable = false,
     onClear,
     clearLabel = 'Clear',
@@ -125,6 +128,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
       valid={valid}
       disabled={Boolean(disabled)}
       fullWidth={fullWidth}
+      focusShadow={focusShadow}
       size={size}
       className={className}
       showCount={displayCount}

@@ -244,4 +244,11 @@ describe('TextInput', () => {
     expect(input).toHaveValue('Ada');
     expect(input).toHaveAttribute('name', 'given-name');
   });
+
+  it('opts into the focus glow only when focusShadow is passed', () => {
+    const { container, rerender } = render(<TextInput label="Nom" />);
+    expect(container.innerHTML).not.toContain('d-ui-shadow-focus');
+    rerender(<TextInput label="Nom" focusShadow />);
+    expect(container.innerHTML).toContain('d-ui-shadow-focus');
+  });
 });

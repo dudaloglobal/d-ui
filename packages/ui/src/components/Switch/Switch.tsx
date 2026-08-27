@@ -97,7 +97,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
             className={cx(
               'pointer-events-none absolute inset-0 rounded-full',
               'bg-fg/20',
-              'peer-hover:bg-fg/30 peer-focus-visible:ring-2 peer-focus-visible:ring-focus',
+              'peer-hover:bg-fg/30 peer-checked:peer-hover:bg-brand',
+              'peer-focus-visible:ring-2 peer-focus-visible:ring-focus',
               'peer-checked:bg-brand peer-checked:ring-brand',
               isInvalid
                 ? 'ring-2 ring-inset ring-danger peer-checked:ring-danger'

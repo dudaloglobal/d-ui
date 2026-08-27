@@ -116,4 +116,11 @@ describe('Textarea', () => {
     expect(area).toHaveValue('');
     expect(area).toHaveAccessibleDescription('20 characters remaining');
   });
+
+  it('opts into the focus glow only when focusShadow is passed', () => {
+    const { container, rerender } = render(<Textarea label="Commentaire" />);
+    expect(container.innerHTML).not.toContain('d-ui-shadow-focus');
+    rerender(<Textarea label="Commentaire" focusShadow />);
+    expect(container.innerHTML).toContain('d-ui-shadow-focus');
+  });
 });

@@ -64,4 +64,17 @@ describe('frameClass', () => {
     expect(frameClass({ ...base, valid: true, invalid: true })).toContain('ring-danger');
     expect(frameClass({ ...base, disabled: true })).toContain('opacity-50');
   });
+
+  it('uses a soft focus glow only when focusShadow is set', () => {
+    expect(frameClass(base)).not.toContain(
+      'focus-within:shadow-[var(--d-ui-shadow-focus)]',
+    );
+    expect(frameClass(base)).toContain('focus-within:ring-focus');
+    expect(frameClass({ ...base, focusShadow: true })).toContain(
+      'focus-within:shadow-[var(--d-ui-shadow-focus)]',
+    );
+    expect(frameClass({ ...base, focusShadow: true, invalid: true })).not.toContain(
+      'focus-within:shadow-[var(--d-ui-shadow-focus)]',
+    );
+  });
 });

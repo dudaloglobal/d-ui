@@ -222,7 +222,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
             aria-hidden="true"
             className={cx(
               'pointer-events-none flex size-full items-center justify-center rounded-sm text-on-brand',
-              'peer-hover:bg-field-hover peer-focus-visible:ring-2 peer-focus-visible:ring-focus',
+              'peer-focus-visible:ring-2 peer-focus-visible:ring-focus',
               indeterminate
                 ? cx(
                     'bg-brand [&_svg]:block',
@@ -232,6 +232,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
                   )
                 : cx(
                     'bg-field [&_svg]:hidden peer-checked:[&_svg]:block peer-checked:bg-brand',
+                    'peer-hover:bg-field-hover peer-checked:peer-hover:bg-brand',
                     isInvalid
                       ? 'ring-2 ring-inset ring-danger peer-checked:ring-danger'
                       : 'ring-1 ring-inset ring-fg/40 peer-checked:ring-brand',

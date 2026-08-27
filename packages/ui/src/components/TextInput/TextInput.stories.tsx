@@ -78,6 +78,7 @@ const meta = {
         'clearable',
         'showCount',
         'fullWidth',
+        'focusShadow',
         'maxLength',
       ],
     },
@@ -328,6 +329,20 @@ export const Sizes: Story = {
         <ControlledTextInput label={`${copy.fieldLabel} (${copy.large})`} size="lg" />
       </div>
     );
+  },
+};
+
+export const FocusShadow: Story = {
+  name: 'Halo de focus',
+  parameters: textInputSource(`<TextInput
+    label="Libellé du champ"
+    value={value}
+    focusShadow
+    onChange={(event) => setValue(event.target.value)}
+/>`),
+  render: (_, { globals }) => {
+    const copy = inputCopy(docsLocale(globals.locale));
+    return <ControlledTextInput label={copy.fieldLabel} focusShadow />;
   },
 };
 
