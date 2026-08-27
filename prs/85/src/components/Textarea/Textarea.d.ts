@@ -22,6 +22,8 @@ export type TextareaProps = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'p
     suffix?: ReactNode;
     /** Étend le champ à la largeur du conteneur. Défaut : `true`. */
     fullWidth?: boolean;
+    /** Halo de focus (ombre douce). Inactif sauf si `true`. */
+    focusShadow?: boolean;
     /** Bouton d’effacement dès que la valeur n’est pas vide. */
     clearable?: boolean;
     onClear?: () => void;
@@ -58,6 +60,8 @@ export declare const Textarea: import('../../../../../node_modules/.pnpm/react@1
     suffix?: ReactNode;
     /** Étend le champ à la largeur du conteneur. Défaut : `true`. */
     fullWidth?: boolean;
+    /** Halo de focus (ombre douce). Inactif sauf si `true`. */
+    focusShadow?: boolean;
     /** Bouton d’effacement dès que la valeur n’est pas vide. */
     clearable?: boolean;
     onClear?: () => void;

@@ -25,6 +25,8 @@ export type TextInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix
     suffix?: ReactNode;
     /** Étend le champ à la largeur du conteneur. Défaut : `true`. */
     fullWidth?: boolean;
+    /** Halo de focus (ombre douce). Inactif sauf si `true`. */
+    focusShadow?: boolean;
     /** Bouton d’effacement dès que la valeur n’est pas vide. */
     clearable?: boolean;
     onClear?: () => void;
@@ -65,6 +67,8 @@ export declare const TextInput: import('../../../../../node_modules/.pnpm/react@
     suffix?: ReactNode;
     /** Étend le champ à la largeur du conteneur. Défaut : `true`. */
     fullWidth?: boolean;
+    /** Halo de focus (ombre douce). Inactif sauf si `true`. */
+    focusShadow?: boolean;
     /** Bouton d’effacement dès que la valeur n’est pas vide. */
     clearable?: boolean;
     onClear?: () => void;

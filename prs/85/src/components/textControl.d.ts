@@ -4,14 +4,15 @@ export declare const inputHeightClass: Record<TextControlSize, string>;
 export declare function mergeDescribedBy(...ids: Array<string | undefined | false>): string | undefined;
 export declare function stringifyValue(value: string | number | readonly string[] | undefined): string;
 export declare function defaultCountMessage(count: number, maxLength?: number): string;
-export declare function frameClass({ size, invalid, valid, disabled, multiline, }: {
+export declare function frameClass({ size, invalid, valid, disabled, multiline, focusShadow, }: {
     size: TextControlSize;
     invalid: boolean;
     valid?: boolean;
     disabled: boolean;
     multiline?: boolean;
+    focusShadow?: boolean;
 }): string;
-export declare function TextFieldLayout({ id, label, helper, error, required, invalid, valid, disabled, fullWidth, size, className, showCount, count, maxLength, countMessage, countId, helperId, multiline, children, }: {
+export declare function TextFieldLayout({ id, label, helper, error, required, invalid, valid, disabled, fullWidth, size, className, showCount, count, maxLength, countMessage, countId, helperId, multiline, focusShadow, children, }: {
     id?: string;
     label?: ReactNode;
     helper?: ReactNode;
@@ -30,6 +31,7 @@ export declare function TextFieldLayout({ id, label, helper, error, required, in
     countId: string;
     helperId: string;
     multiline?: boolean;
+    focusShadow?: boolean;
     children: ReactNode;
 }): import("react").JSX.Element;
 export declare function ChromeButton({ label, pressed, disabled, onClick, children, }: {
