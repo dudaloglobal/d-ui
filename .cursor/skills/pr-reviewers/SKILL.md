@@ -12,7 +12,7 @@ On every pull request (create or update):
    - `fruitizz` → `Angelo-Cosme`, `noukpoherve`
    - `Angelo-Cosme` → `fruitizz`, `noukpoherve`
    - `noukpoherve` → `fruitizz`, `Angelo-Cosme`
-   Skip a login if it is the author. If the assignee is not in that list, request all three except the author.
+     Skip a login if it is the author. If the assignee is not in that list, request all three except the author.
 3. Do not add `Co-authored-by` or tooling attribution.
 
 Prefer GitHub Action `.github/workflows/pr-assignment.yml` (runs on `opened` / `synchronize` / assignee changes). If creating a PR with `gh`, still pass `--assignee` and `--reviewer` for the pair above.
