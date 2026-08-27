@@ -52,7 +52,7 @@ Among remaining issues, choose the **lowest DS-XXX**. Mention the assignee if so
 2. Call `SetActiveBranch` for that branch.
 3. Implement against the issue **Périmètre**, **Critères d'acceptation**, and **Hors périmètre**.
 4. Follow `CONTRIBUTING.md`: English conventional commits, no `Co-authored-by`, WCAG 2.2 AA, Vitest + Testing Library + Storybook + MDX, changeset on public API.
-5. Branch naming: `feature/DS-XXX-short-slug`. PR body: `Closes #<issue-number>`.
+5. Branch naming: `feature/DS-XXX-short-slug`. When opening the PR, follow `.cursor/skills/create-pr/SKILL.md` (French body, `Closes #<issue-number>`).
 6. Do not stack on another open feature branch unless the ticket cannot be built without that unmerged API; prefer `origin/main` and native/`aria-*` seams.
 
 ## Report

@@ -32,6 +32,6 @@ URL du preview :
 
 ## Breaking changes
 
-None
+Aucun
 
 <!-- ou décrire le breaking change + changeset major -->

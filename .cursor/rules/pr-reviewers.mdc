@@ -7,6 +7,7 @@ alwaysApply: true
 
 When creating or updating a GitHub pull request:
 
+- Follow `.cursor/skills/create-pr/SKILL.md` for the French description template.
 - Assign the PR author.
 - Request reviewers as the other two of `fruitizz`, `Angelo-Cosme`, and `noukpoherve` (from the PR or ticket assignee). Skip a login if it is the author.
 - Automation lives in `.github/workflows/pr-assignment.yml`; still set `--assignee` / `--reviewer` on `gh pr create`.
