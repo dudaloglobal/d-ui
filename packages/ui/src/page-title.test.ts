@@ -16,16 +16,10 @@ describe('dudaloDocumentTitle', () => {
 
   it('parses Storybook’s default manager title', () => {
     expect(
-      dudaloDocumentTitle(
-        undefined,
-        'Components / TextInput - Docs ⋅ Storybook',
-      ),
+      dudaloDocumentTitle(undefined, 'Components / TextInput - Docs ⋅ Storybook'),
     ).toBe('TextInput | Dudalo Design System');
     expect(
-      dudaloDocumentTitle(
-        undefined,
-        'Components / TimeAgo - Par défaut ⋅ Storybook',
-      ),
+      dudaloDocumentTitle(undefined, 'Components / TimeAgo - Par défaut ⋅ Storybook'),
     ).toBe('TimeAgo | Dudalo Design System');
   });
 
