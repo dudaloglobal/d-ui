@@ -27,7 +27,7 @@ export type TextareaProps = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'p
     /** Bouton d’effacement dès que la valeur n’est pas vide. */
     clearable?: boolean;
     onClear?: () => void;
-    /** Nom accessible du bouton d’effacement. Défaut `"Clear"`. */
+    /** Nom accessible du bouton d’effacement. Défaut `"Effacer"`. */
     clearLabel?: string;
     /**
      * Compteur de caractères (restants si `maxLength` est posé).
@@ -65,7 +65,7 @@ export declare const Textarea: import('../../../../../node_modules/.pnpm/react@1
     /** Bouton d’effacement dès que la valeur n’est pas vide. */
     clearable?: boolean;
     onClear?: () => void;
-    /** Nom accessible du bouton d’effacement. Défaut `"Clear"`. */
+    /** Nom accessible du bouton d’effacement. Défaut `"Effacer"`. */
     clearLabel?: string;
     /**
      * Compteur de caractères (restants si `maxLength` est posé).

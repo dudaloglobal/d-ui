@@ -30,7 +30,7 @@ export type TextInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix
     /** Bouton d’effacement dès que la valeur n’est pas vide. */
     clearable?: boolean;
     onClear?: () => void;
-    /** Nom accessible du bouton d’effacement. Défaut `"Clear"`. */
+    /** Nom accessible du bouton d’effacement. Défaut `"Effacer"`. */
     clearLabel?: string;
     /**
      * Compteur de caractères (restants si `maxLength` est posé).
@@ -39,9 +39,9 @@ export type TextInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix
     showCount?: boolean;
     /** Libellé du compteur. Reçoit le nombre de caractères et `maxLength`. */
     countMessage?: (count: number, maxLength?: number) => string;
-    /** Nom accessible pour afficher le mot de passe. Défaut `"Show password"`. */
+    /** Nom accessible pour afficher le mot de passe. Défaut `"Afficher le mot de passe"`. */
     revealPasswordLabel?: string;
-    /** Nom accessible pour masquer le mot de passe. Défaut `"Hide password"`. */
+    /** Nom accessible pour masquer le mot de passe. Défaut `"Masquer le mot de passe"`. */
     hidePasswordLabel?: string;
 };
 export declare const TextInput: import('../../../../../node_modules/.pnpm/react@19.2.8/node_modules/react').ForwardRefExoticComponent<Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "type" | "prefix"> & {
@@ -72,7 +72,7 @@ export declare const TextInput: import('../../../../../node_modules/.pnpm/react@
     /** Bouton d’effacement dès que la valeur n’est pas vide. */
     clearable?: boolean;
     onClear?: () => void;
-    /** Nom accessible du bouton d’effacement. Défaut `"Clear"`. */
+    /** Nom accessible du bouton d’effacement. Défaut `"Effacer"`. */
     clearLabel?: string;
     /**
      * Compteur de caractères (restants si `maxLength` est posé).
@@ -81,8 +81,8 @@ export declare const TextInput: import('../../../../../node_modules/.pnpm/react@
     showCount?: boolean;
     /** Libellé du compteur. Reçoit le nombre de caractères et `maxLength`. */
     countMessage?: (count: number, maxLength?: number) => string;
-    /** Nom accessible pour afficher le mot de passe. Défaut `"Show password"`. */
+    /** Nom accessible pour afficher le mot de passe. Défaut `"Afficher le mot de passe"`. */
     revealPasswordLabel?: string;
-    /** Nom accessible pour masquer le mot de passe. Défaut `"Hide password"`. */
+    /** Nom accessible pour masquer le mot de passe. Défaut `"Masquer le mot de passe"`. */
     hidePasswordLabel?: string;
 } & import('../../../../../node_modules/.pnpm/react@19.2.8/node_modules/react').RefAttributes<HTMLInputElement>>;
