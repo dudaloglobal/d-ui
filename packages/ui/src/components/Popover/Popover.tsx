@@ -1,6 +1,8 @@
 import {
+  arrow,
   autoUpdate,
   flip,
+  FloatingArrow,
   FloatingFocusManager,
   FloatingPortal,
   offset,
@@ -15,13 +17,15 @@ import {
   cloneElement,
   isValidElement,
   useId,
+  useRef,
   useState,
   type ReactElement,
   type ReactNode,
 } from 'react';
 import { cx } from '../../lib/cx';
 import {
-  OVERLAY_OFFSET,
+  OVERLAY_ARROW_HEIGHT,
+  OVERLAY_ARROW_WIDTH,
   OVERLAY_PADDING,
   overlayPortalProps,
   useInheritedTheme,
@@ -66,6 +70,7 @@ export function Popover({
   'aria-labelledby': ariaLabelledBy,
 }: PopoverProps) {
   const panelId = useId();
+  const arrowRef = useRef<SVGSVGElement>(null);
   const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
   const [referenceEl, setReferenceEl] = useState<Element | null>(null);
   const isControlled = openProp !== undefined;
@@ -82,9 +87,10 @@ export function Popover({
     onOpenChange: setOpen,
     placement,
     middleware: [
-      offset(OVERLAY_OFFSET),
+      offset(OVERLAY_ARROW_HEIGHT + 4),
       flip({ padding: OVERLAY_PADDING, fallbackAxisSideDirection: 'start' }),
       shift({ padding: OVERLAY_PADDING }),
+      arrow({ element: arrowRef, padding: 6 }),
     ],
     whileElementsMounted: autoUpdate,
   });
@@ -129,6 +135,16 @@ export function Popover({
       aria-labelledby={ariaLabelledBy}
     >
       {content}
+      <FloatingArrow
+        ref={arrowRef}
+        context={context}
+        width={OVERLAY_ARROW_WIDTH}
+        height={OVERLAY_ARROW_HEIGHT}
+        strokeWidth={1}
+        className="d-ui-popover-arrow"
+        data-d-ui-popover-arrow=""
+        aria-hidden
+      />
     </div>
   );
 

@@ -23,6 +23,7 @@ describe('Tooltip', () => {
     const tip = await screen.findByRole('tooltip');
     expect(tip).toHaveTextContent('Enregistrer (⌘S)');
     expect(tip).toHaveClass('pointer-events-none');
+    expect(tip.querySelector('[data-d-ui-tooltip-arrow]')).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Aide' })).toHaveAttribute(
       'aria-describedby',
       tip.id,

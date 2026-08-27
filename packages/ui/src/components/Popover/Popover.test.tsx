@@ -25,7 +25,9 @@ describe('Popover', () => {
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
     await user.click(trigger);
     expect(trigger).toHaveAttribute('aria-expanded', 'true');
-    expect(screen.getByRole('region', { name: 'Options' })).toHaveTextContent('Options');
+    const panel = screen.getByRole('region', { name: 'Options' });
+    expect(panel).toHaveTextContent('Options');
+    expect(panel.querySelector('[data-d-ui-popover-arrow]')).toBeTruthy();
     await user.keyboard('{Escape}');
     expect(screen.queryByRole('region', { name: 'Options' })).not.toBeInTheDocument();
     await user.click(trigger);

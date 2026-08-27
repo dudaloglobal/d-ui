@@ -52,6 +52,7 @@ export const storyNameEn: Record<string, string> = {
   Collision: 'Collision',
   Portail: 'Portal',
   'Sans piège de focus': 'Without focus trap',
+  Alignements: 'Alignments',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -286,6 +287,10 @@ const overlayFr = {
   bottom: 'Bas',
   left: 'Gauche',
   right: 'Droite',
+  topStart: 'Haut début',
+  topEnd: 'Haut fin',
+  alignStart: 'Aligné au début du haut',
+  alignEnd: 'Aligné à la fin du haut',
   action: 'Confirmer',
 };
 
@@ -300,6 +305,10 @@ const overlayEn = {
   bottom: 'Bottom',
   left: 'Left',
   right: 'Right',
+  topStart: 'Top start',
+  topEnd: 'Top end',
+  alignStart: 'Aligned to the start of the top side',
+  alignEnd: 'Aligned to the end of the top side',
   action: 'Confirm',
 };
 

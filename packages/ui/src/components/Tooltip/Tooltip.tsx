@@ -1,6 +1,8 @@
 import {
+  arrow,
   autoUpdate,
   flip,
+  FloatingArrow,
   FloatingPortal,
   offset,
   shift,
@@ -15,13 +17,15 @@ import {
   cloneElement,
   isValidElement,
   useId,
+  useRef,
   useState,
   type ReactElement,
   type ReactNode,
 } from 'react';
 import { cx } from '../../lib/cx';
 import {
-  OVERLAY_OFFSET,
+  OVERLAY_ARROW_HEIGHT,
+  OVERLAY_ARROW_WIDTH,
   OVERLAY_PADDING,
   overlayPortalProps,
   useInheritedTheme,
@@ -63,6 +67,7 @@ export function Tooltip({
   className,
 }: TooltipProps) {
   const tooltipId = useId();
+  const arrowRef = useRef<SVGSVGElement>(null);
   const reducedMotion = usePrefersReducedMotion();
   const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
   const [referenceEl, setReferenceEl] = useState<Element | null>(null);
@@ -80,9 +85,10 @@ export function Tooltip({
     onOpenChange: setOpen,
     placement,
     middleware: [
-      offset(OVERLAY_OFFSET),
+      offset(OVERLAY_ARROW_HEIGHT + 4),
       flip({ padding: OVERLAY_PADDING, fallbackAxisSideDirection: 'start' }),
       shift({ padding: OVERLAY_PADDING }),
+      arrow({ element: arrowRef, padding: 6 }),
     ],
     whileElementsMounted: autoUpdate,
   });
@@ -140,6 +146,15 @@ export function Tooltip({
             )}
           >
             {content}
+            <FloatingArrow
+              ref={arrowRef}
+              context={context}
+              width={OVERLAY_ARROW_WIDTH}
+              height={OVERLAY_ARROW_HEIGHT}
+              className="d-ui-tooltip-arrow"
+              data-d-ui-tooltip-arrow=""
+              aria-hidden
+            />
           </div>
         </FloatingPortal>
       ) : null}

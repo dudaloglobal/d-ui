@@ -264,7 +264,8 @@ const overlaySharedArgTypes = {
       'right-start',
       'right-end',
     ],
-    description: 'Côté préféré. Flip/shift recadrent près des bords du viewport.',
+    description:
+      'Côté préféré (`top`, `bottom`, `left`, `right`, et variantes `-start` / `-end`). Flip/shift recadrent près des bords du viewport.',
   },
   open: {
     control: 'boolean' as const,

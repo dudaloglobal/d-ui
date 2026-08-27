@@ -59,24 +59,65 @@ export const Placement: Story = {
   args: { content: null, children: <span /> },
   parameters: componentSource(
     importPopover,
-    `<Popover placement="right" aria-label="Options" content={<p>Options</p>}>
-    <Button variant="secondary">Ouvrir</Button>
+    `<Popover placement="top" aria-label="Options" content={<p>Options</p>}>
+    <Button variant="secondary">Haut</Button>
 </Popover>`,
   ),
   render: (_, { globals }) => {
     const copy = overlayCopy(docsLocale(globals.locale));
     return (
-      <div className="flex flex-wrap items-center justify-center gap-4 py-16">
-        {(['top', 'bottom', 'left', 'right'] as const).map((placement) => (
-          <Popover
-            key={placement}
-            placement={placement}
-            aria-label={copy.options}
-            content={<p>{copy.options}</p>}
-          >
-            <Button variant="secondary">{copy[placement]}</Button>
-          </Popover>
-        ))}
+      <div className="mx-auto grid w-max grid-cols-[1fr_auto_1fr] grid-rows-[auto_auto_auto] items-center justify-items-center gap-x-24 gap-y-16 px-8 py-20">
+        <div className="col-start-2 row-start-1">
+          <DirectedPopover copy={copy} placement="top" />
+        </div>
+        <div className="col-start-1 row-start-2">
+          <DirectedPopover copy={copy} placement="left" />
+        </div>
+        <div className="col-start-3 row-start-2">
+          <DirectedPopover copy={copy} placement="right" />
+        </div>
+        <div className="col-start-2 row-start-3">
+          <DirectedPopover copy={copy} placement="bottom" />
+        </div>
+      </div>
+    );
+  },
+};
+
+export const Alignments: Story = {
+  name: 'Alignements',
+  args: { content: null, children: <span /> },
+  parameters: componentSource(
+    importPopover,
+    `<>
+    <Popover placement="top-start" aria-label="Options" content={<p>Aligné au début</p>}>
+        <Button variant="secondary">Haut début</Button>
+    </Popover>
+    <Popover placement="top-end" aria-label="Options" content={<p>Aligné à la fin</p>}>
+        <Button variant="secondary">Haut fin</Button>
+    </Popover>
+</>`,
+  ),
+  render: (_, { globals }) => {
+    const copy = overlayCopy(docsLocale(globals.locale));
+    return (
+      <div className="flex items-end justify-center gap-24 px-8 pb-8 pt-24">
+        <Popover
+          placement="top-start"
+          defaultOpen
+          aria-label={copy.topStart}
+          content={<p>{copy.alignStart}</p>}
+        >
+          <Button variant="secondary">{copy.topStart}</Button>
+        </Popover>
+        <Popover
+          placement="top-end"
+          defaultOpen
+          aria-label={copy.topEnd}
+          content={<p>{copy.alignEnd}</p>}
+        >
+          <Button variant="secondary">{copy.topEnd}</Button>
+        </Popover>
       </div>
     );
   },
@@ -175,6 +216,25 @@ export const Disabled: Story = {
     );
   },
 };
+
+function DirectedPopover({
+  copy,
+  placement,
+}: {
+  copy: ReturnType<typeof overlayCopy>;
+  placement: 'top' | 'bottom' | 'left' | 'right';
+}) {
+  return (
+    <Popover
+      placement={placement}
+      defaultOpen
+      aria-label={copy[placement]}
+      content={<p>{copy.options}</p>}
+    >
+      <Button variant="secondary">{copy[placement]}</Button>
+    </Popover>
+  );
+}
 
 function ControlledPopover({
   openLabel,

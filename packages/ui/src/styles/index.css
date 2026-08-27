@@ -98,6 +98,15 @@
   color-scheme: dark;
 }
 
+.d-ui-tooltip-arrow {
+  fill: var(--d-ui-color-fg);
+}
+
+.d-ui-popover-arrow {
+  fill: var(--d-ui-color-bg);
+  stroke: var(--d-ui-color-border);
+}
+
 .d-ui-visually-hidden {
   position: absolute;
   width: 1px;

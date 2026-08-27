@@ -15,8 +15,9 @@ export type OverlayPlacement =
   | 'right-start'
   | 'right-end';
 
-export const OVERLAY_OFFSET = 8;
 export const OVERLAY_PADDING = 8;
+export const OVERLAY_ARROW_WIDTH = 12;
+export const OVERLAY_ARROW_HEIGHT = 6;
 
 export function usePrefersReducedMotion(): boolean {
   const [reduced, setReduced] = useState(false);

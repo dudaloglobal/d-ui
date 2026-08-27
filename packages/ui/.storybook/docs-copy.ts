@@ -73,6 +73,7 @@ export const docsCopy = {
       en: 'Native `<input>` attributes (`name`, `value`, `className`, …) are forwarded to the control.',
     },
     placement: { fr: 'Placement', en: 'Placement' },
+    alignments: { fr: 'Alignements', en: 'Alignments' },
     controlled: { fr: 'Contrôlé', en: 'Controlled' },
     collision: { fr: 'Collision', en: 'Collision' },
     portal: { fr: 'Portail', en: 'Portal' },
@@ -639,8 +640,8 @@ export const docsCopy = {
   tooltip: {
     title: { fr: 'Tooltip', en: 'Tooltip' },
     intro: {
-      fr: '`Tooltip` affiche un libellé court au survol ou au focus. Il n’est pas interactif : pour un panneau cliquable, utilisez `Popover`.',
-      en: '`Tooltip` shows a short label on hover or focus. It is not interactive: use `Popover` for a clickable panel.',
+      fr: '`Tooltip` affiche un libellé court au survol ou au focus, avec une flèche vers le déclencheur. Il n’est pas interactif : pour un panneau cliquable, utilisez `Popover`.',
+      en: '`Tooltip` shows a short label on hover or focus, with an arrow toward the trigger. It is not interactive: use `Popover` for a clickable panel.',
     },
     usePlacement: {
       fr: '`placement` choisit le côté préféré (`top`, `bottom`, `left`, `right`, et variantes `-start` / `-end`). Près d’un bord, le panneau bascule (flip) et se décale (shift).',
@@ -698,12 +699,16 @@ export const docsCopy = {
   popover: {
     title: { fr: 'Popover', en: 'Popover' },
     intro: {
-      fr: '`Popover` ouvre un panneau au clic. Contrairement à `Tooltip`, il peut contenir des actions. `Dialog` (plein écran modal) est hors périmètre.',
-      en: '`Popover` opens a panel on click. Unlike `Tooltip`, it can contain actions. `Dialog` (full-screen modal) is out of scope.',
+      fr: '`Popover` ouvre un panneau au clic, avec une flèche vers le déclencheur. Contrairement à `Tooltip`, il peut contenir des actions. `Dialog` (plein écran modal) est hors périmètre.',
+      en: '`Popover` opens a panel on click, with an arrow toward the trigger. Unlike `Tooltip`, it can contain actions. `Dialog` (full-screen modal) is out of scope.',
     },
     usePlacement: {
-      fr: '`placement` choisit le côté préféré. Flip/shift recadrent près des bords du viewport.',
-      en: '`placement` picks the preferred side. Flip/shift keep the panel in view near viewport edges.',
+      fr: '`placement` choisit le côté (`top`, `right`, `bottom`, `left`). Près d’un bord, le panneau bascule (flip) et se décale (shift).',
+      en: '`placement` picks the side (`top`, `right`, `bottom`, `left`). Near an edge, the panel flips and shifts.',
+    },
+    useAlignments: {
+      fr: 'Les variantes `-start` et `-end` alignent le panneau sur le bord du déclencheur. La flèche reste pointée vers l’ancre.',
+      en: '`-start` and `-end` variants align the panel to the trigger edge. The arrow stays pointed at the anchor.',
     },
     useControlled: {
       fr: 'Passez `open` et `onOpenChange` pour un état contrôlé, ou `defaultOpen` pour un état non contrôlé.',
