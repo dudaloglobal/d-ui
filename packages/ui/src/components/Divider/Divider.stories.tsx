@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { dividerArgTypes } from '../../../.storybook/arg-types';
 import { componentSource } from '../../../.storybook/docs-source';
 import { docsLocale, typographyCopy } from '../../../.storybook/docs-locale';

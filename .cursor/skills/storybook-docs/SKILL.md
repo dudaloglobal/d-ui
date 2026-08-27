@@ -26,7 +26,7 @@ Update `docs/component-conventions.md` / `docs/accessibility.md` only when the *
 ## MDX shape
 
 ```mdx
-import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
 import * as NameStories from './Name.stories';
 
 <Meta of={NameStories} />

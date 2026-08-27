@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { InputHTMLAttributes } from 'react';
 import { fieldArgTypes } from '../../../.storybook/arg-types';
 import { componentSource } from '../../../.storybook/docs-source';

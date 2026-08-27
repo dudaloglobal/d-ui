@@ -1,4 +1,4 @@
-import { create, type ThemeVars } from '@storybook/theming';
+import { create, type ThemeVars } from 'storybook/theming';
 
 const brand = {
   brandTitle: 'd-ui',

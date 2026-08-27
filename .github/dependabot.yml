@@ -4,7 +4,33 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    open-pull-requests-limit: 8
+    groups:
+      storybook:
+        patterns:
+          - 'storybook'
+          - '@storybook/*'
+          - 'eslint-plugin-storybook'
+      testing:
+        patterns:
+          - '@testing-library/*'
+          - 'vitest'
+          - 'jsdom'
+          - '@playwright/test'
+      lint:
+        patterns:
+          - 'eslint'
+          - 'eslint-*'
+          - '@eslint/*'
+          - 'globals'
+          - 'prettier'
+          - 'typescript-eslint'
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
+    groups:
+      github-actions:
+        patterns:
+          - '*'

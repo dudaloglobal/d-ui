@@ -16,7 +16,7 @@ Usage : [docs/consume.md](./docs/consume.md). Tokens : [docs/tokens.md](./docs/t
 
 ## Prérequis
 
-- Node 22 (`nvm use`)
+- Node 22.12+ (`nvm use` — pin `.nvmrc` : 22.23.2)
 - pnpm 9
 
 ```bash

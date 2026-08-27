@@ -1,3 +1,4 @@
+import storybook from 'eslint-plugin-storybook';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -42,6 +43,14 @@ export default tseslint.config(
         'error',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
+    },
+  },
+  storybook.configs['flat/recommended'],
+  {
+    files: ['**/*.stories.@(ts|tsx)'],
+    rules: {
+      // Story `name` is the French docs-locale label, even when it matches the export.
+      'storybook/no-redundant-story-name': 'off',
     },
   },
 );
