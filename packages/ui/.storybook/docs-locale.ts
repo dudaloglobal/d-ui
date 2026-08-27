@@ -146,3 +146,55 @@ export type InputDocsCopy = typeof inputFr;
 export function inputCopy(locale: DocsLocale): InputDocsCopy {
   return locale === 'en' ? inputEn : inputFr;
 }
+
+const selectionFr = {
+  checkboxLabel: 'Recevoir les notifications',
+  terms: 'J’accepte les conditions',
+  helper: 'Vous pourrez changer d’avis.',
+  error: 'Ce champ est requis.',
+  groupError: 'Choisissez au moins une option.',
+  radioError: 'Choisissez une formule.',
+  selectAll: 'Tout sélectionner',
+  channels: 'Canaux de notification',
+  email: 'Email',
+  sms: 'SMS',
+  push: 'Push',
+  plan: 'Formule',
+  monthly: 'Mensuel',
+  yearly: 'Annuel',
+  team: 'Équipe',
+  switchLabel: 'Mode compact',
+  switchHelper: 'Réduit les marges de l’interface.',
+  small: 'Petite',
+  medium: 'Moyenne',
+  large: 'Grande',
+};
+
+const selectionEn = {
+  checkboxLabel: 'Receive notifications',
+  terms: 'I accept the terms',
+  helper: 'You can change this later.',
+  error: 'This field is required.',
+  groupError: 'Choose at least one option.',
+  radioError: 'Choose a plan.',
+  selectAll: 'Select all',
+  channels: 'Notification channels',
+  email: 'Email',
+  sms: 'SMS',
+  push: 'Push',
+  plan: 'Plan',
+  monthly: 'Monthly',
+  yearly: 'Yearly',
+  team: 'Team',
+  switchLabel: 'Compact mode',
+  switchHelper: 'Reduces spacing in the interface.',
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+};
+
+export type SelectionDocsCopy = typeof selectionFr;
+
+export function selectionCopy(locale: DocsLocale): SelectionDocsCopy {
+  return locale === 'en' ? selectionEn : selectionFr;
+}

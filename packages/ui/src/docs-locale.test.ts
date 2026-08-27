@@ -1,7 +1,12 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { buttonCopy, inputCopy, timeAgoCopy } from '../.storybook/docs-locale';
+import {
+  buttonCopy,
+  inputCopy,
+  selectionCopy,
+  timeAgoCopy,
+} from '../.storybook/docs-locale';
 
 /** English MDX headings that must not appear: docs default language is French. */
 const ENGLISH_HEADINGS = [
@@ -58,6 +63,7 @@ describe('docs locale', () => {
     expect(keysOf(buttonCopy('fr'))).toEqual(keysOf(buttonCopy('en')));
     expect(keysOf(inputCopy('fr'))).toEqual(keysOf(inputCopy('en')));
     expect(keysOf(timeAgoCopy('fr'))).toEqual(keysOf(timeAgoCopy('en')));
+    expect(keysOf(selectionCopy('fr'))).toEqual(keysOf(selectionCopy('en')));
   });
 
   it('writes MDX section headings in French', () => {

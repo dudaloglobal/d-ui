@@ -1,0 +1,108 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+`Checkbox` est une case à cocher native. Pour plusieurs options indépendantes, utilisez `CheckboxGroup`.
+
+Les exemples suivent la **langue** de la barre d’outils Storybook (**Français** par défaut).
+
+<Canvas of={CheckboxStories.Default} />
+
+## États particuliers
+
+Deux états particuliers : `disabled` et `invalid`.
+
+### Désactivé
+
+Utilisez `disabled` lorsque la valeur ne peut pas être modifiée.
+
+<Canvas of={CheckboxStories.Disabled} />
+
+### Invalide
+
+Utilisez `invalid` (et `error` pour le message) pour indiquer que la valeur est considérée comme incorrecte. `invalid` pose `aria-invalid`.
+
+<Canvas of={CheckboxStories.Invalid} />
+
+## Options
+
+### Requis
+
+Utilisez `required` pour indiquer que la case doit être cochée avant l’envoi du formulaire. Un astérisque est affiché à côté du libellé.
+
+<Canvas of={CheckboxStories.Required} />
+
+### Aide
+
+Utilisez `helper` pour donner une indication.
+
+<Canvas of={CheckboxStories.Helper} />
+
+### État indéterminé
+
+`indeterminate` représente un état mixte (ni tout coché, ni tout décoché), typiquement sur « Tout sélectionner ». Pose `aria-checked="mixed"`.
+
+<Canvas of={CheckboxStories.Indeterminate} />
+
+### Tailles
+
+`sm` lorsque l’espace est contraint, `md` par défaut, `lg` pour les formulaires aérés.
+
+<Canvas of={CheckboxStories.Sizes} />
+
+## Groupe
+
+`CheckboxGroup` enveloppe les options dans un `fieldset` nommé par `label` (`<legend>`). La valeur est un tableau de chaînes.
+
+<Canvas of={CheckboxStories.Group} />
+
+### Disposition
+
+`orientation="horizontal"` aligne les options sur une ligne.
+
+<Canvas of={CheckboxStories.HorizontalGroup} />
+
+## Accessibilité
+
+`Checkbox` rend un `<input type="checkbox">` natif. Associez toujours un label visible : prop `label`, `aria-labelledby`, ou un `<label htmlFor>` externe.
+
+`CheckboxGroup` pose `fieldset` + `legend`. Ne pas simuler un groupe avec des `div` et `role="group"` si un `fieldset` suffit.
+
+Le champ peut être désactivé : `disabled` n’est plus focusable. Indiquez autrement pourquoi le contrôle est là.
+
+### À faire
+
+- `<Checkbox label="J’accepte les conditions" required />`
+- `CheckboxGroup` pour plusieurs options liées
+- `invalid` **et** un message `error` (ne pas se fier à la couleur seule)
+- `indeterminate` pour un parent « tout sélectionner »
+
+### À éviter
+
+- Une case identifiée seulement par la proximité d’un texte
+- Tree checkbox (hors périmètre)
+- `required` sur chaque option d’un groupe multi-sélection
+
+Thème sombre : barre d’outils **Thème**. Langue des exemples : barre d’outils **Langue**.
+
+## Propriétés
+
+Les attributs natifs `<input>` (`name`, `value`, `className`, …) sont transmis au contrôle.
+
+<ArgTypes
+  of={CheckboxStories}
+  include={[
+    'size',
+    'label',
+    'helper',
+    'error',
+    'invalid',
+    'disabled',
+    'required',
+    'indeterminate',
+    'checked',
+  ]}
+/>

@@ -495,3 +495,100 @@ test('TextInput helper story describes the field', async ({ page }) => {
   const input = page.getByRole('textbox', { name: 'Libellé du champ' });
   await expect(input).toHaveAccessibleDescription(/.+/);
 });
+
+test('Storybook serves the Checkbox story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-checkbox--default');
+  await expect(
+    page.getByRole('checkbox', { name: 'Recevoir les notifications' }),
+  ).toBeVisible();
+});
+
+test('Checkbox group story exposes a labelled fieldset', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-checkbox--group');
+  await expect(page.getByRole('group', { name: 'Canaux de notification' })).toBeVisible();
+  await expect(page.getByRole('checkbox', { name: 'Email' })).toBeChecked();
+  await page.getByRole('checkbox', { name: 'SMS' }).click();
+  await expect(page.getByRole('checkbox', { name: 'SMS' })).toBeChecked();
+});
+
+test('Checkbox invalid story exposes aria-invalid', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-checkbox--invalid');
+  const input = page.getByRole('checkbox', { name: 'J’accepte les conditions' });
+  await expect(input).toHaveAttribute('aria-invalid', 'true');
+  await expect(page.getByText('Ce champ est requis.')).toBeVisible();
+});
+
+test('Storybook serves the Radio story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-radio--default');
+  await expect(page.getByRole('group', { name: 'Formule' })).toBeVisible();
+  await expect(page.getByRole('radio', { name: 'Mensuel' })).toBeChecked();
+  await page.getByRole('radio', { name: 'Annuel' }).click();
+  await expect(page.getByRole('radio', { name: 'Annuel' })).toBeChecked();
+  await expect(page.getByRole('radio', { name: 'Mensuel' })).not.toBeChecked();
+});
+
+test('Storybook serves the Switch story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-switch--default');
+  const control = page.getByRole('switch', { name: 'Mode compact' });
+  await expect(control).toBeVisible();
+  await expect(control).toHaveAttribute('aria-checked', 'false');
+  await control.click();
+  await expect(control).toHaveAttribute('aria-checked', 'true');
+});
+
+test('Switch on story is checked', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-switch--on');
+  await expect(page.getByRole('switch', { name: 'Mode compact' })).toBeChecked();
+});
+
+test('component docs use Checkbox, Radio, and Switch titles', async ({ page }) => {
+  await page.goto('/?path=/docs/components-checkbox--docs');
+  await expect(page).toHaveTitle('Checkbox | Dudalo Design System');
+  await page.goto('/?path=/docs/components-radio--docs');
+  await expect(page).toHaveTitle('Radio | Dudalo Design System');
+  await page.goto('/?path=/docs/components-switch--docs');
+  await expect(page).toHaveTitle('Switch | Dudalo Design System');
+});
+
+test('French Checkbox docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-checkbox--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(
+    preview.getByRole('heading', { name: 'États particuliers' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Accessibilité' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Special states' })).toHaveCount(0);
+  await expect(preview.getByText('Receive notifications')).toHaveCount(0);
+});
+
+test('Checkbox docs Show code imports Checkbox from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-checkbox--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Checkbox } from 'd-ui'");
+  await expect(source).toContainText('<Checkbox');
+  await expect(source).not.toContainText('ChannelsGroup');
+});
+
+test('Radio docs Show code imports Radio from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-radio--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Radio, RadioGroup } from 'd-ui'");
+  await expect(source).toContainText('<RadioGroup');
+  await expect(source).not.toContainText('PlanGroup');
+});
+
+test('Switch docs Show code imports Switch from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-switch--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Switch } from 'd-ui'");
+  await expect(source).toContainText('<Switch');
+  await expect(source).not.toContainText('ControlledSwitch');
+});
+
+test('French selection Properties tables use French descriptions', async ({ page }) => {
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await page.goto('/?path=/docs/components-checkbox--docs');
+  await expect(preview.getByText(/Libellé visible à côté du contrôle/)).toBeVisible();
+  await page.goto('/?path=/docs/components-switch--docs');
+  await expect(preview.getByText(/Pose `aria-checked`/)).toBeVisible();
+});
