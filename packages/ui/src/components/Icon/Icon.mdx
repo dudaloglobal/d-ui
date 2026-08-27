@@ -1,0 +1,68 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as IconStories from './Icon.stories';
+
+<Meta of={IconStories} />
+
+# Icon
+
+<P k="iconPage.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={IconStories.Default} />
+
+<H2 k="iconPage.sizes" />
+
+<P k="iconPage.sizesBody" />
+
+<Canvas of={IconStories.Sizes} />
+
+<H2 k="iconPage.color" />
+
+<P k="iconPage.colorBody" />
+
+<Canvas of={IconStories.InheritsColor} />
+
+<H2 k="iconPage.set" />
+
+<P k="iconPage.setBody" />
+
+<P k="iconPage.setOutline" />
+
+<P k="iconPage.setImport" />
+
+<Canvas of={IconStories.OutlineScale} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="iconPage.a11yBody" />
+
+<P k="iconPage.a11yButton" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['iconPage.doBeside', 'iconPage.doIconButton', 'iconPage.doOutline']} />
+
+<H3 k="chrome.dont" />
+
+<Ul
+  items={[
+    'iconPage.dontLabel',
+    'iconPage.dontNameless',
+    'iconPage.dontSolid',
+    'iconPage.dontFill',
+  ]}
+/>
+
+<Canvas of={IconStories.Labelled} />
+
+<Canvas of={IconStories.InsideButtons} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="iconPage.props" />
+
+<ArgTypes of={IconStories} include={['as', 'size', 'label']} />

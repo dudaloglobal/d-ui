@@ -76,6 +76,10 @@ export const storyNameEn: Record<string, string> = {
   Graisses: 'Weights',
   Niveaux: 'Levels',
   'Taille découplée': 'Decoupled size',
+  'Couleur héritée': 'Inherited color',
+  'Même silhouette': 'Same silhouette',
+  Nomée: 'Named',
+  'Dans un bouton': 'Inside a button',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -569,4 +573,24 @@ export type TypographyDocsCopy = typeof typographyFr;
 
 export function typographyCopy(locale: DocsLocale): TypographyDocsCopy {
   return locale === 'en' ? typographyEn : typographyFr;
+}
+
+const iconFr = {
+  continue: 'Continuer',
+  filter: 'Filtrer',
+  delete: 'Supprimer',
+  deleteForever: 'Supprimer définitivement',
+};
+
+const iconEn = {
+  continue: 'Continue',
+  filter: 'Filter',
+  delete: 'Delete',
+  deleteForever: 'Delete permanently',
+};
+
+export type IconDocsCopy = typeof iconFr;
+
+export function iconCopy(locale: DocsLocale): IconDocsCopy {
+  return locale === 'en' ? iconEn : iconFr;
 }
