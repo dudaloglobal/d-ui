@@ -477,3 +477,68 @@ export const themeArgTypes = {
       'Surcharge white-label : `brand`, `brandHover`, `onBrand`, `focus`. Écrit les variables `--d-ui-color-*` en inline.',
   },
 };
+
+export const textArgTypes = {
+  as: {
+    control: 'inline-radio' as const,
+    options: ['p', 'span', 'div', 'label', 'legend'],
+    description: 'Élément rendu. `p` par défaut ; `span` pour du texte en ligne.',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['body', 'body-sm', 'caption'],
+    description: '`body` (courant), `body-sm` (aide), `caption` (métadonnées).',
+  },
+  tone: {
+    control: 'inline-radio' as const,
+    options: ['default', 'muted'],
+    description:
+      '`default` (`text-fg`) ou `muted` (`text-fg-muted`, toujours ≥ 4.5:1). Jamais via `className`.',
+  },
+  weight: {
+    control: 'inline-radio' as const,
+    options: ['regular', 'medium', 'semibold'],
+    description: 'Graisse : `regular`, `medium`, `semibold`.',
+  },
+};
+
+export const headingArgTypes = {
+  level: {
+    control: 'inline-radio' as const,
+    options: [1, 2, 3, 4, 5, 6],
+    description: 'Niveau sémantique : rend un vrai `h1`…`h6` (WCAG 1.3.1).',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['display', 'title', 'subtitle', 'body'],
+    description:
+      'Taille visuelle, indépendante du `level`. Par défaut, la taille suit le niveau.',
+  },
+};
+
+export const linkArgTypes = {
+  href: {
+    description: 'Cible du lien. Obligatoire pour un vrai `<a>`.',
+  },
+  external: {
+    control: 'boolean' as const,
+    description:
+      'Ouvre un nouvel onglet, pose `rel="noopener noreferrer"`, annonce l’ouverture (texte masqué).',
+  },
+  externalLabel: {
+    description:
+      'Texte annoncé pour un lien externe. Défaut anglais : `"(opens in a new tab)"`.',
+  },
+};
+
+export const dividerArgTypes = {
+  orientation: {
+    control: 'inline-radio' as const,
+    options: ['horizontal', 'vertical'],
+    description: '`horizontal` (`<hr>`) ou `vertical` (`div`).',
+  },
+  label: {
+    description:
+      'Nom accessible. Sans `label`, le trait est décoratif (`aria-hidden`). Ne le renseigner que si la séparation porte du sens.',
+  },
+};

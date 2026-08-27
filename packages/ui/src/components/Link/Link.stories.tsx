@@ -1,11 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Link } from './Link';
+import { linkArgTypes } from '../../../.storybook/arg-types';
+import { componentSource } from '../../../.storybook/docs-source';
+import { docsLocale, typographyCopy } from '../../../.storybook/docs-locale';
 import { Text } from '../Text/Text';
+import { Link } from './Link';
 
 const meta = {
   title: 'Components/Link',
   component: Link,
-  tags: ['autodocs'],
+  argTypes: linkArgTypes,
   args: {
     href: '#',
     children: 'Consulter le catalogue',
@@ -15,22 +18,68 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  name: 'Par défaut',
+  parameters: componentSource(
+    "import { Link } from 'd-ui';",
+    '<Link href="/catalogue">Consulter le catalogue</Link>',
+  ),
+  render: (args, { globals }) => {
+    const copy = typographyCopy(docsLocale(globals.locale));
+    return (
+      <Link {...args} href="/catalogue">
+        {copy.catalogue}
+      </Link>
+    );
+  },
+};
 
-/** `rel="noopener noreferrer"` et mention de l'ouverture pour les lecteurs d'écran. */
 export const External: Story = {
+  name: 'Externe',
   args: {
     href: 'https://example.org',
     external: true,
-    children: 'Documentation Dudalo',
+  },
+  parameters: componentSource(
+    "import { Link } from 'd-ui';",
+    `<Link href="https://example.org" external externalLabel="(ouvre dans un nouvel onglet)">
+  Documentation Dudalo
+</Link>`,
+  ),
+  render: (args, { globals }) => {
+    const copy = typographyCopy(docsLocale(globals.locale));
+    const locale = docsLocale(globals.locale);
+    return (
+      <Link
+        {...args}
+        externalLabel={
+          locale === 'en' ? '(opens in a new tab)' : '(ouvre dans un nouvel onglet)'
+        }
+      >
+        {copy.docs}
+      </Link>
+    );
   },
 };
 
 export const InRunningText: Story = {
-  render: (args) => (
-    <Text className="max-w-prose">
-      Le soulignement est permanent : <Link {...args}>ce lien</Link> reste identifiable
-      même sans percevoir la couleur.
-    </Text>
+  name: 'Dans un paragraphe',
+  parameters: componentSource(
+    "import { Link, Text } from 'd-ui';",
+    `<Text>
+  Consultez le <Link href="/catalogue">catalogue</Link> pour choisir un module.
+</Text>`,
   ),
+  render: (args, { globals }) => {
+    const copy = typographyCopy(docsLocale(globals.locale));
+    return (
+      <Text className="max-w-prose">
+        {copy.inTextBefore}{' '}
+        <Link {...args} href="/catalogue">
+          {copy.inTextLink}
+        </Link>{' '}
+        {copy.inTextAfter}
+      </Text>
+    );
+  },
 };

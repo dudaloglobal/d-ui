@@ -1,0 +1,45 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as LinkStories from './Link.stories';
+
+<Meta of={LinkStories} />
+
+# Link
+
+<P k="link.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={LinkStories.Default} />
+
+<H2 k="link.inText" />
+
+<P k="link.inTextBody" />
+
+<Canvas of={LinkStories.InRunningText} />
+
+<H2 k="link.external" />
+
+<P k="link.externalBody" />
+
+<Canvas of={LinkStories.External} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="link.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['link.doHref', 'link.doExternal']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['link.dontBlank', 'link.dontButton']} />
+
+<H2 k="chrome.properties" />
+
+<P k="link.props" />
+
+<ArgTypes of={LinkStories} include={['href', 'external', 'externalLabel']} />

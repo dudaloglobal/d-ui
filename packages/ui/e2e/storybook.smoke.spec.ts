@@ -69,6 +69,12 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Select | Dudalo Design System');
   await page.goto('/?path=/docs/components-combobox--docs');
   await expect(page).toHaveTitle('Combobox | Dudalo Design System');
+  await page.goto('/?path=/docs/components-text--docs');
+  await expect(page).toHaveTitle('Text | Dudalo Design System');
+  await page.goto('/?path=/docs/components-heading--docs');
+  await expect(page).toHaveTitle('Heading | Dudalo Design System');
+  await page.goto('/?path=/docs/components-link--docs');
+  await expect(page).toHaveTitle('Link | Dudalo Design System');
   await page.goto('/?path=/docs/accessibility-skiplink--docs');
   await expect(page).toHaveTitle('SkipLink | Dudalo Design System');
   await page.goto('/?path=/docs/foundations-themeprovider--docs');

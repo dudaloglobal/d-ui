@@ -8,7 +8,7 @@ export type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
    * annonce l'ouverture aux lecteurs d'écran.
    */
   external?: boolean;
-  /** Texte annoncé pour un lien externe. */
+  /** Accessible extra for an external link. Override with the product language. */
   externalLabel?: string;
 };
 
@@ -20,7 +20,7 @@ export type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
  */
 export function Link({
   external = false,
-  externalLabel = '(ouvre dans un nouvel onglet)',
+  externalLabel = '(opens in a new tab)',
   className,
   children,
   target,
@@ -43,8 +43,8 @@ export function Link({
         'focus-visible:ring-focus focus-visible:ring-offset-bg rounded-xs focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
         className,
       )}
-      {...externalProps}
       {...rest}
+      {...externalProps}
     >
       {children}
       {external ? <VisuallyHidden> {externalLabel}</VisuallyHidden> : null}

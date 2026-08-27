@@ -20,7 +20,7 @@ describe('Link', () => {
     );
 
     const link = screen.getByRole('link', {
-      name: 'Documentation (ouvre dans un nouvel onglet)',
+      name: 'Documentation (opens in a new tab)',
     });
     expect(link).toHaveAttribute('target', '_blank');
     expect(link).toHaveAttribute('rel', 'noopener noreferrer');

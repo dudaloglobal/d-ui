@@ -1,0 +1,45 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as HeadingStories from './Heading.stories';
+
+<Meta of={HeadingStories} />
+
+# Heading
+
+<P k="heading.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={HeadingStories.Default} />
+
+<H2 k="heading.levels" />
+
+<P k="heading.levelsBody" />
+
+<Canvas of={HeadingStories.Levels} />
+
+<H2 k="heading.decoupled" />
+
+<P k="heading.decoupledBody" />
+
+<Canvas of={HeadingStories.SizeDecoupledFromLevel} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="heading.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['heading.doSize', 'heading.doOneH1']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['heading.dontSkip', 'heading.dontTwoH1']} />
+
+<H2 k="chrome.properties" />
+
+<P k="heading.props" />
+
+<ArgTypes of={HeadingStories} include={['level', 'size']} />
