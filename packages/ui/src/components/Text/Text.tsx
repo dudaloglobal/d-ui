@@ -2,7 +2,7 @@ import type { ElementType, HTMLAttributes } from 'react';
 import { cx } from '../../lib/cx';
 
 export type TextSize = 'body' | 'body-sm' | 'caption';
-export type TextTone = 'default' | 'muted';
+export type TextTone = 'default' | 'muted' | 'danger';
 export type TextWeight = 'regular' | 'medium' | 'semibold';
 export type TextElement = 'p' | 'span' | 'div' | 'label' | 'legend';
 
@@ -20,9 +20,17 @@ const sizeClass: Record<TextSize, string> = {
   caption: 'text-xs',
 };
 
+/**
+ * Le ton est une prop, jamais un `className`.
+ *
+ * `cx()` ne résout pas les conflits entre classes Tailwind : passer
+ * `className="text-danger"` laisserait `text-fg` gagner selon l'ordre du CSS
+ * généré. Une couleur sémantique doit donc entrer par ici.
+ */
 const toneClass: Record<TextTone, string> = {
   default: 'text-fg',
   muted: 'text-fg-muted',
+  danger: 'text-danger',
 };
 
 const weightClass: Record<TextWeight, string> = {

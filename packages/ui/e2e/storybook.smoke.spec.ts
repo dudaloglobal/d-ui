@@ -81,6 +81,8 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('ThemeProvider | Dudalo Design System');
   await page.goto('/?path=/docs/components-icon--docs');
   await expect(page).toHaveTitle('Icon | Dudalo Design System');
+  await page.goto('/?path=/docs/components-field--docs');
+  await expect(page).toHaveTitle('Field | Dudalo Design System');
 });
 
 test('component docs H1 is the component name, like Link', async ({ page }) => {
