@@ -1,8 +1,14 @@
 name: PR assignment
 
+# Reviewers are the other two of fruitizz, Angelo-Cosme, and noukpoherve:
+#   fruitizz      → Angelo-Cosme + noukpoherve
+#   Angelo-Cosme  → fruitizz + noukpoherve
+#   noukpoherve   → fruitizz + Angelo-Cosme
+# Assignee comes from the PR, then the linked ticket, then the author.
+
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    types: [opened, reopened, synchronize, edited, assigned, unassigned, ready_for_review]
 
 permissions:
   contents: read
@@ -23,28 +29,120 @@ jobs:
       - uses: actions/github-script@v8
         with:
           script: |
-            const author = context.payload.pull_request.user.login;
-            const reviewers = ['Angelo-Cosme', 'noukpoherve'].filter(
-              (login) => login.toLowerCase() !== author.toLowerCase(),
-            );
+            const TEAM = ['fruitizz', 'Angelo-Cosme', 'noukpoherve'];
+            const { owner, repo } = context.repo;
+            const pull_number = context.issue.number;
+            const pr = context.payload.pull_request;
+            const author = pr.user.login;
+
+            const teamLogin = (login) =>
+              TEAM.find((member) => member.toLowerCase() === login.toLowerCase()) ?? null;
+
+            const firstTeamLogin = (logins) => {
+              for (const login of logins) {
+                const member = teamLogin(login);
+                if (member) return member;
+              }
+              return null;
+            };
+
+            const linkedIssueAssignees = async () => {
+              try {
+                const data = await github.graphql(
+                  `query ($owner: String!, $repo: String!, $number: Int!) {
+                    repository(owner: $owner, name: $repo) {
+                      pullRequest(number: $number) {
+                        closingIssuesReferences(first: 20) {
+                          nodes {
+                            assignees(first: 10) {
+                              nodes { login }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }`,
+                  { owner, repo, number: pull_number },
+                );
+                return (
+                  data.repository?.pullRequest?.closingIssuesReferences?.nodes ?? []
+                ).flatMap((node) =>
+                  (node.assignees?.nodes ?? []).map((assignee) => assignee.login),
+                );
+              } catch {
+                const nums = [
+                  ...(pr.body ?? '').matchAll(
+                    /(?:closes|fixes|resolves)\s+#(\d+)/gi,
+                  ),
+                ].map((match) => Number(match[1]));
+                const logins = [];
+                for (const issue_number of nums) {
+                  const { data: issue } = await github.rest.issues.get({
+                    owner,
+                    repo,
+                    issue_number,
+                  });
+                  for (const assignee of issue.assignees ?? []) {
+                    logins.push(assignee.login);
+                  }
+                }
+                return logins;
+              }
+            };
+
+            const prAssignees = (pr.assignees ?? []).map((assignee) => assignee.login);
+            const assignee =
+              firstTeamLogin(prAssignees) ??
+              firstTeamLogin(await linkedIssueAssignees()) ??
+              teamLogin(author);
+
+            const desired = TEAM.filter((member) => {
+              const login = member.toLowerCase();
+              if (login === author.toLowerCase()) return false;
+              if (assignee && login === assignee.toLowerCase()) return false;
+              return true;
+            });
 
             await github.rest.issues.addAssignees({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
+              owner,
+              repo,
+              issue_number: pull_number,
               assignees: [author],
             });
 
-            if (reviewers.length === 0) {
+            const requested = (pr.requested_reviewers ?? []).map(
+              (reviewer) => reviewer.login,
+            );
+            const toAdd = desired.filter(
+              (member) =>
+                !requested.some(
+                  (login) => login.toLowerCase() === member.toLowerCase(),
+                ),
+            );
+            const toRemove = requested.filter((login) => {
+              const member = teamLogin(login);
+              return member && !desired.includes(member);
+            });
+
+            if (toRemove.length > 0) {
+              await github.rest.pulls.removeRequestedReviewers({
+                owner,
+                repo,
+                pull_number,
+                reviewers: toRemove,
+              });
+            }
+
+            if (toAdd.length === 0) {
               return;
             }
 
             try {
               await github.rest.pulls.requestReviewers({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                pull_number: context.issue.number,
-                reviewers,
+                owner,
+                repo,
+                pull_number,
+                reviewers: toAdd,
               });
             } catch (error) {
               if (error.status !== 422) {

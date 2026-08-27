@@ -38,7 +38,7 @@ export default defineConfig({
           cssFileName: 'd-ui',
         },
         rollupOptions: {
-          external: ['react', 'react-dom', 'react/jsx-runtime'],
+          external: ['react', 'react-dom', 'react/jsx-runtime', '@floating-ui/react'],
         },
         sourcemap: true,
         emptyOutDir: true,

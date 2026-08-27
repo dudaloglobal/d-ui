@@ -14,6 +14,9 @@ Cible : **WCAG 2.2 niveau AA** (RGAA comme grille de contrôle interne).
 8. `TimeAgo` : `<time datetime>` (ISO-8601) + texte relatif visible, `lang` aligné sur `locale`. Date invalide → `<span>`, pas un `<time>` sans valeur. Instant absolu : `title` et `VisuallyHidden`. `live` sans `aria-live` sauf opt-in.
 9. `TextInput` / `Textarea` : label visible (prop `label`, `aria-labelledby`, ou `<label for>`). `invalid` pose `aria-invalid` ; `error` / `helper` sont liés par `aria-describedby`. Le compteur (caractères restants) n’utilise pas `aria-live`. Le bouton d’effacement et le basculeur mot de passe ont un nom accessible. `autoComplete` et `inputMode` sont transmis.
 10. `Checkbox` / `Radio` / `Switch` : contrôles natifs (`input`) avec label visible. Les groupes (`CheckboxGroup`, `RadioGroup`) utilisent `fieldset` + `legend`. `Switch` pose `role="switch"` et `aria-checked`. `indeterminate` pose `aria-checked="mixed"`. `invalid` / `error` ne reposent pas sur la couleur seule.
+11. `Tooltip` : `role="tooltip"`, `aria-describedby` sur le déclencheur, contenu non interactif (`pointer-events-none`). Escape ferme. Pas d’information indispensable uniquement dans le tooltip.
+12. `Popover` : `aria-expanded` / `aria-haspopup` / `aria-controls` sur le déclencheur. `trapFocus` seulement si le panneau contient des contrôles focusables (`role="dialog"` + nom accessible). Escape et clic extérieur ferment. Le portail recopie `data-d-ui-theme`.
+13. `EmojiPopover` : barre de neuf réactions (boutons nommés). `role="dialog"` + `trapFocus`. `onSelect` ferme le panneau. Déclencheur icône avec `aria-label`.
 
 ## Outils
 

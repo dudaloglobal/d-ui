@@ -47,6 +47,12 @@ export const storyNameEn: Record<string, string> = {
   'Mises à jour en direct': 'Live updates',
   Taille: 'Size',
   'Passé et futur': 'Past and future',
+  Contrôlé: 'Controlled',
+  Placement: 'Placement',
+  Collision: 'Collision',
+  Portail: 'Portal',
+  'Sans piège de focus': 'Without focus trap',
+  Alignements: 'Alignments',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -268,4 +274,68 @@ export type SelectionDocsCopy = typeof selectionFr;
 
 export function selectionCopy(locale: DocsLocale): SelectionDocsCopy {
   return locale === 'en' ? selectionEn : selectionFr;
+}
+
+const overlayFr = {
+  help: 'Aide',
+  tip: 'Enregistrer (⌘S)',
+  open: 'Ouvrir',
+  close: 'Fermer',
+  options: 'Options',
+  more: 'Plus d’infos',
+  top: 'Haut',
+  bottom: 'Bas',
+  left: 'Gauche',
+  right: 'Droite',
+  topStart: 'Haut début',
+  topEnd: 'Haut fin',
+  alignStart: 'Aligné au début du haut',
+  alignEnd: 'Aligné à la fin du haut',
+  action: 'Confirmer',
+  react: 'Réagir',
+  reactions: 'Réactions',
+  emojiHeart: 'Cœur étincelant',
+  emojiThumbsUp: 'Pouce en l’air',
+  emojiParty: 'Cotillons',
+  emojiClap: 'Applaudissements',
+  emojiJoy: 'Larmes de joie',
+  emojiWow: 'Surprise',
+  emojiCry: 'Larmes',
+  emojiThink: 'Réflexion',
+  emojiThumbsDown: 'Pouce en bas',
+};
+
+const overlayEn = {
+  help: 'Help',
+  tip: 'Save (⌘S)',
+  open: 'Open',
+  close: 'Close',
+  options: 'Options',
+  more: 'More info',
+  top: 'Top',
+  bottom: 'Bottom',
+  left: 'Left',
+  right: 'Right',
+  topStart: 'Top start',
+  topEnd: 'Top end',
+  alignStart: 'Aligned to the start of the top side',
+  alignEnd: 'Aligned to the end of the top side',
+  action: 'Confirm',
+  react: 'React',
+  reactions: 'Reactions',
+  emojiHeart: 'Sparkling heart',
+  emojiThumbsUp: 'Thumbs up',
+  emojiParty: 'Party popper',
+  emojiClap: 'Clapping hands',
+  emojiJoy: 'Face with tears of joy',
+  emojiWow: 'Astonished face',
+  emojiCry: 'Crying face',
+  emojiThink: 'Thinking face',
+  emojiThumbsDown: 'Thumbs down',
+};
+
+export type OverlayDocsCopy = typeof overlayFr;
+
+export function overlayCopy(locale: DocsLocale): OverlayDocsCopy {
+  return locale === 'en' ? overlayEn : overlayFr;
 }

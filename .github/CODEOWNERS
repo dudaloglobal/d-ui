@@ -1,2 +1,3 @@
-# Reviewers par défaut (DS-062).
-* @Angelo-Cosme @noukpoherve
+# Équipe de revue (DS-062). Les reviewers demandés sur une PR sont les deux
+# autres membres selon l’assigné du ticket ou de la PR (voir pr-assignment.yml).
+* @fruitizz @Angelo-Cosme @noukpoherve

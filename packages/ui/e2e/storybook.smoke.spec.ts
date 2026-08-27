@@ -59,6 +59,12 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Textarea | Dudalo Design System');
   await page.goto('/?path=/docs/components-timeago--docs');
   await expect(page).toHaveTitle('TimeAgo | Dudalo Design System');
+  await page.goto('/?path=/docs/components-tooltip--docs');
+  await expect(page).toHaveTitle('Tooltip | Dudalo Design System');
+  await page.goto('/?path=/docs/components-popover--docs');
+  await expect(page).toHaveTitle('Popover | Dudalo Design System');
+  await page.goto('/?path=/docs/components-emojipopover--docs');
+  await expect(page).toHaveTitle('EmojiPopover | Dudalo Design System');
 });
 
 test('Storybook page title uses Dudalo Design System', async ({ page }) => {
@@ -622,6 +628,9 @@ test('English globals switch example copy on every component canvas', async ({
     },
     { id: 'components-radio--default', en: 'Monthly', fr: 'Mensuel' },
     { id: 'components-switch--default', en: 'Compact mode', fr: 'Mode compact' },
+    { id: 'components-tooltip--default', en: 'Help', fr: 'Aide' },
+    { id: 'components-popover--default', en: 'Open', fr: 'Ouvrir' },
+    { id: 'components-emojipopover--default', en: 'React', fr: 'Réagir' },
   ] as const;
   for (const { id, en, fr } of cases) {
     await page.goto(`/iframe.html?id=${id}&globals=locale:en`);
@@ -646,4 +655,130 @@ test('Langue toolbar remounts docs canvases in English', async ({ page }) => {
   await expect(page.getByRole('link', { name: 'High emphasis' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Light' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Clair' })).toHaveCount(0);
+});
+
+test('component docs use Tooltip and Popover titles', async ({ page }) => {
+  await page.goto('/?path=/docs/components-tooltip--docs');
+  await expect(page).toHaveTitle('Tooltip | Dudalo Design System');
+  await page.goto('/?path=/docs/components-popover--docs');
+  await expect(page).toHaveTitle('Popover | Dudalo Design System');
+  await page.goto('/?path=/docs/components-emojipopover--docs');
+  await expect(page).toHaveTitle('EmojiPopover | Dudalo Design System');
+});
+
+test('Storybook serves the Tooltip story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-tooltip--default');
+  const trigger = page.getByRole('button', { name: 'Aide' });
+  await expect(trigger).toBeVisible();
+  await trigger.hover();
+  const tip = page.getByRole('tooltip');
+  await expect(tip).toBeVisible();
+  await expect(tip).toHaveText('Enregistrer (⌘S)');
+  await expect(tip.locator('[data-d-ui-tooltip-arrow]')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(tip).toHaveCount(0);
+});
+
+test('Tooltip collision story keeps the tooltip in the viewport', async ({ page }) => {
+  await page.setViewportSize({ width: 400, height: 280 });
+  await page.goto('/iframe.html?id=components-tooltip--collision');
+  await page.getByRole('button', { name: 'Aide' }).hover();
+  const tip = page.getByRole('tooltip');
+  await expect(tip).toBeVisible();
+  const box = await tip.boundingBox();
+  expect(box).toBeTruthy();
+  expect(box?.y ?? -1).toBeGreaterThanOrEqual(0);
+  expect((box?.y ?? 0) + (box?.height ?? 0)).toBeLessThanOrEqual(280);
+});
+
+test('Storybook serves the Popover story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-popover--default');
+  const trigger = page.getByRole('button', { name: 'Ouvrir' });
+  await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  await trigger.click();
+  await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+  const panel = page.getByRole('dialog', { name: 'Options' });
+  await expect(panel).toBeVisible();
+  await expect(panel.locator('[data-d-ui-popover-arrow]')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Confirmer' })).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog', { name: 'Options' })).toHaveCount(0);
+});
+
+test('Popover placement story shows directed sides with arrows', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-popover--placement');
+  await expect(page.getByRole('region', { name: 'Haut' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Bas' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Gauche' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Droite' })).toBeVisible();
+  await expect(page.locator('[data-d-ui-popover-arrow]')).toHaveCount(4);
+});
+
+test('Popover alignments story opens start and end along the top', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-popover--alignments');
+  const start = page.getByRole('region', { name: 'Haut début' });
+  const end = page.getByRole('region', { name: 'Haut fin' });
+  await expect(start).toBeVisible();
+  await expect(end).toBeVisible();
+  await expect(start.locator('[data-d-ui-popover-arrow]')).toBeVisible();
+  await expect(end.locator('[data-d-ui-popover-arrow]')).toBeVisible();
+});
+
+test('French Popover docs do not leak English alignment headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-popover--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { name: 'Alignements' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Alignments' })).toHaveCount(0);
+  await expect(preview.getByText('Aligned to the start of the top side')).toHaveCount(0);
+});
+
+test('French Tooltip docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-tooltip--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { name: 'Accessibilité' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Special states' })).toHaveCount(0);
+  await expect(preview.getByText('Save (⌘S)')).toHaveCount(0);
+});
+
+test('Tooltip docs Show code imports Tooltip from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-tooltip--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Button, Tooltip } from 'd-ui'");
+  await expect(source).toContainText('<Tooltip');
+  await expect(source).not.toContainText('ControlledTooltip');
+});
+
+test('Popover docs Show code imports Popover from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-popover--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Button, Popover } from 'd-ui'");
+  await expect(source).toContainText('<Popover');
+  await expect(source).not.toContainText('ControlledPopover');
+  await expect(source).not.toContainText('DirectedPopover');
+});
+
+test('Storybook serves the EmojiPopover story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-emojipopover--default');
+  await expect(page.getByRole('button', { name: 'Réagir' })).toBeVisible();
+  const bar = page.getByRole('dialog', { name: 'Réactions' });
+  await expect(bar).toBeVisible();
+  await expect(bar.getByRole('button')).toHaveCount(9);
+  await page.getByRole('button', { name: 'Pouce en l’air' }).click();
+  await expect(bar).toHaveCount(0);
+});
+
+test('French EmojiPopover docs do not leak English reaction names', async ({ page }) => {
+  await page.goto('/?path=/docs/components-emojipopover--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { name: 'EmojiPopover' })).toBeVisible();
+  await expect(preview.getByText('Sparkling heart')).toHaveCount(0);
+  await expect(preview.getByText('Thumbs up')).toHaveCount(0);
+});
+
+test('EmojiPopover docs Show code imports EmojiPopover from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-emojipopover--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Button, EmojiPopover } from 'd-ui'");
+  await expect(source).toContainText('<EmojiPopover');
+  await expect(source).not.toContainText('SmileIcon');
 });
