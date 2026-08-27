@@ -32,7 +32,7 @@ jobs:
         run: test -f packages/ui/dist/index.d.ts
       - run: pnpm --filter d-ui exec npm pack --dry-run
       - name: Changesets
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
           title: 'chore(release): version packages'
           commit: 'chore(release): version packages'
