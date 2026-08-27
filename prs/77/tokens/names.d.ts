@@ -23,6 +23,7 @@ export declare const tokenNames: {
     readonly colorOnInfo: "--d-ui-color-on-info";
     readonly fontSans: "--d-ui-font-sans";
     readonly radiusMd: "--d-ui-radius-md";
+    readonly zOverlay: "--d-ui-z-overlay";
     readonly space1: "--d-ui-space-1";
     readonly space2: "--d-ui-space-2";
     readonly space3: "--d-ui-space-3";
