@@ -11,6 +11,9 @@ const DEFAULT_LABEL = 'Skip to main content';
  * First focusable control in an app shell. Visible on keyboard focus only.
  * Point `href` at a landmark that is already focusable, e.g.
  * `<main id="main" tabIndex={-1}>`.
+ *
+ * If the target cannot take focus, the click is not cancelled so the browser
+ * can still follow the hash.
  */
 export function SkipLink({
   href = '#main',
@@ -32,8 +35,10 @@ export function SkipLink({
     if (!target) {
       return;
     }
-    event.preventDefault();
     target.focus();
+    if (document.activeElement === target) {
+      event.preventDefault();
+    }
   }
 
   return (

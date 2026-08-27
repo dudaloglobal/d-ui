@@ -118,8 +118,8 @@ export const docsCopy = {
     },
     target: { fr: 'Cible', en: 'Target' },
     targetBody: {
-      fr: '`href` pointe un identifiant déjà focusable, en général `<main id="main" tabIndex={-1}>`. Le composant **ne pose pas** `tabIndex` sur la cible : c’est à l’application de rendre le landmark focusable. Une cible absente laisse le lien natif s’exécuter (pas de `preventDefault`).',
-      en: '`href` points at an already-focusable id, usually `<main id="main" tabIndex={-1}>`. The component does **not** set `tabIndex` on the target: the app must make the landmark focusable. A missing target lets the native link run (no `preventDefault`).',
+      fr: '`href` pointe un identifiant déjà focusable, en général `<main id="main" tabIndex={-1}>`. Le composant **ne pose pas** `tabIndex` sur la cible : c’est à l’application de rendre le landmark focusable. Si la cible est absente **ou** ne peut pas recevoir le focus, le clic n’est pas annulé : le navigateur suit l’ancre.',
+      en: '`href` points at an already-focusable id, usually `<main id="main" tabIndex={-1}>`. The component does **not** set `tabIndex` on the target: the app must make the landmark focusable. If the target is missing **or** cannot take focus, the click is not cancelled: the browser follows the hash.',
     },
     label: { fr: 'Libellé', en: 'Label' },
     labelBody: {
@@ -143,8 +143,8 @@ export const docsCopy = {
       en: '`href="#content"` only if the landmark is named `content`',
     },
     dontTabIndex: {
-      fr: 'Omettre `tabIndex={-1}` sur `main` (le focus n’ira pas)',
-      en: 'Omitting `tabIndex={-1}` on `main` (focus will not move)',
+      fr: 'Omettre `tabIndex={-1}` sur `main` (le focus n’ira pas ; le saut d’ancre natif prend le relais)',
+      en: 'Omitting `tabIndex={-1}` on `main` (focus will not move; native hash navigation takes over)',
     },
     dontButton: {
       fr: 'Un `<button>` ou un `div` + `onKeyDown` à la place du lien',
