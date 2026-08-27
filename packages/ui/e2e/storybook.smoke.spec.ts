@@ -50,12 +50,25 @@ test('favicon PNG corners are transparent', async ({ page }) => {
   }
 });
 
-test('Storybook page title uses d-ui', async ({ page }) => {
+test('component docs use Component | Dudalo Design System titles', async ({ page }) => {
+  await page.goto('/?path=/docs/components-textinput--docs');
+  await expect(page).toHaveTitle('TextInput | Dudalo Design System');
+  await page.goto('/?path=/docs/components-button--docs');
+  await expect(page).toHaveTitle('Button | Dudalo Design System');
+  await page.goto('/?path=/docs/components-textarea--docs');
+  await expect(page).toHaveTitle('Textarea | Dudalo Design System');
+  await page.goto('/?path=/docs/components-timeago--docs');
+  await expect(page).toHaveTitle('TimeAgo | Dudalo Design System');
+});
+
+test('Storybook page title uses Dudalo Design System', async ({ page }) => {
   await page.goto('/');
-  await expect(page).toHaveTitle(/d-ui/);
+  await expect(page).toHaveTitle(/Dudalo Design System/);
   await expect(page).not.toHaveTitle(/Storybook/);
   await expect(page.getByRole('link', { name: 'd-ui' })).toBeVisible();
   await expect(page.locator('img[alt="d-ui"]')).toHaveAttribute('src', /favicon\.svg/);
+  await expect(page.locator('img[alt="d-ui"]')).toHaveCSS('width', '32px');
+  await expect(page.locator('img[alt="d-ui"]')).toHaveCSS('height', '32px');
 });
 
 const darkBrand = 'rgb(94, 234, 212)';
