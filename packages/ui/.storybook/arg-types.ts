@@ -243,3 +243,64 @@ export const switchArgTypes = {
       'État activé. Contrôlé si passé, non contrôlé sinon. Pose `aria-checked`.',
   },
 };
+
+const overlaySharedArgTypes = {
+  content: {
+    description: 'Contenu du panneau flottant.',
+  },
+  placement: {
+    control: 'select' as const,
+    options: [
+      'top',
+      'top-start',
+      'top-end',
+      'bottom',
+      'bottom-start',
+      'bottom-end',
+      'left',
+      'left-start',
+      'left-end',
+      'right',
+      'right-start',
+      'right-end',
+    ],
+    description: 'Côté préféré. Flip/shift recadrent près des bords du viewport.',
+  },
+  open: {
+    control: 'boolean' as const,
+    description: 'Ouvert contrôlé. Sinon `defaultOpen`.',
+  },
+  defaultOpen: {
+    control: 'boolean' as const,
+    description: 'Ouvert initial en mode non contrôlé.',
+  },
+  disabled: {
+    control: 'boolean' as const,
+    description: 'Empêche l’ouverture.',
+  },
+};
+
+export const tooltipArgTypes = {
+  ...overlaySharedArgTypes,
+  delayMs: {
+    control: 'number' as const,
+    description:
+      'Délai d’ouverture au survol (ms). `0` si `prefers-reduced-motion`. Défaut : `200`.',
+  },
+};
+
+export const popoverArgTypes = {
+  ...overlaySharedArgTypes,
+  trapFocus: {
+    control: 'boolean' as const,
+    description:
+      'Piège le focus dans le panneau (`role="dialog"`). À passer si le contenu est interactif.',
+  },
+  'aria-label': {
+    description:
+      'Nom accessible du panneau. Obligatoire avec `trapFocus` si pas de `aria-labelledby`.',
+  },
+  'aria-labelledby': {
+    description: 'Id d’un titre visible qui nomme le panneau.',
+  },
+};

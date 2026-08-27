@@ -72,6 +72,10 @@ export const docsCopy = {
       fr: 'Les attributs natifs `<input>` (`name`, `value`, `className`, …) sont transmis au contrôle.',
       en: 'Native `<input>` attributes (`name`, `value`, `className`, …) are forwarded to the control.',
     },
+    placement: { fr: 'Placement', en: 'Placement' },
+    controlled: { fr: 'Contrôlé', en: 'Controlled' },
+    collision: { fr: 'Collision', en: 'Collision' },
+    portal: { fr: 'Portail', en: 'Portal' },
   },
   intro: {
     title: { fr: 'd-ui', en: 'd-ui' },
@@ -85,8 +89,8 @@ export const docsCopy = {
       en: 'Consuming apps use:',
     },
     itemComponents: {
-      fr: 'les composants React (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `TimeAgo`, `ThemeProvider`, …)',
-      en: 'the React components (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `TimeAgo`, `ThemeProvider`, …)',
+      fr: 'les composants React (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Tooltip`, `Popover`, `TimeAgo`, `ThemeProvider`, …)',
+      en: 'the React components (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Tooltip`, `Popover`, `TimeAgo`, `ThemeProvider`, …)',
     },
     itemCssVars: {
       fr: 'les **variables CSS** `--d-ui-*`',
@@ -630,6 +634,125 @@ export const docsCopy = {
     propsBody: {
       fr: 'Les attributs natifs `<time>` (`className`, `aria-live`, …) sont transmis. `dateTime` et `children` sont gérés par le composant.',
       en: 'Native `<time>` attributes (`className`, `aria-live`, …) are forwarded. `dateTime` and `children` are owned by the component.',
+    },
+  },
+  tooltip: {
+    title: { fr: 'Tooltip', en: 'Tooltip' },
+    intro: {
+      fr: '`Tooltip` affiche un libellé court au survol ou au focus. Il n’est pas interactif : pour un panneau cliquable, utilisez `Popover`.',
+      en: '`Tooltip` shows a short label on hover or focus. It is not interactive: use `Popover` for a clickable panel.',
+    },
+    usePlacement: {
+      fr: '`placement` choisit le côté préféré (`top`, `bottom`, `left`, `right`, et variantes `-start` / `-end`). Près d’un bord, le panneau bascule (flip) et se décale (shift).',
+      en: '`placement` picks the preferred side (`top`, `bottom`, `left`, `right`, and `-start` / `-end` variants). Near an edge, the panel flips and shifts.',
+    },
+    useControlled: {
+      fr: 'Passez `open` et `onOpenChange` pour un état contrôlé, ou `defaultOpen` pour un état non contrôlé.',
+      en: 'Pass `open` and `onOpenChange` for controlled state, or `defaultOpen` for uncontrolled state.',
+    },
+    useCollision: {
+      fr: 'Près du bord du viewport, Floating UI retourne le tooltip pour qu’il reste visible.',
+      en: 'Near the viewport edge, Floating UI flips the tooltip so it stays visible.',
+    },
+    usePortal: {
+      fr: 'Le tooltip est rendu dans un portail (hors du flux). Il recopie `data-d-ui-theme` pour rester lisible en sombre et dans un `Dialog`.',
+      en: 'The tooltip renders in a portal (out of flow). It copies `data-d-ui-theme` so it stays readable in dark mode and inside a `Dialog`.',
+    },
+    a11yBody: {
+      fr: 'Le panneau a `role="tooltip"`. Le déclencheur reçoit `aria-describedby` tant que le tooltip est ouvert. Le contenu n’est pas focusable (`pointer-events-none`).',
+      en: 'The panel has `role="tooltip"`. The trigger gets `aria-describedby` while the tooltip is open. The content is not focusable (`pointer-events-none`).',
+    },
+    a11yKeys: {
+      fr: 'Survol, focus et Escape. `delayMs` passe à `0` si `prefers-reduced-motion`. Le focus visible du déclencheur utilise l’anneau du bouton.',
+      en: 'Hover, focus, and Escape. `delayMs` becomes `0` when `prefers-reduced-motion`. The trigger’s visible focus uses the button ring.',
+    },
+    doHover: {
+      fr: 'Un complément court (raccourci, précision) sur un contrôle déjà nommé',
+      en: 'A short supplement (shortcut, clarification) on an already named control',
+    },
+    doDescribed: {
+      fr: 'Laisser `aria-describedby` relier le tooltip au déclencheur',
+      en: 'Let `aria-describedby` associate the tooltip with the trigger',
+    },
+    doEscape: {
+      fr: 'Escape ferme le tooltip',
+      en: 'Escape dismisses the tooltip',
+    },
+    dontInteractive: {
+      fr: 'Bouton, lien ou champ **dans** le tooltip — utilisez `Popover`',
+      en: 'A button, link, or field **inside** the tooltip — use `Popover`',
+    },
+    dontEssential: {
+      fr: 'Information indispensable uniquement dans le tooltip (elle disparaît sans pointeur)',
+      en: 'Essential information only in the tooltip (it vanishes without a pointer)',
+    },
+    dontTitle: {
+      fr: '`title` natif en plus du tooltip (doublon, délai imprévisible)',
+      en: 'A native `title` in addition to the tooltip (duplicate, unpredictable delay)',
+    },
+    propsBody: {
+      fr: '`children` doit être un seul élément React (le déclencheur). `content` est le texte du tooltip.',
+      en: '`children` must be a single React element (the trigger). `content` is the tooltip text.',
+    },
+  },
+  popover: {
+    title: { fr: 'Popover', en: 'Popover' },
+    intro: {
+      fr: '`Popover` ouvre un panneau au clic. Contrairement à `Tooltip`, il peut contenir des actions. `Dialog` (plein écran modal) est hors périmètre.',
+      en: '`Popover` opens a panel on click. Unlike `Tooltip`, it can contain actions. `Dialog` (full-screen modal) is out of scope.',
+    },
+    usePlacement: {
+      fr: '`placement` choisit le côté préféré. Flip/shift recadrent près des bords du viewport.',
+      en: '`placement` picks the preferred side. Flip/shift keep the panel in view near viewport edges.',
+    },
+    useControlled: {
+      fr: 'Passez `open` et `onOpenChange` pour un état contrôlé, ou `defaultOpen` pour un état non contrôlé.',
+      en: 'Pass `open` and `onOpenChange` for controlled state, or `defaultOpen` for uncontrolled state.',
+    },
+    focusTrap: { fr: 'Piège de focus', en: 'Focus trap' },
+    useFocusTrap: {
+      fr: 'Passez `trapFocus` lorsque le panneau contient des éléments focusables. Le panneau devient un `dialog` modal. Sans `trapFocus`, Tab quitte le panneau.',
+      en: 'Pass `trapFocus` when the panel contains focusable elements. The panel becomes a modal `dialog`. Without `trapFocus`, Tab leaves the panel.',
+    },
+    useCollision: {
+      fr: 'Près du bord du viewport, le panneau bascule pour rester visible.',
+      en: 'Near the viewport edge, the panel flips to stay visible.',
+    },
+    a11yBody: {
+      fr: 'Le déclencheur pose `aria-expanded`, `aria-haspopup` et `aria-controls`. Avec `trapFocus`, le panneau a `role="dialog"` et un nom (`aria-label` ou `aria-labelledby`).',
+      en: 'The trigger sets `aria-expanded`, `aria-haspopup`, and `aria-controls`. With `trapFocus`, the panel has `role="dialog"` and a name (`aria-label` or `aria-labelledby`).',
+    },
+    a11yKeys: {
+      fr: 'Clic (ou Entrée/Espace sur le bouton) ouvre. Escape et clic extérieur ferment. Le portail recopie `data-d-ui-theme`.',
+      en: 'Click (or Enter/Space on the button) opens. Escape and outside click close. The portal copies `data-d-ui-theme`.',
+    },
+    doLabel: {
+      fr: '`aria-label` ou `aria-labelledby` sur le panneau',
+      en: '`aria-label` or `aria-labelledby` on the panel',
+    },
+    doTrap: {
+      fr: '`trapFocus` si le contenu est interactif',
+      en: '`trapFocus` if the content is interactive',
+    },
+    doEscape: {
+      fr: 'Escape et clic extérieur ferment le panneau',
+      en: 'Escape and outside click dismiss the panel',
+    },
+    dontTooltip: {
+      fr: 'Un tooltip pour un contenu interactif',
+      en: 'A tooltip for interactive content',
+    },
+    dontTrapEmpty: {
+      fr: '`trapFocus` sur un panneau sans contrôle focusable',
+      en: '`trapFocus` on a panel with no focusable control',
+    },
+    dontDialog: {
+      fr: 'Remplacer un `Dialog` d’interruption (hors périmètre DS-037) par un popover',
+      en: 'Replacing an interrupting `Dialog` (out of scope DS-037) with a popover',
+    },
+    propsBody: {
+      fr: '`children` doit être un seul élément React (le déclencheur). `content` est le panneau.',
+      en: '`children` must be a single React element (the trigger). `content` is the panel.',
     },
   },
 } as const;

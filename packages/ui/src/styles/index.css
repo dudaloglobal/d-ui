@@ -88,6 +88,16 @@
   appearance: none;
 }
 
+.d-ui-overlay {
+  z-index: var(--d-ui-z-overlay, 1100);
+  font-family: var(--d-ui-font-sans);
+  color-scheme: light;
+}
+
+.d-ui-overlay[data-d-ui-theme='dark'] {
+  color-scheme: dark;
+}
+
 .d-ui-visually-hidden {
   position: absolute;
   width: 1px;

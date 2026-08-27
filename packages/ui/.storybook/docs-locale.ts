@@ -47,6 +47,11 @@ export const storyNameEn: Record<string, string> = {
   'Mises à jour en direct': 'Live updates',
   Taille: 'Size',
   'Passé et futur': 'Past and future',
+  Contrôlé: 'Controlled',
+  Placement: 'Placement',
+  Collision: 'Collision',
+  Portail: 'Portal',
+  'Sans piège de focus': 'Without focus trap',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -268,4 +273,38 @@ export type SelectionDocsCopy = typeof selectionFr;
 
 export function selectionCopy(locale: DocsLocale): SelectionDocsCopy {
   return locale === 'en' ? selectionEn : selectionFr;
+}
+
+const overlayFr = {
+  help: 'Aide',
+  tip: 'Enregistrer (⌘S)',
+  open: 'Ouvrir',
+  close: 'Fermer',
+  options: 'Options',
+  more: 'Plus d’infos',
+  top: 'Haut',
+  bottom: 'Bas',
+  left: 'Gauche',
+  right: 'Droite',
+  action: 'Confirmer',
+};
+
+const overlayEn = {
+  help: 'Help',
+  tip: 'Save (⌘S)',
+  open: 'Open',
+  close: 'Close',
+  options: 'Options',
+  more: 'More info',
+  top: 'Top',
+  bottom: 'Bottom',
+  left: 'Left',
+  right: 'Right',
+  action: 'Confirm',
+};
+
+export type OverlayDocsCopy = typeof overlayFr;
+
+export function overlayCopy(locale: DocsLocale): OverlayDocsCopy {
+  return locale === 'en' ? overlayEn : overlayFr;
 }

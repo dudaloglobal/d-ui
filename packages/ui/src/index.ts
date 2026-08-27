@@ -34,3 +34,7 @@ export { Radio, RadioGroup } from './components/Radio/Radio';
 export type { RadioGroupProps, RadioProps, RadioSize } from './components/Radio/Radio';
 export { Switch } from './components/Switch/Switch';
 export type { SwitchProps, SwitchSize } from './components/Switch/Switch';
+export { Tooltip } from './components/Tooltip/Tooltip';
+export type { TooltipPlacement, TooltipProps } from './components/Tooltip/Tooltip';
+export { Popover } from './components/Popover/Popover';
+export type { PopoverPlacement, PopoverProps } from './components/Popover/Popover';
