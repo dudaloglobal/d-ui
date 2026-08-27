@@ -24,7 +24,7 @@ jobs:
         with:
           script: |
             const author = context.payload.pull_request.user.login;
-            const reviewers = ['Angelo-Cosme', 'fruitizz'].filter(
+            const reviewers = ['Angelo-Cosme', 'noukpoherve'].filter(
               (login) => login.toLowerCase() !== author.toLowerCase(),
             );
 
