@@ -16,6 +16,7 @@ import {
   overlayCopy,
   selectCopy,
   typographyCopy,
+  fieldCopy,
   visuallyHiddenCopy,
 } from '../.storybook/docs-locale';
 
@@ -103,6 +104,7 @@ describe('docs locale', () => {
     expect(keysOf(visuallyHiddenCopy('fr'))).toEqual(keysOf(visuallyHiddenCopy('en')));
     expect(keysOf(themeCopy('fr'))).toEqual(keysOf(themeCopy('en')));
     expect(keysOf(typographyCopy('fr'))).toEqual(keysOf(typographyCopy('en')));
+    expect(keysOf(fieldCopy('fr'))).toEqual(keysOf(fieldCopy('en')));
   });
 
   it('writes MDX section headings in French', () => {
@@ -137,6 +139,7 @@ describe('docs locale', () => {
     expect(text).toContain('`"Effacer"`');
     expect(text).toContain('Cible du lien, un identifiant de page');
     expect(text).toContain('Niveau sémantique : rend un vrai');
+    expect(text).toContain('Rend un `fieldset`');
     expect(text).not.toContain('"Clear"');
     expect(text).not.toContain('Show password');
     expect(text).not.toContain('character remaining');

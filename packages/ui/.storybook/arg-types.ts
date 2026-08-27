@@ -491,14 +491,36 @@ export const textArgTypes = {
   },
   tone: {
     control: 'inline-radio' as const,
-    options: ['default', 'muted'],
+    options: ['default', 'muted', 'danger'],
     description:
-      '`default` (`text-fg`) ou `muted` (`text-fg-muted`, toujours ≥ 4.5:1). Jamais via `className`.',
+      '`default` (`text-fg`), `muted` (`text-fg-muted`, toujours ≥ 4.5:1), `danger` (message d’erreur). Jamais via `className`.',
   },
   weight: {
     control: 'inline-radio' as const,
     options: ['regular', 'medium', 'semibold'],
     description: 'Graisse : `regular`, `medium`, `semibold`.',
+  },
+};
+
+export const fieldArgTypes = {
+  required: {
+    control: 'boolean' as const,
+    description:
+      'Pose `required` sur le contrôle (hors `group`) et un astérisque décoratif sur le libellé. Dans un groupe, n’exige pas chaque case.',
+  },
+  invalid: {
+    control: 'boolean' as const,
+    description:
+      'Marque le contrôle `aria-invalid` et autorise `FieldError` dans le DOM (`role="alert"`).',
+  },
+  disabled: {
+    control: 'boolean' as const,
+    description: 'Désactive le contrôle (ou le `fieldset` en mode `group`).',
+  },
+  group: {
+    control: 'boolean' as const,
+    description:
+      'Rend un `fieldset` ; `Label` devient `legend` et doit rester le premier enfant. `useFieldControl` ne transmet alors ni `id` ni `required`.',
   },
 };
 

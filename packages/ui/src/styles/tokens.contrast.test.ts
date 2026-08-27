@@ -120,6 +120,14 @@ const REQUIREMENTS = [
   { fg: 'link', bg: 'bg', ratio: 4.5, rule: '1.4.3 lien' },
   { fg: 'link', bg: 'surface-muted', ratio: 4.5, rule: '1.4.3 lien sur surface' },
   { fg: 'link-visited', bg: 'bg', ratio: 4.5, rule: '1.4.3 lien visité' },
+  { fg: 'danger', bg: 'bg', ratio: 4.5, rule: "1.4.3 message d'erreur" },
+  {
+    fg: 'danger',
+    bg: 'surface-muted',
+    ratio: 4.5,
+    rule: "1.4.3 message d'erreur sur surface",
+  },
+  { fg: 'on-danger', bg: 'danger', ratio: 4.5, rule: '1.4.3 texte sur danger' },
   { fg: 'border', bg: 'bg', ratio: 3, rule: '1.4.11 frontière de contrôle' },
   {
     fg: 'border',

@@ -76,6 +76,7 @@ export const storyNameEn: Record<string, string> = {
   Graisses: 'Weights',
   Niveaux: 'Levels',
   'Taille découplée': 'Decoupled size',
+  'Avec aide': 'With helper',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -515,6 +516,7 @@ const typographyFr = {
   caption: 'caption — légendes, métadonnées',
   toneDefault: 'tone="default" — contraste maximal',
   toneMuted: 'tone="muted" — reste au-dessus de 4.5:1',
+  toneDanger: 'tone="danger" — message d’erreur',
   heading: 'Parcours d’apprentissage',
   level1: 'Niveau 1 — display',
   level2: 'Niveau 2 — title',
@@ -544,6 +546,7 @@ const typographyEn = {
   caption: 'caption — captions, metadata',
   toneDefault: 'tone="default" — maximum contrast',
   toneMuted: 'tone="muted" — stays above 4.5:1',
+  toneDanger: 'tone="danger" — error message',
   heading: 'Learning path',
   level1: 'Level 1 — display',
   level2: 'Level 2 — title',
@@ -569,4 +572,44 @@ export type TypographyDocsCopy = typeof typographyFr;
 
 export function typographyCopy(locale: DocsLocale): TypographyDocsCopy {
   return locale === 'en' ? typographyEn : typographyFr;
+}
+
+const fieldFr = {
+  email: 'Adresse e-mail',
+  emailValue: 'etudiant@dudalo.com',
+  emailInvalid: 'etudiant@',
+  emailHelp: 'Elle sert uniquement à la récupération de compte.',
+  emailError: 'Cette adresse n’est pas valide.',
+  pathName: 'Nom du parcours',
+  pathHelp: 'Visible par les étudiants inscrits.',
+  identifier: 'Identifiant',
+  identifierHelp: 'Attribué par l’établissement.',
+  identifierValue: 'DUD-2026-0142',
+  notifications: 'Notifications',
+  notificationsHelp: 'Choisissez au moins un canal.',
+  channelEmail: 'E-mail',
+  channelSms: 'SMS',
+};
+
+const fieldEn = {
+  email: 'Email address',
+  emailValue: 'student@dudalo.com',
+  emailInvalid: 'student@',
+  emailHelp: 'Used only for account recovery.',
+  emailError: 'This address is not valid.',
+  pathName: 'Path name',
+  pathHelp: 'Visible to enrolled students.',
+  identifier: 'Identifier',
+  identifierHelp: 'Assigned by the institution.',
+  identifierValue: 'DUD-2026-0142',
+  notifications: 'Notifications',
+  notificationsHelp: 'Choose at least one channel.',
+  channelEmail: 'Email',
+  channelSms: 'SMS',
+};
+
+export type FieldDocsCopy = typeof fieldFr;
+
+export function fieldCopy(locale: DocsLocale): FieldDocsCopy {
+  return locale === 'en' ? fieldEn : fieldFr;
 }

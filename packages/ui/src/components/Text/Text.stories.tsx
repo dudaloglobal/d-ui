@@ -54,7 +54,8 @@ export const Tones: Story = {
   parameters: componentSource(
     "import { Text } from 'd-ui';",
     `<Text>contraste maximal</Text>
-<Text tone="muted">hiérarchie, ≥ 4.5:1</Text>`,
+<Text tone="muted">hiérarchie, ≥ 4.5:1</Text>
+<Text tone="danger">message d’erreur</Text>`,
   ),
   render: (_, { globals }) => {
     const copy = typographyCopy(docsLocale(globals.locale));
@@ -62,6 +63,7 @@ export const Tones: Story = {
       <div className="flex max-w-prose flex-col gap-3">
         <Text tone="default">{copy.toneDefault}</Text>
         <Text tone="muted">{copy.toneMuted}</Text>
+        <Text tone="danger">{copy.toneDanger}</Text>
       </div>
     );
   },
