@@ -1,0 +1,8 @@
+---
+description: When the user says rebase branch, rebase la branche, or safe rebase, rebase onto origin/main keeping both sides’ work.
+alwaysApply: true
+---
+
+# Rebase branch
+
+If the user says **rebase branch** (or rebase la branche / safe rebase / rebase onto main), follow `.cursor/skills/rebase-branch/SKILL.md`: fetch `origin/main`, classify this-branch vs incoming vs overlap, rebase without dropping either side, run pre-push CI, then `--force-with-lease`.
