@@ -18,8 +18,14 @@ export type PopoverProps = {
     trapFocus?: boolean;
     /** Empêche l’ouverture. */
     disabled?: boolean;
+    /** Flèche vers le déclencheur. Défaut : `true`. */
+    arrow?: boolean;
+    /**
+     * Sans chrome (fond, bordure, padding). Le style vient de `className`.
+     */
+    unstyled?: boolean;
     className?: string;
     'aria-label'?: string;
     'aria-labelledby'?: string;
 };
-export declare function Popover({ content, children, placement, open: openProp, defaultOpen, onOpenChange, trapFocus, disabled, className, 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, }: PopoverProps): import("react").JSX.Element;
+export declare function Popover({ content, children, placement, open: openProp, defaultOpen, onOpenChange, trapFocus, disabled, arrow: arrowEnabled, unstyled, className, 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, }: PopoverProps): import("react").JSX.Element;
