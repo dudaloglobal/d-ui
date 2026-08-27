@@ -9,13 +9,15 @@ test('Storybook serves the d-ui favicon', async ({ page }) => {
   const svg = await page.request.get('/favicon.svg');
   expect(svg.ok()).toBeTruthy();
   const svgText = await svg.text();
-  expect(svgText).toContain('#0f5c4c');
-  expect(svgText).not.toMatch(/\brx=/);
+  expect(svgText).toContain('🍩');
+  expect(svgText).toMatch(/<circle\b[^>]*\bfill="#ffffff"/);
+  expect(svgText).not.toContain('#0f5c4c');
+  expect(svgText).not.toMatch(/<rect/);
   const png = await page.request.get('/favicon.png');
   expect(png.ok()).toBeTruthy();
 });
 
-test('favicon PNG fills the square corners with brand green', async ({ page }) => {
+test('favicon PNG corners are transparent', async ({ page }) => {
   await page.goto('/');
   const corners = await page.evaluate(async () => {
     const img = document.createElement('img');
@@ -30,7 +32,7 @@ test('favicon PNG fills the square corners with brand green', async ({ page }) =
     const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const at = (x: number, y: number) => {
       const i = (y * width + x) * 4;
-      return [data[i], data[i + 1], data[i + 2]];
+      return [data[i], data[i + 1], data[i + 2], data[i + 3]];
     };
     return {
       width,
@@ -44,7 +46,7 @@ test('favicon PNG fills the square corners with brand green', async ({ page }) =
   expect(corners.width).toBeGreaterThan(0);
   expect(corners.height).toBeGreaterThan(0);
   for (const corner of [corners.tl, corners.tr, corners.bl, corners.br]) {
-    expect(corner).toEqual([15, 92, 76]);
+    expect(corner[3]).toBe(0);
   }
 });
 
