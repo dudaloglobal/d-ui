@@ -40,3 +40,18 @@ export { Popover } from './components/Popover/Popover';
 export type { PopoverPlacement, PopoverProps } from './components/Popover/Popover';
 export { EmojiPopover, REACTION_EMOJIS } from './components/Popover/EmojiPopover';
 export type { EmojiPopoverProps, ReactionEmoji } from './components/Popover/EmojiPopover';
+export { Select } from './components/Select/Select';
+export type {
+  SelectItem,
+  SelectOption,
+  SelectOptionGroup,
+  SelectProps,
+  SelectSize,
+} from './components/Select/Select';
+export { Combobox } from './components/Select/Combobox';
+export type {
+  ComboboxFilter,
+  ComboboxListStatus,
+  ComboboxProps,
+  ComboboxSize,
+} from './components/Select/Combobox';

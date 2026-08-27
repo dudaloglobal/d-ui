@@ -1,0 +1,183 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as ComboboxStories from './Combobox.stories';
+
+<Meta of={ComboboxStories} />
+
+# Combobox
+
+<P k="combobox.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<H2 k="combobox.single" />
+
+<P k="combobox.useSingle" />
+
+<Canvas of={ComboboxStories.Default} />
+
+<H2 k="combobox.multiple" />
+
+<P k="combobox.useMultiple" />
+
+<Canvas of={ComboboxStories.Multiple} />
+
+<H2 k="chrome.options" />
+
+<H3 k="select.groups" />
+
+<P k="select.useGroups" />
+
+<Canvas of={ComboboxStories.Group} />
+
+<H3 k="combobox.descriptions" />
+
+<P k="combobox.useDescriptions" />
+
+<Canvas of={ComboboxStories.Descriptions} />
+
+<H3 k="combobox.custom" />
+
+<P k="combobox.useCustom" />
+
+<Canvas of={ComboboxStories.Custom} />
+
+<H2 k="combobox.inputOptions" />
+
+<P k="combobox.useInputOptions" />
+
+<H3 k="chrome.disabled" />
+
+<P k="chrome.useDisabled" />
+
+<Canvas of={ComboboxStories.Disabled} />
+
+<H3 k="chrome.invalid" />
+
+<P k="select.useInvalid" />
+
+<Canvas of={ComboboxStories.Invalid} />
+
+<H3 k="chrome.valid" />
+
+<P k="chrome.useValid" />
+
+<Canvas of={ComboboxStories.Valid} />
+
+<H3 k="chrome.required" />
+
+<P k="select.useRequired" />
+
+<Canvas of={ComboboxStories.Required} />
+
+<H3 k="chrome.helper" />
+
+<P k="chrome.useHelper" />
+
+<Canvas of={ComboboxStories.Helper} />
+
+<H3 k="chrome.sizes" />
+
+<P k="chrome.useSizes" />
+
+<Canvas of={ComboboxStories.Sizes} />
+
+<H2 k="combobox.listStates" />
+
+<P k="combobox.useListStates" />
+
+<H3 k="combobox.loading" />
+
+<P k="combobox.useLoading" />
+
+<Canvas of={ComboboxStories.Loading} />
+
+<H3 k="combobox.loadingMore" />
+
+<P k="combobox.useLoadingMore" />
+
+<Canvas of={ComboboxStories.LoadingMore} />
+
+<H3 k="combobox.empty" />
+
+<P k="combobox.useEmpty" />
+
+<Canvas of={ComboboxStories.Empty} />
+
+<H3 k="combobox.listError" />
+
+<P k="combobox.useListError" />
+
+<Canvas of={ComboboxStories.ListError} />
+
+<H2 k="combobox.filters" />
+
+<P k="combobox.useFilters" />
+
+<Canvas of={ComboboxStories.FilterTypes} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="combobox.a11yBody" />
+
+<P k="combobox.a11yKeys" />
+
+<P k="select.a11yForm" />
+
+<H3 k="chrome.do" />
+
+<Ul
+  items={['combobox.doFilter', 'combobox.doChips', 'select.doLabel', 'select.doName']}
+/>
+
+<H3 k="chrome.dont" />
+
+<Ul items={['combobox.dontAsync', 'combobox.dontPlaceholder']} />
+
+<H2 k="chrome.properties" />
+
+<P k="combobox.propsBody" />
+
+<ArgTypes
+  of={ComboboxStories}
+  include={[
+    'options',
+    'value',
+    'defaultValue',
+    'onValueChange',
+    'multiple',
+    'name',
+    'form',
+    'placeholder',
+    'emptyMessage',
+    'filter',
+    'onSearch',
+    'listStatus',
+    'loadingMessage',
+    'listErrorMessage',
+    'listErrorRetryMessage',
+    'beforeOptions',
+    'renderOption',
+    'renderSectionTitle',
+    'renderChip',
+    'chipGroupLabel',
+    'chipRemoveLabel',
+    'defaultOpen',
+    'openOnFocus',
+    'size',
+    'label',
+    'helper',
+    'error',
+    'invalid',
+    'valid',
+    'disabled',
+    'required',
+    'fullWidth',
+    'clearable',
+    'clearLabel',
+    'toggleLabel',
+    'icon',
+  ]}
+/>

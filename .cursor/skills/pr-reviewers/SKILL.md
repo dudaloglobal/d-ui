@@ -5,7 +5,7 @@ description: Assigns the pull request author and requests the other two of fruit
 
 # PR reviewers
 
-On every pull request (create or update):
+On every pull request (create or update), write the body with `.cursor/skills/create-pr/SKILL.md` (French template). Then:
 
 1. Assign the PR author (`gh pr edit --add-assignee <author>`).
 2. Request reviewers as the **other two** of `fruitizz`, `Angelo-Cosme`, and `noukpoherve`, based on the PR or ticket assignee:

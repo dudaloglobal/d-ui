@@ -90,8 +90,8 @@ export const docsCopy = {
       en: 'Consuming apps use:',
     },
     itemComponents: {
-      fr: 'les composants React (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, …)',
-      en: 'the React components (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, …)',
+      fr: 'les composants React (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, …)',
+      en: 'the React components (`Button`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, …)',
     },
     itemCssVars: {
       fr: 'les **variables CSS** `--d-ui-*`',
@@ -801,6 +801,161 @@ export const docsCopy = {
     propsBody: {
       fr: '`children` est le déclencheur. `labels` surcharge les noms accessibles des emojis (français par défaut).',
       en: '`children` is the trigger. `labels` overrides the emoji accessible names (French by default).',
+    },
+  },
+  select: {
+    title: { fr: 'Select', en: 'Select' },
+    intro: {
+      fr: '`Select` ouvre une liste fermée d’options. Pour filtrer en tapant, utilisez `Combobox`. Les deux partagent `options`, les groupes et `onValueChange`.',
+      en: '`Select` opens a closed list of options. To filter while typing, use `Combobox`. Both share `options`, groups, and `onValueChange`.',
+    },
+    useInvalid: {
+      fr: '`invalid` et `error` posent `aria-invalid` et remplacent `helper`. L’erreur ne repose pas sur la couleur seule.',
+      en: '`invalid` and `error` set `aria-invalid` and replace `helper`. The error does not rely on colour alone.',
+    },
+    useRequired: {
+      fr: '`required` affiche un astérisque à côté du libellé et pose `aria-required`.',
+      en: '`required` shows an asterisk next to the label and sets `aria-required`.',
+    },
+    groups: { fr: 'Groupes d’options', en: 'Option groups' },
+    useGroups: {
+      fr: 'Passez `{ label, options }` pour regrouper. Le libellé du groupe est exposé via `role="group"`.',
+      en: 'Pass `{ label, options }` to group items. The group label is exposed via `role="group"`.',
+    },
+    disabledOptions: { fr: 'Options désactivées', en: 'Disabled options' },
+    useDisabledOptions: {
+      fr: '`disabled: true` sur une option la rend non sélectionnable. Les flèches la sautent.',
+      en: '`disabled: true` on an option makes it unselectable. Arrow keys skip it.',
+    },
+    a11yBody: {
+      fr: 'Le déclencheur a `role="combobox"` (`aria-autocomplete="none"`), `aria-expanded`, `aria-controls` et `aria-activedescendant`. La liste a `role="listbox"` et le même nom que le champ.',
+      en: 'The trigger has `role="combobox"` (`aria-autocomplete="none"`), `aria-expanded`, `aria-controls`, and `aria-activedescendant`. The list has `role="listbox"` and the same name as the field.',
+    },
+    a11yKeys: {
+      fr: 'Flèches, Début/Fin, saisie prédictive, Entrée/Espace pour choisir, Escape pour fermer. L’option active est défilée dans la vue.',
+      en: 'Arrows, Home/End, typeahead, Enter/Space to choose, Escape to close. The active option is scrolled into view.',
+    },
+    a11yForm: {
+      fr: '`name` et `form` sont posés sur un `<select>` natif visuellement masqué, pour la soumission HTML. Documentez-les dans le formulaire hôte.',
+      en: '`name` and `form` are set on a visually hidden native `<select>` for HTML submission. Document them on the host form.',
+    },
+    doLabel: {
+      fr: 'Un libellé visible (`label`, `aria-labelledby`, ou `<label for>`)',
+      en: 'A visible label (`label`, `aria-labelledby`, or `<label for>`)',
+    },
+    doName: {
+      fr: '`name` (et `form` si le champ est hors du `<form>`) pour la soumission native',
+      en: '`name` (and `form` if the field sits outside the `<form>`) for native submit',
+    },
+    doDisabled: {
+      fr: '`disabled` sur l’option plutôt que de la retirer sans explication',
+      en: '`disabled` on the option rather than removing it without explanation',
+    },
+    dontTitle: {
+      fr: '`title` natif à la place d’un libellé',
+      en: 'A native `title` instead of a label',
+    },
+    dontMulti: {
+      fr: 'La sélection multiple — hors périmètre',
+      en: 'Multi-select — out of scope',
+    },
+    dontNativeOnly: {
+      fr: 'Un `<select>` nu sans les tokens et états d-ui lorsque le design system s’applique',
+      en: 'A bare `<select>` without d-ui tokens and states when the design system applies',
+    },
+    propsBody: {
+      fr: '`options` est la liste (plate ou groupée). `value` / `onValueChange` pour un état contrôlé.',
+      en: '`options` is the list (flat or grouped). `value` / `onValueChange` for controlled state.',
+    },
+  },
+  combobox: {
+    title: { fr: 'Combobox', en: 'Combobox' },
+    intro: {
+      fr: '`Combobox` est un champ texte filtrable. `multiple` pose des chips dans le champ. `listStatus` couvre chargement, pagination et erreur de liste. `filter` choisit le filtrage (`auto`, `manual`, `off`).',
+      en: '`Combobox` is a filterable text field. `multiple` shows chips in the field. `listStatus` covers loading, pagination, and list error. `filter` chooses filtering (`auto`, `manual`, `off`).',
+    },
+    single: { fr: 'Sélection unique', en: 'Single selection' },
+    useSingle: {
+      fr: 'Une valeur. Taper filtre la liste ; le chevron ouvre les suggestions.',
+      en: 'One value. Typing filters the list; the chevron opens suggestions.',
+    },
+    multiple: { fr: 'Sélection multiple', en: 'Multiple selection' },
+    useMultiple: {
+      fr: '`multiple` autorise plusieurs valeurs. Les choix s’affichent en chips dans le champ, avec un bouton de retrait nommé (`chipRemoveLabel`).',
+      en: '`multiple` allows several values. Choices show as chips in the field, with a named remove button (`chipRemoveLabel`).',
+    },
+    descriptions: { fr: 'Descriptions', en: 'Descriptions' },
+    useDescriptions: {
+      fr: '`description` sur une option affiche une seconde ligne sous le nom, dans la liste.',
+      en: '`description` on an option shows a second line under the name, in the list.',
+    },
+    custom: { fr: 'Rendu personnalisé', en: 'Custom rendering' },
+    useCustom: {
+      fr: '`renderOption`, `renderSectionTitle` et `renderChip` personnalisent la liste, les groupes et les chips. Posez `icon` sur l’option : la même icône apparaît dans la liste et dans la valeur choisie. `beforeOptions` injecte une action en tête de liste (par exemple **Créer**).',
+      en: '`renderOption`, `renderSectionTitle`, and `renderChip` customize the list, groups, and chips. Set `icon` on the option: the same icon appears in the list and on the chosen value. `beforeOptions` injects an action at the top of the list (for example **Create**).',
+    },
+    inputOptions: { fr: 'Options du champ', en: 'Input options' },
+    useInputOptions: {
+      fr: 'Même chrome que `TextInput` : `disabled`, `invalid` / `error`, `valid`, `required`, `helper`, `size`.',
+      en: 'Same chrome as `TextInput`: `disabled`, `invalid` / `error`, `valid`, `required`, `helper`, `size`.',
+    },
+    listStates: { fr: 'États de liste', en: 'List states' },
+    useListStates: {
+      fr: '`listStatus` pilote le contenu du panneau pour un listing distant. Le champ reste un combobox ; le client HTTP reste chez le consommateur (`onSearch`).',
+      en: '`listStatus` drives the panel contents for a remote listing. The field stays a combobox; the HTTP client stays with the consumer (`onSearch`).',
+    },
+    loading: { fr: 'Chargement', en: 'Loading' },
+    useLoading: {
+      fr: '`listStatus="loading"` affiche des placeholders. Les options sont masquées. `loadingMessage` est annoncé (région live).',
+      en: '`listStatus="loading"` shows placeholders. Options are hidden. `loadingMessage` is announced (live region).',
+    },
+    loadingMore: { fr: 'Chargement de la suite', en: 'Loading more' },
+    useLoadingMore: {
+      fr: '`listStatus="loadingMore"` ajoute un placeholder sous les options déjà visibles (pagination).',
+      en: '`listStatus="loadingMore"` appends a placeholder under options already visible (pagination).',
+    },
+    empty: { fr: 'État vide', en: 'Empty state' },
+    useEmpty: {
+      fr: '`emptyMessage` s’affiche lorsque la requête ne correspond à aucune option (ou si `options` est vide). Chaîne, nœud, ou fonction `(query) => …`.',
+      en: '`emptyMessage` shows when the query matches no option (or when `options` is empty). String, node, or `(query) => …` function.',
+    },
+    listError: { fr: 'Erreur', en: 'Error' },
+    useListError: {
+      fr: '`listStatus="error"` remplace la liste par `listErrorMessage` (et `listErrorRetryMessage` en secondaire).',
+      en: '`listStatus="error"` replaces the list with `listErrorMessage` (and `listErrorRetryMessage` as secondary text).',
+    },
+    filters: { fr: 'Types de filtre', en: 'Filter types' },
+    useFilters: {
+      fr: '`filter="auto"` masque les options qui ne correspondent pas. `"manual"` laisse toutes les options visibles (`onSearch` chez le consommateur). `"off"` rend le champ en lecture seule : ouverture au focus, sans saisie.',
+      en: '`filter="auto"` hides options that do not match. `"manual"` leaves every option visible (`onSearch` on the consumer). `"off"` makes the field read-only: opens on focus, no typing.',
+    },
+    a11yBody: {
+      fr: 'Le champ a `role="combobox"` et `aria-autocomplete="list"` (`none` si `filter="off"`). La listbox est nommée comme le champ. En `multiple`, `aria-multiselectable` et un groupe de chips nommé (`chipGroupLabel`). Chaque chip a un bouton de retrait (`chipRemoveLabel`). `loadingMessage` est annoncé via une région live. Le chevron est un bouton `tabIndex={-1}` nommé (`toggleLabel`).',
+      en: 'The field has `role="combobox"` and `aria-autocomplete="list"` (`none` if `filter="off"`). The listbox is named like the field. In `multiple`, `aria-multiselectable` and a named chip group (`chipGroupLabel`). Each chip has a remove button (`chipRemoveLabel`). `loadingMessage` is announced via a live region. The chevron is a `tabIndex={-1}` named button (`toggleLabel`).',
+    },
+    a11yKeys: {
+      fr: 'Taper filtre (`auto`). Flèches parcourent les résultats. Entrée choisit (bascule en `multiple`). Escape ferme et rétablit la recherche.',
+      en: 'Typing filters (`auto`). Arrows move through results. Enter chooses (toggles in `multiple`). Escape closes and restores the search.',
+    },
+    doFilter: {
+      fr: '`filter="auto"` pour une liste déjà chargée ; `"manual"` + `onSearch` pour un listing distant',
+      en: '`filter="auto"` for an already loaded list; `"manual"` + `onSearch` for a remote listing',
+    },
+    doChips: {
+      fr: '`chipGroupLabel` et `chipRemoveLabel` dès que `multiple` est posé',
+      en: '`chipGroupLabel` and `chipRemoveLabel` as soon as `multiple` is set',
+    },
+    dontAsync: {
+      fr: 'Un client d’API dans le composant — passez `listStatus` / `onSearch` depuis l’hôte',
+      en: 'An API client inside the component — pass `listStatus` / `onSearch` from the host',
+    },
+    dontPlaceholder: {
+      fr: 'Un placeholder à la place du libellé',
+      en: 'A placeholder instead of the label',
+    },
+    propsBody: {
+      fr: '`options` (plate, groupée, `icon`, `description`). `multiple` + chips dans le champ. `listStatus`, `filter`, `renderOption` / `beforeOptions`. `placeholder` ne nomme pas le champ.',
+      en: '`options` (flat, grouped, `icon`, `description`). `multiple` + chips in the field. `listStatus`, `filter`, `renderOption` / `beforeOptions`. `placeholder` does not name the field.',
     },
   },
 } as const;

@@ -4,7 +4,7 @@
 
 1. Partir de `main` à jour.
 2. Branche : `feature/DS-XXX-short-slug` (ticket GitHub obligatoire).
-3. PR vers `main`. La CI doit être verte. Une revue est requise.
+3. PR vers `main`. Description en **français**, template `.github/PULL_REQUEST_TEMPLATE.md`. La CI doit être verte. Une revue est requise.
 4. Ne pas pousser directement sur `main`.
 
 L’auteur de la PR est assigné automatiquement. Les reviewers demandés sont les deux autres membres de l’équipe (`@fruitizz`, `@Angelo-Cosme`, `@noukpoherve`) selon l’assigné du ticket ou de la PR.

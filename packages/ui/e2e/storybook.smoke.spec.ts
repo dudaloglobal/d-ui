@@ -65,6 +65,29 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Popover | Dudalo Design System');
   await page.goto('/?path=/docs/components-emojipopover--docs');
   await expect(page).toHaveTitle('EmojiPopover | Dudalo Design System');
+  await page.goto('/?path=/docs/components-select--docs');
+  await expect(page).toHaveTitle('Select | Dudalo Design System');
+  await page.goto('/?path=/docs/components-combobox--docs');
+  await expect(page).toHaveTitle('Combobox | Dudalo Design System');
+});
+
+test('component docs H1 is the component name, like Link', async ({ page }) => {
+  for (const { id, name } of [
+    { id: 'components-button--docs', name: 'Button' },
+    { id: 'components-textinput--docs', name: 'TextInput' },
+    { id: 'components-select--docs', name: 'Select' },
+    { id: 'components-combobox--docs', name: 'Combobox' },
+  ]) {
+    await page.goto(`/?path=/docs/${id}`);
+    const heading = page
+      .frameLocator('#storybook-preview-iframe')
+      .getByRole('heading', { level: 1, name, exact: true });
+    await expect(heading).toBeVisible();
+    await expect(heading).toHaveCount(1);
+    await expect(heading).toHaveCSS('font-weight', '700');
+    const fontSize = await heading.evaluate((el) => getComputedStyle(el).fontSize);
+    expect(Number.parseFloat(fontSize)).toBeGreaterThanOrEqual(28);
+  }
 });
 
 test('Storybook page title uses Dudalo Design System', async ({ page }) => {
@@ -631,6 +654,8 @@ test('English globals switch example copy on every component canvas', async ({
     { id: 'components-tooltip--default', en: 'Help', fr: 'Aide' },
     { id: 'components-popover--default', en: 'Open', fr: 'Ouvrir' },
     { id: 'components-emojipopover--default', en: 'React', fr: 'Réagir' },
+    { id: 'components-select--default', en: 'Country', fr: 'Pays' },
+    { id: 'components-combobox--default', en: 'City', fr: 'Ville' },
   ] as const;
   for (const { id, en, fr } of cases) {
     await page.goto(`/iframe.html?id=${id}&globals=locale:en`);
@@ -781,4 +806,142 @@ test('EmojiPopover docs Show code imports EmojiPopover from d-ui', async ({ page
   await expect(source).toContainText("import { Button, EmojiPopover } from 'd-ui'");
   await expect(source).toContainText('<EmojiPopover');
   await expect(source).not.toContainText('SmileIcon');
+});
+
+test('Storybook serves the Select story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-select--default');
+  const control = page.getByRole('combobox', { name: 'Pays' });
+  await expect(control).toBeVisible();
+  await expect(control).toHaveAttribute('aria-expanded', 'false');
+  await control.click();
+  await expect(control).toHaveAttribute('aria-expanded', 'true');
+  const list = page.getByRole('listbox', { name: 'Pays' });
+  await expect(list).toBeVisible();
+  await page.getByRole('option', { name: 'Belgique' }).click();
+  await expect(list).toHaveCount(0);
+  await expect(control).toContainText('Belgique');
+});
+
+test('Storybook serves the Combobox story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-combobox--default');
+  const control = page.getByRole('combobox', { name: 'Ville' });
+  await expect(control).toBeVisible();
+  await expect(control).toHaveAttribute('placeholder', 'Rechercher');
+  const toggle = page.getByRole('button', { name: 'Afficher les suggestions' });
+  await expect(toggle).toHaveAttribute('tabindex', '-1');
+  await toggle.click();
+  const list = page.getByRole('listbox', { name: 'Ville' });
+  await expect(list).toBeVisible();
+  await toggle.click();
+  await expect(list).toHaveCount(0);
+  await control.click();
+  await control.fill('ly');
+  await expect(list.getByRole('option', { name: 'Lyon' })).toBeVisible();
+  await expect(list.getByRole('option', { name: 'Paris' })).toHaveCount(0);
+  await page.keyboard.press('Enter');
+  await expect(list).toHaveCount(0);
+  await expect(control).toHaveValue('Lyon');
+  await expect(page.getByRole('button', { name: 'Effacer' })).toBeVisible();
+});
+
+test('Storybook serves the Combobox multiple story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-combobox--multiple');
+  await expect(page.getByRole('list', { name: 'Villes' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Paris — Retirer' })).toBeVisible();
+  await page.getByRole('button', { name: 'Afficher les suggestions' }).click();
+  const list = page.getByRole('listbox', { name: 'Villes' });
+  await expect(list).toHaveAttribute('aria-multiselectable', 'true');
+  await page.getByRole('option', { name: 'Marseille' }).click();
+  await expect(list).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Marseille — Retirer' })).toBeVisible();
+});
+
+test('Storybook serves Combobox custom rendering, list states, and filters', async ({
+  page,
+}) => {
+  await page.goto('/iframe.html?id=components-combobox--custom');
+  await expect(page.getByRole('button', { name: 'Lyon — Retirer' })).toBeVisible();
+  await page.getByRole('button', { name: 'Afficher les suggestions' }).click();
+  await expect(page.getByRole('group', { name: 'France' })).toBeVisible();
+  await expect(page.getByRole('option', { name: /Paris/ })).toContainText('Capitale');
+  const control = page.getByRole('combobox', { name: 'Villes' });
+  await control.fill('Nantes');
+  await page.getByRole('button', { name: 'Créer « Nantes »' }).click();
+  await expect(page.getByRole('button', { name: 'Nantes — Retirer' })).toBeVisible();
+
+  await page.goto('/iframe.html?id=components-combobox--loading');
+  await expect(page.getByRole('listbox', { name: 'Ville' })).toHaveAttribute(
+    'aria-busy',
+    'true',
+  );
+  await expect(page.getByRole('option')).toHaveCount(0);
+  await expect(page.getByText('Chargement')).toBeAttached();
+
+  await page.goto('/iframe.html?id=components-combobox--loading-more');
+  await expect(page.getByRole('option', { name: 'Paris' })).toBeVisible();
+  await expect(page.getByRole('listbox', { name: 'Ville' })).toHaveAttribute(
+    'aria-busy',
+    'true',
+  );
+
+  await page.goto('/iframe.html?id=components-combobox--empty');
+  await expect(page.getByText('Aucune option')).toBeVisible();
+
+  await page.goto('/iframe.html?id=components-combobox--list-error');
+  const alert = page.getByRole('alert');
+  await expect(alert).toContainText('Impossible de charger les options');
+  await expect(alert).toContainText('Réessayez.');
+
+  await page.goto('/iframe.html?id=components-combobox--filter-types');
+  await expect(page.getByRole('combobox', { name: 'Sans saisie' })).toHaveAttribute(
+    'readonly',
+    '',
+  );
+});
+
+test('French Select docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-select--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { name: 'Groupes d’options' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Option groups' })).toHaveCount(0);
+  await expect(preview.getByText('Country of residence.')).toHaveCount(0);
+});
+
+test('French Combobox docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-combobox--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(
+    preview.getByRole('heading', { level: 1, name: 'Combobox' }),
+  ).toBeVisible();
+  await expect(
+    preview.getByRole('heading', { name: 'Sélection multiple' }),
+  ).toBeVisible();
+  await expect(
+    preview.getByRole('heading', { name: 'Rendu personnalisé' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'États de liste' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Types de filtre' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'État vide' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Empty state' })).toHaveCount(0);
+  await expect(preview.getByRole('heading', { name: 'Multiple selection' })).toHaveCount(
+    0,
+  );
+  await expect(preview.getByText('No options')).toHaveCount(0);
+});
+
+test('Select docs Show code imports Select from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-select--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { useState } from 'react'");
+  await expect(source).toContainText("import { Select } from 'd-ui'");
+  await expect(source).toContainText('<Select');
+  await expect(source).not.toContainText('ControlledSelect');
+});
+
+test('Combobox docs Show code imports Combobox from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-combobox--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Combobox } from 'd-ui'");
+  await expect(source).toContainText('<Combobox');
+  await expect(source).not.toContainText('ControlledCombobox');
 });

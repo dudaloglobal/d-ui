@@ -12,6 +12,7 @@ import {
   toolbarLabel,
   timeAgoCopy,
   overlayCopy,
+  selectCopy,
 } from '../.storybook/docs-locale';
 
 /** English MDX headings that must not appear: docs default language is French. */
@@ -54,6 +55,16 @@ const ENGLISH_HEADINGS = [
   'Focus trap',
   'Alignments',
   'Reactions',
+  'Empty state',
+  'Disabled options',
+  'Option groups',
+  'Single selection',
+  'Multiple selection',
+  'Custom rendering',
+  'List states',
+  'Filter types',
+  'Loading more',
+  'Input options',
 ];
 
 function collectMdx(dir: string): string[] {
@@ -77,6 +88,7 @@ describe('docs locale', () => {
     expect(keysOf(timeAgoCopy('fr'))).toEqual(keysOf(timeAgoCopy('en')));
     expect(keysOf(selectionCopy('fr'))).toEqual(keysOf(selectionCopy('en')));
     expect(keysOf(overlayCopy('fr'))).toEqual(keysOf(overlayCopy('en')));
+    expect(keysOf(selectCopy('fr'))).toEqual(keysOf(selectCopy('en')));
   });
 
   it('writes MDX section headings in French', () => {

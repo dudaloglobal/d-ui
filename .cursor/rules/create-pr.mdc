@@ -1,0 +1,10 @@
+---
+description: Pull request bodies use the French d-ui template (Ticket, Résumé, Preview Storybook, Tests, Accessibilité, Breaking changes).
+alwaysApply: true
+---
+
+# Create PR
+
+When creating or updating a GitHub pull request, follow `.cursor/skills/create-pr/SKILL.md`.
+
+The description is always in French, with this section order: Ticket, Résumé, Preview Storybook, Tests, Accessibilité, Breaking changes. Do not use English headings such as Summary or Test plan. Title stays an English conventional commit.

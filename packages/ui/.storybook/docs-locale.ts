@@ -53,6 +53,15 @@ export const storyNameEn: Record<string, string> = {
   Portail: 'Portal',
   'Sans piège de focus': 'Without focus trap',
   Alignements: 'Alignments',
+  'Options désactivées': 'Disabled options',
+  'État vide': 'Empty state',
+  'Sélection unique': 'Single selection',
+  'Sélection multiple': 'Multiple selection',
+  'Rendu personnalisé': 'Custom rendering',
+  'Chargement de la suite': 'Loading more',
+  'Erreur de liste': 'List error',
+  'Types de filtre': 'Filter types',
+  Descriptions: 'Descriptions',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -274,6 +283,92 @@ export type SelectionDocsCopy = typeof selectionFr;
 
 export function selectionCopy(locale: DocsLocale): SelectionDocsCopy {
   return locale === 'en' ? selectionEn : selectionFr;
+}
+
+const selectFr = {
+  country: 'Pays',
+  city: 'Ville',
+  choose: 'Choisir',
+  search: 'Rechercher',
+  empty: 'Aucune option',
+  helper: 'Le pays de résidence.',
+  error: 'Ce champ est requis.',
+  france: 'France',
+  belgium: 'Belgique',
+  canada: 'Canada',
+  switzerland: 'Suisse',
+  europe: 'Europe',
+  americas: 'Amériques',
+  paris: 'Paris',
+  lyon: 'Lyon',
+  marseille: 'Marseille',
+  brussels: 'Bruxelles',
+  toggle: 'Afficher les suggestions',
+  clear: 'Effacer',
+  remove: 'Retirer',
+  cities: 'Villes',
+  capital: 'Capitale',
+  gastronomy: 'Gastronomie',
+  port: 'Port',
+  customCity: 'Ville ajoutée',
+  create: 'Créer',
+  loading: 'Chargement',
+  loadingMore: 'Chargement de la suite',
+  emptyQuery: 'Aucun résultat pour',
+  listError: 'Impossible de charger les options',
+  listRetry: 'Réessayez.',
+  filterAuto: 'Filtre automatique',
+  filterManual: 'Filtre manuel',
+  filterOff: 'Sans saisie',
+  small: 'Petite',
+  medium: 'Moyenne',
+  large: 'Grande',
+};
+
+const selectEn = {
+  country: 'Country',
+  city: 'City',
+  choose: 'Choose',
+  search: 'Search',
+  empty: 'No options',
+  helper: 'Country of residence.',
+  error: 'This field is required.',
+  france: 'France',
+  belgium: 'Belgium',
+  canada: 'Canada',
+  switzerland: 'Switzerland',
+  europe: 'Europe',
+  americas: 'Americas',
+  paris: 'Paris',
+  lyon: 'Lyon',
+  marseille: 'Marseille',
+  brussels: 'Brussels',
+  toggle: 'Show suggestions',
+  clear: 'Clear',
+  remove: 'Remove',
+  cities: 'Cities',
+  capital: 'Capital',
+  gastronomy: 'Gastronomy',
+  port: 'Port',
+  customCity: 'Added city',
+  create: 'Create',
+  loading: 'Loading',
+  loadingMore: 'Loading more',
+  emptyQuery: 'No results for',
+  listError: 'Could not load options',
+  listRetry: 'Try again.',
+  filterAuto: 'Automatic filter',
+  filterManual: 'Manual filter',
+  filterOff: 'No typing',
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+};
+
+export type SelectDocsCopy = typeof selectFr;
+
+export function selectCopy(locale: DocsLocale): SelectDocsCopy {
+  return locale === 'en' ? selectEn : selectFr;
 }
 
 const overlayFr = {
