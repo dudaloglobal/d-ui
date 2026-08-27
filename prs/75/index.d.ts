@@ -1,5 +1,5 @@
 export { Button } from './components/Button/Button';
-export type { ButtonIconPosition, ButtonProps, ButtonSize, ButtonVariant, } from './components/Button/Button';
+export type { ButtonIconPosition, ButtonLoadingIndicator, ButtonProps, ButtonSize, ButtonVariant, } from './components/Button/Button';
 export { IconButton } from './components/Button/IconButton';
 export type { IconButtonProps } from './components/Button/IconButton';
 export { ThemeProvider } from './theme/ThemeProvider';
@@ -8,5 +8,11 @@ export { VisuallyHidden } from './a11y/VisuallyHidden';
 export type { VisuallyHiddenProps } from './a11y/VisuallyHidden';
 export { SkipLink } from './a11y/SkipLink';
 export type { SkipLinkProps } from './a11y/SkipLink';
+export { TimeAgo } from './components/TimeAgo/TimeAgo';
+export type { TimeAgoProps, TimeAgoSize } from './components/TimeAgo/TimeAgo';
+export { TextInput } from './components/TextInput/TextInput';
+export type { TextInputProps, TextInputSize, TextInputType, } from './components/TextInput/TextInput';
+export { Textarea } from './components/Textarea/Textarea';
+export type { TextareaProps, TextareaSize } from './components/Textarea/Textarea';
 export { brandTokensToStyle, tokenNames } from './tokens/names';
 export type { BrandTokens, TokenName } from './tokens/names';

@@ -9,6 +9,8 @@ export declare const tokenNames: {
     readonly colorOnBrand: "--d-ui-color-on-brand";
     readonly colorSurfaceMuted: "--d-ui-color-surface-muted";
     readonly colorSurfaceHover: "--d-ui-color-surface-hover";
+    readonly colorField: "--d-ui-color-field";
+    readonly colorFieldHover: "--d-ui-color-field-hover";
     readonly colorBorder: "--d-ui-color-border";
     readonly colorFocus: "--d-ui-color-focus";
     readonly colorDanger: "--d-ui-color-danger";

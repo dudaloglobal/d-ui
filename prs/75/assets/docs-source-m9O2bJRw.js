@@ -1,0 +1,31 @@
+const c={variant:{control:"inline-radio",options:["primary","secondary","ghost"],description:"Emphase : `primary` (forte), `secondary` (moyenne), `ghost` (faible). Une seule action forte par vue."},size:{control:"inline-radio",options:["sm","md","lg"],description:"`sm` si l’espace est contraint, `md` par défaut, `lg` pour les actions aérées."},loading:{control:"boolean",description:"Affiche un indicateur, conserve le libellé, pose `aria-busy` et désactive le contrôle."},loadingIndicator:{control:"inline-radio",options:["spinner","bounce"],description:"`spinner` (défaut) ou `bounce` (trois points). Utilisé si `loading` est vrai."},icon:{description:"Icône décorative. Ne remplace pas le nom accessible."},iconPosition:{control:"inline-radio",options:["start","end"],description:"Position de l’icône : `start` (début) ou `end` (fin)."},fullWidth:{control:"boolean",description:"Étend le contrôle à la largeur du conteneur."},isSelected:{control:"boolean",description:"État bascule (emphase moyenne/faible). Pose `aria-pressed` si le libellé ne change pas."},disabled:{control:"boolean",description:"Désactive le contrôle : plus focusable, plus d’événements pointeur."},"aria-label":{description:"Nom accessible. Obligatoire sur `IconButton` (pas de texte visible)."}},d={date:{description:"Instant à afficher (`Date`, chaîne ISO-8601, ou millisecondes epoch). Une valeur invalide rend un `<span>`, pas un `<time>`."},locale:{control:"text",description:"Locale BCP 47 transmise à `Intl` et à l’attribut `lang` (WCAG 3.1.2). Défaut : locale d’exécution."},live:{control:"boolean",description:"Rafraîchit le texte relatif sur un intervalle grossier. Visuel uniquement : pas d’`aria-live`."},size:{control:"inline-radio",options:["sm","md"],description:"Taille du texte : `sm` (métadonnées) ou `md` (défaut)."},title:{description:"Infobulle native. Défaut : l’heure absolue formatée."}},s={size:{control:"inline-radio",options:["sm","md","lg"],description:"`sm` si l’espace est contraint, `md` par défaut, `lg` pour les formulaires aérés."},label:{description:"Libellé visible au-dessus du champ. Sinon, un `<label htmlFor>` externe ou `aria-labelledby`."},helper:{description:"Texte d’aide sous le champ. Remplacé par `error` si le champ est invalide."},error:{description:"Message d’erreur sous le champ. Pose aussi `aria-invalid`."},placeholder:{description:"Exemple de valeur. Ne remplace pas le libellé."},invalid:{control:"boolean",description:"État d’erreur : `aria-invalid` et contour danger. `error` le pose aussi."},valid:{control:"boolean",description:"État de succès : contour vert et icône. Ignoré si `invalid`."},disabled:{control:"boolean",description:"Désactive le champ : plus focusable, plus d’événements pointeur."},required:{control:"boolean",description:"Champ obligatoire. Affiche un astérisque à côté du libellé."},icon:{description:"Icône décorative au début du champ. Complète `label`, ne le remplace pas."},prefix:{description:"Contenu au début du champ (unité, schéma d’URL). Ne remplace pas le libellé."},suffix:{description:"Contenu à la fin du champ. Ne remplace pas le libellé."},fullWidth:{control:"boolean",description:"Pleine largeur par défaut. Passez `false` pour une largeur fixe."},clearable:{control:"boolean",description:"Bouton d’effacement dès que la valeur n’est pas vide."},clearLabel:{description:'Nom accessible du bouton d’effacement. Défaut : `"Clear"`.'},showCount:{control:"boolean",description:"Compteur de caractères (restants si `maxLength` est posé). Activé par défaut avec `maxLength`."},maxLength:{description:"Longueur maximale. Affiche le compteur sauf si `showCount={false}`."},countMessage:{description:"Libellé du compteur. Reçoit le nombre de caractères et `maxLength`. À localiser."}},u={...s,type:{control:"select",options:["text","email","password","search","number","tel","url"],description:"Type HTML : `text`, `email`, `password`, `search`, `number`, `tel`, `url`."},revealPasswordLabel:{description:'Nom accessible pour afficher le mot de passe. Défaut : `"Show password"`.'},hidePasswordLabel:{description:'Nom accessible pour masquer le mot de passe. Défaut : `"Hide password"`.'}},p={...s,rows:{description:"Nombre de lignes visibles. Défaut : `2`."}},m={href:{description:"Cible du lien, un identifiant de page (`#main` par défaut). Le landmark doit déjà être focusable (`tabIndex={-1}`)."},children:{description:'Libellé visible au focus. Défaut anglais : `"Skip to main content"`. Passez la langue de l’app.'}},h={children:{description:"Texte lu par les technologies d’assistance, masqué visuellement. Obligatoire : c’est le nom accessible."}},b={mode:{control:"inline-radio",options:["light","dark","system"],description:"`light` / `dark` explicites, ou `system` (suit `prefers-color-scheme`). Pose `data-d-ui-theme` sur l’enveloppe, pas sur `document.documentElement`."},tokens:{description:"Surcharge white-label : `brand`, `brandHover`, `onBrand`, `focus`. Écrit les variables `--d-ui-color-*` en inline."}};function f(o,t,i=""){const e=t.trim(),r=e.includes(`
+`)&&!e.startsWith("<>")?`<>
+${n(e,4)}
+</>`:e,a=i?`${i}
+
+`:"";return{docs:{source:{language:"tsx",code:`${o}
+
+${a}export default () => (
+${n(r,4)}
+);
+`}}}}function g(o,t){return{docs:{source:{language:"tsx",code:`${o}
+
+export default () => {
+${n(t.trim(),4)}
+};
+`}}}}const v=`const plus = (
+    <svg width="1em" height="1em" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+    </svg>
+);`,x=`const chevron = (
+    <svg width="1em" height="1em" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);`,y=`const search = (
+    <svg width="1em" height="1em" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="7" cy="7" r="4.25" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M10.5 10.5L14 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+);`;function n(o,t){const i=" ".repeat(t);return o.split(`
+`).map(e=>e.length?i+e:e).join(`
+`)}export{x as a,c as b,f as c,u as d,g as e,y as f,p as g,d as h,v as p,m as s,b as t,h as v};
