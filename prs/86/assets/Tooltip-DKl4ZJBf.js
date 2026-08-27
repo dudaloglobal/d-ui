@@ -1,0 +1,32 @@
+import{j as o}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as m}from"./index-AGuS8-Lw.js";import{M as x,C as s,A as j}from"./index-QAguZwkp.js";import{H as c,P as t,a as e,b as n,U as l}from"./docs-i18n-nDcYpS-i.js";import{T as a,D as d,P as k,C as f,a as h,b as u,c as C}from"./Tooltip.stories-maxaYt-H.js";import"./index-DQxMMF7O.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-BG_INLSe.js";import"./index-W1VnaOaO.js";import"./index-DTrdMgma.js";import"./index-DgH-xKnr.js";import"./index-Bhqu_tAV.js";import"./docs-source-CdFyzgzW.js";import"./cx-DFSoSxFP.js";import"./Button-CjT892Oo.js";import"./floating-BPjGdGmF.js";function p(i){return o.jsxs(o.Fragment,{children:[o.jsx(x,{of:a}),`
+`,o.jsx(c,{k:"tooltip.title"}),`
+`,o.jsx(t,{k:"tooltip.intro"}),`
+`,o.jsx(t,{k:"chrome.examplesFollow"}),`
+`,o.jsx(s,{of:d}),`
+`,o.jsx(e,{k:"chrome.placement"}),`
+`,o.jsx(t,{k:"tooltip.usePlacement"}),`
+`,o.jsx(s,{of:k}),`
+`,o.jsx(e,{k:"chrome.controlled"}),`
+`,o.jsx(t,{k:"tooltip.useControlled"}),`
+`,o.jsx(s,{of:f}),`
+`,o.jsx(e,{k:"chrome.specialStates"}),`
+`,o.jsx(n,{k:"chrome.disabled"}),`
+`,o.jsx(t,{k:"chrome.useDisabled"}),`
+`,o.jsx(s,{of:h}),`
+`,o.jsx(n,{k:"chrome.collision"}),`
+`,o.jsx(t,{k:"tooltip.useCollision"}),`
+`,o.jsx(s,{of:u}),`
+`,o.jsx(n,{k:"chrome.portal"}),`
+`,o.jsx(t,{k:"tooltip.usePortal"}),`
+`,o.jsx(s,{of:C}),`
+`,o.jsx(e,{k:"chrome.accessibility"}),`
+`,o.jsx(t,{k:"tooltip.a11yBody"}),`
+`,o.jsx(t,{k:"tooltip.a11yKeys"}),`
+`,o.jsx(n,{k:"chrome.do"}),`
+`,o.jsx(l,{items:["tooltip.doHover","tooltip.doDescribed","tooltip.doEscape"]}),`
+`,o.jsx(n,{k:"chrome.dont"}),`
+`,o.jsx(l,{items:["tooltip.dontInteractive","tooltip.dontEssential","tooltip.dontTitle"]}),`
+`,o.jsx(t,{k:"chrome.themeLang"}),`
+`,o.jsx(e,{k:"chrome.properties"}),`
+`,o.jsx(t,{k:"tooltip.propsBody"}),`
+`,o.jsx(j,{of:a,include:["content","placement","open","defaultOpen","delayMs","disabled"]})]})}function S(i={}){const{wrapper:r}={...m(),...i.components};return r?o.jsx(r,{...i,children:o.jsx(p,{...i})}):p()}export{S as default};

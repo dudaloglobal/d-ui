@@ -1,0 +1,32 @@
+import{j as o}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as l}from"./index-AGuS8-Lw.js";import{M as x,C as s,A as j}from"./index-QAguZwkp.js";import{H as c,P as e,a as r,b as n,U as a}from"./docs-i18n-nDcYpS-i.js";import{P as i,D as d,a as k,C as u,W as f,b as v,c as h}from"./Popover.stories-BtXQpur9.js";import"./index-DQxMMF7O.js";import"./_commonjsHelpers-CqkleIqs.js";import"./iframe-BG_INLSe.js";import"./index-W1VnaOaO.js";import"./index-DTrdMgma.js";import"./index-DgH-xKnr.js";import"./index-Bhqu_tAV.js";import"./docs-source-CdFyzgzW.js";import"./cx-DFSoSxFP.js";import"./Button-CjT892Oo.js";import"./floating-BPjGdGmF.js";function m(p){return o.jsxs(o.Fragment,{children:[o.jsx(x,{of:i}),`
+`,o.jsx(c,{k:"popover.title"}),`
+`,o.jsx(e,{k:"popover.intro"}),`
+`,o.jsx(e,{k:"chrome.examplesFollow"}),`
+`,o.jsx(s,{of:d}),`
+`,o.jsx(r,{k:"chrome.placement"}),`
+`,o.jsx(e,{k:"popover.usePlacement"}),`
+`,o.jsx(s,{of:k}),`
+`,o.jsx(r,{k:"chrome.controlled"}),`
+`,o.jsx(e,{k:"popover.useControlled"}),`
+`,o.jsx(s,{of:u}),`
+`,o.jsx(r,{k:"popover.focusTrap"}),`
+`,o.jsx(e,{k:"popover.useFocusTrap"}),`
+`,o.jsx(s,{of:f}),`
+`,o.jsx(r,{k:"chrome.specialStates"}),`
+`,o.jsx(n,{k:"chrome.disabled"}),`
+`,o.jsx(e,{k:"chrome.useDisabled"}),`
+`,o.jsx(s,{of:v}),`
+`,o.jsx(n,{k:"chrome.collision"}),`
+`,o.jsx(e,{k:"popover.useCollision"}),`
+`,o.jsx(s,{of:h}),`
+`,o.jsx(r,{k:"chrome.accessibility"}),`
+`,o.jsx(e,{k:"popover.a11yBody"}),`
+`,o.jsx(e,{k:"popover.a11yKeys"}),`
+`,o.jsx(n,{k:"chrome.do"}),`
+`,o.jsx(a,{items:["popover.doLabel","popover.doTrap","popover.doEscape"]}),`
+`,o.jsx(n,{k:"chrome.dont"}),`
+`,o.jsx(a,{items:["popover.dontTooltip","popover.dontTrapEmpty","popover.dontDialog"]}),`
+`,o.jsx(e,{k:"chrome.themeLang"}),`
+`,o.jsx(r,{k:"chrome.properties"}),`
+`,o.jsx(e,{k:"popover.propsBody"}),`
+`,o.jsx(j,{of:i,include:["content","placement","open","defaultOpen","trapFocus","disabled","aria-label","aria-labelledby"]})]})}function S(p={}){const{wrapper:t}={...l(),...p.components};return t?o.jsx(t,{...p,children:o.jsx(m,{...p})}):m()}export{S as default};
