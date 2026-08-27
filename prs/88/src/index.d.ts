@@ -27,4 +27,4 @@ export type { EmojiPopoverProps, ReactionEmoji } from './components/Popover/Emoj
 export { Select } from './components/Select/Select';
 export type { SelectItem, SelectOption, SelectOptionGroup, SelectProps, SelectSize, } from './components/Select/Select';
 export { Combobox } from './components/Select/Combobox';
-export type { ComboboxProps, ComboboxSize } from './components/Select/Combobox';
+export type { ComboboxFilter, ComboboxListStatus, ComboboxProps, ComboboxSize, } from './components/Select/Combobox';

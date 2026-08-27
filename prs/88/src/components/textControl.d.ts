@@ -1,4 +1,4 @@
-import { ReactNode } from '../../../../node_modules/.pnpm/react@19.2.8/node_modules/react';
+import { ReactNode, Ref } from '../../../../node_modules/.pnpm/react@19.2.8/node_modules/react';
 export type TextControlSize = 'sm' | 'md' | 'lg';
 export declare const inputHeightClass: Record<TextControlSize, string>;
 export declare function mergeDescribedBy(...ids: Array<string | undefined | false>): string | undefined;
@@ -12,7 +12,7 @@ export declare function frameClass({ size, invalid, valid, disabled, multiline, 
     multiline?: boolean;
     focusShadow?: boolean;
 }): string;
-export declare function TextFieldLayout({ id, label, helper, error, required, invalid, valid, disabled, fullWidth, size, className, showCount, count, maxLength, countMessage, countId, helperId, multiline, focusShadow, children, }: {
+export declare function TextFieldLayout({ id, label, helper, error, required, invalid, valid, disabled, fullWidth, size, className, showCount, count, maxLength, countMessage, countId, helperId, multiline, focusShadow, frameRef, afterFrame, children, }: {
     id?: string;
     label?: ReactNode;
     helper?: ReactNode;
@@ -32,6 +32,8 @@ export declare function TextFieldLayout({ id, label, helper, error, required, in
     helperId: string;
     multiline?: boolean;
     focusShadow?: boolean;
+    frameRef?: Ref<HTMLDivElement>;
+    afterFrame?: ReactNode;
     children: ReactNode;
 }): import("react").JSX.Element;
 export declare function ChromeButton({ label, pressed, disabled, onClick, children, }: {

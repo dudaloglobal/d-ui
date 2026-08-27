@@ -11,5 +11,7 @@ type SelectOverlay = {
     setReference: (node: Element | null) => void;
 };
 export declare function useSelectOverlay(open: boolean, onOpenChange: (open: boolean) => void): SelectOverlay;
+/** Unmount after the pointer event so the click cannot open a field underneath. */
+export declare function closeSelectOverlay(close: () => void): void;
 export declare function scrollOptionIntoView(listId: string, index: number): void;
 export {};

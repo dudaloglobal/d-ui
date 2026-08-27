@@ -2,6 +2,8 @@ import { ReactNode } from '../../../../../node_modules/.pnpm/react@19.2.8/node_m
 export type SelectOption = {
     value: string;
     label: ReactNode;
+    description?: ReactNode;
+    icon?: ReactNode;
     disabled?: boolean;
 };
 export type SelectOptionGroup = {
@@ -14,6 +16,8 @@ export type FlatOption = SelectOption & {
 };
 export declare function isSelectGroup(item: SelectItem): item is SelectOptionGroup;
 export declare function optionText(label: ReactNode): string;
+export declare function optionSearchText(option: SelectOption): string;
+export declare function asSelectValues(value: string | readonly string[] | undefined): string[];
 export declare function flattenSelectItems(items: readonly SelectItem[]): FlatOption[];
 export declare function filterSelectItems(items: readonly SelectItem[], query: string): SelectItem[];
 export declare function findOptionIndex(options: readonly FlatOption[], value: string | undefined): number;
