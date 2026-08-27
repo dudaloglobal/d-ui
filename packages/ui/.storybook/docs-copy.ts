@@ -90,8 +90,8 @@ export const docsCopy = {
       en: 'Consuming apps use:',
     },
     itemComponents: {
-      fr: 'les composants React (`Button`, `Text`, `Heading`, `Link`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
-      en: 'the React components (`Button`, `Text`, `Heading`, `Link`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      fr: 'les composants React (`Button`, `Text`, `Heading`, `Link`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      en: 'the React components (`Button`, `Text`, `Heading`, `Link`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
     },
     itemCssVars: {
       fr: 'les **variables CSS** `--d-ui-*`',
@@ -318,8 +318,8 @@ export const docsCopy = {
     },
     tones: { fr: 'Tons', en: 'Tones' },
     tonesBody: {
-      fr: '`tone` est une prop, jamais un `className`. `cx()` ne résout pas les conflits Tailwind : `className="text-slate-400"` laisserait `text-fg` gagner. `muted` reste au-dessus de 4.5:1 dans les deux thèmes.',
-      en: '`tone` is a prop, never a `className`. `cx()` does not resolve Tailwind conflicts: `className="text-slate-400"` would let `text-fg` win. `muted` stays above 4.5:1 in both themes.',
+      fr: '`tone` est une prop, jamais un `className`. `cx()` ne résout pas les conflits Tailwind : `className="text-slate-400"` laisserait `text-fg` gagner. `muted` reste au-dessus de 4.5:1 dans les deux thèmes. `danger` est réservé aux messages d’erreur (`FieldError`).',
+      en: '`tone` is a prop, never a `className`. `cx()` does not resolve Tailwind conflicts: `className="text-slate-400"` would let `text-fg` win. `muted` stays above 4.5:1 in both themes. `danger` is reserved for error messages (`FieldError`).',
     },
     weights: { fr: 'Graisses', en: 'Weights' },
     weightsBody: {
@@ -525,6 +525,81 @@ export const docsCopy = {
     dontBlank: {
       fr: '`target="_blank"` sans `rel`',
       en: '`target="_blank"` without `rel`',
+    },
+  },
+  field: {
+    intro: {
+      fr: '`Field` porte l’anatomie d’un champ : libellé, aide, erreur, état. Les contrôles de saisie s’y composent (`useFieldControl`) pour qu’aucun n’ait à réinventer son étiquetage. `Input`, `Select` et `Checkbox` arriveront ensuite (DS-023 et suivants).',
+      en: '`Field` carries field anatomy: label, help, error, state. Input controls compose into it (`useFieldControl`) so none have to reinvent labelling. `Input`, `Select` and `Checkbox` come next (DS-023 and later).',
+    },
+    helperBody: {
+      fr: '`FieldDescription` est une aide permanente, citée par `aria-describedby` seulement si elle est réellement rendue. Un id absent ferait taire l’annonce entière.',
+      en: '`FieldDescription` is standing help, cited by `aria-describedby` only if it is actually rendered. A missing id would silence the whole announcement.',
+    },
+    requiredBody: {
+      fr: '`required` pose l’attribut sur le contrôle et un astérisque décoratif (`aria-hidden`) sur le libellé. C’est l’attribut HTML qui porte l’information : un texte masqué « requis » ferait double emploi.',
+      en: '`required` sets the attribute on the control and a decorative asterisk (`aria-hidden`) on the label. The HTML attribute carries the information: hidden “required” text would duplicate it.',
+    },
+    invalidBody: {
+      fr: '`FieldError` n’est pas dans le DOM tant que `invalid` est faux. Un message masqué en CSS resterait lu. `role="alert"` annonce l’apparition ; le message est aussi cité par `aria-describedby`, donc il peut être entendu deux fois — mieux que pas du tout. L’état invalide n’est pas porté par la seule couleur (bordure renforcée, WCAG 1.4.1).',
+      en: '`FieldError` is not in the DOM while `invalid` is false. A CSS-hidden message would still be read. `role="alert"` announces appearance; the message is also cited by `aria-describedby`, so it may be heard twice — better than not at all. Invalid state is not carried by colour alone (reinforced border, WCAG 1.4.1).',
+    },
+    disabledBody: {
+      fr: '`disabled` se propage au contrôle via `useFieldControl`, et atténue le libellé.',
+      en: '`disabled` propagates to the control via `useFieldControl`, and mutes the label.',
+    },
+    groupBody: {
+      fr: 'Un groupe de cases ou de radios ne peut pas être nommé par un `label` (`for` ne vise qu’un contrôle). `group` rend un `fieldset` ; `Label` devient sa `legend`.',
+      en: 'A group of checkboxes or radios cannot be named by a `label` (`for` targets only one control). `group` renders a `fieldset`; `Label` becomes its `legend`.',
+    },
+    groupFirst: {
+      fr: '**`Label` doit rester le premier enfant.** Une `legend` ne nomme le `fieldset` que si elle en est le premier élément.',
+      en: '**`Label` must remain the first child.** A `legend` only names the `fieldset` if it is the first element.',
+    },
+    groupRequired: {
+      fr: 'Dans ce mode, `useFieldControl()` ne renvoie ni `id`, ni `aria-describedby`, ni `required` : les poser sur chaque option répéterait l’aide et exigerait de cocher toutes les cases. `required` ne pilote que l’astérisque de la légende.',
+      en: 'In this mode, `useFieldControl()` returns neither `id`, nor `aria-describedby`, nor `required`: putting them on each option would repeat the help and require every box to be checked. `required` only drives the legend asterisk.',
+    },
+    wire: { fr: 'Câbler un contrôle', en: 'Wiring a control' },
+    wireOutside: {
+      fr: 'Hors d’un `Field`, le hook renvoie `{}` : un contrôle peut l’appeler sans condition.',
+      en: 'Outside a `Field`, the hook returns `{}`: a control can call it unconditionally.',
+    },
+    a11yBody: {
+      fr: '`Field` seul rend un `div`. `group` rend un `fieldset`. `Label` rend `<label for>` ou `<legend>`. Pas de `role` inventé.',
+      en: '`Field` alone renders a `div`. `group` renders a `fieldset`. `Label` renders `<label for>` or `<legend>`. No invented `role`.',
+    },
+    doInvalid: {
+      fr: '`<Field invalid>` piloté par la validation, avec `<FieldError>` dans le DOM uniquement alors',
+      en: '`<Field invalid>` driven by validation, with `<FieldError>` in the DOM only then',
+    },
+    doGroup: {
+      fr: '`<Field group>` pour des cases ou des radios, `Label` en premier enfant',
+      en: '`<Field group>` for checkboxes or radios, `Label` as first child',
+    },
+    doHook: {
+      fr: '`useFieldControl()` dans le contrôle',
+      en: '`useFieldControl()` inside the control',
+    },
+    dontCssHide: {
+      fr: 'Rendre `<FieldError>` en le masquant en CSS',
+      en: 'Rendering `<FieldError>` and hiding it with CSS',
+    },
+    dontOneLabel: {
+      fr: 'Un `<Label>` unique pour plusieurs contrôles hors `group`',
+      en: 'A single `<Label>` for several controls outside `group`',
+    },
+    dontDescribedBy: {
+      fr: 'Recopier `aria-describedby` à la main',
+      en: 'Copying `aria-describedby` by hand',
+    },
+    dontErrorInHelp: {
+      fr: 'Mettre le message d’erreur dans `FieldDescription`',
+      en: 'Putting the error message in `FieldDescription`',
+    },
+    props: {
+      fr: 'Les attributs natifs de l’enveloppe (`className`, `id`, …) sont transmis. `Label`, `FieldDescription` et `FieldError` n’exposent pas d’API au-delà du HTML.',
+      en: 'Native wrapper attributes (`className`, `id`, …) are forwarded. `Label`, `FieldDescription` and `FieldError` expose no API beyond HTML.',
     },
   },
   button: {

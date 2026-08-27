@@ -17,4 +17,9 @@ describe('Text', () => {
     render(<Text data-testid="intro">Intro</Text>);
     expect(screen.getByTestId('intro')).toHaveTextContent('Intro');
   });
+
+  it('applies the danger tone through the tone prop', () => {
+    render(<Text tone="danger">Erreur</Text>);
+    expect(screen.getByText('Erreur')).toHaveClass('text-danger');
+  });
 });
