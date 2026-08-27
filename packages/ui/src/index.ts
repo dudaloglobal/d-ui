@@ -16,3 +16,11 @@ export { VisuallyHidden } from './a11y/VisuallyHidden';
 export type { VisuallyHiddenProps } from './a11y/VisuallyHidden';
 export { TimeAgo } from './components/TimeAgo/TimeAgo';
 export type { TimeAgoProps, TimeAgoSize } from './components/TimeAgo/TimeAgo';
+export { TextInput } from './components/TextInput/TextInput';
+export type {
+  TextInputProps,
+  TextInputSize,
+  TextInputType,
+} from './components/TextInput/TextInput';
+export { Textarea } from './components/Textarea/Textarea';
+export type { TextareaProps, TextareaSize } from './components/Textarea/Textarea';

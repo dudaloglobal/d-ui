@@ -1,0 +1,10 @@
+---
+description: Always remove Made with Cursor from commits and PR descriptions
+alwaysApply: true
+---
+
+# No Cursor attribution
+
+Always remove the "Made with Cursor" in the commits and PR descriptions.
+
+When committing, pushing, or creating/updating a GitHub pull request, follow `.cursor/skills/no-cursor-attribution/SKILL.md`: never add Cursor or Co-authored-by footers; strip them from the last commit and from the PR title/body if they appear.

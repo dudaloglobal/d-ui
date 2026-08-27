@@ -9,17 +9,17 @@ TimeAgo affiche un horodatage **relatif** (`il y a 3 minutes`) tout en gardant l
 
 Les exemples suivent la **langue** de la barre d’outils Storybook (**Français** par défaut).
 
-<Canvas of={TimeAgoStories.Default} sourceState="shown" />
+<Canvas of={TimeAgoStories.Default} />
 
-## Locale
+## Langue
 
 Passez une chaîne BCP 47 `locale` pour contrôler le libellé relatif et le formatage absolu. Les locales en 24 h (ex. `fr`) formatent l’infobulle sans suffixe AM/PM. `locale` pose aussi l’attribut `lang` pour que les technologies d’assistance utilisent la bonne voix (WCAG 3.1.2).
 
 Sans `locale`, c’est la locale d’exécution. Injectez la langue de l’app (`locale={i18n.language}`) plutôt que de figer une valeur dans le design system.
 
-<Canvas of={TimeAgoStories.Locale} sourceState="shown" />
+<Canvas of={TimeAgoStories.Locale} />
 
-## Live updates
+## Mises à jour en direct
 
 La prop `live` rafraîchit le texte relatif visible sur un intervalle **grossier** pour que le libellé reste pertinent tant que la vue est ouverte :
 
@@ -32,15 +32,15 @@ Les mises à jour sont visuelles uniquement. `live` ne pose **pas** `aria-live`,
 
 Laissez `live` désactivé dans les fils de discussion, les tableaux, et toute liste qui peut contenir beaucoup d’horodatages.
 
-<Canvas of={TimeAgoStories.Live} sourceState="shown" />
+<Canvas of={TimeAgoStories.Live} />
 
-## Past and future
+## Passé et futur
 
 `Intl.RelativeTimeFormat` avec `numeric: "auto"` produit une formulation naturelle (`hier`, `maintenant`, `dans 3 heures`) dans les deux directions.
 
 <Canvas of={TimeAgoStories.PastAndFuture} />
 
-## Size
+## Taille
 
 `size` ajuste l’échelle du texte. Composez TimeAgo dans `Text` / `Heading` lorsque ces primitifs existent ; les tailles intégrées couvrent l’usage autonome.
 
@@ -49,7 +49,7 @@ Laissez `live` désactivé dans les fils de discussion, les tableaux, et toute l
 
 <Canvas of={TimeAgoStories.Sizes} />
 
-## Date values
+## Valeurs de date
 
 `date` accepte un `Date`, une chaîne ISO-8601, ou des millisecondes epoch. Le composant écrit toujours un datetime global valide sur `<time datetime>`.
 
@@ -61,7 +61,7 @@ Une valeur invalide ne rend pas de `<time>` : un `<span>` avec un tiret cadratin
 <TimeAgo date={1_724_673_600_000} locale="en" />
 ```
 
-## Accessibility concerns
+## Accessibilité
 
 `TimeAgo` est un élément natif `<time>`. Il n’a pas de rôle ARIA supplémentaire.
 
@@ -72,7 +72,7 @@ Une valeur invalide ne rend pas de `<time>` : un `<span>` avec un tiret cadratin
 - Annonces en opt-in : `aria-live="polite"` sur le composant. Gardez l’intervalle grossier.
 - Le texte relatif dépend de « maintenant » : l’élément pose `suppressHydrationWarning` pour que SSR et client puissent différer d’une unité sans casser l’hydratation.
 
-## Properties
+## Propriétés
 
 ### TimeAgo
 

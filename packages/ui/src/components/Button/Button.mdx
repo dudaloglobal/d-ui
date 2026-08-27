@@ -1,5 +1,4 @@
 import { Meta, Canvas, ArgTypes } from '@storybook/blocks';
-import { IconButton } from './IconButton';
 import * as ButtonStories from './Button.stories';
 
 <Meta of={ButtonStories} />
@@ -10,55 +9,55 @@ Les boutons déclenchent une action en un clic.
 
 Les exemples suivent la **langue** de la barre d’outils Storybook (**Français** par défaut).
 
-## High emphasis
+## Forte emphase
 
 Utilisez le fort emphasis (`variant="primary"`) pour aider à identifier l’action principale. Il ne doit pas y avoir plus d’un bouton high emphasis dans une vue.
 
 Cas d’usage : Par défaut, Désactivé, Chargement, Avec icône, Menu, Fractionné.
 
-<Canvas of={ButtonStories.HighEmphasis} sourceState="shown" />
+<Canvas of={ButtonStories.HighEmphasis} />
 
-## Medium emphasis
+## Emphase moyenne
 
 Utilisez le medium emphasis (`variant="secondary"`) pour les actions secondaires.
 
-<Canvas of={ButtonStories.MediumEmphasis} sourceState="shown" />
+<Canvas of={ButtonStories.MediumEmphasis} />
 
-### Toggled button
+### Bouton bascule
 
 Les boutons medium ont une option supplémentaire : `isSelected`. Utilisez `isSelected` pour des actions à bascule (activation de notifications, abonnement à un flux). Décrivez l’action le plus clairement possible dans le libellé.
 
-<Canvas of={ButtonStories.Toggled} sourceState="shown" />
+<Canvas of={ButtonStories.Toggled} />
 
-## Low emphasis
+## Faible emphase
 
 Quand la vue contient déjà un bouton primary et un medium, utilisez le low emphasis (`variant="ghost"`) pour les actions de moindre priorité. Autrement, utilisez-le lorsqu’il n’y a qu’un seul niveau de priorité.
 
 Cas d’usage : Par défaut, Désactivé, Chargement, Avec icône, Menu (pas de fractionné).
 
-<Canvas of={ButtonStories.LowEmphasis} sourceState="shown" />
+<Canvas of={ButtonStories.LowEmphasis} />
 
-## Loading
+## Chargement
 
 `loading` affiche un indicateur, conserve le libellé, pose `aria-busy` et désactive le contrôle. L’icône est remplacée par l’indicateur. `loadingIndicator="spinner"` (défaut) ou `"bounce"`.
 
-<Canvas of={ButtonStories.Loading} sourceState="shown" />
+<Canvas of={ButtonStories.Loading} />
 
-## Small size
+## Petite taille
 
 Utilisez la petite taille (`size="sm"`) lorsque l’espace est contraint.
 
 <Canvas of={ButtonStories.SmallSize} />
 
-## Full width
+## Pleine largeur
 
 Utilisez `fullWidth` lorsque le bouton doit occuper toute la largeur du conteneur.
 
-<Canvas of={ButtonStories.FullWidth} sourceState="shown" />
+<Canvas of={ButtonStories.FullWidth} />
 
 Menu et fractionné sont des **compositions** de `Button` / `IconButton` (chevron, `aria-haspopup`). Le menu déroulant complet arrive avec Menu (DS-030).
 
-### Accessibility concerns
+### Accessibilité
 
 #### Button
 
@@ -79,7 +78,7 @@ Toutes les règles de `Button` s’appliquent. Comme il n’y a pas de texte, `a
 
 Thème sombre : barre d’outils **Thème**. Langue des exemples : barre d’outils **Langue**.
 
-## Properties
+## Propriétés
 
 ### Button
 
@@ -105,7 +104,7 @@ Les attributs natifs `<button>` (`disabled`, `type`, `className`, `aria-haspopup
 `IconButton` exige `aria-label`. `icon`, `variant`, `size`, `loading`, `loadingIndicator`, `fullWidth` et `isSelected` sont les mêmes que `Button`.
 
 <ArgTypes
-  of={IconButton}
+  of={ButtonStories}
   include={[
     'icon',
     'aria-label',

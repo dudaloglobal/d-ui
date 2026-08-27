@@ -8,24 +8,25 @@ export type ButtonLoadingIndicator = 'spinner' | 'bounce';
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   /**
-   * Emphasis. `"primary"` is high, `"secondary"` is medium, `"ghost"` is low.
-   * There should not be more than one high-emphasis button in a view.
+   * Emphase. `"primary"` est forte, `"secondary"` moyenne, `"ghost"` faible.
+   * Il ne doit pas y avoir plus d’un bouton à forte emphase dans une vue.
    */
   variant?: ButtonVariant;
-  /** `"sm"` when space is constrained. `"md"` by default. `"lg"` for spacious actions. */
+  /** `"sm"` si l’espace est contraint. `"md"` par défaut. `"lg"` pour les actions aérées. */
   size?: ButtonSize;
-  /** Replaces the icon with a loading indicator and sets `aria-busy`. The label stays visible. */
+  /** Remplace l’icône par un indicateur, pose `aria-busy`. Le libellé reste visible. */
   loading?: boolean;
-  /** `"spinner"` (default) or `"bounce"` (three dots). Only used when `loading` is set. */
+  /** `"spinner"` (défaut) ou `"bounce"` (trois points). Utilisé si `loading` est posé. */
   loadingIndicator?: ButtonLoadingIndicator;
+  /** Icône décorative. Ne remplace pas le nom accessible. */
   icon?: ReactNode;
+  /** Position de l’icône : `"start"` (début) ou `"end"` (fin). */
   iconPosition?: ButtonIconPosition;
-  /** Stretch to the width of the container. */
+  /** Étend le bouton à la largeur du conteneur. */
   fullWidth?: boolean;
   /**
-   * Toggle state for medium/low emphasis (subscribe, notification on/off).
-   * Sets `aria-pressed`. If the label already changes with the state, that is enough
-   * for the name; `aria-pressed` still exposes the pressed state.
+   * État bascule (emphase moyenne/faible). Pose `aria-pressed`.
+   * Si le libellé change déjà selon l’état, ce nom suffit.
    */
   isSelected?: boolean;
 };

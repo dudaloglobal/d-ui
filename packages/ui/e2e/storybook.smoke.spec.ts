@@ -8,17 +8,67 @@ test('Storybook serves the Button story', async ({ page }) => {
 test('Storybook serves the d-ui favicon', async ({ page }) => {
   const svg = await page.request.get('/favicon.svg');
   expect(svg.ok()).toBeTruthy();
-  expect(await svg.text()).toContain('#0f5c4c');
+  const svgText = await svg.text();
+  expect(svgText).toContain('🍩');
+  expect(svgText).toMatch(/<circle\b[^>]*\bfill="#ffffff"/);
+  expect(svgText).not.toContain('#0f5c4c');
+  expect(svgText).not.toMatch(/<rect/);
   const png = await page.request.get('/favicon.png');
   expect(png.ok()).toBeTruthy();
 });
 
-test('Storybook page title uses d-ui', async ({ page }) => {
+test('favicon PNG corners are transparent', async ({ page }) => {
   await page.goto('/');
-  await expect(page).toHaveTitle(/d-ui/);
+  const corners = await page.evaluate(async () => {
+    const img = document.createElement('img');
+    img.src = '/favicon.png';
+    await img.decode();
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error('no canvas');
+    ctx.drawImage(img, 0, 0);
+    const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const at = (x: number, y: number) => {
+      const i = (y * width + x) * 4;
+      return [data[i], data[i + 1], data[i + 2], data[i + 3]];
+    };
+    return {
+      width,
+      height,
+      tl: at(0, 0),
+      tr: at(width - 1, 0),
+      bl: at(0, height - 1),
+      br: at(width - 1, height - 1),
+    };
+  });
+  expect(corners.width).toBeGreaterThan(0);
+  expect(corners.height).toBeGreaterThan(0);
+  for (const corner of [corners.tl, corners.tr, corners.bl, corners.br]) {
+    expect(corner[3]).toBe(0);
+  }
+});
+
+test('component docs use Component | Dudalo Design System titles', async ({ page }) => {
+  await page.goto('/?path=/docs/components-textinput--docs');
+  await expect(page).toHaveTitle('TextInput | Dudalo Design System');
+  await page.goto('/?path=/docs/components-button--docs');
+  await expect(page).toHaveTitle('Button | Dudalo Design System');
+  await page.goto('/?path=/docs/components-textarea--docs');
+  await expect(page).toHaveTitle('Textarea | Dudalo Design System');
+  await page.goto('/?path=/docs/components-timeago--docs');
+  await expect(page).toHaveTitle('TimeAgo | Dudalo Design System');
+});
+
+test('Storybook page title uses Dudalo Design System', async ({ page }) => {
+  await page.goto('/');
+  await expect(page).toHaveTitle(/Dudalo Design System/);
   await expect(page).not.toHaveTitle(/Storybook/);
   await expect(page.getByRole('link', { name: 'd-ui' })).toBeVisible();
   await expect(page.locator('img[alt="d-ui"]')).toHaveAttribute('src', /favicon\.svg/);
+  await expect(page.locator('img[alt="d-ui"]')).toHaveCSS('width', '32px');
+  await expect(page.locator('img[alt="d-ui"]')).toHaveCSS('height', '32px');
 });
 
 const darkBrand = 'rgb(94, 234, 212)';
@@ -80,8 +130,11 @@ test('Toolbar Dark restyles manager chrome, not only the iframe', async ({ page 
     'background-color',
     lightSidebar,
   );
-  await page.getByRole('button', { name: /Light/i }).first().click();
-  await page.getByText('Dark', { exact: true }).first().click();
+  await page
+    .getByRole('button', { name: /Clair|Light/i })
+    .first()
+    .click();
+  await page.getByText('Sombre', { exact: true }).first().click();
   await expect(page.locator('nav.sidebar-container')).toHaveCSS(
     'background-color',
     darkAppBg,
@@ -148,6 +201,110 @@ test('Dark docs source does not use lime or brand teal for JSX tags', async ({
   expect(tagColor).toBe('rgb(224, 108, 117)');
   expect(tagColor).not.toBe(storybookLimeTag);
   expect(tagColor).not.toBe(darkBrand);
+});
+
+test('old Input docs URL opens TextInput docs', async ({ page }) => {
+  await page.goto('/?path=/docs/components-input--docs');
+  await expect(page).toHaveURL(/components-textinput--docs/);
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { name: 'TextInput' })).toBeVisible();
+});
+
+test('French TextInput docs do not leak English headings or example copy', async ({
+  page,
+}) => {
+  await page.goto('/?path=/docs/components-textinput--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(
+    preview.getByRole('heading', { name: 'États particuliers' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Accessibilité' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Special states' })).toHaveCount(0);
+  await expect(
+    preview.getByRole('heading', { name: 'Accessibility concerns' }),
+  ).toHaveCount(0);
+  await expect(preview.getByText('Text field label')).toHaveCount(0);
+  await expect(preview.getByText('Helper text')).toHaveCount(0);
+  await expect(preview.getByText('characters remaining')).toHaveCount(0);
+  await expect(
+    preview.getByRole('textbox', { name: 'Libellé du champ' }).first(),
+  ).toBeVisible();
+});
+
+test('TextInput docs do not embed Textarea', async ({ page }) => {
+  await page.goto('/?path=/docs/components-textinput--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { name: 'TextInput' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Textarea' })).toHaveCount(0);
+});
+
+test('French Properties tables use French descriptions', async ({ page }) => {
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await page.goto('/?path=/docs/components-textinput--docs');
+  await expect(preview.getByText(/Libellé visible au-dessus du champ/)).toBeVisible();
+  await expect(preview.getByText('Emphasis: primary')).toHaveCount(0);
+
+  await page.goto('/?path=/docs/components-button--docs');
+  await expect(preview.getByText(/Emphase/)).toBeVisible();
+  await expect(preview.getByText('Stretch to the container width.')).toHaveCount(0);
+
+  await page.goto('/?path=/docs/components-timeago--docs');
+  await expect(preview.getByText(/Instant à afficher/)).toBeVisible();
+
+  await page.goto('/?path=/docs/components-textarea--docs');
+  await expect(preview.getByRole('heading', { name: 'Textarea' })).toBeVisible();
+  await expect(preview.getByText(/Libellé visible au-dessus du champ/)).toBeVisible();
+});
+
+test('Docs source stays hidden until Show code is clicked', async ({ page }) => {
+  await page.goto('/?path=/docs/components-textinput--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(
+    preview.getByRole('textbox', { name: 'Libellé du champ' }).first(),
+  ).toBeVisible();
+  await expect(preview.locator('pre.prismjs')).toHaveCount(0);
+  await preview
+    .getByRole('button', { name: /Show code|Afficher/i })
+    .first()
+    .click();
+  await expect(preview.locator('pre.prismjs').first()).toBeVisible();
+});
+
+test('Button docs Show code imports Button from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-button--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Button, IconButton } from 'd-ui'");
+  await expect(source).toContainText('export default () =>');
+  await expect(source).toContainText('<Button');
+  await expect(source).not.toContainText('EmphasisUseCases');
+  await expect(source).not.toContainText('PlusIcon');
+});
+
+test('TextInput docs Show code imports TextInput from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-textinput--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { TextInput } from 'd-ui'");
+  await expect(source).toContainText('export default () =>');
+  await expect(source).toContainText('<TextInput');
+  await expect(source).not.toContainText('DefaultDemo');
+  await expect(source).not.toContainText('Labeled');
+});
+
+test('Textarea docs Show code imports Textarea from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-textarea--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Textarea } from 'd-ui'");
+  await expect(source).toContainText('export default () =>');
+  await expect(source).toContainText('<Textarea');
+  await expect(source).not.toContainText('ControlledTextarea');
+});
+
+test('TimeAgo docs Show code imports TimeAgo from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-timeago--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { TimeAgo } from 'd-ui'");
+  await expect(source).toContainText('<TimeAgo');
+  await expect(source).not.toContainText('Example');
 });
 
 test('Button high emphasis covers Default, Disabled, Loading, With Icon, Dropdown and Split', async ({
@@ -263,4 +420,78 @@ test('TimeAgo English locale story renders relative English copy', async ({ page
 test('TimeAgo sizes story renders small and medium timestamps', async ({ page }) => {
   await page.goto('/iframe.html?id=components-timeago--sizes');
   await expect(page.locator('time')).toHaveCount(2);
+});
+
+test('Storybook serves the TextInput story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-textinput--default');
+  await expect(page.getByRole('textbox', { name: 'Libellé du champ' })).toBeVisible();
+});
+
+test('TextInput password story toggles visibility with an accessible name', async ({
+  page,
+}) => {
+  await page.goto('/iframe.html?id=components-textinput--password');
+  const password = page.getByRole('textbox', { name: 'Mot de passe' });
+  await expect(password).toHaveAttribute('type', 'password');
+  await page.getByRole('button', { name: 'Afficher le mot de passe' }).click();
+  await expect(password).toHaveAttribute('type', 'text');
+});
+
+test('TextInput icon story exposes a search field', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-textinput--icon');
+  await expect(page.getByRole('searchbox', { name: 'Libellé du champ' })).toBeVisible();
+});
+
+test('TextInput number story renders a spinbutton', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-textinput--number');
+  await expect(page.getByRole('spinbutton', { name: 'Nombre' })).toBeVisible();
+});
+
+test('TextInput clearable story empties the field from the named control', async ({
+  page,
+}) => {
+  await page.goto('/iframe.html?id=components-textinput--clearable');
+  const input = page.getByRole('textbox', { name: 'Libellé du champ' });
+  await expect(input).toHaveValue('Ada Lovelace');
+  await page.getByRole('button', { name: 'Effacer' }).click();
+  await expect(input).toHaveValue('');
+});
+
+test('TextInput character count is described on the textbox', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-textinput--max-length');
+  const input = page.getByRole('textbox', { name: 'Libellé du champ' });
+  await expect(input).toHaveAttribute('aria-describedby', /.+/);
+  await expect(page.getByText('50 caractères restants')).toBeVisible();
+});
+
+test('Textarea story renders a compact labeled multiline control', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-textarea--default');
+  const area = page.getByRole('textbox', { name: 'Libellé de la zone de texte' });
+  await expect(area).toBeVisible();
+  await expect(area).toHaveJSProperty('tagName', 'TEXTAREA');
+  await expect(area).toHaveAttribute('rows', '2');
+  const box = await area.boundingBox();
+  expect(box?.height ?? 99).toBeLessThan(56);
+});
+
+test('Textarea story stretches to the canvas width', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto('/iframe.html?id=components-textarea--default');
+  const area = page.getByRole('textbox', { name: 'Libellé de la zone de texte' });
+  await expect(area).toBeVisible();
+  const box = await area.boundingBox();
+  expect(box?.width ?? 0).toBeGreaterThan(400);
+});
+
+test('Textarea invalid story exposes aria-invalid', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-textarea--invalid');
+  const area = page.getByRole('textbox', { name: 'Libellé de la zone de texte' });
+  await expect(area).toHaveAttribute('aria-invalid', 'true');
+  await expect(page.getByText('Valeur invalide')).toBeVisible();
+});
+
+test('TextInput helper story describes the field', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-textinput--helper');
+  const input = page.getByRole('textbox', { name: 'Libellé du champ' });
+  await expect(input).toHaveAccessibleDescription(/.+/);
 });

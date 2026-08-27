@@ -6,7 +6,9 @@ alwaysApply: true
 # Git authorship and push
 
 - Never add `Co-authored-by`, `Made-with`, "Made with Cursor", or any tooling attribution to a commit or PR.
+- Always remove "Made with Cursor" from commit messages **and** PR titles/bodies if it appears (including after `gh pr create`).
 - After every `git commit`, run `git log -1 --format=%B`. If a trailer is present and the commit is not pushed, amend it out, then verify again.
+- After every `gh pr create` / `gh pr edit`, run `gh pr view --json title,body` and strip any Cursor footer, then verify.
 - `pre-push` must refuse a push that still contains those trailers. Do not skip hooks (`--no-verify`).
 - When the user asks to commit or push: do it. Do not paste the commit message or PR body for approval first. They did not ask to review descriptions before push.
 - Commit messages stay in English. Do not mention Cursor or agents in commit text, PR text, or code comments.
