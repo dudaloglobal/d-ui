@@ -35,10 +35,7 @@ function DetachedPanel({
   children: ReactNode;
 }) {
   return (
-    <TabPanel
-      value={value}
-      className="rounded-xl border border-border-subtle bg-bg p-4"
-    >
+    <TabPanel value={value} className="rounded-xl border border-border-subtle bg-bg p-4">
       <div className="flex min-h-28 flex-col justify-between gap-6">
         <p>{children}</p>
         <div className="flex items-center justify-between border-t border-border-subtle pt-3">
