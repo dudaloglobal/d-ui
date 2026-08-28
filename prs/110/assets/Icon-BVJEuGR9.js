@@ -1,0 +1,29 @@
+import{u as j,j as n,M as m,P as o,C as e,a as t,b as i,U as c,A as l}from"./iframe-Cu1DtCRJ.js";import{I as r,D as d,S as g,a as P,O as k,L as p,b as u}from"./Icon.stories-um4pyzM9.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-D4Qb33ct.js";import"./docs-source-C_O40UCi.js";import"./Button-DS2SrhEy.js";import"./IconButton-BGJ6SCnH.js";import"./Icon-D9FkN_Tk.js";import"./ArrowRightIcon-D1ejqTvz.js";function x(s){const a={h1:"h1",...j(),...s.components};return n.jsxs(n.Fragment,{children:[n.jsx(m,{of:r}),`
+`,n.jsx(a.h1,{id:"icon",children:"Icon"}),`
+`,n.jsx(o,{k:"iconPage.intro"}),`
+`,n.jsx(o,{k:"chrome.examplesFollow"}),`
+`,n.jsx(e,{of:d}),`
+`,n.jsx(t,{k:"iconPage.sizes"}),`
+`,n.jsx(o,{k:"iconPage.sizesBody"}),`
+`,n.jsx(e,{of:g}),`
+`,n.jsx(t,{k:"iconPage.color"}),`
+`,n.jsx(o,{k:"iconPage.colorBody"}),`
+`,n.jsx(e,{of:P}),`
+`,n.jsx(t,{k:"iconPage.set"}),`
+`,n.jsx(o,{k:"iconPage.setBody"}),`
+`,n.jsx(o,{k:"iconPage.setOutline"}),`
+`,n.jsx(o,{k:"iconPage.setImport"}),`
+`,n.jsx(e,{of:k}),`
+`,n.jsx(t,{k:"chrome.accessibility"}),`
+`,n.jsx(o,{k:"iconPage.a11yBody"}),`
+`,n.jsx(o,{k:"iconPage.a11yButton"}),`
+`,n.jsx(i,{k:"chrome.do"}),`
+`,n.jsx(c,{items:["iconPage.doBeside","iconPage.doIconButton","iconPage.doOutline"]}),`
+`,n.jsx(i,{k:"chrome.dont"}),`
+`,n.jsx(c,{items:["iconPage.dontLabel","iconPage.dontNameless","iconPage.dontSolid","iconPage.dontFill"]}),`
+`,n.jsx(e,{of:p}),`
+`,n.jsx(e,{of:u}),`
+`,n.jsx(o,{k:"chrome.themeLang"}),`
+`,n.jsx(t,{k:"chrome.properties"}),`
+`,n.jsx(o,{k:"iconPage.props"}),`
+`,n.jsx(l,{of:r,include:["as","size","label"]})]})}function L(s={}){const{wrapper:a}={...j(),...s.components};return a?n.jsx(a,{...s,children:n.jsx(x,{...s})}):x(s)}export{L as default};

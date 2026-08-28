@@ -1,0 +1,34 @@
+import{u as j,j as e,M as i,P as n,C as o,a as s,b as a,U as x,A as d}from"./iframe-Cu1DtCRJ.js";import{M as u,D as c,S as l,a as h,b as k,C as p,c as f,d as b}from"./Menu.stories-CvDB5nPn.js";import"./preload-helper-Dp1pzeXC.js";import"./docs-source-C_O40UCi.js";import"./arg-types-D4Qb33ct.js";import"./Button-DS2SrhEy.js";import"./floating-CRLOEAIU.js";function r(t){const m={h1:"h1",...j(),...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(i,{of:u}),`
+`,e.jsx(m.h1,{id:"menu",children:"Menu"}),`
+`,e.jsx(n,{k:"menu.intro"}),`
+`,e.jsx(n,{k:"chrome.examplesFollow"}),`
+`,e.jsx(o,{of:c}),`
+`,e.jsx(s,{k:"menu.shortcuts"}),`
+`,e.jsx(n,{k:"menu.shortcutsBody"}),`
+`,e.jsx(o,{of:l}),`
+`,e.jsx(s,{k:"menu.disabledItems"}),`
+`,e.jsx(n,{k:"menu.disabledItemsBody"}),`
+`,e.jsx(o,{of:h}),`
+`,e.jsx(s,{k:"menu.submenu"}),`
+`,e.jsx(n,{k:"menu.submenuBody"}),`
+`,e.jsx(o,{of:k}),`
+`,e.jsx(s,{k:"menu.context"}),`
+`,e.jsx(n,{k:"menu.contextBody"}),`
+`,e.jsx(o,{of:p}),`
+`,e.jsx(s,{k:"chrome.sizes"}),`
+`,e.jsx(n,{k:"chrome.useSizes"}),`
+`,e.jsx(o,{of:f}),`
+`,e.jsx(s,{k:"chrome.specialStates"}),`
+`,e.jsx(a,{k:"chrome.disabled"}),`
+`,e.jsx(n,{k:"chrome.useDisabled"}),`
+`,e.jsx(o,{of:b}),`
+`,e.jsx(s,{k:"chrome.accessibility"}),`
+`,e.jsx(n,{k:"menu.a11yBody"}),`
+`,e.jsx(a,{k:"chrome.do"}),`
+`,e.jsx(x,{items:["menu.doTrigger","menu.doContext","menu.doTypeahead"]}),`
+`,e.jsx(a,{k:"chrome.dont"}),`
+`,e.jsx(x,{items:["menu.dontDiv","menu.dontOnlyContext","menu.dontPalette"]}),`
+`,e.jsx(n,{k:"chrome.themeLang"}),`
+`,e.jsx(s,{k:"chrome.properties"}),`
+`,e.jsx(n,{k:"menu.props"}),`
+`,e.jsx(d,{of:u,include:["label","placement","size","disabled","open","defaultOpen","onOpenChange"]})]})}function z(t={}){const{wrapper:m}={...j(),...t.components};return m?e.jsx(m,{...t,children:e.jsx(r,{...t})}):r(t)}export{z as default};
