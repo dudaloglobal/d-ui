@@ -82,7 +82,7 @@ export function SelectListbox({
       aria-multiselectable={multiple || undefined}
       aria-labelledby={labelledBy ?? labelId}
       aria-label={labelledBy || labelId ? undefined : ariaLabel}
-      className="d-ui-listbox max-h-[inherit] overflow-auto rounded-md border border-border bg-bg py-1 text-fg shadow-lg"
+      className="d-ui-listbox max-h-[inherit] overflow-auto rounded-md bg-bg py-1 text-fg"
     >
       {beforeOptions && showOptions ? (
         <div className="border-b border-border py-1">{beforeOptions}</div>

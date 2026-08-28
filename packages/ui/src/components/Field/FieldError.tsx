@@ -3,7 +3,7 @@ import { Text } from '../Text/Text';
 import { useIsomorphicLayoutEffect } from '../../lib/useIsomorphicLayoutEffect';
 import { useFieldContext } from './FieldContext';
 
-export type FieldErrorProps = HTMLAttributes<HTMLParagraphElement>;
+export type FieldErrorProps = Omit<HTMLAttributes<HTMLParagraphElement>, 'color'>;
 
 /**
  * Message d'erreur du champ.

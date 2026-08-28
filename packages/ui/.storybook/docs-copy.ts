@@ -90,8 +90,8 @@ export const docsCopy = {
       en: 'Consuming apps use:',
     },
     itemComponents: {
-      fr: 'les composants React (`Button`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
-      en: 'the React components (`Button`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      fr: 'les composants React (`Button`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Calendar`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      en: 'the React components (`Button`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Calendar`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
     },
     itemCssVars: {
       fr: 'les **variables CSS** `--d-ui-*`',
@@ -306,6 +306,54 @@ export const docsCopy = {
       en: 'A “decorative” token reused as a control boundary',
     },
   },
+  color: {
+    intro: {
+      fr: 'Utilisez la couleur pour hiérarchiser, signaler un état, et ancrer la marque. Les hex vivent dans `tokens.css` ; les composants consomment `var(--d-ui-color-*)`.',
+      en: 'Use colour to rank information, signal state, and anchor the brand. Hex values live in `tokens.css`; components consume `var(--d-ui-color-*)`.',
+    },
+    available: {
+      fr: '**Palette de couleurs disponible**',
+      en: '**Available color palette**',
+    },
+    primary: { fr: 'Palette principale', en: 'Primary palette' },
+    familyBrand: { fr: 'Marque', en: 'Brand' },
+    familyDark: { fr: 'Sombre', en: 'Dark' },
+    familyLight: { fr: 'Clair', en: 'Light' },
+    secondary: { fr: 'Palette secondaire', en: 'Secondary palette' },
+    familyWarning: { fr: 'Attention', en: 'Warning' },
+    familyDanger: { fr: 'Danger', en: 'Danger' },
+    familySuccess: { fr: 'Succès', en: 'Success' },
+    familyInfo: { fr: 'Info', en: 'Info' },
+    familyViolet: { fr: 'Violet', en: 'Violet' },
+    a11yBody: {
+      fr: 'Une couleur n’est jamais le seul porteur d’information (WCAG 1.4.1). Le texte utilise `fg`, `on-brand`, `danger`… pas un cran **L4**. Les paires sont mesurées dans `tokens.contrast.test.ts` (4.5:1 texte, 3:1 UI). Voir **Tokens**.',
+      en: 'Colour is never the only carrier of information (WCAG 1.4.1). Text uses `fg`, `on-brand`, `danger`… not an **L4** step. Pairs are measured in `tokens.contrast.test.ts` (4.5:1 text, 3:1 UI). See **Tokens**.',
+    },
+    doToken: {
+      fr: '`color: var(--d-ui-color-brand)` (ou `className="text-brand"` **dans** le package)',
+      en: '`color: var(--d-ui-color-brand)` (or `className="text-brand"` **inside** the package)',
+    },
+    doOn: {
+      fr: '`on-brand`, `on-danger`, `on-warning`… pour le texte posé sur un fond saturé',
+      en: '`on-brand`, `on-danger`, `on-warning`… for text on a saturated background',
+    },
+    doTheme: {
+      fr: 'La barre **Thème** pour vérifier clair et sombre',
+      en: 'The **Theme** toolbar to check light and dark',
+    },
+    dontHex: {
+      fr: '`#0f5c4c` (ou n’importe quel hex) dans un composant',
+      en: '`#0f5c4c` (or any hex) in a component',
+    },
+    dontTintText: {
+      fr: 'Un cran **L5** comme couleur de texte courant',
+      en: 'An **L5** step as running text colour',
+    },
+    dontDecor: {
+      fr: '`border-subtle` comme unique frontière d’un contrôle (WCAG 1.4.11)',
+      en: '`border-subtle` as a control’s only boundary (WCAG 1.4.11)',
+    },
+  },
   text: {
     intro: {
       fr: '`Text` est le texte courant du design system. Utilisez `Heading` pour un titre, `Link` pour une navigation.',
@@ -326,9 +374,24 @@ export const docsCopy = {
       fr: '`regular`, `medium`, `semibold`.',
       en: '`regular`, `medium`, `semibold`.',
     },
+    color: { fr: 'Couleur', en: 'Color' },
+    colorBody: {
+      fr: '`color` pose une famille de la page Color (`brand`, `dark`, `light`, `warning`, `danger`, `success`, `info`, `violet`). Si elle est posée, elle remplace `tone`. `light` se lit sur un fond `fg`. Préférez le cran `N` pour le texte courant.',
+      en: '`color` sets a Color page family (`brand`, `dark`, `light`, `warning`, `danger`, `success`, `info`, `violet`). When set, it replaces `tone`. `light` is read on an `fg` surface. Prefer the `N` step for running text.',
+    },
+    colorVariant: { fr: 'Variantes de couleur', en: 'Color variants' },
+    colorVariantBody: {
+      fr: '`colorVariant` est le cran de la rampe (`D2`, `D1`, `N`, `L1`–`L6`). `N` par défaut. Les crans L sont des teintes (mêmes pourcentages que Color) et peuvent manquer 4.5:1 — pas pour un paragraphe.',
+      en: '`colorVariant` is the ramp step (`D2`, `D1`, `N`, `L1`–`L6`). Default `N`. L steps are tints (same percentages as Color) and can fail 4.5:1 — not for a paragraph.',
+    },
+    wrap: { fr: 'Retour à la ligne et débordement', en: 'Text wrap and overflow' },
+    wrapBody: {
+      fr: 'Par défaut, un long texte passe à la ligne. `noWrap` l’empêche (un parent `overflow-hidden` coupe **sans** ellipse). `truncate` coupe avec une ellipse : `true` sur une ligne, `{ lines: n }` sur n lignes.',
+      en: 'By default, long text wraps. `noWrap` prevents that (a parent `overflow-hidden` clips **without** an ellipsis). `truncate` cuts with an ellipsis: `true` on one line, `{ lines: n }` on n lines.',
+    },
     a11yBody: {
-      fr: '`Text` rend un `<p>` par défaut. Passez `as="span"` en ligne. Ce n’est pas un titre : un `Text size="body"` avec `font-semibold` ne remplace pas un `Heading`.',
-      en: '`Text` renders a `<p>` by default. Pass `as="span"` inline. It is not a heading: `Text size="body"` with `font-semibold` does not replace `Heading`.',
+      fr: '`Text` rend un `<p>` par défaut. Passez `as="span"` en ligne. Ce n’est pas un titre : un `Text size="body"` avec `font-semibold` ne remplace pas un `Heading`. `color` / `colorVariant` ne dispensent pas du contraste : restez sur `N` (ou `tone`) pour le texte courant. Avec `noWrap` ou `truncate`, le lecteur d’écran lit **tout** le texte : raccourcissez le contenu en amont s’il est trop long.',
+      en: '`Text` renders a `<p>` by default. Pass `as="span"` inline. It is not a heading: `Text size="body"` with `font-semibold` does not replace `Heading`. `color` / `colorVariant` do not waive contrast: stay on `N` (or `tone`) for running text. With `noWrap` or `truncate`, the screen reader still reads **all** the text: shorten the content upstream if it is too long.',
     },
     doMuted: {
       fr: '`<Text tone="muted" size="body-sm">Mis à jour hier</Text>`',
@@ -338,6 +401,14 @@ export const docsCopy = {
       fr: '`as="span"` dans un bouton ou un lien',
       en: '`as="span"` inside a button or a link',
     },
+    doColor: {
+      fr: '`<Text as="span" color="brand">mot d’emphase</Text>`',
+      en: '`<Text as="span" color="brand">emphasis word</Text>`',
+    },
+    doTruncate: {
+      fr: '`<Text truncate>` dans une colonne bornée',
+      en: '`<Text truncate>` in a bounded column',
+    },
     dontClass: {
       fr: '`<Text className="text-slate-400">` pour un ton',
       en: '`<Text className="text-slate-400">` for a tone',
@@ -345,6 +416,14 @@ export const docsCopy = {
     dontHeading: {
       fr: '`<Text as="h2">` — utiliser `Heading`',
       en: '`<Text as="h2">` — use `Heading`',
+    },
+    dontTint: {
+      fr: '`<Text color="brand" colorVariant="L5">` comme texte courant',
+      en: '`<Text color="brand" colorVariant="L5">` as running text',
+    },
+    dontTruncate: {
+      fr: '`truncate` pour raccourcir le contenu annoncé — le lecteur d’écran lit tout',
+      en: '`truncate` to shorten announced content — the screen reader reads everything',
     },
     props: {
       fr: 'Les attributs natifs de l’élément (`id`, `className`, …) sont transmis.',
@@ -366,6 +445,11 @@ export const docsCopy = {
       fr: 'Un `h2` peut avoir l’allure d’un display. Un `h1` peut rester discret. Ne posez **qu’un** `h1` par vue.',
       en: 'An `h2` can look like display. An `h1` can stay small. Put **only one** `h1` per view.',
     },
+    bold: { fr: 'Gras', en: 'Bold' },
+    boldBody: {
+      fr: 'La graisse par défaut est `font-normal`. Passez `bold` pour un titre en `font-bold`.',
+      en: 'Default weight is `font-normal`. Pass `bold` for a `font-bold` title.',
+    },
     a11yBody: {
       fr: 'Le composant rend `<h1>`…`<h6>`. Pas de `role="heading"` sur un `div`.',
       en: 'The component renders `<h1>`…`<h6>`. No `role="heading"` on a `div`.',
@@ -373,6 +457,10 @@ export const docsCopy = {
     doSize: {
       fr: '`<Heading level={2} size="display">` si le visuel est grand mais le niveau est 2',
       en: '`<Heading level={2} size="display">` when the visual is large but the level is 2',
+    },
+    doBold: {
+      fr: '`<Heading level={2} bold>` pour un titre fort',
+      en: '`<Heading level={2} bold>` for a strong title',
     },
     doOneH1: {
       fr: 'Un seul `level={1}` par page',
@@ -406,6 +494,15 @@ export const docsCopy = {
       fr: '`external` ouvre un nouvel onglet, pose `rel="noopener noreferrer"`, et annonce l’ouverture. Le fallback masqué est anglais (`(opens in a new tab)`) — passez `externalLabel` dans la langue de l’app.',
       en: '`external` opens a new tab, sets `rel="noopener noreferrer"`, and announces the opening. The hidden fallback is English (`(opens in a new tab)`) — pass `externalLabel` in the app language.',
     },
+    iconBody: {
+      fr: '`icon` est décorative (`aria-hidden`) : le nom accessible reste le texte. `iconPosition="end"` place l’icône après le libellé. La couleur suit `currentColor`.',
+      en: '`icon` is decorative (`aria-hidden`): the accessible name stays the text. `iconPosition="end"` places the icon after the label. Colour follows `currentColor`.',
+    },
+    color: { fr: 'Couleur', en: 'Color' },
+    colorBody: {
+      fr: '`color` n’est **pas** héritée du parent. `default` utilise le token `link`. `dark` prend l’encre (`fg`) pour un lien discret. `light` prend le fond (`bg`) — à poser sur un fond `fg`. Dans un paragraphe, préférez `default` : un lien `dark` se confond avec le texte voisin.',
+      en: '`color` is **not** inherited from the parent. `default` uses the `link` token. `dark` uses ink (`fg`) for a quiet link. `light` uses the background (`bg`) — place it on an `fg` surface. In a paragraph, prefer `default`: a `dark` link blends into neighbouring text.',
+    },
     a11yBody: {
       fr: 'Contrôle natif `<a href>`. Focus visible via l’anneau `focus`. Tab / Entrée activent le lien.',
       en: 'Native `<a href>` control. Visible focus via the `focus` ring. Tab / Enter activate the link.',
@@ -418,6 +515,10 @@ export const docsCopy = {
       fr: '`<Link href="https://…" external externalLabel="(ouvre dans un nouvel onglet)">`',
       en: '`<Link href="https://…" external externalLabel="(opens in a new tab)">`',
     },
+    doIcon: {
+      fr: '`<Link href="/catalogue" icon={<Icon as={ArrowTopRightOnSquareIcon} size="sm" />} iconPosition="end">`',
+      en: '`<Link href="/catalogue" icon={<Icon as={ArrowTopRightOnSquareIcon} size="sm" />} iconPosition="end">`',
+    },
     dontBlank: {
       fr: '`target="_blank"` sans `rel`',
       en: '`target="_blank"` without `rel`',
@@ -425,6 +526,10 @@ export const docsCopy = {
     dontButton: {
       fr: 'Un `Button` pour de la navigation, ou un `Link` pour soumettre un formulaire',
       en: 'A `Button` for navigation, or a `Link` to submit a form',
+    },
+    dontDarkInText: {
+      fr: '`color="dark"` dans un paragraphe de la même encre — le lien n’est plus distinguable par la couleur',
+      en: '`color="dark"` in a paragraph of the same ink — the link is no longer distinguishable by colour',
     },
     props: {
       fr: 'Les attributs natifs `<a>` (`className`, `download`, …) sont transmis.',
@@ -473,133 +578,83 @@ export const docsCopy = {
   },
   typography: {
     intro: {
-      fr: '`Text`, `Heading`, `Link` et `Divider` sont les primitives sur lesquelles reposent les autres composants. Un écran qui écrit `text-[17px]` ou `#475569` en dur ne passe pas la revue. Les pages détaillées sont sous **Components** : Text, Heading, Link, Divider.',
-      en: '`Text`, `Heading`, `Link` and `Divider` are the primitives other components rest on. A screen that hard-codes `text-[17px]` or `#475569` does not pass review. Detail pages live under **Components**: Text, Heading, Link, Divider.',
+      fr: 'Utilisez la typographie pour créer des hiérarchies visuelles claires, organiser l’information et guider les utilisateurs.',
+      en: 'Use typography to create clear visual hierarchies, organize information, and guide users.',
     },
-    scale: { fr: 'Échelle', en: 'Scale' },
-    scaleBody: {
-      fr: 'L’échelle est celle de Tailwind, exposée sous des rôles sémantiques.',
-      en: 'The scale is Tailwind’s, exposed as semantic roles.',
+    typefaces: { fr: 'Polices', en: 'Typefaces' },
+    typefacesBody: {
+      fr: 'Le design system utilise volontairement les polices système par défaut : moins de poids à charger, et le bénéfice d’accessibilité des polices natives (`--d-ui-font-sans`).',
+      en: 'The design system intentionally uses default system fonts, avoiding extra weight and loading time, plus the accessibility of native system fonts (`--d-ui-font-sans`).',
     },
-    composition: { fr: 'Composition', en: 'Composition' },
-    a11yLevel: {
-      fr: 'Le niveau de titre porte la structure, pas l’apparence. `Heading` sépare `level` de `size` (WCAG 1.3.1).',
-      en: 'Heading level carries structure, not appearance. `Heading` separates `level` from `size` (WCAG 1.3.1).',
+    fontsBySystem: { fr: 'Polices par système', en: 'Fonts by system' },
+    colSystem: { fr: 'Système', en: 'System' },
+    colFont: { fr: 'Police', en: 'Font' },
+    sysWindows: { fr: 'Windows', en: 'Windows' },
+    fontWindows: { fr: 'Segoe UI', en: 'Segoe UI' },
+    sysMac: { fr: 'macOS', en: 'macOS' },
+    fontMac: { fr: 'SF Pro', en: 'SF Pro' },
+    sysLinux: { fr: 'Linux', en: 'Linux' },
+    fontLinux: { fr: 'system-ui', en: 'system-ui' },
+    sysChrome: { fr: 'Chrome OS', en: 'Chrome OS' },
+    fontChrome: { fr: 'Roboto', en: 'Roboto' },
+    styles: { fr: 'Styles', en: 'Styles' },
+    stylesBody: {
+      fr: 'Le choix des styles dépend de la structure de la mise en page. Une interface peut avoir plusieurs niveaux d’architecture. Les bons styles gardent le contenu utile, simple et efficace.',
+      en: 'Selecting appropriate text styles is determined by layout structure. Layouts may have several levels of architecture. The right text styles keep content useful, simple, and effective.',
     },
-    a11yUnderline: {
-      fr: 'Les liens sont soulignés en permanence (WCAG 1.4.1).',
-      en: 'Links are underlined permanently (WCAG 1.4.1).',
+    basic: { fr: 'Styles de base', en: 'Basic styles' },
+    basicBody: {
+      fr: 'Les styles de base sont le choix par défaut pour toute pièce d’interface. Ils sont cohérents dans toute l’UI et ne se personnalisent pas au-delà de la famille de polices. Utilisez `Heading` (`display`, `title`, `subtitle`, `body`) et `Text` (`body`, `body-sm`, `caption`).',
+      en: 'Basic text styles are the default choice for any piece of UI. They stay consistent throughout the interface and cannot be customized further than the font family. Use `Heading` (`display`, `title`, `subtitle`, `body`) and `Text` (`body`, `body-sm`, `caption`).',
     },
-    a11yExternal: {
-      fr: 'Un lien externe s’annonce. `external` ajoute `rel="noopener noreferrer"` et un fallback anglais `(opens in a new tab)`.',
-      en: 'An external link is announced. `external` adds `rel="noopener noreferrer"` and an English fallback `(opens in a new tab)`.',
+    custom: { fr: 'Styles personnalisés', en: 'Custom styles' },
+    customBody: {
+      fr: 'Les styles personnalisés se règlent par token ou par prop, pour une identité (page, widget). Ils sont les mêmes dans toute l’app par défaut ; la surcharge cible un contexte.',
+      en: 'Custom text styles are overridable by token or prop, for pieces of UI that need to reflect an identity (usually a widget or page). They are the same app-wide by default; the override can target a context.',
     },
-    a11yDivider: {
-      fr: '`Divider` est décoratif par défaut.',
-      en: '`Divider` is decorative by default.',
+    customFont: {
+      fr: '`font-family` — token `--d-ui-font-sans`',
+      en: '`font-family` — `--d-ui-font-sans` token',
+    },
+    customSize: {
+      fr: '`size` — `Heading` (`display`, `title`, `subtitle`, `body`) et `Text` (`body`, `body-sm`, `caption`)',
+      en: '`size` — `Heading` (`display`, `title`, `subtitle`, `body`) and `Text` (`body`, `body-sm`, `caption`)',
+    },
+    customWeight: {
+      fr: '`weight` — `Text` (`regular`, `medium`, `semibold`). `Heading` est `font-normal` par défaut ; passez `bold` pour du gras.',
+      en: '`weight` — `Text` (`regular`, `medium`, `semibold`). `Heading` is `font-normal` by default; pass `bold` for bold.',
+    },
+    a11yBody: {
+      fr: '`Heading` rend un vrai `h1`…`h6`. Le niveau porte la structure, `size` l’apparence (WCAG 1.3.1). `Text` est du texte courant, pas un titre. Les pages détaillées sont sous **Components** : Text, Heading, Link, Divider.',
+      en: '`Heading` renders a real `h1`…`h6`. Level carries structure, `size` appearance (WCAG 1.3.1). `Text` is running text, not a heading. Detail pages live under **Components**: Text, Heading, Link, Divider.',
     },
     a11yMuted: {
       fr: '`tone="muted"` reste au-dessus de 4.5:1. Le test `tokens.contrast.test.ts` le vérifie.',
       en: '`tone="muted"` stays above 4.5:1. The `tokens.contrast.test.ts` test checks it.',
     },
     doHeading: {
-      fr: '`<Heading level={2} size="display">`',
-      en: '`<Heading level={2} size="display">`',
+      fr: '`<Heading level={2} size="display">` pour un titre visuellement large sans sauter de niveau',
+      en: '`<Heading level={2} size="display">` for a visually large title without skipping a level',
     },
     doMuted: {
       fr: '`<Text tone="muted">` pour une métadonnée',
       en: '`<Text tone="muted">` for metadata',
     },
-    doExternal: {
-      fr: '`<Link external>` pour une cible hors application',
-      en: '`<Link external>` for a target outside the app',
+    doToken: {
+      fr: 'Surcharger `--d-ui-font-sans` pour une identité, pas une classe Tailwind ad hoc',
+      en: 'Override `--d-ui-font-sans` for an identity, not an ad-hoc Tailwind class',
     },
     dontTwoH1: {
       fr: '`<Heading level={1}>` deux fois sur une page',
       en: '`<Heading level={1}>` twice on a page',
     },
     dontClass: {
-      fr: '`<Text className="text-slate-400">`',
-      en: '`<Text className="text-slate-400">`',
+      fr: '`<Text className="text-slate-400">` ou `text-[17px]`',
+      en: '`<Text className="text-slate-400">` or `text-[17px]`',
     },
-    dontBlank: {
-      fr: '`target="_blank"` sans `rel`',
-      en: '`target="_blank"` without `rel`',
-    },
-  },
-  field: {
-    intro: {
-      fr: '`Field` porte l’anatomie d’un champ : libellé, aide, erreur, état. Les contrôles de saisie s’y composent (`useFieldControl`) pour qu’aucun n’ait à réinventer son étiquetage. `Input`, `Select` et `Checkbox` arriveront ensuite (DS-023 et suivants).',
-      en: '`Field` carries field anatomy: label, help, error, state. Input controls compose into it (`useFieldControl`) so none have to reinvent labelling. `Input`, `Select` and `Checkbox` come next (DS-023 and later).',
-    },
-    helperBody: {
-      fr: '`FieldDescription` est une aide permanente, citée par `aria-describedby` seulement si elle est réellement rendue. Un id absent ferait taire l’annonce entière.',
-      en: '`FieldDescription` is standing help, cited by `aria-describedby` only if it is actually rendered. A missing id would silence the whole announcement.',
-    },
-    requiredBody: {
-      fr: '`required` pose l’attribut sur le contrôle et un astérisque décoratif (`aria-hidden`) sur le libellé. C’est l’attribut HTML qui porte l’information : un texte masqué « requis » ferait double emploi.',
-      en: '`required` sets the attribute on the control and a decorative asterisk (`aria-hidden`) on the label. The HTML attribute carries the information: hidden “required” text would duplicate it.',
-    },
-    invalidBody: {
-      fr: '`FieldError` n’est pas dans le DOM tant que `invalid` est faux. Un message masqué en CSS resterait lu. `role="alert"` annonce l’apparition ; le message est aussi cité par `aria-describedby`, donc il peut être entendu deux fois — mieux que pas du tout. L’état invalide n’est pas porté par la seule couleur (bordure renforcée, WCAG 1.4.1).',
-      en: '`FieldError` is not in the DOM while `invalid` is false. A CSS-hidden message would still be read. `role="alert"` announces appearance; the message is also cited by `aria-describedby`, so it may be heard twice — better than not at all. Invalid state is not carried by colour alone (reinforced border, WCAG 1.4.1).',
-    },
-    disabledBody: {
-      fr: '`disabled` se propage au contrôle via `useFieldControl`, et atténue le libellé.',
-      en: '`disabled` propagates to the control via `useFieldControl`, and mutes the label.',
-    },
-    groupBody: {
-      fr: 'Un groupe de cases ou de radios ne peut pas être nommé par un `label` (`for` ne vise qu’un contrôle). `group` rend un `fieldset` ; `Label` devient sa `legend`.',
-      en: 'A group of checkboxes or radios cannot be named by a `label` (`for` targets only one control). `group` renders a `fieldset`; `Label` becomes its `legend`.',
-    },
-    groupFirst: {
-      fr: '**`Label` doit rester le premier enfant.** Une `legend` ne nomme le `fieldset` que si elle en est le premier élément.',
-      en: '**`Label` must remain the first child.** A `legend` only names the `fieldset` if it is the first element.',
-    },
-    groupRequired: {
-      fr: 'Dans ce mode, `useFieldControl()` ne renvoie ni `id`, ni `aria-describedby`, ni `required` : les poser sur chaque option répéterait l’aide et exigerait de cocher toutes les cases. `required` ne pilote que l’astérisque de la légende.',
-      en: 'In this mode, `useFieldControl()` returns neither `id`, nor `aria-describedby`, nor `required`: putting them on each option would repeat the help and require every box to be checked. `required` only drives the legend asterisk.',
-    },
-    wire: { fr: 'Câbler un contrôle', en: 'Wiring a control' },
-    wireOutside: {
-      fr: 'Hors d’un `Field`, le hook renvoie `{}` : un contrôle peut l’appeler sans condition.',
-      en: 'Outside a `Field`, the hook returns `{}`: a control can call it unconditionally.',
-    },
-    a11yBody: {
-      fr: '`Field` seul rend un `div`. `group` rend un `fieldset`. `Label` rend `<label for>` ou `<legend>`. Pas de `role` inventé.',
-      en: '`Field` alone renders a `div`. `group` renders a `fieldset`. `Label` renders `<label for>` or `<legend>`. No invented `role`.',
-    },
-    doInvalid: {
-      fr: '`<Field invalid>` piloté par la validation, avec `<FieldError>` dans le DOM uniquement alors',
-      en: '`<Field invalid>` driven by validation, with `<FieldError>` in the DOM only then',
-    },
-    doGroup: {
-      fr: '`<Field group>` pour des cases ou des radios, `Label` en premier enfant',
-      en: '`<Field group>` for checkboxes or radios, `Label` as first child',
-    },
-    doHook: {
-      fr: '`useFieldControl()` dans le contrôle',
-      en: '`useFieldControl()` inside the control',
-    },
-    dontCssHide: {
-      fr: 'Rendre `<FieldError>` en le masquant en CSS',
-      en: 'Rendering `<FieldError>` and hiding it with CSS',
-    },
-    dontOneLabel: {
-      fr: 'Un `<Label>` unique pour plusieurs contrôles hors `group`',
-      en: 'A single `<Label>` for several controls outside `group`',
-    },
-    dontDescribedBy: {
-      fr: 'Recopier `aria-describedby` à la main',
-      en: 'Copying `aria-describedby` by hand',
-    },
-    dontErrorInHelp: {
-      fr: 'Mettre le message d’erreur dans `FieldDescription`',
-      en: 'Putting the error message in `FieldDescription`',
-    },
-    props: {
-      fr: 'Les attributs natifs de l’enveloppe (`className`, `id`, …) sont transmis. `Label`, `FieldDescription` et `FieldError` n’exposent pas d’API au-delà du HTML.',
-      en: 'Native wrapper attributes (`className`, `id`, …) are forwarded. `Label`, `FieldDescription` and `FieldError` expose no API beyond HTML.',
+    dontFakeHeading: {
+      fr: '`<Text size="body" weight="semibold">` à la place d’un `Heading`',
+      en: '`<Text size="body" weight="semibold">` instead of a `Heading`',
     },
   },
   iconPage: {
@@ -945,12 +1000,12 @@ export const docsCopy = {
   textInput: {
     title: { fr: 'TextInput', en: 'TextInput' },
     intro: {
-      fr: '`TextInput` est le champ de saisie d’une ligne, en pleine largeur. Pour plusieurs lignes, utilisez `Textarea`.',
-      en: '`TextInput` is the single-line text field, full width. For several lines, use `Textarea`.',
+      fr: '`TextInput` est le champ de saisie d’une ligne, en pleine largeur. Pour plusieurs lignes, utilisez `Textarea`. Pour composer un contrôle custom (libellé, aide, erreur), importez `Field` (`useFieldControl`).',
+      en: '`TextInput` is the single-line text field, full width. For several lines, use `Textarea`. To compose a custom control (label, help, error), import `Field` (`useFieldControl`).',
     },
     labelProp: {
-      fr: '`label` est une prop du composant : le libellé s’affiche au-dessus du cadre. Vous pouvez aussi attacher un `<label htmlFor>` externe ou `aria-labelledby` (par exemple via `Field`, DS-022).',
-      en: '`label` is a component prop: the label renders above the field. You can also attach an external `<label htmlFor>` or `aria-labelledby` (for example via `Field`, DS-022).',
+      fr: '`label` est une prop du composant : le libellé s’affiche au-dessus du cadre. Vous pouvez aussi attacher un `<label htmlFor>` externe ou `aria-labelledby` (par exemple via `Field`).',
+      en: '`label` is a component prop: the label renders above the field. You can also attach an external `<label htmlFor>` or `aria-labelledby` (for example via `Field`).',
     },
     threeStates: {
       fr: 'Trois états particuliers : `disabled`, `valid` et `invalid`.',
@@ -1431,8 +1486,8 @@ export const docsCopy = {
   combobox: {
     title: { fr: 'Combobox', en: 'Combobox' },
     intro: {
-      fr: '`Combobox` est un champ texte filtrable. `multiple` pose des chips dans le champ. `listStatus` couvre chargement, pagination et erreur de liste. `filter` choisit le filtrage (`auto`, `manual`, `off`).',
-      en: '`Combobox` is a filterable text field. `multiple` shows chips in the field. `listStatus` covers loading, pagination, and list error. `filter` chooses filtering (`auto`, `manual`, `off`).',
+      fr: '`Combobox` est un champ texte filtrable. `multiple` pose des chips dans le champ. `listStatus` couvre chargement, pagination et erreur de liste. `filter` choisit le filtrage (`auto`, `manual`, `off`). Pour une liste fermée sans saisie, importez `Select` (même contrat `options` / `value`, sans recherche).',
+      en: '`Combobox` is a filterable text field. `multiple` shows chips in the field. `listStatus` covers loading, pagination, and list error. `filter` chooses filtering (`auto`, `manual`, `off`). For a closed list without typing, import `Select` (same `options` / `value` contract, no search).',
     },
     single: { fr: 'Sélection unique', en: 'Single selection' },
     useSingle: {
@@ -1516,6 +1571,84 @@ export const docsCopy = {
     propsBody: {
       fr: '`options` (plate, groupée, `icon`, `description`). `multiple` + chips dans le champ. `listStatus`, `filter`, `renderOption` / `beforeOptions`. `placeholder` ne nomme pas le champ.',
       en: '`options` (flat, grouped, `icon`, `description`). `multiple` + chips in the field. `listStatus`, `filter`, `renderOption` / `beforeOptions`. `placeholder` does not name the field.',
+    },
+  },
+  calendar: {
+    title: { fr: 'Calendar', en: 'Calendar' },
+    intro: {
+      fr: '`Calendar` est une grille de mois headless : navigation clavier, dates min/max, jours indisponibles, début de semaine paramétrable. Ce n’est pas un DatePicker ni un calendrier d’événements LMS.',
+      en: '`Calendar` is a headless month grid: keyboard navigation, min/max dates, unavailable days, configurable week start. It is not a DatePicker or an LMS event calendar.',
+    },
+    restricted: { fr: 'Dates restreintes', en: 'Restricted dates' },
+    restrictedBody: {
+      fr: '`minValue` / `maxValue` bornent la sélection (dates min et max). `isDateUnavailable` exclut des jours précis (week-ends, jours fériés). Ces jours restent visibles, avec `aria-disabled`.',
+      en: '`minValue` / `maxValue` bound selection (min and max dates). `isDateUnavailable` excludes specific days (weekends, holidays). Those days stay visible, with `aria-disabled`.',
+    },
+    year: { fr: 'Année', en: 'Year' },
+    yearBody: {
+      fr: 'Le sélecteur **Année** (et **Mois**) dans l’en-tête change le mois affiché. Les années proposées suivent `minValue` / `maxValue` lorsqu’ils sont posés.',
+      en: 'The **Year** (and **Month**) select in the header changes the displayed month. Offered years follow `minValue` / `maxValue` when set.',
+    },
+    range: { fr: 'Plage de dates', en: 'Date range' },
+    rangeBody: {
+      fr: '`selectionMode="range"` : premier clic = début, second = fin (réordonnés si besoin), y compris dans deux mois différents. Deux mois s’affichent par défaut (`numberOfMonths={2}`) ; les flèches et **Mois** / **Année** déplacent la vue. Un troisième clic recommence. `minValue` / `maxValue` bornent la plage si besoin. `name` / `nameEnd` pour la soumission HTML.',
+      en: '`selectionMode="range"`: first click = start, second = end (reordered if needed), including across two different months. Two months show by default (`numberOfMonths={2}`); arrows and **Month** / **Year** move the view. A third click starts over. `minValue` / `maxValue` bound the range if needed. `name` / `nameEnd` for HTML submit.',
+    },
+    weekStart: { fr: 'Début de semaine', en: 'Week start' },
+    weekStartBody: {
+      fr: '`weekStartsOn` fixe le premier jour (0 = dimanche, 1 = lundi). Sans valeur, le début suit `weekStartFromLocale(locale)` (`Intl.Locale`).',
+      en: '`weekStartsOn` sets the first day (0 = Sunday, 1 = Monday). If omitted, the start follows `weekStartFromLocale(locale)` (`Intl.Locale`).',
+    },
+    locale: { fr: 'Langue', en: 'Locale' },
+    localeBody: {
+      fr: '`locale` formate les jours et le mois via `Intl`, et pose `lang` (WCAG 3.1.2). Les libellés des flèches suivent le français par défaut, l’anglais si `locale` commence par `en`.',
+      en: '`locale` formats days and the month via `Intl`, and sets `lang` (WCAG 3.1.2). Arrow labels default to French, English if `locale` starts with `en`.',
+    },
+    multipleMonths: { fr: 'Plusieurs mois', en: 'Multiple months' },
+    multipleMonthsBody: {
+      fr: '`numberOfMonths` (1 à 3) affiche des grilles côte à côte. Les flèches décalent le premier mois.',
+      en: '`numberOfMonths` (1 to 3) shows grids side by side. The arrows shift the first month.',
+    },
+    adapter: { fr: 'Adaptateur de dates', en: 'Date adapter' },
+    adapterBody: {
+      fr: 'L’API publique est une date civile `{ year, month, day }` (mois 1–12), sans bibliothèque de fuseau. Convertissez un `Date` avec `toCalendarDate(date, "local" | "utc")` et l’inverse avec `fromCalendarDate`.',
+      en: 'The public API is a civil date `{ year, month, day }` (month 1–12), with no timezone library. Convert a `Date` with `toCalendarDate(date, "local" | "utc")` and the reverse with `fromCalendarDate`.',
+    },
+    a11yBody: {
+      fr: 'La grille a `role="grid"`, nommée par le mois. Les sélecteurs **Mois** et **Année** sont des `<select>` natifs nommés. Le jour choisi a `aria-selected` ; aujourd’hui a `aria-current="date"`. En `range`, `aria-multiselectable`. Un seul jour est tabulable ; le nom accessible est la date complète.',
+      en: 'The grid has `role="grid"`, named by the month. **Month** and **Year** are named native `<select>`s. The chosen day has `aria-selected`; today has `aria-current="date"`. In `range`, `aria-multiselectable`. Only one day is in the tab order; the accessible name is the full date.',
+    },
+    a11yKeys: {
+      fr: 'Flèches : jour / semaine. Début / Fin : semaine. Page préc. / suiv. : mois (Maj : année). Entrée ou clic : sélection.',
+      en: 'Arrows: day / week. Home / End: week. Page Up / Down: month (Shift: year). Enter or click: select.',
+    },
+    doGrid: {
+      fr: 'Laisser le focus sur un `button` dans une `gridcell`, pas un `div` cliquable',
+      en: 'Keep focus on a `button` inside a `gridcell`, not a clickable `div`',
+    },
+    doAdapter: {
+      fr: '`toCalendarDate` / `fromCalendarDate` au bord de l’app, jamais un instant ISO ambigu dans la grille',
+      en: '`toCalendarDate` / `fromCalendarDate` at the app boundary, never an ambiguous ISO instant in the grid',
+    },
+    doUnavailable: {
+      fr: '`isDateUnavailable` + `minValue` / `maxValue` plutôt que de retirer des jours de la grille',
+      en: '`isDateUnavailable` + `minValue` / `maxValue` rather than removing days from the grid',
+    },
+    dontEvents: {
+      fr: 'Le rendu d’événements LMS — c’est DS-050, hors de `d-ui`',
+      en: 'LMS event rendering — that is DS-050, outside `d-ui`',
+    },
+    dontPicker: {
+      fr: 'Un champ texte + overlay — c’est le DatePicker (DS-028), qui réutilisera `Calendar`',
+      en: 'A text field + overlay — that is DatePicker (DS-028), which will reuse `Calendar`',
+    },
+    dontTimezone: {
+      fr: 'Luxon, date-fns-tz ou un `Date` local implicite dans les props',
+      en: 'Luxon, date-fns-tz, or an implicit local `Date` in the props',
+    },
+    propsBody: {
+      fr: '`value` / `onValueChange` pour un état contrôlé (`CalendarDate` ou `{ start, end }`). `selectionMode="range"` pour une plage. `today` pour figer « aujourd’hui » dans les tests. `name` / `nameEnd` posent des champs masqués `YYYY-MM-DD`.',
+      en: '`value` / `onValueChange` for controlled state (`CalendarDate` or `{ start, end }`). `selectionMode="range"` for a range. `today` to freeze “today” in tests. `name` / `nameEnd` set hidden `YYYY-MM-DD` fields.',
     },
   },
 } as const;

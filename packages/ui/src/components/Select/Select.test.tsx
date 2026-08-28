@@ -182,6 +182,16 @@ describe('Select', () => {
     expect(overlay).toHaveClass('d-ui-overlay');
   });
 
+  it('opens a borderless listbox in a fixed overlay', async () => {
+    const user = userEvent.setup();
+    render(<Select label="Pays" options={options} />);
+    await user.click(screen.getByRole('combobox', { name: 'Pays' }));
+    const list = screen.getByRole('listbox', { name: 'Pays' });
+    expect(list).toHaveClass('d-ui-listbox');
+    expect(list.className.split(/\s+/)).not.toContain('border');
+    expect(list.parentElement).toHaveStyle({ position: 'fixed' });
+  });
+
   it('shows the selected option icon in the trigger', () => {
     render(
       <Select
@@ -218,6 +228,39 @@ describe('Combobox', () => {
     await user.keyboard('{Enter}');
     expect(onValueChange).toHaveBeenCalledWith('be');
     expect(control).toHaveValue('Belgique');
+  });
+
+  it('keeps a list open when another Combobox is in a separate canvas', async () => {
+    const user = userEvent.setup();
+    render(
+      <div>
+        <div className="d-ui-docs">
+          <Combobox label="Pays" options={options} />
+        </div>
+        <div className="d-ui-docs">
+          <Combobox label="Ville" options={options} />
+        </div>
+      </div>,
+    );
+    await user.click(screen.getByRole('combobox', { name: 'Pays' }));
+    expect(screen.getByRole('listbox', { name: 'Pays' })).toBeVisible();
+    await user.click(screen.getByRole('combobox', { name: 'Ville' }));
+    expect(screen.getByRole('listbox', { name: 'Pays' })).toBeVisible();
+    expect(screen.getByRole('listbox', { name: 'Ville' })).toBeVisible();
+  });
+
+  it('closes the open list when another Combobox on the same surface opens', async () => {
+    const user = userEvent.setup();
+    render(
+      <div>
+        <Combobox label="Pays" options={options} />
+        <Combobox label="Ville" options={options} />
+      </div>,
+    );
+    await user.click(screen.getByRole('combobox', { name: 'Pays' }));
+    await user.click(screen.getByRole('combobox', { name: 'Ville' }));
+    expect(screen.queryByRole('listbox', { name: 'Pays' })).not.toBeInTheDocument();
+    expect(screen.getByRole('listbox', { name: 'Ville' })).toBeVisible();
   });
 
   it('does not open another Combobox when choosing an option', async () => {

@@ -357,15 +357,6 @@ const selectSharedArgTypes = {
   },
 };
 
-export const selectArgTypes = {
-  ...selectSharedArgTypes,
-  placeholder: {
-    ...textFieldArgTypes.placeholder,
-    description:
-      'Texte du déclencheur lorsqu’aucune valeur n’est choisie. Défaut : « Choisir ».',
-  },
-};
-
 export const comboboxArgTypes = {
   ...selectSharedArgTypes,
   placeholder: {
@@ -518,27 +509,27 @@ export const textArgTypes = {
     options: ['regular', 'medium', 'semibold'],
     description: 'Graisse : `regular`, `medium`, `semibold`.',
   },
-};
-
-export const fieldArgTypes = {
-  required: {
+  color: {
+    control: 'select' as const,
+    options: ['brand', 'dark', 'light', 'warning', 'danger', 'success', 'info', 'violet'],
+    description:
+      'Famille de la page Color. Remplace `tone`. `light` se lit sur un fond `fg`.',
+  },
+  colorVariant: {
+    control: 'select' as const,
+    options: ['D2', 'D1', 'N', 'L1', 'L2', 'L3', 'L4', 'L5', 'L6'],
+    description:
+      'Cran de la rampe (`N` par défaut). Ignoré si `color` est absente. Les crans L sont des teintes, pas du texte courant.',
+  },
+  noWrap: {
     control: 'boolean' as const,
     description:
-      'Pose `required` sur le contrôle (hors `group`) et un astérisque décoratif sur le libellé. Dans un groupe, n’exige pas chaque case.',
+      'Empêche le retour à la ligne. Un parent `overflow-hidden` coupe sans ellipse. Activé automatiquement par `truncate` sur une ligne.',
   },
-  invalid: {
+  truncate: {
     control: 'boolean' as const,
     description:
-      'Marque le contrôle `aria-invalid` et autorise `FieldError` dans le DOM (`role="alert"`).',
-  },
-  disabled: {
-    control: 'boolean' as const,
-    description: 'Désactive le contrôle (ou le `fieldset` en mode `group`).',
-  },
-  group: {
-    control: 'boolean' as const,
-    description:
-      'Rend un `fieldset` ; `Label` devient `legend` et doit rester le premier enfant. `useFieldControl` ne transmet alors ni `id` ni `required`.',
+      '`true` : une ligne avec ellipse. `{ lines: n }` : n lignes (`n` > 1). Le lecteur d’écran lit toujours le texte entier.',
   },
 };
 
@@ -553,6 +544,10 @@ export const headingArgTypes = {
     options: ['display', 'title', 'subtitle', 'body'],
     description:
       'Taille visuelle, indépendante du `level`. Par défaut, la taille suit le niveau.',
+  },
+  bold: {
+    control: 'boolean' as const,
+    description: 'Passe en `font-bold`. Désactivé par défaut (`font-normal`).',
   },
 };
 
@@ -569,6 +564,21 @@ export const linkArgTypes = {
     description:
       'Texte annoncé pour un lien externe. Défaut anglais : `"(opens in a new tab)"`.',
   },
+  color: {
+    control: 'inline-radio' as const,
+    options: ['default', 'dark', 'light'],
+    description:
+      '`default` : token `link` (et `visited`). `dark` : encre (`fg`). `light` : fond (`bg`), à poser sur un fond `fg`. Non héritée du parent.',
+  },
+  icon: {
+    description:
+      'Icône décorative (`aria-hidden`). Ne remplace pas le nom accessible. Suit `currentColor`.',
+  },
+  iconPosition: {
+    control: 'inline-radio' as const,
+    options: ['start', 'end'],
+    description: 'Position de l’icône : `start` (début) ou `end` (fin).',
+  },
 };
 
 export const dividerArgTypes = {
@@ -581,5 +591,95 @@ export const dividerArgTypes = {
   label: {
     description:
       'Nom accessible. Sans `label`, le trait est décoratif (`aria-hidden`). Avec `label` en horizontal, le texte est visible au centre et les filets remplissent le parent. Ne le renseigner que si la séparation porte du sens.',
+  },
+};
+
+export const calendarArgTypes = {
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md', 'lg'],
+    description:
+      '`sm` si l’espace est contraint, `md` par défaut, `lg` pour les vues aérées.',
+  },
+  locale: {
+    control: 'text' as const,
+    description:
+      'Locale BCP 47 pour `Intl` et `lang`. Défaut : `fr`. Les flèches passent en anglais si la locale commence par `en`.',
+  },
+  weekStartsOn: {
+    control: { type: 'inline-radio' as const },
+    options: [0, 1, 2, 3, 4, 5, 6],
+    description:
+      'Premier jour de la semaine (0 = dimanche, 1 = lundi). Défaut : `weekStartFromLocale(locale)`.',
+  },
+  numberOfMonths: {
+    control: { type: 'inline-radio' as const },
+    options: [1, 2, 3],
+    description:
+      'Nombre de mois côte à côte (1 à 3). Défaut : 1, ou 2 si `selectionMode="range"`.',
+  },
+  disabled: {
+    control: 'boolean' as const,
+    description: 'Désactive la grille et la navigation.',
+  },
+  value: {
+    description:
+      'Sélection contrôlée : `{ year, month, day }` ou `{ start, end }` si `selectionMode="range"`. `null` = aucune.',
+  },
+  defaultValue: {
+    description: 'Sélection au montage (non contrôlé). Date unique ou `{ start, end }`.',
+  },
+  onValueChange: {
+    description: 'Appelé lorsqu’un jour disponible est choisi (date ou plage).',
+  },
+  month: {
+    description: 'Premier mois affiché (contrôlé). Le jour est ignoré.',
+  },
+  defaultMonth: {
+    description: 'Premier mois affiché au montage.',
+  },
+  onMonthChange: {
+    description: 'Appelé lorsque l’utilisateur change de mois.',
+  },
+  today: {
+    description:
+      'Date « aujourd’hui » (`aria-current="date"`). Défaut : date civile locale. À figer dans les tests.',
+  },
+  minValue: {
+    description:
+      'Première date sélectionnable (incluse). Borne aussi le sélecteur d’année.',
+  },
+  maxValue: {
+    description:
+      'Dernière date sélectionnable (incluse). Borne aussi le sélecteur d’année.',
+  },
+  selectionMode: {
+    control: 'inline-radio' as const,
+    options: ['single', 'range'],
+    description:
+      '`single` (défaut) : une date. `range` : début puis fin (`{ start, end }`).',
+  },
+  isDateUnavailable: {
+    description:
+      'Fonction `(date) => boolean` pour exclure des jours (week-ends, fériés).',
+  },
+  previousMonthLabel: {
+    description: 'Nom accessible du bouton mois précédent. Défaut : « Mois précédent ».',
+  },
+  nextMonthLabel: {
+    description: 'Nom accessible du bouton mois suivant. Défaut : « Mois suivant ».',
+  },
+  monthSelectLabel: {
+    description: 'Nom accessible du sélecteur de mois. Défaut : « Mois ».',
+  },
+  yearSelectLabel: {
+    description: 'Nom accessible du sélecteur d’année. Défaut : « Année ».',
+  },
+  name: {
+    description: 'Nom du champ masqué `YYYY-MM-DD` (date unique, ou début de plage).',
+  },
+  nameEnd: {
+    description:
+      'Nom du champ masqué de fin de plage. Utilisé si `selectionMode="range"`.',
   },
 };

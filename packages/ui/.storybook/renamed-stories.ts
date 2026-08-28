@@ -1,8 +1,10 @@
-/** Old Storybook ids → current ids after Input → TextInput / Textarea split. */
+/** Old Storybook ids → current ids after Input → TextInput / Textarea, Select → Combobox, Field → TextInput. */
 const STORY_ALIASES: Record<string, string> = {
   'components-input--multiline': 'components-textarea--default',
   'components-input--textarea-valid': 'components-textarea--valid',
   'components-input--textarea-invalid': 'components-textarea--invalid',
+  'components-field--with-description': 'components-textinput--helper',
+  'components-field--group': 'components-textinput--default',
 };
 
 export function rewriteRenamedStoryHref(href: string): string {
@@ -10,7 +12,10 @@ export function rewriteRenamedStoryHref(href: string): string {
   for (const [from, to] of Object.entries(STORY_ALIASES)) {
     next = next.replaceAll(from, to);
   }
-  return next.replaceAll('components-input', 'components-textinput');
+  return next
+    .replaceAll('components-input', 'components-textinput')
+    .replaceAll('components-select', 'components-combobox')
+    .replaceAll('components-field', 'components-textinput');
 }
 
 export function applyRenamedStoryUrl(): void {

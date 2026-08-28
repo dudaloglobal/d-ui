@@ -170,6 +170,15 @@
   border: 0;
 }
 
+.d-ui-listbox {
+  border: 0;
+  box-shadow: 0 2px 8px 0 rgb(15 23 42 / 0.2);
+}
+
+.d-ui-overlay[data-d-ui-theme='dark'] .d-ui-listbox {
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 0.45);
+}
+
 .d-ui-option[data-active] {
   background-color: var(--d-ui-color-surface-hover);
 }
@@ -186,6 +195,14 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+.d-ui-text-clamp {
+  display: -webkit-box;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--d-ui-text-truncate-lines);
 }
 
 .d-ui-skip-link:focus,

@@ -30,6 +30,24 @@ import * as TextStories from './Text.stories';
 
 <Canvas of={TextStories.Weights} />
 
+<H2 k="text.color" />
+
+<P k="text.colorBody" />
+
+<Canvas of={TextStories.Colors} />
+
+<H2 k="text.colorVariant" />
+
+<P k="text.colorVariantBody" />
+
+<Canvas of={TextStories.ColorVariants} />
+
+<H2 k="text.wrap" />
+
+<P k="text.wrapBody" />
+
+<Canvas of={TextStories.WrapAndOverflow} />
+
 <P k="chrome.themeLang" />
 
 <H2 k="chrome.accessibility" />
@@ -38,14 +56,28 @@ import * as TextStories from './Text.stories';
 
 <H3 k="chrome.do" />
 
-<Ul items={['text.doMuted', 'text.doSpan']} />
+<Ul items={['text.doMuted', 'text.doSpan', 'text.doColor', 'text.doTruncate']} />
 
 <H3 k="chrome.dont" />
 
-<Ul items={['text.dontClass', 'text.dontHeading']} />
+<Ul
+  items={['text.dontClass', 'text.dontHeading', 'text.dontTint', 'text.dontTruncate']}
+/>
 
 <H2 k="chrome.properties" />
 
 <P k="text.props" />
 
-<ArgTypes of={TextStories} include={['as', 'size', 'tone', 'weight']} />
+<ArgTypes
+  of={TextStories}
+  include={[
+    'as',
+    'size',
+    'tone',
+    'weight',
+    'color',
+    'colorVariant',
+    'noWrap',
+    'truncate',
+  ]}
+/>

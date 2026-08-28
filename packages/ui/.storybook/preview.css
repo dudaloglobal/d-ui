@@ -113,8 +113,9 @@ html[data-d-ui-theme='dark'] pre.prismjs .token.attr-value {
   color: #b474dd !important;
 }
 
+/* Cadre des Canvas docs : chrome décoratif, pas une frontière de contrôle 1.4.11. */
 .sbdocs-preview {
-  border-color: var(--d-ui-color-border) !important;
+  border-color: var(--d-ui-color-border-subtle) !important;
 }
 
 .sbdocs h1,
@@ -126,6 +127,119 @@ html[data-d-ui-theme='dark'] pre.prismjs .token.attr-value {
 .sbdocs td,
 .sbdocs th {
   color: var(--d-ui-color-fg) !important;
+}
+
+/*
+  Tailwind preflight pose `font-weight: inherit` sur h1–h6. Storybook ne
+  réaffirme le 700 que sur h1 et h3, donc les h2 de doc (Heading, Typographie,
+  …) tombent à 400.
+*/
+.sbdocs :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: 700;
+}
+
+/* Tables de doc (polices, etc.) — ne pas cibler `.sbdocs table` : ça casse ArgTypes. */
+.d-ui-docs-table {
+  width: 100%;
+  max-width: 40rem;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+}
+
+.d-ui-docs-table th,
+.d-ui-docs-table td {
+  border: 1px solid var(--d-ui-color-border-subtle);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.d-ui-docs-table th {
+  font-weight: 600;
+  background: var(--d-ui-color-surface-muted) !important;
+}
+
+/* ArgTypes (Propriétés) : Tailwind preflight met padding/border à 0 sur th/td. */
+.docblock-argstable {
+  width: 100% !important;
+  max-width: none !important;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.docblock-argstable th,
+.docblock-argstable td {
+  border: none;
+  vertical-align: top;
+  text-align: left;
+}
+
+.docblock-argstable th {
+  padding: 10px 15px !important;
+  font-weight: 600;
+  color: var(--d-ui-color-fg-muted) !important;
+  background: transparent !important;
+}
+
+.docblock-argstable td {
+  padding: 10px 15px !important;
+  background: var(--d-ui-color-bg) !important;
+  border-top: 1px solid var(--d-ui-color-border-subtle) !important;
+}
+
+.docblock-argstable th:first-of-type,
+.docblock-argstable td:first-of-type {
+  width: 25%;
+  padding-left: 20px !important;
+}
+
+.docblock-argstable th:nth-of-type(2),
+.docblock-argstable td:nth-of-type(2) {
+  width: 35%;
+}
+
+.docblock-argstable td:nth-of-type(3) {
+  width: 15%;
+}
+
+.docblock-argstable th:last-of-type,
+.docblock-argstable td:last-of-type {
+  padding-right: 20px !important;
+}
+
+.docblock-argstable tbody tr:first-of-type td {
+  border-top: 1px solid var(--d-ui-color-border-subtle) !important;
+}
+
+.docblock-argstable tbody tr:last-of-type td {
+  border-bottom: 1px solid var(--d-ui-color-border-subtle) !important;
+}
+
+.docblock-argstable tbody tr td:first-of-type {
+  border-left: 1px solid var(--d-ui-color-border-subtle) !important;
+}
+
+.docblock-argstable tbody tr td:last-of-type {
+  border-right: 1px solid var(--d-ui-color-border-subtle) !important;
+}
+
+.docblock-argstable tbody tr:first-of-type td:first-of-type {
+  border-top-left-radius: var(--d-ui-radius-md);
+}
+
+.docblock-argstable tbody tr:first-of-type td:last-of-type {
+  border-top-right-radius: var(--d-ui-radius-md);
+}
+
+.docblock-argstable tbody tr:last-of-type td:first-of-type {
+  border-bottom-left-radius: var(--d-ui-radius-md);
+}
+
+.docblock-argstable tbody tr:last-of-type td:last-of-type {
+  border-bottom-right-radius: var(--d-ui-radius-md);
 }
 
 .sbdocs :not(pre) > code {

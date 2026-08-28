@@ -99,3 +99,29 @@ export function Ol({ items }: { items: string[] }) {
     </ol>
   );
 }
+
+export function Table({ headers, rows }: { headers: string[]; rows: string[][] }) {
+  const locale = useDocsLocale();
+  return (
+    <table className="d-ui-docs-table">
+      <thead>
+        <tr>
+          {headers.map((k) => (
+            <th key={k} scope="col">
+              {renderInline(docsString(docsCopy, k, locale))}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
+          <tr key={row.join('-')}>
+            {row.map((k) => (
+              <td key={k}>{renderInline(docsString(docsCopy, k, locale))}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}

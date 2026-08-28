@@ -24,6 +24,19 @@ describe('Heading', () => {
 
   it('derives the visual size from the level by default', () => {
     render(<Heading level={1}>Accueil</Heading>);
-    expect(screen.getByRole('heading', { level: 1 })).toHaveClass('text-4xl');
+    expect(screen.getByRole('heading', { level: 1 })).toHaveClass(
+      'text-4xl',
+      'font-normal',
+    );
+    expect(screen.getByRole('heading', { level: 1 })).not.toHaveClass('font-bold');
+  });
+
+  it('opts into bold weight', () => {
+    render(
+      <Heading level={2} bold>
+        Titre fort
+      </Heading>,
+    );
+    expect(screen.getByRole('heading', { level: 2 })).toHaveClass('font-bold');
   });
 });

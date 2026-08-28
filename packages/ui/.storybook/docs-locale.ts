@@ -72,15 +72,32 @@ export const storyNameEn: Record<string, string> = {
   Labellisé: 'Labelled',
   Externe: 'External',
   'Dans un paragraphe': 'In a paragraph',
+  'Avec icône': 'With icon',
+  'Couleur sombre': 'Dark color',
+  'Couleur claire': 'Light color',
   Tons: 'Tones',
   Graisses: 'Weights',
   Niveaux: 'Levels',
+  Gras: 'Bold',
   'Taille découplée': 'Decoupled size',
   'Avec aide': 'With helper',
   'Couleur héritée': 'Inherited color',
   'Même silhouette': 'Same silhouette',
   Nomée: 'Named',
   'Dans un bouton': 'Inside a button',
+  'Dates restreintes': 'Restricted dates',
+  'Début de semaine': 'Week start',
+  'Plusieurs mois': 'Multiple months',
+  'Week-ends indisponibles': 'Unavailable weekends',
+  Année: 'Year',
+  'Plage de dates': 'Date range',
+  'Styles de base': 'Basic styles',
+  'Styles personnalisés': 'Custom styles',
+  'Palette principale': 'Primary palette',
+  'Palette secondaire': 'Secondary palette',
+  Couleurs: 'Colors',
+  'Variantes de couleur': 'Color variants',
+  'Retour à la ligne et débordement': 'Text wrap and overflow',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -518,6 +535,24 @@ const typographyFr = {
   body: 'body — texte courant',
   bodySm: 'body-sm — texte secondaire, aides de saisie',
   caption: 'caption — légendes, métadonnées',
+  styleDisplay: 'Display',
+  styleTitle: 'Title',
+  styleSubtitle: 'Subtitle — le ciel n’est pas la limite, seulement le début du parcours',
+  styleBody:
+    'Body Des centaines de milliers d’étudiants suivent un parcours. Le texte courant porte l’essentiel : modules, descriptions, consignes. Il reste utile, simple, et lisible sur toute la largeur de la colonne.',
+  styleBodySm:
+    'Body-sm Des aides, des légendes secondaires et des métadonnées encore lisibles. Moins d’emphase, même contraste utilisable.',
+  styleCaption: 'Caption',
+  stylePublish: 'Publié le 12 mars 2026',
+  customTitle1: 'Title1',
+  customTitle2: 'Title2',
+  customTitle3: 'Title3',
+  customTitle4: 'Title4',
+  customIntro: 'Intro',
+  customBodyLarge: 'Body large',
+  customBody: 'Body',
+  customQuote:
+    '« Le design system fournit les primitives typographiques pour que les écrans n’inventent pas leurs propres tailles. »',
   toneDefault: 'tone="default" — contraste maximal',
   toneMuted: 'tone="muted" — reste au-dessus de 4.5:1',
   toneDanger: 'tone="danger" — message d’erreur',
@@ -529,6 +564,8 @@ const typographyFr = {
   sizeDecoupledDisplay: 'h2 rendu en display',
   sizeDecoupledSubtitle: 'h1 rendu en subtitle',
   catalogue: 'Consulter le catalogue',
+  darkLink: 'Lien sombre',
+  lightLink: 'Lien clair',
   inTextBefore: 'Le soulignement est permanent :',
   inTextLink: 'ce lien',
   inTextAfter: 'reste identifiable même sans percevoir la couleur.',
@@ -540,6 +577,17 @@ const typographyFr = {
   labelled: 'Fin des résultats pertinents',
   relevant: 'Résultats pertinents',
   other: 'Autres résultats',
+  colorBefore: 'Voici un mot',
+  colorEmphasis: 'coloré',
+  colorAfter: 'dans la phrase.',
+  weightRegular: 'regular — graisse par défaut',
+  weightMedium: 'medium — emphase moyenne',
+  weightSemibold: 'semibold — emphase forte',
+  wrapDefault: 'par défaut',
+  wrapNoWrap: 'noWrap',
+  wrapTruncate: 'truncate',
+  wrapTruncateMultiline: 'truncate { lines: 2 }',
+  wrapSample: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 };
 
 const typographyEn = {
@@ -548,6 +596,24 @@ const typographyEn = {
   body: 'body — running text',
   bodySm: 'body-sm — secondary text, field help',
   caption: 'caption — captions, metadata',
+  styleDisplay: 'Display',
+  styleTitle: 'Title',
+  styleSubtitle: 'Subtitle — the sky is not the limit, only the start of the path',
+  styleBody:
+    'Body Hundreds of thousands of students follow a path. Running text carries the bulk of the content: modules, descriptions, instructions. It stays useful, simple, and readable across the column.',
+  styleBodySm:
+    'Body-sm Secondary help, captions, and metadata that remain readable. Less emphasis, still a usable contrast.',
+  styleCaption: 'Caption',
+  stylePublish: 'Published 12 March 2026',
+  customTitle1: 'Title1',
+  customTitle2: 'Title2',
+  customTitle3: 'Title3',
+  customTitle4: 'Title4',
+  customIntro: 'Intro',
+  customBodyLarge: 'Body large',
+  customBody: 'Body',
+  customQuote:
+    '“The design system provides typography primitives so screens do not invent their own sizes.”',
   toneDefault: 'tone="default" — maximum contrast',
   toneMuted: 'tone="muted" — stays above 4.5:1',
   toneDanger: 'tone="danger" — error message',
@@ -559,6 +625,8 @@ const typographyEn = {
   sizeDecoupledDisplay: 'h2 rendered as display',
   sizeDecoupledSubtitle: 'h1 rendered as subtitle',
   catalogue: 'Browse the catalogue',
+  darkLink: 'Dark color link',
+  lightLink: 'Light color link',
   inTextBefore: 'The underline is permanent:',
   inTextLink: 'this link',
   inTextAfter: 'stays identifiable even without perceiving colour.',
@@ -570,6 +638,17 @@ const typographyEn = {
   labelled: 'End of relevant results',
   relevant: 'Relevant results',
   other: 'Other results',
+  colorBefore: 'Here is a',
+  colorEmphasis: 'coloured',
+  colorAfter: 'word in the sentence.',
+  weightRegular: 'regular — default weight',
+  weightMedium: 'medium — medium emphasis',
+  weightSemibold: 'semibold — strong emphasis',
+  wrapDefault: 'default',
+  wrapNoWrap: 'noWrap',
+  wrapTruncate: 'truncate',
+  wrapTruncateMultiline: 'truncate { lines: 2 }',
+  wrapSample: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 };
 
 export type TypographyDocsCopy = typeof typographyFr;
@@ -578,44 +657,32 @@ export function typographyCopy(locale: DocsLocale): TypographyDocsCopy {
   return locale === 'en' ? typographyEn : typographyFr;
 }
 
-const fieldFr = {
-  email: 'Adresse e-mail',
-  emailValue: 'etudiant@dudalo.com',
-  emailInvalid: 'etudiant@',
-  emailHelp: 'Elle sert uniquement à la récupération de compte.',
-  emailError: 'Cette adresse n’est pas valide.',
-  pathName: 'Nom du parcours',
-  pathHelp: 'Visible par les étudiants inscrits.',
-  identifier: 'Identifiant',
-  identifierHelp: 'Attribué par l’établissement.',
-  identifierValue: 'DUD-2026-0142',
-  notifications: 'Notifications',
-  notificationsHelp: 'Choisissez au moins un canal.',
-  channelEmail: 'E-mail',
-  channelSms: 'SMS',
+const colorFr = {
+  brand: 'Marque',
+  dark: 'Sombre',
+  light: 'Clair',
+  danger: 'Danger',
+  warning: 'Attention',
+  success: 'Succès',
+  info: 'Info',
+  violet: 'Violet',
 };
 
-const fieldEn = {
-  email: 'Email address',
-  emailValue: 'student@dudalo.com',
-  emailInvalid: 'student@',
-  emailHelp: 'Used only for account recovery.',
-  emailError: 'This address is not valid.',
-  pathName: 'Path name',
-  pathHelp: 'Visible to enrolled students.',
-  identifier: 'Identifier',
-  identifierHelp: 'Assigned by the institution.',
-  identifierValue: 'DUD-2026-0142',
-  notifications: 'Notifications',
-  notificationsHelp: 'Choose at least one channel.',
-  channelEmail: 'Email',
-  channelSms: 'SMS',
+const colorEn = {
+  brand: 'Brand',
+  dark: 'Dark',
+  light: 'Light',
+  danger: 'Danger',
+  warning: 'Warning',
+  success: 'Success',
+  info: 'Info',
+  violet: 'Violet',
 };
 
-export type FieldDocsCopy = typeof fieldFr;
+export type ColorDocsCopy = typeof colorFr;
 
-export function fieldCopy(locale: DocsLocale): FieldDocsCopy {
-  return locale === 'en' ? fieldEn : fieldFr;
+export function colorCopy(locale: DocsLocale): ColorDocsCopy {
+  return locale === 'en' ? colorEn : colorFr;
 }
 
 const iconFr = {
@@ -636,4 +703,30 @@ export type IconDocsCopy = typeof iconFr;
 
 export function iconCopy(locale: DocsLocale): IconDocsCopy {
   return locale === 'en' ? iconEn : iconFr;
+}
+
+const calendarFr = {
+  weekMonday: 'Semaine le lundi',
+  weekSunday: 'Semaine le dimanche',
+  french: 'Français',
+  english: 'Anglais',
+  small: 'Petite',
+  medium: 'Moyenne',
+  large: 'Grande',
+};
+
+const calendarEn = {
+  weekMonday: 'Week starts Monday',
+  weekSunday: 'Week starts Sunday',
+  french: 'French',
+  english: 'English',
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+};
+
+export type CalendarDocsCopy = typeof calendarFr;
+
+export function calendarCopy(locale: DocsLocale): CalendarDocsCopy {
+  return locale === 'en' ? calendarEn : calendarFr;
 }

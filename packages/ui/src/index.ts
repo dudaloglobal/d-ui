@@ -31,13 +31,16 @@ export type {
 export { Icon } from './components/Icon/Icon';
 export type { IconProps, IconSize } from './components/Icon/Icon';
 export { Link } from './components/Link/Link';
-export type { LinkProps } from './components/Link/Link';
+export type { LinkColor, LinkIconPosition, LinkProps } from './components/Link/Link';
 export { Text } from './components/Text/Text';
 export type {
+  TextColor,
+  TextColorVariant,
   TextElement,
   TextProps,
   TextSize,
   TextTone,
+  TextTruncate,
   TextWeight,
 } from './components/Text/Text';
 export { ThemeProvider } from './theme/ThemeProvider';
@@ -91,5 +94,27 @@ export type {
   ComboboxProps,
   ComboboxSize,
 } from './components/Select/Combobox';
+export { Calendar } from './components/Calendar/Calendar';
+export type {
+  CalendarProps,
+  CalendarRangeValue,
+  CalendarSelectionMode,
+  CalendarSize,
+} from './components/Calendar/Calendar';
+export {
+  calendarDate,
+  calendarDateFromIso,
+  calendarDateToIso,
+  fromCalendarDate,
+  isCalendarRangeValue,
+  toCalendarDate,
+  todayCalendarDate,
+  weekStartFromLocale,
+} from './components/Calendar/calendarDate';
+export type {
+  CalendarDate,
+  CalendarDateTimeZone,
+  CalendarWeekday,
+} from './components/Calendar/calendarDate';
 export { brandTokensToStyle, tokenNames } from './tokens/names';
 export type { BrandTokens, TokenName } from './tokens/names';

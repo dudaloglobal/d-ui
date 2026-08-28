@@ -65,10 +65,10 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Popover | Dudalo Design System');
   await page.goto('/?path=/docs/components-emojipopover--docs');
   await expect(page).toHaveTitle('EmojiPopover | Dudalo Design System');
-  await page.goto('/?path=/docs/components-select--docs');
-  await expect(page).toHaveTitle('Select | Dudalo Design System');
   await page.goto('/?path=/docs/components-combobox--docs');
   await expect(page).toHaveTitle('Combobox | Dudalo Design System');
+  await page.goto('/?path=/docs/components-calendar--docs');
+  await expect(page).toHaveTitle('Calendar | Dudalo Design System');
   await page.goto('/?path=/docs/components-text--docs');
   await expect(page).toHaveTitle('Text | Dudalo Design System');
   await page.goto('/?path=/docs/components-heading--docs');
@@ -79,18 +79,22 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('SkipLink | Dudalo Design System');
   await page.goto('/?path=/docs/foundations-themeprovider--docs');
   await expect(page).toHaveTitle('ThemeProvider | Dudalo Design System');
+  await page.goto('/?path=/docs/foundations-typography--docs');
+  await expect(page).toHaveTitle('Typography | Dudalo Design System');
+  await page.goto('/?path=/docs/foundations-color--docs');
+  await expect(page).toHaveTitle('Color | Dudalo Design System');
   await page.goto('/?path=/docs/components-icon--docs');
   await expect(page).toHaveTitle('Icon | Dudalo Design System');
-  await page.goto('/?path=/docs/components-field--docs');
-  await expect(page).toHaveTitle('Field | Dudalo Design System');
 });
 
 test('component docs H1 is the component name, like Link', async ({ page }) => {
   for (const { id, name } of [
     { id: 'components-button--docs', name: 'Button' },
     { id: 'components-textinput--docs', name: 'TextInput' },
-    { id: 'components-select--docs', name: 'Select' },
     { id: 'components-combobox--docs', name: 'Combobox' },
+    { id: 'components-calendar--docs', name: 'Calendar' },
+    { id: 'foundations-typography--docs', name: 'Typography' },
+    { id: 'foundations-color--docs', name: 'Color' },
   ]) {
     await page.goto(`/?path=/docs/${id}`);
     const heading = page
@@ -101,6 +105,12 @@ test('component docs H1 is the component name, like Link', async ({ page }) => {
     await expect(heading).toHaveCSS('font-weight', '700');
     const fontSize = await heading.evaluate((el) => getComputedStyle(el).fontSize);
     expect(Number.parseFloat(fontSize)).toBeGreaterThanOrEqual(28);
+    const section = page
+      .frameLocator('#storybook-preview-iframe')
+      .getByRole('heading', { level: 2 })
+      .first();
+    await expect(section).toBeVisible();
+    await expect(section).toHaveCSS('font-weight', '700');
   }
 });
 
@@ -112,6 +122,25 @@ test('Storybook page title uses Dudalo Design System', async ({ page }) => {
   await expect(page.locator('img[alt="d-ui"]')).toHaveAttribute('src', /favicon\.svg/);
   await expect(page.locator('img[alt="d-ui"]')).toHaveCSS('width', '32px');
   await expect(page.locator('img[alt="d-ui"]')).toHaveCSS('height', '32px');
+});
+
+test('Components sidebar is alphabetical', async ({ page }) => {
+  await page.goto('/');
+  const group = page
+    .locator('[data-nodetype="group"]')
+    .filter({ hasText: /^Components$/ });
+  if ((await group.getAttribute('aria-expanded')) === 'false') {
+    await group.click();
+  }
+  const names = (await page.locator('[data-nodetype="component"]').allTextContents())
+    .map((name) => name.trim())
+    .filter(Boolean);
+  expect(names.length).toBeGreaterThan(1);
+  expect(names).toEqual(
+    [...names].sort((a, b) =>
+      a.localeCompare(b, 'en', { numeric: true, sensitivity: 'base' }),
+    ),
+  );
 });
 
 const darkBrand = 'rgb(94, 234, 212)';
@@ -303,6 +332,29 @@ test('French Properties tables use French descriptions', async ({ page }) => {
   await page.goto('/?path=/docs/components-textarea--docs');
   await expect(preview.getByRole('heading', { name: 'Textarea' })).toBeVisible();
   await expect(preview.getByText(/Libellé visible au-dessus du champ/)).toBeVisible();
+});
+
+test('Properties ArgTypes tables are not capped like docs data tables', async ({
+  page,
+}) => {
+  await page.goto('/?path=/docs/components-button--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  const table = preview.locator('.docblock-argstable').first();
+  await expect(table).toBeVisible();
+  const metrics = await table.evaluate((el) => {
+    const cell = el.querySelector('td');
+    const styles = cell ? getComputedStyle(cell) : null;
+    return {
+      maxWidth: getComputedStyle(el).maxWidth,
+      width: el.getBoundingClientRect().width,
+      paddingTop: styles ? Number.parseFloat(styles.paddingTop) : 0,
+      paddingLeft: styles ? Number.parseFloat(styles.paddingLeft) : 0,
+    };
+  });
+  expect(metrics.maxWidth === 'none' || metrics.maxWidth === '0px').toBe(true);
+  expect(metrics.width).toBeGreaterThan(640);
+  expect(metrics.paddingTop).toBeGreaterThanOrEqual(10);
+  expect(metrics.paddingLeft).toBeGreaterThanOrEqual(15);
 });
 
 test('Docs source stays hidden until Show code is clicked', async ({ page }) => {
@@ -668,7 +720,6 @@ test('English globals switch example copy on every component canvas', async ({
     { id: 'components-tooltip--default', en: 'Help', fr: 'Aide' },
     { id: 'components-popover--default', en: 'Open', fr: 'Ouvrir' },
     { id: 'components-emojipopover--default', en: 'React', fr: 'Réagir' },
-    { id: 'components-select--default', en: 'Country', fr: 'Pays' },
     { id: 'components-combobox--default', en: 'City', fr: 'Ville' },
   ] as const;
   for (const { id, en, fr } of cases) {
@@ -822,18 +873,26 @@ test('EmojiPopover docs Show code imports EmojiPopover from d-ui', async ({ page
   await expect(source).not.toContainText('SmileIcon');
 });
 
-test('Storybook serves the Select story', async ({ page }) => {
-  await page.goto('/iframe.html?id=components-select--default');
-  const control = page.getByRole('combobox', { name: 'Pays' });
-  await expect(control).toBeVisible();
-  await expect(control).toHaveAttribute('aria-expanded', 'false');
-  await control.click();
-  await expect(control).toHaveAttribute('aria-expanded', 'true');
-  const list = page.getByRole('listbox', { name: 'Pays' });
-  await expect(list).toBeVisible();
-  await page.getByRole('option', { name: 'Belgique' }).click();
-  await expect(list).toHaveCount(0);
-  await expect(control).toContainText('Belgique');
+test('old Select docs URL redirects to Combobox', async ({ page }) => {
+  await page.goto('/?path=/docs/components-select--docs');
+  await expect(page).toHaveURL(/path=\/docs\/components-combobox--docs/);
+  await expect(page).toHaveTitle('Combobox | Dudalo Design System');
+  await expect(
+    page
+      .frameLocator('#storybook-preview-iframe')
+      .getByRole('heading', { level: 1, name: 'Combobox' }),
+  ).toBeVisible();
+});
+
+test('old Field docs URL redirects to TextInput', async ({ page }) => {
+  await page.goto('/?path=/docs/components-field--docs');
+  await expect(page).toHaveURL(/path=\/docs\/components-textinput--docs/);
+  await expect(page).toHaveTitle('TextInput | Dudalo Design System');
+  await expect(
+    page
+      .frameLocator('#storybook-preview-iframe')
+      .getByRole('heading', { level: 1, name: 'TextInput' }),
+  ).toBeVisible();
 });
 
 test('Storybook serves the Combobox story', async ({ page }) => {
@@ -913,20 +972,14 @@ test('Storybook serves Combobox custom rendering, list states, and filters', asy
   );
 });
 
-test('French Select docs do not leak English headings', async ({ page }) => {
-  await page.goto('/?path=/docs/components-select--docs');
-  const preview = page.frameLocator('#storybook-preview-iframe');
-  await expect(preview.getByRole('heading', { name: 'Groupes d’options' })).toBeVisible();
-  await expect(preview.getByRole('heading', { name: 'Option groups' })).toHaveCount(0);
-  await expect(preview.getByText('Country of residence.')).toHaveCount(0);
-});
-
 test('French Combobox docs do not leak English headings', async ({ page }) => {
   await page.goto('/?path=/docs/components-combobox--docs');
   const preview = page.frameLocator('#storybook-preview-iframe');
   await expect(
     preview.getByRole('heading', { level: 1, name: 'Combobox' }),
   ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Groupes d’options' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Option groups' })).toHaveCount(0);
   await expect(
     preview.getByRole('heading', { name: 'Sélection multiple' }),
   ).toBeVisible();
@@ -943,13 +996,96 @@ test('French Combobox docs do not leak English headings', async ({ page }) => {
   await expect(preview.getByText('No options')).toHaveCount(0);
 });
 
-test('Select docs Show code imports Select from d-ui', async ({ page }) => {
-  await page.goto('/?path=/docs/components-select--docs');
+test('French Calendar docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-calendar--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(
+    preview.getByRole('heading', { level: 1, name: 'Calendar' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Dates restreintes' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Année' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Plage de dates' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Début de semaine' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Plusieurs mois' })).toBeVisible();
+  await expect(
+    preview.getByRole('heading', { name: 'Adaptateur de dates' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Restricted dates' })).toHaveCount(0);
+  await expect(preview.getByRole('heading', { name: 'Week start' })).toHaveCount(0);
+});
+
+test('Storybook serves the Calendar story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-calendar--default');
+  await expect(page.getByRole('grid', { name: /mars 2026/i })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Mois précédent' })).toBeVisible();
+});
+
+test('French Color docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/foundations-color--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { level: 1, name: 'Color' })).toBeVisible();
+  await expect(
+    preview.getByRole('heading', { name: 'Palette principale' }),
+  ).toBeVisible();
+  await expect(
+    preview.getByRole('heading', { name: 'Palette secondaire' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Primary palette' })).toHaveCount(0);
+  await expect(preview.getByRole('heading', { name: 'Secondary palette' })).toHaveCount(
+    0,
+  );
+  await expect(preview.getByRole('heading', { name: 'Marque' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Violet' })).toBeVisible();
+});
+
+test('Color palettes use LumApps swatch cells', async ({ page }) => {
+  await page.goto('/?path=/docs/foundations-color--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  const d2 = preview.getByText('D2', { exact: true }).first();
+  await expect(d2).toBeVisible();
+  const metrics = await d2.evaluate((el) => {
+    const cell = el.parentElement;
+    if (!cell) return { width: 0, paddingTop: 0, text: '' };
+    const styles = getComputedStyle(cell);
+    return {
+      width: cell.getBoundingClientRect().width,
+      paddingTop: Number.parseFloat(styles.paddingTop),
+      text: cell.textContent ?? '',
+    };
+  });
+  expect(metrics.width).toBeCloseTo(80, 1);
+  expect(metrics.paddingTop).toBe(24);
+  expect(metrics.text).toMatch(/#[0-9a-f]{6}/i);
+  await expect(preview.getByText('80%', { exact: true }).first()).toBeVisible();
+  await expect(preview.locator('.sbdocs-preview')).toHaveCount(0);
+});
+
+test('French Typography docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/foundations-typography--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(
+    preview.getByRole('heading', { level: 1, name: 'Typography' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Polices' })).toBeVisible();
+  await expect(
+    preview.getByRole('heading', { name: 'Polices par système' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Styles de base' })).toBeVisible();
+  await expect(
+    preview.getByRole('heading', { name: 'Styles personnalisés' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Typefaces' })).toHaveCount(0);
+  await expect(preview.getByRole('heading', { name: 'Basic styles' })).toHaveCount(0);
+  await expect(preview.getByRole('heading', { name: 'Custom styles' })).toHaveCount(0);
+  await expect(preview.getByText('SF Pro')).toBeVisible();
+});
+
+test('Typography docs Show code imports Heading and Text from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/foundations-typography--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { useState } from 'react'");
-  await expect(source).toContainText("import { Select } from 'd-ui'");
-  await expect(source).toContainText('<Select');
-  await expect(source).not.toContainText('ControlledSelect');
+  await expect(source).toContainText("import { Heading, Text } from 'd-ui'");
+  await expect(source).toContainText('<Heading');
+  await expect(source).toContainText('<Text');
 });
 
 test('Combobox docs Show code imports Combobox from d-ui', async ({ page }) => {
