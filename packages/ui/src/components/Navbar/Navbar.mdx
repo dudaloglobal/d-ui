@@ -18,13 +18,25 @@ import * as NavbarStories from './Navbar.stories';
 
 <Canvas of={NavbarStories.MenuButton} />
 
+<H2 k="navbar.fixed" />
+
+<P k="navbar.fixedBody" />
+
+<Canvas of={NavbarStories.Fixed} />
+
+<H2 k="navbar.transparent" />
+
+<P k="navbar.transparentBody" />
+
+<Canvas of={NavbarStories.Transparent} />
+
 <H2 k="chrome.accessibility" />
 
 <P k="navbar.a11yBody" />
 
 <H3 k="chrome.do" />
 
-<Ul items={['navbar.doSlots', 'navbar.doMenu', 'navbar.doSkip']} />
+<Ul items={['navbar.doSlots', 'navbar.doMenu', 'navbar.doSkip', 'navbar.doFixed']} />
 
 <H3 k="chrome.dont" />
 
@@ -38,5 +50,12 @@ import * as NavbarStories from './Navbar.stories';
 
 <ArgTypes
   of={NavbarStories}
-  include={['menuLabel', 'menuOpen', 'onMenuOpenChange', 'menuControls']}
+  include={[
+    'fixed',
+    'transparent',
+    'menuLabel',
+    'menuOpen',
+    'onMenuOpenChange',
+    'menuControls',
+  ]}
 />

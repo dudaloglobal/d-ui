@@ -2042,6 +2042,16 @@ export const docsCopy = {
       fr: 'Passez `onMenuOpenChange` pour afficher le hamburger (`aria-haspopup="dialog"`). Branchez-le sur `Sidebar` en `overlay`. Voir la story **Superposition** de `Sidebar`.',
       en: 'Pass `onMenuOpenChange` to show the hamburger (`aria-haspopup="dialog"`). Wire it to `Sidebar` with `overlay`. See the **Overlay** story on `Sidebar`.',
     },
+    fixed: { fr: 'Position fixe', en: 'Fixed position' },
+    fixedBody: {
+      fr: '`fixed` colle la barre en haut du viewport (`position: fixed`, `z-40`, sous les overlays). Le contenu défile dessous : réservez la hauteur (`pt-14`).',
+      en: '`fixed` pins the bar to the top of the viewport (`position: fixed`, `z-40`, below overlays). Content scrolls underneath: reserve the height (`pt-14`).',
+    },
+    transparent: { fr: 'Fond transparent', en: 'Transparent background' },
+    transparentBody: {
+      fr: '`transparent` enlève le fond et la bordure (`bg-transparent`). Combinez avec `fixed` sur un hero. Le texte reste `text-fg` : le contenu derrière doit rester contrasté.',
+      en: '`transparent` removes the background and border (`bg-transparent`). Combine with `fixed` on a hero. Text stays `text-fg`: the content behind must stay contrasted.',
+    },
     a11yBody: {
       fr: 'Un `<header>` (bannière). Le bouton menu n’apparaît que si `onMenuOpenChange` est passé : `aria-expanded`, `aria-controls`, `aria-haspopup="dialog"`. Placez `SkipLink` **avant** la barre. `IconButton` dans `actions` doit avoir un `aria-label`.',
       en: 'A `<header>` (banner). The menu button appears only when `onMenuOpenChange` is passed: `aria-expanded`, `aria-controls`, `aria-haspopup="dialog"`. Place `SkipLink` **before** the bar. An `IconButton` in `actions` must have an `aria-label`.',
@@ -2058,6 +2068,10 @@ export const docsCopy = {
       fr: '`SkipLink` puis `Navbar`, puis `<main id="main" tabIndex={-1}>`',
       en: '`SkipLink` then `Navbar`, then `<main id="main" tabIndex={-1}>`',
     },
+    doFixed: {
+      fr: '`pt-14` (ou un spacer `h-14`) sous `fixed`, pour que le contenu ne passe pas sous la barre',
+      en: '`pt-14` (or an `h-14` spacer) under `fixed`, so content does not sit under the bar',
+    },
     dontAuth: {
       fr: 'Un appel session / profil dans le package',
       en: 'A session / profile call inside the package',
@@ -2071,8 +2085,8 @@ export const docsCopy = {
       en: 'A Next.js `layout.tsx` file inside d-ui',
     },
     props: {
-      fr: '`brand`, `actions`, `user` sont des nœuds React. `onMenuOpenChange` affiche le bouton hamburger. `menuLabel` nomme ce bouton.',
-      en: '`brand`, `actions`, and `user` are React nodes. `onMenuOpenChange` shows the hamburger button. `menuLabel` names that button.',
+      fr: '`brand`, `actions`, `user` sont des nœuds React. `fixed` et `transparent` sont indépendants. `onMenuOpenChange` affiche le bouton hamburger. `menuLabel` nomme ce bouton.',
+      en: '`brand`, `actions`, and `user` are React nodes. `fixed` and `transparent` are independent. `onMenuOpenChange` shows the hamburger button. `menuLabel` names that button.',
     },
   },
   sidebar: {
@@ -2081,13 +2095,13 @@ export const docsCopy = {
       en: '`Sidebar` is the shell side navigation (`<nav>` + list). Items come from the app (`href`). For a mobile overlay, `overlay` + `Navbar` (menu button). It is not a `Drawer` (DS-038).',
     },
     iconsBody: {
-      fr: '`icon` est décorative. Le libellé reste le nom accessible. En mode replié, le texte passe dans `VisuallyHidden` : l’item icône seule garde un nom.',
-      en: '`icon` is decorative. The label stays the accessible name. When collapsed, the text moves into `VisuallyHidden`: the icon-only item still has a name.',
+      fr: '`icon` est décorative. Le libellé reste le nom accessible. En mode replié, le texte passe dans `VisuallyHidden` et un `Tooltip` (`placement="right"`) affiche le nom au survol et au focus.',
+      en: '`icon` is decorative. The label stays the accessible name. When collapsed, the text moves into `VisuallyHidden` and a `Tooltip` (`placement="right"`) shows the name on hover and focus.',
     },
     collapsed: { fr: 'Replié', en: 'Collapsed' },
     collapsedBody: {
-      fr: '`collapsed` réduit le rail aux icônes. `collapsible` affiche le bouton replier / déployer (libellés `collapseLabel` / `expandLabel`).',
-      en: '`collapsed` shrinks the rail to icons. `collapsible` shows the collapse / expand button (`collapseLabel` / `expandLabel`).',
+      fr: '`collapsed` réduit le rail aux icônes. Chaque item (et le bouton replier / déployer) affiche son nom dans un `Tooltip`. `collapsible` affiche ce bouton (`collapseLabel` / `expandLabel`).',
+      en: '`collapsed` shrinks the rail to icons. Each item (and the collapse / expand button) shows its name in a `Tooltip`. `collapsible` shows that button (`collapseLabel` / `expandLabel`).',
     },
     nested: { fr: 'Imbriqués', en: 'Nested' },
     nestedBody: {
@@ -2100,8 +2114,8 @@ export const docsCopy = {
       en: 'On small screens, pass `overlay` and drive `open` from the `Navbar` menu button. The panel is a modal `dialog`: Escape, backdrop, close button. `SkipLink` stays first in the focus order.',
     },
     a11yBody: {
-      fr: 'Landmark `navigation` nommé (`label`). Items : vrais `<a href>` (ou bouton sans `href`). Page courante : `aria-current="page"`. Overlay : `role="dialog"` + piège de focus. Pas de `usePathname`.',
-      en: 'Named `navigation` landmark (`label`). Items: real `<a href>`s (or a button without `href`). Current page: `aria-current="page"`. Overlay: `role="dialog"` + focus trap. No `usePathname`.',
+      fr: 'Landmark `navigation` nommé (`label`). Items : vrais `<a href>` (ou bouton sans `href`). Page courante : `aria-current="page"`. Replié : nom via `VisuallyHidden` + `Tooltip` au survol / focus. Overlay : `role="dialog"` + piège de focus. Pas de `usePathname`.',
+      en: 'Named `navigation` landmark (`label`). Items: real `<a href>`s (or a button without `href`). Current page: `aria-current="page"`. Collapsed: name via `VisuallyHidden` plus a `Tooltip` on hover / focus. Overlay: `role="dialog"` + focus trap. No `usePathname`.',
     },
     doNav: {
       fr: '`<Sidebar label="Navigation principale">` pour nommer le `nav`',
@@ -2112,8 +2126,8 @@ export const docsCopy = {
       en: '`current` on the page item (the app computes the route)',
     },
     doCollapsed: {
-      fr: 'Un `icon` + un libellé (visible ou `VisuallyHidden`) sur chaque item replié',
-      en: 'An `icon` plus a label (visible or `VisuallyHidden`) on each collapsed item',
+      fr: 'Un `icon` + un libellé : en rail replié, `Tooltip` affiche le nom',
+      en: 'An `icon` plus a label: when collapsed, a `Tooltip` shows the name',
     },
     doSkip: {
       fr: '`SkipLink` + `<main id="main" tabIndex={-1}>` avec la coquille',

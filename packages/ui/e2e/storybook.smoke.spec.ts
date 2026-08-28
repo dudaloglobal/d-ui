@@ -1283,7 +1283,13 @@ test('French Navbar docs do not leak English headings', async ({ page }) => {
   const preview = page.frameLocator('#storybook-preview-iframe');
   await expect(preview.getByRole('heading', { level: 1, name: 'Navbar' })).toBeVisible();
   await expect(preview.getByRole('heading', { name: 'Bouton menu' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Position fixe' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Fond transparent' })).toBeVisible();
   await expect(preview.getByRole('heading', { name: 'Menu button' })).toHaveCount(0);
+  await expect(preview.getByRole('heading', { name: 'Fixed position' })).toHaveCount(0);
+  await expect(preview.getByRole('heading', { name: 'Transparent background' })).toHaveCount(
+    0,
+  );
   await expect(preview.getByRole('heading', { name: 'Accessibilité' })).toBeVisible();
   await expect(preview.getByRole('heading', { name: 'Accessibility' })).toHaveCount(0);
 });

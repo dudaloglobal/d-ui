@@ -18,6 +18,10 @@ export type NavbarProps = HTMLAttributes<HTMLElement> & {
   onMenuOpenChange?: (open: boolean) => void;
   /** `id` du `Sidebar` overlay (`aria-controls`). */
   menuControls?: string;
+  /** `position: fixed` en haut du viewport. L’app réserve la hauteur (`h-14`). */
+  fixed?: boolean;
+  /** Fond et bordure transparents (hero, photo). Le texte reste `text-fg`. */
+  transparent?: boolean;
 };
 
 function MenuGlyph() {
@@ -46,6 +50,8 @@ export function Navbar({
   menuOpen = false,
   onMenuOpenChange,
   menuControls,
+  fixed = false,
+  transparent = false,
   className,
   ...rest
 }: NavbarProps) {
@@ -55,7 +61,11 @@ export function Navbar({
     <header
       {...rest}
       className={cx(
-        'flex h-14 items-center gap-3 border-b border-border bg-bg px-3 text-fg',
+        'flex h-14 items-center gap-3 px-3 text-fg',
+        transparent
+          ? 'border-b border-transparent bg-transparent'
+          : 'border-b border-border bg-bg',
+        fixed && 'fixed inset-x-0 top-0 z-40',
         className,
       )}
     >

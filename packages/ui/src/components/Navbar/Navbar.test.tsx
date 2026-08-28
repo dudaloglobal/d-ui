@@ -67,4 +67,24 @@ describe('Navbar', () => {
     await user.keyboard('{Enter}');
     expect(onMenuOpenChange).toHaveBeenCalledWith(false);
   });
+
+  it('stays in document flow with a solid background by default', () => {
+    render(<Navbar brand="Dudalo" />);
+    const banner = screen.getByRole('banner');
+    expect(banner).toHaveClass('bg-bg');
+    expect(banner).not.toHaveClass('fixed');
+    expect(banner).not.toHaveClass('bg-transparent');
+  });
+
+  it('pins to the viewport when fixed', () => {
+    render(<Navbar fixed brand="Dudalo" />);
+    expect(screen.getByRole('banner')).toHaveClass('fixed', 'inset-x-0', 'top-0');
+  });
+
+  it('uses a transparent background when transparent', () => {
+    render(<Navbar transparent brand="Dudalo" />);
+    const banner = screen.getByRole('banner');
+    expect(banner).toHaveClass('bg-transparent');
+    expect(banner).not.toHaveClass('bg-bg');
+  });
 });

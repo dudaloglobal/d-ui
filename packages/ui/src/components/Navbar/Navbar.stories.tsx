@@ -73,3 +73,78 @@ export const MenuButton: Story = {
     );
   },
 };
+
+export const Fixed: Story = {
+  name: 'Position fixe',
+  args: { fixed: true },
+  parameters: componentSource(
+    importNavbar,
+    `<Navbar
+    fixed
+    brand={<a href="/">Dudalo</a>}
+    actions={
+        <IconButton icon={<Icon as={BellIcon} />} aria-label="Notifications" />
+    }
+    user={<Button variant="secondary">Profil</Button>}
+/>`,
+  ),
+  render: (args, { globals }) => {
+    const copy = navbarCopy(docsLocale(globals.locale));
+    return (
+      <div className="relative h-72 overflow-auto rounded-md border border-border [transform:translateZ(0)]">
+        <Navbar
+          {...args}
+          brand={<a href="/">{copy.brand}</a>}
+          actions={
+            <IconButton icon={<Icon as={BellIcon} />} aria-label={copy.notifications} />
+          }
+          user={<Button variant="secondary">{copy.profile}</Button>}
+        />
+        <div className="space-y-3 p-4 pt-16 text-sm text-fg">
+          <p>{copy.scrollHint}</p>
+          <p>{copy.scrollBody}</p>
+          <p>{copy.scrollBody}</p>
+          <p>{copy.scrollBody}</p>
+        </div>
+      </div>
+    );
+  },
+};
+
+export const Transparent: Story = {
+  name: 'Fond transparent',
+  args: { transparent: true },
+  parameters: componentSource(
+    importNavbar,
+    `<Navbar
+    transparent
+    brand={<a href="/">Dudalo</a>}
+    actions={
+        <IconButton icon={<Icon as={BellIcon} />} aria-label="Notifications" />
+    }
+    user={<Button variant="secondary">Profil</Button>}
+/>`,
+  ),
+  render: (args, { globals }) => {
+    const copy = navbarCopy(docsLocale(globals.locale));
+    return (
+      <div
+        className="overflow-hidden rounded-md"
+        style={{
+          background:
+            'linear-gradient(160deg, var(--d-ui-color-surface-muted), color-mix(in srgb, var(--d-ui-color-brand) 28%, var(--d-ui-color-surface-muted)))',
+        }}
+      >
+        <Navbar
+          {...args}
+          brand={<a href="/">{copy.brand}</a>}
+          actions={
+            <IconButton icon={<Icon as={BellIcon} />} aria-label={copy.notifications} />
+          }
+          user={<Button variant="secondary">{copy.profile}</Button>}
+        />
+        <p className="px-4 pb-10 pt-2 text-sm text-fg">{copy.scrollHint}</p>
+      </div>
+    );
+  },
+};

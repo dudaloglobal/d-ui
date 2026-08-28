@@ -120,6 +120,8 @@ export const storyNameEn: Record<string, string> = {
   Imbriqués: 'Nested',
   Superposition: 'Overlay',
   'Bouton menu': 'Menu button',
+  'Position fixe': 'Fixed position',
+  'Fond transparent': 'Transparent background',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -1018,12 +1020,18 @@ const navbarFr = {
   brand: 'Dudalo',
   notifications: 'Notifications',
   profile: 'Profil',
+  scrollHint: 'Faites défiler : la barre reste en haut du cadre.',
+  scrollBody:
+    'Contenu de la page sous la barre. Réservez `pt-14` dans l’app pour que le premier titre ne passe pas sous le header.',
 };
 
 const navbarEn = {
   brand: 'Dudalo',
   notifications: 'Notifications',
   profile: 'Profile',
+  scrollHint: 'Scroll: the bar stays at the top of the frame.',
+  scrollBody:
+    'Page content under the bar. Reserve `pt-14` in the app so the first heading does not sit under the header.',
 };
 
 export type NavbarDocsCopy = typeof navbarFr;

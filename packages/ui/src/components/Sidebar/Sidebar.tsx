@@ -15,12 +15,14 @@ import {
   type ButtonHTMLAttributes,
   type HTMLAttributes,
   type MouseEventHandler,
+  type ReactElement,
   type ReactNode,
 } from 'react';
 import { VisuallyHidden } from '../../a11y/VisuallyHidden';
 import { cx } from '../../lib/cx';
 import { IconButton } from '../Button/IconButton';
 import { overlayPortalProps, useInheritedTheme } from '../floating';
+import { Tooltip } from '../Tooltip/Tooltip';
 
 export type SidebarSize = 'sm' | 'md';
 
@@ -86,6 +88,15 @@ const itemSizeClass: Record<SidebarSize, string> = {
   sm: 'min-h-8 px-2 text-sm',
   md: 'min-h-9 px-3 text-sm',
 };
+
+function collapsedTooltip(name: string, enabled: boolean, trigger: ReactElement) {
+  if (!enabled || !name) return trigger;
+  return (
+    <Tooltip content={name} placement="right">
+      {trigger}
+    </Tooltip>
+  );
+}
 
 function itemName(children: ReactNode, label?: string): string {
   if (label) return label;
@@ -172,12 +183,16 @@ function Panel({
               onClick={onClose}
             />
           ) : (
-            <IconButton
-              size="sm"
-              icon={<Chevron open={!collapsed} />}
-              aria-label={collapsed ? expandLabel : collapseLabel}
-              onClick={onToggleCollapsed}
-            />
+            collapsedTooltip(
+              collapsed ? expandLabel : collapseLabel,
+              true,
+              <IconButton
+                size="sm"
+                icon={<Chevron open={!collapsed} />}
+                aria-label={collapsed ? expandLabel : collapseLabel}
+                onClick={onToggleCollapsed}
+              />,
+            )
           )}
         </div>
       ) : null}
@@ -359,32 +374,30 @@ export function SidebarItem({
     className,
   );
 
-  return (
-    <li className="m-0 p-0">
-      {href ? (
-        <a
-          href={href}
-          aria-current={current ? 'page' : undefined}
-          aria-label={iconOnly && name ? name : undefined}
-          className={itemClass}
-          onClick={onClick as unknown as MouseEventHandler<HTMLAnchorElement>}
-        >
-          {content}
-        </a>
-      ) : (
-        <button
-          {...rest}
-          type="button"
-          aria-current={current ? 'page' : undefined}
-          aria-label={iconOnly && name ? name : undefined}
-          className={itemClass}
-          onClick={onClick}
-        >
-          {content}
-        </button>
-      )}
-    </li>
+  const control = href ? (
+    <a
+      href={href}
+      aria-current={current ? 'page' : undefined}
+      aria-label={iconOnly && name ? name : undefined}
+      className={itemClass}
+      onClick={onClick as unknown as MouseEventHandler<HTMLAnchorElement>}
+    >
+      {content}
+    </a>
+  ) : (
+    <button
+      {...rest}
+      type="button"
+      aria-current={current ? 'page' : undefined}
+      aria-label={iconOnly && name ? name : undefined}
+      className={itemClass}
+      onClick={onClick}
+    >
+      {content}
+    </button>
   );
+
+  return <li className="m-0 p-0">{collapsedTooltip(name, iconOnly, control)}</li>;
 }
 
 export function SidebarGroup({
@@ -399,33 +412,37 @@ export function SidebarGroup({
 
   return (
     <li className="m-0 p-0">
-      <button
-        type="button"
-        aria-expanded={open}
-        aria-label={label}
-        onClick={() => setOpen((value) => !value)}
-        className={cx(
-          'flex w-full items-center gap-2 rounded-sm font-sans font-medium text-fg',
-          itemSizeClass[surface.size],
-          iconOnly && 'justify-center px-0',
-          'bg-transparent hover:bg-surface-muted',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg',
-        )}
-      >
-        {icon ? (
-          <span className="inline-flex shrink-0 [&_svg]:block" aria-hidden="true">
-            {icon}
-          </span>
-        ) : null}
-        {iconOnly ? null : (
-          <>
-            <span className="min-w-0 flex-1 text-start">{label}</span>
-            <span className="inline-flex shrink-0 text-fg-muted">
-              <Chevron open={open} />
+      {collapsedTooltip(
+        label,
+        iconOnly,
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-label={label}
+          onClick={() => setOpen((value) => !value)}
+          className={cx(
+            'flex w-full items-center gap-2 rounded-sm font-sans font-medium text-fg',
+            itemSizeClass[surface.size],
+            iconOnly && 'justify-center px-0',
+            'bg-transparent hover:bg-surface-muted',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg',
+          )}
+        >
+          {icon ? (
+            <span className="inline-flex shrink-0 [&_svg]:block" aria-hidden="true">
+              {icon}
             </span>
-          </>
-        )}
-      </button>
+          ) : null}
+          {iconOnly ? null : (
+            <>
+              <span className="min-w-0 flex-1 text-start">{label}</span>
+              <span className="inline-flex shrink-0 text-fg-muted">
+                <Chevron open={open} />
+              </span>
+            </>
+          )}
+        </button>,
+      )}
       {open ? <ul className="m-0 list-none p-0 ps-2">{children}</ul> : null}
     </li>
   );

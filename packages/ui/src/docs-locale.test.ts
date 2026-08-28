@@ -125,6 +125,8 @@ const ENGLISH_HEADINGS = [
   'Nested',
   'Overlay',
   'Menu button',
+  'Fixed position',
+  'Transparent background',
 ];
 
 function collectMdx(dir: string): string[] {

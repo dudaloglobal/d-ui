@@ -989,6 +989,16 @@ export const menuArgTypes = {
 };
 
 export const navbarArgTypes = {
+  fixed: {
+    control: 'boolean' as const,
+    description:
+      '`position: fixed` en haut du viewport. L’app réserve la hauteur (`h-14` / `pt-14`). Dessous les overlays (`z-40`).',
+  },
+  transparent: {
+    control: 'boolean' as const,
+    description:
+      'Fond et bordure transparents. Le texte reste `text-fg` : gardez un contraste suffisant sur le contenu derrière.',
+  },
   menuLabel: {
     control: 'text' as const,
     description: 'Nom du bouton menu. Fallback anglais : `Open navigation`.',
@@ -1013,7 +1023,8 @@ export const sidebarArgTypes = {
   },
   collapsed: {
     control: 'boolean' as const,
-    description: 'Rail icônes seules. Chaque item garde un nom accessible.',
+    description:
+      'Rail icônes seules. Un `Tooltip` (`placement="right"`) affiche le nom au survol et au focus.',
   },
   collapsible: {
     control: 'boolean' as const,

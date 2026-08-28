@@ -51,6 +51,33 @@ describe('Sidebar', () => {
     expect(screen.getByTestId('icon-cours')).toBeInTheDocument();
   });
 
+  it('shows a tooltip with the item name when collapsed', async () => {
+    const user = userEvent.setup();
+    render(
+      <Sidebar label="Navigation" collapsed>
+        <SidebarItem href="/cours" icon={<span data-testid="icon-cours" />}>
+          Cours
+        </SidebarItem>
+      </Sidebar>,
+    );
+    expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+    await user.hover(screen.getByRole('link', { name: 'Cours' }));
+    expect(await screen.findByRole('tooltip')).toHaveTextContent('Cours');
+  });
+
+  it('shows a tooltip with the group name when collapsed', async () => {
+    const user = userEvent.setup();
+    render(
+      <Sidebar label="Navigation" collapsed>
+        <SidebarGroup label="Cours" icon={<span data-testid="icon-group" />}>
+          <SidebarItem href="/maths">Maths</SidebarItem>
+        </SidebarGroup>
+      </Sidebar>,
+    );
+    await user.hover(screen.getByRole('button', { name: 'Cours' }));
+    expect(await screen.findByRole('tooltip')).toHaveTextContent('Cours');
+  });
+
   it('toggles collapsed when collapsible', async () => {
     const user = userEvent.setup();
     const onCollapsedChange = vi.fn();
