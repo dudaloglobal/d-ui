@@ -17,10 +17,10 @@ export type HeadingProps = HTMLAttributes<HTMLHeadingElement> & {
 };
 
 const sizeClass: Record<HeadingSize, string> = {
-  display: 'text-4xl font-bold tracking-tight',
-  title: 'text-2xl font-semibold',
-  subtitle: 'text-xl font-semibold',
-  body: 'text-base font-semibold',
+  display: 'text-4xl tracking-tight',
+  title: 'text-2xl',
+  subtitle: 'text-xl',
+  body: 'text-base',
 };
 
 const defaultSizeForLevel: Record<HeadingLevel, HeadingSize> = {
@@ -45,7 +45,7 @@ export function Heading({ level, size, className, ...rest }: HeadingProps) {
 
   return (
     <Component
-      className={cx('text-fg text-balance', sizeClass[resolvedSize], className)}
+      className={cx('font-bold text-fg text-balance', sizeClass[resolvedSize], className)}
       {...rest}
     />
   );

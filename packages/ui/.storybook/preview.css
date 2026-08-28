@@ -113,8 +113,9 @@ html[data-d-ui-theme='dark'] pre.prismjs .token.attr-value {
   color: #b474dd !important;
 }
 
+/* Cadre des Canvas docs : chrome décoratif, pas une frontière de contrôle 1.4.11. */
 .sbdocs-preview {
-  border-color: var(--d-ui-color-border) !important;
+  border-color: var(--d-ui-color-border-subtle) !important;
 }
 
 .sbdocs h1,

@@ -24,6 +24,9 @@ describe('Heading', () => {
 
   it('derives the visual size from the level by default', () => {
     render(<Heading level={1}>Accueil</Heading>);
-    expect(screen.getByRole('heading', { level: 1 })).toHaveClass('text-4xl');
+    expect(screen.getByRole('heading', { level: 1 })).toHaveClass(
+      'text-4xl',
+      'font-bold',
+    );
   });
 });
