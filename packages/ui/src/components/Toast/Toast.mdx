@@ -1,0 +1,60 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as ToastStories from './Toast.stories';
+
+<Meta of={ToastStories} />
+
+# Toast
+
+<P k="toast.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={ToastStories.Default} />
+
+<H2 k="toast.variants" />
+
+<P k="toast.variantsBody" />
+
+<Canvas of={ToastStories.Variants} />
+
+<H2 k="toast.action" />
+
+<P k="toast.actionBody" />
+
+<Canvas of={ToastStories.WithAction} />
+
+<H2 k="toast.dismissible" />
+
+<P k="toast.dismissibleBody" />
+
+<Canvas of={ToastStories.Dismissible} />
+
+<H2 k="toast.queue" />
+
+<P k="toast.queueBody" />
+
+<Canvas of={ToastStories.Queue} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="toast.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['toast.doProvider', 'toast.doQueue']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['toast.dontInline', 'toast.dontCenter']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="toast.props" />
+
+<ArgTypes
+  of={ToastStories}
+  include={['maxVisible', 'defaultDuration', 'defaultDismissible', 'label']}
+/>

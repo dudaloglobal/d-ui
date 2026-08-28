@@ -89,6 +89,8 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Alert | Dudalo Design System');
   await page.goto('/?path=/docs/components-notification--docs');
   await expect(page).toHaveTitle('Notification | Dudalo Design System');
+  await page.goto('/?path=/docs/components-toast--docs');
+  await expect(page).toHaveTitle('Toast | Dudalo Design System');
   await page.goto('/?path=/docs/components-emptystate--docs');
   await expect(page).toHaveTitle('EmptyState | Dudalo Design System');
   await page.goto('/?path=/docs/components-errorstate--docs');
@@ -129,6 +131,7 @@ test('component docs H1 is the component name, like Link', async ({ page }) => {
     { id: 'components-menu--docs', name: 'Menu' },
     { id: 'components-alert--docs', name: 'Alert' },
     { id: 'components-notification--docs', name: 'Notification' },
+    { id: 'components-toast--docs', name: 'Toast' },
     { id: 'components-emptystate--docs', name: 'EmptyState' },
     { id: 'components-errorstate--docs', name: 'ErrorState' },
     { id: 'components-navbar--docs', name: 'Navbar' },
@@ -1282,6 +1285,34 @@ test('Menu docs Show code imports Menu from d-ui', async ({ page }) => {
     "import { Button, Menu, MenuItem, MenuSeparator, MenuSub } from 'd-ui'",
   );
   await expect(source).toContainText('<Menu');
+});
+
+test('Storybook serves the Toast story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-toast--default');
+  await page.getByRole('button', { name: 'Afficher un toast' }).click();
+  await expect(page.getByRole('alert')).toBeVisible();
+  await page.getByRole('button', { name: 'Fermer la notification' }).click();
+  await expect(page.getByRole('alert')).toHaveCount(0);
+});
+
+test('Storybook Toast dismissible story shows a close button on load', async ({
+  page,
+}) => {
+  await page.goto('/iframe.html?id=components-toast--dismissible');
+  await expect(page.getByRole('alert')).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Fermer la notification' }),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Fermer la notification' }).click();
+  await expect(page.getByRole('alert')).toHaveCount(0);
+});
+
+test('French Toast docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-toast--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { level: 1, name: 'Toast' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'File d’attente' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Queue' })).toHaveCount(0);
 });
 
 test('Storybook serves the Notification story', async ({ page }) => {

@@ -30,6 +30,7 @@ import {
   menuCopy,
   alertCopy,
   notificationCopy,
+  toastCopy,
   emptyStateCopy,
   errorStateCopy,
   navbarCopy,
@@ -136,6 +137,7 @@ const ENGLISH_HEADINGS = [
   'Live announcement',
   'Without background',
   'With action',
+  'Queue',
 ];
 
 function collectMdx(dir: string): string[] {
@@ -177,6 +179,7 @@ describe('docs locale', () => {
     expect(keysOf(menuCopy('fr'))).toEqual(keysOf(menuCopy('en')));
     expect(keysOf(alertCopy('fr'))).toEqual(keysOf(alertCopy('en')));
     expect(keysOf(notificationCopy('fr'))).toEqual(keysOf(notificationCopy('en')));
+    expect(keysOf(toastCopy('fr'))).toEqual(keysOf(toastCopy('en')));
     expect(keysOf(emptyStateCopy('fr'))).toEqual(keysOf(emptyStateCopy('en')));
     expect(keysOf(errorStateCopy('fr'))).toEqual(keysOf(errorStateCopy('en')));
     expect(keysOf(navbarCopy('fr'))).toEqual(keysOf(navbarCopy('en')));

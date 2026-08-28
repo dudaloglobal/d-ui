@@ -955,6 +955,27 @@ export const errorStateArgTypes = {
   },
 };
 
+export const toastArgTypes = {
+  maxVisible: {
+    control: { type: 'number' as const, min: 1, max: 5, step: 1 },
+    description: 'Nombre maximal de toasts visibles. Le reste attend en file.',
+  },
+  defaultDuration: {
+    control: { type: 'number' as const, min: 0, step: 1000 },
+    description: 'Durée par défaut avant auto-dismiss (ms). `0` = pas d’auto-dismiss.',
+  },
+  defaultDismissible: {
+    control: 'boolean' as const,
+    description:
+      'Bouton fermer par défaut sur chaque toast. Surchargeable via `toast({ dismissible })`.',
+  },
+  label: {
+    control: 'text' as const,
+    description:
+      'Nom accessible de la région du viewport. Fallback anglais : `Notifications`.',
+  },
+};
+
 export const breadcrumbArgTypes = {
   label: {
     control: 'text' as const,

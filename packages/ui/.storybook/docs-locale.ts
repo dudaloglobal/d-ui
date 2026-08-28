@@ -127,6 +127,7 @@ export const storyNameEn: Record<string, string> = {
   'Annonce dynamique': 'Live announcement',
   'Sans fond': 'Without background',
   'Avec action': 'With action',
+  'File d’attente': 'Queue',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -1127,6 +1128,52 @@ export type NotificationDocsCopy = typeof notificationFr;
 
 export function notificationCopy(locale: DocsLocale): NotificationDocsCopy {
   return locale === 'en' ? notificationEn : notificationFr;
+}
+
+const toastFr = {
+  show: 'Afficher un toast',
+  showInfo: 'Info',
+  showSuccess: 'Succès',
+  showWarning: 'Attention',
+  showDanger: 'Erreur',
+  saved: 'Vos modifications ont été enregistrées.',
+  published: 'Les notes seront publiées demain.',
+  warning: 'Cette action est irréversible.',
+  danger: 'Impossible d’enregistrer le devoir.',
+  callback: 'Nouvelle version disponible.',
+  action: 'Voir les détails',
+  enqueue: 'Enfiler trois toasts',
+  queueFirst: 'Premier processus',
+  queueSecond: 'Deuxième processus',
+  queueThird: 'Troisième processus',
+  dismiss: 'Fermer la notification',
+  showDismissible: 'Toast fermable',
+};
+
+const toastEn = {
+  show: 'Show a toast',
+  showInfo: 'Info',
+  showSuccess: 'Success',
+  showWarning: 'Warning',
+  showDanger: 'Error',
+  saved: 'Your changes were saved.',
+  published: 'Grades will be published tomorrow.',
+  warning: 'This action cannot be undone.',
+  danger: 'Unable to save the assignment.',
+  callback: 'New version available.',
+  action: 'View details',
+  enqueue: 'Enqueue three toasts',
+  queueFirst: 'First process',
+  queueSecond: 'Second process',
+  queueThird: 'Third process',
+  dismiss: 'Dismiss notification',
+  showDismissible: 'Dismissible toast',
+};
+
+export type ToastDocsCopy = typeof toastFr;
+
+export function toastCopy(locale: DocsLocale): ToastDocsCopy {
+  return locale === 'en' ? toastEn : toastFr;
 }
 
 const emptyStateFr = {

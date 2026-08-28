@@ -1986,6 +1986,61 @@ export const docsCopy = {
       en: '`variant`, `actionLabel`, `onActionClick`, `dismissible`, `dismissLabel`, `open` / `onOpenChange`. Body: `children`.',
     },
   },
+  toast: {
+    intro: {
+      fr: '`ToastProvider` + `useToast()` affichent des toasts transitoires en bas à droite via le composant `Notification`. File d’attente, durée par défaut (~6 s) et `maxVisible` configurables.',
+      en: '`ToastProvider` + `useToast()` show transient bottom-right toasts via the `Notification` component. Queue, default duration (~6 s), and `maxVisible` are configurable.',
+    },
+    default: { fr: 'Par défaut', en: 'Default' },
+    defaultBody: {
+      fr: 'Appelez `toast({ message, variant })` depuis un handler. Le focus reste sur le déclencheur.',
+      en: 'Call `toast({ message, variant })` from a handler. Focus stays on the trigger.',
+    },
+    variants: { fr: 'Variantes', en: 'Variants' },
+    variantsBody: {
+      fr: 'Même sémantique que `Notification` : `info`, `success`, `warning`, `danger`.',
+      en: 'Same semantics as `Notification`: `info`, `success`, `warning`, `danger`.',
+    },
+    action: { fr: 'Avec action', en: 'With action' },
+    actionBody: {
+      fr: '`actionLabel` + `onActionClick` pour un rappel non bloquant (comme LumApps « Info with callback »).',
+      en: '`actionLabel` + `onActionClick` for a non-blocking follow-up (like LumApps « Info with callback »).',
+    },
+    queue: { fr: 'File d’attente', en: 'Queue' },
+    queueBody: {
+      fr: '`maxVisible` limite les toasts affichés ; les suivants attendent et apparaissent au dismiss ou à l’auto-dismiss du précédent.',
+      en: '`maxVisible` caps visible toasts; extras wait and appear when a toast is dismissed or auto-dismissed.',
+    },
+    dismissible: { fr: 'Fermable', en: 'Dismissible' },
+    dismissibleBody: {
+      fr: '`toast({ dismissible: true })` affiche le bouton fermer de `Notification`. Combinez avec `duration: 0` pour un toast persistant, ou laissez l’auto-dismiss (~6 s).',
+      en: '`toast({ dismissible: true })` shows the `Notification` close button. Pair with `duration: 0` for a persistent toast, or keep auto-dismiss (~6 s).',
+    },
+    a11yBody: {
+      fr: 'Annonce via `role="alert"` sur `Notification`, sans voler le focus. `duration: 0` garde le toast jusqu’à fermeture manuelle (`dismissible`). `prefers-reduced-motion` n’empêche pas le dismiss.',
+      en: 'Announced via `Notification`’s `role="alert"` without stealing focus. `duration: 0` keeps the toast until manual dismiss (`dismissible`). `prefers-reduced-motion` does not block dismiss.',
+    },
+    doProvider: {
+      fr: 'Monter `ToastProvider` près de la racine (avec `ThemeProvider`)',
+      en: 'Mount `ToastProvider` near the root (with `ThemeProvider`)',
+    },
+    doQueue: {
+      fr: 'Documenter `maxVisible` si l’app peut enfiler plusieurs processus',
+      en: 'Document `maxVisible` when the app can enqueue several processes',
+    },
+    dontInline: {
+      fr: 'Un toast comme seul retour d’erreur de formulaire — utilisez `Alert` ou `FieldError`',
+      en: 'A toast as the only form error feedback — use `Alert` or `FieldError`',
+    },
+    dontCenter: {
+      fr: 'Un toast au centre de l’écran — le viewport est coin inférieur droit',
+      en: 'A toast in the screen center — the viewport is bottom-right',
+    },
+    props: {
+      fr: '`maxVisible`, `defaultDuration`, `defaultDismissible`, `label`. API : `toast({ message, variant, dismissible, dismissLabel, duration, … })`, `dismiss(id)`, `dismissAll()`.',
+      en: '`maxVisible`, `defaultDuration`, `defaultDismissible`, `label`. API: `toast({ message, variant, dismissible, dismissLabel, duration, … })`, `dismiss(id)`, `dismissAll()`.',
+    },
+  },
   emptyState: {
     intro: {
       fr: '`EmptyState` compose icône (ou illustration), titre, description et actions (`Button`, `Link`). Pour une liste ou une vue sans données.',
