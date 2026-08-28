@@ -1956,6 +1956,64 @@ export const docsCopy = {
       en: '`page` (1-based) and `pageCount` are required. `onPageChange` receives the requested number. `pageLabel` customises the accessible name.',
     },
   },
+  menu: {
+    intro: {
+      fr: '`Menu` est un menu d’actions sous un bouton (`aria-haspopup="menu"`). `ContextMenu` ouvre le même pattern au clic droit et via **Maj+F10**. Ce n’est pas une palette de commandes (`Command Menu`, DS-045) ni un `Popover`.',
+      en: '`Menu` is an action menu from a button (`aria-haspopup="menu"`). `ContextMenu` opens the same pattern on right-click and via **Shift+F10**. It is not a command palette (`Command Menu`, DS-045) or a `Popover`.',
+    },
+    shortcuts: { fr: 'Raccourcis', en: 'Shortcuts' },
+    shortcutsBody: {
+      fr: '`shortcut` affiche un rappel visuel (`kbd`). Il ne pose pas de raccourci clavier réel : l’app reste responsable de `keydown`.',
+      en: '`shortcut` shows a visual hint (`kbd`). It does not bind a real keyboard shortcut: the app still handles `keydown`.',
+    },
+    disabledItems: { fr: 'Éléments désactivés', en: 'Disabled items' },
+    disabledItemsBody: {
+      fr: '`disabled` sur `MenuItem` (ou `MenuSub`) saute l’entrée au clavier et au typeahead. L’item reste visible.',
+      en: '`disabled` on `MenuItem` (or `MenuSub`) skips the entry for keyboard and typeahead. The item stays visible.',
+    },
+    submenu: { fr: 'Sous-menu', en: 'Submenu' },
+    submenuBody: {
+      fr: '`MenuSub` ouvre un menu imbriqué. **Flèche droite** ouvre, **flèche gauche** ferme. Souris : survol avec un délai court.',
+      en: '`MenuSub` opens a nested menu. **Right arrow** opens, **left arrow** closes. Mouse: hover with a short delay.',
+    },
+    context: { fr: 'Menu contextuel', en: 'Context menu' },
+    contextBody: {
+      fr: '`ContextMenu` s’ouvre au clic droit et au clavier (**Maj+F10** / touche Menu). Les mêmes actions doivent aussi être dans un `Menu` bouton : le contextuel n’est jamais le seul chemin.',
+      en: '`ContextMenu` opens on right-click and from the keyboard (**Shift+F10** / Menu key). The same actions must also live in a button `Menu`: context menu is never the only path.',
+    },
+    a11yBody: {
+      fr: 'Pattern WAI-ARIA menu : déclencheur `aria-haspopup="menu"`, panneau `role="menu"` nommé (`label`), items `menuitem`. Flèches, Début / Fin, Escape, typeahead. Tab sort et ferme. Focus rendu au déclencheur. Le portail recopie `data-d-ui-theme`.',
+      en: 'WAI-ARIA menu pattern: trigger `aria-haspopup="menu"`, named `role="menu"` panel (`label`), `menuitem` items. Arrows, Home / End, Escape, typeahead. Tab leaves and closes. Focus returns to the trigger. The portal copies `data-d-ui-theme`.',
+    },
+    doTrigger: {
+      fr: 'Un `Button` nommé comme `trigger` de `Menu`',
+      en: 'A named `Button` as the `Menu` `trigger`',
+    },
+    doContext: {
+      fr: 'Les mêmes actions dans un `Menu` **et** un `ContextMenu`',
+      en: 'The same actions in a `Menu` **and** a `ContextMenu`',
+    },
+    doTypeahead: {
+      fr: '`textValue` si le libellé de l’item n’est pas une chaîne',
+      en: '`textValue` when the item label is not a string',
+    },
+    dontDiv: {
+      fr: 'Un `div` + `onClick` à la place de `MenuItem`',
+      en: 'A `div` + `onClick` instead of `MenuItem`',
+    },
+    dontOnlyContext: {
+      fr: 'Un contextuel comme **seul** moyen d’atteindre l’action',
+      en: 'A context menu as the **only** way to reach the action',
+    },
+    dontPalette: {
+      fr: 'Un menu pour une palette de commandes (DS-045)',
+      en: 'A menu for a command palette (DS-045)',
+    },
+    props: {
+      fr: '`label` nomme le `menu`. `trigger` est le bouton (ou la cible du contextuel). `open` / `onOpenChange` pour un état contrôlé. `MenuItem` : `onSelect`, `shortcut`, `disabled`.',
+      en: '`label` names the `menu`. `trigger` is the button (or the context target). `open` / `onOpenChange` for controlled state. `MenuItem`: `onSelect`, `shortcut`, `disabled`.',
+    },
+  },
 } as const;
 
 export type DocsCopy = typeof docsCopy;

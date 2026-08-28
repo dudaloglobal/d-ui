@@ -27,6 +27,7 @@ import {
   tabsCopy,
   breadcrumbCopy,
   paginationCopy,
+  menuCopy,
 } from '../.storybook/docs-locale';
 
 /** English MDX headings that must not appear: docs default language is French. */
@@ -111,6 +112,10 @@ const ENGLISH_HEADINGS = [
   'Justify left',
   'Detached',
   'Many pages',
+  'Shortcuts',
+  'Disabled items',
+  'Submenu',
+  'Context menu',
 ];
 
 function collectMdx(dir: string): string[] {
@@ -149,6 +154,7 @@ describe('docs locale', () => {
     expect(keysOf(tabsCopy('fr'))).toEqual(keysOf(tabsCopy('en')));
     expect(keysOf(breadcrumbCopy('fr'))).toEqual(keysOf(breadcrumbCopy('en')));
     expect(keysOf(paginationCopy('fr'))).toEqual(keysOf(paginationCopy('en')));
+    expect(keysOf(menuCopy('fr'))).toEqual(keysOf(menuCopy('en')));
   });
 
   it('writes MDX section headings in French', () => {

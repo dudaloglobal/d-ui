@@ -31,6 +31,7 @@ Une exception AA exige un sign-off Accessibilité **et** une décision produit �
 22. `Tabs` : pattern WAI-ARIA onglets (`tablist` nommée, `tab` / `tabpanel`). Activation `automatic` (défaut, flèches sélectionnent) ou `manual` (Entrée / Espace). Un seul onglet tabulable ; flèches, Début / Fin ; onglet `disabled` sauté. `variant="line"` : filet 2px (gris / marque). `variant="detached"` : pastilles séparées (contour gris / contour `fg` si sélection), même rôles. Pas de routeur.
 23. `Breadcrumb` : `<nav>` + liste ordonnée. Le **dernier** item est la page courante (`aria-current="page"`, pas un lien). Les parentes sont des `Link` si `href`. Séparateurs `aria-hidden`. Pas de `usePathname`.
 24. `Pagination` : contrôlée (`page` / `onPageChange`). Le bouton de la page courante pose `aria-current="page"` et un nom accessible (« Page N »). Précédent / suivant : `IconButton` nommées. Pas de défilement infini ni de routeur.
+25. `Menu` / `ContextMenu` : `role="menu"` nommé, items `menuitem`, séparateur `separator`. Déclencheur `aria-haspopup="menu"` / `aria-expanded`. Flèches, Début / Fin, Escape, typeahead ; Tab sort. `MenuSub` : flèche droite / gauche. `ContextMenu` : clic droit et **Maj+F10** — jamais le seul chemin vers l’action. `shortcut` est visuel uniquement. Pas de palette de commandes.
 
 ## Overlays — revue de PR
 

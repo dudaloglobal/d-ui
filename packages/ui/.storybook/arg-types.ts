@@ -937,3 +937,48 @@ export const paginationArgTypes = {
     description: 'Désactive tous les boutons.',
   },
 };
+
+export const menuArgTypes = {
+  label: {
+    control: 'text' as const,
+    description: 'Nom accessible du `menu`. Fallback anglais : `Menu`.',
+  },
+  placement: {
+    control: 'select' as const,
+    options: [
+      'top',
+      'top-start',
+      'top-end',
+      'bottom',
+      'bottom-start',
+      'bottom-end',
+      'left',
+      'left-start',
+      'left-end',
+      'right',
+      'right-start',
+      'right-end',
+    ],
+    description:
+      'Côté préféré du panneau. Flip/shift recadrent près des bords. Ignoré pour le point du clic droit.',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md', 'lg'],
+    description:
+      '`sm` si l’espace est contraint, `md` par défaut, `lg` pour les vues aérées.',
+  },
+  disabled: {
+    control: 'boolean' as const,
+    description: 'Empêche l’ouverture. Le déclencheur reste visible.',
+  },
+  open: {
+    description: 'Ouverture contrôlée. Passez `onOpenChange`.',
+  },
+  defaultOpen: {
+    description: 'Ouverture initiale en mode non contrôlé.',
+  },
+  onOpenChange: {
+    description: 'Appelé quand le menu s’ouvre ou se ferme.',
+  },
+};

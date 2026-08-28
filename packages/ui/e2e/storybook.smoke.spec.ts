@@ -83,6 +83,8 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Breadcrumb | Dudalo Design System');
   await page.goto('/?path=/docs/components-pagination--docs');
   await expect(page).toHaveTitle('Pagination | Dudalo Design System');
+  await page.goto('/?path=/docs/components-menu--docs');
+  await expect(page).toHaveTitle('Menu | Dudalo Design System');
   await page.goto('/?path=/docs/components-text--docs');
   await expect(page).toHaveTitle('Text | Dudalo Design System');
   await page.goto('/?path=/docs/components-heading--docs');
@@ -112,6 +114,7 @@ test('component docs H1 is the component name, like Link', async ({ page }) => {
     { id: 'components-tabs--docs', name: 'Tabs' },
     { id: 'components-breadcrumb--docs', name: 'Breadcrumb' },
     { id: 'components-pagination--docs', name: 'Pagination' },
+    { id: 'components-menu--docs', name: 'Menu' },
     { id: 'foundations-typography--docs', name: 'Typography' },
     { id: 'foundations-color--docs', name: 'Color' },
   ]) {
@@ -775,6 +778,11 @@ test('English globals switch example copy on every component canvas', async ({
       en: 'Previous page',
       fr: 'Page précédente',
     },
+    {
+      id: 'components-menu--context',
+      en: 'Assignment card',
+      fr: 'Fiche devoir',
+    },
   ] as const;
   for (const { id, en, fr } of cases) {
     await page.goto(`/iframe.html?id=${id}&globals=locale:en`);
@@ -1216,6 +1224,30 @@ test('Pagination docs Show code imports Pagination from d-ui', async ({ page }) 
   const { source } = await docsSource(page);
   await expect(source).toContainText("import { Pagination } from 'd-ui'");
   await expect(source).toContainText('<Pagination');
+});
+
+test('Storybook serves the Menu story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-menu--default');
+  await expect(page.getByRole('button', { name: 'Actions' })).toBeVisible();
+});
+
+test('French Menu docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-menu--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { level: 1, name: 'Menu' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Sous-menu' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Menu contextuel' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Submenu' })).toHaveCount(0);
+  await expect(preview.getByRole('heading', { name: 'Context menu' })).toHaveCount(0);
+});
+
+test('Menu docs Show code imports Menu from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-menu--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText(
+    "import { Button, Menu, MenuItem, MenuSeparator, MenuSub } from 'd-ui'",
+  );
+  await expect(source).toContainText('<Menu');
 });
 
 test('French Color docs do not leak English headings', async ({ page }) => {
