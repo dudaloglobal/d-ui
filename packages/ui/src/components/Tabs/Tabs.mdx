@@ -1,0 +1,85 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as TabsStories from './Tabs.stories';
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+<P k="tabs.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={TabsStories.Default} />
+
+<H2 k="tabs.cluster" />
+
+<P k="tabs.clusterBody" />
+
+<Canvas of={TabsStories.Cluster} />
+
+<H2 k="tabs.detached" />
+
+<P k="tabs.detachedBody" />
+
+<Canvas of={TabsStories.Detached} />
+
+<H2 k="tabs.activation" />
+
+<P k="tabs.activationBody" />
+
+<Canvas of={TabsStories.Manual} />
+
+<H2 k="tabs.vertical" />
+
+<P k="tabs.verticalBody" />
+
+<Canvas of={TabsStories.Vertical} />
+
+<H2 k="chrome.sizes" />
+
+<P k="chrome.useSizes" />
+
+<Canvas of={TabsStories.Sizes} />
+
+<H2 k="chrome.specialStates" />
+
+<H3 k="chrome.disabled" />
+
+<P k="chrome.useDisabled" />
+
+<Canvas of={TabsStories.Disabled} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="tabs.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['tabs.doPattern', 'tabs.doLabel']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['tabs.dontDisplay', 'tabs.dontRouter']} />
+
+<H2 k="chrome.properties" />
+
+<P k="tabs.props" />
+
+<ArgTypes
+  of={TabsStories}
+  include={[
+    'label',
+    'value',
+    'defaultValue',
+    'onValueChange',
+    'activation',
+    'orientation',
+    'variant',
+    'layout',
+    'size',
+    'disabled',
+  ]}
+/>

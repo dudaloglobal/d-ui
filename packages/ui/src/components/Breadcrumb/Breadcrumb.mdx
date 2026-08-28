@@ -1,0 +1,39 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as BreadcrumbStories from './Breadcrumb.stories';
+
+<Meta of={BreadcrumbStories} />
+
+# Breadcrumb
+
+<P k="breadcrumb.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={BreadcrumbStories.Default} />
+
+<H2 k="chrome.sizes" />
+
+<P k="chrome.useSizes" />
+
+<Canvas of={BreadcrumbStories.Sizes} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="breadcrumb.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['breadcrumb.doLast', 'breadcrumb.doNav']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['breadcrumb.dontLinkCurrent', 'breadcrumb.dontRouter']} />
+
+<H2 k="chrome.properties" />
+
+<P k="breadcrumb.props" />
+
+<ArgTypes of={BreadcrumbStories} include={['label', 'size']} />

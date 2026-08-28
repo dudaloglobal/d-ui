@@ -1841,6 +1841,121 @@ export const docsCopy = {
       en: '`value` / `onValueChange` (`DateTimeValue | null`). `minValue` / `maxValue` compare date then time.',
     },
   },
+  tabs: {
+    intro: {
+      fr: '`Tabs` organise des vues in-page (admin, cours). Ce n’est pas un menu de navigation ni un routeur. Pour un fil de pages, `Breadcrumb` ; pour une liste paginée, `Pagination`.',
+      en: '`Tabs` organises in-page views (admin, course). It is not a navigation menu or a router. For a trail of pages, use `Breadcrumb`; for a paged list, `Pagination`.',
+    },
+    activation: { fr: 'Activation manuelle', en: 'Manual activation' },
+    activationBody: {
+      fr: '`activation="automatic"` (défaut) : les flèches sélectionnent l’onglet (WAI-ARIA). `manual` : les flèches déplacent le focus ; **Entrée** ou **Espace** activent — utile si le panneau est coûteux.',
+      en: '`activation="automatic"` (default): arrow keys select the tab (WAI-ARIA). `manual`: arrows move focus; **Enter** or **Space** activate — useful when the panel is expensive.',
+    },
+    vertical: { fr: 'Onglets verticaux', en: 'Vertical tabs' },
+    verticalBody: {
+      fr: '`orientation="vertical"` aligne la `tablist` à gauche. Flèches haut / bas. Pose `aria-orientation`.',
+      en: '`orientation="vertical"` stacks the `tablist` on the left. Up / down arrows. Sets `aria-orientation`.',
+    },
+    cluster: { fr: 'Alignés à gauche', en: 'Justify left' },
+    clusterBody: {
+      fr: '`layout="cluster"` colle les onglets à gauche. Le filet 2px (gris au repos, marque si sélectionné) reste le même que l’exemple par défaut, qui étire les onglets (`layout="stretch"`).',
+      en: '`layout="cluster"` packs tabs to the left. The 2px rule (muted at rest, brand when selected) is the same as the default, which stretches tabs (`layout="stretch"`).',
+    },
+    detached: { fr: 'Détachés', en: 'Detached' },
+    detachedBody: {
+      fr: '`variant="detached"` pose des pastilles **séparées** au-dessus du panneau (pas de filet, pas de piste). Au repos : contour gris (`border-subtle`). Sélection : contour `fg`. Passez une `icon` décorative sur `Tab`.',
+      en: '`variant="detached"` lays out **separate** chips above the panel (no rule, no track). Idle: grey `border-subtle` outline. Selected: `fg` outline. Pass a decorative `icon` on `Tab`.',
+    },
+    a11yBody: {
+      fr: 'Pattern WAI-ARIA onglets : `tablist` nommée, `tab` / `tabpanel` liés par `id`. Un seul onglet tabulable (`tabIndex={0}`). Flèches, Début / Fin. L’onglet désactivé est sauté. Le panneau sélectionné est focusable.',
+      en: 'WAI-ARIA tabs pattern: named `tablist`, `tab` / `tabpanel` linked by `id`. Only one tab is tabbable (`tabIndex={0}`). Arrows, Home / End. A disabled tab is skipped. The selected panel is focusable.',
+    },
+    doPattern: {
+      fr: 'Une `tablist` avec `Tab` + `TabPanel` de même `value`',
+      en: 'A `tablist` with `Tab` + `TabPanel` sharing the same `value`',
+    },
+    doLabel: {
+      fr: '`label` (ou `aria-label`) sur `Tabs` pour nommer la liste',
+      en: '`label` (or `aria-label`) on `Tabs` to name the list',
+    },
+    dontDisplay: {
+      fr: 'Des boutons `aria-pressed` pour simuler des onglets',
+      en: '`aria-pressed` buttons to fake tabs',
+    },
+    dontRouter: {
+      fr: '`usePathname` / le routeur Next.js dans le package',
+      en: '`usePathname` / the Next.js router inside the package',
+    },
+    props: {
+      fr: '`value` / `onValueChange` pour un état contrôlé. `variant` (`line` / `detached`) et `layout` (`stretch` / `cluster`) changent le chrome, pas le pattern ARIA. `label` nomme la `tablist`.',
+      en: '`value` / `onValueChange` for controlled state. `variant` (`line` / `detached`) and `layout` (`stretch` / `cluster`) change the chrome, not the ARIA pattern. `label` names the `tablist`.',
+    },
+  },
+  breadcrumb: {
+    intro: {
+      fr: '`Breadcrumb` est le fil d’Ariane d’une vue (cours, devoir). Le **dernier** item est la page courante : texte, pas un lien. Les items précédents sont des `Link` si `href` est passé. Pas de routeur dans le package.',
+      en: '`Breadcrumb` is the trail for a view (course, assignment). The **last** item is the current page: text, not a link. Earlier items are `Link`s when `href` is set. No router in the package.',
+    },
+    a11yBody: {
+      fr: 'Un `<nav>` nommé contient une liste ordonnée. Le dernier item pose `aria-current="page"`. Les séparateurs sont masqués aux technologies d’assistance. Utilisez `Link` (soulignement) pour les pages parentes.',
+      en: 'A named `<nav>` contains an ordered list. The last item sets `aria-current="page"`. Separators are hidden from assistive technology. Use `Link` (underline) for parent pages.',
+    },
+    doLast: {
+      fr: 'Laisser le dernier `BreadcrumbItem` sans `href` (page courante)',
+      en: 'Leave the last `BreadcrumbItem` without `href` (current page)',
+    },
+    doNav: {
+      fr: '`<Breadcrumb label="Fil d’Ariane">` pour un nom distinct si la page a plusieurs `nav`',
+      en: '`<Breadcrumb label="Breadcrumb">` for a distinct name when the page has several `nav`s',
+    },
+    dontLinkCurrent: {
+      fr: 'Un lien sur la page courante — le dernier item n’est jamais un `<a>`',
+      en: 'A link on the current page — the last item is never an `<a>`',
+    },
+    dontRouter: {
+      fr: '`usePathname` pour remplir le fil depuis le package',
+      en: '`usePathname` to fill the trail from the package',
+    },
+    props: {
+      fr: '`label` nomme le `nav`. `size` aligne la typo. Chaque `BreadcrumbItem` accepte `href` (pages parentes).',
+      en: '`label` names the `nav`. `size` aligns type. Each `BreadcrumbItem` accepts `href` (parent pages).',
+    },
+  },
+  pagination: {
+    intro: {
+      fr: '`Pagination` est **contrôlée** : `page` / `onPageChange`. Pas de défilement infini ni de routeur. Les pages trop nombreuses sont collapsées avec une ellipse.',
+      en: '`Pagination` is **controlled**: `page` / `onPageChange`. No infinite scroll and no router. Long ranges collapse with an ellipsis.',
+    },
+    many: { fr: 'Beaucoup de pages', en: 'Many pages' },
+    manyBody: {
+      fr: '`siblingCount` (défaut `1`) garde des numéros autour de la page courante, plus la première et la dernière. Un trou d’une seule page n’affiche pas d’ellipse.',
+      en: '`siblingCount` (default `1`) keeps numbers around the current page, plus first and last. A one-page hole does not show an ellipsis.',
+    },
+    a11yBody: {
+      fr: 'Un `<nav>` nommé. Le bouton de la page courante pose `aria-current="page"` et un nom du type « Page 3, page courante ». Précédent / suivant sont des `IconButton` nommées. Localisez `previousLabel`, `nextLabel` et `pageLabel`.',
+      en: 'A named `<nav>`. The current page button sets `aria-current="page"` and a name such as “Page 3, current page”. Previous / next are named `IconButton`s. Localize `previousLabel`, `nextLabel`, and `pageLabel`.',
+    },
+    doCurrent: {
+      fr: 'Laisser `aria-current="page"` sur le bouton de la page active',
+      en: 'Keep `aria-current="page"` on the active page button',
+    },
+    doLabels: {
+      fr: 'Passer `previousLabel` / `nextLabel` dans la langue de l’app',
+      en: 'Pass `previousLabel` / `nextLabel` in the app language',
+    },
+    dontInfinite: {
+      fr: 'Un défilement infini à la place de la pagination',
+      en: 'Infinite scroll instead of pagination',
+    },
+    dontRouter: {
+      fr: '`usePathname` ou `href` Next.js dans le composant',
+      en: '`usePathname` or Next.js `href`s inside the component',
+    },
+    props: {
+      fr: '`page` (1-indexée) et `pageCount` sont obligatoires. `onPageChange` reçoit le numéro demandé. `pageLabel` personnalise le nom accessible.',
+      en: '`page` (1-based) and `pageCount` are required. `onPageChange` receives the requested number. `pageLabel` customises the accessible name.',
+    },
+  },
 } as const;
 
 export type DocsCopy = typeof docsCopy;

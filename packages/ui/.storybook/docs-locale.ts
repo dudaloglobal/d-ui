@@ -104,6 +104,11 @@ export const storyNameEn: Record<string, string> = {
   'Accept et taille max': 'Accept and max size',
   Progression: 'Progress',
   'Saisie au clavier': 'Keyboard entry',
+  'Activation manuelle': 'Manual activation',
+  'Onglets verticaux': 'Vertical tabs',
+  'Alignés à gauche': 'Justify left',
+  Détachés: 'Detached',
+  'Beaucoup de pages': 'Many pages',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -835,4 +840,109 @@ export type DateTimePickerDocsCopy = typeof dateTimePickerFr;
 
 export function dateTimePickerCopy(locale: DocsLocale): DateTimePickerDocsCopy {
   return locale === 'en' ? dateTimePickerEn : dateTimePickerFr;
+}
+
+const tabsFr = {
+  label: 'Section du cours',
+  overview: 'Aperçu',
+  homework: 'Devoirs',
+  files: 'Fichiers',
+  overviewPanel: 'Présentation du cours.',
+  homeworkPanel: 'Liste des devoirs.',
+  filesPanel: 'Documents du cours.',
+  small: 'Petite',
+  medium: 'Moyenne',
+  large: 'Grande',
+  productLabel: 'Type de produit',
+  internal: 'Logiciel interne',
+  customer: 'Logiciel client',
+  marketing: 'Marketing & SEO',
+  mobile: 'Applis mobiles',
+  internalPanel:
+    'Construire un CRM pour mon équipe commerciale de 12 personnes, avec le suivi des deals et des relances…',
+  customerPanel: 'Portail client pour suivre les commandes et les tickets de support.',
+  marketingPanel:
+    'Site vitrine et pages de campagne, avec le référencement déjà en place.',
+  mobilePanel: 'Application iOS et Android pour l’équipe terrain.',
+  attachImage: 'Joindre une image',
+  buildIt: 'Créer',
+};
+
+const tabsEn = {
+  label: 'Course section',
+  overview: 'Overview',
+  homework: 'Homework',
+  files: 'Files',
+  overviewPanel: 'Course overview.',
+  homeworkPanel: 'Assignment list.',
+  filesPanel: 'Course files.',
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+  productLabel: 'Product type',
+  internal: 'Internal software',
+  customer: 'Customer software',
+  marketing: 'Marketing & SEO',
+  mobile: 'Mobile apps',
+  internalPanel:
+    'Build a CRM for my 12-person sales team that tracks deals and follow-ups…',
+  customerPanel: 'A customer portal to track orders and support tickets.',
+  marketingPanel: 'A marketing site and campaign pages, with SEO already in place.',
+  mobilePanel: 'An iOS and Android app for the field team.',
+  attachImage: 'Attach Image',
+  buildIt: 'Build it',
+};
+
+export type TabsDocsCopy = typeof tabsFr;
+
+export function tabsCopy(locale: DocsLocale): TabsDocsCopy {
+  return locale === 'en' ? tabsEn : tabsFr;
+}
+
+const breadcrumbFr = {
+  label: 'Fil d’Ariane',
+  home: 'Accueil',
+  courses: 'Cours',
+  math: 'Mathématiques',
+  small: 'Petite',
+  medium: 'Moyenne',
+  large: 'Grande',
+};
+
+const breadcrumbEn = {
+  label: 'Breadcrumb',
+  home: 'Home',
+  courses: 'Courses',
+  math: 'Mathematics',
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+};
+
+export type BreadcrumbDocsCopy = typeof breadcrumbFr;
+
+export function breadcrumbCopy(locale: DocsLocale): BreadcrumbDocsCopy {
+  return locale === 'en' ? breadcrumbEn : breadcrumbFr;
+}
+
+const paginationFr = {
+  label: 'Pagination des devoirs',
+  previous: 'Page précédente',
+  next: 'Page suivante',
+  page: (page: number) => `Page ${page}`,
+  pageCurrent: (page: number) => `Page ${page}, page courante`,
+};
+
+const paginationEn = {
+  label: 'Assignment pagination',
+  previous: 'Previous page',
+  next: 'Next page',
+  page: (page: number) => `Page ${page}`,
+  pageCurrent: (page: number) => `Page ${page}, current page`,
+};
+
+export type PaginationDocsCopy = typeof paginationFr;
+
+export function paginationCopy(locale: DocsLocale): PaginationDocsCopy {
+  return locale === 'en' ? paginationEn : paginationFr;
 }

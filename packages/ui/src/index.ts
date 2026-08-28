@@ -146,5 +146,25 @@ export {
   parseClockTime,
   parseDateTime,
 } from './components/DatePicker/parse';
+export { Tabs, TabList, Tab, TabPanel } from './components/Tabs/Tabs';
+export type {
+  TabListProps,
+  TabPanelProps,
+  TabProps,
+  TabsActivation,
+  TabsLayout,
+  TabsOrientation,
+  TabsProps,
+  TabsSize,
+  TabsVariant,
+} from './components/Tabs/Tabs';
+export { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb/Breadcrumb';
+export type {
+  BreadcrumbItemProps,
+  BreadcrumbProps,
+  BreadcrumbSize,
+} from './components/Breadcrumb/Breadcrumb';
+export { Pagination } from './components/Pagination/Pagination';
+export type { PaginationProps, PaginationSize } from './components/Pagination/Pagination';
 export { brandTokensToStyle, tokenNames } from './tokens/names';
 export type { BrandTokens, TokenName } from './tokens/names';

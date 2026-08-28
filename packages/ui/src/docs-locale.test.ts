@@ -24,6 +24,9 @@ import {
   datePickerCopy,
   timePickerCopy,
   dateTimePickerCopy,
+  tabsCopy,
+  breadcrumbCopy,
+  paginationCopy,
 } from '../.storybook/docs-locale';
 
 /** English MDX headings that must not appear: docs default language is French. */
@@ -103,6 +106,11 @@ const ENGLISH_HEADINGS = [
   'Keyboard entry',
   'Spinbuttons',
   'Calendar and time',
+  'Manual activation',
+  'Vertical tabs',
+  'Justify left',
+  'Detached',
+  'Many pages',
 ];
 
 function collectMdx(dir: string): string[] {
@@ -138,6 +146,9 @@ describe('docs locale', () => {
     expect(keysOf(datePickerCopy('fr'))).toEqual(keysOf(datePickerCopy('en')));
     expect(keysOf(timePickerCopy('fr'))).toEqual(keysOf(timePickerCopy('en')));
     expect(keysOf(dateTimePickerCopy('fr'))).toEqual(keysOf(dateTimePickerCopy('en')));
+    expect(keysOf(tabsCopy('fr'))).toEqual(keysOf(tabsCopy('en')));
+    expect(keysOf(breadcrumbCopy('fr'))).toEqual(keysOf(breadcrumbCopy('en')));
+    expect(keysOf(paginationCopy('fr'))).toEqual(keysOf(paginationCopy('en')));
   });
 
   it('writes MDX section headings in French', () => {

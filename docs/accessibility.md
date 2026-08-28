@@ -28,6 +28,9 @@ Une exception AA exige un sign-off Accessibilité **et** une décision produit �
 19. `Calendar` : `role="grid"` nommée par le mois. Sélecteurs natifs **Mois** / **Année** (`<select>` nommés). Jours en `button` dans des `gridcell`. Flèches, Début/Fin, Page préc./suiv. (Maj : année). Jour choisi : `aria-selected`. Aujourd’hui : `aria-current="date"`. `selectionMode="range"` : `aria-multiselectable`, `{ start, end }`. Un seul jour tabulable ; nom accessible = date complète. Dates hors plage / `isDateUnavailable` : `aria-disabled`. Dates civiles `{ year, month, day }` via `toCalendarDate` / `fromCalendarDate` (`local` | `utc`). Pas d’événements LMS.
 20. `FileUpload` : `<input type="file">` natif masqué (`d-ui-visually-hidden`, `tabIndex={-1}`). Le bouton visible ouvre le sélecteur ; le clavier n’a pas besoin de la zone de dépôt. Libellé via `htmlFor`. `invalid` / refus `accept` / `maxSize` posent `aria-invalid` et un `role="alert"` lié par `aria-describedby`. Liste nommée ; retrait via `IconButton` nommée. Pas de `div` cliquable à la place du bouton.
 21. `DatePicker` / `TimePicker` / `DateTimePicker` : champ `<input>` nommé + bouton nommé ouvrant un `Popover` (`trapFocus`, `dialog`). Escape ferme. Saisie clavier (blur). Date civile `{ year, month, day }` ; heure `{ hour, minute }`. `TimePicker` : spinbuttons `aria-valuenow` / `min` / `max`. Erreur : `aria-invalid` + message sous le champ. `name` : `YYYY-MM-DD` / `HH:mm` / `YYYY-MM-DDTHH:mm`. Pas de `Date` JS ni de fuseau.
+22. `Tabs` : pattern WAI-ARIA onglets (`tablist` nommée, `tab` / `tabpanel`). Activation `automatic` (défaut, flèches sélectionnent) ou `manual` (Entrée / Espace). Un seul onglet tabulable ; flèches, Début / Fin ; onglet `disabled` sauté. `variant="line"` : filet 2px (gris / marque). `variant="detached"` : pastilles séparées (contour gris / contour `fg` si sélection), même rôles. Pas de routeur.
+23. `Breadcrumb` : `<nav>` + liste ordonnée. Le **dernier** item est la page courante (`aria-current="page"`, pas un lien). Les parentes sont des `Link` si `href`. Séparateurs `aria-hidden`. Pas de `usePathname`.
+24. `Pagination` : contrôlée (`page` / `onPageChange`). Le bouton de la page courante pose `aria-current="page"` et un nom accessible (« Page N »). Précédent / suivant : `IconButton` nommées. Pas de défilement infini ni de routeur.
 
 ## Overlays — revue de PR
 
@@ -48,14 +51,17 @@ Un overlay modal pose `aria-modal="true"` et piège le Tab **à l’intérieur**
 
 ### Clavier (widgets cœur)
 
-| Widget              | Tab                                | Enter / Espace           | Escape | Flèches                    |
-| ------------------- | ---------------------------------- | ------------------------ | ------ | -------------------------- |
-| Button / IconButton | Entre / sort                       | Active                   | —      | —                          |
-| Link                | Entre / sort                       | Active (Enter)           | —      | —                          |
-| Dialog              | Cycle interne                      | Active le contrôle focus | Ferme  | —                          |
-| Menu                | Sort du widget                     | Active l’item            | Ferme  | Haut / bas (et Home / End) |
-| Popover             | Vers le contenu s’il est focusable | Selon le contrôle        | Ferme  | —                          |
-| Tooltip             | Reste sur le trigger               | —                        | Masque | —                          |
+| Widget              | Tab                                | Enter / Espace           | Escape | Flèches                                                |
+| ------------------- | ---------------------------------- | ------------------------ | ------ | ------------------------------------------------------ |
+| Button / IconButton | Entre / sort                       | Active                   | —      | —                                                      |
+| Link                | Entre / sort                       | Active (Enter)           | —      | —                                                      |
+| Dialog              | Cycle interne                      | Active le contrôle focus | Ferme  | —                                                      |
+| Menu                | Sort du widget                     | Active l’item            | Ferme  | Haut / bas (et Home / End)                             |
+| Popover             | Vers le contenu s’il est focusable | Selon le contrôle        | Ferme  | —                                                      |
+| Tooltip             | Reste sur le trigger               | —                        | Masque | —                                                      |
+| Tabs                | Vers le panneau                    | Active (manuel)          | —      | Gauche / droite (Haut / bas si vertical) ; Début / Fin |
+| Breadcrumb          | Liens parentes                     | Suit le lien (Enter)     | —      | —                                                      |
+| Pagination          | Boutons de page                    | Va à la page             | —      | —                                                      |
 
 Pas de `div` + `onKeyDown` si un élément natif existe (`dialog`, `button`, `a`).
 
