@@ -46,9 +46,7 @@ describe('rewriteRenamedStoryHref', () => {
 
   it('sends old Field docs to TextInput docs', () => {
     expect(
-      rewriteRenamedStoryHref(
-        'http://localhost:6006/?path=/docs/components-field--docs',
-      ),
+      rewriteRenamedStoryHref('http://localhost:6006/?path=/docs/components-field--docs'),
     ).toBe('http://localhost:6006/?path=/docs/components-textinput--docs');
   });
 

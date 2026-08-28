@@ -41,13 +41,7 @@ const defaultSizeForLevel: Record<HeadingLevel, HeadingSize> = {
  * coupler les deux pousse à sauter des niveaux pour obtenir la bonne taille,
  * ce qui casse la navigation par titres (WCAG 1.3.1).
  */
-export function Heading({
-  level,
-  size,
-  bold = false,
-  className,
-  ...rest
-}: HeadingProps) {
+export function Heading({ level, size, bold = false, className, ...rest }: HeadingProps) {
   const Component = `h${level}` as ElementType;
   const resolvedSize = size ?? defaultSizeForLevel[level];
 
