@@ -19,6 +19,10 @@ import { cx } from '../../lib/cx';
 export type TabsActivation = 'automatic' | 'manual';
 export type TabsOrientation = 'horizontal' | 'vertical';
 export type TabsSize = 'sm' | 'md' | 'lg';
+/** `"line"` : filet bas (LumApps). `"detached"` : pastilles séparées, hors du panneau. */
+export type TabsVariant = 'line' | 'detached';
+/** `"stretch"` : les onglets se partagent la largeur. `"cluster"` : collés à gauche. */
+export type TabsLayout = 'stretch' | 'cluster';
 
 type TabsContextValue = {
   value: string;
@@ -26,6 +30,8 @@ type TabsContextValue = {
   activation: TabsActivation;
   orientation: TabsOrientation;
   size: TabsSize;
+  variant: TabsVariant;
+  layout: TabsLayout;
   disabled: boolean;
   label: string;
   baseId: string;
@@ -55,15 +61,25 @@ export type TabsProps = {
   activation?: TabsActivation;
   orientation?: TabsOrientation;
   size?: TabsSize;
+  /** `"line"` (défaut) : filet 2px. `"detached"` : pastilles séparées au-dessus du panneau. */
+  variant?: TabsVariant;
+  /** `"stretch"` (défaut, `line` horizontal) : largeur égale. `"cluster"` : à gauche. */
+  layout?: TabsLayout;
   disabled?: boolean;
   className?: string;
   children: ReactNode;
 };
 
-const sizeClass: Record<TabsSize, string> = {
+const lineSizeClass: Record<TabsSize, string> = {
+  sm: 'h-10 px-4 text-sm',
+  md: 'h-12 px-6 text-base',
+  lg: 'h-14 px-8 text-lg',
+};
+
+const detachedSizeClass: Record<TabsSize, string> = {
   sm: 'h-8 px-3 text-sm',
-  md: 'h-10 px-4 text-base',
-  lg: 'h-12 px-5 text-lg',
+  md: 'h-10 px-4 text-sm',
+  lg: 'h-12 px-5 text-base',
 };
 
 export function Tabs({
@@ -74,6 +90,8 @@ export function Tabs({
   activation = 'automatic',
   orientation = 'horizontal',
   size = 'md',
+  variant = 'line',
+  layout = 'stretch',
   disabled = false,
   className,
   children,
@@ -109,6 +127,8 @@ export function Tabs({
         activation,
         orientation,
         size,
+        variant,
+        layout,
         disabled,
         label,
         baseId: generatedId,
@@ -117,7 +137,11 @@ export function Tabs({
     >
       <div
         className={cx(
-          orientation === 'vertical' ? 'flex items-start gap-4' : undefined,
+          orientation === 'vertical'
+            ? 'flex items-start gap-4'
+            : variant === 'detached'
+              ? 'flex flex-col gap-3'
+              : undefined,
           className,
         )}
       >
@@ -197,9 +221,14 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(function TabList
       onKeyDown={handleKeyDown}
       className={cx(
         'flex',
-        context.orientation === 'vertical'
-          ? 'min-w-36 flex-col border-s border-border'
-          : 'flex-row border-b border-border',
+        context.variant === 'detached'
+          ? cx(
+              'w-fit gap-2',
+              context.orientation === 'vertical' ? 'min-w-36 flex-col' : 'flex-row',
+            )
+          : context.orientation === 'vertical'
+            ? 'min-w-36 flex-col'
+            : 'w-full flex-row',
         className,
       )}
     >
@@ -211,10 +240,12 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(function TabList
 export type TabProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'value'> & {
   /** Identifiant de l’onglet, aligné sur `TabPanel value`. */
   value: string;
+  /** Icône décorative. Ne remplace pas le nom accessible. */
+  icon?: ReactNode;
 };
 
 export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
-  { value, disabled, className, onClick, onKeyDown, children, ...rest },
+  { value, disabled, className, onClick, onKeyDown, icon, children, ...rest },
   ref,
 ) {
   const context = useTabsContext('Tab');
@@ -224,6 +255,8 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
     activation,
     orientation,
     size,
+    variant,
+    layout,
     disabled: groupDisabled,
     baseId,
     ensureDefault,
@@ -265,22 +298,34 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
       }}
       onKeyDown={handleKeyDown}
       className={cx(
-        'relative shrink-0 font-sans font-medium',
+        'relative inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap font-sans',
         'focus-visible:ring-focus focus-visible:z-1 focus-visible:ring-2 focus-visible:outline-none',
-        sizeClass[size],
-        orientation === 'vertical' ? 'w-full text-start' : 'text-center',
-        selected
+        variant === 'detached' ? detachedSizeClass[size] : lineSizeClass[size],
+        variant === 'detached'
           ? cx(
-              'text-fg',
-              orientation === 'vertical'
-                ? 'border-s-2 border-brand bg-surface-muted'
-                : 'border-b-2 border-brand',
+              'rounded-lg border',
+              selected
+                ? 'border-fg bg-bg font-semibold text-fg'
+                : 'border-border-subtle bg-transparent font-medium text-fg-muted hover:bg-field hover:text-fg',
+              orientation === 'vertical' && 'w-full',
             )
-          : 'text-fg/70 hover:text-fg hover:bg-surface-muted',
+          : cx(
+              'bg-transparent font-medium text-fg hover:bg-field',
+              orientation === 'vertical'
+                ? 'w-full justify-start border-s-2'
+                : 'border-b-2',
+              selected ? 'border-brand' : 'border-border-subtle',
+              layout === 'stretch' && orientation === 'horizontal' && 'flex-1',
+            ),
         isDisabled && 'opacity-50',
         className,
       )}
     >
+      {icon ? (
+        <span className="inline-flex shrink-0 [&_svg]:block" aria-hidden="true">
+          {icon}
+        </span>
+      ) : null}
       {children}
     </button>
   );
@@ -308,7 +353,11 @@ export const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>(function TabPa
       aria-labelledby={tabId}
       hidden={!selected}
       tabIndex={selected ? 0 : undefined}
-      className={cx('min-w-0 flex-1 font-sans text-fg', className)}
+      className={cx(
+        'min-w-0 flex-1 font-sans text-fg',
+        context.variant === 'line' && 'pt-4',
+        className,
+      )}
     >
       {selected ? children : null}
     </div>

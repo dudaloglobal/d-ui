@@ -106,6 +106,8 @@ export const storyNameEn: Record<string, string> = {
   'Saisie au clavier': 'Keyboard entry',
   'Activation manuelle': 'Manual activation',
   'Onglets verticaux': 'Vertical tabs',
+  'Alignés à gauche': 'Justify left',
+  Détachés: 'Detached',
   'Beaucoup de pages': 'Many pages',
 };
 
@@ -851,6 +853,19 @@ const tabsFr = {
   small: 'Petite',
   medium: 'Moyenne',
   large: 'Grande',
+  productLabel: 'Type de produit',
+  internal: 'Logiciel interne',
+  customer: 'Logiciel client',
+  marketing: 'Marketing & SEO',
+  mobile: 'Applis mobiles',
+  internalPanel:
+    'Construire un CRM pour mon équipe commerciale de 12 personnes, avec le suivi des deals et des relances…',
+  customerPanel: 'Portail client pour suivre les commandes et les tickets de support.',
+  marketingPanel:
+    'Site vitrine et pages de campagne, avec le référencement déjà en place.',
+  mobilePanel: 'Application iOS et Android pour l’équipe terrain.',
+  attachImage: 'Joindre une image',
+  buildIt: 'Créer',
 };
 
 const tabsEn = {
@@ -864,6 +879,18 @@ const tabsEn = {
   small: 'Small',
   medium: 'Medium',
   large: 'Large',
+  productLabel: 'Product type',
+  internal: 'Internal software',
+  customer: 'Customer software',
+  marketing: 'Marketing & SEO',
+  mobile: 'Mobile apps',
+  internalPanel:
+    'Build a CRM for my 12-person sales team that tracks deals and follow-ups…',
+  customerPanel: 'A customer portal to track orders and support tickets.',
+  marketingPanel: 'A marketing site and campaign pages, with SEO already in place.',
+  mobilePanel: 'An iOS and Android app for the field team.',
+  attachImage: 'Attach Image',
+  buildIt: 'Build it',
 };
 
 export type TabsDocsCopy = typeof tabsFr;

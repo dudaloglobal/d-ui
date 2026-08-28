@@ -152,9 +152,11 @@ export type {
   TabPanelProps,
   TabProps,
   TabsActivation,
+  TabsLayout,
   TabsOrientation,
   TabsProps,
   TabsSize,
+  TabsVariant,
 } from './components/Tabs/Tabs';
 export { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb/Breadcrumb';
 export type {

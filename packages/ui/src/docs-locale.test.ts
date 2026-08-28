@@ -108,6 +108,8 @@ const ENGLISH_HEADINGS = [
   'Calendar and time',
   'Manual activation',
   'Vertical tabs',
+  'Justify left',
+  'Detached',
   'Many pages',
 ];
 

@@ -186,4 +186,38 @@ describe('Tabs', () => {
       'true',
     );
   });
+
+  it('keeps the tabs pattern when variant is detached', async () => {
+    const user = userEvent.setup();
+    const onValueChange = vi.fn();
+    render(
+      <Tabs
+        label="Type de produit"
+        defaultValue="internal"
+        variant="detached"
+        onValueChange={onValueChange}
+      >
+        <TabList>
+          <Tab value="internal">Logiciel interne</Tab>
+          <Tab value="customer">Logiciel client</Tab>
+        </TabList>
+        <TabPanel value="internal">Outils internes</TabPanel>
+        <TabPanel value="customer">Portails clients</TabPanel>
+      </Tabs>,
+    );
+    const tablist = screen.getByRole('tablist', { name: 'Type de produit' });
+    expect(tablist).toBeInTheDocument();
+    expect(tablist.className).not.toMatch(/bg-surface-muted/);
+    expect(screen.getByRole('tab', { name: 'Logiciel interne' }).className).toMatch(
+      /border-fg/,
+    );
+    expect(screen.getByRole('tab', { name: 'Logiciel client' }).className).toMatch(
+      /border-border-subtle/,
+    );
+    await user.click(screen.getByRole('tab', { name: 'Logiciel client' }));
+    expect(onValueChange).toHaveBeenCalledWith('customer');
+    expect(screen.getByRole('tabpanel', { name: 'Logiciel client' })).toHaveTextContent(
+      'Portails clients',
+    );
+  });
 });

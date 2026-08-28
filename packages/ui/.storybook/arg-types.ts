@@ -863,6 +863,18 @@ export const tabsArgTypes = {
     description:
       '`sm` si l’espace est contraint, `md` par défaut, `lg` pour les vues aérées.',
   },
+  variant: {
+    control: 'inline-radio' as const,
+    options: ['line', 'detached'],
+    description:
+      '`line` (défaut) : filet bas 2px (gris / marque). `detached` : pastilles séparées (contour gris au repos, contour `fg` si sélection).',
+  },
+  layout: {
+    control: 'inline-radio' as const,
+    options: ['stretch', 'cluster'],
+    description:
+      '`stretch` (défaut) : les onglets se partagent la largeur. `cluster` : collés à gauche. Ignoré en `detached`.',
+  },
   disabled: {
     control: 'boolean' as const,
     description: 'Désactive tous les onglets. Ils restent visibles.',

@@ -1856,6 +1856,16 @@ export const docsCopy = {
       fr: '`orientation="vertical"` aligne la `tablist` à gauche. Flèches haut / bas. Pose `aria-orientation`.',
       en: '`orientation="vertical"` stacks the `tablist` on the left. Up / down arrows. Sets `aria-orientation`.',
     },
+    cluster: { fr: 'Alignés à gauche', en: 'Justify left' },
+    clusterBody: {
+      fr: '`layout="cluster"` colle les onglets à gauche. Le filet 2px (gris au repos, marque si sélectionné) reste le même que l’exemple par défaut, qui étire les onglets (`layout="stretch"`).',
+      en: '`layout="cluster"` packs tabs to the left. The 2px rule (muted at rest, brand when selected) is the same as the default, which stretches tabs (`layout="stretch"`).',
+    },
+    detached: { fr: 'Détachés', en: 'Detached' },
+    detachedBody: {
+      fr: '`variant="detached"` pose des pastilles **séparées** au-dessus du panneau (pas de filet, pas de piste). Au repos : contour gris (`border-subtle`). Sélection : contour `fg`. Passez une `icon` décorative sur `Tab`.',
+      en: '`variant="detached"` lays out **separate** chips above the panel (no rule, no track). Idle: grey `border-subtle` outline. Selected: `fg` outline. Pass a decorative `icon` on `Tab`.',
+    },
     a11yBody: {
       fr: 'Pattern WAI-ARIA onglets : `tablist` nommée, `tab` / `tabpanel` liés par `id`. Un seul onglet tabulable (`tabIndex={0}`). Flèches, Début / Fin. L’onglet désactivé est sauté. Le panneau sélectionné est focusable.',
       en: 'WAI-ARIA tabs pattern: named `tablist`, `tab` / `tabpanel` linked by `id`. Only one tab is tabbable (`tabIndex={0}`). Arrows, Home / End. A disabled tab is skipped. The selected panel is focusable.',
@@ -1877,8 +1887,8 @@ export const docsCopy = {
       en: '`usePathname` / the Next.js router inside the package',
     },
     props: {
-      fr: '`value` / `onValueChange` pour un état contrôlé. `activation` et `orientation` suivent le pattern onglets. `label` nomme la `tablist`.',
-      en: '`value` / `onValueChange` for controlled state. `activation` and `orientation` follow the tabs pattern. `label` names the `tablist`.',
+      fr: '`value` / `onValueChange` pour un état contrôlé. `variant` (`line` / `detached`) et `layout` (`stretch` / `cluster`) changent le chrome, pas le pattern ARIA. `label` nomme la `tablist`.',
+      en: '`value` / `onValueChange` for controlled state. `variant` (`line` / `detached`) and `layout` (`stretch` / `cluster`) change the chrome, not the ARIA pattern. `label` names the `tablist`.',
     },
   },
   breadcrumb: {

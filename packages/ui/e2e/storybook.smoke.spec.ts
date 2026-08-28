@@ -761,6 +761,11 @@ test('English globals switch example copy on every component canvas', async ({
       fr: 'Aperçu',
     },
     {
+      id: 'components-tabs--detached',
+      en: 'Internal software',
+      fr: 'Logiciel interne',
+    },
+    {
       id: 'components-breadcrumb--default',
       en: 'Home',
       fr: 'Accueil',
@@ -1146,9 +1151,11 @@ test('French Tabs docs do not leak English headings', async ({ page }) => {
   await expect(
     preview.getByRole('heading', { name: 'Activation manuelle' }),
   ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Détachés' })).toBeVisible();
   await expect(preview.getByRole('heading', { name: 'Manual activation' })).toHaveCount(
     0,
   );
+  await expect(preview.getByRole('heading', { name: 'Detached' })).toHaveCount(0);
   await expect(preview.getByText('Overview', { exact: true })).toHaveCount(0);
 });
 
