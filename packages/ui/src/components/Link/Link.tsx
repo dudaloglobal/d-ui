@@ -72,7 +72,7 @@ export function Link({
         'hover:decoration-2',
         'focus-visible:ring-focus focus-visible:ring-offset-bg rounded-xs focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
         colorClass[color],
-        icon && 'inline-flex items-center gap-1.5',
+        icon ? 'inline-flex items-center gap-1.5' : undefined,
         className,
       )}
       {...rest}
