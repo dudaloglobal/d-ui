@@ -357,15 +357,6 @@ const selectSharedArgTypes = {
   },
 };
 
-export const selectArgTypes = {
-  ...selectSharedArgTypes,
-  placeholder: {
-    ...textFieldArgTypes.placeholder,
-    description:
-      'Texte du déclencheur lorsqu’aucune valeur n’est choisie. Défaut : « Choisir ».',
-  },
-};
-
 export const comboboxArgTypes = {
   ...selectSharedArgTypes,
   placeholder: {
@@ -520,28 +511,6 @@ export const textArgTypes = {
   },
 };
 
-export const fieldArgTypes = {
-  required: {
-    control: 'boolean' as const,
-    description:
-      'Pose `required` sur le contrôle (hors `group`) et un astérisque décoratif sur le libellé. Dans un groupe, n’exige pas chaque case.',
-  },
-  invalid: {
-    control: 'boolean' as const,
-    description:
-      'Marque le contrôle `aria-invalid` et autorise `FieldError` dans le DOM (`role="alert"`).',
-  },
-  disabled: {
-    control: 'boolean' as const,
-    description: 'Désactive le contrôle (ou le `fieldset` en mode `group`).',
-  },
-  group: {
-    control: 'boolean' as const,
-    description:
-      'Rend un `fieldset` ; `Label` devient `legend` et doit rester le premier enfant. `useFieldControl` ne transmet alors ni `id` ni `required`.',
-  },
-};
-
 export const headingArgTypes = {
   level: {
     control: 'inline-radio' as const,
@@ -553,6 +522,10 @@ export const headingArgTypes = {
     options: ['display', 'title', 'subtitle', 'body'],
     description:
       'Taille visuelle, indépendante du `level`. Par défaut, la taille suit le niveau.',
+  },
+  bold: {
+    control: 'boolean' as const,
+    description: 'Passe en `font-bold`. Désactivé par défaut (`font-normal`).',
   },
 };
 
@@ -568,6 +541,21 @@ export const linkArgTypes = {
   externalLabel: {
     description:
       'Texte annoncé pour un lien externe. Défaut anglais : `"(opens in a new tab)"`.',
+  },
+  color: {
+    control: 'inline-radio' as const,
+    options: ['default', 'dark', 'light'],
+    description:
+      '`default` : token `link` (et `visited`). `dark` : encre (`fg`). `light` : fond (`bg`), à poser sur un fond `fg`. Non héritée du parent.',
+  },
+  icon: {
+    description:
+      'Icône décorative (`aria-hidden`). Ne remplace pas le nom accessible. Suit `currentColor`.',
+  },
+  iconPosition: {
+    control: 'inline-radio' as const,
+    options: ['start', 'end'],
+    description: 'Position de l’icône : `start` (début) ou `end` (fin).',
   },
 };
 

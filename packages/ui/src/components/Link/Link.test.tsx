@@ -41,4 +41,42 @@ describe('Link', () => {
     await user.keyboard('{Enter}');
     expect(onClick).toHaveBeenCalledTimes(1);
   });
+
+  it('renders a decorative icon without changing the accessible name', () => {
+    render(
+      <Link
+        href="/catalogue"
+        icon={
+          <svg data-testid="link-icon" viewBox="0 0 16 16">
+            <path d="M4 12L12 4M6 4h6v6" />
+          </svg>
+        }
+        iconPosition="end"
+      >
+        Catalogue
+      </Link>,
+    );
+    const link = screen.getByRole('link', { name: 'Catalogue' });
+    expect(
+      link.querySelector('[data-testid="link-icon"]')?.parentElement,
+    ).toHaveAttribute('aria-hidden', 'true');
+    expect(link).toHaveClass('inline-flex');
+  });
+
+  it('uses ink and paper colors without the visited token', () => {
+    const { rerender } = render(
+      <Link href="/catalogue" color="dark">
+        Sombre
+      </Link>,
+    );
+    expect(screen.getByRole('link', { name: 'Sombre' })).toHaveClass('text-fg');
+    expect(screen.getByRole('link', { name: 'Sombre' })).not.toHaveClass('text-link');
+
+    rerender(
+      <Link href="/catalogue" color="light">
+        Clair
+      </Link>,
+    );
+    expect(screen.getByRole('link', { name: 'Clair' })).toHaveClass('text-bg');
+  });
 });

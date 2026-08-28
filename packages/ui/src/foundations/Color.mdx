@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../.storybook/docs-i18n';
+import { PrimaryPalettes, SecondaryPalettes } from './ColorSwatches';
+import * as ColorStories from './Color.stories';
+
+<Meta of={ColorStories} />
+
+# Color
+
+<P k="color.available" />
+
+<H2 k="color.primary" />
+
+<PrimaryPalettes />
+
+<H2 k="color.secondary" />
+
+<SecondaryPalettes />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="color.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['color.doToken', 'color.doOn', 'color.doTheme']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['color.dontHex', 'color.dontTintText', 'color.dontDecor']} />

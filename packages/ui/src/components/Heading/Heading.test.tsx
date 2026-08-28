@@ -26,7 +26,17 @@ describe('Heading', () => {
     render(<Heading level={1}>Accueil</Heading>);
     expect(screen.getByRole('heading', { level: 1 })).toHaveClass(
       'text-4xl',
-      'font-bold',
+      'font-normal',
     );
+    expect(screen.getByRole('heading', { level: 1 })).not.toHaveClass('font-bold');
+  });
+
+  it('opts into bold weight', () => {
+    render(
+      <Heading level={2} bold>
+        Titre fort
+      </Heading>,
+    );
+    expect(screen.getByRole('heading', { level: 2 })).toHaveClass('font-bold');
   });
 });

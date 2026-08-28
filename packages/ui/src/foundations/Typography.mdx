@@ -1,0 +1,65 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul, Table } from '../../.storybook/docs-i18n';
+import * as TypographyStories from './Typography.stories';
+
+<Meta of={TypographyStories} />
+
+# Typography
+
+<P k="typography.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<H2 k="typography.typefaces" />
+
+<P k="typography.typefacesBody" />
+
+<H3 k="typography.fontsBySystem" />
+
+<Table
+  headers={['typography.colSystem', 'typography.colFont']}
+  rows={[
+    ['typography.sysWindows', 'typography.fontWindows'],
+    ['typography.sysMac', 'typography.fontMac'],
+    ['typography.sysLinux', 'typography.fontLinux'],
+    ['typography.sysChrome', 'typography.fontChrome'],
+  ]}
+/>
+
+<H2 k="typography.styles" />
+
+<P k="typography.stylesBody" />
+
+<H3 k="typography.basic" />
+
+<P k="typography.basicBody" />
+
+<Canvas of={TypographyStories.BasicStyles} />
+
+<H3 k="typography.custom" />
+
+<P k="typography.customBody" />
+
+<Ul
+  items={['typography.customFont', 'typography.customSize', 'typography.customWeight']}
+/>
+
+<Canvas of={TypographyStories.CustomStyles} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="typography.a11yBody" />
+
+<P k="typography.a11yMuted" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['typography.doHeading', 'typography.doMuted', 'typography.doToken']} />
+
+<H3 k="chrome.dont" />
+
+<Ul
+  items={['typography.dontTwoH1', 'typography.dontClass', 'typography.dontFakeHeading']}
+/>

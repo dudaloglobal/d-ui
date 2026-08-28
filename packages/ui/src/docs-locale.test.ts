@@ -17,7 +17,7 @@ import {
   themeCopy,
   timeAgoCopy,
   typographyCopy,
-  fieldCopy,
+  colorCopy,
   visuallyHiddenCopy,
   calendarCopy,
 } from '../.storybook/docs-locale';
@@ -83,6 +83,13 @@ const ENGLISH_HEADINGS = [
   'Date adapter',
   'Date range',
   'Year',
+  'Typefaces',
+  'Fonts by system',
+  'Basic styles',
+  'Custom styles',
+  'Bold',
+  'Primary palette',
+  'Secondary palette',
 ];
 
 function collectMdx(dir: string): string[] {
@@ -111,8 +118,8 @@ describe('docs locale', () => {
     expect(keysOf(visuallyHiddenCopy('fr'))).toEqual(keysOf(visuallyHiddenCopy('en')));
     expect(keysOf(themeCopy('fr'))).toEqual(keysOf(themeCopy('en')));
     expect(keysOf(typographyCopy('fr'))).toEqual(keysOf(typographyCopy('en')));
+    expect(keysOf(colorCopy('fr'))).toEqual(keysOf(colorCopy('en')));
     expect(keysOf(iconCopy('fr'))).toEqual(keysOf(iconCopy('en')));
-    expect(keysOf(fieldCopy('fr'))).toEqual(keysOf(fieldCopy('en')));
     expect(keysOf(calendarCopy('fr'))).toEqual(keysOf(calendarCopy('en')));
   });
 
@@ -149,7 +156,6 @@ describe('docs locale', () => {
     expect(text).toContain('Cible du lien, un identifiant de page');
     expect(text).toContain('Niveau sémantique : rend un vrai');
     expect(text).toContain('Composant SVG à rendre');
-    expect(text).toContain('Rend un `fieldset`');
     expect(text).not.toContain('"Clear"');
     expect(text).not.toContain('Show password');
     expect(text).not.toContain('character remaining');

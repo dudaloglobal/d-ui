@@ -12,6 +12,20 @@ import * as LinkStories from './Link.stories';
 
 <Canvas of={LinkStories.Default} />
 
+<H2 k="chrome.icon" />
+
+<P k="link.iconBody" />
+
+<Canvas of={LinkStories.WithIcon} />
+
+<H2 k="link.color" />
+
+<P k="link.colorBody" />
+
+<Canvas of={LinkStories.Dark} />
+
+<Canvas of={LinkStories.Light} />
+
 <H2 k="link.inText" />
 
 <P k="link.inTextBody" />
@@ -32,14 +46,17 @@ import * as LinkStories from './Link.stories';
 
 <H3 k="chrome.do" />
 
-<Ul items={['link.doHref', 'link.doExternal']} />
+<Ul items={['link.doHref', 'link.doExternal', 'link.doIcon']} />
 
 <H3 k="chrome.dont" />
 
-<Ul items={['link.dontBlank', 'link.dontButton']} />
+<Ul items={['link.dontBlank', 'link.dontButton', 'link.dontDarkInText']} />
 
 <H2 k="chrome.properties" />
 
 <P k="link.props" />
 
-<ArgTypes of={LinkStories} include={['href', 'external', 'externalLabel']} />
+<ArgTypes
+  of={LinkStories}
+  include={['href', 'color', 'icon', 'iconPosition', 'external', 'externalLabel']}
+/>

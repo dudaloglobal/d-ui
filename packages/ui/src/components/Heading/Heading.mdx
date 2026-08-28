@@ -24,6 +24,12 @@ import * as HeadingStories from './Heading.stories';
 
 <Canvas of={HeadingStories.SizeDecoupledFromLevel} />
 
+<H2 k="heading.bold" />
+
+<P k="heading.boldBody" />
+
+<Canvas of={HeadingStories.Bold} />
+
 <P k="chrome.themeLang" />
 
 <H2 k="chrome.accessibility" />
@@ -32,7 +38,7 @@ import * as HeadingStories from './Heading.stories';
 
 <H3 k="chrome.do" />
 
-<Ul items={['heading.doSize', 'heading.doOneH1']} />
+<Ul items={['heading.doSize', 'heading.doOneH1', 'heading.doBold']} />
 
 <H3 k="chrome.dont" />
 
@@ -42,4 +48,4 @@ import * as HeadingStories from './Heading.stories';
 
 <P k="heading.props" />
 
-<ArgTypes of={HeadingStories} include={['level', 'size']} />
+<ArgTypes of={HeadingStories} include={['level', 'size', 'bold']} />

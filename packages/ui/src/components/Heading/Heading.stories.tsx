@@ -72,3 +72,19 @@ export const SizeDecoupledFromLevel: Story = {
     );
   },
 };
+
+export const Bold: Story = {
+  name: 'Gras',
+  parameters: componentSource(
+    "import { Heading } from 'd-ui';",
+    '<Heading level={2} bold>Parcours d’apprentissage</Heading>',
+  ),
+  render: (_, { globals }) => {
+    const copy = typographyCopy(docsLocale(globals.locale));
+    return (
+      <Heading level={2} bold>
+        {copy.heading}
+      </Heading>
+    );
+  },
+};

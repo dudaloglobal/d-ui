@@ -31,7 +31,7 @@ export type {
 export { Icon } from './components/Icon/Icon';
 export type { IconProps, IconSize } from './components/Icon/Icon';
 export { Link } from './components/Link/Link';
-export type { LinkProps } from './components/Link/Link';
+export type { LinkColor, LinkIconPosition, LinkProps } from './components/Link/Link';
 export { Text } from './components/Text/Text';
 export type {
   TextElement,

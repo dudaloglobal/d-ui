@@ -20,6 +20,19 @@ type SelectOverlay = {
   setReference: (node: Element | null) => void;
 };
 
+/** Storybook wraps each canvas in `.d-ui-docs`. Clicks in another canvas must not close this list. */
+export function shouldDismissSelectOverlay(
+  event: { target: EventTarget | null },
+  reference: Element | null,
+): boolean {
+  const root = reference?.closest('.d-ui-docs');
+  if (!root) return true;
+  const target = event.target;
+  if (!(target instanceof Node)) return true;
+  const clickedRoot = target instanceof Element ? target.closest('.d-ui-docs') : null;
+  return !clickedRoot || clickedRoot === root;
+}
+
 export function useSelectOverlay(
   open: boolean,
   onOpenChange: (open: boolean) => void,
@@ -29,6 +42,7 @@ export function useSelectOverlay(
     open,
     onOpenChange,
     placement: 'bottom-start',
+    strategy: 'fixed',
     middleware: [
       offset(4),
       flip({ padding: OVERLAY_PADDING }),
@@ -47,7 +61,11 @@ export function useSelectOverlay(
   });
   const theme = useInheritedTheme(referenceEl);
   const portal = overlayPortalProps(theme);
-  const dismiss = useDismiss(context, { bubbles: false });
+  const dismiss = useDismiss(context, {
+    bubbles: false,
+    ancestorScroll: false,
+    outsidePress: (event) => shouldDismissSelectOverlay(event, referenceEl),
+  });
   const { getReferenceProps: getReferencePropsRaw, getFloatingProps } = useInteractions([
     dismiss,
   ]);
@@ -79,8 +97,17 @@ export function closeSelectOverlay(close: () => void) {
   queueMicrotask(close);
 }
 
+/** Scroll the option inside the listbox only — never the document. */
 export function scrollOptionIntoView(listId: string, index: number) {
   if (index < 0) return;
   const node = document.getElementById(`${listId}-opt-${index}`);
-  node?.scrollIntoView?.({ block: 'nearest' });
+  const list = document.getElementById(listId);
+  if (!node || !list) return;
+  const nodeRect = node.getBoundingClientRect();
+  const listRect = list.getBoundingClientRect();
+  if (nodeRect.top < listRect.top) {
+    list.scrollTop -= listRect.top - nodeRect.top;
+  } else if (nodeRect.bottom > listRect.bottom) {
+    list.scrollTop += nodeRect.bottom - listRect.bottom;
+  }
 }
