@@ -103,6 +103,7 @@ export const storyNameEn: Record<string, string> = {
   'Plusieurs fichiers': 'Multiple files',
   'Accept et taille max': 'Accept and max size',
   Progression: 'Progress',
+  'Saisie au clavier': 'Keyboard entry',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -764,4 +765,74 @@ export type FileUploadDocsCopy = typeof fileUploadFr;
 
 export function fileUploadCopy(locale: DocsLocale): FileUploadDocsCopy {
   return locale === 'en' ? fileUploadEn : fileUploadFr;
+}
+
+const datePickerFr = {
+  label: 'Échéance',
+  helper: 'Saisissez une date ou ouvrez le calendrier.',
+  placeholder: 'JJ/MM/AAAA',
+  error: 'Date invalide.',
+  restricted: 'Entre le 5 et le 25 mars.',
+  small: 'Petite',
+  medium: 'Moyenne',
+  large: 'Grande',
+};
+
+const datePickerEn = {
+  label: 'Due date',
+  helper: 'Type a date or open the calendar.',
+  placeholder: 'MM/DD/YYYY',
+  error: 'Invalid date.',
+  restricted: 'Between 5 and 25 March.',
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+};
+
+export type DatePickerDocsCopy = typeof datePickerFr;
+
+export function datePickerCopy(locale: DocsLocale): DatePickerDocsCopy {
+  return locale === 'en' ? datePickerEn : datePickerFr;
+}
+
+const timePickerFr = {
+  label: 'Heure de début',
+  helper: 'Format 24 h (HH:mm).',
+  error: 'Heure invalide.',
+  small: 'Petite',
+  medium: 'Moyenne',
+  large: 'Grande',
+};
+
+const timePickerEn = {
+  label: 'Start time',
+  helper: '24-hour format (HH:mm).',
+  error: 'Invalid time.',
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+};
+
+export type TimePickerDocsCopy = typeof timePickerFr;
+
+export function timePickerCopy(locale: DocsLocale): TimePickerDocsCopy {
+  return locale === 'en' ? timePickerEn : timePickerFr;
+}
+
+const dateTimePickerFr = {
+  label: 'Soutenance',
+  helper: 'Date et heure de la session.',
+  error: 'Date ou heure invalide.',
+};
+
+const dateTimePickerEn = {
+  label: 'Defense',
+  helper: 'Session date and time.',
+  error: 'Invalid date or time.',
+};
+
+export type DateTimePickerDocsCopy = typeof dateTimePickerFr;
+
+export function dateTimePickerCopy(locale: DocsLocale): DateTimePickerDocsCopy {
+  return locale === 'en' ? dateTimePickerEn : dateTimePickerFr;
 }

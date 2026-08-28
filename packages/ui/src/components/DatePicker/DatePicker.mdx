@@ -1,0 +1,93 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as DatePickerStories from './DatePicker.stories';
+
+<Meta of={DatePickerStories} />
+
+# DatePicker
+
+<P k="datePicker.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={DatePickerStories.Default} />
+
+<H2 k="datePicker.keyboard" />
+
+<P k="datePicker.keyboardBody" />
+
+<Canvas of={DatePickerStories.Keyboard} />
+
+<H2 k="datePicker.calendar" />
+
+<P k="datePicker.calendarBody" />
+
+<Canvas of={DatePickerStories.Default} />
+
+<H2 k="datePicker.restricted" />
+
+<P k="datePicker.restrictedBody" />
+
+<Canvas of={DatePickerStories.Restricted} />
+
+<H2 k="chrome.clearable" />
+
+<P k="datePicker.clearableBody" />
+
+<Canvas of={DatePickerStories.Clearable} />
+
+<H2 k="chrome.sizes" />
+
+<P k="chrome.useSizes" />
+
+<Canvas of={DatePickerStories.Sizes} />
+
+<H2 k="chrome.specialStates" />
+
+<H3 k="chrome.disabled" />
+
+<P k="chrome.useDisabled" />
+
+<Canvas of={DatePickerStories.Disabled} />
+
+<H3 k="chrome.invalid" />
+
+<P k="datePicker.invalidBody" />
+
+<Canvas of={DatePickerStories.Invalid} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="datePicker.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['datePicker.doParse', 'datePicker.doCalendar']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['datePicker.dontDate', 'datePicker.dontTimezone']} />
+
+<H2 k="chrome.properties" />
+
+<P k="datePicker.props" />
+
+<ArgTypes
+  of={DatePickerStories}
+  include={[
+    'label',
+    'value',
+    'minValue',
+    'maxValue',
+    'invalid',
+    'disabled',
+    'required',
+    'clearable',
+    'locale',
+    'helper',
+    'error',
+    'size',
+  ]}
+/>

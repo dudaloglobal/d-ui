@@ -1710,6 +1710,137 @@ export const docsCopy = {
       en: 'Native `<input type="file">` attributes (`name`, `accept`, `required`, …) are forwarded. `value` is not controllable (HTML limitation): use `files` / `onFilesChange`.',
     },
   },
+  datePicker: {
+    intro: {
+      fr: '`DatePicker` compose `TextInput`, `Popover` et `Calendar` : une date civile se saisit ou se choisit. Pour une grille sans champ, utilisez `Calendar`. Pour une heure seule, `TimePicker`.',
+      en: '`DatePicker` composes `TextInput`, `Popover`, and `Calendar`: a civil date is typed or picked. For a grid without a field, use `Calendar`. For time only, `TimePicker`.',
+    },
+    keyboard: { fr: 'Saisie au clavier', en: 'Keyboard entry' },
+    keyboardBody: {
+      fr: 'Le champ accepte `JJ/MM/AAAA` (ou `MM/DD/YYYY` en anglais) et `YYYY-MM-DD`. La valeur se valide à la sortie du champ. **Alt+↓** ouvre le calendrier.',
+      en: 'The field accepts `DD/MM/YYYY` (or `MM/DD/YYYY` in English) and `YYYY-MM-DD`. The value is parsed on blur. **Alt+↓** opens the calendar.',
+    },
+    calendar: { fr: 'Calendrier', en: 'Calendar' },
+    calendarBody: {
+      fr: 'Le bouton nommé ouvre un `Popover` (`trapFocus`, rôle `dialog`). Choisir un jour ferme le panneau. Escape aussi.',
+      en: 'The named button opens a `Popover` (`trapFocus`, `dialog` role). Picking a day closes the panel. Escape does too.',
+    },
+    restricted: { fr: 'Dates restreintes', en: 'Restricted dates' },
+    restrictedBody: {
+      fr: '`minValue` / `maxValue` / `isDateUnavailable` s’appliquent au calendrier et à la saisie. Une date hors plage invalide le champ.',
+      en: '`minValue` / `maxValue` / `isDateUnavailable` apply to the calendar and typed input. A date out of range invalidates the field.',
+    },
+    clearableBody: {
+      fr: '`clearable` (défaut : oui) pose le bouton **Effacer**, comme `TextInput`.',
+      en: '`clearable` (default: on) sets the **Clear** button, like `TextInput`.',
+    },
+    invalidBody: {
+      fr: 'Une date illisible ou hors plage pose `aria-invalid` et le message sous le champ (via `Field` / `error`).',
+      en: 'An unreadable or out-of-range date sets `aria-invalid` and the message under the field (via `Field` / `error`).',
+    },
+    a11yBody: {
+      fr: 'Le champ est un `<input>` nommé. Le déclencheur du calendrier a un nom accessible (`openCalendarLabel`). Le panneau est un `dialog` piégé. `name` pose un champ masqué `YYYY-MM-DD`.',
+      en: 'The field is a named `<input>`. The calendar trigger has an accessible name (`openCalendarLabel`). The panel is a trapped `dialog`. `name` sets a hidden `YYYY-MM-DD` field.',
+    },
+    doParse: {
+      fr: 'Laisser saisir `12/03/2026` ou `2026-03-12` sans ouvrir le calendrier',
+      en: 'Allow typing `12/03/2026` or `2026-03-12` without opening the calendar',
+    },
+    doCalendar: {
+      fr: 'Fermer le `Popover` à la sélection et sur Escape',
+      en: 'Close the `Popover` on selection and Escape',
+    },
+    dontDate: {
+      fr: 'Exposer un `Date` JS comme valeur — utiliser `{ year, month, day }`',
+      en: 'Exposing a JS `Date` as the value — use `{ year, month, day }`',
+    },
+    dontTimezone: {
+      fr: 'Un sélecteur de fuseau horaire (hors périmètre)',
+      en: 'A time-zone picker (out of scope)',
+    },
+    props: {
+      fr: '`value` / `onValueChange` pour un état contrôlé (`CalendarDate | null`). `locale` pilote le format affiché. `name` poste `YYYY-MM-DD`.',
+      en: '`value` / `onValueChange` for controlled state (`CalendarDate | null`). `locale` drives the displayed format. `name` posts `YYYY-MM-DD`.',
+    },
+  },
+  timePicker: {
+    intro: {
+      fr: '`TimePicker` saisit une heure civile `{ hour, minute }` (24 h). Pour une date, voir `DatePicker`.',
+      en: '`TimePicker` enters a civil time `{ hour, minute }` (24-hour). For a date, see `DatePicker`.',
+    },
+    spinners: { fr: 'Compteurs', en: 'Spinbuttons' },
+    spinnersBody: {
+      fr: 'Le panneau expose deux `role="spinbutton"` (heure, minutes). Flèches, Début/Fin, Page préc./suiv. Les boutons plus/moins sont nommés.',
+      en: 'The panel exposes two `role="spinbutton"` (hour, minutes). Arrows, Home/End, Page up/down. Plus/minus buttons are named.',
+    },
+    invalidBody: {
+      fr: 'Une heure illisible (`24:00`) ou hors `minValue` / `maxValue` pose `aria-invalid`.',
+      en: 'An unreadable time (`24:00`) or one outside `minValue` / `maxValue` sets `aria-invalid`.',
+    },
+    a11yBody: {
+      fr: 'Le champ est un `<input>` nommé. Le déclencheur ouvre un `dialog`. Chaque unité est un spinbutton avec `aria-valuenow` / `min` / `max`. `name` poste `HH:mm`.',
+      en: 'The field is a named `<input>`. The trigger opens a `dialog`. Each unit is a spinbutton with `aria-valuenow` / `min` / `max`. `name` posts `HH:mm`.',
+    },
+    doSpin: {
+      fr: 'Garder les spinbuttons (ou un équivalent natif), pas une liste d’heures non nommée',
+      en: 'Keep spinbuttons (or a native equivalent), not an unnamed list of times',
+    },
+    doParse: {
+      fr: 'Accepter `14:30` et `14h30` à la saisie',
+      en: 'Accept `14:30` and `14h30` when typing',
+    },
+    dontNative: {
+      fr: '`<input type="time">` seul — le chrome et les messages d’erreur ne seraient plus ceux de `d-ui`',
+      en: '`<input type="time">` alone — chrome and error messages would no longer be `d-ui`',
+    },
+    dontTimezone: {
+      fr: 'Une conversion de fuseau : la valeur reste `{ hour, minute }`',
+      en: 'A time-zone conversion: the value stays `{ hour, minute }`',
+    },
+    props: {
+      fr: '`value` / `onValueChange` (`ClockTime | null`). `minValue` / `maxValue` en `{ hour, minute }`.',
+      en: '`value` / `onValueChange` (`ClockTime | null`). `minValue` / `maxValue` as `{ hour, minute }`.',
+    },
+  },
+  dateTimePicker: {
+    intro: {
+      fr: '`DateTimePicker` réunit date et heure civiles (`DateTimeValue`). Pas d’instant UTC : l’app convertit si besoin via `fromCalendarDate`.',
+      en: '`DateTimePicker` combines civil date and time (`DateTimeValue`). No UTC instant: the app converts if needed via `fromCalendarDate`.',
+    },
+    compose: { fr: 'Calendrier et heure', en: 'Calendar and time' },
+    composeBody: {
+      fr: 'Le panneau affiche `Calendar` puis les spinbuttons. Choisir un jour garde l’heure courante (minuit si vide).',
+      en: 'The panel shows `Calendar` then the spinbuttons. Picking a day keeps the current time (midnight if empty).',
+    },
+    invalidBody: {
+      fr: 'Saisie illisible ou hors `minValue` / `maxValue` (`DateTimeValue`) : `aria-invalid` et le message sous le champ.',
+      en: 'Unreadable input or outside `minValue` / `maxValue` (`DateTimeValue`): `aria-invalid` and the message under the field.',
+    },
+    a11yBody: {
+      fr: 'Même contrat que `DatePicker` + spinbuttons de `TimePicker`. `name` poste `YYYY-MM-DDTHH:mm` (civil, sans `Z`).',
+      en: 'Same contract as `DatePicker` plus `TimePicker` spinbuttons. `name` posts `YYYY-MM-DDTHH:mm` (civil, no `Z`).',
+    },
+    doParse: {
+      fr: 'Accepter `12/03/2026 09:15` dans un seul champ',
+      en: 'Accept `12/03/2026 09:15` in a single field',
+    },
+    doPopover: {
+      fr: 'Fermer le `Popover` sur Escape',
+      en: 'Close the `Popover` on Escape',
+    },
+    dontJsDate: {
+      fr: 'Un `Date` unique comme API — garder `{ date, time }`',
+      en: 'A single `Date` as the API — keep `{ date, time }`',
+    },
+    dontTimezone: {
+      fr: 'Un sélecteur de fuseau ou des événements LMS récurrents',
+      en: 'A time-zone picker or recurring LMS events',
+    },
+    props: {
+      fr: '`value` / `onValueChange` (`DateTimeValue | null`). `minValue` / `maxValue` comparent date puis heure.',
+      en: '`value` / `onValueChange` (`DateTimeValue | null`). `minValue` / `maxValue` compare date then time.',
+    },
+  },
 } as const;
 
 export type DocsCopy = typeof docsCopy;

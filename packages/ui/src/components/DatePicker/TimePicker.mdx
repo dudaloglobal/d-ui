@@ -1,0 +1,74 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as TimePickerStories from './TimePicker.stories';
+
+<Meta of={TimePickerStories} />
+
+# TimePicker
+
+<P k="timePicker.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={TimePickerStories.Default} />
+
+<H2 k="timePicker.spinners" />
+
+<P k="timePicker.spinnersBody" />
+
+<Canvas of={TimePickerStories.Default} />
+
+<H2 k="chrome.sizes" />
+
+<P k="chrome.useSizes" />
+
+<Canvas of={TimePickerStories.Sizes} />
+
+<H2 k="chrome.specialStates" />
+
+<H3 k="chrome.disabled" />
+
+<P k="chrome.useDisabled" />
+
+<Canvas of={TimePickerStories.Disabled} />
+
+<H3 k="chrome.invalid" />
+
+<P k="timePicker.invalidBody" />
+
+<Canvas of={TimePickerStories.Invalid} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="timePicker.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['timePicker.doSpin', 'timePicker.doParse']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['timePicker.dontNative', 'timePicker.dontTimezone']} />
+
+<H2 k="chrome.properties" />
+
+<P k="timePicker.props" />
+
+<ArgTypes
+  of={TimePickerStories}
+  include={[
+    'label',
+    'value',
+    'minValue',
+    'maxValue',
+    'invalid',
+    'disabled',
+    'required',
+    'clearable',
+    'helper',
+    'error',
+    'size',
+  ]}
+/>

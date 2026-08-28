@@ -743,3 +743,90 @@ export const fileUploadArgTypes = {
     description: '`sm` / `md` / `lg` : hauteur de la zone et taille du bouton.',
   },
 };
+
+const pickerFieldArgTypes = {
+  label: {
+    description:
+      'Libellé visible au-dessus du champ. Sinon, un `<label htmlFor>` externe ou `aria-labelledby`.',
+  },
+  helper: {
+    description:
+      'Texte d’aide sous le champ. Remplacé par l’erreur si le champ est invalide.',
+  },
+  error: {
+    description: 'Message d’erreur sous le champ. Pose aussi `aria-invalid`.',
+  },
+  invalid: {
+    control: 'boolean' as const,
+    description:
+      'État d’erreur : `aria-invalid`. Une saisie illisible invalide aussi le champ.',
+  },
+  disabled: {
+    control: 'boolean' as const,
+    description: 'Désactive le champ, l’effacement et le déclencheur du panneau.',
+  },
+  required: {
+    control: 'boolean' as const,
+    description:
+      'Pose `required` sur le champ et un astérisque décoratif sur le libellé.',
+  },
+  clearable: {
+    control: 'boolean' as const,
+    description: 'Bouton d’effacement. Défaut : `true`. Nom accessible : « Effacer ».',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md', 'lg'],
+    description: '`sm` / `md` / `lg` : hauteur du champ.',
+  },
+};
+
+export const datePickerArgTypes = {
+  ...pickerFieldArgTypes,
+  locale: {
+    control: 'text' as const,
+    description:
+      'Locale BCP 47. Défaut : `fr` (`JJ/MM/AAAA`). `en` affiche `MM/DD/YYYY`. `name` poste toujours `YYYY-MM-DD`.',
+  },
+  value: {
+    description:
+      'Date contrôlée `{ year, month, day }` ou `null`. Pas un `Date` JavaScript.',
+  },
+  minValue: {
+    description: 'Première date acceptée (saisie et calendrier).',
+  },
+  maxValue: {
+    description: 'Dernière date acceptée (saisie et calendrier).',
+  },
+};
+
+export const timePickerArgTypes = {
+  ...pickerFieldArgTypes,
+  value: {
+    description: 'Heure contrôlée `{ hour, minute }` (0–23 / 0–59) ou `null`.',
+  },
+  minValue: {
+    description: 'Première heure acceptée.',
+  },
+  maxValue: {
+    description: 'Dernière heure acceptée.',
+  },
+};
+
+export const dateTimePickerArgTypes = {
+  ...pickerFieldArgTypes,
+  locale: {
+    control: 'text' as const,
+    description: 'Locale BCP 47 pour le format de date affiché. Défaut : `fr`.',
+  },
+  value: {
+    description:
+      'Valeur contrôlée `{ date, time }` ou `null`. `name` poste `YYYY-MM-DDTHH:mm`.',
+  },
+  minValue: {
+    description: 'Borne basse `DateTimeValue` (date puis heure).',
+  },
+  maxValue: {
+    description: 'Borne haute `DateTimeValue` (date puis heure).',
+  },
+};
