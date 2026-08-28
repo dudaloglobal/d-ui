@@ -2032,6 +2032,110 @@ export const docsCopy = {
       en: '`label` names the `menu`. `trigger` is any focusable element (`Button`, `IconButton`, `Link`…). `open` / `onOpenChange` for controlled state. `MenuItem`: `onSelect`, `href` (link), `icon` / `iconEnd`, `shortcut`, `disabled`.',
     },
   },
+  navbar: {
+    intro: {
+      fr: '`Navbar` est la barre supérieure d’une coquille : slots `brand`, `actions` et `user`. Ce n’est pas une toolbar de dialogue (LumApps Toolbar) ni un fil d’Ariane. Pas de liens LMS ni de logique d’auth.',
+      en: '`Navbar` is the top bar of an app shell: `brand`, `actions`, and `user` slots. It is not a dialog toolbar (LumApps Toolbar) or a breadcrumb. No LMS links and no auth logic.',
+    },
+    menuButton: { fr: 'Bouton menu', en: 'Menu button' },
+    menuButtonBody: {
+      fr: 'Passez `onMenuOpenChange` pour afficher le hamburger (`aria-haspopup="dialog"`). Branchez-le sur `Sidebar` en `overlay`. Voir la story **Superposition** de `Sidebar`.',
+      en: 'Pass `onMenuOpenChange` to show the hamburger (`aria-haspopup="dialog"`). Wire it to `Sidebar` with `overlay`. See the **Overlay** story on `Sidebar`.',
+    },
+    a11yBody: {
+      fr: 'Un `<header>` (bannière). Le bouton menu n’apparaît que si `onMenuOpenChange` est passé : `aria-expanded`, `aria-controls`, `aria-haspopup="dialog"`. Placez `SkipLink` **avant** la barre. `IconButton` dans `actions` doit avoir un `aria-label`.',
+      en: 'A `<header>` (banner). The menu button appears only when `onMenuOpenChange` is passed: `aria-expanded`, `aria-controls`, `aria-haspopup="dialog"`. Place `SkipLink` **before** the bar. An `IconButton` in `actions` must have an `aria-label`.',
+    },
+    doSlots: {
+      fr: '`brand` / `actions` / `user` pour composer la barre',
+      en: '`brand` / `actions` / `user` to compose the bar',
+    },
+    doMenu: {
+      fr: '`menuLabel` localisé et `menuControls` égal à l’`id` du `Sidebar` overlay',
+      en: 'A localized `menuLabel` and `menuControls` equal to the overlay `Sidebar` `id`',
+    },
+    doSkip: {
+      fr: '`SkipLink` puis `Navbar`, puis `<main id="main" tabIndex={-1}>`',
+      en: '`SkipLink` then `Navbar`, then `<main id="main" tabIndex={-1}>`',
+    },
+    dontAuth: {
+      fr: 'Un appel session / profil dans le package',
+      en: 'A session / profile call inside the package',
+    },
+    dontLinks: {
+      fr: 'Des href LMS figés (`/courses`) dans `Navbar`',
+      en: 'Hardcoded LMS hrefs (`/courses`) inside `Navbar`',
+    },
+    dontNext: {
+      fr: 'Un fichier `layout.tsx` Next.js dans d-ui',
+      en: 'A Next.js `layout.tsx` file inside d-ui',
+    },
+    props: {
+      fr: '`brand`, `actions`, `user` sont des nœuds React. `onMenuOpenChange` affiche le bouton hamburger. `menuLabel` nomme ce bouton.',
+      en: '`brand`, `actions`, and `user` are React nodes. `onMenuOpenChange` shows the hamburger button. `menuLabel` names that button.',
+    },
+  },
+  sidebar: {
+    intro: {
+      fr: '`Sidebar` est la navigation latérale d’une coquille (`<nav>` + liste). Les items viennent de l’app (`href`). Pour une superposition mobile, `overlay` + `Navbar` (bouton menu). Ce n’est pas un `Drawer` (DS-038).',
+      en: '`Sidebar` is the shell side navigation (`<nav>` + list). Items come from the app (`href`). For a mobile overlay, `overlay` + `Navbar` (menu button). It is not a `Drawer` (DS-038).',
+    },
+    iconsBody: {
+      fr: '`icon` est décorative. Le libellé reste le nom accessible. En mode replié, le texte passe dans `VisuallyHidden` : l’item icône seule garde un nom.',
+      en: '`icon` is decorative. The label stays the accessible name. When collapsed, the text moves into `VisuallyHidden`: the icon-only item still has a name.',
+    },
+    collapsed: { fr: 'Replié', en: 'Collapsed' },
+    collapsedBody: {
+      fr: '`collapsed` réduit le rail aux icônes. `collapsible` affiche le bouton replier / déployer (libellés `collapseLabel` / `expandLabel`).',
+      en: '`collapsed` shrinks the rail to icons. `collapsible` shows the collapse / expand button (`collapseLabel` / `expandLabel`).',
+    },
+    nested: { fr: 'Imbriqués', en: 'Nested' },
+    nestedBody: {
+      fr: '`SidebarGroup` est un divulgage (`aria-expanded`). Les enfants sont une liste imbriquée, comme la side navigation LumApps.',
+      en: '`SidebarGroup` is a disclosure (`aria-expanded`). Children are a nested list, like LumApps side navigation.',
+    },
+    overlay: { fr: 'Superposition', en: 'Overlay' },
+    overlayBody: {
+      fr: 'Sur petit écran, passez `overlay` et pilotez `open` depuis le bouton menu de `Navbar`. Le panneau est un `dialog` modal : Escape, fond, bouton fermer. `SkipLink` reste le premier focus.',
+      en: 'On small screens, pass `overlay` and drive `open` from the `Navbar` menu button. The panel is a modal `dialog`: Escape, backdrop, close button. `SkipLink` stays first in the focus order.',
+    },
+    a11yBody: {
+      fr: 'Landmark `navigation` nommé (`label`). Items : vrais `<a href>` (ou bouton sans `href`). Page courante : `aria-current="page"`. Overlay : `role="dialog"` + piège de focus. Pas de `usePathname`.',
+      en: 'Named `navigation` landmark (`label`). Items: real `<a href>`s (or a button without `href`). Current page: `aria-current="page"`. Overlay: `role="dialog"` + focus trap. No `usePathname`.',
+    },
+    doNav: {
+      fr: '`<Sidebar label="Navigation principale">` pour nommer le `nav`',
+      en: '`<Sidebar label="Main navigation">` to name the `nav`',
+    },
+    doCurrent: {
+      fr: '`current` sur l’item de la page (l’app calcule la route)',
+      en: '`current` on the page item (the app computes the route)',
+    },
+    doCollapsed: {
+      fr: 'Un `icon` + un libellé (visible ou `VisuallyHidden`) sur chaque item replié',
+      en: 'An `icon` plus a label (visible or `VisuallyHidden`) on each collapsed item',
+    },
+    doSkip: {
+      fr: '`SkipLink` + `<main id="main" tabIndex={-1}>` avec la coquille',
+      en: '`SkipLink` + `<main id="main" tabIndex={-1}>` with the shell',
+    },
+    dontSitemap: {
+      fr: 'Un sitemap Dudalo figé dans le package',
+      en: 'A hardcoded Dudalo sitemap in the package',
+    },
+    dontDiv: {
+      fr: 'Un `div` + `onClick` à la place de `SidebarItem`',
+      en: 'A `div` + `onClick` instead of `SidebarItem`',
+    },
+    dontNext: {
+      fr: '`usePathname` / `layout.tsx` Next.js dans le package',
+      en: '`usePathname` / Next.js `layout.tsx` inside the package',
+    },
+    props: {
+      fr: '`label` nomme le `nav`. `collapsed` / `collapsible` pour le rail. `overlay` + `open` / `onOpenChange` pour le mobile. `SidebarItem` : `href`, `icon`, `current`.',
+      en: '`label` names the `nav`. `collapsed` / `collapsible` for the rail. `overlay` + `open` / `onOpenChange` for mobile. `SidebarItem`: `href`, `icon`, `current`.',
+    },
+  },
 } as const;
 
 export type DocsCopy = typeof docsCopy;

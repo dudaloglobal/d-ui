@@ -987,3 +987,54 @@ export const menuArgTypes = {
       'Élément focusable unique : `Button`, `IconButton`, `Link`, ou un `Button` compact en pastille.',
   },
 };
+
+export const navbarArgTypes = {
+  menuLabel: {
+    control: 'text' as const,
+    description: 'Nom du bouton menu. Fallback anglais : `Open navigation`.',
+  },
+  menuOpen: {
+    control: 'boolean' as const,
+    description: 'État ouvert du overlay, pour `aria-expanded`.',
+  },
+  onMenuOpenChange: {
+    description: 'Affiche le bouton hamburger et reçoit le prochain état.',
+  },
+  menuControls: {
+    control: 'text' as const,
+    description: '`id` du `Sidebar` overlay (`aria-controls`).',
+  },
+};
+
+export const sidebarArgTypes = {
+  label: {
+    control: 'text' as const,
+    description: 'Nom accessible du `nav`. Fallback anglais : `Navigation`.',
+  },
+  collapsed: {
+    control: 'boolean' as const,
+    description: 'Rail icônes seules. Chaque item garde un nom accessible.',
+  },
+  collapsible: {
+    control: 'boolean' as const,
+    description: 'Affiche le bouton replier / déployer.',
+  },
+  overlay: {
+    control: 'boolean' as const,
+    description: 'Panneau `dialog` modal (petit écran). Escape et le fond ferment.',
+  },
+  open: {
+    description: 'Ouverture contrôlée en mode `overlay`. Passez `onOpenChange`.',
+  },
+  defaultOpen: {
+    description: 'Ouverture initiale en mode overlay non contrôlé.',
+  },
+  onOpenChange: {
+    description: 'Appelé quand l’overlay s’ouvre ou se ferme.',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md'],
+    description: '`sm` si l’espace est contraint, `md` par défaut.',
+  },
+};
