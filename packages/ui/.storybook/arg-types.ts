@@ -509,6 +509,28 @@ export const textArgTypes = {
     options: ['regular', 'medium', 'semibold'],
     description: 'Graisse : `regular`, `medium`, `semibold`.',
   },
+  color: {
+    control: 'select' as const,
+    options: ['brand', 'dark', 'light', 'warning', 'danger', 'success', 'info', 'violet'],
+    description:
+      'Famille de la page Color. Remplace `tone`. `light` se lit sur un fond `fg`.',
+  },
+  colorVariant: {
+    control: 'select' as const,
+    options: ['D2', 'D1', 'N', 'L1', 'L2', 'L3', 'L4', 'L5', 'L6'],
+    description:
+      'Cran de la rampe (`N` par défaut). Ignoré si `color` est absente. Les crans L sont des teintes, pas du texte courant.',
+  },
+  noWrap: {
+    control: 'boolean' as const,
+    description:
+      'Empêche le retour à la ligne. Un parent `overflow-hidden` coupe sans ellipse. Activé automatiquement par `truncate` sur une ligne.',
+  },
+  truncate: {
+    control: 'boolean' as const,
+    description:
+      '`true` : une ligne avec ellipse. `{ lines: n }` : n lignes (`n` > 1). Le lecteur d’écran lit toujours le texte entier.',
+  },
 };
 
 export const headingArgTypes = {

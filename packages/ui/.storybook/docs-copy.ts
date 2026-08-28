@@ -374,9 +374,24 @@ export const docsCopy = {
       fr: '`regular`, `medium`, `semibold`.',
       en: '`regular`, `medium`, `semibold`.',
     },
+    color: { fr: 'Couleur', en: 'Color' },
+    colorBody: {
+      fr: '`color` pose une famille de la page Color (`brand`, `dark`, `light`, `warning`, `danger`, `success`, `info`, `violet`). Si elle est posée, elle remplace `tone`. `light` se lit sur un fond `fg`. Préférez le cran `N` pour le texte courant.',
+      en: '`color` sets a Color page family (`brand`, `dark`, `light`, `warning`, `danger`, `success`, `info`, `violet`). When set, it replaces `tone`. `light` is read on an `fg` surface. Prefer the `N` step for running text.',
+    },
+    colorVariant: { fr: 'Variantes de couleur', en: 'Color variants' },
+    colorVariantBody: {
+      fr: '`colorVariant` est le cran de la rampe (`D2`, `D1`, `N`, `L1`–`L6`). `N` par défaut. Les crans L sont des teintes (mêmes pourcentages que Color) et peuvent manquer 4.5:1 — pas pour un paragraphe.',
+      en: '`colorVariant` is the ramp step (`D2`, `D1`, `N`, `L1`–`L6`). Default `N`. L steps are tints (same percentages as Color) and can fail 4.5:1 — not for a paragraph.',
+    },
+    wrap: { fr: 'Retour à la ligne et débordement', en: 'Text wrap and overflow' },
+    wrapBody: {
+      fr: 'Par défaut, un long texte passe à la ligne. `noWrap` l’empêche (un parent `overflow-hidden` coupe **sans** ellipse). `truncate` coupe avec une ellipse : `true` sur une ligne, `{ lines: n }` sur n lignes.',
+      en: 'By default, long text wraps. `noWrap` prevents that (a parent `overflow-hidden` clips **without** an ellipsis). `truncate` cuts with an ellipsis: `true` on one line, `{ lines: n }` on n lines.',
+    },
     a11yBody: {
-      fr: '`Text` rend un `<p>` par défaut. Passez `as="span"` en ligne. Ce n’est pas un titre : un `Text size="body"` avec `font-semibold` ne remplace pas un `Heading`.',
-      en: '`Text` renders a `<p>` by default. Pass `as="span"` inline. It is not a heading: `Text size="body"` with `font-semibold` does not replace `Heading`.',
+      fr: '`Text` rend un `<p>` par défaut. Passez `as="span"` en ligne. Ce n’est pas un titre : un `Text size="body"` avec `font-semibold` ne remplace pas un `Heading`. `color` / `colorVariant` ne dispensent pas du contraste : restez sur `N` (ou `tone`) pour le texte courant. Avec `noWrap` ou `truncate`, le lecteur d’écran lit **tout** le texte : raccourcissez le contenu en amont s’il est trop long.',
+      en: '`Text` renders a `<p>` by default. Pass `as="span"` inline. It is not a heading: `Text size="body"` with `font-semibold` does not replace `Heading`. `color` / `colorVariant` do not waive contrast: stay on `N` (or `tone`) for running text. With `noWrap` or `truncate`, the screen reader still reads **all** the text: shorten the content upstream if it is too long.',
     },
     doMuted: {
       fr: '`<Text tone="muted" size="body-sm">Mis à jour hier</Text>`',
@@ -386,6 +401,14 @@ export const docsCopy = {
       fr: '`as="span"` dans un bouton ou un lien',
       en: '`as="span"` inside a button or a link',
     },
+    doColor: {
+      fr: '`<Text as="span" color="brand">mot d’emphase</Text>`',
+      en: '`<Text as="span" color="brand">emphasis word</Text>`',
+    },
+    doTruncate: {
+      fr: '`<Text truncate>` dans une colonne bornée',
+      en: '`<Text truncate>` in a bounded column',
+    },
     dontClass: {
       fr: '`<Text className="text-slate-400">` pour un ton',
       en: '`<Text className="text-slate-400">` for a tone',
@@ -393,6 +416,14 @@ export const docsCopy = {
     dontHeading: {
       fr: '`<Text as="h2">` — utiliser `Heading`',
       en: '`<Text as="h2">` — use `Heading`',
+    },
+    dontTint: {
+      fr: '`<Text color="brand" colorVariant="L5">` comme texte courant',
+      en: '`<Text color="brand" colorVariant="L5">` as running text',
+    },
+    dontTruncate: {
+      fr: '`truncate` pour raccourcir le contenu annoncé — le lecteur d’écran lit tout',
+      en: '`truncate` to shorten announced content — the screen reader reads everything',
     },
     props: {
       fr: 'Les attributs natifs de l’élément (`id`, `className`, …) sont transmis.',

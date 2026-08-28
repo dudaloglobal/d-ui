@@ -3,7 +3,7 @@ import { Text } from '../Text/Text';
 import { useIsomorphicLayoutEffect } from '../../lib/useIsomorphicLayoutEffect';
 import { useFieldContext } from './FieldContext';
 
-export type FieldDescriptionProps = HTMLAttributes<HTMLParagraphElement>;
+export type FieldDescriptionProps = Omit<HTMLAttributes<HTMLParagraphElement>, 'color'>;
 
 /**
  * Aide à la saisie, annoncée via `aria-describedby`.

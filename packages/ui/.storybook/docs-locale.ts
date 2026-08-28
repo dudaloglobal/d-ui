@@ -95,6 +95,9 @@ export const storyNameEn: Record<string, string> = {
   'Styles personnalisés': 'Custom styles',
   'Palette principale': 'Primary palette',
   'Palette secondaire': 'Secondary palette',
+  Couleurs: 'Colors',
+  'Variantes de couleur': 'Color variants',
+  'Retour à la ligne et débordement': 'Text wrap and overflow',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -574,6 +577,17 @@ const typographyFr = {
   labelled: 'Fin des résultats pertinents',
   relevant: 'Résultats pertinents',
   other: 'Autres résultats',
+  colorBefore: 'Voici un mot',
+  colorEmphasis: 'coloré',
+  colorAfter: 'dans la phrase.',
+  weightRegular: 'regular — graisse par défaut',
+  weightMedium: 'medium — emphase moyenne',
+  weightSemibold: 'semibold — emphase forte',
+  wrapDefault: 'par défaut',
+  wrapNoWrap: 'noWrap',
+  wrapTruncate: 'truncate',
+  wrapTruncateMultiline: 'truncate { lines: 2 }',
+  wrapSample: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 };
 
 const typographyEn = {
@@ -624,6 +638,17 @@ const typographyEn = {
   labelled: 'End of relevant results',
   relevant: 'Relevant results',
   other: 'Other results',
+  colorBefore: 'Here is a',
+  colorEmphasis: 'coloured',
+  colorAfter: 'word in the sentence.',
+  weightRegular: 'regular — default weight',
+  weightMedium: 'medium — medium emphasis',
+  weightSemibold: 'semibold — strong emphasis',
+  wrapDefault: 'default',
+  wrapNoWrap: 'noWrap',
+  wrapTruncate: 'truncate',
+  wrapTruncateMultiline: 'truncate { lines: 2 }',
+  wrapSample: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 };
 
 export type TypographyDocsCopy = typeof typographyFr;

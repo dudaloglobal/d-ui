@@ -197,6 +197,14 @@
   border: 0;
 }
 
+.d-ui-text-clamp {
+  display: -webkit-box;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--d-ui-text-truncate-lines);
+}
+
 .d-ui-skip-link:focus,
 .d-ui-skip-link:focus-visible {
   width: auto;

@@ -90,6 +90,7 @@ const ENGLISH_HEADINGS = [
   'Bold',
   'Primary palette',
   'Secondary palette',
+  'Text wrap and overflow',
 ];
 
 function collectMdx(dir: string): string[] {

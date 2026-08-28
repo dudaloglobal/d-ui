@@ -34,10 +34,13 @@ export { Link } from './components/Link/Link';
 export type { LinkColor, LinkIconPosition, LinkProps } from './components/Link/Link';
 export { Text } from './components/Text/Text';
 export type {
+  TextColor,
+  TextColorVariant,
   TextElement,
   TextProps,
   TextSize,
   TextTone,
+  TextTruncate,
   TextWeight,
 } from './components/Text/Text';
 export { ThemeProvider } from './theme/ThemeProvider';
