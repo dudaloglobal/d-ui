@@ -120,6 +120,13 @@ export const storyNameEn: Record<string, string> = {
   Imbriqués: 'Nested',
   Superposition: 'Overlay',
   'Bouton menu': 'Menu button',
+  Variantes: 'Variants',
+  'Avec titre': 'With title',
+  Fermable: 'Dismissible',
+  'Avec actions': 'With actions',
+  'Annonce dynamique': 'Live announcement',
+  'Sans fond': 'Without background',
+  'Avec action': 'With action',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -1064,4 +1071,106 @@ export type SidebarDocsCopy = typeof sidebarFr;
 
 export function sidebarCopy(locale: DocsLocale): SidebarDocsCopy {
   return locale === 'en' ? sidebarEn : sidebarFr;
+}
+
+const alertFr = {
+  infoBody: 'Les notes seront visibles après la correction.',
+  successBody: 'Vos modifications ont été enregistrées.',
+  warningBody: 'Cette action est irréversible.',
+  dangerBody: 'Impossible d’enregistrer le devoir.',
+  sessionTitle: 'Session expirée',
+  sessionBody: 'Reconnectez-vous pour continuer.',
+  featureBody: 'Nouvelle fonctionnalité disponible.',
+  dismiss: 'Fermer l’alerte',
+  trimmedBody: 'Conseil sans fond teinté, directement sous le titre de section.',
+  learnMore: 'En savoir plus',
+};
+
+const alertEn = {
+  infoBody: 'Grades will be visible after marking.',
+  successBody: 'Your changes were saved.',
+  warningBody: 'This action cannot be undone.',
+  dangerBody: 'Unable to save the assignment.',
+  sessionTitle: 'Session expired',
+  sessionBody: 'Sign in again to continue.',
+  featureBody: 'New feature available.',
+  dismiss: 'Dismiss alert',
+  trimmedBody: 'Tip without a tinted background, directly under the section heading.',
+  learnMore: 'Learn more',
+};
+
+export type AlertDocsCopy = typeof alertFr;
+
+export function alertCopy(locale: DocsLocale): AlertDocsCopy {
+  return locale === 'en' ? alertEn : alertFr;
+}
+
+const notificationFr = {
+  infoBody: 'Les notes seront publiées demain.',
+  successBody: 'Vos modifications ont été enregistrées.',
+  warningBody: 'Cette action est irréversible.',
+  dangerBody: 'Impossible d’enregistrer le devoir.',
+  callbackBody: 'Nouvelle version disponible.',
+  action: 'Voir les détails',
+};
+
+const notificationEn = {
+  infoBody: 'Grades will be published tomorrow.',
+  successBody: 'Your changes were saved.',
+  warningBody: 'This action cannot be undone.',
+  dangerBody: 'Unable to save the assignment.',
+  callbackBody: 'New version available.',
+  action: 'View details',
+};
+
+export type NotificationDocsCopy = typeof notificationFr;
+
+export function notificationCopy(locale: DocsLocale): NotificationDocsCopy {
+  return locale === 'en' ? notificationEn : notificationFr;
+}
+
+const emptyStateFr = {
+  title: 'Aucun devoir',
+  description: 'Créez votre premier devoir pour commencer.',
+  primary: 'Créer un devoir',
+  coursesTitle: 'Aucun cours',
+  coursesDescription: 'Importez un cours ou créez-en un nouveau.',
+  secondary: 'Importer',
+};
+
+const emptyStateEn = {
+  title: 'No assignments',
+  description: 'Create your first assignment to get started.',
+  primary: 'Create assignment',
+  coursesTitle: 'No courses',
+  coursesDescription: 'Import a course or create a new one.',
+  secondary: 'Import',
+};
+
+export type EmptyStateDocsCopy = typeof emptyStateFr;
+
+export function emptyStateCopy(locale: DocsLocale): EmptyStateDocsCopy {
+  return locale === 'en' ? emptyStateEn : emptyStateFr;
+}
+
+const errorStateFr = {
+  title: 'Impossible de charger les devoirs',
+  description: 'Vérifiez votre connexion, puis réessayez.',
+  retry: 'Réessayer',
+  saveTitle: 'Échec de l’enregistrement',
+  saveDescription: 'Réessayez ou contactez le support.',
+};
+
+const errorStateEn = {
+  title: 'Unable to load assignments',
+  description: 'Check your connection, then try again.',
+  retry: 'Retry',
+  saveTitle: 'Save failed',
+  saveDescription: 'Try again or contact support.',
+};
+
+export type ErrorStateDocsCopy = typeof errorStateFr;
+
+export function errorStateCopy(locale: DocsLocale): ErrorStateDocsCopy {
+  return locale === 'en' ? errorStateEn : errorStateFr;
 }

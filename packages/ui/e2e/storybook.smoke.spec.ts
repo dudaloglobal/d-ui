@@ -85,6 +85,14 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Pagination | Dudalo Design System');
   await page.goto('/?path=/docs/components-menu--docs');
   await expect(page).toHaveTitle('Menu | Dudalo Design System');
+  await page.goto('/?path=/docs/components-alert--docs');
+  await expect(page).toHaveTitle('Alert | Dudalo Design System');
+  await page.goto('/?path=/docs/components-notification--docs');
+  await expect(page).toHaveTitle('Notification | Dudalo Design System');
+  await page.goto('/?path=/docs/components-emptystate--docs');
+  await expect(page).toHaveTitle('EmptyState | Dudalo Design System');
+  await page.goto('/?path=/docs/components-errorstate--docs');
+  await expect(page).toHaveTitle('ErrorState | Dudalo Design System');
   await page.goto('/?path=/docs/components-navbar--docs');
   await expect(page).toHaveTitle('Navbar | Dudalo Design System');
   await page.goto('/?path=/docs/components-sidebar--docs');
@@ -119,6 +127,10 @@ test('component docs H1 is the component name, like Link', async ({ page }) => {
     { id: 'components-breadcrumb--docs', name: 'Breadcrumb' },
     { id: 'components-pagination--docs', name: 'Pagination' },
     { id: 'components-menu--docs', name: 'Menu' },
+    { id: 'components-alert--docs', name: 'Alert' },
+    { id: 'components-notification--docs', name: 'Notification' },
+    { id: 'components-emptystate--docs', name: 'EmptyState' },
+    { id: 'components-errorstate--docs', name: 'ErrorState' },
     { id: 'components-navbar--docs', name: 'Navbar' },
     { id: 'components-sidebar--docs', name: 'Sidebar' },
     { id: 'foundations-typography--docs', name: 'Typography' },
@@ -1270,6 +1282,41 @@ test('Menu docs Show code imports Menu from d-ui', async ({ page }) => {
     "import { Button, Menu, MenuItem, MenuSeparator, MenuSub } from 'd-ui'",
   );
   await expect(source).toContainText('<Menu');
+});
+
+test('Storybook serves the Notification story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-notification--default');
+  await expect(page.getByRole('alert')).toBeVisible();
+});
+
+test('French Notification docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-notification--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(
+    preview.getByRole('heading', { level: 1, name: 'Notification' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Avec action' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'With action' })).toHaveCount(0);
+});
+
+test('Storybook serves the Alert story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-alert--default');
+  await expect(page.getByRole('status')).toBeVisible();
+});
+
+test('French Alert docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-alert--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { level: 1, name: 'Alert' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Variantes' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Variants' })).toHaveCount(0);
+});
+
+test('Alert docs Show code imports Alert from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-alert--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Alert, Icon } from 'd-ui'");
+  await expect(source).toContainText('<Alert');
 });
 
 test('Storybook serves the Navbar story', async ({ page }) => {

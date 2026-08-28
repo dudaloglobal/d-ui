@@ -1,0 +1,39 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as EmptyStateStories from './EmptyState.stories';
+
+<Meta of={EmptyStateStories} />
+
+# EmptyState
+
+<P k="emptyState.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={EmptyStateStories.Default} />
+
+<H2 k="emptyState.actions" />
+
+<P k="emptyState.actionsBody" />
+
+<Canvas of={EmptyStateStories.WithActions} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="emptyState.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['emptyState.doActions', 'emptyState.doIcon']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['emptyState.dontFetch', 'emptyState.dontLive']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="emptyState.props" />
+
+<ArgTypes of={EmptyStateStories} include={['title', 'description']} />

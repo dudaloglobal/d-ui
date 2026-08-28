@@ -28,6 +28,10 @@ import {
   breadcrumbCopy,
   paginationCopy,
   menuCopy,
+  alertCopy,
+  notificationCopy,
+  emptyStateCopy,
+  errorStateCopy,
   navbarCopy,
   sidebarCopy,
 } from '../.storybook/docs-locale';
@@ -125,6 +129,13 @@ const ENGLISH_HEADINGS = [
   'Nested',
   'Overlay',
   'Menu button',
+  'Variants',
+  'With title',
+  'Dismissible',
+  'With actions',
+  'Live announcement',
+  'Without background',
+  'With action',
 ];
 
 function collectMdx(dir: string): string[] {
@@ -164,6 +175,10 @@ describe('docs locale', () => {
     expect(keysOf(breadcrumbCopy('fr'))).toEqual(keysOf(breadcrumbCopy('en')));
     expect(keysOf(paginationCopy('fr'))).toEqual(keysOf(paginationCopy('en')));
     expect(keysOf(menuCopy('fr'))).toEqual(keysOf(menuCopy('en')));
+    expect(keysOf(alertCopy('fr'))).toEqual(keysOf(alertCopy('en')));
+    expect(keysOf(notificationCopy('fr'))).toEqual(keysOf(notificationCopy('en')));
+    expect(keysOf(emptyStateCopy('fr'))).toEqual(keysOf(emptyStateCopy('en')));
+    expect(keysOf(errorStateCopy('fr'))).toEqual(keysOf(errorStateCopy('en')));
     expect(keysOf(navbarCopy('fr'))).toEqual(keysOf(navbarCopy('en')));
     expect(keysOf(sidebarCopy('fr'))).toEqual(keysOf(sidebarCopy('en')));
   });

@@ -1891,6 +1891,171 @@ export const docsCopy = {
       en: '`value` / `onValueChange` for controlled state. `variant` (`line` / `detached`) and `layout` (`stretch` / `cluster`) change the chrome, not the ARIA pattern. `label` names the `tablist`.',
     },
   },
+  alert: {
+    intro: {
+      fr: '`Alert` correspond au **Message** LumApps : feedback inline permanent. Variantes `info`, `success`, `warning`, `danger` (LumApps `error`). Distinct de `Notification` (coin d’écran) et de Toast (DS-033).',
+      en: '`Alert` maps to LumApps **Message**: permanent inline feedback. Variants `info`, `success`, `warning`, `danger` (LumApps `error`). Distinct from `Notification` (screen corner) and Toast (DS-033).',
+    },
+    variants: { fr: 'Variantes', en: 'Variants' },
+    variantsBody: {
+      fr: 'Chaque variante apporte une icône et une couleur sémantique. `warning` et `danger` utilisent `role="alert"` ; `info` et `success` utilisent `role="status"`.',
+      en: 'Each variant brings an icon and semantic colour. `warning` and `danger` use `role="alert"`; `info` and `success` use `role="status"`.',
+    },
+    titled: { fr: 'Avec titre', en: 'With title' },
+    titledBody: {
+      fr: 'Combinez `title` et le corps pour séparer le sujet du détail.',
+      en: 'Combine `title` and body to separate subject from detail.',
+    },
+    dismissible: { fr: 'Fermable', en: 'Dismissible' },
+    dismissibleBody: {
+      fr: 'Comme LumApps Message : `dismissible` n’affiche le bouton fermer que pour `info` + `hasBackground`. Passez `dismissLabel`, `onDismiss`, ou `open` / `onOpenChange`.',
+      en: 'Like LumApps Message: `dismissible` shows the close button only for `info` + `hasBackground`. Pass `dismissLabel`, `onDismiss`, or `open` / `onOpenChange`.',
+    },
+    trimmed: { fr: 'Sans fond', en: 'Without background' },
+    trimmedBody: {
+      fr: '`hasBackground={false}` retire le fond teinté et le filet (variante trimmed LumApps Message).',
+      en: '`hasBackground={false}` removes the tinted background and border (LumApps Message trimmed variant).',
+    },
+    action: { fr: 'Avec action', en: 'With action' },
+    actionBody: {
+      fr: 'Passez `actions` avec un ou plusieurs `Button` / `Link` sous le message.',
+      en: 'Pass `actions` with one or more `Button` / `Link` components below the message.',
+    },
+    a11yBody: {
+      fr: 'Ne confondez pas `Alert`, `Notification` et Toast. Icône + texte, pas la couleur seule. Fermeture : bouton nommé.',
+      en: 'Do not confuse `Alert`, `Notification`, and Toast. Icon + text, not colour alone. Dismiss: named button.',
+    },
+    doInline: {
+      fr: 'Un `Alert` près du contenu concerné (formulaire, section)',
+      en: 'An `Alert` next to the affected content (form, section)',
+    },
+    doRole: {
+      fr: '`warning` / `danger` pour les problèmes ; `info` / `success` pour le reste',
+      en: '`warning` / `danger` for problems; `info` / `success` otherwise',
+    },
+    dontToast: {
+      fr: 'Remplacer un Toast éphémère par `Alert` dans un coin d’écran',
+      en: 'Replace a fleeting Toast with `Alert` in a screen corner',
+    },
+    dontColor: {
+      fr: 'Un message sans texte ni icône, seulement une couleur de fond',
+      en: 'A message with background colour only, no text or icon',
+    },
+    props: {
+      fr: '`variant`, `hasBackground`, `title`, `actions`, `dismissible`, `dismissLabel`, `open` / `onOpenChange`. Corps : `children`.',
+      en: '`variant`, `hasBackground`, `title`, `actions`, `dismissible`, `dismissLabel`, `open` / `onOpenChange`. Body: `children`.',
+    },
+  },
+  notification: {
+    intro: {
+      fr: '`Notification` correspond au toast LumApps (processus applicatif, coin inférieur droit). Toujours `role="alert"`. La file et l’auto-dismiss relèvent de Toast (DS-033).',
+      en: '`Notification` maps to the LumApps toast (app process, bottom-right corner). Always `role="alert"`. Queue and auto-dismiss belong to Toast (DS-033).',
+    },
+    variants: { fr: 'Variantes', en: 'Variants' },
+    variantsBody: {
+      fr: '`info`, `success`, `warning`, `danger` — bandeau icône coloré, fond blanc, ombre portée (pas de fond teinté Message).',
+      en: '`info`, `success`, `warning`, `danger` — colored icon rail, white background, drop shadow (not a tinted Message surface).',
+    },
+    action: { fr: 'Avec action', en: 'With action' },
+    actionBody: {
+      fr: 'Comme « Info with callback » LumApps : `actionLabel` + `onActionClick` affichent un bouton secondaire sur la même ligne.',
+      en: 'Like LumApps « Info with callback »: `actionLabel` + `onActionClick` show a secondary button on the same row.',
+    },
+    a11yBody: {
+      fr: 'Toujours `role="alert"`. LumApps recommande de déplacer le focus vers l’action cliquable si besoin, puis de le restaurer à la fermeture.',
+      en: 'Always `role="alert"`. LumApps recommends moving focus to a clickable action when needed, then restoring it on dismiss.',
+    },
+    doCorner: {
+      fr: 'Positionner la notification en bas à droite (l’app ou le futur `ToastProvider`)',
+      en: 'Place the notification bottom-right (app or future `ToastProvider`)',
+    },
+    doAction: {
+      fr: '`actionLabel` localisé + handler `onActionClick` pour un rappel non bloquant',
+      en: 'Localized `actionLabel` + `onActionClick` handler for a non-blocking follow-up',
+    },
+    dontInline: {
+      fr: 'Un `Notification` au milieu d’un formulaire — utilisez `Alert`',
+      en: 'A `Notification` in the middle of a form — use `Alert`',
+    },
+    dontOnly: {
+      fr: 'Une `Notification` comme seul retour d’erreur de formulaire',
+      en: 'A `Notification` as the only form error feedback',
+    },
+    props: {
+      fr: '`variant`, `actionLabel`, `onActionClick`, `dismissible`, `dismissLabel`, `open` / `onOpenChange`. Corps : `children`.',
+      en: '`variant`, `actionLabel`, `onActionClick`, `dismissible`, `dismissLabel`, `open` / `onOpenChange`. Body: `children`.',
+    },
+  },
+  emptyState: {
+    intro: {
+      fr: '`EmptyState` compose icône (ou illustration), titre, description et actions (`Button`, `Link`). Pour une liste ou une vue sans données.',
+      en: '`EmptyState` composes icon (or illustration), title, description, and actions (`Button`, `Link`). For a list or view with no data.',
+    },
+    actions: { fr: 'Avec actions', en: 'With actions' },
+    actionsBody: {
+      fr: 'Passez `actions` avec un ou plusieurs `Button`. L’app décide des libellés et des handlers.',
+      en: 'Pass `actions` with one or more `Button`s. The app owns labels and handlers.',
+    },
+    a11yBody: {
+      fr: 'Le titre est un `h2` qui nomme la région (`aria-labelledby`). Pas de live region : le placeholder est statique.',
+      en: 'The title is an `h2` naming the region (`aria-labelledby`). No live region: the placeholder is static.',
+    },
+    doActions: {
+      fr: 'Une action principale (`Button`) et éventuellement une secondaire',
+      en: 'A primary action (`Button`) and optionally a secondary one',
+    },
+    doIcon: {
+      fr: 'Une icône décorative (`Icon`) ou une illustration via `illustration`',
+      en: 'A decorative icon (`Icon`) or an illustration via `illustration`',
+    },
+    dontFetch: {
+      fr: 'Un fetch ou un mapping d’erreur HTTP dans le package',
+      en: 'A fetch or HTTP error mapping inside the package',
+    },
+    dontLive: {
+      fr: 'Annoncer un empty state avec `role="alert"`',
+      en: 'Announce an empty state with `role="alert"`',
+    },
+    props: {
+      fr: '`title`, `description`, `icon`, `illustration`, `actions`.',
+      en: '`title`, `description`, `icon`, `illustration`, `actions`.',
+    },
+  },
+  errorState: {
+    intro: {
+      fr: '`ErrorState` est un placeholder d’échec (chargement, action). Même layout qu’`EmptyState`, icône d’alerte par défaut.',
+      en: '`ErrorState` is a failure placeholder (load, action). Same layout as `EmptyState`, default alert icon.',
+    },
+    live: { fr: 'Annonce dynamique', en: 'Live announcement' },
+    liveBody: {
+      fr: '`live` pose `role="alert"` quand l’erreur apparaît **après** le rendu initial. Laissez `false` pour une page d’erreur statique.',
+      en: '`live` sets `role="alert"` when the error appears **after** the initial render. Leave `false` for a static error page.',
+    },
+    a11yBody: {
+      fr: 'Comme `EmptyState`, le titre structure la zone. `live` seulement si l’échec surgit dynamiquement (équivalent d’un message de champ `role="alert"`).',
+      en: 'Like `EmptyState`, the title structures the region. `live` only when failure appears dynamically (same idea as a field message with `role="alert"`).',
+    },
+    doRetry: {
+      fr: 'Une action `Réessayer` en `Button variant="secondary"`',
+      en: 'A `Retry` action as `Button variant="secondary"`',
+    },
+    doStatic: {
+      fr: 'Sans `live` pour un écran d’erreur plein page',
+      en: 'Without `live` for a full-page error screen',
+    },
+    dontHttp: {
+      fr: 'Traduire des codes HTTP Laravel dans le package',
+      en: 'Map Laravel HTTP codes inside the package',
+    },
+    dontOnlyColor: {
+      fr: 'Une icône rouge sans titre ni description',
+      en: 'A red icon with no title or description',
+    },
+    props: {
+      fr: '`title`, `description`, `icon`, `actions`, `live`.',
+      en: '`title`, `description`, `icon`, `actions`, `live`.',
+    },
+  },
   breadcrumb: {
     intro: {
       fr: '`Breadcrumb` est le fil d’Ariane d’une vue (cours, devoir). Le **dernier** item est la page courante : texte, pas un lien. Les items précédents sont des `Link` si `href` est passé. Pas de routeur dans le package.',

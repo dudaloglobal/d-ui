@@ -1,0 +1,39 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as ErrorStateStories from './ErrorState.stories';
+
+<Meta of={ErrorStateStories} />
+
+# ErrorState
+
+<P k="errorState.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={ErrorStateStories.Default} />
+
+<H2 k="errorState.live" />
+
+<P k="errorState.liveBody" />
+
+<Canvas of={ErrorStateStories.Live} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="errorState.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['errorState.doRetry', 'errorState.doStatic']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['errorState.dontHttp', 'errorState.dontOnlyColor']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="errorState.props" />
+
+<ArgTypes of={ErrorStateStories} include={['title', 'description', 'live']} />

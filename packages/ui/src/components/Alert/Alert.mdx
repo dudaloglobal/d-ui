@@ -1,0 +1,66 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as AlertStories from './Alert.stories';
+
+<Meta of={AlertStories} />
+
+# Alert
+
+<P k="alert.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={AlertStories.Default} />
+
+<H2 k="alert.variants" />
+
+<P k="alert.variantsBody" />
+
+<Canvas of={AlertStories.Variants} />
+
+<H2 k="alert.titled" />
+
+<P k="alert.titledBody" />
+
+<Canvas of={AlertStories.WithTitle} />
+
+<H2 k="alert.dismissible" />
+
+<P k="alert.dismissibleBody" />
+
+<Canvas of={AlertStories.Dismissible} />
+
+<H2 k="alert.trimmed" />
+
+<P k="alert.trimmedBody" />
+
+<Canvas of={AlertStories.Trimmed} />
+
+<H2 k="alert.action" />
+
+<P k="alert.actionBody" />
+
+<Canvas of={AlertStories.WithAction} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="alert.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['alert.doInline', 'alert.doRole']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['alert.dontToast', 'alert.dontColor']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="alert.props" />
+
+<ArgTypes
+  of={AlertStories}
+  include={['variant', 'hasBackground', 'title', 'dismissible', 'dismissLabel']}
+/>
