@@ -1651,6 +1651,65 @@ export const docsCopy = {
       en: '`value` / `onValueChange` for controlled state (`CalendarDate` or `{ start, end }`). `selectionMode="range"` for a range. `today` to freeze “today” in tests. `name` / `nameEnd` set hidden `YYYY-MM-DD` fields.',
     },
   },
+  fileUpload: {
+    intro: {
+      fr: '`FileUpload` est un sélecteur de fichiers accessible : clic, dépôt optionnel, liste suppressible. Il ne téléverse rien — l’app envoie les `File`. Pour recadrer une image, voir plus tard DS-043.',
+      en: '`FileUpload` is an accessible file picker: click, optional drop, removable list. It does not upload — the app sends the `File`s. To crop an image, see DS-043 later.',
+    },
+    dropzone: { fr: 'Zone de dépôt', en: 'Dropzone' },
+    dropzoneBody: {
+      fr: '`dropzone` (défaut : oui) ajoute une zone de glisser-déposer. Le clavier n’en a pas besoin : le bouton **Choisir un fichier** ouvre le sélecteur natif.',
+      en: '`dropzone` (default: on) adds a drag-and-drop zone. The keyboard does not need it: the **Choose file** button opens the native picker.',
+    },
+    browseOnly: { fr: 'Clic seul', en: 'Click only' },
+    browseOnlyBody: {
+      fr: '`dropzone={false}` n’affiche que le bouton. Utile dans un formulaire dense.',
+      en: '`dropzone={false}` shows only the button. Useful in a dense form.',
+    },
+    multiple: { fr: 'Plusieurs fichiers', en: 'Multiple files' },
+    multipleBody: {
+      fr: '`multiple` autorise plusieurs fichiers. Chaque nom est listé et peut être retiré.',
+      en: '`multiple` allows several files. Each name is listed and can be removed.',
+    },
+    invalidBody: {
+      fr: 'Utilisez `invalid` (et `error` pour le message) lorsque le fichier est requis ou refusé. `invalid` pose `aria-invalid` ; un refus `accept` / `maxSize` invalide aussi le champ.',
+      en: 'Use `invalid` (and `error` for the message) when the file is required or rejected. `invalid` sets `aria-invalid`; an `accept` / `maxSize` rejection also invalidates the field.',
+    },
+    constraints: { fr: 'Accept et taille max', en: 'Accept and max size' },
+    constraintsBody: {
+      fr: '`accept` filtre le type (extensions ou MIME). `maxSize` (octets) refuse un fichier trop lourd. Les refus s’affichent sous le champ (`role="alert"`), pas seulement en couleur.',
+      en: '`accept` filters the type (extensions or MIME). `maxSize` (bytes) rejects an oversized file. Rejections show under the field (`role="alert"`), not by colour alone.',
+    },
+    progress: { fr: 'Progression', en: 'Progress' },
+    progressBody: {
+      fr: '`progress` est un slot : un nœud sous la liste, ou une fonction par fichier. Aucun client HTTP dans `d-ui`.',
+      en: '`progress` is a slot: a node under the list, or a function per file. No HTTP client in `d-ui`.',
+    },
+    a11yBody: {
+      fr: 'L’input fichier natif est masqué visuellement (`d-ui-visually-hidden`) et sorti de la tabulation : le bouton visible est le contrôle clavier. Le libellé est associé par `htmlFor`. `invalid` pose `aria-invalid` ; l’erreur est liée par `aria-describedby`. La liste a un nom accessible. Le bouton de retrait est une `IconButton` nommée.',
+      en: 'The native file input is visually hidden (`d-ui-visually-hidden`) and taken out of the tab order: the visible button is the keyboard control. The label is associated with `htmlFor`. `invalid` sets `aria-invalid`; the error is linked with `aria-describedby`. The list has an accessible name. The remove control is a named `IconButton`.',
+    },
+    doButton: {
+      fr: 'Laisser le bouton « Choisir un fichier » pour le clavier, même avec une zone de dépôt',
+      en: 'Keep the “Choose file” button for the keyboard, even with a dropzone',
+    },
+    doAccept: {
+      fr: '`<FileUpload accept=".pdf,application/pdf" maxSize={5 * 1024 * 1024}>`',
+      en: '`<FileUpload accept=".pdf,application/pdf" maxSize={5 * 1024 * 1024}>`',
+    },
+    dontDiv: {
+      fr: 'Un `div` cliquable à la place du bouton ou de l’input fichier',
+      en: 'A clickable `div` instead of the button or the file input',
+    },
+    dontUpload: {
+      fr: 'Appeler Laravel / `fetch` depuis le composant',
+      en: 'Calling Laravel / `fetch` from the component',
+    },
+    props: {
+      fr: 'Les attributs natifs de l’`<input type="file">` (`name`, `accept`, `required`, …) sont transmis. `value` n’est pas contrôlable (limitation HTML) : utilisez `files` / `onFilesChange`.',
+      en: 'Native `<input type="file">` attributes (`name`, `accept`, `required`, …) are forwarded. `value` is not controllable (HTML limitation): use `files` / `onFilesChange`.',
+    },
+  },
 } as const;
 
 export type DocsCopy = typeof docsCopy;

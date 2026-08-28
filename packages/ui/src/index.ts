@@ -22,6 +22,14 @@ export { Label } from './components/Field/Label';
 export type { LabelProps } from './components/Field/Label';
 export { useFieldControl } from './components/Field/useFieldControl';
 export type { FieldControlProps } from './components/Field/useFieldControl';
+export { FileUpload } from './components/FileUpload/FileUpload';
+export type {
+  FileRejection,
+  FileRejectionReason,
+  FileUploadProgress,
+  FileUploadProps,
+  FileUploadSize,
+} from './components/FileUpload/FileUpload';
 export { Heading } from './components/Heading/Heading';
 export type {
   HeadingLevel,

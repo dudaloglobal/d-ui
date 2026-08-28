@@ -69,6 +69,8 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Combobox | Dudalo Design System');
   await page.goto('/?path=/docs/components-calendar--docs');
   await expect(page).toHaveTitle('Calendar | Dudalo Design System');
+  await page.goto('/?path=/docs/components-fileupload--docs');
+  await expect(page).toHaveTitle('FileUpload | Dudalo Design System');
   await page.goto('/?path=/docs/components-text--docs');
   await expect(page).toHaveTitle('Text | Dudalo Design System');
   await page.goto('/?path=/docs/components-heading--docs');
@@ -93,6 +95,7 @@ test('component docs H1 is the component name, like Link', async ({ page }) => {
     { id: 'components-textinput--docs', name: 'TextInput' },
     { id: 'components-combobox--docs', name: 'Combobox' },
     { id: 'components-calendar--docs', name: 'Calendar' },
+    { id: 'components-fileupload--docs', name: 'FileUpload' },
     { id: 'foundations-typography--docs', name: 'Typography' },
     { id: 'foundations-color--docs', name: 'Color' },
   ]) {
@@ -721,6 +724,11 @@ test('English globals switch example copy on every component canvas', async ({
     { id: 'components-popover--default', en: 'Open', fr: 'Ouvrir' },
     { id: 'components-emojipopover--default', en: 'React', fr: 'Réagir' },
     { id: 'components-combobox--default', en: 'City', fr: 'Ville' },
+    {
+      id: 'components-fileupload--default',
+      en: 'Assignment',
+      fr: 'Devoir',
+    },
   ] as const;
   for (const { id, en, fr } of cases) {
     await page.goto(`/iframe.html?id=${id}&globals=locale:en`);
@@ -1018,6 +1026,33 @@ test('Storybook serves the Calendar story', async ({ page }) => {
   await page.goto('/iframe.html?id=components-calendar--default');
   await expect(page.getByRole('grid', { name: /mars 2026/i })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Mois précédent' })).toBeVisible();
+});
+
+test('Storybook serves the FileUpload story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-fileupload--default');
+  await expect(page.getByRole('button', { name: 'Choisir un fichier' })).toBeVisible();
+  await expect(page.getByText('Devoir', { exact: true })).toBeVisible();
+  await expect(page.locator('input[type="file"]')).toHaveAttribute('tabindex', '-1');
+});
+
+test('French FileUpload docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-fileupload--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(
+    preview.getByRole('heading', { level: 1, name: 'FileUpload' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Zone de dépôt' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Clic seul' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Dropzone' })).toHaveCount(0);
+  await expect(preview.getByRole('heading', { name: 'Click only' })).toHaveCount(0);
+  await expect(preview.getByText('Assignment', { exact: true })).toHaveCount(0);
+});
+
+test('FileUpload docs Show code imports FileUpload from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-fileupload--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { FileUpload } from 'd-ui'");
+  await expect(source).toContainText('<FileUpload');
 });
 
 test('French Color docs do not leak English headings', async ({ page }) => {

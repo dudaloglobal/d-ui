@@ -20,6 +20,7 @@ import {
   colorCopy,
   visuallyHiddenCopy,
   calendarCopy,
+  fileUploadCopy,
 } from '../.storybook/docs-locale';
 
 /** English MDX headings that must not appear: docs default language is French. */
@@ -91,6 +92,11 @@ const ENGLISH_HEADINGS = [
   'Primary palette',
   'Secondary palette',
   'Text wrap and overflow',
+  'Dropzone',
+  'Click only',
+  'Multiple files',
+  'Accept and max size',
+  'Progress',
 ];
 
 function collectMdx(dir: string): string[] {
@@ -122,6 +128,7 @@ describe('docs locale', () => {
     expect(keysOf(colorCopy('fr'))).toEqual(keysOf(colorCopy('en')));
     expect(keysOf(iconCopy('fr'))).toEqual(keysOf(iconCopy('en')));
     expect(keysOf(calendarCopy('fr'))).toEqual(keysOf(calendarCopy('en')));
+    expect(keysOf(fileUploadCopy('fr'))).toEqual(keysOf(fileUploadCopy('en')));
   });
 
   it('writes MDX section headings in French', () => {

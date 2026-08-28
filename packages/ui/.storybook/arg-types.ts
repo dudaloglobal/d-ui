@@ -683,3 +683,63 @@ export const calendarArgTypes = {
       'Nom du champ masqué de fin de plage. Utilisé si `selectionMode="range"`.',
   },
 };
+
+export const fileUploadArgTypes = {
+  label: {
+    description:
+      'Libellé visible au-dessus du champ. Sinon, un `<label htmlFor>` externe ou `aria-labelledby`.',
+  },
+  helper: {
+    description:
+      'Texte d’aide sous le champ. Remplacé par l’erreur si le champ est invalide.',
+  },
+  error: {
+    description: 'Message d’erreur sous le champ. Pose aussi `aria-invalid`.',
+  },
+  invalid: {
+    control: 'boolean' as const,
+    description:
+      'État d’erreur : `aria-invalid`. Les refus `accept` / `maxSize` invalident aussi le champ.',
+  },
+  disabled: {
+    control: 'boolean' as const,
+    description: 'Désactive le bouton, le dépôt et le retrait.',
+  },
+  required: {
+    control: 'boolean' as const,
+    description:
+      'Pose `required` sur l’input fichier et un astérisque décoratif sur le libellé.',
+  },
+  dropzone: {
+    control: 'boolean' as const,
+    description:
+      'Zone de glisser-déposer. Le clavier utilise le bouton, pas la zone. Défaut : `true`.',
+  },
+  multiple: {
+    control: 'boolean' as const,
+    description: 'Autorise plusieurs fichiers. Chaque nom est listé et suppressible.',
+  },
+  accept: {
+    description:
+      'Filtre natif (`accept`) et validation interne (extension ou MIME). Ex. `.pdf,image/*`.',
+  },
+  maxSize: {
+    description:
+      'Taille max d’un fichier, en octets. Un refus affiche une alerte lisible, pas seulement la couleur.',
+  },
+  browseLabel: {
+    description:
+      'Libellé du bouton. Défaut : « Choisir un fichier » / « Choisir des fichiers ».',
+  },
+  dropLabel: {
+    description: 'Texte de la zone de dépôt. Défaut français.',
+  },
+  progress: {
+    description: 'Slot de progression : nœud sous la liste, ou `(file) => ReactNode`.',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md', 'lg'],
+    description: '`sm` / `md` / `lg` : hauteur de la zone et taille du bouton.',
+  },
+};
