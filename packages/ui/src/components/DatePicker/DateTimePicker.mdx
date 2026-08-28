@@ -1,0 +1,69 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as DateTimePickerStories from './DateTimePicker.stories';
+
+<Meta of={DateTimePickerStories} />
+
+# DateTimePicker
+
+<P k="dateTimePicker.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={DateTimePickerStories.Default} />
+
+<H2 k="dateTimePicker.compose" />
+
+<P k="dateTimePicker.composeBody" />
+
+<Canvas of={DateTimePickerStories.Default} />
+
+<H2 k="chrome.specialStates" />
+
+<H3 k="chrome.disabled" />
+
+<P k="chrome.useDisabled" />
+
+<Canvas of={DateTimePickerStories.Disabled} />
+
+<H3 k="chrome.invalid" />
+
+<P k="dateTimePicker.invalidBody" />
+
+<Canvas of={DateTimePickerStories.Invalid} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="dateTimePicker.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['dateTimePicker.doParse', 'dateTimePicker.doPopover']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['dateTimePicker.dontJsDate', 'dateTimePicker.dontTimezone']} />
+
+<H2 k="chrome.properties" />
+
+<P k="dateTimePicker.props" />
+
+<ArgTypes
+  of={DateTimePickerStories}
+  include={[
+    'label',
+    'value',
+    'minValue',
+    'maxValue',
+    'invalid',
+    'disabled',
+    'required',
+    'clearable',
+    'locale',
+    'helper',
+    'error',
+    'size',
+  ]}
+/>

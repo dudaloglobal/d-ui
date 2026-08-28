@@ -71,6 +71,12 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Calendar | Dudalo Design System');
   await page.goto('/?path=/docs/components-fileupload--docs');
   await expect(page).toHaveTitle('FileUpload | Dudalo Design System');
+  await page.goto('/?path=/docs/components-datepicker--docs');
+  await expect(page).toHaveTitle('DatePicker | Dudalo Design System');
+  await page.goto('/?path=/docs/components-timepicker--docs');
+  await expect(page).toHaveTitle('TimePicker | Dudalo Design System');
+  await page.goto('/?path=/docs/components-datetimepicker--docs');
+  await expect(page).toHaveTitle('DateTimePicker | Dudalo Design System');
   await page.goto('/?path=/docs/components-text--docs');
   await expect(page).toHaveTitle('Text | Dudalo Design System');
   await page.goto('/?path=/docs/components-heading--docs');
@@ -96,6 +102,7 @@ test('component docs H1 is the component name, like Link', async ({ page }) => {
     { id: 'components-combobox--docs', name: 'Combobox' },
     { id: 'components-calendar--docs', name: 'Calendar' },
     { id: 'components-fileupload--docs', name: 'FileUpload' },
+    { id: 'components-datepicker--docs', name: 'DatePicker' },
     { id: 'foundations-typography--docs', name: 'Typography' },
     { id: 'foundations-color--docs', name: 'Color' },
   ]) {
@@ -729,6 +736,16 @@ test('English globals switch example copy on every component canvas', async ({
       en: 'Assignment',
       fr: 'Devoir',
     },
+    {
+      id: 'components-datepicker--default',
+      en: 'Due date',
+      fr: 'Échéance',
+    },
+    {
+      id: 'components-timepicker--default',
+      en: 'Start time',
+      fr: 'Heure de début',
+    },
   ] as const;
   for (const { id, en, fr } of cases) {
     await page.goto(`/iframe.html?id=${id}&globals=locale:en`);
@@ -1053,6 +1070,43 @@ test('FileUpload docs Show code imports FileUpload from d-ui', async ({ page }) 
   const { source } = await docsSource(page);
   await expect(source).toContainText("import { FileUpload } from 'd-ui'");
   await expect(source).toContainText('<FileUpload');
+});
+
+test('Storybook serves the DatePicker story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-datepicker--default');
+  await expect(page.getByRole('textbox', { name: 'Échéance' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Ouvrir le calendrier' })).toBeVisible();
+});
+
+test('French DatePicker docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-datepicker--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(
+    preview.getByRole('heading', { level: 1, name: 'DatePicker' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Saisie au clavier' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Keyboard entry' })).toHaveCount(0);
+  await expect(preview.getByText('Due date', { exact: true })).toHaveCount(0);
+});
+
+test('DatePicker docs Show code imports DatePicker from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-datepicker--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { DatePicker } from 'd-ui'");
+  await expect(source).toContainText('<DatePicker');
+});
+
+test('Storybook serves the TimePicker story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-timepicker--default');
+  await expect(page.getByRole('textbox', { name: 'Heure de début' })).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Ouvrir le sélecteur d’heure' }),
+  ).toBeVisible();
+});
+
+test('Storybook serves the DateTimePicker story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-datetimepicker--default');
+  await expect(page.getByRole('textbox', { name: 'Soutenance' })).toBeVisible();
 });
 
 test('French Color docs do not leak English headings', async ({ page }) => {

@@ -21,6 +21,9 @@ import {
   visuallyHiddenCopy,
   calendarCopy,
   fileUploadCopy,
+  datePickerCopy,
+  timePickerCopy,
+  dateTimePickerCopy,
 } from '../.storybook/docs-locale';
 
 /** English MDX headings that must not appear: docs default language is French. */
@@ -97,6 +100,9 @@ const ENGLISH_HEADINGS = [
   'Multiple files',
   'Accept and max size',
   'Progress',
+  'Keyboard entry',
+  'Spinbuttons',
+  'Calendar and time',
 ];
 
 function collectMdx(dir: string): string[] {
@@ -129,6 +135,9 @@ describe('docs locale', () => {
     expect(keysOf(iconCopy('fr'))).toEqual(keysOf(iconCopy('en')));
     expect(keysOf(calendarCopy('fr'))).toEqual(keysOf(calendarCopy('en')));
     expect(keysOf(fileUploadCopy('fr'))).toEqual(keysOf(fileUploadCopy('en')));
+    expect(keysOf(datePickerCopy('fr'))).toEqual(keysOf(datePickerCopy('en')));
+    expect(keysOf(timePickerCopy('fr'))).toEqual(keysOf(timePickerCopy('en')));
+    expect(keysOf(dateTimePickerCopy('fr'))).toEqual(keysOf(dateTimePickerCopy('en')));
   });
 
   it('writes MDX section headings in French', () => {
