@@ -1,0 +1,101 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as FileUploadStories from './FileUpload.stories';
+
+<Meta of={FileUploadStories} />
+
+# FileUpload
+
+<P k="fileUpload.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={FileUploadStories.Default} />
+
+<H2 k="fileUpload.dropzone" />
+
+<P k="fileUpload.dropzoneBody" />
+
+<Canvas of={FileUploadStories.Default} />
+
+<H2 k="fileUpload.browseOnly" />
+
+<P k="fileUpload.browseOnlyBody" />
+
+<Canvas of={FileUploadStories.ClickOnly} />
+
+<H2 k="chrome.sizes" />
+
+<P k="chrome.useSizes" />
+
+<Canvas of={FileUploadStories.Sizes} />
+
+<H2 k="fileUpload.multiple" />
+
+<P k="fileUpload.multipleBody" />
+
+<Canvas of={FileUploadStories.Multiple} />
+
+<H2 k="chrome.specialStates" />
+
+<H3 k="chrome.disabled" />
+
+<P k="chrome.useDisabled" />
+
+<Canvas of={FileUploadStories.Disabled} />
+
+<H3 k="chrome.invalid" />
+
+<P k="fileUpload.invalidBody" />
+
+<Canvas of={FileUploadStories.Invalid} />
+
+<H2 k="fileUpload.constraints" />
+
+<P k="fileUpload.constraintsBody" />
+
+<Canvas of={FileUploadStories.MaxSize} />
+
+<H2 k="fileUpload.progress" />
+
+<P k="fileUpload.progressBody" />
+
+<Canvas of={FileUploadStories.Progress} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="fileUpload.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['fileUpload.doButton', 'fileUpload.doAccept']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['fileUpload.dontDiv', 'fileUpload.dontUpload']} />
+
+<H2 k="chrome.properties" />
+
+<P k="fileUpload.props" />
+
+<ArgTypes
+  of={FileUploadStories}
+  include={[
+    'label',
+    'dropzone',
+    'multiple',
+    'accept',
+    'maxSize',
+    'invalid',
+    'disabled',
+    'required',
+    'helper',
+    'error',
+    'browseLabel',
+    'dropLabel',
+    'progress',
+    'size',
+  ]}
+/>

@@ -26,6 +26,7 @@ Une exception AA exige un sign-off Accessibilité **et** une décision produit �
 17. `Icon` : décorative par défaut (`aria-hidden`, `focusable="false"`). `label` uniquement quand aucun texte voisin ne porte le sens. Jamais de `label` dans le slot `icon` d’un `Button` ; `IconButton` porte le nom sur le bouton.
 18. `Field` : `Label` visible ; `group` rend un `fieldset` et `Label` (legend) doit être le premier enfant. `required` ne descend pas sur les contrôles d’un groupe. `FieldError` hors DOM si `invalid={false}`. `aria-describedby` ne cite que des ids rendus.
 19. `Calendar` : `role="grid"` nommée par le mois. Sélecteurs natifs **Mois** / **Année** (`<select>` nommés). Jours en `button` dans des `gridcell`. Flèches, Début/Fin, Page préc./suiv. (Maj : année). Jour choisi : `aria-selected`. Aujourd’hui : `aria-current="date"`. `selectionMode="range"` : `aria-multiselectable`, `{ start, end }`. Un seul jour tabulable ; nom accessible = date complète. Dates hors plage / `isDateUnavailable` : `aria-disabled`. Dates civiles `{ year, month, day }` via `toCalendarDate` / `fromCalendarDate` (`local` | `utc`). Pas d’événements LMS.
+20. `FileUpload` : `<input type="file">` natif masqué (`d-ui-visually-hidden`, `tabIndex={-1}`). Le bouton visible ouvre le sélecteur ; le clavier n’a pas besoin de la zone de dépôt. Libellé via `htmlFor`. `invalid` / refus `accept` / `maxSize` posent `aria-invalid` et un `role="alert"` lié par `aria-describedby`. Liste nommée ; retrait via `IconButton` nommée. Pas de `div` cliquable à la place du bouton.
 
 ## Overlays — revue de PR
 

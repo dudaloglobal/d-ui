@@ -98,6 +98,11 @@ export const storyNameEn: Record<string, string> = {
   Couleurs: 'Colors',
   'Variantes de couleur': 'Color variants',
   'Retour à la ligne et débordement': 'Text wrap and overflow',
+  'Zone de dépôt': 'Dropzone',
+  'Clic seul': 'Click only',
+  'Plusieurs fichiers': 'Multiple files',
+  'Accept et taille max': 'Accept and max size',
+  Progression: 'Progress',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -729,4 +734,34 @@ export type CalendarDocsCopy = typeof calendarFr;
 
 export function calendarCopy(locale: DocsLocale): CalendarDocsCopy {
   return locale === 'en' ? calendarEn : calendarFr;
+}
+
+const fileUploadFr = {
+  label: 'Devoir',
+  helper: 'PDF, jusqu’à 5 Mo.',
+  browse: 'Choisir un fichier',
+  drop: 'Glissez les fichiers ici ou cliquez pour les choisir',
+  error: 'Ce champ est requis.',
+  progress: 'Envoi : 40 %',
+  small: 'Petite',
+  medium: 'Moyenne',
+  large: 'Grande',
+};
+
+const fileUploadEn = {
+  label: 'Assignment',
+  helper: 'PDF, up to 5 MB.',
+  browse: 'Choose file',
+  drop: 'Drop files here or click to choose them',
+  error: 'This field is required.',
+  progress: 'Upload: 40%',
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+};
+
+export type FileUploadDocsCopy = typeof fileUploadFr;
+
+export function fileUploadCopy(locale: DocsLocale): FileUploadDocsCopy {
+  return locale === 'en' ? fileUploadEn : fileUploadFr;
 }
