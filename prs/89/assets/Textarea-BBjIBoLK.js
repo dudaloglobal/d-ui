@@ -1,0 +1,34 @@
+import{u as c,j as e,M as j,P as a,C as n,a as t,b as o,U as x,A as m}from"./iframe-DBw_qGzt.js";import{T as i,D as d,a as h,V as u,I as k,M as p,F as f}from"./Textarea.stories-C7mIvFtl.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-C5Tan_il.js";import"./docs-source-C_O40UCi.js";import"./textControl-CxGu3y7t.js";function l(s){const r={h1:"h1",...c(),...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(j,{of:i}),`
+`,e.jsx(r.h1,{id:"textarea",children:"Textarea"}),`
+`,e.jsx(a,{k:"textarea.intro"}),`
+`,e.jsx(a,{k:"chrome.examplesFollow"}),`
+`,e.jsx(a,{k:"textarea.labelProp"}),`
+`,e.jsx(n,{of:d}),`
+`,e.jsx(t,{k:"chrome.specialStates"}),`
+`,e.jsx(o,{k:"chrome.disabled"}),`
+`,e.jsx(a,{k:"chrome.useDisabled"}),`
+`,e.jsx(n,{of:h}),`
+`,e.jsx(o,{k:"chrome.valid"}),`
+`,e.jsx(a,{k:"chrome.useValid"}),`
+`,e.jsx(n,{of:u}),`
+`,e.jsx(o,{k:"chrome.invalid"}),`
+`,e.jsx(a,{k:"textInput.useInvalid"}),`
+`,e.jsx(n,{of:k}),`
+`,e.jsx(t,{k:"chrome.maxLength"}),`
+`,e.jsx(a,{k:"chrome.useMaxLength"}),`
+`,e.jsx(n,{of:p}),`
+`,e.jsx(t,{k:"chrome.focusGlow"}),`
+`,e.jsx(a,{k:"chrome.useFocusGlow"}),`
+`,e.jsx(n,{of:f}),`
+`,e.jsx(a,{k:"chrome.themeLang"}),`
+`,e.jsx(t,{k:"chrome.accessibility"}),`
+`,e.jsx(a,{k:"textarea.a11yNative"}),`
+`,e.jsx(a,{k:"textInput.a11yLabel"}),`
+`,e.jsx(a,{k:"textInput.a11yCount"}),`
+`,e.jsx(o,{k:"chrome.do"}),`
+`,e.jsx(x,{items:["textarea.doComment","textarea.doCount","textarea.doInvalid"]}),`
+`,e.jsx(o,{k:"chrome.dont"}),`
+`,e.jsx(x,{items:["textarea.dontPlaceholder","textarea.dontMultilineInput"]}),`
+`,e.jsx(t,{k:"chrome.properties"}),`
+`,e.jsx(a,{k:"textarea.nativeForward"}),`
+`,e.jsx(m,{of:i,include:["size","label","helper","error","placeholder","invalid","valid","disabled","required","icon","prefix","suffix","fullWidth","focusShadow","clearable","clearLabel","showCount","countMessage","maxLength","rows"]})]})}function I(s={}){const{wrapper:r}={...c(),...s.components};return r?e.jsx(r,{...s,children:e.jsx(l,{...s})}):l(s)}export{I as default};
