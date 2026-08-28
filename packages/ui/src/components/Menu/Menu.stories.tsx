@@ -1,12 +1,32 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import {
+  ArrowTopRightOnSquareIcon,
+  ChevronDownIcon,
+  DocumentDuplicateIcon,
+  EllipsisVerticalIcon,
+  PencilSquareIcon,
+  TrashIcon,
+} from '@heroicons/react/24/outline';
 import { docsLocale, menuCopy } from '../../../.storybook/docs-locale';
 import { componentSource } from '../../../.storybook/docs-source';
 import { menuArgTypes } from '../../../.storybook/arg-types';
 import { Button } from '../Button/Button';
+import { IconButton } from '../Button/IconButton';
+import { Icon } from '../Icon/Icon';
+import { Link } from '../Link/Link';
 import { ContextMenu, Menu, MenuItem, MenuSeparator, MenuSub } from './Menu';
 
 const importMenu =
   "import { Button, Menu, MenuItem, MenuSeparator, MenuSub } from 'd-ui';";
+const importTriggers = `import { ChevronDownIcon, EllipsisVerticalIcon } from '@heroicons/react/24/outline';
+import { Button, Icon, IconButton, Link, Menu, MenuItem } from 'd-ui';`;
+const importItems = `import {
+    ArrowTopRightOnSquareIcon,
+    DocumentDuplicateIcon,
+    PencilSquareIcon,
+    TrashIcon,
+} from '@heroicons/react/24/outline';
+import { Button, Icon, Menu, MenuItem, MenuSeparator } from 'd-ui';`;
 const importContext =
   "import { Button, ContextMenu, Menu, MenuItem, MenuSeparator } from 'd-ui';";
 
@@ -46,6 +66,149 @@ export const Default: Story = {
         <MenuItem>{copy.duplicate}</MenuItem>
         <MenuSeparator />
         <MenuItem>{copy.delete}</MenuItem>
+      </Menu>
+    );
+  },
+};
+
+export const TriggerVariants: Story = {
+  name: 'Variantes de déclencheur',
+  parameters: componentSource(
+    importTriggers,
+    `<>
+    <Menu
+        label="Actions du devoir"
+        trigger={
+            <Button variant="secondary" icon={<Icon as={ChevronDownIcon} />} iconPosition="end">
+                Actions
+            </Button>
+        }
+    >
+        <MenuItem>Renommer</MenuItem>
+        <MenuItem>Dupliquer</MenuItem>
+    </Menu>
+    <Menu
+        label="Actions du devoir"
+        trigger={
+            <IconButton icon={<Icon as={EllipsisVerticalIcon} />} aria-label="Plus d’actions" />
+        }
+    >
+        <MenuItem>Renommer</MenuItem>
+        <MenuItem>Dupliquer</MenuItem>
+    </Menu>
+    <Menu label="Actions du devoir" trigger={<Link href="#actions">Actions</Link>}>
+        <MenuItem>Renommer</MenuItem>
+        <MenuItem>Dupliquer</MenuItem>
+    </Menu>
+    <Menu
+        label="Actions du devoir"
+        trigger={
+            <Button variant="secondary" size="sm" className="rounded-full">
+                Actions
+            </Button>
+        }
+    >
+        <MenuItem>Renommer</MenuItem>
+        <MenuItem>Dupliquer</MenuItem>
+    </Menu>
+</>`,
+  ),
+  render: (args, { globals }) => {
+    const copy = menuCopy(docsLocale(globals.locale));
+    const items = (
+      <>
+        <MenuItem>{copy.rename}</MenuItem>
+        <MenuItem>{copy.duplicate}</MenuItem>
+      </>
+    );
+    return (
+      <div className="flex flex-wrap items-center gap-4">
+        <Menu
+          {...args}
+          label={copy.label}
+          trigger={
+            <Button
+              variant="secondary"
+              icon={<Icon as={ChevronDownIcon} />}
+              iconPosition="end"
+            >
+              {copy.actions}
+            </Button>
+          }
+        >
+          {items}
+        </Menu>
+        <Menu
+          label={copy.label}
+          trigger={
+            <IconButton
+              icon={<Icon as={EllipsisVerticalIcon} />}
+              aria-label={copy.moreActions}
+            />
+          }
+        >
+          <MenuItem>{copy.rename}</MenuItem>
+          <MenuItem>{copy.duplicate}</MenuItem>
+        </Menu>
+        <Menu label={copy.label} trigger={<Link href="#actions">{copy.actions}</Link>}>
+          <MenuItem>{copy.rename}</MenuItem>
+          <MenuItem>{copy.duplicate}</MenuItem>
+        </Menu>
+        <Menu
+          label={copy.label}
+          trigger={
+            <Button variant="secondary" size="sm" className="rounded-full">
+              {copy.actions}
+            </Button>
+          }
+        >
+          <MenuItem>{copy.rename}</MenuItem>
+          <MenuItem>{copy.duplicate}</MenuItem>
+        </Menu>
+      </div>
+    );
+  },
+};
+
+export const Items: Story = {
+  name: 'Éléments du menu',
+  parameters: componentSource(
+    importItems,
+    `<Menu label="Actions du devoir" trigger={<Button variant="secondary">Actions</Button>}>
+    <MenuItem icon={<Icon as={PencilSquareIcon} />}>Renommer</MenuItem>
+    <MenuItem icon={<Icon as={DocumentDuplicateIcon} />} shortcut="⌘⇧D">
+        Dupliquer
+    </MenuItem>
+    <MenuItem
+        href="/devoirs/12"
+        iconEnd={<Icon as={ArrowTopRightOnSquareIcon} />}
+    >
+        Ouvrir le devoir
+    </MenuItem>
+    <MenuSeparator />
+    <MenuItem icon={<Icon as={TrashIcon} />}>Supprimer</MenuItem>
+</Menu>`,
+  ),
+  render: (args, { globals }) => {
+    const copy = menuCopy(docsLocale(globals.locale));
+    return (
+      <Menu
+        {...args}
+        label={copy.label}
+        trigger={<Button variant="secondary">{copy.actions}</Button>}
+      >
+        <MenuItem icon={<Icon as={PencilSquareIcon} />}>{copy.rename}</MenuItem>
+        <MenuItem
+          icon={<Icon as={DocumentDuplicateIcon} />}
+          shortcut={copy.duplicateShortcut}
+        >
+          {copy.duplicate}
+        </MenuItem>
+        <MenuItem href="/devoirs/12" iconEnd={<Icon as={ArrowTopRightOnSquareIcon} />}>
+          {copy.openAssignment}
+        </MenuItem>
+        <MenuSeparator />
+        <MenuItem icon={<Icon as={TrashIcon} />}>{copy.delete}</MenuItem>
       </Menu>
     );
   },

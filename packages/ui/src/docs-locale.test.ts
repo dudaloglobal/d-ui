@@ -113,6 +113,8 @@ const ENGLISH_HEADINGS = [
   'Detached',
   'Many pages',
   'Shortcuts',
+  'Trigger variants',
+  'Menu items',
   'Disabled items',
   'Submenu',
   'Context menu',

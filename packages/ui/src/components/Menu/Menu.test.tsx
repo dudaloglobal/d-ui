@@ -171,6 +171,17 @@ describe('Menu', () => {
     await user.click(screen.getByRole('button', { name: 'Actions' }));
     expect(screen.queryByRole('menu')).not.toBeInTheDocument();
   });
+
+  it('opens from a link trigger without following the href', async () => {
+    const user = userEvent.setup();
+    render(
+      <Menu label="Actions" trigger={<a href="https://example.com/navigate">Actions</a>}>
+        <MenuItem>Renommer</MenuItem>
+      </Menu>,
+    );
+    await user.click(screen.getByRole('link', { name: 'Actions' }));
+    expect(screen.getByRole('menu', { name: 'Actions' })).toBeVisible();
+  });
 });
 
 describe('ContextMenu', () => {
@@ -216,7 +227,7 @@ describe('ContextMenu', () => {
   });
 
   it('forwards a ref on MenuItem', () => {
-    const ref = createRef<HTMLButtonElement>();
+    const ref = createRef<HTMLElement>();
     render(
       <Menu label="Actions" defaultOpen trigger={<button type="button">Actions</button>}>
         <MenuItem ref={ref}>Renommer</MenuItem>
@@ -224,5 +235,33 @@ describe('ContextMenu', () => {
     );
     expect(ref.current).toBeInstanceOf(HTMLButtonElement);
     expect(ref.current).toHaveAttribute('role', 'menuitem');
+  });
+
+  it('renders a navigation item as a link', () => {
+    render(
+      <Menu label="Actions" defaultOpen trigger={<button type="button">Actions</button>}>
+        <MenuItem href="/devoirs/12">Ouvrir le devoir</MenuItem>
+        <MenuItem>Renommer</MenuItem>
+      </Menu>,
+    );
+    const item = screen.getByRole('menuitem', { name: 'Ouvrir le devoir' });
+    expect(item.tagName).toBe('A');
+    expect(item).toHaveAttribute('href', '/devoirs/12');
+    expect(screen.getByRole('menuitem', { name: 'Renommer' }).tagName).toBe('BUTTON');
+  });
+
+  it('shows leading and trailing icons on an item', () => {
+    render(
+      <Menu label="Actions" defaultOpen trigger={<button type="button">Actions</button>}>
+        <MenuItem
+          icon={<span data-testid="icon-start" />}
+          iconEnd={<span data-testid="icon-end" />}
+        >
+          Renommer
+        </MenuItem>
+      </Menu>,
+    );
+    expect(screen.getByTestId('icon-start')).toBeInTheDocument();
+    expect(screen.getByTestId('icon-end')).toBeInTheDocument();
   });
 });

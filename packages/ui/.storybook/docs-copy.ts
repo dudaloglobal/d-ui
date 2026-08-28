@@ -1958,8 +1958,18 @@ export const docsCopy = {
   },
   menu: {
     intro: {
-      fr: '`Menu` est un menu d’actions sous un bouton (`aria-haspopup="menu"`). `ContextMenu` ouvre le même pattern au clic droit et via **Maj+F10**. Ce n’est pas une palette de commandes (`Command Menu`, DS-045) ni un `Popover`.',
-      en: '`Menu` is an action menu from a button (`aria-haspopup="menu"`). `ContextMenu` opens the same pattern on right-click and via **Shift+F10**. It is not a command palette (`Command Menu`, DS-045) or a `Popover`.',
+      fr: '`Menu` est un menu d’actions sous un déclencheur (`aria-haspopup="menu"`). `ContextMenu` ouvre le même pattern au clic droit et via **Maj+F10**. Pour une liste de **sélection**, utilisez `Select`. Ce n’est pas une palette de commandes (`Command Menu`, DS-045) ni un `Popover`.',
+      en: '`Menu` is an action menu from a trigger (`aria-haspopup="menu"`). `ContextMenu` opens the same pattern on right-click and via **Shift+F10**. For a **selection** list, use `Select`. It is not a command palette (`Command Menu`, DS-045) or a `Popover`.',
+    },
+    triggerVariants: { fr: 'Variantes de déclencheur', en: 'Trigger variants' },
+    triggerVariantsBody: {
+      fr: 'Le déclencheur est interchangeable : passez un `Button` (emphase, taille, chevron), un `IconButton` nommé, un `Link`, ou un `Button` compact en pastille. Pas de composant `Chip` dans d-ui — la pastille reprend le `Button` secondaire arrondi.',
+      en: 'The trigger is interchangeable: pass a `Button` (emphasis, size, chevron), a named `IconButton`, a `Link`, or a compact pill `Button`. There is no `Chip` in d-ui — the pill is a rounded secondary `Button`.',
+    },
+    items: { fr: 'Éléments du menu', en: 'Menu items' },
+    itemsBody: {
+      fr: 'Chaque `MenuItem` a un libellé, un slot `icon` (avant) et `iconEnd` (après). `shortcut` est un rappel visuel. Pour naviguer vers une page, passez `href` : l’item est un vrai `<a>` (clic droit, nouvel onglet), pas un bouton.',
+      en: 'Each `MenuItem` has a label, an `icon` slot (before) and `iconEnd` (after). `shortcut` is a visual hint. To navigate to a page, pass `href`: the item is a real `<a>` (right-click, new tab), not a button.',
     },
     shortcuts: { fr: 'Raccourcis', en: 'Shortcuts' },
     shortcutsBody: {
@@ -1982,12 +1992,16 @@ export const docsCopy = {
       en: '`ContextMenu` opens on right-click and from the keyboard (**Shift+F10** / Menu key). The same actions must also live in a button `Menu`: context menu is never the only path.',
     },
     a11yBody: {
-      fr: 'Pattern WAI-ARIA menu : déclencheur `aria-haspopup="menu"`, panneau `role="menu"` nommé (`label`), items `menuitem`. Flèches, Début / Fin, Escape, typeahead. Tab sort et ferme. Focus rendu au déclencheur. Le portail recopie `data-d-ui-theme`.',
-      en: 'WAI-ARIA menu pattern: trigger `aria-haspopup="menu"`, named `role="menu"` panel (`label`), `menuitem` items. Arrows, Home / End, Escape, typeahead. Tab leaves and closes. Focus returns to the trigger. The portal copies `data-d-ui-theme`.',
+      fr: 'Pattern WAI-ARIA menu : déclencheur `aria-haspopup="menu"`, panneau `role="menu"` nommé (`label`), items `menuitem`. Flèches, Début / Fin, Escape, typeahead. Tab sort et ferme. Focus rendu au déclencheur. Un item de navigation est un `<a href>`. Le portail recopie `data-d-ui-theme`.',
+      en: 'WAI-ARIA menu pattern: trigger `aria-haspopup="menu"`, named `role="menu"` panel (`label`), `menuitem` items. Arrows, Home / End, Escape, typeahead. Tab leaves and closes. Focus returns to the trigger. A navigation item is an `<a href>`. The portal copies `data-d-ui-theme`.',
     },
     doTrigger: {
-      fr: 'Un `Button` nommé comme `trigger` de `Menu`',
-      en: 'A named `Button` as the `Menu` `trigger`',
+      fr: 'Un `Button`, `IconButton` ou `Link` nommé comme `trigger`',
+      en: 'A named `Button`, `IconButton`, or `Link` as `trigger`',
+    },
+    doHref: {
+      fr: '`href` sur `MenuItem` pour une navigation (vrai `<a>`)',
+      en: '`href` on `MenuItem` for navigation (a real `<a>`)',
     },
     doContext: {
       fr: 'Les mêmes actions dans un `Menu` **et** un `ContextMenu`',
@@ -2001,6 +2015,10 @@ export const docsCopy = {
       fr: 'Un `div` + `onClick` à la place de `MenuItem`',
       en: 'A `div` + `onClick` instead of `MenuItem`',
     },
+    dontNavigate: {
+      fr: '`onSelect` + `window.location` à la place d’un `href`',
+      en: '`onSelect` + `window.location` instead of `href`',
+    },
     dontOnlyContext: {
       fr: 'Un contextuel comme **seul** moyen d’atteindre l’action',
       en: 'A context menu as the **only** way to reach the action',
@@ -2010,8 +2028,8 @@ export const docsCopy = {
       en: 'A menu for a command palette (DS-045)',
     },
     props: {
-      fr: '`label` nomme le `menu`. `trigger` est le bouton (ou la cible du contextuel). `open` / `onOpenChange` pour un état contrôlé. `MenuItem` : `onSelect`, `shortcut`, `disabled`.',
-      en: '`label` names the `menu`. `trigger` is the button (or the context target). `open` / `onOpenChange` for controlled state. `MenuItem`: `onSelect`, `shortcut`, `disabled`.',
+      fr: '`label` nomme le `menu`. `trigger` est n’importe quel élément focusable (`Button`, `IconButton`, `Link`…). `open` / `onOpenChange` pour un état contrôlé. `MenuItem` : `onSelect`, `href` (lien), `icon` / `iconEnd`, `shortcut`, `disabled`.',
+      en: '`label` names the `menu`. `trigger` is any focusable element (`Button`, `IconButton`, `Link`…). `open` / `onOpenChange` for controlled state. `MenuItem`: `onSelect`, `href` (link), `icon` / `iconEnd`, `shortcut`, `disabled`.',
     },
   },
 } as const;

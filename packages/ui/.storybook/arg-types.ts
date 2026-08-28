@@ -981,4 +981,9 @@ export const menuArgTypes = {
   onOpenChange: {
     description: 'Appelé quand le menu s’ouvre ou se ferme.',
   },
+  trigger: {
+    control: { disable: true },
+    description:
+      'Élément focusable unique : `Button`, `IconButton`, `Link`, ou un `Button` compact en pastille.',
+  },
 };

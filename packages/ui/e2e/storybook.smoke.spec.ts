@@ -1235,8 +1235,14 @@ test('French Menu docs do not leak English headings', async ({ page }) => {
   await page.goto('/?path=/docs/components-menu--docs');
   const preview = page.frameLocator('#storybook-preview-iframe');
   await expect(preview.getByRole('heading', { level: 1, name: 'Menu' })).toBeVisible();
+  await expect(
+    preview.getByRole('heading', { name: 'Variantes de déclencheur' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Éléments du menu' })).toBeVisible();
   await expect(preview.getByRole('heading', { name: 'Sous-menu' })).toBeVisible();
   await expect(preview.getByRole('heading', { name: 'Menu contextuel' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Trigger variants' })).toHaveCount(0);
+  await expect(preview.getByRole('heading', { name: 'Menu items' })).toHaveCount(0);
   await expect(preview.getByRole('heading', { name: 'Submenu' })).toHaveCount(0);
   await expect(preview.getByRole('heading', { name: 'Context menu' })).toHaveCount(0);
 });

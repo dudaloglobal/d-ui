@@ -12,6 +12,18 @@ import * as MenuStories from './Menu.stories';
 
 <Canvas of={MenuStories.Default} />
 
+<H2 k="menu.triggerVariants" />
+
+<P k="menu.triggerVariantsBody" />
+
+<Canvas of={MenuStories.TriggerVariants} />
+
+<H2 k="menu.items" />
+
+<P k="menu.itemsBody" />
+
+<Canvas of={MenuStories.Items} />
+
 <H2 k="menu.shortcuts" />
 
 <P k="menu.shortcutsBody" />
@@ -56,11 +68,18 @@ import * as MenuStories from './Menu.stories';
 
 <H3 k="chrome.do" />
 
-<Ul items={['menu.doTrigger', 'menu.doContext', 'menu.doTypeahead']} />
+<Ul items={['menu.doTrigger', 'menu.doHref', 'menu.doContext', 'menu.doTypeahead']} />
 
 <H3 k="chrome.dont" />
 
-<Ul items={['menu.dontDiv', 'menu.dontOnlyContext', 'menu.dontPalette']} />
+<Ul
+  items={[
+    'menu.dontDiv',
+    'menu.dontNavigate',
+    'menu.dontOnlyContext',
+    'menu.dontPalette',
+  ]}
+/>
 
 <P k="chrome.themeLang" />
 
@@ -72,6 +91,7 @@ import * as MenuStories from './Menu.stories';
   of={MenuStories}
   include={[
     'label',
+    'trigger',
     'placement',
     'size',
     'disabled',

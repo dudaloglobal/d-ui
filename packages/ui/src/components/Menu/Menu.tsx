@@ -33,6 +33,7 @@ import {
   useLayoutEffect,
   useRef,
   useState,
+  type AnchorHTMLAttributes,
   type ButtonHTMLAttributes,
   type HTMLAttributes,
   type KeyboardEvent,
@@ -97,13 +98,20 @@ export type ContextMenuProps = Omit<MenuProps, 'placement'> & {
 export type MenuItemProps = Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
   'type' | 'onSelect'
-> & {
-  onSelect?: () => void;
-  shortcut?: string;
-  icon?: ReactNode;
-  /** Texte pour le typeahead si `children` n’est pas une chaîne. */
-  textValue?: string;
-};
+> &
+  Pick<
+    AnchorHTMLAttributes<HTMLAnchorElement>,
+    'href' | 'target' | 'rel' | 'download'
+  > & {
+    onSelect?: () => void;
+    shortcut?: string;
+    /** Icône avant le libellé (slot « before »). */
+    icon?: ReactNode;
+    /** Icône après le libellé (slot « after »). */
+    iconEnd?: ReactNode;
+    /** Texte pour le typeahead si `children` n’est pas une chaîne. */
+    textValue?: string;
+  };
 
 export type MenuSubProps = {
   label: string;
@@ -364,6 +372,15 @@ function MenuView({
           'aria-controls': open ? menuId : undefined,
           disabled:
             disabled || Boolean((trigger.props as { disabled?: boolean }).disabled),
+          onClick(event: MouseEvent) {
+            (trigger.props as { onClick?: (event: MouseEvent) => void }).onClick?.(event);
+            if (
+              !event.defaultPrevented &&
+              (event.currentTarget as HTMLElement).closest('a')
+            ) {
+              event.preventDefault();
+            }
+          },
           ...(mode === 'context'
             ? {
                 tabIndex: (trigger.props as { tabIndex?: number }).tabIndex ?? 0,
@@ -481,13 +498,18 @@ export function MenuSub({ label, disabled, children }: MenuSubProps) {
   );
 }
 
-export const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(function MenuItem(
+export const MenuItem = forwardRef<HTMLElement, MenuItemProps>(function MenuItem(
   {
     children,
     onSelect,
     disabled,
     shortcut,
     icon,
+    iconEnd,
+    href,
+    target,
+    rel,
+    download,
     textValue,
     className,
     onClick,
@@ -509,6 +531,71 @@ export const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(function Me
     surface.listRef.current[index]?.focus({ preventScroll: true });
   }, [disabled, index, selected, surface.listRef]);
 
+  const itemProps = surface.getItemProps({
+    ref(node: HTMLElement | null) {
+      surface.listRef.current[index] = node;
+      if (typeof forwardedRef === 'function') forwardedRef(node);
+      else if (forwardedRef) forwardedRef.current = node;
+    },
+    onClick(event) {
+      onClick?.(event as unknown as MouseEvent<HTMLButtonElement>);
+      if (disabled) {
+        event.preventDefault();
+        return;
+      }
+      if (event.defaultPrevented) return;
+      onSelect?.();
+      surface.closeTree();
+    },
+  });
+
+  const itemClassName = cx(
+    'flex w-full items-center gap-2 rounded-sm font-sans font-medium text-fg no-underline',
+    itemSizeClass[surface.size],
+    'bg-transparent text-start',
+    'focus-visible:bg-surface-muted focus-visible:outline-none',
+    selected && 'bg-surface-muted',
+    disabled && 'pointer-events-none opacity-50',
+    className,
+  );
+
+  const content = (
+    <>
+      {icon ? (
+        <span className="inline-flex shrink-0 [&_svg]:block" aria-hidden="true">
+          {icon}
+        </span>
+      ) : null}
+      <span className="min-w-0 flex-1">{children}</span>
+      {iconEnd ? (
+        <span className="inline-flex shrink-0 [&_svg]:block" aria-hidden="true">
+          {iconEnd}
+        </span>
+      ) : null}
+      {shortcut ? (
+        <kbd className="text-fg-muted ms-4 font-sans text-xs font-normal">{shortcut}</kbd>
+      ) : null}
+    </>
+  );
+
+  if (href) {
+    return (
+      <a
+        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
+        href={disabled ? undefined : href}
+        target={target}
+        rel={rel}
+        download={download}
+        role="menuitem"
+        aria-disabled={disabled || undefined}
+        {...itemProps}
+        className={itemClassName}
+      >
+        {content}
+      </a>
+    );
+  }
+
   return (
     <button
       {...rest}
@@ -516,38 +603,10 @@ export const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(function Me
       role="menuitem"
       disabled={disabled}
       aria-disabled={disabled || undefined}
-      {...surface.getItemProps({
-        ref(node: HTMLElement | null) {
-          surface.listRef.current[index] = node;
-          if (typeof forwardedRef === 'function') forwardedRef(node as HTMLButtonElement);
-          else if (forwardedRef) forwardedRef.current = node as HTMLButtonElement;
-        },
-        onClick(event) {
-          onClick?.(event as unknown as MouseEvent<HTMLButtonElement>);
-          if (disabled || event.defaultPrevented) return;
-          onSelect?.();
-          surface.closeTree();
-        },
-      })}
-      className={cx(
-        'flex w-full items-center gap-2 rounded-sm font-sans font-medium text-fg',
-        itemSizeClass[surface.size],
-        'bg-transparent text-start',
-        'focus-visible:bg-surface-muted focus-visible:outline-none',
-        selected && 'bg-surface-muted',
-        disabled && 'opacity-50',
-        className,
-      )}
+      {...itemProps}
+      className={itemClassName}
     >
-      {icon ? (
-        <span className="inline-flex shrink-0 [&_svg]:block" aria-hidden="true">
-          {icon}
-        </span>
-      ) : null}
-      <span className="min-w-0 flex-1">{children}</span>
-      {shortcut ? (
-        <kbd className="text-fg-muted ms-4 font-sans text-xs font-normal">{shortcut}</kbd>
-      ) : null}
+      {content}
     </button>
   );
 });
