@@ -830,3 +830,98 @@ export const dateTimePickerArgTypes = {
     description: 'Borne haute `DateTimeValue` (date puis heure).',
   },
 };
+
+export const tabsArgTypes = {
+  label: {
+    control: 'text' as const,
+    description: 'Nom accessible de la `tablist`. Fallback anglais : `Tabs`.',
+  },
+  value: {
+    description: 'Onglet contrôlé (identifiant `Tab value`).',
+  },
+  defaultValue: {
+    description: 'Onglet initial en mode non contrôlé.',
+  },
+  onValueChange: {
+    description: 'Appelé avec l’identifiant de l’onglet activé.',
+  },
+  activation: {
+    control: 'inline-radio' as const,
+    options: ['automatic', 'manual'],
+    description:
+      '`automatic` (défaut) : les flèches sélectionnent. `manual` : flèches pour le focus, Entrée / Espace pour activer.',
+  },
+  orientation: {
+    control: 'inline-radio' as const,
+    options: ['horizontal', 'vertical'],
+    description:
+      '`horizontal` (flèches gauche/droite) ou `vertical` (haut/bas). Pose `aria-orientation`.',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md', 'lg'],
+    description:
+      '`sm` si l’espace est contraint, `md` par défaut, `lg` pour les vues aérées.',
+  },
+  disabled: {
+    control: 'boolean' as const,
+    description: 'Désactive tous les onglets. Ils restent visibles.',
+  },
+};
+
+export const breadcrumbArgTypes = {
+  label: {
+    control: 'text' as const,
+    description: 'Nom accessible du `nav`. Fallback anglais : `Breadcrumb`.',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md', 'lg'],
+    description:
+      '`sm` si l’espace est contraint, `md` par défaut, `lg` pour les en-têtes aérés.',
+  },
+};
+
+export const paginationArgTypes = {
+  page: {
+    control: 'number' as const,
+    description: 'Page courante, 1-indexée. Contrôlée : passez `onPageChange`.',
+  },
+  pageCount: {
+    control: 'number' as const,
+    description: 'Nombre total de pages.',
+  },
+  onPageChange: {
+    description: 'Appelé avec le numéro de page demandé. Pas de navigation Next.js.',
+  },
+  siblingCount: {
+    control: 'number' as const,
+    description: 'Pages numérotées de chaque côté de la courante. Défaut : `1`.',
+  },
+  label: {
+    control: 'text' as const,
+    description: 'Nom accessible du `nav`. Fallback anglais : `Pagination`.',
+  },
+  previousLabel: {
+    control: 'text' as const,
+    description: 'Nom du bouton précédent. Fallback anglais : `Previous page`.',
+  },
+  nextLabel: {
+    control: 'text' as const,
+    description: 'Nom du bouton suivant. Fallback anglais : `Next page`.',
+  },
+  pageLabel: {
+    description:
+      'Fonction `(page, current) => string` pour le nom de chaque bouton. Doit exposer la page courante.',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md', 'lg'],
+    description:
+      '`sm` si l’espace est contraint, `md` par défaut, `lg` pour les pieds de liste aérés.',
+  },
+  disabled: {
+    control: 'boolean' as const,
+    description: 'Désactive tous les boutons.',
+  },
+};

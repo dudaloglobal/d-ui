@@ -1,0 +1,67 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as PaginationStories from './Pagination.stories';
+
+<Meta of={PaginationStories} />
+
+# Pagination
+
+<P k="pagination.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={PaginationStories.Default} />
+
+<H2 k="pagination.many" />
+
+<P k="pagination.manyBody" />
+
+<Canvas of={PaginationStories.ManyPages} />
+
+<H2 k="chrome.sizes" />
+
+<P k="chrome.useSizes" />
+
+<Canvas of={PaginationStories.Sizes} />
+
+<H2 k="chrome.specialStates" />
+
+<H3 k="chrome.disabled" />
+
+<P k="chrome.useDisabled" />
+
+<Canvas of={PaginationStories.Disabled} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.accessibility" />
+
+<P k="pagination.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['pagination.doCurrent', 'pagination.doLabels']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['pagination.dontInfinite', 'pagination.dontRouter']} />
+
+<H2 k="chrome.properties" />
+
+<P k="pagination.props" />
+
+<ArgTypes
+  of={PaginationStories}
+  include={[
+    'page',
+    'pageCount',
+    'onPageChange',
+    'siblingCount',
+    'label',
+    'previousLabel',
+    'nextLabel',
+    'pageLabel',
+    'size',
+    'disabled',
+  ]}
+/>

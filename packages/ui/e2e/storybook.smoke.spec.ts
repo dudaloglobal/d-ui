@@ -77,6 +77,12 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('TimePicker | Dudalo Design System');
   await page.goto('/?path=/docs/components-datetimepicker--docs');
   await expect(page).toHaveTitle('DateTimePicker | Dudalo Design System');
+  await page.goto('/?path=/docs/components-tabs--docs');
+  await expect(page).toHaveTitle('Tabs | Dudalo Design System');
+  await page.goto('/?path=/docs/components-breadcrumb--docs');
+  await expect(page).toHaveTitle('Breadcrumb | Dudalo Design System');
+  await page.goto('/?path=/docs/components-pagination--docs');
+  await expect(page).toHaveTitle('Pagination | Dudalo Design System');
   await page.goto('/?path=/docs/components-text--docs');
   await expect(page).toHaveTitle('Text | Dudalo Design System');
   await page.goto('/?path=/docs/components-heading--docs');
@@ -103,6 +109,9 @@ test('component docs H1 is the component name, like Link', async ({ page }) => {
     { id: 'components-calendar--docs', name: 'Calendar' },
     { id: 'components-fileupload--docs', name: 'FileUpload' },
     { id: 'components-datepicker--docs', name: 'DatePicker' },
+    { id: 'components-tabs--docs', name: 'Tabs' },
+    { id: 'components-breadcrumb--docs', name: 'Breadcrumb' },
+    { id: 'components-pagination--docs', name: 'Pagination' },
     { id: 'foundations-typography--docs', name: 'Typography' },
     { id: 'foundations-color--docs', name: 'Color' },
   ]) {
@@ -746,6 +755,21 @@ test('English globals switch example copy on every component canvas', async ({
       en: 'Start time',
       fr: 'Heure de début',
     },
+    {
+      id: 'components-tabs--default',
+      en: 'Overview',
+      fr: 'Aperçu',
+    },
+    {
+      id: 'components-breadcrumb--default',
+      en: 'Home',
+      fr: 'Accueil',
+    },
+    {
+      id: 'components-pagination--default',
+      en: 'Previous page',
+      fr: 'Page précédente',
+    },
   ] as const;
   for (const { id, en, fr } of cases) {
     await page.goto(`/iframe.html?id=${id}&globals=locale:en`);
@@ -1107,6 +1131,84 @@ test('Storybook serves the TimePicker story', async ({ page }) => {
 test('Storybook serves the DateTimePicker story', async ({ page }) => {
   await page.goto('/iframe.html?id=components-datetimepicker--default');
   await expect(page.getByRole('textbox', { name: 'Soutenance' })).toBeVisible();
+});
+
+test('Storybook serves the Tabs story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-tabs--default');
+  await expect(page.getByRole('tablist', { name: 'Section du cours' })).toBeVisible();
+  await expect(page.getByRole('tab', { name: 'Aperçu' })).toBeVisible();
+});
+
+test('French Tabs docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-tabs--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { level: 1, name: 'Tabs' })).toBeVisible();
+  await expect(
+    preview.getByRole('heading', { name: 'Activation manuelle' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Manual activation' })).toHaveCount(
+    0,
+  );
+  await expect(preview.getByText('Overview', { exact: true })).toHaveCount(0);
+});
+
+test('Tabs docs Show code imports Tabs from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-tabs--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText(
+    "import { Tab, TabList, TabPanel, Tabs } from 'd-ui'",
+  );
+  await expect(source).toContainText('<Tabs');
+});
+
+test('Storybook serves the Breadcrumb story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-breadcrumb--default');
+  await expect(page.getByRole('navigation', { name: 'Fil d’Ariane' })).toBeVisible();
+  await expect(page.getByText('Mathématiques')).toHaveAttribute('aria-current', 'page');
+});
+
+test('French Breadcrumb docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-breadcrumb--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(
+    preview.getByRole('heading', { level: 1, name: 'Breadcrumb' }),
+  ).toBeVisible();
+  await expect(preview.getByText('Home', { exact: true })).toHaveCount(0);
+});
+
+test('Breadcrumb docs Show code imports Breadcrumb from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-breadcrumb--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Breadcrumb, BreadcrumbItem } from 'd-ui'");
+  await expect(source).toContainText('<Breadcrumb');
+});
+
+test('Storybook serves the Pagination story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-pagination--default');
+  await expect(
+    page.getByRole('navigation', { name: 'Pagination des devoirs' }),
+  ).toBeVisible();
+  await expect(page.getByRole('button', { name: /page courante/i })).toHaveAttribute(
+    'aria-current',
+    'page',
+  );
+});
+
+test('French Pagination docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-pagination--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(
+    preview.getByRole('heading', { level: 1, name: 'Pagination' }),
+  ).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Beaucoup de pages' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Many pages' })).toHaveCount(0);
+});
+
+test('Pagination docs Show code imports Pagination from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-pagination--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText("import { Pagination } from 'd-ui'");
+  await expect(source).toContainText('<Pagination');
 });
 
 test('French Color docs do not leak English headings', async ({ page }) => {
