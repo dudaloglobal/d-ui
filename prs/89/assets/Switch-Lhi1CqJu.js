@@ -1,0 +1,37 @@
+import{u as x,j as s,M as j,P as e,C as o,a as r,b as n,U as a,A as m}from"./iframe-D4wExxT_.js";import{S as c,D as d,O as l,a as k,I as u,R as w,H as p,b as f}from"./Switch.stories-DijQO2Qs.js";import"./preload-helper-Dp1pzeXC.js";import"./docs-source-Cj4_yT6J.js";import"./selectionControl-BxZk0WMh.js";function h(t){const i={h1:"h1",...x(),...t.components};return s.jsxs(s.Fragment,{children:[s.jsx(j,{of:c}),`
+`,s.jsx(i.h1,{id:"switch",children:"Switch"}),`
+`,s.jsx(e,{k:"switch.intro"}),`
+`,s.jsx(e,{k:"chrome.examplesFollow"}),`
+`,s.jsx(o,{of:d}),`
+`,s.jsx(r,{k:"chrome.specialStates"}),`
+`,s.jsx(e,{k:"switch.threeStates"}),`
+`,s.jsx(n,{k:"chrome.enabled"}),`
+`,s.jsx(e,{k:"switch.useOn"}),`
+`,s.jsx(o,{of:l}),`
+`,s.jsx(n,{k:"chrome.disabled"}),`
+`,s.jsx(e,{k:"chrome.useDisabled"}),`
+`,s.jsx(o,{of:k}),`
+`,s.jsx(n,{k:"chrome.invalid"}),`
+`,s.jsx(e,{k:"switch.useInvalid"}),`
+`,s.jsx(o,{of:u}),`
+`,s.jsx(r,{k:"chrome.options"}),`
+`,s.jsx(n,{k:"chrome.required"}),`
+`,s.jsx(e,{k:"switch.useRequired"}),`
+`,s.jsx(o,{of:w}),`
+`,s.jsx(n,{k:"chrome.helper"}),`
+`,s.jsx(e,{k:"chrome.useHelper"}),`
+`,s.jsx(o,{of:p}),`
+`,s.jsx(n,{k:"chrome.sizes"}),`
+`,s.jsx(e,{k:"chrome.useSizes"}),`
+`,s.jsx(o,{of:f}),`
+`,s.jsx(r,{k:"chrome.accessibility"}),`
+`,s.jsx(e,{k:"switch.a11yBody"}),`
+`,s.jsx(e,{k:"switch.a11yKeys"}),`
+`,s.jsx(n,{k:"chrome.do"}),`
+`,s.jsx(a,{items:["switch.doLabel","switch.doAria","switch.doInvalid"]}),`
+`,s.jsx(n,{k:"chrome.dont"}),`
+`,s.jsx(a,{items:["switch.dontUnnamed","switch.dontRadioRow","switch.dontSegmented"]}),`
+`,s.jsx(e,{k:"chrome.themeLang"}),`
+`,s.jsx(r,{k:"chrome.properties"}),`
+`,s.jsx(e,{k:"chrome.nativeInput"}),`
+`,s.jsx(m,{of:c,include:["size","label","helper","error","invalid","disabled","required","checked"]})]})}function M(t={}){const{wrapper:i}={...x(),...t.components};return i?s.jsx(i,{...t,children:s.jsx(h,{...t})}):h(t)}export{M as default};
