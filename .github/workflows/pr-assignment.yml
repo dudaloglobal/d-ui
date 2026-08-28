@@ -22,7 +22,8 @@ concurrency:
 jobs:
   assign:
     name: Assign author and request reviewers
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    # Dependabot PRs get a read-only GITHUB_TOKEN; assigning the bot 403s.
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.user.type != 'Bot'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
