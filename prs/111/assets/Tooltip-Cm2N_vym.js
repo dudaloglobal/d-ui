@@ -1,0 +1,32 @@
+import{u as c,j as o,M as p,P as t,C as e,a as n,b as l,U as a,A as j}from"./iframe-C1QnaEd8.js";import{T as r,D as m,P as d,C as k,a as h,b as u,c as f}from"./Tooltip.stories-9aAdnWcE.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-D7CIzvvN.js";import"./docs-source-C_O40UCi.js";import"./Button-Bo6AwDIR.js";import"./floating-BmHbD9cf.js";function x(s){const i={h1:"h1",...c(),...s.components};return o.jsxs(o.Fragment,{children:[o.jsx(p,{of:r}),`
+`,o.jsx(i.h1,{id:"tooltip",children:"Tooltip"}),`
+`,o.jsx(t,{k:"tooltip.intro"}),`
+`,o.jsx(t,{k:"chrome.examplesFollow"}),`
+`,o.jsx(e,{of:m}),`
+`,o.jsx(n,{k:"chrome.placement"}),`
+`,o.jsx(t,{k:"tooltip.usePlacement"}),`
+`,o.jsx(e,{of:d}),`
+`,o.jsx(n,{k:"chrome.controlled"}),`
+`,o.jsx(t,{k:"tooltip.useControlled"}),`
+`,o.jsx(e,{of:k}),`
+`,o.jsx(n,{k:"chrome.specialStates"}),`
+`,o.jsx(l,{k:"chrome.disabled"}),`
+`,o.jsx(t,{k:"chrome.useDisabled"}),`
+`,o.jsx(e,{of:h}),`
+`,o.jsx(l,{k:"chrome.collision"}),`
+`,o.jsx(t,{k:"tooltip.useCollision"}),`
+`,o.jsx(e,{of:u}),`
+`,o.jsx(l,{k:"chrome.portal"}),`
+`,o.jsx(t,{k:"tooltip.usePortal"}),`
+`,o.jsx(e,{of:f}),`
+`,o.jsx(n,{k:"chrome.accessibility"}),`
+`,o.jsx(t,{k:"tooltip.a11yBody"}),`
+`,o.jsx(t,{k:"tooltip.a11yKeys"}),`
+`,o.jsx(l,{k:"chrome.do"}),`
+`,o.jsx(a,{items:["tooltip.doHover","tooltip.doDescribed","tooltip.doEscape"]}),`
+`,o.jsx(l,{k:"chrome.dont"}),`
+`,o.jsx(a,{items:["tooltip.dontInteractive","tooltip.dontEssential","tooltip.dontTitle"]}),`
+`,o.jsx(t,{k:"chrome.themeLang"}),`
+`,o.jsx(n,{k:"chrome.properties"}),`
+`,o.jsx(t,{k:"tooltip.propsBody"}),`
+`,o.jsx(j,{of:r,include:["content","placement","open","defaultOpen","delayMs","disabled"]})]})}function g(s={}){const{wrapper:i}={...c(),...s.components};return i?o.jsx(i,{...s,children:o.jsx(x,{...s})}):x(s)}export{g as default};
