@@ -1,0 +1,102 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as MenuStories from './Menu.stories';
+
+<Meta of={MenuStories} />
+
+# Menu
+
+<P k="menu.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={MenuStories.Default} />
+
+<H2 k="menu.triggerVariants" />
+
+<P k="menu.triggerVariantsBody" />
+
+<Canvas of={MenuStories.TriggerVariants} />
+
+<H2 k="menu.items" />
+
+<P k="menu.itemsBody" />
+
+<Canvas of={MenuStories.Items} />
+
+<H2 k="menu.shortcuts" />
+
+<P k="menu.shortcutsBody" />
+
+<Canvas of={MenuStories.Shortcuts} />
+
+<H2 k="menu.disabledItems" />
+
+<P k="menu.disabledItemsBody" />
+
+<Canvas of={MenuStories.DisabledItems} />
+
+<H2 k="menu.submenu" />
+
+<P k="menu.submenuBody" />
+
+<Canvas of={MenuStories.Submenu} />
+
+<H2 k="menu.context" />
+
+<P k="menu.contextBody" />
+
+<Canvas of={MenuStories.Context} />
+
+<H2 k="chrome.sizes" />
+
+<P k="chrome.useSizes" />
+
+<Canvas of={MenuStories.Sizes} />
+
+<H2 k="chrome.specialStates" />
+
+<H3 k="chrome.disabled" />
+
+<P k="chrome.useDisabled" />
+
+<Canvas of={MenuStories.Disabled} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="menu.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['menu.doTrigger', 'menu.doHref', 'menu.doContext', 'menu.doTypeahead']} />
+
+<H3 k="chrome.dont" />
+
+<Ul
+  items={[
+    'menu.dontDiv',
+    'menu.dontNavigate',
+    'menu.dontOnlyContext',
+    'menu.dontPalette',
+  ]}
+/>
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="menu.props" />
+
+<ArgTypes
+  of={MenuStories}
+  include={[
+    'label',
+    'trigger',
+    'placement',
+    'size',
+    'disabled',
+    'open',
+    'defaultOpen',
+    'onOpenChange',
+  ]}
+/>

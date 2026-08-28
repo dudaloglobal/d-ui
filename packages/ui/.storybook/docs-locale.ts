@@ -109,6 +109,12 @@ export const storyNameEn: Record<string, string> = {
   'Alignés à gauche': 'Justify left',
   Détachés: 'Detached',
   'Beaucoup de pages': 'Many pages',
+  Raccourcis: 'Shortcuts',
+  'Variantes de déclencheur': 'Trigger variants',
+  'Éléments du menu': 'Menu items',
+  'Éléments désactivés': 'Disabled items',
+  'Sous-menu': 'Submenu',
+  'Menu contextuel': 'Context menu',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -945,4 +951,60 @@ export type PaginationDocsCopy = typeof paginationFr;
 
 export function paginationCopy(locale: DocsLocale): PaginationDocsCopy {
   return locale === 'en' ? paginationEn : paginationFr;
+}
+
+const menuFr = {
+  label: 'Actions du devoir',
+  fileLabel: 'Actions du fichier',
+  actions: 'Actions',
+  rename: 'Renommer',
+  duplicate: 'Dupliquer',
+  delete: 'Supprimer',
+  save: 'Enregistrer',
+  archive: 'Archiver',
+  share: 'Partager',
+  copyLink: 'Copier le lien',
+  email: 'E-mail',
+  open: 'Ouvrir',
+  download: 'Télécharger',
+  card: 'Fiche devoir',
+  moreActions: 'Plus d’actions',
+  openAssignment: 'Ouvrir le devoir',
+  saveShortcut: '⌘S',
+  duplicateShortcut: '⌘⇧D',
+  deleteShortcut: '⌘⌫',
+  small: 'Petite',
+  medium: 'Moyenne',
+  large: 'Grande',
+};
+
+const menuEn = {
+  label: 'Assignment actions',
+  fileLabel: 'File actions',
+  actions: 'Actions',
+  rename: 'Rename',
+  duplicate: 'Duplicate',
+  delete: 'Delete',
+  save: 'Save',
+  archive: 'Archive',
+  share: 'Share',
+  copyLink: 'Copy link',
+  email: 'Email',
+  open: 'Open',
+  download: 'Download',
+  card: 'Assignment card',
+  moreActions: 'More actions',
+  openAssignment: 'Open assignment',
+  saveShortcut: '⌘S',
+  duplicateShortcut: '⌘⇧D',
+  deleteShortcut: '⌘⌫',
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+};
+
+export type MenuDocsCopy = typeof menuFr;
+
+export function menuCopy(locale: DocsLocale): MenuDocsCopy {
+  return locale === 'en' ? menuEn : menuFr;
 }

@@ -1956,6 +1956,82 @@ export const docsCopy = {
       en: '`page` (1-based) and `pageCount` are required. `onPageChange` receives the requested number. `pageLabel` customises the accessible name.',
     },
   },
+  menu: {
+    intro: {
+      fr: '`Menu` est un menu d’actions sous un déclencheur (`aria-haspopup="menu"`). `ContextMenu` ouvre le même pattern au clic droit et via **Maj+F10**. Pour une liste de **sélection**, utilisez `Select`. Ce n’est pas une palette de commandes (`Command Menu`, DS-045) ni un `Popover`.',
+      en: '`Menu` is an action menu from a trigger (`aria-haspopup="menu"`). `ContextMenu` opens the same pattern on right-click and via **Shift+F10**. For a **selection** list, use `Select`. It is not a command palette (`Command Menu`, DS-045) or a `Popover`.',
+    },
+    triggerVariants: { fr: 'Variantes de déclencheur', en: 'Trigger variants' },
+    triggerVariantsBody: {
+      fr: 'Le déclencheur est interchangeable : passez un `Button` (emphase, taille, chevron), un `IconButton` nommé, un `Link`, ou un `Button` compact en pastille. Pas de composant `Chip` dans d-ui — la pastille reprend le `Button` secondaire arrondi.',
+      en: 'The trigger is interchangeable: pass a `Button` (emphasis, size, chevron), a named `IconButton`, a `Link`, or a compact pill `Button`. There is no `Chip` in d-ui — the pill is a rounded secondary `Button`.',
+    },
+    items: { fr: 'Éléments du menu', en: 'Menu items' },
+    itemsBody: {
+      fr: 'Chaque `MenuItem` a un libellé, un slot `icon` (avant) et `iconEnd` (après). `shortcut` est un rappel visuel. Pour naviguer vers une page, passez `href` : l’item est un vrai `<a>` (clic droit, nouvel onglet), pas un bouton.',
+      en: 'Each `MenuItem` has a label, an `icon` slot (before) and `iconEnd` (after). `shortcut` is a visual hint. To navigate to a page, pass `href`: the item is a real `<a>` (right-click, new tab), not a button.',
+    },
+    shortcuts: { fr: 'Raccourcis', en: 'Shortcuts' },
+    shortcutsBody: {
+      fr: '`shortcut` affiche un rappel visuel (`kbd`). Il ne pose pas de raccourci clavier réel : l’app reste responsable de `keydown`.',
+      en: '`shortcut` shows a visual hint (`kbd`). It does not bind a real keyboard shortcut: the app still handles `keydown`.',
+    },
+    disabledItems: { fr: 'Éléments désactivés', en: 'Disabled items' },
+    disabledItemsBody: {
+      fr: '`disabled` sur `MenuItem` (ou `MenuSub`) saute l’entrée au clavier et au typeahead. L’item reste visible.',
+      en: '`disabled` on `MenuItem` (or `MenuSub`) skips the entry for keyboard and typeahead. The item stays visible.',
+    },
+    submenu: { fr: 'Sous-menu', en: 'Submenu' },
+    submenuBody: {
+      fr: '`MenuSub` ouvre un menu imbriqué. **Flèche droite** ouvre, **flèche gauche** ferme. Souris : survol avec un délai court.',
+      en: '`MenuSub` opens a nested menu. **Right arrow** opens, **left arrow** closes. Mouse: hover with a short delay.',
+    },
+    context: { fr: 'Menu contextuel', en: 'Context menu' },
+    contextBody: {
+      fr: '`ContextMenu` s’ouvre au clic droit et au clavier (**Maj+F10** / touche Menu). Les mêmes actions doivent aussi être dans un `Menu` bouton : le contextuel n’est jamais le seul chemin.',
+      en: '`ContextMenu` opens on right-click and from the keyboard (**Shift+F10** / Menu key). The same actions must also live in a button `Menu`: context menu is never the only path.',
+    },
+    a11yBody: {
+      fr: 'Pattern WAI-ARIA menu : déclencheur `aria-haspopup="menu"`, panneau `role="menu"` nommé (`label`), items `menuitem`. Flèches, Début / Fin, Escape, typeahead. Tab sort et ferme. Focus rendu au déclencheur. Un item de navigation est un `<a href>`. Le portail recopie `data-d-ui-theme`.',
+      en: 'WAI-ARIA menu pattern: trigger `aria-haspopup="menu"`, named `role="menu"` panel (`label`), `menuitem` items. Arrows, Home / End, Escape, typeahead. Tab leaves and closes. Focus returns to the trigger. A navigation item is an `<a href>`. The portal copies `data-d-ui-theme`.',
+    },
+    doTrigger: {
+      fr: 'Un `Button`, `IconButton` ou `Link` nommé comme `trigger`',
+      en: 'A named `Button`, `IconButton`, or `Link` as `trigger`',
+    },
+    doHref: {
+      fr: '`href` sur `MenuItem` pour une navigation (vrai `<a>`)',
+      en: '`href` on `MenuItem` for navigation (a real `<a>`)',
+    },
+    doContext: {
+      fr: 'Les mêmes actions dans un `Menu` **et** un `ContextMenu`',
+      en: 'The same actions in a `Menu` **and** a `ContextMenu`',
+    },
+    doTypeahead: {
+      fr: '`textValue` si le libellé de l’item n’est pas une chaîne',
+      en: '`textValue` when the item label is not a string',
+    },
+    dontDiv: {
+      fr: 'Un `div` + `onClick` à la place de `MenuItem`',
+      en: 'A `div` + `onClick` instead of `MenuItem`',
+    },
+    dontNavigate: {
+      fr: '`onSelect` + `window.location` à la place d’un `href`',
+      en: '`onSelect` + `window.location` instead of `href`',
+    },
+    dontOnlyContext: {
+      fr: 'Un contextuel comme **seul** moyen d’atteindre l’action',
+      en: 'A context menu as the **only** way to reach the action',
+    },
+    dontPalette: {
+      fr: 'Un menu pour une palette de commandes (DS-045)',
+      en: 'A menu for a command palette (DS-045)',
+    },
+    props: {
+      fr: '`label` nomme le `menu`. `trigger` est n’importe quel élément focusable (`Button`, `IconButton`, `Link`…). `open` / `onOpenChange` pour un état contrôlé. `MenuItem` : `onSelect`, `href` (lien), `icon` / `iconEnd`, `shortcut`, `disabled`.',
+      en: '`label` names the `menu`. `trigger` is any focusable element (`Button`, `IconButton`, `Link`…). `open` / `onOpenChange` for controlled state. `MenuItem`: `onSelect`, `href` (link), `icon` / `iconEnd`, `shortcut`, `disabled`.',
+    },
+  },
 } as const;
 
 export type DocsCopy = typeof docsCopy;

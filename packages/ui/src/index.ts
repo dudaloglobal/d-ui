@@ -166,5 +166,21 @@ export type {
 } from './components/Breadcrumb/Breadcrumb';
 export { Pagination } from './components/Pagination/Pagination';
 export type { PaginationProps, PaginationSize } from './components/Pagination/Pagination';
+export {
+  Menu,
+  MenuItem,
+  MenuSeparator,
+  MenuSub,
+  ContextMenu,
+} from './components/Menu/Menu';
+export type {
+  ContextMenuProps,
+  MenuItemProps,
+  MenuPlacement,
+  MenuProps,
+  MenuSeparatorProps,
+  MenuSize,
+  MenuSubProps,
+} from './components/Menu/Menu';
 export { brandTokensToStyle, tokenNames } from './tokens/names';
 export type { BrandTokens, TokenName } from './tokens/names';
