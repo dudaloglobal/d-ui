@@ -11,6 +11,12 @@ export type {
   NotificationProps,
   NotificationVariant,
 } from './components/Notification/Notification';
+export { ToastProvider, useToast } from './components/Toast/ToastProvider';
+export type {
+  ToastContextValue,
+  ToastOptions,
+  ToastProviderProps,
+} from './components/Toast/ToastProvider';
 export { Button } from './components/Button/Button';
 export type {
   ButtonIconPosition,
