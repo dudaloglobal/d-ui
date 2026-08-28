@@ -85,6 +85,10 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Pagination | Dudalo Design System');
   await page.goto('/?path=/docs/components-menu--docs');
   await expect(page).toHaveTitle('Menu | Dudalo Design System');
+  await page.goto('/?path=/docs/components-navbar--docs');
+  await expect(page).toHaveTitle('Navbar | Dudalo Design System');
+  await page.goto('/?path=/docs/components-sidebar--docs');
+  await expect(page).toHaveTitle('Sidebar | Dudalo Design System');
   await page.goto('/?path=/docs/components-text--docs');
   await expect(page).toHaveTitle('Text | Dudalo Design System');
   await page.goto('/?path=/docs/components-heading--docs');
@@ -115,6 +119,8 @@ test('component docs H1 is the component name, like Link', async ({ page }) => {
     { id: 'components-breadcrumb--docs', name: 'Breadcrumb' },
     { id: 'components-pagination--docs', name: 'Pagination' },
     { id: 'components-menu--docs', name: 'Menu' },
+    { id: 'components-navbar--docs', name: 'Navbar' },
+    { id: 'components-sidebar--docs', name: 'Sidebar' },
     { id: 'foundations-typography--docs', name: 'Typography' },
     { id: 'foundations-color--docs', name: 'Color' },
   ]) {
@@ -783,6 +789,16 @@ test('English globals switch example copy on every component canvas', async ({
       en: 'Assignment card',
       fr: 'Fiche devoir',
     },
+    {
+      id: 'components-navbar--default',
+      en: 'Profile',
+      fr: 'Profil',
+    },
+    {
+      id: 'components-sidebar--default',
+      en: 'Courses',
+      fr: 'Cours',
+    },
   ] as const;
   for (const { id, en, fr } of cases) {
     await page.goto(`/iframe.html?id=${id}&globals=locale:en`);
@@ -1254,6 +1270,58 @@ test('Menu docs Show code imports Menu from d-ui', async ({ page }) => {
     "import { Button, Menu, MenuItem, MenuSeparator, MenuSub } from 'd-ui'",
   );
   await expect(source).toContainText('<Menu');
+});
+
+test('Storybook serves the Navbar story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-navbar--default');
+  await expect(page.getByRole('banner')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Dudalo' })).toBeVisible();
+});
+
+test('French Navbar docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-navbar--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { level: 1, name: 'Navbar' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Bouton menu' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Menu button' })).toHaveCount(0);
+  await expect(preview.getByRole('heading', { name: 'Accessibilité' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Accessibility' })).toHaveCount(0);
+});
+
+test('Navbar docs Show code imports Navbar from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-navbar--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText(
+    "import { Button, Icon, IconButton, Navbar } from 'd-ui'",
+  );
+  await expect(source).toContainText('<Navbar');
+});
+
+test('Storybook serves the Sidebar story', async ({ page }) => {
+  await page.goto('/iframe.html?id=components-sidebar--default');
+  await expect(
+    page.getByRole('navigation', { name: 'Navigation principale' }),
+  ).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Cours' })).toBeVisible();
+});
+
+test('French Sidebar docs do not leak English headings', async ({ page }) => {
+  await page.goto('/?path=/docs/components-sidebar--docs');
+  const preview = page.frameLocator('#storybook-preview-iframe');
+  await expect(preview.getByRole('heading', { level: 1, name: 'Sidebar' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Replié' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Superposition' })).toBeVisible();
+  await expect(preview.getByRole('heading', { name: 'Collapsed' })).toHaveCount(0);
+  await expect(preview.getByRole('heading', { name: 'Overlay' })).toHaveCount(0);
+});
+
+test('Sidebar docs Show code imports Sidebar from d-ui', async ({ page }) => {
+  await page.goto('/?path=/docs/components-sidebar--docs');
+  const { source } = await docsSource(page);
+  await expect(source).toContainText(
+    "import { Icon, Sidebar, SidebarGroup, SidebarItem } from 'd-ui'",
+  );
+  await expect(source).toContainText('<Sidebar');
 });
 
 test('French Color docs do not leak English headings', async ({ page }) => {

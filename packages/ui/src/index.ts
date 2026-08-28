@@ -182,5 +182,14 @@ export type {
   MenuSize,
   MenuSubProps,
 } from './components/Menu/Menu';
+export { Navbar } from './components/Navbar/Navbar';
+export type { NavbarProps } from './components/Navbar/Navbar';
+export { Sidebar, SidebarGroup, SidebarItem } from './components/Sidebar/Sidebar';
+export type {
+  SidebarGroupProps,
+  SidebarItemProps,
+  SidebarProps,
+  SidebarSize,
+} from './components/Sidebar/Sidebar';
 export { brandTokensToStyle, tokenNames } from './tokens/names';
 export type { BrandTokens, TokenName } from './tokens/names';

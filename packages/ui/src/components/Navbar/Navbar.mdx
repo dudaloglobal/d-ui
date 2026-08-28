@@ -1,0 +1,42 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as NavbarStories from './Navbar.stories';
+
+<Meta of={NavbarStories} />
+
+# Navbar
+
+<P k="navbar.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={NavbarStories.Default} />
+
+<H2 k="navbar.menuButton" />
+
+<P k="navbar.menuButtonBody" />
+
+<Canvas of={NavbarStories.MenuButton} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="navbar.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['navbar.doSlots', 'navbar.doMenu', 'navbar.doSkip']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['navbar.dontAuth', 'navbar.dontLinks', 'navbar.dontNext']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="navbar.props" />
+
+<ArgTypes
+  of={NavbarStories}
+  include={['menuLabel', 'menuOpen', 'onMenuOpenChange', 'menuControls']}
+/>

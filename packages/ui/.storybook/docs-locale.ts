@@ -115,6 +115,11 @@ export const storyNameEn: Record<string, string> = {
   'Éléments désactivés': 'Disabled items',
   'Sous-menu': 'Submenu',
   'Menu contextuel': 'Context menu',
+  'Avec icônes': 'With icons',
+  Replié: 'Collapsed',
+  Imbriqués: 'Nested',
+  Superposition: 'Overlay',
+  'Bouton menu': 'Menu button',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -1007,4 +1012,56 @@ export type MenuDocsCopy = typeof menuFr;
 
 export function menuCopy(locale: DocsLocale): MenuDocsCopy {
   return locale === 'en' ? menuEn : menuFr;
+}
+
+const navbarFr = {
+  brand: 'Dudalo',
+  notifications: 'Notifications',
+  profile: 'Profil',
+};
+
+const navbarEn = {
+  brand: 'Dudalo',
+  notifications: 'Notifications',
+  profile: 'Profile',
+};
+
+export type NavbarDocsCopy = typeof navbarFr;
+
+export function navbarCopy(locale: DocsLocale): NavbarDocsCopy {
+  return locale === 'en' ? navbarEn : navbarFr;
+}
+
+const sidebarFr = {
+  label: 'Navigation principale',
+  home: 'Accueil',
+  courses: 'Cours',
+  homework: 'Devoirs',
+  maths: 'Maths',
+  history: 'Histoire',
+  collapse: 'Replier le menu',
+  expand: 'Déployer le menu',
+  openNav: 'Ouvrir la navigation',
+  closeNav: 'Fermer la navigation',
+  main: 'Contenu du cours',
+};
+
+const sidebarEn = {
+  label: 'Main navigation',
+  home: 'Home',
+  courses: 'Courses',
+  homework: 'Assignments',
+  maths: 'Maths',
+  history: 'History',
+  collapse: 'Collapse sidebar',
+  expand: 'Expand sidebar',
+  openNav: 'Open navigation',
+  closeNav: 'Close navigation',
+  main: 'Course content',
+};
+
+export type SidebarDocsCopy = typeof sidebarFr;
+
+export function sidebarCopy(locale: DocsLocale): SidebarDocsCopy {
+  return locale === 'en' ? sidebarEn : sidebarFr;
 }

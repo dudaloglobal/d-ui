@@ -1,0 +1,71 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as SidebarStories from './Sidebar.stories';
+
+<Meta of={SidebarStories} />
+
+# Sidebar
+
+<P k="sidebar.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={SidebarStories.Default} />
+
+<H2 k="chrome.icon" />
+
+<P k="sidebar.iconsBody" />
+
+<Canvas of={SidebarStories.Icons} />
+
+<H2 k="sidebar.collapsed" />
+
+<P k="sidebar.collapsedBody" />
+
+<Canvas of={SidebarStories.Collapsed} />
+
+<H2 k="sidebar.nested" />
+
+<P k="sidebar.nestedBody" />
+
+<Canvas of={SidebarStories.Nested} />
+
+<H2 k="sidebar.overlay" />
+
+<P k="sidebar.overlayBody" />
+
+<Canvas of={SidebarStories.Overlay} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="sidebar.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul
+  items={['sidebar.doNav', 'sidebar.doCurrent', 'sidebar.doCollapsed', 'sidebar.doSkip']}
+/>
+
+<H3 k="chrome.dont" />
+
+<Ul items={['sidebar.dontSitemap', 'sidebar.dontDiv', 'sidebar.dontNext']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="sidebar.props" />
+
+<ArgTypes
+  of={SidebarStories}
+  include={[
+    'label',
+    'collapsed',
+    'collapsible',
+    'overlay',
+    'open',
+    'defaultOpen',
+    'onOpenChange',
+    'size',
+  ]}
+/>
