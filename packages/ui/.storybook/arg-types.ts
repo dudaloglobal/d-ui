@@ -881,6 +881,80 @@ export const tabsArgTypes = {
   },
 };
 
+export const alertArgTypes = {
+  variant: {
+    control: 'inline-radio' as const,
+    options: ['info', 'success', 'warning', 'danger'],
+    description:
+      'Sémantique visuelle et rôle live (`status` ou `alert`). LumApps `error` → `danger`.',
+  },
+  hasBackground: {
+    control: 'boolean' as const,
+    description: 'Fond teinté LumApps Message. `false` = variante trimmed (sans fond).',
+  },
+  title: {
+    control: 'text' as const,
+    description: 'Titre optionnel au-dessus du corps.',
+  },
+  dismissible: {
+    control: 'boolean' as const,
+    description:
+      'Bouton fermer : LumApps Message l’autorise seulement pour `info` + `hasBackground`.',
+  },
+  dismissLabel: {
+    control: 'text' as const,
+    description: 'Nom du bouton fermer. Fallback anglais : `Dismiss alert`.',
+  },
+};
+
+export const notificationArgTypes = {
+  variant: {
+    control: 'inline-radio' as const,
+    options: ['info', 'success', 'warning', 'danger'],
+    description: 'Variante LumApps Notification. Toujours `role="alert"`.',
+  },
+  actionLabel: {
+    control: 'text' as const,
+    description:
+      'Libellé du bouton d’action (« Info with callback »). Requiert `onActionClick`.',
+  },
+  dismissible: {
+    control: 'boolean' as const,
+    description:
+      'Affiche le bouton fermer (optionnel ; LumApps s’appuie sur l’auto-dismiss Toast). Fallback anglais : `Dismiss notification`.',
+  },
+  dismissLabel: {
+    control: 'text' as const,
+    description: 'Nom du bouton fermer.',
+  },
+};
+
+export const emptyStateArgTypes = {
+  title: {
+    control: 'text' as const,
+    description: 'Titre principal du placeholder.',
+  },
+  description: {
+    control: 'text' as const,
+    description: 'Texte d’aide sous le titre.',
+  },
+};
+
+export const errorStateArgTypes = {
+  title: {
+    control: 'text' as const,
+    description: 'Titre de l’échec.',
+  },
+  description: {
+    control: 'text' as const,
+    description: 'Corps explicatif.',
+  },
+  live: {
+    control: 'boolean' as const,
+    description: 'Pose `role="alert"` quand l’erreur apparaît après chargement.',
+  },
+};
+
 export const breadcrumbArgTypes = {
   label: {
     control: 'text' as const,

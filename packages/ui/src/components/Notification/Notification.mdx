@@ -1,0 +1,48 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as NotificationStories from './Notification.stories';
+
+<Meta of={NotificationStories} />
+
+# Notification
+
+<P k="notification.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={NotificationStories.Default} />
+
+<H2 k="notification.variants" />
+
+<P k="notification.variantsBody" />
+
+<Canvas of={NotificationStories.Variants} />
+
+<H2 k="notification.action" />
+
+<P k="notification.actionBody" />
+
+<Canvas of={NotificationStories.WithAction} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="notification.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['notification.doCorner', 'notification.doAction']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['notification.dontInline', 'notification.dontOnly']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="notification.props" />
+
+<ArgTypes
+  of={NotificationStories}
+  include={['variant', 'actionLabel', 'dismissible', 'dismissLabel']}
+/>
