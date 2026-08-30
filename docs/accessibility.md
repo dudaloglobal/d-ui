@@ -35,6 +35,8 @@ Une exception AA exige un sign-off Accessibilité **et** une décision produit �
 26. `Navbar` / `Sidebar` : `Navbar` est un `<header>` (slots `brand` / `actions` / `user`). Bouton menu nommé (`aria-expanded`, `aria-controls`, `aria-haspopup="dialog"`) seulement si `onMenuOpenChange`. `Sidebar` : `<nav>` nommé + liste, items `<a href>` (ou bouton), page courante `aria-current="page"`. Replié : icône + nom (`VisuallyHidden`). Overlay mobile : `dialog` modal, Escape / fond / fermer. `SkipLink` avant la coquille ; `<main id="main" tabIndex={-1}>`. Pas de sitemap LMS, pas de `usePathname`.
 27. `Alert` / `Notification` / `Toast` / `EmptyState` / `ErrorState` : `Alert` = Message LumApps inline (`hasBackground`, `actions`, fermeture `info` + fond). `Notification` = surface toast LumApps. `ToastProvider` + `useToast()` = file, auto-dismiss (~6 s), coin bas-droit ; ne vole pas le focus. Variantes `info` / `success` / `warning` / `danger` (LumApps `error`). `EmptyState` : titre `h2`, actions `Button`. `ErrorState` : `live` pour échec dynamique. Centre de notifications = DS-046.
 
+28. `Dialog` : overlay modal contrôlé (`open` / `onOpenChange`, pas de `defaultOpen`). `role="dialog"`, ou `alertdialog` avec `alert`. Le nom vient de `DialogTitle` (`aria-labelledby` posé automatiquement) ; à défaut `aria-label` sur le `Dialog`. `DialogDescription` pose `aria-describedby`. Focus piégé, reste de la page inerte, défilement du fond bloqué, focus rendu au déclencheur. `Escape` ferme **toujours**, y compris sur une alerte (2.1.2) ; le clic extérieur ferme sauf sur une alerte. Sur `alertdialog`, le focus va sur la première action — l’issue non destructive. `DialogActions` : l’action de confirmation est le dernier enfant, dans le DOM comme à l’écran (aucune variante n’inverse — 2.4.3). Animation retirée sous `prefers-reduced-motion`. L’empilement n’est pas supporté.
+
 ## Overlays — revue de PR
 
 Ces patterns s’appliquent dès qu’un Dialog, Menu, Popover ou Tooltip est proposé. Une PR qui les ignore n’est pas AA.
@@ -43,7 +45,7 @@ Ces patterns s’appliquent dès qu’un Dialog, Menu, Popover ou Tooltip est pr
 
 | Widget              | Ouverture                                                                        | Fermeture                               |
 | ------------------- | -------------------------------------------------------------------------------- | --------------------------------------- |
-| Dialog / modal      | Focus le premier focusable (ou le titre si `aria-labelledby`)                    | Restore sur le trigger                  |
+| Dialog / modal      | Premier focusable ; sur `alertdialog`, la **première action**                    | Restore sur le trigger                  |
 | Menu / context menu | Premier item (ou item actif)                                                     | Restore sur le trigger                  |
 | Popover             | Premier focusable **s’il contient des contrôles** ; sinon le trigger reste focus | Restore si le focus était à l’intérieur |
 | Tooltip             | **Ne prend pas** le focus. Le trigger reste focusable                            | —                                       |

@@ -28,6 +28,7 @@ import {
   breadcrumbCopy,
   paginationCopy,
   menuCopy,
+  dialogCopy,
   alertCopy,
   notificationCopy,
   toastCopy,
@@ -177,6 +178,7 @@ describe('docs locale', () => {
     expect(keysOf(breadcrumbCopy('fr'))).toEqual(keysOf(breadcrumbCopy('en')));
     expect(keysOf(paginationCopy('fr'))).toEqual(keysOf(paginationCopy('en')));
     expect(keysOf(menuCopy('fr'))).toEqual(keysOf(menuCopy('en')));
+    expect(keysOf(dialogCopy('fr'))).toEqual(keysOf(dialogCopy('en')));
     expect(keysOf(alertCopy('fr'))).toEqual(keysOf(alertCopy('en')));
     expect(keysOf(notificationCopy('fr'))).toEqual(keysOf(notificationCopy('en')));
     expect(keysOf(toastCopy('fr'))).toEqual(keysOf(toastCopy('en')));

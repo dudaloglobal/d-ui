@@ -128,6 +128,14 @@ export const storyNameEn: Record<string, string> = {
   'Sans fond': 'Without background',
   'Avec action': 'With action',
   'File d’attente': 'Queue',
+  'Pied de page teinté': 'Tinted footer',
+  'Centré, action unique': 'Centered, single action',
+  'Centré, actions pleine largeur': 'Centered, wide buttons',
+  Alerte: 'Alert',
+  'Avec croix de fermeture': 'With dismiss button',
+  'Alerte, actions à gauche': 'Alert, left-aligned actions',
+  Animation: 'Animation',
+  'Avec formulaire': 'With a form',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -1020,6 +1028,88 @@ export type MenuDocsCopy = typeof menuFr;
 
 export function menuCopy(locale: DocsLocale): MenuDocsCopy {
   return locale === 'en' ? menuEn : menuFr;
+}
+
+const dialogFr = {
+  open: 'Ouvrir',
+  cancel: 'Annuler',
+  close: 'Fermer',
+  deactivate: 'Désactiver',
+  deactivateTitle: 'Désactiver le compte',
+  deactivateBody:
+    'Le compte sera désactivé et les données associées définitivement supprimées. Cette action est irréversible.',
+  paidTitle: 'Paiement accepté',
+  paidBody: 'Le reçu vient de partir vers votre adresse de facturation.',
+  gotIt: 'J’ai compris',
+  planTitle: 'Passer à l’offre annuelle',
+  planBody:
+    'La facturation devient annuelle et le changement prend effet immédiatement. Le prorata du mois en cours est déduit.',
+  subscribe: 'S’abonner',
+  updateTitle: 'Nouvelle version disponible',
+  updateBody:
+    'Rechargez la page pour récupérer la dernière version. Les modifications en cours sont conservées.',
+  reload: 'Recharger',
+  leaveTitle: 'Quitter sans enregistrer ?',
+  leaveBody: 'Les modifications apportées depuis la dernière sauvegarde seront perdues.',
+  leave: 'Quitter',
+  sizeTitle: 'Largeur du panneau',
+  sizeBody:
+    'Chaque taille fixe une largeur maximale. Sous le point de rupture sm, toutes occupent la largeur disponible.',
+  animationTitle: 'Ouverture animée',
+  animationBody:
+    'Le fond apparaît en opacité, le panneau monte de quelques pixels. Les deux animations sont coupées si le système demande une réduction des animations.',
+  inviteTitle: 'Inviter un membre',
+  inviteBody: 'L’invitation expire au bout de sept jours.',
+  emailLabel: 'Adresse e-mail',
+  emailPlaceholder: 'prenom@exemple.org',
+  roleLabel: 'Rôle',
+  roleEditor: 'Éditeur',
+  roleViewer: 'Lecteur',
+  send: 'Envoyer l’invitation',
+};
+
+const dialogEn = {
+  open: 'Open',
+  cancel: 'Cancel',
+  close: 'Close',
+  deactivate: 'Deactivate',
+  deactivateTitle: 'Deactivate account',
+  deactivateBody:
+    'The account will be deactivated and its data permanently deleted. This action cannot be undone.',
+  paidTitle: 'Payment successful',
+  paidBody: 'The receipt is on its way to your billing address.',
+  gotIt: 'Got it',
+  planTitle: 'Switch to the yearly plan',
+  planBody:
+    'Billing becomes yearly and the change takes effect immediately. The current month is prorated.',
+  subscribe: 'Subscribe',
+  updateTitle: 'A new version is available',
+  updateBody:
+    'Reload the page to pick up the latest version. Work in progress is preserved.',
+  reload: 'Reload',
+  leaveTitle: 'Leave without saving?',
+  leaveBody: 'Changes made since the last save will be lost.',
+  leave: 'Leave',
+  sizeTitle: 'Panel width',
+  sizeBody:
+    'Each size sets a maximum width. Below the sm breakpoint, they all take the available width.',
+  animationTitle: 'Animated opening',
+  animationBody:
+    'The backdrop fades in, the panel rises a few pixels. Both animations are dropped when the system asks for reduced motion.',
+  inviteTitle: 'Invite a teammate',
+  inviteBody: 'The invitation expires after seven days.',
+  emailLabel: 'Email address',
+  emailPlaceholder: 'first@example.org',
+  roleLabel: 'Role',
+  roleEditor: 'Editor',
+  roleViewer: 'Viewer',
+  send: 'Send invitation',
+};
+
+export type DialogDocsCopy = typeof dialogFr;
+
+export function dialogCopy(locale: DocsLocale): DialogDocsCopy {
+  return locale === 'en' ? dialogEn : dialogFr;
 }
 
 const navbarFr = {

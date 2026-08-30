@@ -27,6 +27,21 @@ export type {
 } from './components/Button/Button';
 export { IconButton } from './components/Button/IconButton';
 export type { IconButtonProps } from './components/Button/IconButton';
+export { Dialog } from './components/Dialog/Dialog';
+export type { DialogProps, DialogSize } from './components/Dialog/Dialog';
+export {
+  DialogActions,
+  DialogBody,
+  DialogDescription,
+  DialogTitle,
+} from './components/Dialog/DialogParts';
+export type {
+  DialogActionsAlign,
+  DialogActionsProps,
+  DialogBodyProps,
+  DialogDescriptionProps,
+  DialogTitleProps,
+} from './components/Dialog/DialogParts';
 export { Divider } from './components/Divider/Divider';
 export type { DividerOrientation, DividerProps } from './components/Divider/Divider';
 export { Field } from './components/Field/Field';
