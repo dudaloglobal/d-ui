@@ -112,6 +112,49 @@
   color-scheme: dark;
 }
 
+/*
+ * Ouverture du Dialog. Le fond et le panneau sont animés séparément : le fond
+ * en opacité seule, le panneau avec une translation courte — assez pour dire
+ * « ceci arrive par-dessus », assez brève pour ne pas retarder la lecture.
+ * Les deux classes ne sont posées que si `prefers-reduced-motion` ne demande
+ * pas la réduction ; le garde CSS ci-dessous couvre le cas où la préférence
+ * change après le montage.
+ */
+@keyframes d-ui-dialog-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes d-ui-dialog-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.d-ui-dialog-overlay {
+  animation: d-ui-dialog-overlay-in 0.15s ease-out;
+}
+
+.d-ui-dialog-panel {
+  animation: d-ui-dialog-panel-in 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d-ui-dialog-overlay,
+  .d-ui-dialog-panel {
+    animation: none !important;
+  }
+}
+
 .d-ui-tooltip-arrow {
   fill: var(--d-ui-color-fg);
 }

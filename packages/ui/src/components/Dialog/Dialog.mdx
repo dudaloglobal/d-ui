@@ -1,0 +1,158 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul, Table } from '../../../.storybook/docs-i18n';
+import * as DialogStories from './Dialog.stories';
+
+<Meta of={DialogStories} />
+
+# Dialog
+
+<P k="dialog.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={DialogStories.Default} />
+
+<H2 k="dialog.composition" />
+
+<P k="dialog.compositionBody" />
+
+<Table
+  headers={['dialog.colPart', 'dialog.colRole']}
+  rows={[
+    ['dialog.partHeader', 'dialog.partHeaderRole'],
+    ['dialog.partTitle', 'dialog.partTitleRole'],
+    ['dialog.partDescription', 'dialog.partDescriptionRole'],
+    ['dialog.partBody', 'dialog.partBodyRole'],
+    ['dialog.partActions', 'dialog.partActionsRole'],
+  ]}
+/>
+
+<H3 k="dialog.scrollable" />
+
+<P k="dialog.useScrollable" />
+
+<Canvas of={DialogStories.Scrollable} />
+
+<H2 k="dialog.kinds" />
+
+<P k="dialog.kindsBody" />
+
+<H3 k="dialog.confirm" />
+
+<P k="dialog.useConfirm" />
+
+<Canvas of={DialogStories.ConfirmDialog} />
+
+<H3 k="dialog.alertKinds" />
+
+<P k="dialog.useAlertKinds" />
+
+<Canvas of={DialogStories.AlertKinds} />
+
+<H3 k="dialog.tintedFooter" />
+
+<P k="dialog.useTintedFooter" />
+
+<Canvas of={DialogStories.TintedFooter} />
+
+<H3 k="dialog.centered" />
+
+<P k="dialog.useCentered" />
+
+<Canvas of={DialogStories.CenteredSingleAction} />
+
+<H3 k="dialog.wideButtons" />
+
+<P k="dialog.useWideButtons" />
+
+<Canvas of={DialogStories.CenteredWideButtons} />
+
+<H3 k="dialog.alert" />
+
+<P k="dialog.useAlert" />
+
+<Canvas of={DialogStories.Alert} />
+
+<H3 k="dialog.dismiss" />
+
+<P k="dialog.useDismiss" />
+
+<Canvas of={DialogStories.WithDismissButton} />
+
+<H3 k="dialog.alertStart" />
+
+<P k="dialog.useAlertStart" />
+
+<Canvas of={DialogStories.AlertLeftAligned} />
+
+<H3 k="dialog.withForm" />
+
+<P k="dialog.useWithForm" />
+
+<Canvas of={DialogStories.WithForm} />
+
+<H2 k="chrome.sizes" />
+
+<P k="dialog.useSizes" />
+
+<Canvas of={DialogStories.Sizes} />
+
+<H2 k="dialog.processing" />
+
+<P k="dialog.useProcessing" />
+
+<Canvas of={DialogStories.Processing} />
+
+<H2 k="dialog.animation" />
+
+<P k="dialog.useAnimation" />
+
+<Canvas of={DialogStories.Animation} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="dialog.a11yBody" />
+
+<P k="dialog.a11yKeys" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['dialog.doTitle', 'dialog.doConsequence', 'dialog.doAlert']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['dialog.dontStack', 'dialog.dontTrap', 'dialog.dontLongForm']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="dialog.propsBody" />
+
+<ArgTypes
+  of={DialogStories}
+  include={[
+    'open',
+    'onOpenChange',
+    'size',
+    'alert',
+    'dismissible',
+    'dismissLabel',
+    'processing',
+    'initialFocus',
+    'aria-label',
+    'children',
+  ]}
+/>
+
+<H3 k="dialog.actionsProps" />
+
+<P k="dialog.actionsPropsBody" />
+
+<Table
+  headers={['dialog.colProp', 'dialog.colMeaning']}
+  rows={[
+    ['dialog.propAlign', 'dialog.propAlignMeaning'],
+    ['dialog.propSurface', 'dialog.propSurfaceMeaning'],
+  ]}
+/>

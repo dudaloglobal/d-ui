@@ -306,6 +306,57 @@ export const popoverArgTypes = {
   },
 };
 
+export const dialogArgTypes = {
+  open: {
+    control: 'boolean' as const,
+    description: 'Ouverture contrôlée. `Dialog` n’a pas de mode non contrôlé.',
+  },
+  onOpenChange: {
+    control: { disable: true },
+    description:
+      'Appelé avec `false` sur Escape, clic extérieur ou croix de fermeture. C’est vous qui refermez.',
+  },
+  size: {
+    control: 'select' as const,
+    options: ['tiny', 'regular', 'big', 'huge'],
+    description:
+      'Largeur maximale du panneau (LumApps : 400 / 600 / 800 dp, ou plein écran pour `huge`). Toutes les tailles retombent pleine largeur sous le point de rupture `sm`. Défaut : `regular`.',
+  },
+  alert: {
+    control: 'boolean' as const,
+    description:
+      'Rôle `alertdialog` : décision destructive ou irréversible. Le clic extérieur et la croix sont retirés, `Escape` reste actif (WCAG 2.1.2), et le focus va sur la première action.',
+  },
+  dismissible: {
+    control: 'boolean' as const,
+    description:
+      'Croix de fermeture en haut à droite. Ignorée si `alert` ou `processing`.',
+  },
+  dismissLabel: {
+    description: 'Nom accessible de la croix. Défaut : `"Fermer"`.',
+  },
+  processing: {
+    control: 'boolean' as const,
+    description:
+      'État de traitement : calque semi-opaque et spinner. Bloque les interactions et désactive Escape / clic extérieur tant que la soumission est en cours.',
+  },
+  initialFocus: {
+    control: { disable: true },
+    description:
+      'Ref de l’élément qui prend le focus à l’ouverture. Par défaut, le premier contrôle focusable — ou la première action si `alert`.',
+  },
+  'aria-label': {
+    control: { disable: true },
+    description:
+      'Nom accessible du dialogue. Requis seulement si aucun `DialogTitle` n’est rendu : le titre visible prime.',
+  },
+  children: {
+    control: { disable: true },
+    description:
+      'Contenu : `DialogTitle`, `DialogDescription`, `DialogBody`, `DialogActions`.',
+  },
+};
+
 export const emojiPopoverArgTypes = {
   placement: overlaySharedArgTypes.placement,
   open: overlaySharedArgTypes.open,

@@ -1311,6 +1311,167 @@ export const docsCopy = {
       en: '`children` must be a single React element (the trigger). `content` is the tooltip text.',
     },
   },
+  dialog: {
+    title: { fr: 'Dialog', en: 'Dialog' },
+    intro: {
+      fr: '`Dialog` interrompt : il pose une couche modale au-dessus de la page, y enferme le focus et rend le reste inerte tant qu’il est ouvert. Il est **contrôlé** — `open` et `onOpenChange`, jamais de `defaultOpen` : on n’interrompt pas quelqu’un par accident.',
+      en: '`Dialog` interrupts: it lays a modal layer over the page, traps focus inside it, and makes the rest inert while it is open. It is **controlled** — `open` and `onOpenChange`, never `defaultOpen`: nobody should be interrupted by accident.',
+    },
+    composition: { fr: 'Composition', en: 'Composition' },
+    compositionBody: {
+      fr: 'Le panneau est vide par défaut : vous l’assemblez à partir de quatre pièces. `DialogTitle` et `DialogDescription` s’enregistrent auprès du `Dialog`, qui pose alors lui-même `aria-labelledby` et `aria-describedby` — il n’y a pas d’identifiant à écrire à la main.',
+      en: 'The panel is empty by default: you assemble it from four parts. `DialogTitle` and `DialogDescription` register with the `Dialog`, which then sets `aria-labelledby` and `aria-describedby` itself — no ids to write by hand.',
+    },
+    colPart: { fr: 'Pièce', en: 'Part' },
+    colRole: { fr: 'Rôle', en: 'Role' },
+    partTitle: { fr: '`DialogTitle`', en: '`DialogTitle`' },
+    partTitleRole: {
+      fr: 'Rend un `h2` et devient le nom accessible du dialogue.',
+      en: 'Renders an `h2` and becomes the dialog’s accessible name.',
+    },
+    partDescription: { fr: '`DialogDescription`', en: '`DialogDescription`' },
+    partDescriptionRole: {
+      fr: 'Une phrase sur la conséquence. Annoncée avec le titre à l’ouverture.',
+      en: 'One sentence on the consequence. Announced with the title on opening.',
+    },
+    partBody: { fr: '`DialogBody`', en: '`DialogBody`' },
+    partBodyRole: {
+      fr: 'Le contenu long : formulaire, liste, texte.',
+      en: 'The long content: a form, a list, prose.',
+    },
+    partActions: { fr: '`DialogActions`', en: '`DialogActions`' },
+    partActionsRole: {
+      fr: 'La barre d’actions. L’action de confirmation est le dernier enfant.',
+      en: 'The action bar. The confirming action is the last child.',
+    },
+    kinds: { fr: 'Les types de dialogues', en: 'Kinds of dialog' },
+    kindsBody: {
+      fr: 'Les variantes ci-dessous ne sont pas des `variant` du composant : ce sont des **compositions** des mêmes quatre pièces. Ce qui change vraiment le comportement, ce sont trois propriétés : `alert`, `dismissible` et `size`.',
+      en: 'The variants below are not component `variant`s: they are **compositions** of the same four parts. Only three props actually change behaviour: `alert`, `dismissible`, and `size`.',
+    },
+    tintedFooter: { fr: 'Pied de page teinté', en: 'Tinted footer' },
+    useTintedFooter: {
+      fr: '`surface` sur `DialogActions` pose une bande teintée qui file jusqu’aux bords du panneau. Elle sépare la décision du contenu — utile dès que le corps est long.',
+      en: '`surface` on `DialogActions` lays a tinted band running to the panel edges. It separates the decision from the content — useful as soon as the body is long.',
+    },
+    centered: { fr: 'Centré, action unique', en: 'Centered, single action' },
+    useCentered: {
+      fr: 'Une icône, un titre, une phrase, un seul bouton : la forme de l’accusé de réception. Il n’y a rien à décider, donc rien à annuler — un seul bouton, et il ferme.',
+      en: 'An icon, a title, a sentence, one button: the acknowledgement shape. There is nothing to decide, so nothing to cancel — one button, and it closes.',
+    },
+    wideButtons: { fr: 'Actions pleine largeur', en: 'Wide buttons' },
+    useWideButtons: {
+      fr: '`align="stacked"` empile les actions sur toute la largeur. L’ordre visuel reste l’ordre du DOM : aucune variante n’inverse la pile, sans quoi l’ordre de tabulation cesserait de suivre l’ordre de lecture (WCAG 2.4.3).',
+      en: '`align="stacked"` stacks the actions full width. Visual order stays DOM order: no variant reverses the stack, otherwise tab order would stop following reading order (WCAG 2.4.3).',
+    },
+    alert: { fr: 'Alerte', en: 'Alert' },
+    useAlert: {
+      fr: '`alert` bascule le rôle sur `alertdialog` : la description est annoncée d’emblée avec le titre. Le clic sur l’arrière-plan et la croix disparaissent — on ne sort que par une action explicite. `Escape` reste actif : un dialogue dont on ne peut pas sortir au clavier serait un piège (WCAG 2.1.2). Le focus va sur la **première** action, celle qui ne détruit rien. `Button` n’a pas encore de variante destructive : ici, ce sont le rôle et le libellé qui portent la conséquence, pas la couleur (WCAG 1.4.1).',
+      en: '`alert` switches the role to `alertdialog`: the description is announced up front with the title. Outside click and the dismiss button are gone — you only leave through an explicit action. `Escape` stays live: a dialog you cannot leave with the keyboard would be a trap (WCAG 2.1.2). Focus lands on the **first** action, the one that destroys nothing. `Button` has no destructive variant yet: here the role and the label carry the consequence, not the colour (WCAG 1.4.1).',
+    },
+    dismiss: { fr: 'Avec croix de fermeture', en: 'With dismiss button' },
+    useDismiss: {
+      fr: '`dismissible` ajoute une croix en haut à droite. Réservez-la aux dialogues sans conséquence : un contenu qu’on consulte, une information qu’on referme. Elle est ignorée si `alert`.',
+      en: '`dismissible` adds a close cross at the top right. Keep it for dialogs without consequence: content you read, information you close. It is ignored when `alert` is set.',
+    },
+    alertStart: { fr: 'Alerte, actions à gauche', en: 'Alert, left-aligned actions' },
+    useAlertStart: {
+      fr: '`align="start"` range les actions à gauche. Le choix est purement visuel : la barre garde le même ordre, donc le même ordre de tabulation.',
+      en: '`align="start"` puts the actions on the left. The choice is purely visual: the bar keeps the same order, so the same tab order.',
+    },
+    withForm: { fr: 'Avec formulaire', en: 'With a form' },
+    useWithForm: {
+      fr: 'Un `form` dans le `DialogBody`, le bouton de soumission dans `DialogActions` via `form="…"`. Le premier champ prend le focus à l’ouverture : c’est le comportement par défaut, le premier contrôle focusable. Les dialogues à formulaire long sont un signal — au-delà de quelques champs, une page vaut mieux qu’une couche modale.',
+      en: 'A `form` inside `DialogBody`, its submit button in `DialogActions` through `form="…"`. The first field takes focus on opening: that is the default, the first focusable control. Long-form dialogs are a signal — past a few fields, a page beats a modal layer.',
+    },
+    useSizes: {
+      fr: '`size` fixe une largeur maximale LumApps : `tiny` (400 dp), `regular` (600 dp), `big` (800 dp), `huge` (plein écran). Sous le point de rupture `sm`, toutes les tailles occupent la largeur disponible.',
+      en: '`size` sets a LumApps maximum width: `tiny` (400 dp), `regular` (600 dp), `big` (800 dp), `huge` (full screen). Below the `sm` breakpoint every size takes the available width.',
+    },
+    confirm: { fr: 'Dialogue de confirmation', en: 'Confirm dialog' },
+    useConfirm: {
+      fr: '`AlertDialog` sans `kind` : deux actions (`cancelLabel` + `confirmLabel`). Le dialogue ne se ferme pas au clic extérieur ni à la croix — seulement par une action explicite. `Escape` reste actif (WCAG 2.1.2).',
+      en: '`AlertDialog` without `kind`: two actions (`cancelLabel` + `confirmLabel`). The dialog does not close on outside click or the dismiss button — only through an explicit action. `Escape` stays live (WCAG 2.1.2).',
+    },
+    alertKinds: { fr: 'Alerte par variante', en: 'Alert by kind' },
+    useAlertKinds: {
+      fr: '`AlertDialog` avec `kind` (`warning`, `error`, `success`) : icône teintée à gauche et une seule action `confirmLabel`. Interrompt l’utilisateur avec une information urgente.',
+      en: '`AlertDialog` with `kind` (`warning`, `error`, `success`): tinted icon on the left and a single `confirmLabel` action. Interrupts the user with urgent information.',
+    },
+    processing: { fr: 'État de traitement', en: 'Processing state' },
+    useProcessing: {
+      fr: '`processing` pose un calque semi-opaque et un spinner au-dessus du panneau. Escape, le clic extérieur et la croix sont désactivés tant que la soumission est en cours — le dialogue reste ouvert jusqu’à la fin.',
+      en: '`processing` lays a semi-opaque layer and spinner over the panel. Escape, outside click, and the dismiss button are disabled while submission is in progress — the dialog stays open until it finishes.',
+    },
+    scrollable: { fr: 'En-tête et pied de page fixes', en: 'Fixed header and footer' },
+    useScrollable: {
+      fr: 'Assemblez `DialogHeader`, `DialogBody` et `DialogActions` : au défilement, l’en-tête reste en haut et le pied de page en bas ; seul le corps défile.',
+      en: 'Assemble `DialogHeader`, `DialogBody`, and `DialogActions`: on scroll, the header stays at the top and the footer at the bottom; only the body scrolls.',
+    },
+    partHeader: { fr: '`DialogHeader`', en: '`DialogHeader`' },
+    partHeaderRole: {
+      fr: 'En-tête fixe (LumApps Toolbar). Contient le titre.',
+      en: 'Fixed header (LumApps Toolbar). Holds the title.',
+    },
+    animation: { fr: 'Animation', en: 'Animation' },
+    useAnimation: {
+      fr: 'Le fond apparaît en opacité, le panneau monte de quelques pixels et grandit très légèrement — assez pour dire « ceci arrive par-dessus », assez court pour ne pas retarder la lecture. Les deux animations sont retirées quand le système demande `prefers-reduced-motion: reduce`.',
+      en: 'The backdrop fades in, the panel rises a few pixels and grows very slightly — enough to say “this arrives on top”, short enough not to delay reading. Both animations are dropped when the system asks for `prefers-reduced-motion: reduce`.',
+    },
+    a11yBody: {
+      fr: 'Le panneau a `role="dialog"` (ou `alertdialog` avec `alert`), un nom pris sur `DialogTitle` et, s’il y en a une, une description prise sur `DialogDescription`. Le focus est enfermé dans le panneau, le reste de la page devient inerte, le défilement du fond est bloqué, et le focus revient à l’élément déclencheur à la fermeture.',
+      en: 'The panel has `role="dialog"` (or `alertdialog` with `alert`), a name taken from `DialogTitle`, and, when present, a description taken from `DialogDescription`. Focus is trapped in the panel, the rest of the page turns inert, background scrolling is locked, and focus returns to the trigger on close.',
+    },
+    a11yKeys: {
+      fr: 'Tab et Maj+Tab tournent dans le panneau. `Escape` ferme, toujours — y compris sur une alerte. Le clic extérieur ferme, sauf sur une alerte. Le portail recopie `data-d-ui-theme`.',
+      en: 'Tab and Shift+Tab cycle inside the panel. `Escape` closes, always — including on an alert. Outside click closes, except on an alert. The portal copies `data-d-ui-theme`.',
+    },
+    doTitle: {
+      fr: 'Un `DialogTitle`, ou à défaut `aria-label` sur le `Dialog`',
+      en: 'A `DialogTitle`, or failing that `aria-label` on the `Dialog`',
+    },
+    doConsequence: {
+      fr: 'Une description qui dit la conséquence, pas qui répète le titre',
+      en: 'A description that states the consequence rather than repeating the title',
+    },
+    doAlert: {
+      fr: '`alert` dès que la décision est destructive ou irréversible',
+      en: '`alert` as soon as the decision is destructive or irreversible',
+    },
+    dontStack: {
+      fr: 'Ouvrir un `Dialog` depuis un `Dialog` : l’empilement n’est pas supporté',
+      en: 'Opening a `Dialog` from a `Dialog`: stacking is not supported',
+    },
+    dontTrap: {
+      fr: 'Retirer `Escape` pour « forcer » une décision — c’est un piège clavier',
+      en: 'Removing `Escape` to “force” a decision — that is a keyboard trap',
+    },
+    dontLongForm: {
+      fr: 'Un formulaire long dans une couche modale : préférez une page',
+      en: 'A long form in a modal layer: prefer a page',
+    },
+    propsBody: {
+      fr: '`Dialog` est contrôlé : `open` et `onOpenChange` sont obligatoires. `onOpenChange` reçoit `false` sur `Escape`, clic extérieur ou croix — c’est vous qui refermez.',
+      en: '`Dialog` is controlled: `open` and `onOpenChange` are required. `onOpenChange` receives `false` on `Escape`, outside click, or the dismiss button — you are the one who closes it.',
+    },
+    actionsProps: { fr: 'Propriétés de DialogActions', en: 'DialogActions props' },
+    actionsPropsBody: {
+      fr: '`align` et `surface` ne changent que la disposition. L’ordre des enfants, lui, est un contrat : la confirmation en dernier.',
+      en: '`align` and `surface` only change layout. The order of the children, on the other hand, is a contract: confirmation last.',
+    },
+    colProp: { fr: 'Propriété', en: 'Prop' },
+    colMeaning: { fr: 'Effet', en: 'Effect' },
+    propAlign: { fr: '`align`', en: '`align`' },
+    propAlignMeaning: {
+      fr: '`end` (défaut), `start`, ou `stacked` — empilé, pleine largeur.',
+      en: '`end` (default), `start`, or `stacked` — stacked, full width.',
+    },
+    propSurface: { fr: '`surface`', en: '`surface`' },
+    propSurfaceMeaning: {
+      fr: 'Bande teintée jusqu’aux bords. Seulement dans un `Dialog` : elle annule sa gouttière.',
+      en: 'Tinted band to the panel edges. Only inside a `Dialog`: it cancels its gutter.',
+    },
+  },
   popover: {
     title: { fr: 'Popover', en: 'Popover' },
     intro: {
