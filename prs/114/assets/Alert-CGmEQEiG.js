@@ -1,0 +1,30 @@
+import{u as x,j as s,M as j,P as t,C as o,a as e,b as a,U as i,A as d}from"./iframe-DPMCGbXH.js";import{A as l,D as c,V as k,W as p,a as h,T as f,b as u}from"./Alert.stories-CKR4pfCx.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-BT0UMpT1.js";import"./docs-source-C_O40UCi.js";import"./Button-J0p711sK.js";import"./Icon-Bjpz_ZUO.js";import"./IconButton-B_SG05yO.js";import"./Heading-DdjEhJVn.js";import"./Text-C8y3i8q4.js";import"./feedbackSurface-CvkUZbBg.js";import"./ExclamationTriangleIcon-CP_kw92V.js";function m(n){const r={h1:"h1",...x(),...n.components};return s.jsxs(s.Fragment,{children:[s.jsx(j,{of:l}),`
+`,s.jsx(r.h1,{id:"alert",children:"Alert"}),`
+`,s.jsx(t,{k:"alert.intro"}),`
+`,s.jsx(t,{k:"chrome.examplesFollow"}),`
+`,s.jsx(o,{of:c}),`
+`,s.jsx(e,{k:"alert.variants"}),`
+`,s.jsx(t,{k:"alert.variantsBody"}),`
+`,s.jsx(o,{of:k}),`
+`,s.jsx(e,{k:"alert.titled"}),`
+`,s.jsx(t,{k:"alert.titledBody"}),`
+`,s.jsx(o,{of:p}),`
+`,s.jsx(e,{k:"alert.dismissible"}),`
+`,s.jsx(t,{k:"alert.dismissibleBody"}),`
+`,s.jsx(o,{of:h}),`
+`,s.jsx(e,{k:"alert.trimmed"}),`
+`,s.jsx(t,{k:"alert.trimmedBody"}),`
+`,s.jsx(o,{of:f}),`
+`,s.jsx(e,{k:"alert.action"}),`
+`,s.jsx(t,{k:"alert.actionBody"}),`
+`,s.jsx(o,{of:u}),`
+`,s.jsx(e,{k:"chrome.accessibility"}),`
+`,s.jsx(t,{k:"alert.a11yBody"}),`
+`,s.jsx(a,{k:"chrome.do"}),`
+`,s.jsx(i,{items:["alert.doInline","alert.doRole"]}),`
+`,s.jsx(a,{k:"chrome.dont"}),`
+`,s.jsx(i,{items:["alert.dontToast","alert.dontColor"]}),`
+`,s.jsx(t,{k:"chrome.themeLang"}),`
+`,s.jsx(e,{k:"chrome.properties"}),`
+`,s.jsx(t,{k:"alert.props"}),`
+`,s.jsx(d,{of:l,include:["variant","hasBackground","title","dismissible","dismissLabel"]})]})}function X(n={}){const{wrapper:r}={...x(),...n.components};return r?s.jsx(r,{...n,children:s.jsx(m,{...n})}):m(n)}export{X as default};
