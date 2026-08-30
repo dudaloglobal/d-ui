@@ -1,0 +1,30 @@
+import{u as x,j as s,M as j,P as t,C as o,a as e,b as a,U as i,A as d}from"./iframe-D5579FTu.js";import{A as l,D as c,V as p,W as k,a as h,T as f,b as u}from"./Alert.stories-61hCj_23.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-865yu2cB.js";import"./docs-source-C_O40UCi.js";import"./Button-DS9JBTo6.js";import"./cornerRadius-B4XFh-_5.js";import"./Icon-CKiHNF4j.js";import"./IconButton-8iHNj7qx.js";import"./Heading-_yP_0g5U.js";import"./Text-Cigz_l8T.js";import"./feedbackSurface-D0xGv0Xk.js";import"./ExclamationTriangleIcon-BvK8AQPJ.js";function m(n){const r={h1:"h1",...x(),...n.components};return s.jsxs(s.Fragment,{children:[s.jsx(j,{of:l}),`
+`,s.jsx(r.h1,{id:"alert",children:"Alert"}),`
+`,s.jsx(t,{k:"alert.intro"}),`
+`,s.jsx(t,{k:"chrome.examplesFollow"}),`
+`,s.jsx(o,{of:c}),`
+`,s.jsx(e,{k:"alert.variants"}),`
+`,s.jsx(t,{k:"alert.variantsBody"}),`
+`,s.jsx(o,{of:p}),`
+`,s.jsx(e,{k:"alert.titled"}),`
+`,s.jsx(t,{k:"alert.titledBody"}),`
+`,s.jsx(o,{of:k}),`
+`,s.jsx(e,{k:"alert.dismissible"}),`
+`,s.jsx(t,{k:"alert.dismissibleBody"}),`
+`,s.jsx(o,{of:h}),`
+`,s.jsx(e,{k:"alert.trimmed"}),`
+`,s.jsx(t,{k:"alert.trimmedBody"}),`
+`,s.jsx(o,{of:f}),`
+`,s.jsx(e,{k:"alert.action"}),`
+`,s.jsx(t,{k:"alert.actionBody"}),`
+`,s.jsx(o,{of:u}),`
+`,s.jsx(e,{k:"chrome.accessibility"}),`
+`,s.jsx(t,{k:"alert.a11yBody"}),`
+`,s.jsx(a,{k:"chrome.do"}),`
+`,s.jsx(i,{items:["alert.doInline","alert.doRole"]}),`
+`,s.jsx(a,{k:"chrome.dont"}),`
+`,s.jsx(i,{items:["alert.dontToast","alert.dontColor"]}),`
+`,s.jsx(t,{k:"chrome.themeLang"}),`
+`,s.jsx(e,{k:"chrome.properties"}),`
+`,s.jsx(t,{k:"alert.props"}),`
+`,s.jsx(d,{of:l,include:["variant","hasBackground","title","dismissible","dismissLabel"]})]})}function w(n={}){const{wrapper:r}={...x(),...n.components};return r?s.jsx(r,{...n,children:s.jsx(m,{...n})}):m(n)}export{w as default};
