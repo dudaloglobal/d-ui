@@ -21,6 +21,10 @@ export type AlertDialogProps = {
    */
   kind?: AlertDialogKind;
   size?: DialogSize;
+  /** Bordure autour du panneau. Défaut : sans bordure (LumApps). */
+  bordered?: boolean;
+  /** Arrondi des coins du panneau. Défaut : `lg`. */
+  radius?: DialogProps['radius'];
   /** Libellé du bouton principal. */
   confirmLabel?: string;
   onConfirm?: () => void;
@@ -56,6 +60,8 @@ export function AlertDialog({
   children,
   kind,
   size = 'regular',
+  bordered,
+  radius,
   confirmLabel = 'OK',
   onConfirm,
   cancelLabel,
@@ -80,6 +86,8 @@ export function AlertDialog({
       onOpenChange={onOpenChange}
       alert
       size={size}
+      bordered={bordered}
+      radius={radius}
       initialFocus={initialFocus}
     >
       {kind ? (

@@ -16,7 +16,7 @@ const meta = {
   argTypes: popoverArgTypes,
   parameters: {
     controls: {
-      include: ['placement', 'trapFocus', 'disabled'],
+      include: ['placement', 'trapFocus', 'disabled', 'radius'],
     },
   },
 } satisfies Meta<typeof Popover>;
@@ -258,3 +258,34 @@ function ControlledPopover({
     </Popover>
   );
 }
+
+export const Radius: Story = {
+  name: 'Arrondi',
+  args: { content: null, children: <span /> },
+  parameters: componentSource(
+    importPopover,
+    `<Popover
+    trapFocus
+    radius="xl"
+    aria-label="Options"
+    content={<Button variant="primary">Confirmer</Button>}
+>
+    <Button variant="secondary">Ouvrir</Button>
+</Popover>`,
+  ),
+  render: (args, { globals }) => {
+    const copy = overlayCopy(docsLocale(globals.locale));
+    return (
+      <Popover
+        {...args}
+        trapFocus
+        radius="xl"
+        defaultOpen
+        aria-label={copy.options}
+        content={<Button variant="primary">{copy.action}</Button>}
+      >
+        <Button variant="secondary">{copy.open}</Button>
+      </Popover>
+    );
+  },
+};

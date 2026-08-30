@@ -1,6 +1,6 @@
 import { useState, type ReactElement } from 'react';
 import { cx } from '../../lib/cx';
-import { Popover, type PopoverPlacement } from './Popover';
+import { Popover, type PopoverPlacement, type PopoverRadius } from './Popover';
 
 /** Jeu Google Meet : cœur, pouces, fête, applaudissements, visages. */
 export const REACTION_EMOJIS = [
@@ -37,6 +37,8 @@ export type EmojiPopoverProps = {
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
   disabled?: boolean;
+  /** Arrondi des coins du panneau. Défaut : `md`. */
+  radius?: PopoverRadius;
   className?: string;
   /** Noms accessibles. Défaut : libellés français. */
   labels?: Partial<Record<ReactionEmoji, string>>;
@@ -51,6 +53,7 @@ export function EmojiPopover({
   defaultOpen = false,
   onOpenChange,
   disabled = false,
+  radius,
   className,
   labels,
   'aria-label': ariaLabel = 'Réactions',
@@ -81,6 +84,7 @@ export function EmojiPopover({
       open={open}
       onOpenChange={setOpen}
       disabled={disabled}
+      radius={radius}
       aria-label={ariaLabel}
       className={cx('d-ui-emoji-popover', className)}
       content={

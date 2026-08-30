@@ -1,4 +1,10 @@
 /** French ArgTypes descriptions for Storybook Properties tables. */
+const cornerRadiusArgType = (defaultValue: 'md' | 'lg') => ({
+  control: 'select' as const,
+  options: ['none', 'sm', 'md', 'lg', 'xl'],
+  description: `Arrondi des coins. Défaut : \`${defaultValue}\`.`,
+});
+
 export const buttonArgTypes = {
   variant: {
     control: 'inline-radio' as const,
@@ -35,6 +41,7 @@ export const buttonArgTypes = {
     control: 'boolean' as const,
     description: 'Étend le contrôle à la largeur du conteneur.',
   },
+  radius: cornerRadiusArgType('md'),
   isSelected: {
     control: 'boolean' as const,
     description:
@@ -283,6 +290,7 @@ const overlaySharedArgTypes = {
 
 export const tooltipArgTypes = {
   ...overlaySharedArgTypes,
+  radius: cornerRadiusArgType('md'),
   delayMs: {
     control: 'number' as const,
     description:
@@ -292,6 +300,7 @@ export const tooltipArgTypes = {
 
 export const popoverArgTypes = {
   ...overlaySharedArgTypes,
+  radius: cornerRadiusArgType('md'),
   trapFocus: {
     control: 'boolean' as const,
     description:
@@ -330,7 +339,7 @@ export const dialogArgTypes = {
   dismissible: {
     control: 'boolean' as const,
     description:
-      'Croix de fermeture en haut à droite. Ignorée si `alert` ou `processing`.',
+      'Croix de fermeture en haut à droite du panneau. Ignorée si `alert` ou `processing`.',
   },
   dismissLabel: {
     description: 'Nom accessible de la croix. Défaut : `"Fermer"`.',
@@ -340,6 +349,12 @@ export const dialogArgTypes = {
     description:
       'État de traitement : calque semi-opaque et spinner. Bloque les interactions et désactive Escape / clic extérieur tant que la soumission est en cours.',
   },
+  bordered: {
+    control: 'boolean' as const,
+    description:
+      'Bordure `border-border` autour du panneau. Défaut : sans bordure (LumApps).',
+  },
+  radius: cornerRadiusArgType('lg'),
   initialFocus: {
     control: { disable: true },
     description:

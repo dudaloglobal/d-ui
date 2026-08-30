@@ -145,4 +145,11 @@ describe('IconButton', () => {
     expect(button.querySelector('.d-ui-button-bounce')?.children).toHaveLength(3);
     expect(button.querySelector('svg')).toBeNull();
   });
+
+  it('applies radius classes', () => {
+    render(<Button radius="xl">Continuer</Button>);
+    expect(screen.getByRole('button', { name: 'Continuer' }).className).toContain(
+      'rounded-xl',
+    );
+  });
 });

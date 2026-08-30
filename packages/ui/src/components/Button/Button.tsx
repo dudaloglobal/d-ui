@@ -1,10 +1,12 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import { cx } from '../../lib/cx';
+import { cornerRadiusClass, type CornerRadius } from '../../lib/cornerRadius';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 export type ButtonIconPosition = 'start' | 'end';
 export type ButtonLoadingIndicator = 'spinner' | 'bounce';
+export type ButtonRadius = CornerRadius;
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   /**
@@ -24,6 +26,8 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   iconPosition?: ButtonIconPosition;
   /** Étend le bouton à la largeur du conteneur. */
   fullWidth?: boolean;
+  /** Arrondi des coins. Défaut : `md`. */
+  radius?: ButtonRadius;
   /**
    * État bascule (emphase moyenne/faible). Pose `aria-pressed`.
    * Si le libellé change déjà selon l’état, ce nom suffit.
@@ -81,6 +85,7 @@ export function Button({
   icon,
   iconPosition = 'start',
   fullWidth = false,
+  radius = 'md',
   isSelected,
   children,
   ...rest
@@ -97,8 +102,9 @@ export function Button({
       aria-busy={loading || undefined}
       aria-pressed={typeof isSelected === 'boolean' ? isSelected : undefined}
       className={cx(
-        'inline-flex items-center justify-center gap-2 rounded-md font-medium',
+        'inline-flex items-center justify-center gap-2 font-medium',
         'transition-colors',
+        cornerRadiusClass[radius],
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg',
         'disabled:pointer-events-none disabled:opacity-50',
         variantClass[variant],

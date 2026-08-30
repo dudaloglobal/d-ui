@@ -97,4 +97,16 @@ describe('Tooltip', () => {
       screen.getByRole('button', { name: 'Aide' }).parentElement,
     );
   });
+
+  it('applies radius classes', async () => {
+    const user = userEvent.setup();
+    render(
+      <Tooltip content="Info" radius="xl" delayMs={0}>
+        <button type="button">Aide</button>
+      </Tooltip>,
+    );
+    await user.hover(screen.getByRole('button', { name: 'Aide' }));
+    const tip = await screen.findByRole('tooltip');
+    expect(tip.className).toContain('rounded-xl');
+  });
 });

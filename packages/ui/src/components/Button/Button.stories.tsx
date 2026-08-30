@@ -12,7 +12,7 @@ import {
   type ButtonDocsCopy,
 } from '../../../.storybook/docs-locale';
 import { cx } from '../../lib/cx';
-import { Button, type ButtonSize, type ButtonVariant } from './Button';
+import { Button, type ButtonRadius, type ButtonSize, type ButtonVariant } from './Button';
 import { IconButton } from './IconButton';
 
 function PlusIcon() {
@@ -164,6 +164,7 @@ const meta = {
         'iconPosition',
         'fullWidth',
         'isSelected',
+        'radius',
       ],
     },
   },
@@ -399,5 +400,28 @@ export const IconOnly: Story = {
   render: (_, { globals }) => {
     const copy = buttonCopy(docsLocale(globals.locale));
     return <IconButton icon={<PlusIcon />} aria-label={copy.add} />;
+  },
+};
+
+const RADII: ButtonRadius[] = ['none', 'sm', 'md', 'lg', 'xl'];
+
+export const Radius: Story = {
+  name: 'Arrondi',
+  parameters: componentSource(
+    "import { Button } from 'd-ui';",
+    `<Button radius="lg">Continuer</Button>`,
+  ),
+  render: (_, { globals }) => {
+    const copy = buttonCopy(docsLocale(globals.locale));
+    return (
+      <UseCaseRow>
+        {RADII.map((radius) => (
+          <Button key={radius} radius={radius} variant="secondary">
+            {radius}
+          </Button>
+        ))}
+        <Button radius="lg">{copy.continue}</Button>
+      </UseCaseRow>
+    );
   },
 };

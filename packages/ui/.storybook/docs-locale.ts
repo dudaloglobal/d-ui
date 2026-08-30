@@ -128,7 +128,7 @@ export const storyNameEn: Record<string, string> = {
   'Sans fond': 'Without background',
   'Avec action': 'With action',
   'File d’attente': 'Queue',
-  'Pied de page teinté': 'Tinted footer',
+  'Pied de page fixe': 'Fixed footer',
   'Centré, action unique': 'Centered, single action',
   'Centré, actions pleine largeur': 'Centered, wide buttons',
   Alerte: 'Alert',
@@ -140,6 +140,8 @@ export const storyNameEn: Record<string, string> = {
   'Alerte par variante': 'Alert by kind',
   'Traitement en cours': 'Processing',
   'Contenu défilant': 'Scrollable content',
+  'Bordure et coins': 'Border and corners',
+  Arrondi: 'Corner radius',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -1038,6 +1040,7 @@ const dialogFr = {
   open: 'Ouvrir',
   cancel: 'Annuler',
   close: 'Fermer',
+  continue: 'Continuer',
   deactivate: 'Désactiver',
   deactivateTitle: 'Désactiver le compte',
   deactivateBody:
@@ -1097,12 +1100,17 @@ const dialogFr = {
   regular: 'Regular',
   big: 'Big',
   huge: 'Huge',
+  panelChromeOpen: 'Bordure et coins',
+  panelChromeTitle: 'Apparence du panneau',
+  panelChromeBody:
+    'La bordure et l’arrondi peuvent être ajustés selon le contexte visuel.',
 };
 
 const dialogEn = {
   open: 'Open',
   cancel: 'Cancel',
   close: 'Close',
+  continue: 'Continue',
   deactivate: 'Deactivate',
   deactivateTitle: 'Deactivate account',
   deactivateBody:
@@ -1162,6 +1170,9 @@ const dialogEn = {
   regular: 'Regular',
   big: 'Big',
   huge: 'Huge',
+  panelChromeOpen: 'Border and corners',
+  panelChromeTitle: 'Panel appearance',
+  panelChromeBody: 'Border and corner radius can be tuned to match the visual context.',
 };
 
 export type DialogDocsCopy = typeof dialogFr;

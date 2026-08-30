@@ -4,7 +4,7 @@ import { cx } from '../../lib/cx';
 import { useIsomorphicLayoutEffect } from '../../lib/useIsomorphicLayoutEffect';
 import { Heading } from '../Heading/Heading';
 import { Text } from '../Text/Text';
-import { useDialogContext } from './DialogContext';
+import { useDialogContext, dialogRadiusBottomClass } from './DialogContext';
 
 export type DialogTitleProps = Omit<
   HTMLAttributes<HTMLHeadingElement>,
@@ -36,7 +36,7 @@ export function DialogTitle({ level = 2, className, ...rest }: DialogTitleProps)
       id={dialog.titleId}
       level={level}
       size="subtitle"
-      className={cx('pe-8', className)}
+      className={cx('shrink-0 pe-8', className)}
     />
   );
 }
@@ -67,7 +67,7 @@ export function DialogDescription({ className, ...rest }: DialogDescriptionProps
       id={dialog.descriptionId}
       size="body-sm"
       tone="muted"
-      className={cx('mt-2', className)}
+      className={cx('mt-2 shrink-0', className)}
     />
   );
 }
@@ -100,13 +100,11 @@ export type DialogActionsAlign = 'end' | 'start' | 'stacked';
 export type DialogActionsProps = HTMLAttributes<HTMLDivElement> & {
   align?: DialogActionsAlign;
   /**
-   * Pied de page teinté, filant jusqu'aux bords du panneau.
-   *
-   * Les marges négatives annulent la gouttière du `Dialog` (`p-6`) : la bande
-   * ne peut donc pas être réutilisée hors d'un `Dialog`.
+   * Pied de page ancré en bas du panneau, avec les coins inférieurs alignés sur
+   * le `radius` du `Dialog`.
    */
   surface?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 const alignClass: Record<DialogActionsAlign, string> = {
@@ -134,7 +132,7 @@ export function DialogActions({
   ...rest
 }: DialogActionsProps) {
   const dialog = useDialogContext('DialogActions');
-  const { registerFirstAction } = dialog;
+  const { registerFirstAction, radius } = dialog;
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -150,11 +148,9 @@ export function DialogActions({
       {...rest}
       ref={containerRef}
       className={cx(
-        'mt-6 flex gap-3',
+        'flex shrink-0 gap-3 px-6 pb-6 pt-6',
         alignClass[align],
-        surface
-          ? 'bg-surface-muted -mx-6 -mb-6 shrink-0 rounded-b-lg px-6 py-4'
-          : 'shrink-0',
+        surface ? dialogRadiusBottomClass[radius] : null,
         className,
       )}
     >
