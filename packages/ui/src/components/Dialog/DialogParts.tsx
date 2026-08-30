@@ -82,10 +82,7 @@ export type DialogHeaderProps = HTMLAttributes<HTMLElement>;
  */
 export function DialogHeader({ className, ...rest }: DialogHeaderProps) {
   return (
-    <header
-      {...rest}
-      className={cx('border-border shrink-0 border-b pb-4', className)}
-    />
+    <header {...rest} className={cx('border-border shrink-0 border-b pb-4', className)} />
   );
 }
 
@@ -155,7 +152,9 @@ export function DialogActions({
       className={cx(
         'mt-6 flex gap-3',
         alignClass[align],
-        surface ? 'bg-surface-muted -mx-6 -mb-6 shrink-0 rounded-b-lg px-6 py-4' : 'shrink-0',
+        surface
+          ? 'bg-surface-muted -mx-6 -mb-6 shrink-0 rounded-b-lg px-6 py-4'
+          : 'shrink-0',
         className,
       )}
     >

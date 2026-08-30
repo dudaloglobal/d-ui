@@ -101,7 +101,10 @@ export function Dialog({
    * `alert` retire le clic extérieur, pas `Escape` : un dialogue dont on ne
    * peut pas sortir au clavier serait un piège (WCAG 2.1.2).
    */
-  const dismiss = useDismiss(context, { outsidePress: !alert && !processing, escapeKey: !processing });
+  const dismiss = useDismiss(context, {
+    outsidePress: !alert && !processing,
+    escapeKey: !processing,
+  });
   const role = useRole(context, { role: alert ? 'alertdialog' : 'dialog' });
   const { getFloatingProps } = useInteractions([dismiss, role]);
 

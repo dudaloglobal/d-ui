@@ -75,7 +75,13 @@ export function AlertDialog({
   const variant = kind ? kindVariant[kind] : undefined;
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange} alert size={size} initialFocus={initialFocus}>
+    <Dialog
+      open={open}
+      onOpenChange={onOpenChange}
+      alert
+      size={size}
+      initialFocus={initialFocus}
+    >
       {kind ? (
         <div className="flex gap-4">
           <span

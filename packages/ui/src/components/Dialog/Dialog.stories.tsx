@@ -511,7 +511,11 @@ function ProcessingDemo({ copy }: { copy: DialogDocsCopy }) {
         <DialogTitle>{copy.processingTitle}</DialogTitle>
         <DialogDescription>{copy.processingBody}</DialogDescription>
         <DialogActions>
-          <Button variant="secondary" disabled={processing} onClick={() => setOpen(false)}>
+          <Button
+            variant="secondary"
+            disabled={processing}
+            onClick={() => setOpen(false)}
+          >
             {copy.cancel}
           </Button>
           <Button

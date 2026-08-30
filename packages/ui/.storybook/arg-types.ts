@@ -329,7 +329,8 @@ export const dialogArgTypes = {
   },
   dismissible: {
     control: 'boolean' as const,
-    description: 'Croix de fermeture en haut à droite. Ignorée si `alert` ou `processing`.',
+    description:
+      'Croix de fermeture en haut à droite. Ignorée si `alert` ou `processing`.',
   },
   dismissLabel: {
     description: 'Nom accessible de la croix. Défaut : `"Fermer"`.',
