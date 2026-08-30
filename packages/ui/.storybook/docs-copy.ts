@@ -1358,10 +1358,10 @@ export const docsCopy = {
       fr: 'Les variantes ci-dessous ne sont pas des `variant` du composant : ce sont des **compositions** des mêmes quatre pièces. Ce qui change vraiment le comportement, ce sont trois propriétés : `alert`, `dismissible` et `size`.',
       en: 'The variants below are not component `variant`s: they are **compositions** of the same four parts. Only three props actually change behaviour: `alert`, `dismissible`, and `size`.',
     },
-    tintedFooter: { fr: 'Pied de page teinté', en: 'Tinted footer' },
+    tintedFooter: { fr: 'Pied de page fixe', en: 'Fixed footer' },
     useTintedFooter: {
-      fr: '`surface` sur `DialogActions` pose une bande teintée dans le pied de page fixe, sur toute la largeur du panneau. Elle sépare la décision du contenu — utile dès que le corps est long.',
-      en: '`surface` on `DialogActions` lays a tinted band in the fixed footer, across the full panel width. It separates the decision from the content — useful as soon as the body is long.',
+      fr: '`surface` sur `DialogActions` aligne le pied de page sur les coins inférieurs du panneau (`radius`). Utile dès que le corps défile entre l’en-tête et les actions.',
+      en: '`surface` on `DialogActions` aligns the footer with the panel’s bottom corners (`radius`). Useful once the body scrolls between header and actions.',
     },
     centered: { fr: 'Centré, action unique', en: 'Centered, single action' },
     useCentered: {
@@ -1380,8 +1380,8 @@ export const docsCopy = {
     },
     dismiss: { fr: 'Avec croix de fermeture', en: 'With dismiss button' },
     useDismiss: {
-      fr: '`dismissible` ajoute une croix dans le pied de page (`DialogActions`), à gauche des autres actions. Réservez-la aux dialogues sans conséquence : un contenu qu’on consulte, une information qu’on referme. Ignorée si `alert`.',
-      en: '`dismissible` adds a close cross in the footer (`DialogActions`), to the left of the other actions. Keep it for dialogs without consequence: content you read, information you close. It is ignored when `alert` is set.',
+      fr: '`dismissible` ajoute une croix en haut à droite du panneau. Les actions restent dans le pied de page (`DialogActions`). Réservez-la aux dialogues sans conséquence. Ignorée si `alert`.',
+      en: '`dismissible` adds a close cross at the top right of the panel. Actions stay in the footer (`DialogActions`). Keep it for dialogs without consequence. It is ignored when `alert` is set.',
     },
     alertStart: { fr: 'Alerte, actions à gauche', en: 'Alert, left-aligned actions' },
     useAlertStart: {
@@ -1482,8 +1482,8 @@ export const docsCopy = {
     },
     propSurface: { fr: '`surface`', en: '`surface`' },
     propSurfaceMeaning: {
-      fr: 'Bande teintée sur toute la largeur du pied de page, séparée du corps par une bordure.',
-      en: 'Tinted band across the full footer width, separated from the body by a border.',
+      fr: 'Aligne les coins inférieurs du pied de page sur le `radius` du `Dialog`.',
+      en: 'Aligns the footer’s bottom corners with the `Dialog` `radius`.',
     },
   },
   popover: {

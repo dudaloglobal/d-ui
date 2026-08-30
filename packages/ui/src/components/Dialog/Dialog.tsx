@@ -19,6 +19,8 @@ import {
   type ReactNode,
 } from 'react';
 import { cx } from '../../lib/cx';
+import { IconButton } from '../Button/IconButton';
+import { CloseGlyph } from '../feedback/FeedbackIcons';
 import {
   overlayPortalProps,
   useInheritedTheme,
@@ -30,21 +32,25 @@ import {
   type DialogContextValue,
   type DialogRadius,
 } from './DialogContext';
-import { DialogActions } from './DialogParts';
+import { DialogActions, DialogBody } from './DialogParts';
 
 function partitionDialogChildren(children: ReactNode) {
   const content: ReactNode[] = [];
   const actions: ReactNode[] = [];
+  let hasBody = false;
 
   Children.forEach(children, (child) => {
     if (isValidElement(child) && child.type === DialogActions) {
       actions.push(child);
+    } else if (isValidElement(child) && child.type === DialogBody) {
+      hasBody = true;
+      content.push(child);
     } else if (child != null && child !== false) {
       content.push(child);
     }
   });
 
-  return { content, actions };
+  return { content, actions, hasBody };
 }
 
 /** Tailles LumApps : tiny (400dp), regular (600dp), big (800dp), huge (plein écran). */
@@ -65,7 +71,7 @@ export type DialogProps = {
    * interdit de piéger le clavier.
    */
   alert?: boolean;
-  /** Croix de fermeture dans le pied de page (`DialogActions`). Ignorée si `alert`. */
+  /** Croix de fermeture en haut à droite. Ignorée si `alert`. */
   dismissible?: boolean;
   /** Nom accessible de la croix. */
   dismissLabel?: string;
@@ -148,12 +154,11 @@ export function Dialog({
     firstActionRef.current = element;
   }, []);
   const showDismiss = dismissible && !alert && !processing;
-  const { content, actions } = useMemo(
+  const { content, actions, hasBody } = useMemo(
     () => partitionDialogChildren(children),
     [children],
   );
-  const footer =
-    actions.length > 0 ? actions : showDismiss ? [<DialogActions key="dismiss" />] : [];
+  const footer = actions.length > 0 ? actions : [];
 
   const value = useMemo<DialogContextValue>(
     () => ({
@@ -219,7 +224,8 @@ export function Dialog({
                   <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
                     <div
                       className={cx(
-                        'flex min-h-0 flex-1 flex-col overflow-y-auto px-6 pt-6',
+                        'flex min-h-0 flex-1 flex-col px-6 pt-6',
+                        hasBody ? 'overflow-hidden' : 'overflow-y-auto',
                         footer.length > 0 ? 'pb-0' : 'pb-6',
                       )}
                     >
@@ -227,6 +233,17 @@ export function Dialog({
                     </div>
                     {footer}
                   </div>
+                  {showDismiss ? (
+                    <IconButton
+                      type="button"
+                      size="sm"
+                      variant="ghost"
+                      icon={<CloseGlyph />}
+                      aria-label={dismissLabel}
+                      onClick={close}
+                      className="absolute end-4 top-4 z-10 shrink-0"
+                    />
+                  ) : null}
                   {processing ? (
                     <div
                       className={cx(

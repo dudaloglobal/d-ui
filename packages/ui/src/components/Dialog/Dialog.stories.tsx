@@ -196,7 +196,7 @@ export const AlertKinds: Story = {
 };
 
 export const TintedFooter: Story = {
-  name: 'Pied de page teinté',
+  name: 'Pied de page fixe',
   args: closed,
   parameters: componentSource(
     importDialog,

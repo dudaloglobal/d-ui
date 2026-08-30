@@ -128,7 +128,7 @@ export const storyNameEn: Record<string, string> = {
   'Sans fond': 'Without background',
   'Avec action': 'With action',
   'File d’attente': 'Queue',
-  'Pied de page teinté': 'Tinted footer',
+  'Pied de page fixe': 'Fixed footer',
   'Centré, action unique': 'Centered, single action',
   'Centré, actions pleine largeur': 'Centered, wide buttons',
   Alerte: 'Alert',

@@ -2,8 +2,6 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
 import { cx } from '../../lib/cx';
 import { useIsomorphicLayoutEffect } from '../../lib/useIsomorphicLayoutEffect';
-import { IconButton } from '../Button/IconButton';
-import { CloseGlyph } from '../feedback/FeedbackIcons';
 import { Heading } from '../Heading/Heading';
 import { Text } from '../Text/Text';
 import { useDialogContext, dialogRadiusBottomClass } from './DialogContext';
@@ -38,7 +36,7 @@ export function DialogTitle({ level = 2, className, ...rest }: DialogTitleProps)
       id={dialog.titleId}
       level={level}
       size="subtitle"
-      className={className}
+      className={cx('shrink-0 pe-8', className)}
     />
   );
 }
@@ -69,7 +67,7 @@ export function DialogDescription({ className, ...rest }: DialogDescriptionProps
       id={dialog.descriptionId}
       size="body-sm"
       tone="muted"
-      className={cx('mt-2', className)}
+      className={cx('mt-2 shrink-0', className)}
     />
   );
 }
@@ -102,10 +100,8 @@ export type DialogActionsAlign = 'end' | 'start' | 'stacked';
 export type DialogActionsProps = HTMLAttributes<HTMLDivElement> & {
   align?: DialogActionsAlign;
   /**
-   * Pied de page teinté sur toute la largeur du panneau.
-   *
-   * Rendu dans la zone footer du `Dialog` : la bande file jusqu'aux bords sans
-   * marges négatives.
+   * Pied de page ancré en bas du panneau, avec les coins inférieurs alignés sur
+   * le `radius` du `Dialog`.
    */
   surface?: boolean;
   children?: ReactNode;
@@ -136,7 +132,7 @@ export function DialogActions({
   ...rest
 }: DialogActionsProps) {
   const dialog = useDialogContext('DialogActions');
-  const { registerFirstAction, radius, showDismiss, dismissLabel, close } = dialog;
+  const { registerFirstAction, radius } = dialog;
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -152,28 +148,12 @@ export function DialogActions({
       {...rest}
       ref={containerRef}
       className={cx(
-        'flex shrink-0 gap-3 px-6',
+        'flex shrink-0 gap-3 px-6 pb-6 pt-6',
         alignClass[align],
-        surface
-          ? cx(
-              'bg-surface-muted border-border border-t py-4',
-              dialogRadiusBottomClass[radius],
-            )
-          : 'pb-6 pt-4',
+        surface ? dialogRadiusBottomClass[radius] : null,
         className,
       )}
     >
-      {showDismiss ? (
-        <IconButton
-          type="button"
-          size="sm"
-          variant="ghost"
-          icon={<CloseGlyph />}
-          aria-label={dismissLabel}
-          onClick={close}
-          className={align === 'end' ? 'me-auto' : undefined}
-        />
-      ) : null}
       {children}
     </div>
   );
