@@ -1,0 +1,35 @@
+import{u as x,j as o,M as c,P as e,C as s,a as n,b as t,U as a,A as m}from"./iframe-m85d2-d1.js";import{P as l,D as j,a as d,A as k,C as u,W as h,b as v,c as f}from"./Popover.stories-Bc4s_LQx.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-C3uIi5KS.js";import"./docs-source-C_O40UCi.js";import"./Button-C7UWra0G.js";import"./Popover-B17JFO1s.js";import"./floating-qBAh7KEF.js";function i(r){const p={h1:"h1",...x(),...r.components};return o.jsxs(o.Fragment,{children:[o.jsx(c,{of:l}),`
+`,o.jsx(p.h1,{id:"popover",children:"Popover"}),`
+`,o.jsx(e,{k:"popover.intro"}),`
+`,o.jsx(e,{k:"chrome.examplesFollow"}),`
+`,o.jsx(s,{of:j}),`
+`,o.jsx(n,{k:"chrome.placement"}),`
+`,o.jsx(e,{k:"popover.usePlacement"}),`
+`,o.jsx(s,{of:d}),`
+`,o.jsx(n,{k:"chrome.alignments"}),`
+`,o.jsx(e,{k:"popover.useAlignments"}),`
+`,o.jsx(s,{of:k}),`
+`,o.jsx(n,{k:"chrome.controlled"}),`
+`,o.jsx(e,{k:"popover.useControlled"}),`
+`,o.jsx(s,{of:u}),`
+`,o.jsx(n,{k:"popover.focusTrap"}),`
+`,o.jsx(e,{k:"popover.useFocusTrap"}),`
+`,o.jsx(s,{of:h}),`
+`,o.jsx(n,{k:"chrome.specialStates"}),`
+`,o.jsx(t,{k:"chrome.disabled"}),`
+`,o.jsx(e,{k:"chrome.useDisabled"}),`
+`,o.jsx(s,{of:v}),`
+`,o.jsx(t,{k:"chrome.collision"}),`
+`,o.jsx(e,{k:"popover.useCollision"}),`
+`,o.jsx(s,{of:f}),`
+`,o.jsx(n,{k:"chrome.accessibility"}),`
+`,o.jsx(e,{k:"popover.a11yBody"}),`
+`,o.jsx(e,{k:"popover.a11yKeys"}),`
+`,o.jsx(t,{k:"chrome.do"}),`
+`,o.jsx(a,{items:["popover.doLabel","popover.doTrap","popover.doEscape"]}),`
+`,o.jsx(t,{k:"chrome.dont"}),`
+`,o.jsx(a,{items:["popover.dontTooltip","popover.dontTrapEmpty","popover.dontDialog"]}),`
+`,o.jsx(e,{k:"chrome.themeLang"}),`
+`,o.jsx(n,{k:"chrome.properties"}),`
+`,o.jsx(e,{k:"popover.propsBody"}),`
+`,o.jsx(m,{of:l,include:["content","placement","open","defaultOpen","trapFocus","disabled","aria-label","aria-labelledby"]})]})}function A(r={}){const{wrapper:p}={...x(),...r.components};return p?o.jsx(p,{...r,children:o.jsx(i,{...r})}):i(r)}export{A as default};
