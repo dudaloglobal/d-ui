@@ -44,6 +44,12 @@ import * as TooltipStories from './Tooltip.stories';
 
 <Canvas of={TooltipStories.Portal} />
 
+<H2 k="chrome.radius" />
+
+<P k="tooltip.useRadius" />
+
+<Canvas of={TooltipStories.Radius} />
+
 <H2 k="chrome.accessibility" />
 
 <P k="tooltip.a11yBody" />
@@ -66,5 +72,13 @@ import * as TooltipStories from './Tooltip.stories';
 
 <ArgTypes
   of={TooltipStories}
-  include={['content', 'placement', 'open', 'defaultOpen', 'delayMs', 'disabled']}
+  include={[
+    'content',
+    'placement',
+    'open',
+    'defaultOpen',
+    'delayMs',
+    'disabled',
+    'radius',
+  ]}
 />

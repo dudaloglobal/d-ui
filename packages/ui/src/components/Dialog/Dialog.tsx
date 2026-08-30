@@ -8,6 +8,8 @@ import {
   useRole,
 } from '@floating-ui/react';
 import {
+  Children,
+  isValidElement,
   useCallback,
   useId,
   useMemo,
@@ -22,10 +24,33 @@ import {
   useInheritedTheme,
   usePrefersReducedMotion,
 } from '../floating';
-import { DialogContext, type DialogContextValue } from './DialogContext';
+import {
+  DialogContext,
+  dialogRadiusClass,
+  type DialogContextValue,
+  type DialogRadius,
+} from './DialogContext';
+import { DialogActions } from './DialogParts';
+
+function partitionDialogChildren(children: ReactNode) {
+  const content: ReactNode[] = [];
+  const actions: ReactNode[] = [];
+
+  Children.forEach(children, (child) => {
+    if (isValidElement(child) && child.type === DialogActions) {
+      actions.push(child);
+    } else if (child != null && child !== false) {
+      content.push(child);
+    }
+  });
+
+  return { content, actions };
+}
 
 /** Tailles LumApps : tiny (400dp), regular (600dp), big (800dp), huge (plein écran). */
 export type DialogSize = 'tiny' | 'regular' | 'big' | 'huge';
+
+export type { DialogRadius } from './DialogContext';
 
 export type DialogProps = {
   open: boolean;
@@ -40,7 +65,7 @@ export type DialogProps = {
    * interdit de piéger le clavier.
    */
   alert?: boolean;
-  /** Croix de fermeture en haut à droite. Ignorée si `alert`. */
+  /** Croix de fermeture dans le pied de page (`DialogActions`). Ignorée si `alert`. */
   dismissible?: boolean;
   /** Nom accessible de la croix. */
   dismissLabel?: string;
@@ -51,6 +76,10 @@ export type DialogProps = {
    * (LumApps `isLoading`).
    */
   processing?: boolean;
+  /** Bordure `border-border` autour du panneau. Défaut : sans bordure (LumApps). */
+  bordered?: boolean;
+  /** Arrondi des coins du panneau. Défaut : `lg`. */
+  radius?: DialogRadius;
   /** Élément qui prend le focus à l'ouverture. Par défaut, le premier focusable. */
   initialFocus?: MutableRefObject<HTMLElement | null>;
   children: ReactNode;
@@ -84,6 +113,8 @@ export function Dialog({
   dismissible = false,
   dismissLabel = 'Fermer',
   processing = false,
+  bordered = false,
+  radius = 'lg',
   initialFocus,
   children,
   className,
@@ -116,18 +147,28 @@ export function Dialog({
   const registerFirstAction = useCallback((element: HTMLElement | null) => {
     firstActionRef.current = element;
   }, []);
+  const showDismiss = dismissible && !alert && !processing;
+  const { content, actions } = useMemo(
+    () => partitionDialogChildren(children),
+    [children],
+  );
+  const footer =
+    actions.length > 0 ? actions : showDismiss ? [<DialogActions key="dismiss" />] : [];
 
   const value = useMemo<DialogContextValue>(
     () => ({
       titleId: `${baseId}-title`,
       descriptionId: `${baseId}-description`,
       alert,
+      radius,
+      showDismiss,
+      dismissLabel,
       close,
       setHasTitle,
       setHasDescription,
       registerFirstAction,
     }),
-    [baseId, alert, close, registerFirstAction],
+    [baseId, alert, radius, showDismiss, dismissLabel, close, registerFirstAction],
   );
 
   /*
@@ -135,8 +176,6 @@ export function Dialog({
    * destructive — plutôt que sur le premier focusable du dialogue.
    */
   const resolvedInitialFocus = initialFocus ?? (alert ? firstActionRef : undefined);
-
-  const showDismiss = dismissible && !alert && !processing;
 
   return (
     <>
@@ -167,44 +206,33 @@ export function Dialog({
                 aria-describedby={hasDescription ? value.descriptionId : undefined}
                 aria-busy={processing || undefined}
                 className={cx(
-                  'bg-bg text-fg relative flex w-full flex-col rounded-lg shadow-[0_8px_32px_rgb(0_0_0/0.2)]',
+                  'bg-bg text-fg relative flex w-full flex-col shadow-[0_8px_32px_rgb(0_0_0/0.2)]',
                   'max-h-[calc(100dvh-2rem)] outline-none',
+                  dialogRadiusClass[radius],
+                  bordered ? 'border border-border' : null,
                   sizeClass[size],
                   reducedMotion ? null : 'd-ui-dialog-panel',
                   className,
                 )}
               >
                 <DialogContext.Provider value={value}>
-                  {showDismiss ? (
-                    <button
-                      type="button"
-                      onClick={close}
-                      aria-label={dismissLabel}
+                  <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+                    <div
                       className={cx(
-                        'text-fg-muted hover:text-fg absolute end-4 top-4 z-10 rounded-md p-1',
-                        'focus-visible:ring-focus focus-visible:ring-offset-bg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+                        'flex min-h-0 flex-1 flex-col overflow-y-auto px-6 pt-6',
+                        footer.length > 0 ? 'pb-0' : 'pb-6',
                       )}
                     >
-                      <svg
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.75"
-                        strokeLinecap="round"
-                        className="size-5"
-                        aria-hidden="true"
-                        focusable="false"
-                      >
-                        <path d="M5 5l10 10M15 5L5 15" />
-                      </svg>
-                    </button>
-                  ) : null}
-                  <div className="flex min-h-0 flex-1 flex-col overflow-hidden p-6">
-                    {children}
+                      {content}
+                    </div>
+                    {footer}
                   </div>
                   {processing ? (
                     <div
-                      className="bg-bg/70 absolute inset-0 grid place-items-center rounded-lg backdrop-blur-[1px]"
+                      className={cx(
+                        'bg-bg/70 absolute inset-0 grid place-items-center backdrop-blur-[1px]',
+                        dialogRadiusClass[radius],
+                      )}
                       aria-hidden="true"
                     >
                       <span className="d-ui-button-spinner text-brand size-8" />

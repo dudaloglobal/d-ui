@@ -16,7 +16,7 @@ const meta = {
   argTypes: tooltipArgTypes,
   parameters: {
     controls: {
-      include: ['placement', 'delayMs', 'disabled', 'content'],
+      include: ['placement', 'delayMs', 'disabled', 'content', 'radius'],
     },
   },
 } satisfies Meta<typeof Tooltip>;
@@ -166,3 +166,22 @@ function ControlledTooltip({ label, tip }: { label: string; tip: string }) {
     </Tooltip>
   );
 }
+
+export const Radius: Story = {
+  name: 'Arrondi',
+  args: { content: 'Enregistrer (⌘S)', children: <span /> },
+  parameters: componentSource(
+    importTooltip,
+    `<Tooltip content="Enregistrer (⌘S)" radius="xl">
+    <Button variant="secondary">Aide</Button>
+</Tooltip>`,
+  ),
+  render: (args, { globals }) => {
+    const copy = overlayCopy(docsLocale(globals.locale));
+    return (
+      <Tooltip {...args} content={copy.tip} radius="xl" defaultOpen delayMs={0}>
+        <Button variant="secondary">{copy.help}</Button>
+      </Tooltip>
+    );
+  },
+};

@@ -1,10 +1,29 @@
 import { createContext, useContext } from 'react';
 
+import type { CornerRadius } from '../../lib/cornerRadius';
+import { cornerRadiusClass } from '../../lib/cornerRadius';
+
+/** Coins du panneau. Défaut LumApps : `lg`. */
+export type DialogRadius = CornerRadius;
+
+export const dialogRadiusClass = cornerRadiusClass;
+
+export const dialogRadiusBottomClass: Record<DialogRadius, string> = {
+  none: 'rounded-b-none',
+  sm: 'rounded-b-sm',
+  md: 'rounded-b-md',
+  lg: 'rounded-b-lg',
+  xl: 'rounded-b-xl',
+};
+
 export type DialogContextValue = {
   titleId: string;
   descriptionId: string;
   /** Vrai pour un `alertdialog` : sortie uniquement par une action explicite. */
   alert: boolean;
+  radius: DialogRadius;
+  showDismiss: boolean;
+  dismissLabel: string;
   close: () => void;
   setHasTitle: (present: boolean) => void;
   setHasDescription: (present: boolean) => void;

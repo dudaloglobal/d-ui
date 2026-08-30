@@ -2,9 +2,11 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
 import { cx } from '../../lib/cx';
 import { useIsomorphicLayoutEffect } from '../../lib/useIsomorphicLayoutEffect';
+import { IconButton } from '../Button/IconButton';
+import { CloseGlyph } from '../feedback/FeedbackIcons';
 import { Heading } from '../Heading/Heading';
 import { Text } from '../Text/Text';
-import { useDialogContext } from './DialogContext';
+import { useDialogContext, dialogRadiusBottomClass } from './DialogContext';
 
 export type DialogTitleProps = Omit<
   HTMLAttributes<HTMLHeadingElement>,
@@ -36,7 +38,7 @@ export function DialogTitle({ level = 2, className, ...rest }: DialogTitleProps)
       id={dialog.titleId}
       level={level}
       size="subtitle"
-      className={cx('pe-8', className)}
+      className={className}
     />
   );
 }
@@ -100,13 +102,13 @@ export type DialogActionsAlign = 'end' | 'start' | 'stacked';
 export type DialogActionsProps = HTMLAttributes<HTMLDivElement> & {
   align?: DialogActionsAlign;
   /**
-   * Pied de page teinté, filant jusqu'aux bords du panneau.
+   * Pied de page teinté sur toute la largeur du panneau.
    *
-   * Les marges négatives annulent la gouttière du `Dialog` (`p-6`) : la bande
-   * ne peut donc pas être réutilisée hors d'un `Dialog`.
+   * Rendu dans la zone footer du `Dialog` : la bande file jusqu'aux bords sans
+   * marges négatives.
    */
   surface?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 const alignClass: Record<DialogActionsAlign, string> = {
@@ -134,7 +136,7 @@ export function DialogActions({
   ...rest
 }: DialogActionsProps) {
   const dialog = useDialogContext('DialogActions');
-  const { registerFirstAction } = dialog;
+  const { registerFirstAction, radius, showDismiss, dismissLabel, close } = dialog;
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -150,14 +152,28 @@ export function DialogActions({
       {...rest}
       ref={containerRef}
       className={cx(
-        'mt-6 flex gap-3',
+        'flex shrink-0 gap-3 px-6',
         alignClass[align],
         surface
-          ? 'bg-surface-muted -mx-6 -mb-6 shrink-0 rounded-b-lg px-6 py-4'
-          : 'shrink-0',
+          ? cx(
+              'bg-surface-muted border-border border-t py-4',
+              dialogRadiusBottomClass[radius],
+            )
+          : 'pb-6 pt-4',
         className,
       )}
     >
+      {showDismiss ? (
+        <IconButton
+          type="button"
+          size="sm"
+          variant="ghost"
+          icon={<CloseGlyph />}
+          aria-label={dismissLabel}
+          onClick={close}
+          className={align === 'end' ? 'me-auto' : undefined}
+        />
+      ) : null}
       {children}
     </div>
   );

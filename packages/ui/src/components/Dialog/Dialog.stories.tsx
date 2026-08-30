@@ -34,7 +34,7 @@ const meta = {
   argTypes: dialogArgTypes,
   parameters: {
     controls: {
-      include: ['size', 'alert', 'dismissible', 'processing'],
+      include: ['size', 'alert', 'dismissible', 'processing', 'bordered', 'radius'],
     },
   },
 } satisfies Meta<typeof Dialog>;
@@ -462,8 +462,6 @@ function SizesDemo({ copy }: { copy: DialogDocsCopy }) {
         open={size !== null}
         onOpenChange={(next) => setSize(next ? size : null)}
         size={size ?? 'regular'}
-        dismissible
-        dismissLabel={copy.close}
       >
         <DialogTitle>{`${copy.sizeTitle} — ${size ?? ''}`}</DialogTitle>
         <DialogDescription>{copy.sizeBody}</DialogDescription>
@@ -572,6 +570,45 @@ export const Processing: Story = {
   ),
 };
 
+export const PanelChrome: Story = {
+  name: 'Bordure et coins',
+  args: closed,
+  parameters: componentSource(
+    importDialog,
+    `<Dialog open={open} onOpenChange={setOpen} bordered radius="xl">
+    <DialogTitle>Apparence du panneau</DialogTitle>
+    <DialogDescription>
+        La bordure et l'arrondi peuvent être ajustés selon le contexte visuel.
+    </DialogDescription>
+    <DialogActions surface>
+        <Button variant="secondary" onClick={() => setOpen(false)}>Annuler</Button>
+        <Button variant="primary" onClick={() => setOpen(false)}>Continuer</Button>
+    </DialogActions>
+</Dialog>`,
+  ),
+  render: (_, { globals }) => {
+    const copy = dialogCopy(docsLocale(globals.locale));
+    return (
+      <Trigger copy={copy} label={copy.panelChromeOpen}>
+        {(open, setOpen) => (
+          <Dialog open={open} onOpenChange={setOpen} bordered radius="xl">
+            <DialogTitle>{copy.panelChromeTitle}</DialogTitle>
+            <DialogDescription>{copy.panelChromeBody}</DialogDescription>
+            <DialogActions surface>
+              <Button variant="secondary" onClick={() => setOpen(false)}>
+                {copy.cancel}
+              </Button>
+              <Button variant="primary" onClick={() => setOpen(false)}>
+                {copy.continue}
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
+      </Trigger>
+    );
+  },
+};
+
 export const Scrollable: Story = {
   name: 'Contenu défilant',
   args: closed,
@@ -632,6 +669,9 @@ export const Animation: Story = {
     <DialogDescription>
         Le fond apparaît en opacité, le panneau monte de quelques pixels.
     </DialogDescription>
+    <DialogActions>
+        <Button variant="primary" onClick={() => setOpen(false)}>Fermer</Button>
+    </DialogActions>
 </Dialog>`,
   ),
   render: (_, { globals }) => {
@@ -639,12 +679,7 @@ export const Animation: Story = {
     return (
       <Trigger copy={copy}>
         {(open, setOpen) => (
-          <Dialog
-            open={open}
-            onOpenChange={setOpen}
-            dismissible
-            dismissLabel={copy.close}
-          >
+          <Dialog open={open} onOpenChange={setOpen}>
             <DialogTitle>{copy.animationTitle}</DialogTitle>
             <DialogDescription>{copy.animationBody}</DialogDescription>
             <DialogActions>
@@ -664,7 +699,7 @@ export const WithForm: Story = {
   args: closed,
   parameters: componentSource(
     importDialog,
-    `<Dialog open={open} onOpenChange={setOpen} dismissible>
+    `<Dialog open={open} onOpenChange={setOpen}>
     <DialogTitle>Inviter un membre</DialogTitle>
     <DialogBody>
         <form id="invite" onSubmit={onSubmit} className="grid gap-4">
@@ -683,12 +718,7 @@ export const WithForm: Story = {
     return (
       <Trigger copy={copy}>
         {(open, setOpen) => (
-          <Dialog
-            open={open}
-            onOpenChange={setOpen}
-            dismissible
-            dismissLabel={copy.close}
-          >
+          <Dialog open={open} onOpenChange={setOpen}>
             <DialogTitle>{copy.inviteTitle}</DialogTitle>
             <DialogBody>
               <form

@@ -23,6 +23,7 @@ import {
   type ReactNode,
 } from 'react';
 import { cx } from '../../lib/cx';
+import { cornerRadiusClass, type CornerRadius } from '../../lib/cornerRadius';
 import {
   OVERLAY_ARROW_HEIGHT,
   OVERLAY_ARROW_WIDTH,
@@ -33,6 +34,7 @@ import {
 } from '../floating';
 
 export type PopoverPlacement = OverlayPlacement;
+export type PopoverRadius = CornerRadius;
 
 export type PopoverProps = {
   /** Contenu du panneau. */
@@ -57,6 +59,8 @@ export type PopoverProps = {
    * Sans chrome (fond, bordure, padding). Le style vient de `className`.
    */
   unstyled?: boolean;
+  /** Arrondi des coins du panneau. Défaut : `md`. */
+  radius?: PopoverRadius;
   className?: string;
   'aria-label'?: string;
   'aria-labelledby'?: string;
@@ -73,6 +77,7 @@ export function Popover({
   disabled = false,
   arrow: arrowEnabled = true,
   unstyled = false,
+  radius = 'md',
   className,
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledBy,
@@ -135,8 +140,8 @@ export function Popover({
       id={panelId}
       className={cx(
         portal.className,
-        !unstyled &&
-          'max-w-sm rounded-md border border-border bg-bg px-3 py-3 text-fg shadow-lg',
+        !unstyled && 'max-w-sm border border-border bg-bg px-3 py-3 text-fg shadow-lg',
+        cornerRadiusClass[radius],
         'outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg',
         className,
       )}

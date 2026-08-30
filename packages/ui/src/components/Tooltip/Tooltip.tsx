@@ -23,6 +23,7 @@ import {
   type ReactNode,
 } from 'react';
 import { cx } from '../../lib/cx';
+import { cornerRadiusClass, type CornerRadius } from '../../lib/cornerRadius';
 import {
   OVERLAY_ARROW_HEIGHT,
   OVERLAY_ARROW_WIDTH,
@@ -34,6 +35,7 @@ import {
 } from '../floating';
 
 export type TooltipPlacement = OverlayPlacement;
+export type TooltipRadius = CornerRadius;
 
 export type TooltipProps = {
   /** Contenu non interactif. Ne pas y placer de bouton, lien ou champ. */
@@ -50,6 +52,8 @@ export type TooltipProps = {
   delayMs?: number;
   /** Empêche l’ouverture. */
   disabled?: boolean;
+  /** Arrondi des coins du panneau. Défaut : `md`. */
+  radius?: TooltipRadius;
   className?: string;
 };
 
@@ -64,6 +68,7 @@ export function Tooltip({
   onOpenChange,
   delayMs = DEFAULT_DELAY_MS,
   disabled = false,
+  radius = 'md',
   className,
 }: TooltipProps) {
   const tooltipId = useId();
@@ -141,7 +146,8 @@ export function Tooltip({
             id={tooltipId}
             className={cx(
               portal.className,
-              'pointer-events-none max-w-xs rounded-md bg-fg px-2 py-1 text-sm text-bg shadow-md',
+              'pointer-events-none max-w-xs bg-fg px-2 py-1 text-sm text-bg shadow-md',
+              cornerRadiusClass[radius],
               className,
             )}
           >

@@ -23,6 +23,7 @@ export const docsCopy = {
     required: { fr: 'Requis', en: 'Required' },
     helper: { fr: 'Aide', en: 'Helper' },
     sizes: { fr: 'Tailles', en: 'Sizes' },
+    radius: { fr: 'Arrondi', en: 'Corner radius' },
     group: { fr: 'Groupe', en: 'Group' },
     layout: { fr: 'Disposition', en: 'Layout' },
     enabled: { fr: 'Activé', en: 'On' },
@@ -775,6 +776,10 @@ export const docsCopy = {
       fr: 'Utilisez `fullWidth` lorsque le bouton doit occuper toute la largeur du conteneur.',
       en: 'Use `fullWidth` when the button must fill the container width.',
     },
+    radiusBody: {
+      fr: '`radius` règle l’arrondi des coins (`none`, `sm`, `md`, `lg`, `xl`). Défaut : `md`. S’applique aussi à `IconButton`.',
+      en: '`radius` sets the corner rounding (`none`, `sm`, `md`, `lg`, `xl`). Default: `md`. Also applies to `IconButton`.',
+    },
     compositions: {
       fr: 'Menu et fractionné sont des **compositions** de `Button` / `IconButton` (chevron, `aria-haspopup`). Le menu déroulant complet arrive avec Menu (DS-030).',
       en: 'Menu and split are **compositions** of `Button` / `IconButton` (chevron, `aria-haspopup`). The full dropdown ships with Menu (DS-030).',
@@ -816,8 +821,8 @@ export const docsCopy = {
     },
     propsIcon: { fr: 'IconButton', en: 'IconButton' },
     propsIconBody: {
-      fr: '`IconButton` exige `aria-label`. `icon`, `variant`, `size`, `loading`, `loadingIndicator`, `fullWidth` et `isSelected` sont les mêmes que `Button`.',
-      en: '`IconButton` requires `aria-label`. `icon`, `variant`, `size`, `loading`, `loadingIndicator`, `fullWidth`, and `isSelected` match `Button`.',
+      fr: '`IconButton` exige `aria-label`. `icon`, `variant`, `size`, `radius`, `loading`, `loadingIndicator`, `fullWidth` et `isSelected` sont les mêmes que `Button`.',
+      en: '`IconButton` requires `aria-label`. `icon`, `variant`, `size`, `radius`, `loading`, `loadingIndicator`, `fullWidth`, and `isSelected` match `Button`.',
     },
   },
   checkbox: {
@@ -1274,6 +1279,10 @@ export const docsCopy = {
       fr: 'Le tooltip est rendu dans un portail (hors du flux). Il recopie `data-d-ui-theme` pour rester lisible en sombre et dans un `Dialog`.',
       en: 'The tooltip renders in a portal (out of flow). It copies `data-d-ui-theme` so it stays readable in dark mode and inside a `Dialog`.',
     },
+    useRadius: {
+      fr: '`radius` règle l’arrondi du panneau (`none`, `sm`, `md`, `lg`, `xl`). Défaut : `md`.',
+      en: '`radius` sets the panel corner rounding (`none`, `sm`, `md`, `lg`, `xl`). Default: `md`.',
+    },
     a11yBody: {
       fr: 'Le panneau a `role="tooltip"`. Le déclencheur reçoit `aria-describedby` tant que le tooltip est ouvert. Le contenu n’est pas focusable (`pointer-events-none`).',
       en: 'The panel has `role="tooltip"`. The trigger gets `aria-describedby` while the tooltip is open. The content is not focusable (`pointer-events-none`).',
@@ -1319,8 +1328,8 @@ export const docsCopy = {
     },
     composition: { fr: 'Composition', en: 'Composition' },
     compositionBody: {
-      fr: 'Le panneau est vide par défaut : vous l’assemblez à partir de quatre pièces. `DialogTitle` et `DialogDescription` s’enregistrent auprès du `Dialog`, qui pose alors lui-même `aria-labelledby` et `aria-describedby` — il n’y a pas d’identifiant à écrire à la main.',
-      en: 'The panel is empty by default: you assemble it from four parts. `DialogTitle` and `DialogDescription` register with the `Dialog`, which then sets `aria-labelledby` and `aria-describedby` itself — no ids to write by hand.',
+      fr: 'Le panneau se compose en deux zones : le corps (titre, description, contenu) et le pied de page fixe (`DialogActions`). `DialogTitle` et `DialogDescription` s’enregistrent auprès du `Dialog`, qui pose alors lui-même `aria-labelledby` et `aria-describedby` — il n’y a pas d’identifiant à écrire à la main.',
+      en: 'The panel has two zones: the body (title, description, content) and the fixed footer (`DialogActions`). `DialogTitle` and `DialogDescription` register with the `Dialog`, which then sets `aria-labelledby` and `aria-describedby` itself — no ids to write by hand.',
     },
     colPart: { fr: 'Pièce', en: 'Part' },
     colRole: { fr: 'Rôle', en: 'Role' },
@@ -1351,8 +1360,8 @@ export const docsCopy = {
     },
     tintedFooter: { fr: 'Pied de page teinté', en: 'Tinted footer' },
     useTintedFooter: {
-      fr: '`surface` sur `DialogActions` pose une bande teintée qui file jusqu’aux bords du panneau. Elle sépare la décision du contenu — utile dès que le corps est long.',
-      en: '`surface` on `DialogActions` lays a tinted band running to the panel edges. It separates the decision from the content — useful as soon as the body is long.',
+      fr: '`surface` sur `DialogActions` pose une bande teintée dans le pied de page fixe, sur toute la largeur du panneau. Elle sépare la décision du contenu — utile dès que le corps est long.',
+      en: '`surface` on `DialogActions` lays a tinted band in the fixed footer, across the full panel width. It separates the decision from the content — useful as soon as the body is long.',
     },
     centered: { fr: 'Centré, action unique', en: 'Centered, single action' },
     useCentered: {
@@ -1371,8 +1380,8 @@ export const docsCopy = {
     },
     dismiss: { fr: 'Avec croix de fermeture', en: 'With dismiss button' },
     useDismiss: {
-      fr: '`dismissible` ajoute une croix en haut à droite. Réservez-la aux dialogues sans conséquence : un contenu qu’on consulte, une information qu’on referme. Elle est ignorée si `alert`.',
-      en: '`dismissible` adds a close cross at the top right. Keep it for dialogs without consequence: content you read, information you close. It is ignored when `alert` is set.',
+      fr: '`dismissible` ajoute une croix dans le pied de page (`DialogActions`), à gauche des autres actions. Réservez-la aux dialogues sans conséquence : un contenu qu’on consulte, une information qu’on referme. Ignorée si `alert`.',
+      en: '`dismissible` adds a close cross in the footer (`DialogActions`), to the left of the other actions. Keep it for dialogs without consequence: content you read, information you close. It is ignored when `alert` is set.',
     },
     alertStart: { fr: 'Alerte, actions à gauche', en: 'Alert, left-aligned actions' },
     useAlertStart: {
@@ -1402,6 +1411,11 @@ export const docsCopy = {
     useProcessing: {
       fr: '`processing` pose un calque semi-opaque et un spinner au-dessus du panneau. Escape, le clic extérieur et la croix sont désactivés tant que la soumission est en cours — le dialogue reste ouvert jusqu’à la fin.',
       en: '`processing` lays a semi-opaque layer and spinner over the panel. Escape, outside click, and the dismiss button are disabled while submission is in progress — the dialog stays open until it finishes.',
+    },
+    panelChrome: { fr: 'Bordure et coins', en: 'Border and corners' },
+    usePanelChrome: {
+      fr: '`bordered` ajoute une bordure `border-border` autour du panneau. `radius` règle l’arrondi (`none`, `sm`, `md`, `lg`, `xl`) — le pied de page teinté (`DialogActions` avec `surface`) suit le même rayon en bas.',
+      en: '`bordered` adds a `border-border` outline around the panel. `radius` sets the corner rounding (`none`, `sm`, `md`, `lg`, `xl`) — a tinted footer (`DialogActions` with `surface`) matches the same bottom radius.',
     },
     scrollable: { fr: 'En-tête et pied de page fixes', en: 'Fixed header and footer' },
     useScrollable: {
@@ -1468,8 +1482,8 @@ export const docsCopy = {
     },
     propSurface: { fr: '`surface`', en: '`surface`' },
     propSurfaceMeaning: {
-      fr: 'Bande teintée jusqu’aux bords. Seulement dans un `Dialog` : elle annule sa gouttière.',
-      en: 'Tinted band to the panel edges. Only inside a `Dialog`: it cancels its gutter.',
+      fr: 'Bande teintée sur toute la largeur du pied de page, séparée du corps par une bordure.',
+      en: 'Tinted band across the full footer width, separated from the body by a border.',
     },
   },
   popover: {
@@ -1498,6 +1512,10 @@ export const docsCopy = {
     useCollision: {
       fr: 'Près du bord du viewport, le panneau bascule pour rester visible.',
       en: 'Near the viewport edge, the panel flips to stay visible.',
+    },
+    useRadius: {
+      fr: '`radius` règle l’arrondi du panneau (`none`, `sm`, `md`, `lg`, `xl`). Défaut : `md`. Fonctionne aussi en mode `unstyled` (ex. `EmojiPopover`).',
+      en: '`radius` sets the panel corner rounding (`none`, `sm`, `md`, `lg`, `xl`). Default: `md`. Also applies in `unstyled` mode (e.g. `EmojiPopover`).',
     },
     a11yBody: {
       fr: 'Le déclencheur pose `aria-expanded`, `aria-haspopup` et `aria-controls`. Avec `trapFocus`, le panneau a `role="dialog"` et un nom (`aria-label` ou `aria-labelledby`).',

@@ -22,13 +22,14 @@ export type {
   ButtonIconPosition,
   ButtonLoadingIndicator,
   ButtonProps,
+  ButtonRadius,
   ButtonSize,
   ButtonVariant,
 } from './components/Button/Button';
 export { IconButton } from './components/Button/IconButton';
 export type { IconButtonProps } from './components/Button/IconButton';
 export { Dialog } from './components/Dialog/Dialog';
-export type { DialogProps, DialogSize } from './components/Dialog/Dialog';
+export type { DialogProps, DialogRadius, DialogSize } from './components/Dialog/Dialog';
 export { AlertDialog } from './components/Dialog/AlertDialog';
 export type { AlertDialogKind, AlertDialogProps } from './components/Dialog/AlertDialog';
 export {
@@ -87,6 +88,7 @@ export type {
   TextTruncate,
   TextWeight,
 } from './components/Text/Text';
+export type { CornerRadius } from './lib/cornerRadius';
 export { ThemeProvider } from './theme/ThemeProvider';
 export type {
   ThemeMode,
@@ -118,9 +120,17 @@ export type { RadioGroupProps, RadioProps, RadioSize } from './components/Radio/
 export { Switch } from './components/Switch/Switch';
 export type { SwitchProps, SwitchSize } from './components/Switch/Switch';
 export { Tooltip } from './components/Tooltip/Tooltip';
-export type { TooltipPlacement, TooltipProps } from './components/Tooltip/Tooltip';
+export type {
+  TooltipPlacement,
+  TooltipProps,
+  TooltipRadius,
+} from './components/Tooltip/Tooltip';
 export { Popover } from './components/Popover/Popover';
-export type { PopoverPlacement, PopoverProps } from './components/Popover/Popover';
+export type {
+  PopoverPlacement,
+  PopoverProps,
+  PopoverRadius,
+} from './components/Popover/Popover';
 export { EmojiPopover, REACTION_EMOJIS } from './components/Popover/EmojiPopover';
 export type { EmojiPopoverProps, ReactionEmoji } from './components/Popover/EmojiPopover';
 export { Select } from './components/Select/Select';

@@ -137,4 +137,15 @@ describe('Popover', () => {
     await user.keyboard('{Escape}');
     expect(onOpenChange).toHaveBeenCalledWith(false);
   });
+
+  it('applies radius classes', () => {
+    render(
+      <Popover defaultOpen radius="xl" content={<p>Options</p>} aria-label="Options">
+        <button type="button">Ouvrir</button>
+      </Popover>,
+    );
+    expect(screen.getByRole('region', { name: 'Options' }).className).toContain(
+      'rounded-xl',
+    );
+  });
 });

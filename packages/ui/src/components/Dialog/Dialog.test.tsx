@@ -225,6 +225,56 @@ describe('Dialog', () => {
     );
   });
 
+  it('applies bordered and radius classes to the panel', async () => {
+    function Chrome() {
+      const [open, setOpen] = useState(true);
+      return (
+        <Dialog
+          open={open}
+          onOpenChange={setOpen}
+          bordered
+          radius="xl"
+          aria-label="Chrome"
+        >
+          <DialogActions surface>
+            <Button variant="primary">OK</Button>
+          </DialogActions>
+        </Dialog>
+      );
+    }
+    render(<Chrome />);
+    const dialog = await screen.findByRole('dialog');
+    expect(dialog.className).toContain('border-border');
+    expect(dialog.className).toContain('rounded-xl');
+    const footer = dialog.querySelector('[class*="rounded-b-xl"]');
+    expect(footer).toBeTruthy();
+  });
+
+  it('renders DialogActions in a dedicated footer below the scrollable content', async () => {
+    function Huge() {
+      const [open, setOpen] = useState(true);
+      return (
+        <Dialog open={open} onOpenChange={setOpen} size="huge" aria-label="Huge">
+          <DialogTitle>Largeur du panneau</DialogTitle>
+          <DialogDescription>Contenu court.</DialogDescription>
+          <DialogActions>
+            <Button variant="primary" onClick={() => setOpen(false)}>
+              Fermer
+            </Button>
+          </DialogActions>
+        </Dialog>
+      );
+    }
+    render(<Huge />);
+    await screen.findByRole('dialog');
+    const button = screen.getByRole('button', { name: 'Fermer' });
+    const footer = button.parentElement;
+    const content = footer?.previousElementSibling;
+    expect(content?.className).toContain('overflow-y-auto');
+    expect(footer?.className).toContain('shrink-0');
+    expect(footer?.className).not.toContain('mt-auto');
+  });
+
   it('blocks dismiss while processing', async () => {
     const user = userEvent.setup();
     function Processing() {
