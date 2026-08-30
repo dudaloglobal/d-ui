@@ -8,15 +8,25 @@ import {
   type DialogDocsCopy,
 } from '../../../.storybook/docs-locale';
 import { componentSource, componentSourceFn } from '../../../.storybook/docs-source';
+import { AlertDialog, type AlertDialogKind } from './AlertDialog';
 import { Button } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 import { Select } from '../Select/Select';
 import { TextInput } from '../TextInput/TextInput';
 import { Dialog, type DialogSize } from './Dialog';
-import { DialogActions, DialogBody, DialogDescription, DialogTitle } from './DialogParts';
+import {
+  DialogActions,
+  DialogBody,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from './DialogParts';
 
 const importDialog =
   "import { useState } from 'react';\nimport { Button, Dialog, DialogActions, DialogDescription, DialogTitle } from 'd-ui';";
+
+const importAlertDialog =
+  "import { useState } from 'react';\nimport { AlertDialog, Button } from 'd-ui';";
 
 const meta = {
   title: 'Components/Dialog',
@@ -24,7 +34,7 @@ const meta = {
   argTypes: dialogArgTypes,
   parameters: {
     controls: {
-      include: ['size', 'alert', 'dismissible'],
+      include: ['size', 'alert', 'dismissible', 'processing'],
     },
   },
 } satisfies Meta<typeof Dialog>;
@@ -103,6 +113,88 @@ return (
   },
 };
 
+export const ConfirmDialog: Story = {
+  name: 'Confirmation',
+  args: closed,
+  parameters: componentSource(
+    importAlertDialog,
+    `<AlertDialog
+    open={open}
+    onOpenChange={setOpen}
+    title="Confirmer l'action"
+    cancelLabel="Refuser"
+    confirmLabel="Accepter"
+>
+    Cette opération modifiera définitivement vos préférences. Voulez-vous continuer ?
+</AlertDialog>`,
+  ),
+  render: (_, { globals }) => {
+    const copy = dialogCopy(docsLocale(globals.locale));
+    return (
+      <Trigger copy={copy} label={copy.confirmOpen}>
+        {(open, setOpen) => (
+          <AlertDialog
+            open={open}
+            onOpenChange={setOpen}
+            title={copy.confirmTitle}
+            cancelLabel={copy.disagree}
+            confirmLabel={copy.agree}
+          >
+            {copy.confirmBody}
+          </AlertDialog>
+        )}
+      </Trigger>
+    );
+  },
+};
+
+function AlertKindsDemo({ copy }: { copy: DialogDocsCopy }) {
+  const [kind, setKind] = useState<AlertDialogKind | null>(null);
+  const kinds: { kind: AlertDialogKind; label: string }[] = [
+    { kind: 'warning', label: copy.warning },
+    { kind: 'error', label: copy.error },
+    { kind: 'success', label: copy.success },
+  ];
+  return (
+    <div className="flex flex-wrap justify-center gap-3 p-6">
+      {kinds.map(({ kind: value, label }) => (
+        <Button key={value} variant="secondary" onClick={() => setKind(value)}>
+          {label}
+        </Button>
+      ))}
+      <AlertDialog
+        open={kind !== null}
+        onOpenChange={(next) => setKind(next ? kind : null)}
+        kind={kind ?? undefined}
+        title={copy.alertTitle}
+        confirmLabel={copy.ok}
+      >
+        {copy.alertBody}
+      </AlertDialog>
+    </div>
+  );
+}
+
+export const AlertKinds: Story = {
+  name: 'Alerte par variante',
+  args: closed,
+  parameters: componentSource(
+    importAlertDialog,
+    `<AlertDialog
+    open={open}
+    onOpenChange={setOpen}
+    kind="warning"
+    title="Alerte"
+    confirmLabel="OK"
+>
+    Un événement important requiert votre attention.
+</AlertDialog>`,
+  ),
+  render: (_, { globals }) => (
+    <AlertKindsDemo copy={dialogCopy(docsLocale(globals.locale))} />
+  ),
+};
+
 export const TintedFooter: Story = {
   name: 'Pied de page teinté',
   args: closed,
@@ -147,7 +239,7 @@ export const CenteredSingleAction: Story = {
   args: closed,
   parameters: componentSource(
     importDialog,
-    `<Dialog open={open} onOpenChange={setOpen} size="sm">
+    `<Dialog open={open} onOpenChange={setOpen} size="tiny">
     <div className="text-center">
         <Icon as={CheckIcon} size="lg" className="text-success" />
         <DialogTitle className="pe-0 mt-3">Paiement accepté</DialogTitle>
@@ -163,7 +255,7 @@ export const CenteredSingleAction: Story = {
     return (
       <Trigger copy={copy}>
         {(open, setOpen) => (
-          <Dialog open={open} onOpenChange={setOpen} size="sm">
+          <Dialog open={open} onOpenChange={setOpen} size="tiny">
             <div className="text-center">
               <span className="bg-success/15 text-success mx-auto flex size-12 items-center justify-center rounded-full">
                 <Icon as={CheckIcon} size="lg" />
@@ -188,7 +280,7 @@ export const CenteredWideButtons: Story = {
   args: closed,
   parameters: componentSource(
     importDialog,
-    `<Dialog open={open} onOpenChange={setOpen} size="sm">
+    `<Dialog open={open} onOpenChange={setOpen} size="tiny">
     <DialogTitle className="pe-0 text-center">Quitter sans enregistrer ?</DialogTitle>
     <DialogDescription className="text-center">
         Les modifications apportées depuis la dernière sauvegarde seront perdues.
@@ -204,7 +296,7 @@ export const CenteredWideButtons: Story = {
     return (
       <Trigger copy={copy}>
         {(open, setOpen) => (
-          <Dialog open={open} onOpenChange={setOpen} size="sm">
+          <Dialog open={open} onOpenChange={setOpen} size="tiny">
             <DialogTitle className="pe-0 text-center">{copy.leaveTitle}</DialogTitle>
             <DialogDescription className="text-center">
               {copy.leaveBody}
@@ -350,21 +442,26 @@ export const AlertLeftAligned: Story = {
   },
 };
 
-const SIZES: DialogSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];
+const SIZES: { size: DialogSize; labelKey: keyof DialogDocsCopy }[] = [
+  { size: 'tiny', labelKey: 'tiny' },
+  { size: 'regular', labelKey: 'regular' },
+  { size: 'big', labelKey: 'big' },
+  { size: 'huge', labelKey: 'huge' },
+];
 
 function SizesDemo({ copy }: { copy: DialogDocsCopy }) {
   const [size, setSize] = useState<DialogSize | null>(null);
   return (
     <div className="flex flex-wrap justify-center gap-3 p-6">
-      {SIZES.map((value) => (
+      {SIZES.map(({ size: value, labelKey }) => (
         <Button key={value} variant="secondary" onClick={() => setSize(value)}>
-          {value}
+          {copy[labelKey]}
         </Button>
       ))}
       <Dialog
         open={size !== null}
         onOpenChange={(next) => setSize(next ? size : null)}
-        size={size ?? 'md'}
+        size={size ?? 'regular'}
         dismissible
         dismissLabel={copy.close}
       >
@@ -385,7 +482,7 @@ export const Sizes: Story = {
   args: closed,
   parameters: componentSource(
     importDialog,
-    `<Dialog open={open} onOpenChange={setOpen} size="xl">
+    `<Dialog open={open} onOpenChange={setOpen} size="big">
     <DialogTitle>Largeur du panneau</DialogTitle>
     <DialogDescription>
         Sous le point de rupture sm, toutes les tailles occupent la largeur disponible.
@@ -393,6 +490,132 @@ export const Sizes: Story = {
 </Dialog>`,
   ),
   render: (_, { globals }) => <SizesDemo copy={dialogCopy(docsLocale(globals.locale))} />,
+};
+
+function ProcessingDemo({ copy }: { copy: DialogDocsCopy }) {
+  const [open, setOpen] = useState(false);
+  const [processing, setProcessing] = useState(false);
+
+  return (
+    <div className="flex justify-center p-6">
+      <Button variant="secondary" onClick={() => setOpen(true)}>
+        {copy.processingOpen}
+      </Button>
+      <Dialog
+        open={open}
+        onOpenChange={(next) => {
+          if (!processing) setOpen(next);
+        }}
+        processing={processing}
+      >
+        <DialogTitle>{copy.processingTitle}</DialogTitle>
+        <DialogDescription>{copy.processingBody}</DialogDescription>
+        <DialogActions>
+          <Button variant="secondary" disabled={processing} onClick={() => setOpen(false)}>
+            {copy.cancel}
+          </Button>
+          <Button
+            variant="primary"
+            loading={processing}
+            onClick={() => {
+              setProcessing(true);
+              window.setTimeout(() => {
+                setProcessing(false);
+                setOpen(false);
+              }, 2000);
+            }}
+          >
+            {copy.save}
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+}
+
+export const Processing: Story = {
+  name: 'Traitement en cours',
+  args: closed,
+  parameters: componentSource(
+    importDialog,
+    `const [processing, setProcessing] = useState(false);
+
+<Dialog open={open} onOpenChange={setOpen} processing={processing}>
+    <DialogTitle>Enregistrement en cours</DialogTitle>
+    <DialogDescription>Vos modifications sont en cours d'enregistrement.</DialogDescription>
+    <DialogActions>
+        <Button variant="secondary" onClick={() => setOpen(false)} disabled={processing}>
+            Annuler
+        </Button>
+        <Button
+            variant="primary"
+            loading={processing}
+            onClick={() => {
+                setProcessing(true);
+                setTimeout(() => {
+                    setProcessing(false);
+                    setOpen(false);
+                }, 2000);
+            }}
+        >
+            Enregistrer
+        </Button>
+    </DialogActions>
+</Dialog>`,
+  ),
+  render: (_, { globals }) => (
+    <ProcessingDemo copy={dialogCopy(docsLocale(globals.locale))} />
+  ),
+};
+
+export const Scrollable: Story = {
+  name: 'Contenu défilant',
+  args: closed,
+  parameters: componentSource(
+    importDialog,
+    `<Dialog open={open} onOpenChange={setOpen} size="big">
+    <DialogHeader>
+        <DialogTitle>Conditions d'utilisation</DialogTitle>
+    </DialogHeader>
+    <DialogBody>
+        <p>{longText}</p>
+    </DialogBody>
+    <DialogActions surface>
+        <Button variant="secondary" onClick={() => setOpen(false)}>Refuser</Button>
+        <Button variant="primary" onClick={() => setOpen(false)}>Accepter</Button>
+    </DialogActions>
+</Dialog>`,
+  ),
+  render: (_, { globals }) => {
+    const copy = dialogCopy(docsLocale(globals.locale));
+    const paragraphs = Array.from({ length: 8 }, () => copy.scrollParagraph);
+    return (
+      <Trigger copy={copy} label={copy.scrollOpen}>
+        {(open, setOpen) => (
+          <Dialog open={open} onOpenChange={setOpen} size="big">
+            <DialogHeader>
+              <DialogTitle className="pe-0">{copy.scrollTitle}</DialogTitle>
+            </DialogHeader>
+            <DialogBody className="space-y-4">
+              {paragraphs.map((text, index) => (
+                <p key={index} className="text-fg-muted text-sm">
+                  {text}
+                </p>
+              ))}
+            </DialogBody>
+            <DialogActions surface>
+              <Button variant="secondary" onClick={() => setOpen(false)}>
+                {copy.disagree}
+              </Button>
+              <Button variant="primary" onClick={() => setOpen(false)}>
+                {copy.agree}
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
+      </Trigger>
+    );
+  },
 };
 
 export const Animation: Story = {
@@ -445,7 +668,7 @@ export const WithForm: Story = {
             <Select name="role" label="Rôle" options={roles} defaultValue="editor" />
         </form>
     </DialogBody>
-    <DialogActions>
+    <DialogActions surface>
         <Button variant="secondary" onClick={() => setOpen(false)}>Annuler</Button>
         <Button variant="primary" type="submit" form="invite">Envoyer l'invitation</Button>
     </DialogActions>

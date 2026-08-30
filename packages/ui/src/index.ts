@@ -29,10 +29,13 @@ export { IconButton } from './components/Button/IconButton';
 export type { IconButtonProps } from './components/Button/IconButton';
 export { Dialog } from './components/Dialog/Dialog';
 export type { DialogProps, DialogSize } from './components/Dialog/Dialog';
+export { AlertDialog } from './components/Dialog/AlertDialog';
+export type { AlertDialogKind, AlertDialogProps } from './components/Dialog/AlertDialog';
 export {
   DialogActions,
   DialogBody,
   DialogDescription,
+  DialogHeader,
   DialogTitle,
 } from './components/Dialog/DialogParts';
 export type {
@@ -40,6 +43,7 @@ export type {
   DialogActionsProps,
   DialogBodyProps,
   DialogDescriptionProps,
+  DialogHeaderProps,
   DialogTitleProps,
 } from './components/Dialog/DialogParts';
 export { Divider } from './components/Divider/Divider';

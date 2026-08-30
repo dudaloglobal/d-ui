@@ -72,11 +72,30 @@ export function DialogDescription({ className, ...rest }: DialogDescriptionProps
   );
 }
 
+export type DialogHeaderProps = HTMLAttributes<HTMLElement>;
+
+/**
+ * En-tête fixe en haut du panneau (LumApps Toolbar).
+ *
+ * Au défilement du corps, l'en-tête reste visible : le panneau est une colonne
+ * flex et seul le `DialogBody` défile.
+ */
+export function DialogHeader({ className, ...rest }: DialogHeaderProps) {
+  return (
+    <header
+      {...rest}
+      className={cx('border-border shrink-0 border-b pb-4', className)}
+    />
+  );
+}
+
 export type DialogBodyProps = HTMLAttributes<HTMLDivElement>;
 
-/** Contenu principal — formulaire, liste, texte long. */
+/** Contenu principal — formulaire, liste, texte long. Défile si le panneau dépasse. */
 export function DialogBody({ className, ...rest }: DialogBodyProps) {
-  return <div {...rest} className={cx('mt-4', className)} />;
+  return (
+    <div {...rest} className={cx('mt-4 min-h-0 flex-1 overflow-y-auto', className)} />
+  );
 }
 
 export type DialogActionsAlign = 'end' | 'start' | 'stacked';
@@ -136,7 +155,7 @@ export function DialogActions({
       className={cx(
         'mt-6 flex gap-3',
         alignClass[align],
-        surface ? 'bg-surface-muted -mx-6 -mb-6 rounded-b-lg px-6 py-4' : null,
+        surface ? 'bg-surface-muted -mx-6 -mb-6 shrink-0 rounded-b-lg px-6 py-4' : 'shrink-0',
         className,
       )}
     >

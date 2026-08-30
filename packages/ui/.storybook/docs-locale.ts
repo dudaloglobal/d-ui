@@ -136,6 +136,10 @@ export const storyNameEn: Record<string, string> = {
   'Alerte, actions à gauche': 'Alert, left-aligned actions',
   Animation: 'Animation',
   'Avec formulaire': 'With a form',
+  Confirmation: 'Confirm dialog',
+  'Alerte par variante': 'Alert by kind',
+  'Traitement en cours': 'Processing',
+  'Contenu défilant': 'Scrollable content',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -1066,6 +1070,33 @@ const dialogFr = {
   roleEditor: 'Éditeur',
   roleViewer: 'Lecteur',
   send: 'Envoyer l’invitation',
+  confirmOpen: 'Essayer la confirmation',
+  confirmTitle: 'Confirmer l’action',
+  confirmBody:
+    'Cette opération modifiera définitivement vos préférences. Voulez-vous continuer ?',
+  agree: 'Accepter',
+  disagree: 'Refuser',
+  alertOpen: 'Alerte',
+  warning: 'Avertissement',
+  error: 'Erreur',
+  success: 'Succès',
+  alertTitle: 'Alerte',
+  alertBody:
+    'Un événement important requiert votre attention. Consultez les détails avant de continuer.',
+  ok: 'OK',
+  processingOpen: 'Ouvrir le dialogue en traitement',
+  processingTitle: 'Enregistrement en cours',
+  processingBody:
+    'Vos modifications sont en cours d’enregistrement. Le dialogue reste ouvert jusqu’à la fin du traitement.',
+  save: 'Enregistrer',
+  scrollOpen: 'Dialogue avec contenu long',
+  scrollTitle: 'Conditions d’utilisation',
+  scrollParagraph:
+    'Le contenu défile entre l’en-tête et le pied de page fixes. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet urna quis nisi sodales semper pharetra eu augue. Integer legentibus erat a ante historiarum dapibus. Praeterea iter est quasdam res quas ex communi. Ullamco laboris nisi ut aliquid ex ea commodi consequat.',
+  tiny: 'Tiny',
+  regular: 'Regular',
+  big: 'Big',
+  huge: 'Huge',
 };
 
 const dialogEn = {
@@ -1104,6 +1135,33 @@ const dialogEn = {
   roleEditor: 'Editor',
   roleViewer: 'Viewer',
   send: 'Send invitation',
+  confirmOpen: 'Try confirm dialog',
+  confirmTitle: 'Confirm action',
+  confirmBody:
+    'This operation will permanently change your preferences. Do you want to continue?',
+  agree: 'Agree',
+  disagree: 'Disagree',
+  alertOpen: 'Alert',
+  warning: 'Warning',
+  error: 'Error',
+  success: 'Success',
+  alertTitle: 'Alert dialog',
+  alertBody:
+    'An important event requires your attention. Review the details before continuing.',
+  ok: 'OK',
+  processingOpen: 'Open processing dialog',
+  processingTitle: 'Saving in progress',
+  processingBody:
+    'Your changes are being saved. The dialog stays open until processing completes.',
+  save: 'Save',
+  scrollOpen: 'Long content dialog',
+  scrollTitle: 'Terms of use',
+  scrollParagraph:
+    'Content scrolls between the fixed header and footer. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet urna quis nisi sodales semper pharetra eu augue. Integer legentibus erat a ante historiarum dapibus. Praeterea iter est quasdam res quas ex communi. Ullamco laboris nisi ut aliquid ex ea commodi consequat.',
+  tiny: 'Tiny',
+  regular: 'Regular',
+  big: 'Big',
+  huge: 'Huge',
 };
 
 export type DialogDocsCopy = typeof dialogFr;

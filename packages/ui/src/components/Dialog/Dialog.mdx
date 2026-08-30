@@ -19,6 +19,7 @@ import * as DialogStories from './Dialog.stories';
 <Table
   headers={['dialog.colPart', 'dialog.colRole']}
   rows={[
+    ['dialog.partHeader', 'dialog.partHeaderRole'],
     ['dialog.partTitle', 'dialog.partTitleRole'],
     ['dialog.partDescription', 'dialog.partDescriptionRole'],
     ['dialog.partBody', 'dialog.partBodyRole'],
@@ -26,9 +27,27 @@ import * as DialogStories from './Dialog.stories';
   ]}
 />
 
+<H3 k="dialog.scrollable" />
+
+<P k="dialog.useScrollable" />
+
+<Canvas of={DialogStories.Scrollable} />
+
 <H2 k="dialog.kinds" />
 
 <P k="dialog.kindsBody" />
+
+<H3 k="dialog.confirm" />
+
+<P k="dialog.useConfirm" />
+
+<Canvas of={DialogStories.ConfirmDialog} />
+
+<H3 k="dialog.alertKinds" />
+
+<P k="dialog.useAlertKinds" />
+
+<Canvas of={DialogStories.AlertKinds} />
 
 <H3 k="dialog.tintedFooter" />
 
@@ -78,6 +97,12 @@ import * as DialogStories from './Dialog.stories';
 
 <Canvas of={DialogStories.Sizes} />
 
+<H2 k="dialog.processing" />
+
+<P k="dialog.useProcessing" />
+
+<Canvas of={DialogStories.Processing} />
+
 <H2 k="dialog.animation" />
 
 <P k="dialog.useAnimation" />
@@ -113,6 +138,7 @@ import * as DialogStories from './Dialog.stories';
     'alert',
     'dismissible',
     'dismissLabel',
+    'processing',
     'initialFocus',
     'aria-label',
     'children',

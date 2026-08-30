@@ -1385,8 +1385,33 @@ export const docsCopy = {
       en: 'A `form` inside `DialogBody`, its submit button in `DialogActions` through `form="…"`. The first field takes focus on opening: that is the default, the first focusable control. Long-form dialogs are a signal — past a few fields, a page beats a modal layer.',
     },
     useSizes: {
-      fr: '`size` fixe une largeur maximale, de `xs` à `2xl`. Sous le point de rupture `sm`, toutes les tailles occupent la largeur disponible : sur téléphone, il n’y a qu’une largeur.',
-      en: '`size` sets a maximum width, from `xs` to `2xl`. Below the `sm` breakpoint every size takes the available width: on a phone there is only one width.',
+      fr: '`size` fixe une largeur maximale LumApps : `tiny` (400 dp), `regular` (600 dp), `big` (800 dp), `huge` (plein écran). Sous le point de rupture `sm`, toutes les tailles occupent la largeur disponible.',
+      en: '`size` sets a LumApps maximum width: `tiny` (400 dp), `regular` (600 dp), `big` (800 dp), `huge` (full screen). Below the `sm` breakpoint every size takes the available width.',
+    },
+    confirm: { fr: 'Dialogue de confirmation', en: 'Confirm dialog' },
+    useConfirm: {
+      fr: '`AlertDialog` sans `kind` : deux actions (`cancelLabel` + `confirmLabel`). Le dialogue ne se ferme pas au clic extérieur ni à la croix — seulement par une action explicite. `Escape` reste actif (WCAG 2.1.2).',
+      en: '`AlertDialog` without `kind`: two actions (`cancelLabel` + `confirmLabel`). The dialog does not close on outside click or the dismiss button — only through an explicit action. `Escape` stays live (WCAG 2.1.2).',
+    },
+    alertKinds: { fr: 'Alerte par variante', en: 'Alert by kind' },
+    useAlertKinds: {
+      fr: '`AlertDialog` avec `kind` (`warning`, `error`, `success`) : icône teintée à gauche et une seule action `confirmLabel`. Interrompt l’utilisateur avec une information urgente.',
+      en: '`AlertDialog` with `kind` (`warning`, `error`, `success`): tinted icon on the left and a single `confirmLabel` action. Interrupts the user with urgent information.',
+    },
+    processing: { fr: 'État de traitement', en: 'Processing state' },
+    useProcessing: {
+      fr: '`processing` pose un calque semi-opaque et un spinner au-dessus du panneau. Escape, le clic extérieur et la croix sont désactivés tant que la soumission est en cours — le dialogue reste ouvert jusqu’à la fin.',
+      en: '`processing` lays a semi-opaque layer and spinner over the panel. Escape, outside click, and the dismiss button are disabled while submission is in progress — the dialog stays open until it finishes.',
+    },
+    scrollable: { fr: 'En-tête et pied de page fixes', en: 'Fixed header and footer' },
+    useScrollable: {
+      fr: 'Assemblez `DialogHeader`, `DialogBody` et `DialogActions` : au défilement, l’en-tête reste en haut et le pied de page en bas ; seul le corps défile.',
+      en: 'Assemble `DialogHeader`, `DialogBody`, and `DialogActions`: on scroll, the header stays at the top and the footer at the bottom; only the body scrolls.',
+    },
+    partHeader: { fr: '`DialogHeader`', en: '`DialogHeader`' },
+    partHeaderRole: {
+      fr: 'En-tête fixe (LumApps Toolbar). Contient le titre.',
+      en: 'Fixed header (LumApps Toolbar). Holds the title.',
     },
     animation: { fr: 'Animation', en: 'Animation' },
     useAnimation: {

@@ -24,7 +24,8 @@ import {
 } from '../floating';
 import { DialogContext, type DialogContextValue } from './DialogContext';
 
-export type DialogSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+/** Tailles LumApps : tiny (400dp), regular (600dp), big (800dp), huge (plein écran). */
+export type DialogSize = 'tiny' | 'regular' | 'big' | 'huge';
 
 export type DialogProps = {
   open: boolean;
@@ -43,6 +44,13 @@ export type DialogProps = {
   dismissible?: boolean;
   /** Nom accessible de la croix. */
   dismissLabel?: string;
+  /**
+   * État de traitement : calque semi-opaque et spinner au-dessus du panneau.
+   *
+   * Les interactions sont bloquées tant que la soumission est en cours
+   * (LumApps `isLoading`).
+   */
+  processing?: boolean;
   /** Élément qui prend le focus à l'ouverture. Par défaut, le premier focusable. */
   initialFocus?: MutableRefObject<HTMLElement | null>;
   children: ReactNode;
@@ -51,14 +59,11 @@ export type DialogProps = {
   'aria-label'?: string;
 };
 
-/** Largeurs maximales. En dessous de `sm`, toutes retombent sur la même. */
 const sizeClass: Record<DialogSize, string> = {
-  xs: 'sm:max-w-xs',
-  sm: 'sm:max-w-sm',
-  md: 'sm:max-w-lg',
-  lg: 'sm:max-w-2xl',
-  xl: 'sm:max-w-4xl',
-  '2xl': 'sm:max-w-6xl',
+  tiny: 'sm:max-w-[400px]',
+  regular: 'sm:max-w-[600px]',
+  big: 'sm:max-w-[800px]',
+  huge: 'sm:max-h-[calc(100dvh-2rem)] sm:min-h-[calc(100dvh-2rem)] sm:max-w-[calc(100vw-2rem)] sm:min-w-[calc(100vw-2rem)]',
 };
 
 /**
@@ -74,10 +79,11 @@ const sizeClass: Record<DialogSize, string> = {
 export function Dialog({
   open,
   onOpenChange,
-  size = 'md',
+  size = 'regular',
   alert = false,
   dismissible = false,
   dismissLabel = 'Fermer',
+  processing = false,
   initialFocus,
   children,
   className,
@@ -95,7 +101,7 @@ export function Dialog({
    * `alert` retire le clic extérieur, pas `Escape` : un dialogue dont on ne
    * peut pas sortir au clavier serait un piège (WCAG 2.1.2).
    */
-  const dismiss = useDismiss(context, { outsidePress: !alert, escapeKey: true });
+  const dismiss = useDismiss(context, { outsidePress: !alert && !processing, escapeKey: !processing });
   const role = useRole(context, { role: alert ? 'alertdialog' : 'dialog' });
   const { getFloatingProps } = useInteractions([dismiss, role]);
 
@@ -127,7 +133,7 @@ export function Dialog({
    */
   const resolvedInitialFocus = initialFocus ?? (alert ? firstActionRef : undefined);
 
-  const showDismiss = dismissible && !alert;
+  const showDismiss = dismissible && !alert && !processing;
 
   return (
     <>
@@ -140,7 +146,7 @@ export function Dialog({
             className={cx(
               portal.className,
               'grid place-items-center overflow-y-auto p-4',
-              'bg-fg/40',
+              'bg-black/70',
               reducedMotion ? null : 'd-ui-dialog-overlay',
             )}
           >
@@ -156,9 +162,10 @@ export function Dialog({
                 aria-label={hasTitle ? undefined : ariaLabel}
                 aria-labelledby={hasTitle ? value.titleId : undefined}
                 aria-describedby={hasDescription ? value.descriptionId : undefined}
+                aria-busy={processing || undefined}
                 className={cx(
-                  'bg-bg text-fg border-border relative w-full rounded-lg border shadow-xl',
-                  'p-6 outline-none',
+                  'bg-bg text-fg relative flex w-full flex-col rounded-lg shadow-[0_8px_32px_rgb(0_0_0/0.2)]',
+                  'max-h-[calc(100dvh-2rem)] outline-none',
                   sizeClass[size],
                   reducedMotion ? null : 'd-ui-dialog-panel',
                   className,
@@ -171,7 +178,7 @@ export function Dialog({
                       onClick={close}
                       aria-label={dismissLabel}
                       className={cx(
-                        'text-fg-muted hover:text-fg absolute end-4 top-4 rounded-md p-1',
+                        'text-fg-muted hover:text-fg absolute end-4 top-4 z-10 rounded-md p-1',
                         'focus-visible:ring-focus focus-visible:ring-offset-bg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
                       )}
                     >
@@ -189,7 +196,17 @@ export function Dialog({
                       </svg>
                     </button>
                   ) : null}
-                  {children}
+                  <div className="flex min-h-0 flex-1 flex-col overflow-hidden p-6">
+                    {children}
+                  </div>
+                  {processing ? (
+                    <div
+                      className="bg-bg/70 absolute inset-0 grid place-items-center rounded-lg backdrop-blur-[1px]"
+                      aria-hidden="true"
+                    >
+                      <span className="d-ui-button-spinner text-brand size-8" />
+                    </div>
+                  ) : null}
                 </DialogContext.Provider>
               </div>
             </FloatingFocusManager>

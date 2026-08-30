@@ -318,9 +318,9 @@ export const dialogArgTypes = {
   },
   size: {
     control: 'select' as const,
-    options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+    options: ['tiny', 'regular', 'big', 'huge'],
     description:
-      'Largeur maximale du panneau. Toutes les tailles retombent pleine largeur sous le point de rupture `sm`. Défaut : `md`.',
+      'Largeur maximale du panneau (LumApps : 400 / 600 / 800 dp, ou plein écran pour `huge`). Toutes les tailles retombent pleine largeur sous le point de rupture `sm`. Défaut : `regular`.',
   },
   alert: {
     control: 'boolean' as const,
@@ -329,10 +329,15 @@ export const dialogArgTypes = {
   },
   dismissible: {
     control: 'boolean' as const,
-    description: 'Croix de fermeture en haut à droite. Ignorée si `alert`.',
+    description: 'Croix de fermeture en haut à droite. Ignorée si `alert` ou `processing`.',
   },
   dismissLabel: {
     description: 'Nom accessible de la croix. Défaut : `"Fermer"`.',
+  },
+  processing: {
+    control: 'boolean' as const,
+    description:
+      'État de traitement : calque semi-opaque et spinner. Bloque les interactions et désactive Escape / clic extérieur tant que la soumission est en cours.',
   },
   initialFocus: {
     control: { disable: true },

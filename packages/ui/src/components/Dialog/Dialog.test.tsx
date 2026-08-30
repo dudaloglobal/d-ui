@@ -225,6 +225,29 @@ describe('Dialog', () => {
     );
   });
 
+  it('blocks dismiss while processing', async () => {
+    const user = userEvent.setup();
+    function Processing() {
+      const [open, setOpen] = useState(true);
+      return (
+        <Dialog open={open} onOpenChange={setOpen} processing dismissible>
+          <DialogTitle>Enregistrement</DialogTitle>
+          <DialogBody>Contenu</DialogBody>
+        </Dialog>
+      );
+    }
+    render(<Processing />);
+    const dialog = await screen.findByRole('dialog');
+    expect(dialog).toHaveAttribute('aria-busy', 'true');
+    expect(screen.queryByRole('button', { name: 'Fermer' })).not.toBeInTheDocument();
+
+    await user.keyboard('{Escape}');
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+    await user.click(dialog.parentElement as HTMLElement);
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+  });
+
   it('refuses to render a part outside a Dialog', () => {
     const error = vi.spyOn(console, 'error').mockImplementation(() => {});
     function Orphan() {
