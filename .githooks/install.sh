@@ -12,6 +12,7 @@ chmod +x "$root/.githooks/commit-msg" \
   "$root/.githooks/prepare-commit-msg" \
   "$root/.githooks/pre-push" \
   "$root/.githooks/pre-commit" \
+  "$root/.githooks/ensure-github-issue" \
   "$root/.githooks/install.sh"
 
 if git -C "$root" config core.hooksPath .githooks; then

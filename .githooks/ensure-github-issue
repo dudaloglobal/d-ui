@@ -1,0 +1,128 @@
+#!/bin/sh
+# Link a GitHub issue before push. Create one only when the work is brand-new
+# and nothing in the backlog (open or closed) already tracks it.
+# Local only (not CI). Requires `gh` authenticated as the developer.
+set -e
+
+if [ -n "$CI" ]; then
+  exit 0
+fi
+
+if [ -n "$SKIP_GITHUB_ISSUE" ]; then
+  echo "ensure-issue: SKIP_GITHUB_ISSUE is set — skipping." >&2
+  exit 0
+fi
+
+branch="$(git rev-parse --abbrev-ref HEAD)"
+case "$branch" in
+  main | master | HEAD)
+    exit 0
+    ;;
+  dependabot/*)
+    exit 0
+    ;;
+esac
+
+if ! command -v gh >/dev/null 2>&1; then
+  echo "ensure-issue: \`gh\` is required before push." >&2
+  echo "Install GitHub CLI and run: gh auth login" >&2
+  echo "Emergency: SKIP_GITHUB_ISSUE=1 git push" >&2
+  exit 1
+fi
+
+if ! gh auth status >/dev/null 2>&1; then
+  echo "ensure-issue: \`gh\` is not authenticated. Run: gh auth login" >&2
+  exit 1
+fi
+
+root="$(git rev-parse --show-toplevel)"
+cd "$root"
+
+pr_number=""
+pr_body=""
+if pr_json="$(gh pr view --json number,body 2>/dev/null)"; then
+  pr_number="$(printf '%s' "$pr_json" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("number") or "")')"
+  pr_body="$(printf '%s' "$pr_json" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("body") or "")')"
+fi
+
+log_text="$(git log origin/main..HEAD --format=%B 2>/dev/null || git log -20 --format=%B)"
+subject="$(git log -1 --format=%s 2>/dev/null || printf '%s' "$branch")"
+changed="$(git diff --name-only origin/main...HEAD 2>/dev/null || git diff --name-only HEAD)"
+
+export ENSURE_BRANCH="$branch"
+export ENSURE_SUBJECT="$subject"
+export ENSURE_PR_BODY="$pr_body"
+export ENSURE_LOG="$log_text"
+export ENSURE_CHANGED="$changed"
+
+result="$(
+  gh issue list --state all --limit 200 --json number,title,body,state |
+    python3 "$root/.githooks/ensure-github-issue.py"
+)"
+
+action="${result%% *}"
+issue=""
+reason=""
+if [ "$action" = "reuse" ]; then
+  issue="$(printf '%s' "$result" | awk '{print $2}')"
+  reason="$(printf '%s' "$result" | awk '{print $3}')"
+  echo "ensure-issue: existing #$issue ($reason) — not creating a new one." >&2
+elif [ "$action" = "skip" ]; then
+  echo "ensure-issue: no new issue ($result) — not brand-new work, and none was linked." >&2
+  echo "ISSUE="
+  exit 0
+elif [ "$action" = "create" ]; then
+  issue_body_file="$(mktemp "${TMPDIR:-/tmp}/d-ui-issue.XXXXXX")"
+  trap 'rm -f "$issue_body_file"' EXIT
+  cat >"$issue_body_file" <<END
+## Objectif
+
+$subject
+
+## Perimetre
+
+Travail porte par la branche $branch. Issue creee uniquement parce qu aucun ticket backlog (ouvert ou ferme) ne couvrait deja ce travail nouveau.
+
+## Criteres d acceptation
+
+- [ ] Une PR vers main reference cette issue avec Closes
+- [ ] Revue locale YAGNI SOLID KISS DRY accessibilite HTML semantique options documentees
+
+## Branche
+
+$branch
+END
+  url="$(
+    gh issue create \
+      --title "$subject" \
+      --body-file "$issue_body_file" \
+      --assignee "@me" \
+      --label "type:chore" \
+      --label "area:devops"
+  )"
+  rm -f "$issue_body_file"
+  trap - EXIT
+  issue="$(printf '%s' "$url" | grep -Eo '[0-9]+$')"
+  if [ -z "$issue" ]; then
+    echo "ensure-issue: created an issue but could not parse the number from: $url" >&2
+    exit 1
+  fi
+  padded="$(printf '%03d' "$issue")"
+  gh issue edit "$issue" --title "DS-${padded} — ${subject}" >/dev/null
+  echo "ensure-issue: created #$issue (brand-new, nothing in the backlog) — $url" >&2
+else
+  echo "ensure-issue: unexpected result: $result" >&2
+  exit 1
+fi
+
+if [ -n "$pr_number" ] && [ -n "$issue" ]; then
+  ENSURE_PR_NUMBER="$pr_number" ENSURE_ISSUE="$issue" \
+    python3 "$root/.githooks/ensure-github-issue.py" --patch-pr
+  echo "ensure-issue: PR #$pr_number Ticket → Closes #$issue" >&2
+  if [ -x "$root/.github/scripts/sync-project-status.sh" ]; then
+    "$root/.github/scripts/sync-project-status.sh" "$pr_number" || true
+  fi
+fi
+
+echo "ISSUE=$issue"
+exit 0

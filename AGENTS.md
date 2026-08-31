@@ -25,15 +25,20 @@ plus those rules as standing instructions. In particular:
 - Reviewers: `fruitizz`, `Angelo-Cosme`, `noukpoherve` (`.cursor/skills/pr-reviewers/SKILL.md`)
 - No `Co-authored-by` / tooling attribution
 - Storybook docs: `storybook-docs` + `docs-locale`
-- Before push: `.cursor/skills/pre-push-ci/SKILL.md`
+- Before push: `.cursor/skills/pre-push-ci/SKILL.md` and `.cursor/skills/ensure-issue/SKILL.md` (create a GitHub issue if none exists)
 - Before **local** commit: `.cursor/skills/pre-commit-review/SKILL.md`
 
 ## Local pre-commit review (not CI)
 
 `.githooks/pre-commit` calls a **local** `claude` or `agent` CLI and reviews
-the staged diff for YAGNI, SOLID, KISS, DRY, and Storybook coverage of every
-public component option (e.g. propose Button + icon if only a bare button is
-documented).
+the staged diff for YAGNI, SOLID, KISS, DRY, digital accessibility, semantic
+HTML, and Storybook coverage of every public component option (e.g. propose
+Button + icon if only a bare button is documented).
+
+`.githooks/pre-push` also runs `.githooks/ensure-github-issue`: create a GitHub
+issue **only** when the work is brand-new and no backlog ticket (open or closed)
+already covers it. Otherwise reuse `Closes #N`. Local `gh` only — not a GitHub
+Actions AI job.
 
 This must **not** run on GitHub Actions (no cloud AI token). The hook exits 0
 when `CI` is set.

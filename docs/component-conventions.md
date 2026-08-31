@@ -61,7 +61,7 @@ Chaque prop / état public a une story et un canvas MDX. Un Button « label seul
 
 ## Checklist composant
 
-1. HTML sémantique, focus visible, clavier.
+1. HTML sémantique (`button`, `a`, `label`, `dialog`, …), focus visible, clavier — WCAG 2.2 AA (`docs/accessibility.md`).
 2. Couleurs via tokens, jamais un hex dans le TSX.
 3. Tests Testing Library (`getByRole`) + story + MDX (pas autodocs seul).
 4. Options publiques toutes démontrées (pas seulement `Default`).

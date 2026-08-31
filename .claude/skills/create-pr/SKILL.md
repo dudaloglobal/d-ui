@@ -9,7 +9,8 @@ When creating or updating a pull request, follow this skill. Do not use an Engli
 
 Source of truth for the sections: `.github/PULL_REQUEST_TEMPLATE.md` (same structure as [PR #86](https://github.com/dudaloglobal/d-ui/pull/86)).
 
-Also follow `pr-reviewers`, `no-cursor-attribution`, and `pre-push-ci`.
+Also follow `pr-reviewers`, `no-cursor-attribution`, `pre-push-ci`, and
+`ensure-issue`.
 
 ## Language
 
@@ -55,7 +56,7 @@ Aucun
 
 ## Fill-in rules
 
-1. **Ticket:** `Closes #<n>` (or `Fixes` / `Resolves` if that matches the issue). Never omit this section.
+1. **Ticket:** `Closes #<n>` (or `Fixes` / `Resolves` if that matches the issue). Never omit this section. If the work is **brand-new** and no backlog issue exists (open or closed), run `sh .githooks/ensure-github-issue` **before** `gh pr create` and use that number. If an issue already exists, reuse it. Never write “Hors backlog”. Never open a second ticket for the same work.
 2. **Résumé:** French bullets on why and user-facing behavior. No file lists, no commit dumps.
 3. **Preview Storybook:** After `gh pr create`, set `https://dudaloglobal.github.io/d-ui/prs/<n>/`. If the number is not known yet, leave `URL du preview :` and edit once GitHub returns the number. Required to merge (CI copies the URL if the field is empty).
 4. **Tests:** Check a box only if that command just passed locally (pre-push CI). Otherwise leave `[ ]`.

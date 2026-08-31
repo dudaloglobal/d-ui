@@ -5,6 +5,6 @@ alwaysApply: true
 
 # Create PR
 
-When creating or updating a GitHub pull request, follow `.cursor/skills/create-pr/SKILL.md`.
+When creating or updating a GitHub pull request, follow `.cursor/skills/create-pr/SKILL.md`. Create a ticket **only** when the task is entirely new **and** no GitHub issue (open or closed) already covers it. If one exists, link `Closes #N` / `Related to #N`. Never duplicate. Never write “Hors backlog”.
 
-The description is always in French, with this section order: Ticket, Résumé, Preview Storybook, Tests, Accessibilité, Breaking changes. Do not use English headings such as Summary or Test plan. Title stays an English conventional commit.
+The description is always in French, with this section order: Ticket, Résumé, Preview Storybook, Tests, Accessibilité, Breaking changes. Do not use English headings such as Summary or Test plan. Title stays an English conventional commit. Ticket must be `Closes #N` (never “Hors backlog”).

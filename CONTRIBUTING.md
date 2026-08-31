@@ -3,7 +3,7 @@
 ## Git
 
 1. Partir de `main` à jour.
-2. Branche : `feature/DS-XXX-short-slug` (ticket GitHub obligatoire).
+2. Branche : `feature/DS-XXX-short-slug`. Si un ticket existe déjà, le réutiliser (`Closes #N`). Une issue n’est créée automatiquement au `git push` **que** si le travail est **nouveau** et qu’**aucune** issue (ouverte ou fermée) ne le couvre déjà.
 3. PR vers `main`. Description en **français**, template `.github/PULL_REQUEST_TEMPLATE.md`. La CI doit être verte. Une revue est requise.
 4. Ne pas pousser directement sur `main`.
 
@@ -25,7 +25,7 @@ Consigne partagée : `AGENTS.md` / `CLAUDE.md`.
 
 ## Revue locale avant commit (pas la CI)
 
-Chaque `git commit` lance `.githooks/pre-commit` : revue **locale** (CLI `claude` ou `agent`) sur YAGNI, SOLID, KISS, DRY, et la couverture Storybook de toutes les options publiques du composant (ex. proposer bouton + icône si seul le bouton nu est documenté).
+Chaque `git commit` lance `.githooks/pre-commit` : revue **locale** (CLI `claude` ou `agent`) sur YAGNI, SOLID, KISS, DRY, **accessibilité numérique**, **HTML sémantique**, et la couverture Storybook de toutes les options publiques du composant (ex. proposer bouton + icône si seul le bouton nu est documenté).
 
 Ce n’est **pas** un job GitHub Actions (pas de token IA cloud). Le hook ne fait rien quand `CI` est défini.
 
@@ -56,11 +56,12 @@ Un composant n’est pas fini sans :
 - tests Testing Library + story **et** MDX (voir [docs/component-conventions.md](./docs/component-conventions.md))
 - conventions : [docs/component-conventions.md](./docs/component-conventions.md)
 
-## Qualité (YAGNI, SOLID, KISS, DRY)
+## Qualité (YAGNI, SOLID, KISS, DRY, accessibilité, HTML sémantique)
 
 - Un module = un job. Pas d’abstraction « au cas où ».
 - Réutiliser tokens, `cx`, `ThemeProvider` plutôt que de recréer des couleurs ou des classNames.
 - Le domaine Education n’entre pas dans `d-ui`.
+- HTML sémantique (`button`, `a`, `label`, `dialog`, …), nom accessible, clavier, focus visible — [docs/accessibility.md](./docs/accessibility.md) (WCAG 2.2 AA).
 - Toute option publique d’un composant a une story + un canvas MDX. La skill `.cursor/skills/pre-commit-review/SKILL.md` impose cette barre avant le commit.
 
 ## Tests

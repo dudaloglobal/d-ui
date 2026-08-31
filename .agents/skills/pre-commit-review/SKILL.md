@@ -2,10 +2,12 @@
 name: pre-commit-review
 description: >-
   Local pre-commit review of staged d-ui changes against YAGNI, SOLID, KISS, DRY,
-  and Storybook option coverage (every public prop/state has a documented
-  canvas; propose missing options such as Button + icon). Use before every git
-  commit, when reviewing a component, or when the user mentions qualité, YAGNI,
-  SOLID, KISS, DRY, or options manquantes. Never run this in GitHub Actions.
+  digital accessibility (WCAG 2.2 AA), semantic HTML, and Storybook option
+  coverage (every public prop/state has a documented canvas; propose missing
+  options such as Button + icon). Use before every git commit, when reviewing a
+  component, or when the user mentions qualité, YAGNI, SOLID, KISS, DRY,
+  accessibilité, HTML sémantique, or options manquantes. Never run this in
+  GitHub Actions.
 ---
 
 # Pre-commit review
@@ -50,7 +52,23 @@ Judge the diff, not a wish list. Match existing d-ui patterns.
 
 Suggestions that are not violations go under **Proposals**, not FAIL.
 
-## 2. Documented options must exist
+## 2. Accessibilité numérique et HTML sémantique
+
+Bar: `docs/accessibility.md` (WCAG 2.2 AA / RGAA). Applies to every staged
+UI change, not only a dedicated a11y ticket.
+
+| Rule                | FAIL when                                                                                               | PASS when                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **HTML sémantique** | `div` / `span` with `onClick` / `onKeyDown` where `button`, `a`, `label`, `summary`, or `dialog` exists | Native element for the job; headings in order (`h1`–`h6`, `Heading` `level`) |
+| **Nom accessible**  | Icon-only or control with no name (`aria-label`, visible text, or `VisuallyHidden`)                     | `getByRole(…, { name })` can find it                                         |
+| **ARIA**            | `role="button"` on a `div`, or `aria-*` duplicating what the native tag already exposes                 | `aria-*` only when HTML is not enough                                        |
+| **Clavier / focus** | Untabbable control, `outline: none` without `:focus-visible` replacement, overlay without Escape        | Tab / Shift+Tab / Enter / Space / Escape match `docs/accessibility.md`       |
+| **Couleur**         | Error / required / selected by color alone                                                              | Text, icon, or attribute in addition to color                                |
+| **Tests**           | Interactive component tests query by class or placeholder only                                          | Testing Library `getByRole` (and keyboard where the widget needs it)         |
+
+Do not FAIL a docs-only / hooks-only diff that does not render UI.
+
+## 3. Documented options must exist
 
 Gold standard: `Button.mdx` / `Button.stories.tsx` (emphasis, loading, size,
 full width, icon, icon-only / `IconButton`, a11y). Autodocs-only is not enough.
