@@ -2,8 +2,8 @@
 
 # Claude Code
 
-Project skills are in `.claude/skills/` (symlinks to `.cursor/skills/`). Load
-them like any other project skill.
+Project skills are real files under `.claude/skills/<name>/SKILL.md` (same
+content as `.cursor/skills/`). Claude Code loads this directory on clone.
 
 Before `git commit`, `.githooks/pre-commit` runs `pre-commit-review` on this
 machine. Do not add a GitHub Actions workflow for that review.

@@ -18,7 +18,7 @@ Ne pas ajouter de trailer `Co-authored-by` (ni attribution d’outil). Les hooks
 Les skills du dépôt s’appliquent à tout le monde après un clone :
 
 - Cursor : `.cursor/skills/`
-- Claude Code : `.claude/skills/` (mêmes skills)
+- Claude Code : `.claude/skills/` (mêmes `SKILL.md`, fichiers réels)
 - Autres clients : `.agents/skills/`
 
 Consigne partagée : `AGENTS.md` / `CLAUDE.md`.

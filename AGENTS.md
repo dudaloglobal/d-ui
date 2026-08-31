@@ -6,14 +6,15 @@ Code**, or another Agent Skills client.
 
 ## Where skills live
 
-Canonical files: `.cursor/skills/<name>/SKILL.md`.
+Same `SKILL.md` files in both trees (real files, not symlinks — Claude Code
+does not load git symlinks as project skills):
 
-The same skills are linked at:
-
+- `.cursor/skills/` — Cursor
 - `.claude/skills/` — Claude Code
-- `.agents/skills/` — Cursor, Codex, and other clients that scan this path
+- `.agents/skills/` — other Agent Skills clients
 
-Cursor also reads `.cursor/skills/` directly.
+When you edit a skill, update **all three** copies (or run
+`sh scripts/sync-agent-skills.sh` from the repo root).
 
 ## Always-on project rules
 
