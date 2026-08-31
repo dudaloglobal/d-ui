@@ -1,0 +1,30 @@
+import{u as p,j as s,M as m,P as e,C as o,a as r,b as a,U as x,A as u}from"./iframe-DRIDI3J7.js";import{P as i,D as c,I as d,S as g,W as l,A as k,C as h}from"./Progress.stories-BoH1_Ood.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-Di6f0Zb7.js";import"./docs-source-C_O40UCi.js";import"./Text-CVYueY0E.js";import"./Progress-8T6OVvdL.js";function j(n){const t={h1:"h1",...p(),...n.components};return s.jsxs(s.Fragment,{children:[s.jsx(m,{of:i}),`
+`,s.jsx(t.h1,{id:"progress",children:"Progress"}),`
+`,s.jsx(e,{k:"progress.intro"}),`
+`,s.jsx(e,{k:"chrome.examplesFollow"}),`
+`,s.jsx(o,{of:c}),`
+`,s.jsx(r,{k:"progress.indeterminate"}),`
+`,s.jsx(e,{k:"progress.useIndeterminate"}),`
+`,s.jsx(o,{of:d}),`
+`,s.jsx(r,{k:"chrome.sizes"}),`
+`,s.jsx(o,{of:g}),`
+`,s.jsx(r,{k:"progress.withValue"}),`
+`,s.jsx(e,{k:"progress.useWithValue"}),`
+`,s.jsx(o,{of:l}),`
+`,s.jsx(r,{k:"progress.announced"}),`
+`,s.jsx(e,{k:"progress.useAnnounced"}),`
+`,s.jsx(o,{of:k}),`
+`,s.jsx(r,{k:"progress.circular"}),`
+`,s.jsx(e,{k:"progress.useCircular"}),`
+`,s.jsx(o,{of:h}),`
+`,s.jsx(r,{k:"chrome.accessibility"}),`
+`,s.jsx(e,{k:"progress.a11yBody"}),`
+`,s.jsx(e,{k:"progress.a11yKeys"}),`
+`,s.jsx(a,{k:"chrome.do"}),`
+`,s.jsx(x,{items:["progress.doName","progress.doValueText","progress.doIndeterminate"]}),`
+`,s.jsx(a,{k:"chrome.dont"}),`
+`,s.jsx(x,{items:["progress.dontZero","progress.dontSpinner","progress.dontDouble"]}),`
+`,s.jsx(e,{k:"chrome.themeLang"}),`
+`,s.jsx(r,{k:"chrome.properties"}),`
+`,s.jsx(e,{k:"progress.propsBody"}),`
+`,s.jsx(u,{of:i,include:["variant","value","label","valueText","showValue","size"]})]})}function b(n={}){const{wrapper:t}={...p(),...n.components};return t?s.jsx(t,{...n,children:s.jsx(j,{...n})}):j(n)}export{b as default};

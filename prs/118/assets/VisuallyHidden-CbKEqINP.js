@@ -1,0 +1,1 @@
+import{j as i,g as a}from"./iframe-DRIDI3J7.js";function n({className:e,...s}){return i.jsx("span",{className:a("d-ui-visually-hidden",e),...s})}n.__docgenInfo={description:"Texte destiné aux lecteurs d’écran, masqué visuellement.",methods:[],displayName:"VisuallyHidden"};export{n as V};

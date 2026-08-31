@@ -1,0 +1,31 @@
+import{u as j,j as n,M as m,P as s,C as r,a as e,b as t,U as a,A as c}from"./iframe-DRIDI3J7.js";import{S as p,D as l,a as k,C as d,A as u,W as h,I as f}from"./Spinner.stories-CkCQRIz7.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-Di6f0Zb7.js";import"./docs-source-C_O40UCi.js";import"./Button-lDgXfmFs.js";import"./cornerRadius-B4XFh-_5.js";import"./VisuallyHidden-CbKEqINP.js";import"./Heading-CK1fRuKU.js";import"./Text-CVYueY0E.js";function x(o){const i={h1:"h1",...j(),...o.components};return n.jsxs(n.Fragment,{children:[n.jsx(m,{of:p}),`
+`,n.jsx(i.h1,{id:"spinner",children:"Spinner"}),`
+`,n.jsx(s,{k:"spinner.intro"}),`
+`,n.jsx(s,{k:"chrome.examplesFollow"}),`
+`,n.jsx(r,{of:l}),`
+`,n.jsx(e,{k:"chrome.sizes"}),`
+`,n.jsx(s,{k:"spinner.useSizes"}),`
+`,n.jsx(r,{of:k}),`
+`,n.jsx(e,{k:"spinner.colors"}),`
+`,n.jsx(s,{k:"spinner.useColors"}),`
+`,n.jsx(r,{of:d}),`
+`,n.jsx(e,{k:"spinner.alignment"}),`
+`,n.jsx(s,{k:"spinner.useAlignment"}),`
+`,n.jsx(r,{of:u}),`
+`,n.jsx(e,{k:"spinner.inCard"}),`
+`,n.jsx(s,{k:"spinner.useInCard"}),`
+`,n.jsx(r,{of:h}),`
+`,n.jsx(e,{k:"spinner.inButton"}),`
+`,n.jsx(s,{k:"spinner.useInButton"}),`
+`,n.jsx(r,{of:f}),`
+`,n.jsx(e,{k:"chrome.accessibility"}),`
+`,n.jsx(s,{k:"spinner.a11yBody"}),`
+`,n.jsx(s,{k:"spinner.a11yKeys"}),`
+`,n.jsx(t,{k:"chrome.do"}),`
+`,n.jsx(a,{items:["spinner.doLabel","spinner.doDecorative","spinner.doProgress"]}),`
+`,n.jsx(t,{k:"chrome.dont"}),`
+`,n.jsx(a,{items:["spinner.dontDouble","spinner.dontBlank","spinner.dontColor"]}),`
+`,n.jsx(s,{k:"chrome.themeLang"}),`
+`,n.jsx(e,{k:"chrome.properties"}),`
+`,n.jsx(s,{k:"spinner.propsBody"}),`
+`,n.jsx(c,{of:p,include:["size","label"]})]})}function I(o={}){const{wrapper:i}={...j(),...o.components};return i?n.jsx(i,{...o,children:n.jsx(x,{...o})}):x(o)}export{I as default};
