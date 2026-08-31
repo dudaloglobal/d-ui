@@ -38,7 +38,7 @@ pnpm storybook
 
 ## Contribution
 
-Voir [CONTRIBUTING.md](./CONTRIBUTING.md), [docs/component-conventions.md](./docs/component-conventions.md), [docs/accessibility.md](./docs/accessibility.md) et [SECURITY.md](./SECURITY.md).
+Voir [CONTRIBUTING.md](./CONTRIBUTING.md), [AGENTS.md](./AGENTS.md) (skills Cursor / Claude Code), [docs/component-conventions.md](./docs/component-conventions.md), [docs/accessibility.md](./docs/accessibility.md) et [SECURITY.md](./SECURITY.md).
 
 ## Roadmap
 

@@ -55,9 +55,14 @@ Chaînes visibles : aucune copie figée dans le composant sauf fallback a11y en 
 
 Nouvelle primitive, dépendance runtime, changement du contrat CSS public (`--d-ui-*`), ou breaking change d’API. Pas de RFC pour un variant de Button.
 
+## Options documentées
+
+Chaque prop / état public a une story et un canvas MDX. Un Button « label seul » n’est pas la doc complète s’il existe (ou s’il manque de façon évidente) bouton + icône, icon-only, loading, tailles. Détail : `.cursor/skills/pre-commit-review/SKILL.md`.
+
 ## Checklist composant
 
 1. HTML sémantique, focus visible, clavier.
 2. Couleurs via tokens, jamais un hex dans le TSX.
 3. Tests Testing Library (`getByRole`) + story + MDX (pas autodocs seul).
-4. `pnpm lint` / `format:check` / `typecheck` / `test`.
+4. Options publiques toutes démontrées (pas seulement `Default`).
+5. `pnpm lint` / `format:check` / `typecheck` / `test`.

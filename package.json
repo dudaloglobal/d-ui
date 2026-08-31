@@ -19,7 +19,8 @@
     "build": "pnpm --filter d-ui build",
     "build-storybook": "pnpm --filter d-ui build-storybook",
     "storybook": "pnpm --filter d-ui storybook",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "prepare": "sh .githooks/install.sh"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.0",

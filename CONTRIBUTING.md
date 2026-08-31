@@ -11,11 +11,27 @@ L’auteur de la PR est assigné automatiquement. Les reviewers demandés sont l
 
 Messages de commit en **anglais**, style conventional : `feat(button): …`, `fix(a11y): …`, `chore(ci): …`.
 
-Ne pas ajouter de trailer `Co-authored-by` (ni attribution d’outil). Installer les hooks une fois :
+Ne pas ajouter de trailer `Co-authored-by` (ni attribution d’outil). Les hooks s’installent avec `pnpm install` (ou `sh .githooks/install.sh`).
 
-```bash
-sh .githooks/install.sh
-```
+## Agents (Cursor et Claude Code)
+
+Les skills du dépôt s’appliquent à tout le monde après un clone :
+
+- Cursor : `.cursor/skills/`
+- Claude Code : `.claude/skills/` (mêmes skills)
+- Autres clients : `.agents/skills/`
+
+Consigne partagée : `AGENTS.md` / `CLAUDE.md`.
+
+## Revue locale avant commit (pas la CI)
+
+Chaque `git commit` lance `.githooks/pre-commit` : revue **locale** (CLI `claude` ou `agent`) sur YAGNI, SOLID, KISS, DRY, et la couverture Storybook de toutes les options publiques du composant (ex. proposer bouton + icône si seul le bouton nu est documenté).
+
+Ce n’est **pas** un job GitHub Actions (pas de token IA cloud). Le hook ne fait rien quand `CI` est défini.
+
+Il faut un CLI local : [Claude Code](https://docs.anthropic.com/en/docs/claude-code) ou [Cursor CLI](https://cursor.com/docs/cli/overview) (`curl https://cursor.com/install -fsS | bash`).
+
+Urgence uniquement : `SKIP_COMMIT_REVIEW=1 git commit …`.
 
 ## Preview Storybook (obligatoire)
 
@@ -40,11 +56,12 @@ Un composant n’est pas fini sans :
 - tests Testing Library + story **et** MDX (voir [docs/component-conventions.md](./docs/component-conventions.md))
 - conventions : [docs/component-conventions.md](./docs/component-conventions.md)
 
-## Qualité (KISS, SOLID, DRY)
+## Qualité (YAGNI, SOLID, KISS, DRY)
 
 - Un module = un job. Pas d’abstraction « au cas où ».
 - Réutiliser tokens, `cx`, `ThemeProvider` plutôt que de recréer des couleurs ou des classNames.
 - Le domaine Education n’entre pas dans `d-ui`.
+- Toute option publique d’un composant a une story + un canvas MDX. La skill `.cursor/skills/pre-commit-review/SKILL.md` impose cette barre avant le commit.
 
 ## Tests
 

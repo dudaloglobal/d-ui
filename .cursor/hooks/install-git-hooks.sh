@@ -1,5 +1,5 @@
 #!/bin/sh
-# Keep .git/hooks in sync with .githooks without changing git config.
+# Install repo git hooks (core.hooksPath=.githooks).
 set -e
 input=$(cat)
 root="${CURSOR_PROJECT_DIR:-.}"
