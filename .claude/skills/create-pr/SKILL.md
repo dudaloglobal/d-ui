@@ -9,8 +9,8 @@ When creating or updating a pull request, follow this skill. Do not use an Engli
 
 Source of truth for the sections: `.github/PULL_REQUEST_TEMPLATE.md` (same structure as [PR #86](https://github.com/dudaloglobal/d-ui/pull/86)).
 
-Also follow `pr-reviewers`, `no-cursor-attribution`, `pre-push-ci`, and
-`ensure-issue`.
+Also follow `pr-reviewers`, `no-cursor-attribution`, `pre-push-ci`,
+`ensure-issue`, and `project-status`.
 
 ## Language
 
@@ -70,3 +70,5 @@ Do not add extra top-level sections. Do not replace this template with Summary /
 1. `gh pr view --json title,body --jq '{title,body}'`
 2. If the body is missing a section, is in English, or has a Cursor / Co-authored-by footer: `gh pr edit` and verify again.
 3. Assign author and request reviewers (`pr-reviewers`).
+4. Link the issue, assign it, and set board status (`project-status`):
+   `.github/scripts/sync-project-status.sh <pr-number>`

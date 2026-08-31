@@ -119,8 +119,13 @@ if [ -n "$pr_number" ] && [ -n "$issue" ]; then
   ENSURE_PR_NUMBER="$pr_number" ENSURE_ISSUE="$issue" \
     python3 "$root/.githooks/ensure-github-issue.py" --patch-pr
   echo "ensure-issue: PR #$pr_number Ticket → Closes #$issue" >&2
-  if [ -x "$root/.github/scripts/sync-project-status.sh" ]; then
+fi
+
+if [ -n "$issue" ]; then
+  if [ -n "$pr_number" ] && [ -x "$root/.github/scripts/sync-project-status.sh" ]; then
     "$root/.github/scripts/sync-project-status.sh" "$pr_number" || true
+  elif [ -z "$pr_number" ]; then
+    ISSUE_NUMBER="$issue" python3 "$root/.github/scripts/sync-project-status.py" || true
   fi
 fi
 

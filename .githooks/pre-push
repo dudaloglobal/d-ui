@@ -40,4 +40,13 @@ else
   exit 1
 fi
 
+if [ -z "$CI" ] && command -v gh >/dev/null 2>&1; then
+  pr_n="$(gh pr view --json number --jq .number 2>/dev/null || true)"
+  if [ -n "$pr_n" ] && [ -x "$root/.github/scripts/sync-project-status.sh" ]; then
+    if ! "$root/.github/scripts/sync-project-status.sh" "$pr_n"; then
+      echo "pre-push: warning — could not sync issue assignment or board status." >&2
+    fi
+  fi
+fi
+
 exit 0

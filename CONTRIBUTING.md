@@ -7,7 +7,7 @@
 3. PR vers `main`. Description en **français**, template `.github/PULL_REQUEST_TEMPLATE.md`. La CI doit être verte. Une revue est requise.
 4. Ne pas pousser directement sur `main`.
 
-L’auteur de la PR est assigné automatiquement. Les reviewers demandés sont les deux autres membres de l’équipe (`@fruitizz`, `@Angelo-Cosme`, `@noukpoherve`) selon l’assigné du ticket ou de la PR.
+L’auteur de la PR est assigné automatiquement. L’issue liée (`Closes #N`) est assignée au même auteur, ajoutée au projet, et passe **En cours** / **En revue** / **Terminé** au `git push` (hook local). Les reviewers demandés sont les deux autres membres de l’équipe (`@fruitizz`, `@Angelo-Cosme`, `@noukpoherve`) selon l’assigné du ticket ou de la PR.
 
 Messages de commit en **anglais**, style conventional : `feat(button): …`, `fix(a11y): …`, `chore(ci): …`.
 

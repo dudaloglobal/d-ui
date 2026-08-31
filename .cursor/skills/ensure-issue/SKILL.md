@@ -43,8 +43,9 @@ Never write `Hors backlog`.
 1. Run `sh .githooks/ensure-github-issue`.
 2. Reuse if found; **create** only for brand-new work with no backlog match.
 3. New issue title: `DS-NNN — …`. Body includes the branch name.
-4. If a PR exists, set the Ticket section to `Closes #<n>` and run
-   `sync-project-status.sh`.
+4. If a PR exists, set the Ticket section to `Closes #<n>`. Always assign
+   the issue and set the board (`project-status`): **En cours** before a PR,
+   **En revue** / **Terminé** once the PR is open or merged.
 
 ## Do not
 

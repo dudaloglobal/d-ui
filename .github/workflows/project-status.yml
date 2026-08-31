@@ -23,13 +23,11 @@ concurrency:
 jobs:
   sync:
     name: Move linked issues on the project board
-    if: >-
-      github.event.pull_request.head.repo.full_name == github.repository &&
-      secrets.PROJECT_TOKEN != ''
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
-      GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+      GH_TOKEN: ${{ secrets.PROJECT_TOKEN || github.token }}
     steps:
       - uses: actions/checkout@v7
       - name: Sync project status

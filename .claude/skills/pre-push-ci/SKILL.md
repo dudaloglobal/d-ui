@@ -27,9 +27,9 @@ pnpm build-storybook
 3. Re-run `pnpm format:check` and the rest of the list.
 4. Only then `git push`. Do not skip hooks (`--no-verify`).
 
-`.githooks/pre-push` also runs `pnpm format:check` and
-`.githooks/ensure-github-issue` (reuse an existing ticket; create one only when
-the work is brand-new and the backlog has no match).
+`.githooks/pre-push` also runs `pnpm format:check`,
+`.githooks/ensure-github-issue`, and `.github/scripts/sync-project-status.sh`
+(assign the issue, En cours / En revue / Terminé).
 Treat a hook failure as the same gate.
 
 ## Do not

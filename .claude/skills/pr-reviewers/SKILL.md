@@ -17,7 +17,8 @@ On every pull request (create or update), write the body with `.cursor/skills/cr
 
 Prefer GitHub Action `.github/workflows/pr-assignment.yml` (runs on `opened` / `synchronize` / assignee changes). If creating a PR with `gh`, still pass `--assignee` and `--reviewer` for the pair above.
 
-After create or edit, move linked issues on the project board:
+After create or edit, move linked issues on the project board and assign them
+(`.cursor/skills/project-status/SKILL.md`):
 
 ```bash
 .github/scripts/sync-project-status.sh <pr-number>

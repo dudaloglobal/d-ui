@@ -7,5 +7,5 @@ alwaysApply: true
 
 Follow `.cursor/skills/ensure-issue/SKILL.md`.
 
-Create a ticket **only** when the task is entirely new **and** no GitHub issue (open or closed) already covers it. If one exists, link `Closes #N` / `Related to #N`. Never duplicate. Never write “Hors backlog”.
+Create a ticket **only** when the task is entirely new **and** no GitHub issue (open or closed) already covers it. If one exists, link `Closes #N` / `Related to #N`. Never duplicate. Never write “Hors backlog”. Then assign the issue and set board status (`project-status`).
 
