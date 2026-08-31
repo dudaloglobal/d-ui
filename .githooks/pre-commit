@@ -1,0 +1,137 @@
+#!/bin/sh
+# Local AI review of the staged diff (YAGNI / SOLID / KISS / DRY / Storybook options).
+# Does not run in GitHub Actions. Requires a local `claude` or `agent` CLI.
+set -e
+
+if [ -n "$CI" ]; then
+  exit 0
+fi
+
+if [ -n "$SKIP_COMMIT_REVIEW" ]; then
+  echo "pre-commit: SKIP_COMMIT_REVIEW is set — skipping local review." >&2
+  exit 0
+fi
+
+if [ -n "$D_UI_COMMIT_REVIEW" ]; then
+  exit 0
+fi
+
+if [ -n "$GIT_DIR" ]; then
+  git_dir="$GIT_DIR"
+else
+  git_dir="$(git rev-parse --git-dir)"
+fi
+
+if [ -f "$git_dir/MERGE_HEAD" ] || [ -d "$git_dir/rebase-merge" ] || [ -d "$git_dir/rebase-apply" ]; then
+  exit 0
+fi
+
+if git diff --cached --quiet; then
+  exit 0
+fi
+
+reviewable=0
+while IFS= read -r path; do
+  case "$path" in
+    pnpm-lock.yaml | package-lock.json | yarn.lock) continue ;;
+    .changeset/*) continue ;;
+    *.png | *.jpg | *.jpeg | *.gif | *.webp | *.ico | *.woff | *.woff2 | *.ttf) continue ;;
+    *)
+      reviewable=1
+      break
+      ;;
+  esac
+done <<EOF
+$(git diff --cached --name-only)
+EOF
+
+if [ "$reviewable" -eq 0 ]; then
+  exit 0
+fi
+
+root="$(git rev-parse --show-toplevel)"
+skill="$root/.cursor/skills/pre-commit-review/SKILL.md"
+if [ ! -f "$skill" ]; then
+  echo "pre-commit: missing $skill" >&2
+  exit 1
+fi
+
+PATH="$HOME/.local/bin:$HOME/.cursor/bin:$PATH"
+
+cli=""
+cli_kind=""
+if [ -n "$CLAUDECODE" ] && command -v claude >/dev/null 2>&1; then
+  cli="$(command -v claude)"
+  cli_kind="claude"
+elif [ -n "$CURSOR_TRACE_ID" ] && command -v agent >/dev/null 2>&1; then
+  cli="$(command -v agent)"
+  cli_kind="agent"
+elif command -v claude >/dev/null 2>&1; then
+  cli="$(command -v claude)"
+  cli_kind="claude"
+elif command -v agent >/dev/null 2>&1; then
+  cli="$(command -v agent)"
+  cli_kind="agent"
+fi
+
+if [ -z "$cli" ]; then
+  echo "pre-commit: local AI review required (YAGNI, SOLID, KISS, DRY, Storybook options)." >&2
+  echo "Install one CLI on this machine, then commit again:" >&2
+  echo "  Claude Code: https://docs.anthropic.com/en/docs/claude-code" >&2
+  echo "  Cursor:      curl https://cursor.com/install -fsS | bash" >&2
+  echo "This gate does not run in CI. Emergency: SKIP_COMMIT_REVIEW=1 git commit …" >&2
+  exit 1
+fi
+
+diff_file="$(mktemp "${TMPDIR:-/tmp}/d-ui-staged.XXXXXX")"
+out_file="$(mktemp "${TMPDIR:-/tmp}/d-ui-review.XXXXXX")"
+trap 'rm -f "$diff_file" "$out_file"' EXIT
+git diff --cached >"$diff_file"
+
+prompt="You are a read-only reviewer for the d-ui design system.
+Do not edit files. Do not run git commit or git push.
+Read the skill file: ${skill}
+Read the staged diff file: ${diff_file}
+Follow the skill. Review only that staged diff.
+End with a line that is exactly VERDICT: PASS or VERDICT: FAIL."
+
+echo "pre-commit: local review ($cli_kind)…" >&2
+
+export D_UI_COMMIT_REVIEW=1
+
+set +e
+if [ "$cli_kind" = "claude" ]; then
+  perl -e 'alarm 180; exec @ARGV' -- \
+    "$cli" -p "$prompt" \
+    --output-format text \
+    --max-turns 12 \
+    --allowedTools "Read,Grep,Glob" \
+    --disallowedTools "Bash,Edit,Write,NotebookEdit,Agent" \
+    >"$out_file" 2>&1
+  status=$?
+else
+  perl -e 'alarm 180; exec @ARGV' -- \
+    "$cli" -p --mode ask --output-format text --force "$prompt" \
+    >"$out_file" 2>&1
+  status=$?
+fi
+set -e
+
+cat "$out_file" >&2
+
+if [ "$status" -ne 0 ]; then
+  echo "pre-commit: review CLI exited $status. Fix auth/CLI, or SKIP_COMMIT_REVIEW=1 in an emergency." >&2
+  exit 1
+fi
+
+if grep -q '^VERDICT: FAIL' "$out_file"; then
+  echo "pre-commit: review failed. Fix the findings, then commit again." >&2
+  exit 1
+fi
+
+if ! grep -q '^VERDICT: PASS' "$out_file"; then
+  echo "pre-commit: no VERDICT: PASS line in the review output. Re-run the commit." >&2
+  exit 1
+fi
+
+exit 0

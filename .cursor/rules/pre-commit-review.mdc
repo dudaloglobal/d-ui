@@ -1,0 +1,12 @@
+---
+description: Before every local commit, review staged d-ui work with YAGNI, SOLID, KISS, DRY, digital accessibility, semantic HTML, and documented component options.
+alwaysApply: true
+---
+
+# Pre-commit review
+
+When writing a component or committing, follow `.cursor/skills/pre-commit-review/SKILL.md`.
+
+The git hook `.githooks/pre-commit` runs that review **locally** (Claude Code or Cursor CLI). It does not run in GitHub Actions. Do not add a CI job that needs a cloud AI token.
+
+Check YAGNI, SOLID, KISS, DRY, **accessibilité numérique (WCAG 2.2 AA)** and **HTML sémantique**. Every public option of a staged component must appear in Storybook (story + MDX canvas). If the docs only show a bare Button, propose missing options such as Button + icon, icon-only, loading, sizes.

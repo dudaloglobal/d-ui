@@ -1,0 +1,11 @@
+---
+description: Before every local push, create a GitHub issue only if the work is brand-new and no backlog issue already exists.
+alwaysApply: true
+---
+
+# Ensure GitHub issue
+
+Follow `.cursor/skills/ensure-issue/SKILL.md`.
+
+Create a ticket **only** when the task is entirely new **and** no GitHub issue (open or closed) already covers it. If one exists, link `Closes #N` / `Related to #N`. Never duplicate. Never write “Hors backlog”. Then assign the issue and set board status (`project-status`).
+

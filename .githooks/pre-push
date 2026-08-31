@@ -32,4 +32,21 @@ if ! pnpm format:check; then
   exit 1
 fi
 
+root="$(git rev-parse --show-toplevel)"
+if [ -x "$root/.githooks/ensure-github-issue" ]; then
+  "$root/.githooks/ensure-github-issue"
+else
+  echo "pre-push: missing .githooks/ensure-github-issue" >&2
+  exit 1
+fi
+
+if [ -z "$CI" ] && command -v gh >/dev/null 2>&1; then
+  pr_n="$(gh pr view --json number --jq .number 2>/dev/null || true)"
+  if [ -n "$pr_n" ] && [ -x "$root/.github/scripts/sync-project-status.sh" ]; then
+    if ! "$root/.github/scripts/sync-project-status.sh" "$pr_n"; then
+      echo "pre-push: warning — could not sync issue assignment or board status." >&2
+    fi
+  fi
+fi
+
 exit 0
