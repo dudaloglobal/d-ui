@@ -1,0 +1,75 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as CardStories from './Card.stories';
+
+<Meta of={CardStories} />
+
+# Card
+
+<P k="card.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={CardStories.Default} />
+
+<H2 k="card.media" />
+
+<P k="card.mediaBody" />
+
+<Canvas of={CardStories.WithMedia} />
+
+<H2 k="card.slots" />
+
+<P k="card.slotsBody" />
+
+<Canvas of={CardStories.HeaderAndFooter} />
+
+<H2 k="card.horizontal" />
+
+<P k="card.horizontalBody" />
+
+<Canvas of={CardStories.Horizontal} />
+
+<H2 k="card.link" />
+
+<P k="card.linkBody" />
+
+<Canvas of={CardStories.AsLink} />
+
+<H2 k="card.button" />
+
+<P k="card.buttonBody" />
+
+<Canvas of={CardStories.AsButton} />
+
+<H2 k="chrome.radius" />
+
+<P k="card.radiusBody" />
+
+<Canvas of={CardStories.Radius} />
+
+<H2 k="card.composition" />
+
+<P k="card.compositionBody" />
+
+<Canvas of={CardStories.Composition} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="card.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['card.doSlots', 'card.doLink', 'card.doFooter']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['card.dontNested', 'card.dontDiv', 'card.dontLms']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="card.props" />
+
+<ArgTypes of={CardStories} include={['href', 'as', 'orientation', 'radius']} />

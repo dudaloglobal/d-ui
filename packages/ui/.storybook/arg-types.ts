@@ -1199,3 +1199,83 @@ export const sidebarArgTypes = {
     description: '`sm` si l’espace est contraint, `md` par défaut.',
   },
 };
+
+export const badgeArgTypes = {
+  variant: {
+    control: 'inline-radio' as const,
+    options: ['default', 'success', 'warning', 'danger', 'info', 'neutral'],
+    description:
+      'Couleur sémantique. `default` = marque. `neutral` = catégorie, pas un statut. Le libellé porte le sens.',
+  },
+  appearance: {
+    control: 'inline-radio' as const,
+    options: ['soft', 'solid', 'outline'],
+    description:
+      '`soft` (défaut) : fond teinté. `solid` : couleur pleine. `outline` : filet, fond transparent.',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md', 'lg'],
+    description: '`sm` dans un tableau dense, `md` par défaut, `lg` à côté d’un titre.',
+  },
+  dot: {
+    control: 'boolean' as const,
+    description: 'Point décoratif (`aria-hidden`). Ne remplace pas le libellé.',
+  },
+  icon: {
+    description: 'Icône décorative. Ne remplace pas le nom accessible.',
+  },
+};
+
+export const avatarArgTypes = {
+  src: {
+    control: 'text' as const,
+    description:
+      'URL de la photo. En cas d’échec, initiales puis silhouette, toujours nommées.',
+  },
+  alt: {
+    control: 'text' as const,
+    description:
+      'Nom accessible de l’image. Défaut : `name`. `""` si un texte voisin porte déjà le sens.',
+  },
+  name: {
+    control: 'text' as const,
+    description:
+      'Nom de la personne. Sert au nom accessible et, sans `initials`, aux deux lettres du fallback.',
+  },
+  initials: {
+    control: 'text' as const,
+    description:
+      'Deux lettres max. Sinon dérivé de `name`. Ne remplace pas le nom accessible.',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['xs', 'sm', 'md', 'lg', 'xl'],
+    description: '`xs` à `xl`. `md` par défaut, aligné sur un bouton `md`.',
+  },
+  square: {
+    control: 'boolean' as const,
+    description: 'Carré arrondi (`rounded-md`) au lieu du cercle.',
+  },
+};
+
+export const cardArgTypes = {
+  href: {
+    control: 'text' as const,
+    description:
+      'Rend un vrai `<a>`. Toute la carte est la cible : pas de bouton ni de lien à l’intérieur.',
+  },
+  as: {
+    control: 'inline-radio' as const,
+    options: ['article', 'div', 'button'],
+    description:
+      'Élément racine si `href` est absent. `article` par défaut. `button` : `type="button"`.',
+  },
+  orientation: {
+    control: 'inline-radio' as const,
+    options: ['vertical', 'horizontal'],
+    description:
+      '`horizontal` : média à gauche dès `sm`. En dessous, la carte redevient une colonne.',
+  },
+  radius: cornerRadiusArgType('lg'),
+};

@@ -28,6 +28,40 @@ export type {
 } from './components/Button/Button';
 export { IconButton } from './components/Button/IconButton';
 export type { IconButtonProps } from './components/Button/IconButton';
+export { Avatar, AvatarGroup } from './components/Avatar/Avatar';
+export type {
+  AvatarGroupProps,
+  AvatarProps,
+  AvatarSize,
+} from './components/Avatar/Avatar';
+export { Badge } from './components/Badge/Badge';
+export type {
+  BadgeAppearance,
+  BadgeProps,
+  BadgeSize,
+  BadgeVariant,
+} from './components/Badge/Badge';
+export {
+  Card,
+  CardBody,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardMedia,
+  CardTitle,
+} from './components/Card/Card';
+export type {
+  CardBodyProps,
+  CardDescriptionProps,
+  CardElement,
+  CardFooterProps,
+  CardHeaderProps,
+  CardMediaProps,
+  CardOrientation,
+  CardProps,
+  CardRadius,
+  CardTitleProps,
+} from './components/Card/Card';
 export { Dialog } from './components/Dialog/Dialog';
 export type { DialogProps, DialogRadius, DialogSize } from './components/Dialog/Dialog';
 export { AlertDialog } from './components/Dialog/AlertDialog';

@@ -1,0 +1,63 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as BadgeStories from './Badge.stories';
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+<P k="badge.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={BadgeStories.Default} />
+
+<H2 k="badge.variants" />
+
+<P k="badge.variantsBody" />
+
+<Canvas of={BadgeStories.Variants} />
+
+<H2 k="badge.appearances" />
+
+<P k="badge.appearancesBody" />
+
+<Canvas of={BadgeStories.Appearances} />
+
+<H2 k="chrome.sizes" />
+
+<P k="badge.sizesBody" />
+
+<Canvas of={BadgeStories.Sizes} />
+
+<H2 k="badge.icon" />
+
+<P k="badge.iconBody" />
+
+<Canvas of={BadgeStories.WithIcon} />
+
+<H2 k="badge.dot" />
+
+<P k="badge.dotBody" />
+
+<Canvas of={BadgeStories.WithDot} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="badge.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['badge.doText', 'badge.doVariant']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['badge.dontColor', 'badge.dontButton']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="badge.props" />
+
+<ArgTypes of={BadgeStories} include={['variant', 'appearance', 'size', 'dot', 'icon']} />
