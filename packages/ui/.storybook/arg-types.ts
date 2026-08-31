@@ -372,6 +372,121 @@ export const dialogArgTypes = {
   },
 };
 
+export const spinnerArgTypes = {
+  size: {
+    control: 'select' as const,
+    options: ['xs', 'sm', 'md', 'lg'],
+    description:
+      '`xs` suit la taille du texte courant (`1em`), utile dans un bouton. Défaut : `md`.',
+  },
+  label: {
+    description:
+      'Nom accessible. Avec `label`, le spinner devient une région `status` et l’attente est annoncée. Sans `label`, il est décoratif — le bon choix quand le conteneur porte déjà `aria-busy`.',
+  },
+};
+
+export const skeletonArgTypes = {
+  shape: {
+    control: 'select' as const,
+    options: ['rect', 'circle', 'text'],
+    description:
+      'Forme du bloc. `text` prend la hauteur d’une ligne, `circle` un ratio carré. Défaut : `rect`.',
+  },
+  width: {
+    description: 'Largeur CSS. Nombre en pixels, ou chaîne. Défaut : `100%`.',
+  },
+  height: {
+    description: 'Hauteur CSS. Ignorée pour `text`, qui suit la ligne de base.',
+  },
+  size: {
+    description: 'Diamètre d’un `circle`. Raccourci pour `width` et `height`.',
+  },
+};
+
+export const skeletonTextArgTypes = {
+  lines: {
+    control: 'number' as const,
+    description: 'Nombre de lignes. Défaut : `3`.',
+  },
+  lastLineWidth: {
+    description:
+      'Largeur de la dernière ligne, pour imiter un paragraphe qui s’arrête en cours de ligne. Défaut : `60%`.',
+  },
+};
+
+export const progressArgTypes = {
+  variant: {
+    control: 'select' as const,
+    options: ['linear', 'circular'],
+    description:
+      '`linear` (défaut) ou `circular`. Le circulaire exige une `value` : un anneau qui tourne sans valeur, c’est un `Spinner`.',
+  },
+  value: {
+    control: 'number' as const,
+    description:
+      'Valeur de 0 à 100, bornée. Omise sur un `linear`, la barre devient indéterminée et `aria-valuenow` disparaît — c’est ce qui la distingue d’un 0 %.',
+  },
+  label: {
+    description:
+      'Nom accessible, obligatoire. Une barre sans nom annonce un pourcentage sans dire de quoi.',
+  },
+  valueText: {
+    description:
+      'Texte annoncé à la place du pourcentage (`aria-valuetext`) : « Étape 2 sur 4 », « 12 Mo sur 40 ».',
+  },
+  showValue: {
+    control: 'boolean' as const,
+    description:
+      'Affiche la valeur en clair. Le texte reste hors de l’arbre d’accessibilité : `aria-valuenow` le dit déjà.',
+  },
+  size: {
+    control: 'select' as const,
+    options: ['sm', 'md', 'lg'],
+    description: 'Épaisseur de la barre ou diamètre de l’anneau. Défaut : `md`.',
+  },
+};
+
+export const stepperArgTypes = {
+  steps: {
+    control: { disable: true },
+    description:
+      'Liste d’étapes `{ label, description?, href? }`. Avec `href`, l’étape est un vrai `<a>` ; sans, elle est inerte.',
+  },
+  current: {
+    control: 'number' as const,
+    description:
+      'Index de l’étape en cours. Les précédentes sont terminées, les suivantes à venir — le statut est déduit, pas déclaré étape par étape.',
+  },
+  variant: {
+    control: 'select' as const,
+    options: ['circles', 'bullets', 'panels', 'breadcrumb'],
+    description:
+      '`circles` (défaut), `bullets`, `panels` ou `breadcrumb`. La frise verticale est `circles` en `orientation="vertical"`, pas une variante de plus.',
+  },
+  orientation: {
+    control: 'select' as const,
+    options: ['horizontal', 'vertical'],
+    description: 'Sens de lecture de la liste. Défaut : `horizontal`.',
+  },
+  label: {
+    description: 'Nom accessible de la liste d’étapes. Obligatoire.',
+  },
+  hideLabels: {
+    control: 'boolean' as const,
+    description:
+      'Masque les libellés à l’écran seulement — ils restent lus. Réservé à `bullets`.',
+  },
+  bordered: {
+    control: 'boolean' as const,
+    description: 'Encadre chaque étape. `panels` uniquement.',
+  },
+  statusLabels: {
+    control: { disable: true },
+    description:
+      'Les trois statuts annoncés (`complete`, `current`, `upcoming`). Sans eux, le composant retombe sur un fallback anglais : il ne peut pas deviner la langue de la page.',
+  },
+};
+
 export const emojiPopoverArgTypes = {
   placement: overlaySharedArgTypes.placement,
   open: overlaySharedArgTypes.open,

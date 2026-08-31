@@ -1321,6 +1321,302 @@ export const docsCopy = {
       en: '`children` must be a single React element (the trigger). `content` is the tooltip text.',
     },
   },
+  spinner: {
+    title: { fr: 'Spinner', en: 'Spinner' },
+    intro: {
+      fr: '`Spinner` dit qu’on attend, sans dire combien de temps. Dès qu’une valeur est connue, `Progress` la montre : une barre qui avance dit quelque chose qu’un cercle qui tourne ne dira jamais.',
+      en: '`Spinner` says something is pending, without saying for how long. As soon as a value is known, `Progress` shows it: a bar that advances says something a turning circle never will.',
+    },
+    useSizes: {
+      fr: '`xs` suit la taille du texte courant (`1em`) : c’est la taille utilisée à l’intérieur d’un `Button`. Les autres sont fixes.',
+      en: '`xs` follows the current text size (`1em`): that is the size used inside a `Button`. The others are fixed.',
+    },
+    colors: { fr: 'Couleurs', en: 'Colours' },
+    useColors: {
+      fr: 'Le trait est en `currentColor` : le spinner prend le ton de son contexte. Il n’expose pas de palette à lui — une couleur de plus à tenir en accord dans les deux thèmes n’apporterait rien.',
+      en: 'The stroke is `currentColor`: the spinner takes the tone of its context. It exposes no palette of its own — one more colour to keep in step across both themes would buy nothing.',
+    },
+    alignment: { fr: 'Alignement', en: 'Alignment' },
+    useAlignment: {
+      fr: 'À côté d’un texte, `xs` s’aligne sur la ligne de base. Seul dans une zone, il se centre. Ce sont deux dispositions de la page appelante, pas deux props.',
+      en: 'Next to text, `xs` sits on the baseline. Alone in a region, it centres. Those are two layouts in the calling page, not two props.',
+    },
+    inCard: { fr: 'Dans une carte', en: 'In a card' },
+    useInCard: {
+      fr: 'Le conteneur porte `aria-busy` et un `aria-live="polite"`, et le spinner reste décoratif. **Une attente, une annonce.**',
+      en: 'The container carries `aria-busy` and `aria-live="polite"`, and the spinner stays decorative. **One wait, one announcement.**',
+    },
+    inButton: { fr: 'Dans un bouton', en: 'Inside a button' },
+    useInButton: {
+      fr: 'Rien à faire : `Button` a `loading` depuis DS-021, et il utilise ce même `Spinner`. Un seul spinner dans tout le design system — ne le réimplémentez pas dans votre bouton.',
+      en: 'Nothing to do: `Button` has had `loading` since DS-021, and it uses this very `Spinner`. One spinner across the whole design system — do not reimplement it in your own button.',
+    },
+    a11yBody: {
+      fr: 'Avec `label`, le spinner est une région `status` : le lecteur d’écran annonce l’attente sans interrompre la lecture en cours. Sans `label`, il est `aria-hidden` — c’est le bon choix quand le conteneur porte déjà `aria-busy` et un texte visible.',
+      en: 'With `label`, the spinner is a `status` region: the screen reader announces the wait without interrupting. Without `label`, it is `aria-hidden` — the right choice when the container already carries `aria-busy` and visible text.',
+    },
+    a11yKeys: {
+      fr: 'La rotation est figée sous `prefers-reduced-motion: reduce` : l’indicateur reste visible, il cesse simplement de tourner.',
+      en: 'The rotation freezes under `prefers-reduced-motion: reduce`: the indicator stays visible, it just stops turning.',
+    },
+    doLabel: {
+      fr: 'Un `label` quand le spinner est seul à porter l’attente',
+      en: 'A `label` when the spinner alone carries the wait',
+    },
+    doDecorative: {
+      fr: 'Pas de `label` dans un conteneur déjà `aria-busy` et nommé',
+      en: 'No `label` inside a container that is already `aria-busy` and named',
+    },
+    doProgress: {
+      fr: '`Progress` dès que la valeur est connue, même approximative',
+      en: '`Progress` as soon as the value is known, even roughly',
+    },
+    dontDouble: {
+      fr: 'Un `label` **et** un texte visible « Chargement… » : deux annonces pour une attente',
+      en: 'A `label` **and** visible “Loading…” text: two announcements for one wait',
+    },
+    dontBlank: {
+      fr: 'Un spinner plein écran là où un `Skeleton` montrerait déjà la forme de la page',
+      en: 'A full-screen spinner where a `Skeleton` would already show the page’s shape',
+    },
+    dontColor: {
+      fr: 'Coder une couleur en dur plutôt que laisser `currentColor` faire son travail',
+      en: 'Hard-coding a colour instead of letting `currentColor` do its job',
+    },
+    propsBody: {
+      fr: 'Deux props, et c’est tout. La couleur vient du contexte, la taille de l’échelle.',
+      en: 'Two props, and that is all. Colour comes from context, size from the scale.',
+    },
+  },
+  skeleton: {
+    title: { fr: 'Skeleton', en: 'Skeleton' },
+    intro: {
+      fr: '`Skeleton` tient la place d’un contenu qui arrive. Il ne dit pas ce qui arrive — seulement que ce n’est pas encore là, et quelle forme cela aura. C’est ce qui le distingue d’un `Spinner` : il évite le saut de mise en page à l’arrivée des données.',
+      en: '`Skeleton` holds the place of content on its way. It does not say what is coming — only that it is not here yet, and what shape it will take. That is what sets it apart from a `Spinner`: it avoids the layout jump when the data lands.',
+    },
+    hidden: {
+      fr: 'Toujours masqué aux lecteurs d’écran',
+      en: 'Always hidden from screen readers',
+    },
+    hiddenBody: {
+      fr: 'Un squelette n’a rien à annoncer : lire « bloc, bloc, bloc » n’apprend rien. Chaque `Skeleton` est `aria-hidden`, sans échappatoire — un `aria-hidden={false}` passé de l’extérieur est ignoré. **C’est le conteneur qui informe**, avec `aria-busy` et un nom : `<div aria-busy="true" aria-label="Chargement du rapport">`.',
+      en: 'A skeleton has nothing to announce: reading “block, block, block” teaches nothing. Every `Skeleton` is `aria-hidden`, with no way out — an `aria-hidden={false}` passed from outside is ignored. **The container is what informs**, with `aria-busy` and a name: `<div aria-busy="true" aria-label="Loading the report">`.',
+    },
+    shapes: { fr: 'Deux composants, pas huit', en: 'Two components, not eight' },
+    shapesBody: {
+      fr: '`Skeleton` est une forme — rectangle, cercle, ligne de texte. `SkeletonText` est la seule composition qu’on réécrivait à chaque fois : *n* lignes dont la dernière est plus courte. Tout le reste — carte, média, liste, témoignage — se compose depuis ces deux-là, dans la page. Les exemples ci-dessous sont des compositions, pas des variantes du composant.',
+      en: '`Skeleton` is a shape — rectangle, circle, line of text. `SkeletonText` is the one composition that kept being rewritten: *n* lines with a shorter last one. Everything else — card, media, list, testimonial — is composed from those two, in the page. The examples below are compositions, not component variants.',
+    },
+    media: { fr: 'Image et vidéo', en: 'Image and video' },
+    useMedia: {
+      fr: 'Reprenez le ratio réel du média (`aspect-video`) : un carré qui devient un 16/9 à l’arrivée de l’image annule tout le bénéfice.',
+      en: 'Match the real media ratio (`aspect-video`): a square that becomes 16∶9 when the image lands cancels the whole benefit.',
+    },
+    text: { fr: 'Paragraphe', en: 'Paragraph' },
+    useText: {
+      fr: '`lines` fixe le nombre de lignes, `lastLineWidth` la longueur de la dernière. Une ligne seule reste pleine largeur : une phrase unique ne s’arrête pas au milieu.',
+      en: '`lines` sets the number of lines, `lastLineWidth` the length of the last one. A single line stays full width: one sentence does not stop halfway.',
+    },
+    compositions: { fr: 'Compositions', en: 'Compositions' },
+    useCompositions: {
+      fr: 'Carte, widget, liste, témoignage : quatre dispositions à partir des deux mêmes pièces. Copiez celle qui ressemble à votre écran plutôt que d’attendre une prop.',
+      en: 'Card, widget, list, testimonial: four layouts from the same two pieces. Copy the one that resembles your screen rather than waiting for a prop.',
+    },
+    a11yBody: {
+      fr: 'Les blocs sont hors de l’arbre d’accessibilité. Le conteneur porte `aria-busy="true"` et un nom ; à l’arrivée des données, retirez `aria-busy` et le contenu réel prend la place — sans `aria-live`, sinon la page entière se réannonce.',
+      en: 'The blocks are outside the accessibility tree. The container carries `aria-busy="true"` and a name; when the data lands, drop `aria-busy` and the real content takes over — without `aria-live`, or the whole page re-announces itself.',
+    },
+    a11yKeys: {
+      fr: 'La pulsation s’arrête sous `prefers-reduced-motion: reduce`. Le contraste des blocs n’est pas soumis au 1.4.11 : ils ne portent aucune information.',
+      en: 'The pulse stops under `prefers-reduced-motion: reduce`. The blocks’ contrast is not subject to 1.4.11: they carry no information.',
+    },
+    doContainer: {
+      fr: '`aria-busy` et un nom sur le conteneur, jamais sur les blocs',
+      en: '`aria-busy` and a name on the container, never on the blocks',
+    },
+    doShape: {
+      fr: 'La forme et le nombre du contenu réel, pour éviter le saut de mise en page',
+      en: 'The real content’s shape and count, to avoid the layout jump',
+    },
+    doShort: {
+      fr: 'Un squelette pour une attente courte ; au-delà, un message qui explique',
+      en: 'A skeleton for a short wait; beyond that, a message that explains',
+    },
+    dontAnnounce: {
+      fr: 'Exposer les blocs aux lecteurs d’écran, ou leur mettre un `aria-label`',
+      en: 'Exposing the blocks to screen readers, or giving them an `aria-label`',
+    },
+    dontMismatch: {
+      fr: 'Trois lignes de squelette pour un paragraphe qui en fera dix',
+      en: 'Three skeleton lines for a paragraph that will run to ten',
+    },
+    dontForever: {
+      fr: 'Laisser le squelette indéfiniment quand la requête a échoué : c’est `ErrorState`',
+      en: 'Leaving the skeleton forever when the request failed: that is `ErrorState`',
+    },
+    propsBody: {
+      fr: '`width`, `height` et `size` acceptent un nombre — interprété en pixels — ou une chaîne CSS.',
+      en: '`width`, `height`, and `size` take a number — read as pixels — or a CSS string.',
+    },
+  },
+  progress: {
+    title: { fr: 'Progress', en: 'Progress' },
+    intro: {
+      fr: '`Progress` montre une progression mesurée, de 0 à 100. L’échelle est toujours un pourcentage : accepter un `min` et un `max` arbitraires ferait porter au composant une conversion que l’appelant fait mieux, et `valueText` couvre déjà le besoin d’annoncer autre chose qu’un pourcentage.',
+      en: '`Progress` shows measured progress, from 0 to 100. The scale is always a percentage: taking arbitrary `min` and `max` would push into the component a conversion the caller does better, and `valueText` already covers announcing something other than a percentage.',
+    },
+    indeterminate: { fr: 'Indéterminée', en: 'Indeterminate' },
+    useIndeterminate: {
+      fr: 'Sans `value`, la barre balaie sa piste et **`aria-valuenow` disparaît**. C’est exactement ce qui la distingue d’un 0 % : une barre annoncée « 0 % » dit que rien n’avance, une barre sans valeur dit qu’on ne sait pas.',
+      en: 'Without `value`, the bar sweeps its track and **`aria-valuenow` is dropped**. That is precisely what separates it from 0 %: a bar announced as “0 %” says nothing is moving, a bar with no value says we do not know.',
+    },
+    withValue: { fr: 'Valeur visible', en: 'Visible value' },
+    useWithValue: {
+      fr: '`showValue` affiche le pourcentage à côté de la barre. Le texte est `aria-hidden` : `aria-valuenow` le dit déjà, et l’entendre deux fois n’aide personne.',
+      en: '`showValue` shows the percentage beside the bar. The text is `aria-hidden`: `aria-valuenow` already says it, and hearing it twice helps nobody.',
+    },
+    announced: { fr: 'Texte annoncé', en: 'Announced text' },
+    useAnnounced: {
+      fr: '« 30 % » ne dit pas 30 % de quoi. `valueText` pose `aria-valuetext` et remplace le pourcentage par ce qui compte : « 12 Mo sur 40 », « Étape 2 sur 4 ». À utiliser dès que le pourcentage seul est opaque.',
+      en: '“30 %” does not say 30 % of what. `valueText` sets `aria-valuetext` and replaces the percentage with what matters: “12 MB of 40”, “Step 2 of 4”. Use it as soon as the bare percentage is opaque.',
+    },
+    circular: { fr: 'Circulaire', en: 'Circular' },
+    useCircular: {
+      fr: '`variant="circular"` **exige** une `value`, et le type l’impose. Un anneau qui tourne sans valeur, c’est un `Spinner` — et le design system n’en a qu’un.',
+      en: '`variant="circular"` **requires** a `value`, and the type enforces it. A ring that turns with no value is a `Spinner` — and the design system has only one.',
+    },
+    a11yBody: {
+      fr: 'La barre est un `progressbar` nommé, avec `aria-valuemin="0"`, `aria-valuemax="100"` et, si elle est déterminée, `aria-valuenow`. Le nom est obligatoire : une barre sans nom annonce un pourcentage sans dire de quoi. Les valeurs hors bornes sont ramenées dans l’intervalle plutôt qu’annoncées telles quelles.',
+      en: 'The bar is a named `progressbar`, with `aria-valuemin="0"`, `aria-valuemax="100"` and, when determinate, `aria-valuenow`. The name is required: a bar without one announces a percentage without saying of what. Out-of-range values are clamped rather than announced as given.',
+    },
+    a11yKeys: {
+      fr: 'Le remplissage se distingue de la piste par sa couleur **et** par sa longueur : la position seule reste lisible sans perception des couleurs (1.4.1). Le balayage de l’indéterminée s’arrête sous `prefers-reduced-motion`.',
+      en: 'The fill is set apart from the track by colour **and** by length: position alone stays readable without colour perception (1.4.1). The indeterminate sweep stops under `prefers-reduced-motion`.',
+    },
+    doName: {
+      fr: 'Un `label` qui dit de quoi il s’agit, pas « Progression »',
+      en: 'A `label` that says what this is, not “Progress”',
+    },
+    doValueText: {
+      fr: '`valueText` dès que le pourcentage seul est opaque',
+      en: '`valueText` as soon as the bare percentage is opaque',
+    },
+    doIndeterminate: {
+      fr: 'Omettre `value` tant qu’elle est inconnue, plutôt que d’envoyer `0`',
+      en: 'Omitting `value` while it is unknown, rather than sending `0`',
+    },
+    dontZero: {
+      fr: 'Annoncer `0` pour dire « je ne sais pas » : ce sont deux états différents',
+      en: 'Announcing `0` to mean “I don’t know”: those are two different states',
+    },
+    dontSpinner: {
+      fr: 'Un anneau circulaire sans valeur : c’est `Spinner`',
+      en: 'A circular ring with no value: that is `Spinner`',
+    },
+    dontDouble: {
+      fr: 'Un texte visible exposé aux lecteurs d’écran en plus d’`aria-valuenow`',
+      en: 'Visible text exposed to screen readers on top of `aria-valuenow`',
+    },
+    propsBody: {
+      fr: '`ProgressProps` est une union : `circular` sans `value` ne compile pas.',
+      en: '`ProgressProps` is a union: `circular` without `value` does not compile.',
+    },
+  },
+  stepper: {
+    title: { fr: 'Stepper', en: 'Stepper' },
+    intro: {
+      fr: '`Stepper` montre une suite d’étapes ordonnées et où l’on en est. Il rend une `<ol>` : l’ordre **est** l’information, et une liste ordonnée le dit déjà sans qu’on ait à l’inventer en ARIA.',
+      en: '`Stepper` shows an ordered sequence of steps and where you are in it. It renders an `<ol>`: the order **is** the information, and an ordered list already says so without inventing it in ARIA.',
+    },
+    statusBody: {
+      fr: 'Le statut de chaque étape se **déduit** de `current` : avant, terminée ; à l’index, en cours ; après, à venir. Déclarer un statut par étape ouvrirait la porte à deux étapes « en cours » — un état que l’interface ne sait pas montrer.',
+      en: 'Each step’s status is **derived** from `current`: before it, complete; at the index, current; after, upcoming. Declaring a status per step would open the door to two “current” steps — a state the interface cannot show.',
+    },
+    variants: { fr: 'Les variantes', en: 'The variants' },
+    variantsBody: {
+      fr: 'Quatre rendus pour la même liste. `circles` numérote et coche, `bullets` réduit à des pastilles, `panels` encadre chaque étape, `breadcrumb` les enchaîne par des chevrons. La frise verticale n’est pas une cinquième variante : c’est `circles` en `orientation="vertical"`.',
+      en: 'Four renderings of the same list. `circles` numbers and ticks, `bullets` reduces to dots, `panels` boxes each step, `breadcrumb` chains them with chevrons. The vertical timeline is not a fifth variant: it is `circles` with `orientation="vertical"`.',
+    },
+    useBullets: {
+      fr: '`hideLabels` masque les libellés à l’écran seulement — ils restent lus. Un point de couleur sans nom accessible ne dit rien à personne.',
+      en: '`hideLabels` hides labels on screen only — they are still read. A coloured dot with no accessible name says nothing to anyone.',
+    },
+    usePanels: {
+      fr: '`bordered` encadre chaque étape ; sans lui, un filet supérieur épais porte le même repère.',
+      en: '`bordered` boxes each step; without it, a thick top rule carries the same cue.',
+    },
+    useBreadcrumb: {
+      fr: 'Les chevrons sont `aria-hidden` : la `<ol>` porte déjà la succession. Si les étapes mènent quelque part, enveloppez le tout dans un `<nav>`.',
+      en: 'The chevrons are `aria-hidden`: the `<ol>` already carries the sequence. If the steps lead somewhere, wrap the whole thing in a `<nav>`.',
+    },
+    useVertical: {
+      fr: '`orientation="vertical"` donne la colonne, avec le trait de liaison à gauche.',
+      en: '`orientation="vertical"` gives the column, with the connecting rule on the left.',
+    },
+    useTimeline: {
+      fr: 'La même chose en `circles`, avec les descriptions : c’est la frise. Aucun composant supplémentaire.',
+      en: 'The same thing in `circles`, with descriptions: that is the timeline. No extra component.',
+    },
+    detailed: { fr: 'Détaillé', en: 'Detailed' },
+    useDetailed: {
+      fr: 'Avec `description`, chaque étape explique ce qu’elle attend. C’est le rendu par défaut, `circles`.',
+      en: 'With `description`, each step explains what it expects. This is the default rendering, `circles`.',
+    },
+    compact: { fr: 'Compact', en: 'Compact' },
+    boxed: { fr: 'Encadré', en: 'Boxed' },
+    verticalHeading: { fr: 'Vertical', en: 'Vertical' },
+    links: { fr: 'Étapes cliquables', en: 'Clickable steps' },
+    useLinks: {
+      fr: 'Une étape n’est un `<a>` que si elle a un `href`. Sans cible, un « lien » focusable serait un arrêt de tabulation qui ne mène nulle part. Les étapes à venir n’en ont donc pas.',
+      en: 'A step is an `<a>` only when it has an `href`. With no target, a focusable “link” would be a tab stop that leads nowhere. Upcoming steps have none.',
+    },
+    withProgress: { fr: 'Avec une barre de progression', en: 'With a progress bar' },
+    useWithProgress: {
+      fr: 'Sur mobile, ou quand les étapes sont nombreuses, une barre et un « Étape 2 sur 4 » disent la même chose en moins de place. C’est `Progress` avec un `valueText` — pas une variante de `Stepper`.',
+      en: 'On mobile, or when steps are many, a bar and a “Step 2 of 4” say the same thing in less room. That is `Progress` with a `valueText` — not a `Stepper` variant.',
+    },
+    withForm: { fr: 'Avec formulaire', en: 'With a form' },
+    useWithForm: {
+      fr: 'Le `Stepper` situe, le formulaire recueille. Le composant ne gère pas la navigation entre les étapes : c’est l’état de la page, et il dépend d’une validation qu’un composant de présentation n’a pas à connaître.',
+      en: 'The `Stepper` locates, the form collects. The component does not manage navigation between steps: that is page state, and it depends on validation a presentational component has no business knowing.',
+    },
+    a11yBody: {
+      fr: 'Une `<ol>` nommée, une `<li>` par étape, et `aria-current="step"` sur l’étape en cours — une seule, toujours. Chaque étape annonce son statut en toutes lettres via un `VisuallyHidden` : la couleur et la coche ne suffisent pas (WCAG 1.4.1).',
+      en: 'A named `<ol>`, one `<li>` per step, and `aria-current="step"` on the current one — exactly one, always. Each step spells out its status through a `VisuallyHidden`: colour and a tick are not enough (WCAG 1.4.1).',
+    },
+    a11yKeys: {
+      fr: '`statusLabels` fournit les trois mots annoncés. Sans eux, le composant retombe sur un fallback anglais : il ne peut pas deviner la langue de la page, et un statut annoncé dans la mauvaise langue casse le critère 3.1.2.',
+      en: '`statusLabels` supplies the three announced words. Without them the component falls back to English: it cannot guess the page’s language, and a status announced in the wrong one breaks 3.1.2.',
+    },
+    doStatus: {
+      fr: '`statusLabels` dans la langue de la page, toujours',
+      en: '`statusLabels` in the page’s language, always',
+    },
+    doNav: {
+      fr: 'Un `<nav>` autour du composant si les étapes sont des liens',
+      en: 'A `<nav>` around the component when the steps are links',
+    },
+    doDerive: {
+      fr: 'Laisser `current` déduire les statuts plutôt que les déclarer',
+      en: 'Letting `current` derive the statuses rather than declaring them',
+    },
+    dontColor: {
+      fr: 'Se reposer sur la couleur seule pour distinguer terminé et à venir',
+      en: 'Relying on colour alone to tell complete from upcoming',
+    },
+    dontLink: {
+      fr: 'Rendre cliquable une étape à venir : il n’y a rien où aller',
+      en: 'Making an upcoming step clickable: there is nowhere to go',
+    },
+    dontTabs: {
+      fr: 'Utiliser un `Stepper` pour ce qui est en fait de la navigation par onglets : c’est `Tabs`',
+      en: 'Using a `Stepper` for what is really tab navigation: that is `Tabs`',
+    },
+    propsBody: {
+      fr: 'Les étapes sont des données (`{ label, description?, href? }`), pas des enfants : la liste vient souvent d’une configuration.',
+      en: 'Steps are data (`{ label, description?, href? }`), not children: the list usually comes from configuration.',
+    },
+  },
   dialog: {
     title: { fr: 'Dialog', en: 'Dialog' },
     intro: {

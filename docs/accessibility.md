@@ -41,6 +41,8 @@ Une exception AA exige un sign-off Accessibilité **et** une décision produit �
 
 30. `List` / `Accordion` : `List` = `<ul>` ou `<ol>` + `<li>`. Ligne interactive = vrai `<a href>` (pas de bouton dans `trailing`). `leading` décoratif. `Accordion` : bouton natif dans un `h3`, `aria-expanded` / `aria-controls`, panneau `region`. Flèches, Début / Fin entre en-têtes ; section `disabled` sautée. `type="single"` | `"multiple"`. Pas de `ChapterList` métier, pas d’arbre ni de liste virtualisée.
 
+31. `Spinner` / `Skeleton` / `Progress` / `Stepper` : **une attente, une annonce**. `Spinner` avec `label` est une région `status` ; sans `label` il est `aria-hidden`, ce qui est le bon choix dans un conteneur déjà `aria-busy` (`Button`, `Dialog` en `processing`). `Skeleton` est toujours hors de l'arbre d'accessibilité, sans échappatoire : c'est le conteneur qui porte `aria-busy` et le nom. `Progress` est un `progressbar` nommé (`aria-valuemin` / `aria-valuemax`, valeurs bornées) ; **omettre `value` retire `aria-valuenow`** — c'est ce qui distingue « inconnu » de « 0 % ». `valueText` (`aria-valuetext`) dès que le pourcentage seul est opaque. `Stepper` rend une `<ol>` nommée, `aria-current="step"` sur une seule étape, et chaque statut annoncé en toutes lettres via `VisuallyHidden` (1.4.1) ; `statusLabels` doit être fourni dans la langue de la page (3.1.2). Une étape n'est un lien que si elle a un `href`. Toutes les animations sont figées sous `prefers-reduced-motion`.
+
 ## Overlays — revue de PR
 
 Ces patterns s’appliquent dès qu’un Dialog, Menu, Popover ou Tooltip est proposé. Une PR qui les ignore n’est pas AA.

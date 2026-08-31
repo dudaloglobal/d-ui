@@ -1,0 +1,65 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as SpinnerStories from './Spinner.stories';
+
+<Meta of={SpinnerStories} />
+
+# Spinner
+
+<P k="spinner.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={SpinnerStories.Default} />
+
+<H2 k="chrome.sizes" />
+
+<P k="spinner.useSizes" />
+
+<Canvas of={SpinnerStories.Sizes} />
+
+<H2 k="spinner.colors" />
+
+<P k="spinner.useColors" />
+
+<Canvas of={SpinnerStories.Colors} />
+
+<H2 k="spinner.alignment" />
+
+<P k="spinner.useAlignment" />
+
+<Canvas of={SpinnerStories.Alignment} />
+
+<H2 k="spinner.inCard" />
+
+<P k="spinner.useInCard" />
+
+<Canvas of={SpinnerStories.WithCard} />
+
+<H2 k="spinner.inButton" />
+
+<P k="spinner.useInButton" />
+
+<Canvas of={SpinnerStories.InButtons} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="spinner.a11yBody" />
+
+<P k="spinner.a11yKeys" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['spinner.doLabel', 'spinner.doDecorative', 'spinner.doProgress']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['spinner.dontDouble', 'spinner.dontBlank', 'spinner.dontColor']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="spinner.propsBody" />
+
+<ArgTypes of={SpinnerStories} include={['size', 'label']} />

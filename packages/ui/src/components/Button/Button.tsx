@@ -1,6 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import { cx } from '../../lib/cx';
 import { cornerRadiusClass, type CornerRadius } from '../../lib/cornerRadius';
+import { Spinner } from '../Spinner/Spinner';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -46,10 +47,6 @@ const sizeClass: Record<ButtonSize, string> = {
   md: 'h-10 px-4 text-base',
   lg: 'h-12 px-5 text-lg',
 };
-
-function Spinner() {
-  return <span className="d-ui-button-spinner" aria-hidden="true" />;
-}
 
 function Bounce() {
   return (
@@ -114,7 +111,14 @@ export function Button({
         className,
       )}
     >
-      {loading ? loadingIndicator === 'bounce' ? <Bounce /> : <Spinner /> : null}
+      {/* Sans `label` : décoratif. Le bouton porte déjà `aria-busy` et son libellé. */}
+      {loading ? (
+        loadingIndicator === 'bounce' ? (
+          <Bounce />
+        ) : (
+          <Spinner size="xs" />
+        )
+      ) : null}
       {showStartIcon ? <IconSlot>{icon}</IconSlot> : null}
       {children}
       {showEndIcon ? <IconSlot>{icon}</IconSlot> : null}

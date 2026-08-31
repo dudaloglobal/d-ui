@@ -26,6 +26,7 @@ import {
   useInheritedTheme,
   usePrefersReducedMotion,
 } from '../floating';
+import { Spinner } from '../Spinner/Spinner';
 import {
   DialogContext,
   dialogRadiusClass,
@@ -252,7 +253,8 @@ export function Dialog({
                       )}
                       aria-hidden="true"
                     >
-                      <span className="d-ui-button-spinner text-brand size-8" />
+                      {/* Décoratif : le panneau porte déjà `aria-busy`. */}
+                      <Spinner size="lg" className="text-brand" />
                     </div>
                   ) : null}
                 </DialogContext.Provider>
