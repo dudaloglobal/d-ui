@@ -2781,6 +2781,110 @@ export const docsCopy = {
       en: '`href`, `as`, `disabled`, `orientation`, `radius`, `size`, `color`, `className`. Slots: `CardMedia`, `CardHeader`, `CardTitle`, `CardDescription`, `CardBody`, `CardFooter`.',
     },
   },
+  accordion: {
+    intro: {
+      fr: '`Accordion` ouvre et referme des sections (FAQ, chapitres). `type="single"` (défaut) : une section à la fois, refermable. `type="multiple"` : plusieurs ouvertes. Une liste de chapitres LMS compose `Accordion` + `List` dans l’app, pas dans `d-ui`.',
+      en: '`Accordion` expands and collapses sections (FAQ, chapters). `type="single"` (default): one section at a time, collapsible. `type="multiple"`: several can stay open. An LMS chapter list composes `Accordion` + `List` in the app, not in `d-ui`.',
+    },
+    multiple: { fr: 'Plusieurs sections', en: 'Multiple sections' },
+    multipleBody: {
+      fr: '`type="multiple"` garde chaque section indépendante. `defaultValue` (ou `value`) est un tableau d’identifiants.',
+      en: '`type="multiple"` keeps each section independent. `defaultValue` (or `value`) is an array of ids.',
+    },
+    disabled: { fr: 'Sections désactivées', en: 'Disabled sections' },
+    disabledBody: {
+      fr: '`disabled` sur `AccordionItem` pose `disabled` sur le bouton : pas d’ouverture, flèches sautées.',
+      en: '`disabled` on `AccordionItem` sets `disabled` on the button: it cannot open, and arrows skip it.',
+    },
+    composition: { fr: 'Composition', en: 'Composition' },
+    compositionBody: {
+      fr: 'Le panneau accueille n’importe quel contenu. Pour une liste de leçons, composez `List` / `ListItem` (éventuellement avec `href`) — pas de DOM privé ni de `ChapterList` métier.',
+      en: 'The panel accepts any content. For a lesson list, compose `List` / `ListItem` (optionally with `href`) — no private DOM and no domain `ChapterList`.',
+    },
+    a11yBody: {
+      fr: 'Chaque en-tête est un `<button>` dans un `h3`, avec `aria-expanded` et `aria-controls`. Le panneau ouvert est une `region` nommée par l’en-tête. Entrée / Espace basculent (bouton natif). Flèches haut / bas, Début / Fin déplacent le focus entre en-têtes actifs. Pas d’animation obligatoire (`prefers-reduced-motion`).',
+      en: 'Each header is a `<button>` inside an `h3`, with `aria-expanded` and `aria-controls`. The open panel is a `region` named by the header. Enter / Space toggle (native button). Up / down arrows, Home / End move focus between enabled headers. No required animation (`prefers-reduced-motion`).',
+    },
+    doPattern: {
+      fr: '`AccordionItem` + `AccordionTrigger` + `AccordionPanel`, bouton natif, `value` unique par section',
+      en: '`AccordionItem` + `AccordionTrigger` + `AccordionPanel`, native button, unique `value` per section',
+    },
+    doCompose: {
+      fr: '`List` dans le panneau pour les leçons d’un chapitre',
+      en: '`List` in the panel for the lessons of a chapter',
+    },
+    dontDiv: {
+      fr: 'Un `div` cliquable à la place du déclencheur, ou `role="button"`',
+      en: 'A clickable `div` instead of the trigger, or `role="button"`',
+    },
+    dontLms: {
+      fr: 'Une `ChapterList` métier dans `d-ui`',
+      en: 'A domain `ChapterList` inside `d-ui`',
+    },
+    props: {
+      fr: '`type`, `value` / `defaultValue` / `onValueChange`, `size`, `className`. Item : `value`, `disabled`. Déclencheur et panneau transmettent `className`.',
+      en: '`type`, `value` / `defaultValue` / `onValueChange`, `size`, `className`. Item: `value`, `disabled`. Trigger and panel forward `className`.',
+    },
+  },
+  list: {
+    intro: {
+      fr: '`List` est une liste sémantique (`ul` par défaut, `ol` si `as="ol"`). `ListItem` porte le titre, une `description` optionnelle, et les emplacements `leading` / `trailing` (icône, action). Pas de virtualisation ni d’arbre.',
+      en: '`List` is a semantic list (`ul` by default, `ol` if `as="ol"`). `ListItem` holds the title, an optional `description`, and `leading` / `trailing` slots (icon, action). No virtualisation and no tree.',
+    },
+    ordered: { fr: 'Ordonnée', en: 'Ordered' },
+    orderedBody: {
+      fr: '`as="ol"` rend une vraie liste ordonnée : numérotation native, annoncée par les technologies d’assistance.',
+      en: '`as="ol"` renders a real ordered list: native numbering, announced by assistive technology.',
+    },
+    divided: { fr: 'Filets', en: 'Dividers' },
+    dividedBody: {
+      fr: '`divided` pose un filet entre les items (`border-border-subtle`). Le dernier n’a pas de bordure basse.',
+      en: '`divided` draws a rule between items (`border-border-subtle`). The last item has no bottom border.',
+    },
+    slots: { fr: 'Emplacements', en: 'Slots' },
+    slotsBody: {
+      fr: '`leading` (icône décorative) et `trailing` (bouton, chevron). L’icône est masquée aux technologies d’assistance : le titre porte le nom. Un `Button` dans `trailing` n’est possible que si la ligne n’est **pas** un lien.',
+      en: '`leading` (decorative icon) and `trailing` (button, chevron). The icon is hidden from assistive technology: the title carries the name. A `Button` in `trailing` is only valid when the row is **not** a link.',
+    },
+    description: { fr: 'Avec description', en: 'With description' },
+    descriptionBody: {
+      fr: '`description` s’affiche sous le titre, en ton `muted`. Elle entre dans le nom du lien si `href` est posé.',
+      en: '`description` appears under the title, in a `muted` tone. It is part of the link name when `href` is set.',
+    },
+    link: { fr: 'Lien', en: 'As a link' },
+    linkBody: {
+      fr: '`href` rend un vrai `<a>`. Toute la ligne est la cible : pas de bouton dans `trailing` (HTML + WCAG 4.1.2).',
+      en: '`href` renders a real `<a>`. The whole row is the hit target: no button in `trailing` (HTML + WCAG 4.1.2).',
+    },
+    disabledBody: {
+      fr: '`disabled` retire le lien et atténue la ligne. Pas d’attribut `disabled` sur un `<a>`.',
+      en: '`disabled` removes the link and fades the row. No `disabled` attribute on an `<a>`.',
+    },
+    a11yBody: {
+      fr: 'Toujours un `<ul>` ou un `<ol>` avec des `<li>`. Ligne interactive : `<a href>`, jamais un `div` + `onClick`. Nom : titre visible (+ description). Icône `leading` décorative. Contraste du titre ≥ 4.5:1.',
+      en: 'Always a `<ul>` or `<ol>` with `<li>`s. Interactive row: `<a href>`, never a `div` + `onClick`. Name: visible title (+ description). `leading` icon is decorative. Title contrast ≥ 4.5:1.',
+    },
+    doNative: {
+      fr: '`as="ul"` ou `as="ol"` selon que l’ordre compte, `href` pour naviguer',
+      en: '`as="ul"` or `as="ol"` depending on whether order matters, `href` to navigate',
+    },
+    doSlots: {
+      fr: '`leading` pour une icône, `trailing` pour une action sur une ligne **non** liée',
+      en: '`leading` for an icon, `trailing` for an action on a **non**-linked row',
+    },
+    dontNested: {
+      fr: 'Un `Button` dans une `ListItem` déjà lien',
+      en: 'A `Button` inside a `ListItem` that is already a link',
+    },
+    dontTree: {
+      fr: 'Une vue arbre ou une liste virtualisée infinie dans `d-ui`',
+      en: 'A tree view or a virtualised infinite list in `d-ui`',
+    },
+    props: {
+      fr: '`as`, `divided`, `size`, `className`. Item : `leading`, `trailing`, `href`, `description`, `disabled`.',
+      en: '`as`, `divided`, `size`, `className`. Item: `leading`, `trailing`, `href`, `description`, `disabled`.',
+    },
+  },
 } as const;
 
 export type DocsCopy = typeof docsCopy;

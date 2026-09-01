@@ -157,6 +157,12 @@ export const storyNameEn: Record<string, string> = {
   Présence: 'Presence',
   'À côté d’un nom': 'Beside a name',
   'Bouton désactivé': 'Disabled button',
+  'Plusieurs sections': 'Multiple sections',
+  'Sections désactivées': 'Disabled sections',
+  Ordonnée: 'Ordered',
+  Filets: 'Dividers',
+  Emplacements: 'Slots',
+  'Avec description': 'With description',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -1496,4 +1502,72 @@ export type CardDocsCopy = typeof cardFr;
 
 export function cardCopy(locale: DocsLocale): CardDocsCopy {
   return locale === 'en' ? cardEn : cardFr;
+}
+
+const accordionFr = {
+  what: 'Qu’est-ce que c’est ?',
+  whatBody: 'Un module de révision pour ancrer les notions du cours.',
+  when: 'Quand commencer ?',
+  whenBody: 'Dès le premier cours, à votre rythme.',
+  who: 'Qui corrige ?',
+  whoBody: 'Section indisponible pour le moment.',
+  why: 'Pourquoi s’entraîner ?',
+  whyBody: 'Les exercices courts aident à mémoriser.',
+  week1: 'Semaine 1',
+  week2: 'Semaine 2',
+  lesson1: 'Cours 1',
+  lesson2: 'Cours 2',
+  lesson3: 'Cours 3',
+};
+
+const accordionEn = {
+  what: 'What is this?',
+  whatBody: 'A revision module to lock in the course ideas.',
+  when: 'When should I start?',
+  whenBody: 'From the first lesson, at your own pace.',
+  who: 'Who marks the work?',
+  whoBody: 'This section is unavailable for now.',
+  why: 'Why practise?',
+  whyBody: 'Short exercises help you remember.',
+  week1: 'Week 1',
+  week2: 'Week 2',
+  lesson1: 'Lesson 1',
+  lesson2: 'Lesson 2',
+  lesson3: 'Lesson 3',
+};
+
+export type AccordionDocsCopy = typeof accordionFr;
+
+export function accordionCopy(locale: DocsLocale): AccordionDocsCopy {
+  return locale === 'en' ? accordionEn : accordionFr;
+}
+
+const listFr = {
+  algebra: 'Algèbre',
+  geometry: 'Géométrie',
+  analysis: 'Analyse',
+  algebraDesc: 'Chapitre 2 — espaces vectoriels',
+  geometryDesc: 'Chapitre 3 — figures du plan',
+  open: 'Ouvrir',
+  stepOne: 'Lire l’énoncé',
+  stepTwo: 'Rédiger la preuve',
+  stepThree: 'Vérifier le raisonnement',
+};
+
+const listEn = {
+  algebra: 'Algebra',
+  geometry: 'Geometry',
+  analysis: 'Analysis',
+  algebraDesc: 'Chapter 2 — vector spaces',
+  geometryDesc: 'Chapter 3 — plane figures',
+  open: 'Open',
+  stepOne: 'Read the statement',
+  stepTwo: 'Write the proof',
+  stepThree: 'Check the reasoning',
+};
+
+export type ListDocsCopy = typeof listFr;
+
+export function listCopy(locale: DocsLocale): ListDocsCopy {
+  return locale === 'en' ? listEn : listFr;
 }

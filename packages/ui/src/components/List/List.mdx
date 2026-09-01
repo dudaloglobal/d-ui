@@ -1,0 +1,75 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as ListStories from './List.stories';
+
+<Meta of={ListStories} />
+
+# List
+
+<P k="list.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={ListStories.Default} />
+
+<H2 k="list.ordered" />
+
+<P k="list.orderedBody" />
+
+<Canvas of={ListStories.Ordered} />
+
+<H2 k="list.divided" />
+
+<P k="list.dividedBody" />
+
+<Canvas of={ListStories.Divided} />
+
+<H2 k="list.slots" />
+
+<P k="list.slotsBody" />
+
+<Canvas of={ListStories.WithSlots} />
+
+<H2 k="list.description" />
+
+<P k="list.descriptionBody" />
+
+<Canvas of={ListStories.WithDescription} />
+
+<H2 k="list.link" />
+
+<P k="list.linkBody" />
+
+<Canvas of={ListStories.AsLink} />
+
+<H2 k="chrome.sizes" />
+
+<P k="chrome.useSizes" />
+
+<Canvas of={ListStories.Sizes} />
+
+<H2 k="chrome.disabled" />
+
+<P k="list.disabledBody" />
+
+<Canvas of={ListStories.Disabled} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="list.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['list.doNative', 'list.doSlots']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['list.dontNested', 'list.dontTree']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="list.props" />
+
+<ArgTypes of={ListStories} include={['as', 'divided', 'size', 'className']} />

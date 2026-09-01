@@ -1,0 +1,60 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as AccordionStories from './Accordion.stories';
+
+<Meta of={AccordionStories} />
+
+# Accordion
+
+<P k="accordion.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={AccordionStories.Default} />
+
+<H2 k="accordion.multiple" />
+
+<P k="accordion.multipleBody" />
+
+<Canvas of={AccordionStories.Multiple} />
+
+<H2 k="accordion.disabled" />
+
+<P k="accordion.disabledBody" />
+
+<Canvas of={AccordionStories.DisabledItems} />
+
+<H2 k="chrome.sizes" />
+
+<P k="chrome.useSizes" />
+
+<Canvas of={AccordionStories.Sizes} />
+
+<H2 k="accordion.composition" />
+
+<P k="accordion.compositionBody" />
+
+<Canvas of={AccordionStories.Composition} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="accordion.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['accordion.doPattern', 'accordion.doCompose']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['accordion.dontDiv', 'accordion.dontLms']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="accordion.props" />
+
+<ArgTypes
+  of={AccordionStories}
+  include={['type', 'value', 'defaultValue', 'onValueChange', 'size', 'className']}
+/>
