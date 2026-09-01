@@ -1199,3 +1199,157 @@ export const sidebarArgTypes = {
     description: '`sm` si l’espace est contraint, `md` par défaut.',
   },
 };
+
+const uiSizeArgType = {
+  control: 'inline-radio' as const,
+  options: ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'],
+  description: '`xxs` à `xxl`. `m` par défaut.',
+};
+
+const uiColorArgType = {
+  control: 'inline-radio' as const,
+  options: ['brand', 'success', 'warning', 'danger', 'info', 'neutral'],
+  description:
+    'Couleur sémantique (tokens). La couleur seule ne porte pas le sens (1.4.1).',
+};
+
+const classNameArgType = {
+  control: 'text' as const,
+  description: 'Classes fusionnées en dernier avec `cx`.',
+};
+
+export const badgeArgTypes = {
+  variant: {
+    control: 'inline-radio' as const,
+    options: ['default', 'success', 'warning', 'danger', 'info', 'neutral'],
+    description:
+      'Couleur sémantique. `default` = marque. `neutral` = catégorie, pas un statut. Le libellé porte le sens.',
+  },
+  color: {
+    ...uiColorArgType,
+    description:
+      'Couleur (tokens). Si absente, dérivée de `variant` (`default` → `brand`).',
+  },
+  appearance: {
+    control: 'inline-radio' as const,
+    options: ['soft', 'solid', 'outline'],
+    description:
+      '`soft` (défaut) : fond teinté. `solid` : couleur pleine. `outline` : filet, fond transparent.',
+  },
+  size: uiSizeArgType,
+  className: classNameArgType,
+  dot: {
+    control: 'boolean' as const,
+    description: 'Point décoratif (`aria-hidden`). Ne remplace pas le libellé.',
+  },
+  icon: {
+    description: 'Icône décorative. Ne remplace pas le nom accessible.',
+  },
+  dismissible: {
+    control: 'boolean' as const,
+    description: 'Affiche un bouton pour retirer la pastille. Passez `dismissLabel`.',
+  },
+  dismissLabel: {
+    control: 'text' as const,
+    description: 'Nom du bouton fermer. Fallback anglais : `Remove`.',
+  },
+};
+
+export const avatarArgTypes = {
+  src: {
+    control: 'text' as const,
+    description:
+      'URL de la photo. En cas d’échec, initiales puis silhouette, toujours nommées.',
+  },
+  alt: {
+    control: 'text' as const,
+    description:
+      'Nom accessible de l’image. Défaut : `name`. `""` si un texte voisin porte déjà le sens.',
+  },
+  name: {
+    control: 'text' as const,
+    description:
+      'Nom de la personne. Sert au nom accessible et, sans `initials`, aux deux lettres du fallback.',
+  },
+  initials: {
+    control: 'text' as const,
+    description:
+      'Deux lettres max. Sinon dérivé de `name`. Ne remplace pas le nom accessible.',
+  },
+  size: uiSizeArgType,
+  color: {
+    ...uiColorArgType,
+    description: 'Fond des initiales / silhouette. `neutral` par défaut.',
+  },
+  className: classNameArgType,
+  square: {
+    control: 'boolean' as const,
+    description: 'Carré arrondi (`rounded-md`) au lieu du cercle.',
+  },
+  presence: {
+    control: 'inline-radio' as const,
+    options: ['online', 'offline', 'busy', 'away'],
+    description:
+      'Point de présence. Le nom accessible inclut `presenceLabel` (couleur seule insuffisante).',
+  },
+  presenceLabel: {
+    control: 'text' as const,
+    description:
+      'Libellé de `presence`. Fallback anglais : `Online` / `Offline` / `Busy` / `Away`.',
+  },
+};
+
+export const avatarGroupArgTypes = {
+  size: {
+    ...uiSizeArgType,
+    description: 'Taille descendue sur les enfants sans `size`. `m` par défaut.',
+  },
+  className: classNameArgType,
+  max: {
+    control: { type: 'number' as const, min: 1, max: 12, step: 1 },
+    description: 'Nombre d’avatars visibles. Le reste devient « +N ».',
+  },
+  label: {
+    control: 'text' as const,
+    description: 'Nom accessible du groupe. Fallback anglais : `Avatar group`.',
+  },
+  overflowLabel: {
+    control: { disable: true },
+    description: 'Nom du surplus `(count) => string`. Fallback anglais : `N more`.',
+  },
+};
+
+export const cardArgTypes = {
+  href: {
+    control: 'text' as const,
+    description:
+      'Rend un vrai `<a>`. Toute la carte est la cible : pas de bouton ni de lien à l’intérieur.',
+  },
+  as: {
+    control: 'inline-radio' as const,
+    options: ['article', 'div', 'button'],
+    description:
+      'Élément racine si `href` est absent. `article` par défaut. `button` : `type="button"`.',
+  },
+  orientation: {
+    control: 'inline-radio' as const,
+    options: ['vertical', 'horizontal'],
+    description:
+      '`horizontal` : média à gauche dès `sm`. En dessous, la carte redevient une colonne.',
+  },
+  radius: cornerRadiusArgType('lg'),
+  size: {
+    ...uiSizeArgType,
+    description: 'Densité des slots (padding). `m` par défaut.',
+  },
+  color: {
+    ...uiColorArgType,
+    description: 'Teinte de surface. `neutral` = fond par défaut.',
+  },
+  className: classNameArgType,
+  disabled: {
+    control: 'boolean' as const,
+    description:
+      'Désactive la carte-bouton (`as="button"`) : plus d’événements pointeur. Ignoré sur `article` / lien.',
+  },
+};

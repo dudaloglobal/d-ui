@@ -115,6 +115,12 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Color | Dudalo Design System');
   await page.goto('/?path=/docs/components-icon--docs');
   await expect(page).toHaveTitle('Icon | Dudalo Design System');
+  await page.goto('/?path=/docs/components-avatar--docs');
+  await expect(page).toHaveTitle('Avatar | Dudalo Design System');
+  await page.goto('/?path=/docs/components-badge--docs');
+  await expect(page).toHaveTitle('Badge | Dudalo Design System');
+  await page.goto('/?path=/docs/components-card--docs');
+  await expect(page).toHaveTitle('Card | Dudalo Design System');
 });
 
 test('component docs H1 is the component name, like Link', async ({ page }) => {
@@ -136,6 +142,9 @@ test('component docs H1 is the component name, like Link', async ({ page }) => {
     { id: 'components-errorstate--docs', name: 'ErrorState' },
     { id: 'components-navbar--docs', name: 'Navbar' },
     { id: 'components-sidebar--docs', name: 'Sidebar' },
+    { id: 'components-avatar--docs', name: 'Avatar' },
+    { id: 'components-badge--docs', name: 'Badge' },
+    { id: 'components-card--docs', name: 'Card' },
     { id: 'foundations-typography--docs', name: 'Typography' },
     { id: 'foundations-color--docs', name: 'Color' },
   ]) {

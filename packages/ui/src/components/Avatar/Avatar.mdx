@@ -1,0 +1,114 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as AvatarStories from './Avatar.stories';
+
+<Meta of={AvatarStories} />
+
+# Avatar
+
+<P k="avatar.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={AvatarStories.Default} />
+
+<H2 k="avatar.image" />
+
+<P k="avatar.imageBody" />
+
+<Canvas of={AvatarStories.Image} />
+
+<H2 k="avatar.initials" />
+
+<P k="avatar.initialsBody" />
+
+<Canvas of={AvatarStories.Initials} />
+
+<H2 k="avatar.fallback" />
+
+<P k="avatar.fallbackBody" />
+
+<Canvas of={AvatarStories.Fallback} />
+
+<H2 k="chrome.sizes" />
+
+<P k="avatar.sizesBody" />
+
+<Canvas of={AvatarStories.Sizes} />
+
+<H2 k="avatar.color" />
+
+<P k="avatar.colorBody" />
+
+<Canvas of={AvatarStories.Colors} />
+
+<H2 k="avatar.square" />
+
+<P k="avatar.squareBody" />
+
+<Canvas of={AvatarStories.Square} />
+
+<H2 k="avatar.presence" />
+
+<P k="avatar.presenceBody" />
+
+<Canvas of={AvatarStories.Presence} />
+
+<H2 k="avatar.decorative" />
+
+<P k="avatar.decorativeBody" />
+
+<Canvas of={AvatarStories.Decorative} />
+
+<H2 k="chrome.group" />
+
+<P k="avatar.groupBody" />
+
+<Canvas of={AvatarStories.Group} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="avatar.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['avatar.doName', 'avatar.doAlt', 'avatar.doPresence', 'avatar.doGroup']} />
+
+<H3 k="chrome.dont" />
+
+<Ul
+  items={['avatar.dontEmpty', 'avatar.dontDecorativeFail', 'avatar.dontPresenceColor']}
+/>
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<H3 k="avatar.propsAvatar" />
+
+<P k="avatar.props" />
+
+<ArgTypes
+  of={AvatarStories}
+  include={[
+    'src',
+    'alt',
+    'name',
+    'initials',
+    'size',
+    'color',
+    'className',
+    'square',
+    'presence',
+    'presenceLabel',
+  ]}
+/>
+
+<H3 k="avatar.propsGroup" />
+
+<P k="avatar.propsGroupBody" />
+
+<ArgTypes
+  of={AvatarStories.Group}
+  include={['size', 'max', 'label', 'overflowLabel', 'className']}
+/>

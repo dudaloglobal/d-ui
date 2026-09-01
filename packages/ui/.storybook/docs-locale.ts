@@ -142,6 +142,21 @@ export const storyNameEn: Record<string, string> = {
   'Contenu défilant': 'Scrollable content',
   'Bordure et coins': 'Border and corners',
   Arrondi: 'Corner radius',
+  Apparences: 'Appearances',
+  'Avec média': 'With media',
+  'En-tête et pied': 'Header and footer',
+  Horizontale: 'Horizontal card',
+  Lien: 'As a link',
+  Bouton: 'As a button',
+  Composition: 'Composition',
+  Initiales: 'Initials',
+  Photo: 'Photo',
+  'Sans image': 'No image',
+  Carré: 'Square',
+  'Avec point': 'With dot',
+  Présence: 'Presence',
+  'À côté d’un nom': 'Beside a name',
+  'Bouton désactivé': 'Disabled button',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -1379,4 +1394,106 @@ export type ErrorStateDocsCopy = typeof errorStateFr;
 
 export function errorStateCopy(locale: DocsLocale): ErrorStateDocsCopy {
   return locale === 'en' ? errorStateEn : errorStateFr;
+}
+
+const badgeFr = {
+  defaultLabel: 'Nouveau',
+  success: 'Publié',
+  warning: 'Brouillon',
+  danger: 'Archivé',
+  info: 'Info',
+  neutral: 'Neutre',
+  soft: 'Léger',
+  solid: 'Plein',
+  outline: 'Contour',
+  dismiss: 'Retirer',
+};
+
+const badgeEn = {
+  defaultLabel: 'New',
+  success: 'Published',
+  warning: 'Draft',
+  danger: 'Archived',
+  info: 'Info',
+  neutral: 'Neutral',
+  soft: 'Soft',
+  solid: 'Solid',
+  outline: 'Outline',
+  dismiss: 'Remove',
+};
+
+export type BadgeDocsCopy = typeof badgeFr;
+
+export function badgeCopy(locale: DocsLocale): BadgeDocsCopy {
+  return locale === 'en' ? badgeEn : badgeFr;
+}
+
+const avatarFr = {
+  ada: 'Ada Lovelace',
+  adaInitial: 'A',
+  grace: 'Grace Hopper',
+  graceInitial: 'G',
+  katherine: 'Katherine Johnson',
+  katherineInitial: 'K',
+  annie: 'Annie Easley',
+  groupLabel: 'Équipe',
+  overflow: (count: number) => `${count} de plus`,
+  online: 'En ligne',
+  offline: 'Hors ligne',
+  busy: 'Occupé',
+  away: 'Absent',
+};
+
+const avatarEn = {
+  ada: 'Ada Lovelace',
+  adaInitial: 'A',
+  grace: 'Grace Hopper',
+  graceInitial: 'G',
+  katherine: 'Katherine Johnson',
+  katherineInitial: 'K',
+  annie: 'Annie Easley',
+  groupLabel: 'Team',
+  overflow: (count: number) => `${count} more`,
+  online: 'Online',
+  offline: 'Offline',
+  busy: 'Busy',
+  away: 'Away',
+};
+
+export type AvatarDocsCopy = typeof avatarFr;
+
+export function avatarCopy(locale: DocsLocale): AvatarDocsCopy {
+  return locale === 'en' ? avatarEn : avatarFr;
+}
+
+const cardFr = {
+  title: 'Algèbre linéaire',
+  subtitle: 'Chapitre 2',
+  body: 'Introduction aux espaces vectoriels.',
+  open: 'Ouvrir',
+  share: 'Partager',
+  person: 'Ada Lovelace',
+  role: 'Mathématicienne',
+  status: 'Actif',
+  personBody: 'Notes de lecture sur le moteur analytique.',
+  message: 'Message',
+};
+
+const cardEn = {
+  title: 'Linear algebra',
+  subtitle: 'Chapter 2',
+  body: 'An introduction to vector spaces.',
+  open: 'Open',
+  share: 'Share',
+  person: 'Ada Lovelace',
+  role: 'Mathematician',
+  status: 'Active',
+  personBody: 'Reading notes on the analytical engine.',
+  message: 'Message',
+};
+
+export type CardDocsCopy = typeof cardFr;
+
+export function cardCopy(locale: DocsLocale): CardDocsCopy {
+  return locale === 'en' ? cardEn : cardFr;
 }

@@ -23,6 +23,7 @@ export const docsCopy = {
     required: { fr: 'Requis', en: 'Required' },
     helper: { fr: 'Aide', en: 'Helper' },
     sizes: { fr: 'Tailles', en: 'Sizes' },
+    colors: { fr: 'Couleurs', en: 'Colors' },
     radius: { fr: 'Arrondi', en: 'Corner radius' },
     group: { fr: 'Groupe', en: 'Group' },
     layout: { fr: 'Disposition', en: 'Layout' },
@@ -91,8 +92,8 @@ export const docsCopy = {
       en: 'Consuming apps use:',
     },
     itemComponents: {
-      fr: 'les composants React (`Button`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Calendar`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
-      en: 'the React components (`Button`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Calendar`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      fr: 'les composants React (`Avatar`, `Badge`, `Button`, `Card`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Calendar`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      en: 'the React components (`Avatar`, `Badge`, `Button`, `Card`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Calendar`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
     },
     itemCssVars: {
       fr: 'les **variables CSS** `--d-ui-*`',
@@ -2533,6 +2534,251 @@ export const docsCopy = {
     props: {
       fr: '`label` nomme le `nav`. `collapsed` / `collapsible` pour le rail. `overlay` + `open` / `onOpenChange` pour le mobile. `SidebarItem` : `href`, `icon`, `current`.',
       en: '`label` names the `nav`. `collapsed` / `collapsible` for the rail. `overlay` + `open` / `onOpenChange` for mobile. `SidebarItem`: `href`, `icon`, `current`.',
+    },
+  },
+  badge: {
+    intro: {
+      fr: '`Badge` est une pastille de statut ou de catégorie (Tailwind Plus). Variantes `default`, `success`, `warning`, `danger`, `info`, `neutral`. Ce n’est pas un bouton, ni un `Alert`.',
+      en: '`Badge` is a status or category pill (Tailwind Plus). Variants `default`, `success`, `warning`, `danger`, `info`, `neutral`. It is not a button, and not an `Alert`.',
+    },
+    variants: { fr: 'Variantes', en: 'Variants' },
+    variantsBody: {
+      fr: '`default` reprend la marque. `success` / `warning` / `danger` / `info` sont sémantiques. `neutral` sert à une catégorie sans statut. Le libellé porte le sens : la couleur seule ne suffit pas (WCAG 1.4.1).',
+      en: '`default` uses the brand. `success` / `warning` / `danger` / `info` are semantic. `neutral` is a category without status. The label carries the meaning: colour alone is not enough (WCAG 1.4.1).',
+    },
+    appearances: { fr: 'Apparences', en: 'Appearances' },
+    appearancesBody: {
+      fr: '`soft` (défaut) : fond teinté. `solid` : couleur pleine, pour une emphase plus forte. `outline` : filet, fond transparent.',
+      en: '`soft` (default): tinted background. `solid`: filled colour, for stronger emphasis. `outline`: stroke, transparent background.',
+    },
+    sizesBody: {
+      fr: '`xxs` à `xxl`. `m` par défaut.',
+      en: '`xxs` to `xxl`. `m` by default.',
+    },
+    color: { fr: 'Couleurs', en: 'Colors' },
+    colorBody: {
+      fr: '`color` pose la teinte (`brand`, `success`, …). Si absente, `variant` la dérive (`default` → `brand`). Le libellé porte le sens.',
+      en: '`color` sets the hue (`brand`, `success`, …). If omitted, `variant` derives it (`default` → `brand`). The label carries the meaning.',
+    },
+    icon: { fr: 'Avec icône', en: 'With icon' },
+    iconBody: {
+      fr: '`icon` est décorative. Le texte reste le nom accessible.',
+      en: '`icon` is decorative. The text stays the accessible name.',
+    },
+    dot: { fr: 'Avec point', en: 'With dot' },
+    dotBody: {
+      fr: '`dot` ajoute un point de la couleur courante. Il ne remplace pas le libellé.',
+      en: '`dot` adds a current-colour dot. It does not replace the label.',
+    },
+    dismissible: { fr: 'Fermable', en: 'Dismissible' },
+    dismissibleBody: {
+      fr: '`dismissible` ajoute un vrai `<button>` pour retirer la pastille (filtre, étiquette). Passez `dismissLabel` et `onDismiss`. Pour la garder dans une liste, ne la rendez plus après `onDismiss`.',
+      en: '`dismissible` adds a real `<button>` to remove the pill (filter, tag). Pass `dismissLabel` and `onDismiss`. To keep it in a list, stop rendering it after `onDismiss`.',
+    },
+    a11yBody: {
+      fr: '`span` non interactif, sauf le bouton fermer. Le nom vient du texte (ou `aria-label`). Icône et point sont `aria-hidden`. Fermeture : bouton nommé.',
+      en: 'Non-interactive `span`, except the dismiss button. The name comes from the text (or `aria-label`). Icon and dot are `aria-hidden`. Dismiss: named button.',
+    },
+    doText: {
+      fr: 'Un libellé visible (« Publié », « Brouillon »), pas seulement une couleur',
+      en: 'A visible label (“Published”, “Draft”), not colour alone',
+    },
+    doVariant: {
+      fr: '`success` / `warning` / `danger` / `info` pour un statut ; `neutral` pour une catégorie',
+      en: '`success` / `warning` / `danger` / `info` for a status; `neutral` for a category',
+    },
+    doDismiss: {
+      fr: '`dismissible` + `dismissLabel` pour retirer une étiquette, pas un `onClick` sur le `span`',
+      en: '`dismissible` + `dismissLabel` to remove a tag, not an `onClick` on the `span`',
+    },
+    dontColor: {
+      fr: 'Une pastille vide dont le seul indice est la couleur',
+      en: 'An empty pill whose only cue is colour',
+    },
+    dontButton: {
+      fr: 'Un `onClick` sur le `span` : `Button` / `Link` pour une action, `dismissible` pour retirer',
+      en: 'An `onClick` on the `span`: `Button` / `Link` for an action, `dismissible` to remove',
+    },
+    props: {
+      fr: '`variant`, `color`, `appearance`, `size`, `dot`, `icon`, `dismissible`, `dismissLabel`, `onDismiss`, `className`. Texte : `children`.',
+      en: '`variant`, `color`, `appearance`, `size`, `dot`, `icon`, `dismissible`, `dismissLabel`, `onDismiss`, `className`. Text: `children`.',
+    },
+  },
+  avatar: {
+    intro: {
+      fr: '`Avatar` affiche une personne : photo, initiales, ou silhouette (Tailwind Plus). `AvatarGroup` empile les portraits. Pas de fiche LMS : composez avec `Card` et `Badge` dans l’app.',
+      en: '`Avatar` shows a person: photo, initials, or silhouette (Tailwind Plus). `AvatarGroup` stacks portraits. Not an LMS profile: compose with `Card` and `Badge` in the app.',
+    },
+    image: { fr: 'Photo', en: 'Photo' },
+    imageBody: {
+      fr: '`src` + `name` (ou `alt`). Si l’image échoue, les initiales puis la silhouette prennent le relais, toujours nommées.',
+      en: '`src` + `name` (or `alt`). If the image fails, initials then the silhouette take over, still named.',
+    },
+    initials: { fr: 'Initiales', en: 'Initials' },
+    initialsBody: {
+      fr: 'Sans `src`, `name` dérive deux lettres (prénom + nom). `initials` surcharge le texte, pas le nom accessible.',
+      en: 'Without `src`, `name` derives two letters (first + last). `initials` overrides the glyph, not the accessible name.',
+    },
+    fallback: { fr: 'Sans image', en: 'No image' },
+    fallbackBody: {
+      fr: 'Sans `src` ni `name` / `initials`, la silhouette est décorative (`aria-hidden`). Passez `name` dès que le portrait est le seul indice de la personne.',
+      en: 'Without `src` or `name` / `initials`, the silhouette is decorative (`aria-hidden`). Pass `name` as soon as the portrait is the only cue for the person.',
+    },
+    sizesBody: {
+      fr: '`xxs` à `xxl`. `m` par défaut.',
+      en: '`xxs` to `xxl`. `m` by default.',
+    },
+    color: { fr: 'Couleurs', en: 'Colors' },
+    colorBody: {
+      fr: '`color` teinte les initiales et la silhouette (`brand`, `success`, …). `neutral` par défaut. La photo n’est pas teintée. Le nom accessible reste `name`.',
+      en: '`color` tints initials and the silhouette (`brand`, `success`, …). `neutral` by default. The photo is not tinted. The accessible name stays `name`.',
+    },
+    square: { fr: 'Carré', en: 'Square' },
+    squareBody: {
+      fr: '`square` arrondit au `radius-md` au lieu du cercle (Tailwind Plus).',
+      en: '`square` uses `radius-md` instead of a circle (Tailwind Plus).',
+    },
+    presence: { fr: 'Présence', en: 'Presence' },
+    presenceBody: {
+      fr: '`presence` pose un point (`online` / `away` / `busy` / `offline`). Le nom accessible inclut `presenceLabel` : la couleur seule ne suffit pas (1.4.1).',
+      en: '`presence` adds a dot (`online` / `away` / `busy` / `offline`). The accessible name includes `presenceLabel`: colour alone is not enough (1.4.1).',
+    },
+    decorative: { fr: 'À côté d’un nom', en: 'Beside a name' },
+    decorativeBody: {
+      fr: 'Si le nom est déjà visible à côté du portrait, passez `alt=""`. Le canvas ci-dessous le montre : l’image est décorative, le texte porteur du sens reste à côté.',
+      en: 'If the name is already visible next to the portrait, pass `alt=""`. The canvas below shows it: the image is decorative, the neighbouring text carries the name.',
+    },
+    groupBody: {
+      fr: '`AvatarGroup` chevauche les enfants. `max` masque le surplus derrière « +N ». `label` nomme le groupe ; `overflowLabel` nomme le surplus.',
+      en: '`AvatarGroup` overlaps children. `max` hides the rest behind “+N”. `label` names the group; `overflowLabel` names the overflow.',
+    },
+    a11yBody: {
+      fr: 'Photo : `alt` (défaut `name`). Fallback : `role="img"` + `aria-label` issu de `name` ou `alt`. Présence : le libellé entre dans le nom, le point est `aria-hidden`. Groupe : `role="group"`. Image à côté d’un nom visible : `alt=""`.',
+      en: 'Photo: `alt` (defaults to `name`). Fallback: `role="img"` + `aria-label` from `name` or `alt`. Presence: the label joins the name, the dot is `aria-hidden`. Group: `role="group"`. Image next to a visible name: `alt=""`.',
+    },
+    doName: {
+      fr: '`name` sur chaque `Avatar` autonome (initiales et fallback restent nommés)',
+      en: '`name` on every standalone `Avatar` (initials and fallback stay named)',
+    },
+    doAlt: {
+      fr: '`alt=""` si le nom est déjà visible à côté du portrait',
+      en: '`alt=""` if the name is already visible next to the portrait',
+    },
+    doPresence: {
+      fr: '`presence` + `presenceLabel` (le point reste décoratif)',
+      en: '`presence` + `presenceLabel` (the dot stays decorative)',
+    },
+    doGroup: {
+      fr: '`label` sur `AvatarGroup` et `overflowLabel` pour le « +N »',
+      en: '`label` on `AvatarGroup` and `overflowLabel` for the “+N”',
+    },
+    dontEmpty: {
+      fr: 'Un portrait seul, sans `name` ni texte voisin',
+      en: 'A portrait alone, with no `name` and no neighbouring text',
+    },
+    dontDecorativeFail: {
+      fr: 'Compter sur `src` sans `name` : l’échec d’image laisserait une silhouette anonyme',
+      en: 'Rely on `src` without `name`: an image failure would leave an unnamed silhouette',
+    },
+    dontPresenceColor: {
+      fr: 'Un point de présence sans `presenceLabel` ni nom : la couleur seule ne porte pas le statut',
+      en: 'A presence dot without `presenceLabel` or a name: colour alone does not carry status',
+    },
+    propsAvatar: { fr: 'Avatar', en: 'Avatar' },
+    props: {
+      fr: '`src`, `alt`, `name`, `initials`, `size`, `color`, `square`, `presence`, `presenceLabel`, `className`. Attributs du `span` transmis.',
+      en: '`src`, `alt`, `name`, `initials`, `size`, `color`, `square`, `presence`, `presenceLabel`, `className`. `span` attributes are forwarded.',
+    },
+    propsGroup: { fr: 'AvatarGroup', en: 'AvatarGroup' },
+    propsGroupBody: {
+      fr: '`size` descend sur les enfants sans taille. `max` limite le nombre visible. `label` (fallback anglais `Avatar group`) et `overflowLabel` (fallback `N more`).',
+      en: '`size` is passed to children without a size. `max` caps how many are shown. `label` (English fallback `Avatar group`) and `overflowLabel` (fallback `N more`).',
+    },
+  },
+  card: {
+    intro: {
+      fr: '`Card` est une surface de composition (Tailwind Plus) : `CardMedia`, `CardHeader`, `CardBody`, `CardFooter`. Statique (`article`) ou interactive (`href` / `as="button"`). Une carte cours ou personne se compose dans l’app, pas dans `d-ui`.',
+      en: '`Card` is a composition surface (Tailwind Plus): `CardMedia`, `CardHeader`, `CardBody`, `CardFooter`. Static (`article`) or interactive (`href` / `as="button"`). A course or person card is composed in the app, not in `d-ui`.',
+    },
+    media: { fr: 'Média', en: 'Media' },
+    mediaBody: {
+      fr: '`CardMedia` accueille une image ou une illustration. Les `img` filles couvrent la zone (`object-cover`). Image décorative : `alt=""`.',
+      en: '`CardMedia` holds an image or illustration. Child `img` elements cover the area (`object-cover`). Decorative image: `alt=""`.',
+    },
+    slots: { fr: 'En-tête, corps, pied', en: 'Header, body, footer' },
+    slotsBody: {
+      fr: '`CardHeader` + `CardTitle` / `CardDescription`, `CardBody` pour le contenu, `CardFooter` pour les actions (`Button`, `Link`).',
+      en: '`CardHeader` + `CardTitle` / `CardDescription`, `CardBody` for content, `CardFooter` for actions (`Button`, `Link`).',
+    },
+    horizontal: { fr: 'Horizontale', en: 'Horizontal card' },
+    horizontalBody: {
+      fr: '`orientation="horizontal"` place le média à gauche dès le breakpoint `sm` (objet média Tailwind). En dessous, la carte redevient une colonne.',
+      en: '`orientation="horizontal"` puts media on the left from the `sm` breakpoint (Tailwind media object). Below that, the card stacks as a column.',
+    },
+    link: { fr: 'Lien', en: 'As a link' },
+    linkBody: {
+      fr: '`href` rend un vrai `<a>`. Toute la carte est la cible : pas de bouton ni de lien dans les slots (HTML + WCAG 4.1.2).',
+      en: '`href` renders a real `<a>`. The whole card is the hit target: no button or link inside the slots (HTML + WCAG 4.1.2).',
+    },
+    button: { fr: 'Bouton', en: 'As a button' },
+    buttonBody: {
+      fr: '`as="button"` rend un `<button type="button">` natif, clavier et nom issus du contenu. Même règle : pas de contrôle imbriqué.',
+      en: '`as="button"` renders a native `<button type="button">`, keyboard and name from the content. Same rule: no nested control.',
+    },
+    disabled: { fr: 'Bouton désactivé', en: 'Disabled button' },
+    disabledBody: {
+      fr: '`disabled` s’applique seulement à `as="button"` : attribut natif, plus d’événements pointeur. Ignoré sur `article` et sur un lien.',
+      en: '`disabled` applies only to `as="button"`: native attribute, no pointer events. Ignored on `article` and on a link.',
+    },
+    radiusBody: {
+      fr: '`radius` (`sm` / `md` / `lg` / `xl`). Défaut : `lg`, comme une surface Tailwind Plus.',
+      en: '`radius` (`sm` / `md` / `lg` / `xl`). Default: `lg`, like a Tailwind Plus surface.',
+    },
+    sizesBody: {
+      fr: '`size` (`xxs` à `xxl`) règle le padding des slots. `m` par défaut.',
+      en: '`size` (`xxs` to `xxl`) sets slot padding. `m` by default.',
+    },
+    color: { fr: 'Couleurs', en: 'Colors' },
+    colorBody: {
+      fr: '`color` teinte le fond (`brand`, `success`, …). `neutral` = surface par défaut. Le titre reste le nom accessible.',
+      en: '`color` tints the background (`brand`, `success`, …). `neutral` is the default surface. The title stays the accessible name.',
+    },
+    composition: { fr: 'Composition', en: 'Composition' },
+    compositionBody: {
+      fr: 'Une carte personne combine `Avatar` + `Badge` + `Card`. Le domaine (cours, LMS) reste dans l’app.',
+      en: 'A person card combines `Avatar` + `Badge` + `Card`. Domain (course, LMS) stays in the app.',
+    },
+    a11yBody: {
+      fr: 'Statique : `article`. Interactive : `<a>` ou `<button>`, jamais un `div` + `onClick`. Carte-bouton indisponible : `disabled` natif. Le nom vient du `CardTitle` visible. Titre : `h3` par défaut.',
+      en: 'Static: `article`. Interactive: `<a>` or `<button>`, never a `div` + `onClick`. Unavailable button card: native `disabled`. The name comes from the visible `CardTitle`. Heading: `h3` by default.',
+    },
+    doSlots: {
+      fr: '`CardHeader` / `CardBody` / `CardFooter` pour structurer, `CardTitle` pour le nom',
+      en: '`CardHeader` / `CardBody` / `CardFooter` to structure, `CardTitle` for the name',
+    },
+    doLink: {
+      fr: '`href` quand toute la carte mène à une ressource ; `as="button"` pour une action, `disabled` si elle est indisponible',
+      en: '`href` when the whole card goes to a resource; `as="button"` for an action, `disabled` if it is unavailable',
+    },
+    doFooter: {
+      fr: 'Des `Button` / `Link` dans le pied d’une carte **statique**',
+      en: '`Button` / `Link` in the footer of a **static** card',
+    },
+    dontNested: {
+      fr: 'Un bouton dans une `Card` déjà lien ou bouton',
+      en: 'A button inside a `Card` that is already a link or button',
+    },
+    dontDiv: {
+      fr: 'Un `div` cliquable sans `href` ni `as="button"`',
+      en: 'A clickable `div` without `href` or `as="button"`',
+    },
+    dontLms: {
+      fr: 'Une `CourseCard` métier dans `d-ui`',
+      en: 'A domain `CourseCard` inside `d-ui`',
+    },
+    props: {
+      fr: '`href`, `as`, `disabled`, `orientation`, `radius`, `size`, `color`, `className`. Slots : `CardMedia`, `CardHeader`, `CardTitle`, `CardDescription`, `CardBody`, `CardFooter`.',
+      en: '`href`, `as`, `disabled`, `orientation`, `radius`, `size`, `color`, `className`. Slots: `CardMedia`, `CardHeader`, `CardTitle`, `CardDescription`, `CardBody`, `CardFooter`.',
     },
   },
 } as const;
