@@ -36,6 +36,12 @@ import * as AvatarStories from './Avatar.stories';
 
 <Canvas of={AvatarStories.Sizes} />
 
+<H2 k="avatar.color" />
+
+<P k="avatar.colorBody" />
+
+<Canvas of={AvatarStories.Colors} />
+
 <H2 k="avatar.square" />
 
 <P k="avatar.squareBody" />
@@ -90,6 +96,8 @@ import * as AvatarStories from './Avatar.stories';
     'name',
     'initials',
     'size',
+    'color',
+    'className',
     'square',
     'presence',
     'presenceLabel',
@@ -100,4 +108,7 @@ import * as AvatarStories from './Avatar.stories';
 
 <P k="avatar.propsGroupBody" />
 
-<ArgTypes of={AvatarStories.Group} include={['size', 'max', 'label', 'overflowLabel']} />
+<ArgTypes
+  of={AvatarStories.Group}
+  include={['size', 'max', 'label', 'overflowLabel', 'className']}
+/>

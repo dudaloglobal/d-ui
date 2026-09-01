@@ -1200,6 +1200,24 @@ export const sidebarArgTypes = {
   },
 };
 
+const uiSizeArgType = {
+  control: 'inline-radio' as const,
+  options: ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'],
+  description: '`xxs` à `xxl`. `m` par défaut.',
+};
+
+const uiColorArgType = {
+  control: 'inline-radio' as const,
+  options: ['brand', 'success', 'warning', 'danger', 'info', 'neutral'],
+  description:
+    'Couleur sémantique (tokens). La couleur seule ne porte pas le sens (1.4.1).',
+};
+
+const classNameArgType = {
+  control: 'text' as const,
+  description: 'Classes fusionnées en dernier avec `cx`.',
+};
+
 export const badgeArgTypes = {
   variant: {
     control: 'inline-radio' as const,
@@ -1207,17 +1225,19 @@ export const badgeArgTypes = {
     description:
       'Couleur sémantique. `default` = marque. `neutral` = catégorie, pas un statut. Le libellé porte le sens.',
   },
+  color: {
+    ...uiColorArgType,
+    description:
+      'Couleur (tokens). Si absente, dérivée de `variant` (`default` → `brand`).',
+  },
   appearance: {
     control: 'inline-radio' as const,
     options: ['soft', 'solid', 'outline'],
     description:
       '`soft` (défaut) : fond teinté. `solid` : couleur pleine. `outline` : filet, fond transparent.',
   },
-  size: {
-    control: 'inline-radio' as const,
-    options: ['sm', 'md', 'lg'],
-    description: '`sm` dans un tableau dense, `md` par défaut, `lg` à côté d’un titre.',
-  },
+  size: uiSizeArgType,
+  className: classNameArgType,
   dot: {
     control: 'boolean' as const,
     description: 'Point décoratif (`aria-hidden`). Ne remplace pas le libellé.',
@@ -1256,11 +1276,12 @@ export const avatarArgTypes = {
     description:
       'Deux lettres max. Sinon dérivé de `name`. Ne remplace pas le nom accessible.',
   },
-  size: {
-    control: 'inline-radio' as const,
-    options: ['xs', 'sm', 'md', 'lg', 'xl'],
-    description: '`xs` à `xl`. `md` par défaut, aligné sur un bouton `md`.',
+  size: uiSizeArgType,
+  color: {
+    ...uiColorArgType,
+    description: 'Fond des initiales / silhouette. `neutral` par défaut.',
   },
+  className: classNameArgType,
   square: {
     control: 'boolean' as const,
     description: 'Carré arrondi (`rounded-md`) au lieu du cercle.',
@@ -1280,10 +1301,10 @@ export const avatarArgTypes = {
 
 export const avatarGroupArgTypes = {
   size: {
-    control: 'inline-radio' as const,
-    options: ['xs', 'sm', 'md', 'lg', 'xl'],
-    description: 'Taille descendue sur les enfants sans `size`. `md` par défaut.',
+    ...uiSizeArgType,
+    description: 'Taille descendue sur les enfants sans `size`. `m` par défaut.',
   },
+  className: classNameArgType,
   max: {
     control: { type: 'number' as const, min: 1, max: 12, step: 1 },
     description: 'Nombre d’avatars visibles. Le reste devient « +N ».',
@@ -1317,6 +1338,15 @@ export const cardArgTypes = {
       '`horizontal` : média à gauche dès `sm`. En dessous, la carte redevient une colonne.',
   },
   radius: cornerRadiusArgType('lg'),
+  size: {
+    ...uiSizeArgType,
+    description: 'Densité des slots (padding). `m` par défaut.',
+  },
+  color: {
+    ...uiColorArgType,
+    description: 'Teinte de surface. `neutral` = fond par défaut.',
+  },
+  className: classNameArgType,
   disabled: {
     control: 'boolean' as const,
     description:

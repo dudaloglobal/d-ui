@@ -23,6 +23,7 @@ export const docsCopy = {
     required: { fr: 'Requis', en: 'Required' },
     helper: { fr: 'Aide', en: 'Helper' },
     sizes: { fr: 'Tailles', en: 'Sizes' },
+    colors: { fr: 'Couleurs', en: 'Colors' },
     radius: { fr: 'Arrondi', en: 'Corner radius' },
     group: { fr: 'Groupe', en: 'Group' },
     layout: { fr: 'Disposition', en: 'Layout' },
@@ -2551,8 +2552,13 @@ export const docsCopy = {
       en: '`soft` (default): tinted background. `solid`: filled colour, for stronger emphasis. `outline`: stroke, transparent background.',
     },
     sizesBody: {
-      fr: '`sm` dans un tableau dense, `md` par défaut, `lg` à côté d’un titre.',
-      en: '`sm` in a dense table, `md` by default, `lg` next to a heading.',
+      fr: '`xxs` à `xxl`. `m` par défaut.',
+      en: '`xxs` to `xxl`. `m` by default.',
+    },
+    color: { fr: 'Couleurs', en: 'Colors' },
+    colorBody: {
+      fr: '`color` pose la teinte (`brand`, `success`, …). Si absente, `variant` la dérive (`default` → `brand`). Le libellé porte le sens.',
+      en: '`color` sets the hue (`brand`, `success`, …). If omitted, `variant` derives it (`default` → `brand`). The label carries the meaning.',
     },
     icon: { fr: 'Avec icône', en: 'With icon' },
     iconBody: {
@@ -2594,8 +2600,8 @@ export const docsCopy = {
       en: 'An `onClick` on the `span`: `Button` / `Link` for an action, `dismissible` to remove',
     },
     props: {
-      fr: '`variant`, `appearance`, `size`, `dot`, `icon`, `dismissible`, `dismissLabel`, `onDismiss`. Texte : `children`.',
-      en: '`variant`, `appearance`, `size`, `dot`, `icon`, `dismissible`, `dismissLabel`, `onDismiss`. Text: `children`.',
+      fr: '`variant`, `color`, `appearance`, `size`, `dot`, `icon`, `dismissible`, `dismissLabel`, `onDismiss`, `className`. Texte : `children`.',
+      en: '`variant`, `color`, `appearance`, `size`, `dot`, `icon`, `dismissible`, `dismissLabel`, `onDismiss`, `className`. Text: `children`.',
     },
   },
   avatar: {
@@ -2619,8 +2625,13 @@ export const docsCopy = {
       en: 'Without `src` or `name` / `initials`, the silhouette is decorative (`aria-hidden`). Pass `name` as soon as the portrait is the only cue for the person.',
     },
     sizesBody: {
-      fr: '`xs` à `xl`. `md` par défaut, aligné sur un bouton `md`.',
-      en: '`xs` to `xl`. `md` by default, aligned with an `md` button.',
+      fr: '`xxs` à `xxl`. `m` par défaut.',
+      en: '`xxs` to `xxl`. `m` by default.',
+    },
+    color: { fr: 'Couleurs', en: 'Colors' },
+    colorBody: {
+      fr: '`color` teinte les initiales et la silhouette (`brand`, `success`, …). `neutral` par défaut. La photo n’est pas teintée. Le nom accessible reste `name`.',
+      en: '`color` tints initials and the silhouette (`brand`, `success`, …). `neutral` by default. The photo is not tinted. The accessible name stays `name`.',
     },
     square: { fr: 'Carré', en: 'Square' },
     squareBody: {
@@ -2675,8 +2686,8 @@ export const docsCopy = {
     },
     propsAvatar: { fr: 'Avatar', en: 'Avatar' },
     props: {
-      fr: '`src`, `alt`, `name`, `initials`, `size`, `square`, `presence`, `presenceLabel`. Attributs du `span` transmis.',
-      en: '`src`, `alt`, `name`, `initials`, `size`, `square`, `presence`, `presenceLabel`. `span` attributes are forwarded.',
+      fr: '`src`, `alt`, `name`, `initials`, `size`, `color`, `square`, `presence`, `presenceLabel`, `className`. Attributs du `span` transmis.',
+      en: '`src`, `alt`, `name`, `initials`, `size`, `color`, `square`, `presence`, `presenceLabel`, `className`. `span` attributes are forwarded.',
     },
     propsGroup: { fr: 'AvatarGroup', en: 'AvatarGroup' },
     propsGroupBody: {
@@ -2723,6 +2734,15 @@ export const docsCopy = {
       fr: '`radius` (`sm` / `md` / `lg` / `xl`). Défaut : `lg`, comme une surface Tailwind Plus.',
       en: '`radius` (`sm` / `md` / `lg` / `xl`). Default: `lg`, like a Tailwind Plus surface.',
     },
+    sizesBody: {
+      fr: '`size` (`xxs` à `xxl`) règle le padding des slots. `m` par défaut.',
+      en: '`size` (`xxs` to `xxl`) sets slot padding. `m` by default.',
+    },
+    color: { fr: 'Couleurs', en: 'Colors' },
+    colorBody: {
+      fr: '`color` teinte le fond (`brand`, `success`, …). `neutral` = surface par défaut. Le titre reste le nom accessible.',
+      en: '`color` tints the background (`brand`, `success`, …). `neutral` is the default surface. The title stays the accessible name.',
+    },
     composition: { fr: 'Composition', en: 'Composition' },
     compositionBody: {
       fr: 'Une carte personne combine `Avatar` + `Badge` + `Card`. Le domaine (cours, LMS) reste dans l’app.',
@@ -2757,8 +2777,8 @@ export const docsCopy = {
       en: 'A domain `CourseCard` inside `d-ui`',
     },
     props: {
-      fr: '`href` (lien), `as` (`article` / `div` / `button`), `disabled` (bouton), `orientation`, `radius`. Slots : `CardMedia`, `CardHeader`, `CardTitle`, `CardDescription`, `CardBody`, `CardFooter`.',
-      en: '`href` (link), `as` (`article` / `div` / `button`), `disabled` (button), `orientation`, `radius`. Slots: `CardMedia`, `CardHeader`, `CardTitle`, `CardDescription`, `CardBody`, `CardFooter`.',
+      fr: '`href`, `as`, `disabled`, `orientation`, `radius`, `size`, `color`, `className`. Slots : `CardMedia`, `CardHeader`, `CardTitle`, `CardDescription`, `CardBody`, `CardFooter`.',
+      en: '`href`, `as`, `disabled`, `orientation`, `radius`, `size`, `color`, `className`. Slots: `CardMedia`, `CardHeader`, `CardTitle`, `CardDescription`, `CardBody`, `CardFooter`.',
     },
   },
 } as const;

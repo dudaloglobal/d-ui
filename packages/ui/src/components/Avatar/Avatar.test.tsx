@@ -90,4 +90,9 @@ describe('Avatar', () => {
     expect(photo).toHaveAttribute('alt', '');
     expect(screen.queryByRole('img', { name: 'Ada Lovelace' })).not.toBeInTheDocument();
   });
+
+  it('forwards className and keeps a named portrait when color is set', () => {
+    render(<Avatar name="Ada Lovelace" color="brand" className="my-avatar" />);
+    expect(screen.getByRole('img', { name: 'Ada Lovelace' })).toHaveClass('my-avatar');
+  });
 });

@@ -1,16 +1,22 @@
 import { createContext, useContext, type HTMLAttributes, type ReactNode } from 'react';
 import { cx } from '../../lib/cx';
 import { cornerRadiusClass, type CornerRadius } from '../../lib/cornerRadius';
+import { uiColorSoftStyle, type UiColor, type UiSize } from '../../lib/uiScale';
 import { Heading, type HeadingLevel } from '../Heading/Heading';
 import { Text } from '../Text/Text';
 
 export type CardRadius = CornerRadius;
 export type CardOrientation = 'vertical' | 'horizontal';
 export type CardElement = 'article' | 'div' | 'button';
+export type CardSize = UiSize;
+export type CardColor = UiColor;
 
-type CardContextValue = { orientation: CardOrientation };
+type CardContextValue = { orientation: CardOrientation; size: CardSize };
 
-const CardContext = createContext<CardContextValue>({ orientation: 'vertical' });
+const CardContext = createContext<CardContextValue>({
+  orientation: 'vertical',
+  size: 'm',
+});
 
 function useCardContext(): CardContextValue {
   return useContext(CardContext);
@@ -32,11 +38,45 @@ export type CardProps = HTMLAttributes<HTMLElement> & {
   orientation?: CardOrientation;
   /** Désactive la carte-bouton (`as="button"`). Ignoré sinon. */
   disabled?: boolean;
+  /** Densité des slots. `m` par défaut. */
+  size?: CardSize;
+  /** Teinte de surface. `neutral` = fond par défaut. */
+  color?: CardColor;
   children?: ReactNode;
 };
 
 const interactiveClass =
   'transition-colors hover:border-border hover:bg-surface-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-bg';
+
+const headerPad: Record<CardSize, string> = {
+  xxs: 'gap-0.5 px-2 pt-2 pb-1',
+  xs: 'gap-0.5 px-2.5 pt-2.5 pb-1',
+  s: 'gap-1 px-3 pt-3 pb-1.5',
+  m: 'gap-1 px-4 pt-4 pb-2',
+  l: 'gap-1.5 px-5 pt-5 pb-2.5',
+  xl: 'gap-1.5 px-6 pt-6 pb-3',
+  xxl: 'gap-2 px-8 pt-8 pb-4',
+};
+
+const bodyPad: Record<CardSize, string> = {
+  xxs: 'px-2 py-1',
+  xs: 'px-2.5 py-1.5',
+  s: 'px-3 py-1.5',
+  m: 'px-4 py-2',
+  l: 'px-5 py-2.5',
+  xl: 'px-6 py-3',
+  xxl: 'px-8 py-4',
+};
+
+const footerPad: Record<CardSize, string> = {
+  xxs: 'gap-1 px-2 pt-1.5 pb-2',
+  xs: 'gap-1.5 px-2.5 pt-2 pb-2.5',
+  s: 'gap-2 px-3 pt-2.5 pb-3',
+  m: 'gap-2 px-4 pt-3 pb-4',
+  l: 'gap-2.5 px-5 pt-3.5 pb-5',
+  xl: 'gap-2.5 px-6 pt-4 pb-6',
+  xxl: 'gap-3 px-8 pt-5 pb-8',
+};
 
 /**
  * Surface de composition (Tailwind Plus Card) : média, en-tête, corps, pied.
@@ -50,12 +90,16 @@ export function Card({
   radius = 'lg',
   orientation = 'vertical',
   disabled = false,
+  size = 'm',
+  color = 'neutral',
   className,
+  style,
   children,
   ...rest
 }: CardProps) {
   const interactive = Boolean(href) || as === 'button';
   const buttonDisabled = as === 'button' && disabled;
+  const tint = color === 'neutral' ? undefined : uiColorSoftStyle(color);
   const classNames = cx(
     'flex overflow-hidden border border-border-subtle bg-bg text-start text-fg no-underline',
     orientation === 'horizontal' ? 'flex-col sm:flex-row sm:items-stretch' : 'flex-col',
@@ -67,12 +111,14 @@ export function Card({
   );
 
   const content = (
-    <CardContext.Provider value={{ orientation }}>{children}</CardContext.Provider>
+    <CardContext.Provider value={{ orientation, size }}>{children}</CardContext.Provider>
   );
+
+  const surfaceStyle = tint || style ? { ...tint, ...style } : style;
 
   if (href) {
     return (
-      <a {...rest} href={href} className={classNames}>
+      <a {...rest} href={href} className={classNames} style={surfaceStyle}>
         {content}
       </a>
     );
@@ -88,6 +134,7 @@ export function Card({
         type={type}
         disabled={buttonDisabled}
         className={classNames}
+        style={surfaceStyle}
       >
         {content}
       </button>
@@ -96,7 +143,7 @@ export function Card({
 
   const Component = as;
   return (
-    <Component {...rest} className={classNames}>
+    <Component {...rest} className={classNames} style={surfaceStyle}>
       {content}
     </Component>
   );
@@ -124,25 +171,27 @@ export function CardMedia({ className, ...rest }: CardMediaProps) {
 export type CardHeaderProps = HTMLAttributes<HTMLElement>;
 
 export function CardHeader({ className, ...rest }: CardHeaderProps) {
-  return (
-    <header {...rest} className={cx('flex flex-col gap-1 px-4 pt-4 pb-2', className)} />
-  );
+  const { size } = useCardContext();
+  return <header {...rest} className={cx('flex flex-col', headerPad[size], className)} />;
 }
 
 export type CardBodyProps = HTMLAttributes<HTMLDivElement>;
 
 export function CardBody({ className, ...rest }: CardBodyProps) {
-  return <div {...rest} className={cx('min-w-0 flex-1 px-4 py-2', className)} />;
+  const { size } = useCardContext();
+  return <div {...rest} className={cx('min-w-0 flex-1', bodyPad[size], className)} />;
 }
 
 export type CardFooterProps = HTMLAttributes<HTMLElement>;
 
 export function CardFooter({ className, ...rest }: CardFooterProps) {
+  const { size } = useCardContext();
   return (
     <footer
       {...rest}
       className={cx(
-        'mt-auto flex flex-wrap items-center gap-2 border-t border-border-subtle px-4 pt-3 pb-4',
+        'mt-auto flex flex-wrap items-center border-t border-border-subtle',
+        footerPad[size],
         className,
       )}
     />

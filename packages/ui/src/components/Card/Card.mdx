@@ -54,6 +54,18 @@ import * as CardStories from './Card.stories';
 
 <Canvas of={CardStories.Radius} />
 
+<H2 k="chrome.sizes" />
+
+<P k="card.sizesBody" />
+
+<Canvas of={CardStories.Sizes} />
+
+<H2 k="card.color" />
+
+<P k="card.colorBody" />
+
+<Canvas of={CardStories.Colors} />
+
 <H2 k="card.composition" />
 
 <P k="card.compositionBody" />
@@ -80,5 +92,14 @@ import * as CardStories from './Card.stories';
 
 <ArgTypes
   of={CardStories}
-  include={['href', 'as', 'disabled', 'orientation', 'radius']}
+  include={[
+    'href',
+    'as',
+    'disabled',
+    'orientation',
+    'radius',
+    'size',
+    'color',
+    'className',
+  ]}
 />

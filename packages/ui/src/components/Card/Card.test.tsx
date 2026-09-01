@@ -102,4 +102,16 @@ describe('Card', () => {
     await user.click(card);
     expect(onClick).not.toHaveBeenCalled();
   });
+
+  it('forwards className onto the article', () => {
+    render(
+      <Card className="my-card" color="brand" size="s">
+        <CardHeader>
+          <CardTitle>Algèbre</CardTitle>
+        </CardHeader>
+      </Card>,
+    );
+    expect(screen.getByRole('article')).toHaveClass('my-card');
+    expect(screen.getByRole('heading', { name: 'Algèbre', level: 3 })).toBeVisible();
+  });
 });

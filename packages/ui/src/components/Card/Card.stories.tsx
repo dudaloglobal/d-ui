@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { cardArgTypes } from '../../../.storybook/arg-types';
 import { componentSource } from '../../../.storybook/docs-source';
 import { cardCopy, docsLocale } from '../../../.storybook/docs-locale';
+import { UI_COLORS, UI_SIZES } from '../../lib/uiScale';
 import { Avatar } from '../Avatar/Avatar';
 import { Badge } from '../Badge/Badge';
 import { Button } from '../Button/Button';
@@ -266,6 +267,60 @@ export const Radius: Story = {
               <CardTitle>
                 {copy.title} ({radius})
               </CardTitle>
+            </CardHeader>
+          </Card>
+        ))}
+      </div>
+    );
+  },
+};
+
+export const Sizes: Story = {
+  name: 'Tailles',
+  parameters: componentSource(
+    importCard,
+    `<Card size="s">…</Card>
+<Card size="m">…</Card>
+<Card size="l">…</Card>`,
+  ),
+  render: (args, { globals }) => {
+    const copy = cardCopy(docsLocale(globals.locale));
+    return (
+      <div className="flex flex-col gap-4">
+        {UI_SIZES.map((size) => (
+          <Card key={size} {...args} size={size} className="max-w-sm">
+            <CardHeader>
+              <CardTitle>
+                {copy.title} ({size})
+              </CardTitle>
+              <CardDescription>{copy.subtitle}</CardDescription>
+            </CardHeader>
+          </Card>
+        ))}
+      </div>
+    );
+  },
+};
+
+export const Colors: Story = {
+  name: 'Couleurs',
+  parameters: componentSource(
+    importCard,
+    `<Card color="brand">…</Card>
+<Card color="success">…</Card>
+<Card color="neutral">…</Card>`,
+  ),
+  render: (args, { globals }) => {
+    const copy = cardCopy(docsLocale(globals.locale));
+    return (
+      <div className="grid gap-4 sm:grid-cols-2">
+        {UI_COLORS.map((color) => (
+          <Card key={color} {...args} color={color} className="max-w-sm">
+            <CardHeader>
+              <CardTitle>
+                {copy.title} ({color})
+              </CardTitle>
+              <CardDescription>{copy.subtitle}</CardDescription>
             </CardHeader>
           </Card>
         ))}

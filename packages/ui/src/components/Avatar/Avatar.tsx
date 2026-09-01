@@ -8,8 +8,10 @@ import {
   type ReactNode,
 } from 'react';
 import { cx } from '../../lib/cx';
+import { uiColorSolidClass, type UiColor, type UiSize } from '../../lib/uiScale';
 
-export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type AvatarSize = UiSize;
+export type AvatarColor = UiColor;
 export type AvatarPresence = 'online' | 'offline' | 'busy' | 'away';
 
 export type AvatarProps = HTMLAttributes<HTMLSpanElement> & {
@@ -28,6 +30,8 @@ export type AvatarProps = HTMLAttributes<HTMLSpanElement> & {
   /** Deux lettres max. Sinon dérivé de `name`. */
   initials?: string;
   size?: AvatarSize;
+  /** Fond des initiales / silhouette. `neutral` par défaut. */
+  color?: AvatarColor;
   /** Carré arrondi au lieu du cercle (Tailwind Plus `square`). */
   square?: boolean;
   /** Point de présence. La couleur seule ne porte pas le sens : le nom l’inclut. */
@@ -37,11 +41,13 @@ export type AvatarProps = HTMLAttributes<HTMLSpanElement> & {
 };
 
 const sizeClass: Record<AvatarSize, string> = {
+  xxs: 'size-4 text-[0.5rem]',
   xs: 'size-6 text-[0.625rem]',
-  sm: 'size-8 text-xs',
-  md: 'size-10 text-sm',
-  lg: 'size-12 text-base',
+  s: 'size-8 text-xs',
+  m: 'size-10 text-sm',
+  l: 'size-12 text-base',
   xl: 'size-14 text-lg',
+  xxl: 'size-16 text-xl',
 };
 
 const presenceDotClass: Record<AvatarPresence, string> = {
@@ -52,11 +58,13 @@ const presenceDotClass: Record<AvatarPresence, string> = {
 };
 
 const presenceDotSize: Record<AvatarSize, string> = {
+  xxs: 'size-1',
   xs: 'size-1.5',
-  sm: 'size-2',
-  md: 'size-2.5',
-  lg: 'size-3',
+  s: 'size-2',
+  m: 'size-2.5',
+  l: 'size-3',
   xl: 'size-3.5',
+  xxl: 'size-4',
 };
 
 const PRESENCE_FALLBACK: Record<AvatarPresence, string> = {
@@ -105,7 +113,8 @@ export function Avatar({
   alt,
   name,
   initials,
-  size = 'md',
+  size = 'm',
+  color = 'neutral',
   square = false,
   presence,
   presenceLabel,
@@ -135,7 +144,8 @@ export function Avatar({
       <span
         className={cx(
           'inline-flex size-full items-center justify-center overflow-hidden',
-          'bg-surface-muted font-medium text-fg select-none',
+          'font-medium select-none',
+          uiColorSolidClass[color],
           square ? 'rounded-md' : 'rounded-full',
         )}
       >
@@ -188,7 +198,7 @@ function isAvatarElement(child: ReactNode): child is ReactElement<AvatarProps> {
  * « +N » est nommée (`overflowLabel`).
  */
 export function AvatarGroup({
-  size = 'md',
+  size = 'm',
   max,
   label = 'Avatar group',
   overflowLabel = (count) => `${count} more`,

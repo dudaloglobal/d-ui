@@ -2,7 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { avatarArgTypes, avatarGroupArgTypes } from '../../../.storybook/arg-types';
 import { componentSource } from '../../../.storybook/docs-source';
 import { avatarCopy, docsLocale } from '../../../.storybook/docs-locale';
-import { Avatar, AvatarGroup, type AvatarPresence, type AvatarSize } from './Avatar';
+import { Avatar, AvatarGroup, type AvatarPresence } from './Avatar';
+import { UI_COLORS, UI_SIZES } from '../../lib/uiScale';
 
 const importAvatar = "import { Avatar, AvatarGroup } from 'd-ui';";
 
@@ -11,7 +12,7 @@ function portraitUri(fill: string, letter: string) {
   return `data:image/svg+xml,${encodeURIComponent(svg)}`;
 }
 
-const SIZES: AvatarSize[] = ['xs', 'sm', 'md', 'lg', 'xl'];
+const SIZES = UI_SIZES;
 
 const meta = {
   title: 'Components/Avatar',
@@ -76,11 +77,13 @@ export const Sizes: Story = {
   name: 'Tailles',
   parameters: componentSource(
     importAvatar,
-    `<Avatar size="xs" name="Ada Lovelace" />
-<Avatar size="sm" name="Ada Lovelace" />
-<Avatar size="md" name="Ada Lovelace" />
-<Avatar size="lg" name="Ada Lovelace" />
-<Avatar size="xl" name="Ada Lovelace" />`,
+    `<Avatar size="xxs" name="Ada Lovelace" />
+<Avatar size="xs" name="Ada Lovelace" />
+<Avatar size="s" name="Ada Lovelace" />
+<Avatar size="m" name="Ada Lovelace" />
+<Avatar size="l" name="Ada Lovelace" />
+<Avatar size="xl" name="Ada Lovelace" />
+<Avatar size="xxl" name="Ada Lovelace" />`,
   ),
   render: (args, { globals }) => {
     const copy = avatarCopy(docsLocale(globals.locale));
@@ -88,6 +91,26 @@ export const Sizes: Story = {
       <div className="flex flex-wrap items-end gap-3">
         {SIZES.map((size) => (
           <Avatar key={size} {...args} size={size} name={copy.ada} />
+        ))}
+      </div>
+    );
+  },
+};
+
+export const Colors: Story = {
+  name: 'Couleurs',
+  parameters: componentSource(
+    importAvatar,
+    `<Avatar color="brand" name="Ada Lovelace" />
+<Avatar color="success" name="Ada Lovelace" />
+<Avatar color="warning" name="Ada Lovelace" />`,
+  ),
+  render: (args, { globals }) => {
+    const copy = avatarCopy(docsLocale(globals.locale));
+    return (
+      <div className="flex flex-wrap items-center gap-3">
+        {UI_COLORS.map((color) => (
+          <Avatar key={color} {...args} color={color} name={copy.ada} />
         ))}
       </div>
     );
@@ -175,7 +198,7 @@ export const Decorative: Story = {
 export const Group: GroupStory = {
   name: 'Groupe',
   argTypes: avatarGroupArgTypes,
-  args: { max: 3, size: 'md' },
+  args: { max: 3, size: 'm' },
   parameters: componentSource(
     importAvatar,
     `<AvatarGroup max={3} label="Équipe">

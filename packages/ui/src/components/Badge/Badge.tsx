@@ -1,15 +1,28 @@
 import { useState, type HTMLAttributes, type ReactNode } from 'react';
 import { cx } from '../../lib/cx';
+import {
+  uiColorInkClass,
+  uiColorSoftStyle,
+  uiColorSolidClass,
+  type UiColor,
+  type UiSize,
+} from '../../lib/uiScale';
 import { CloseGlyph } from '../feedback/FeedbackIcons';
 
 export type BadgeVariant =
   'default' | 'success' | 'warning' | 'danger' | 'info' | 'neutral';
 export type BadgeAppearance = 'soft' | 'solid' | 'outline';
-export type BadgeSize = 'sm' | 'md' | 'lg';
+export type BadgeSize = UiSize;
+export type BadgeColor = UiColor;
 
 export type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
   /** Couleur sémantique. `"default"` = marque. `"neutral"` = hiérarchie, pas un statut. */
   variant?: BadgeVariant;
+  /**
+   * Couleur (tokens). Si absente, dérivée de `variant` (`default` → `brand`).
+   * La couleur seule ne porte pas le sens.
+   */
+  color?: BadgeColor;
   /**
    * `"soft"` (défaut) : fond teinté. `"solid"` : couleur pleine.
    * `"outline"` : filet, fond transparent.
@@ -27,37 +40,19 @@ export type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
   dismissLabel?: string;
 };
 
-const TOKEN: Record<Exclude<BadgeVariant, 'neutral'>, string> = {
-  default: '--d-ui-color-brand',
-  success: '--d-ui-color-success',
-  warning: '--d-ui-color-warning',
-  danger: '--d-ui-color-danger',
-  info: '--d-ui-color-info',
-};
-
-const solidClass: Record<BadgeVariant, string> = {
-  default: 'bg-brand text-on-brand',
-  success: 'bg-success text-on-success',
-  warning: 'bg-warning text-on-warning',
-  danger: 'bg-danger text-on-danger',
-  info: 'bg-info text-on-info',
-  neutral: 'bg-fg text-bg',
-};
-
-const inkClass: Record<BadgeVariant, string> = {
-  default: 'text-brand',
-  success: 'text-success',
-  warning: 'text-warning',
-  danger: 'text-danger',
-  info: 'text-info',
-  neutral: 'text-fg',
-};
-
 const sizeClass: Record<BadgeSize, string> = {
-  sm: 'h-5 gap-1 px-1.5 text-xs',
-  md: 'h-6 gap-1.5 px-2 text-sm',
-  lg: 'h-7 gap-1.5 px-2.5 text-sm',
+  xxs: 'h-3.5 gap-0.5 px-1 text-[0.625rem]',
+  xs: 'h-4 gap-0.5 px-1.25 text-[0.625rem]',
+  s: 'h-5 gap-1 px-1.5 text-xs',
+  m: 'h-6 gap-1.5 px-2 text-sm',
+  l: 'h-7 gap-1.5 px-2.5 text-sm',
+  xl: 'h-8 gap-1.5 px-3 text-base',
+  xxl: 'h-9 gap-2 px-3.5 text-base',
 };
+
+function variantColor(variant: BadgeVariant): BadgeColor {
+  return variant === 'default' ? 'brand' : variant;
+}
 
 function IconSlot({ children }: { children: ReactNode }) {
   return (
@@ -78,8 +73,9 @@ function IconSlot({ children }: { children: ReactNode }) {
  */
 export function Badge({
   variant = 'default',
+  color,
   appearance = 'soft',
-  size = 'md',
+  size = 'm',
   dot = false,
   icon,
   dismissible = false,
@@ -91,13 +87,8 @@ export function Badge({
   ...rest
 }: BadgeProps) {
   const [open, setOpen] = useState(true);
-  const token = variant === 'neutral' ? undefined : TOKEN[variant];
-  const softStyle =
-    appearance === 'soft' && token
-      ? {
-          backgroundColor: `color-mix(in srgb, var(${token}) 14%, var(--d-ui-color-bg))`,
-        }
-      : undefined;
+  const hue = color ?? variantColor(variant);
+  const softStyle = appearance === 'soft' ? uiColorSoftStyle(hue) : undefined;
 
   if (!open) return null;
 
@@ -107,14 +98,15 @@ export function Badge({
       className={cx(
         'inline-flex max-w-full items-center rounded-full font-medium whitespace-nowrap',
         sizeClass[size],
-        appearance === 'solid' && solidClass[variant],
-        appearance === 'soft' && (variant === 'neutral' ? 'bg-surface-muted' : undefined),
-        appearance === 'soft' && inkClass[variant],
+        appearance === 'solid' &&
+          (hue === 'neutral' ? 'bg-fg text-bg' : uiColorSolidClass[hue]),
+        appearance === 'soft' && (hue === 'neutral' ? 'bg-surface-muted' : undefined),
+        appearance === 'soft' && uiColorInkClass[hue],
         appearance === 'outline' && 'border bg-transparent',
         appearance === 'outline' &&
-          (variant === 'neutral'
+          (hue === 'neutral'
             ? 'border-border text-fg'
-            : `border-current ${inkClass[variant]}`),
+            : `border-current ${uiColorInkClass[hue]}`),
         className,
       )}
       style={softStyle || style ? { ...softStyle, ...style } : style}

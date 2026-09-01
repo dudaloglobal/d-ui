@@ -56,4 +56,13 @@ describe('Badge', () => {
     expect(onDismiss).toHaveBeenCalledTimes(1);
     expect(screen.queryByText('Maths')).not.toBeInTheDocument();
   });
+
+  it('forwards className onto the pill', () => {
+    render(
+      <Badge color="success" className="my-badge">
+        Publié
+      </Badge>,
+    );
+    expect(screen.getByText('Publié')).toHaveClass('my-badge');
+  });
 });

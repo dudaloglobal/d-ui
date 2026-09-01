@@ -5,6 +5,7 @@ import { componentSource } from '../../../.storybook/docs-source';
 import { badgeCopy, docsLocale } from '../../../.storybook/docs-locale';
 import { Icon } from '../Icon/Icon';
 import { Badge, type BadgeAppearance, type BadgeVariant } from './Badge';
+import { UI_COLORS, UI_SIZES } from '../../lib/uiScale';
 
 const importBadge = "import { Badge, Icon } from 'd-ui';";
 
@@ -105,23 +106,42 @@ export const Sizes: Story = {
   name: 'Tailles',
   parameters: componentSource(
     importBadge,
-    `<Badge size="sm">Nouveau</Badge>
-<Badge size="md">Nouveau</Badge>
-<Badge size="lg">Nouveau</Badge>`,
+    `<Badge size="xxs">Nouveau</Badge>
+<Badge size="s">Nouveau</Badge>
+<Badge size="m">Nouveau</Badge>
+<Badge size="xl">Nouveau</Badge>`,
   ),
   render: (args, { globals }) => {
     const copy = badgeCopy(docsLocale(globals.locale));
     return (
       <div className="flex flex-wrap items-center gap-2">
-        <Badge {...args} size="sm">
-          {copy.defaultLabel}
-        </Badge>
-        <Badge {...args} size="md">
-          {copy.defaultLabel}
-        </Badge>
-        <Badge {...args} size="lg">
-          {copy.defaultLabel}
-        </Badge>
+        {UI_SIZES.map((size) => (
+          <Badge {...args} key={size} size={size}>
+            {copy.defaultLabel}
+          </Badge>
+        ))}
+      </div>
+    );
+  },
+};
+
+export const Colors: Story = {
+  name: 'Couleurs',
+  parameters: componentSource(
+    importBadge,
+    `<Badge color="brand">Nouveau</Badge>
+<Badge color="success">Nouveau</Badge>
+<Badge color="warning">Nouveau</Badge>`,
+  ),
+  render: (args, { globals }) => {
+    const copy = badgeCopy(docsLocale(globals.locale));
+    return (
+      <div className="flex flex-wrap items-center gap-2">
+        {UI_COLORS.map((color) => (
+          <Badge {...args} key={color} color={color}>
+            {copy.defaultLabel}
+          </Badge>
+        ))}
       </div>
     );
   },

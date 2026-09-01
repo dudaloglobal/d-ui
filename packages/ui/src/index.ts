@@ -30,6 +30,7 @@ export { IconButton } from './components/Button/IconButton';
 export type { IconButtonProps } from './components/Button/IconButton';
 export { Avatar, AvatarGroup } from './components/Avatar/Avatar';
 export type {
+  AvatarColor,
   AvatarGroupProps,
   AvatarPresence,
   AvatarProps,
@@ -38,6 +39,7 @@ export type {
 export { Badge } from './components/Badge/Badge';
 export type {
   BadgeAppearance,
+  BadgeColor,
   BadgeProps,
   BadgeSize,
   BadgeVariant,
@@ -58,9 +60,11 @@ export type {
   CardFooterProps,
   CardHeaderProps,
   CardMediaProps,
+  CardColor,
   CardOrientation,
   CardProps,
   CardRadius,
+  CardSize,
   CardTitleProps,
 } from './components/Card/Card';
 export { Dialog } from './components/Dialog/Dialog';
