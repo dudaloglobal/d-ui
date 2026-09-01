@@ -1,0 +1,220 @@
+import{o as s,d as p,j as n,r as J}from"./iframe-C__29WIa.js";import{p as K}from"./arg-types-DvfBQmdr.js";import{c,b as Q}from"./docs-source-C_O40UCi.js";import{B as r}from"./Button-Cx3ZuIKt.js";import{P as a}from"./Popover-k_-_L8dA.js";const l="import { Button, Popover } from 'd-ui';",U=`import { useState } from 'react';
+import { Button, Popover } from 'd-ui';`,V={title:"Components/Popover",component:a,argTypes:K,parameters:{controls:{include:["placement","trapFocus","disabled","radius"]}}},i={name:"Par défaut",args:{content:null,children:n.jsx("span",{})},parameters:c(l,`<Popover
+    trapFocus
+    aria-label="Options"
+    content={
+        <Button variant="primary">Confirmer</Button>
+    }
+>
+    <Button variant="secondary">Ouvrir</Button>
+</Popover>`),render:(t,{globals:e})=>{const o=s(p(e.locale));return n.jsx(a,{...t,trapFocus:!0,"aria-label":o.options,content:n.jsx(r,{variant:"primary",children:o.action}),children:n.jsx(r,{variant:"secondary",children:o.open})})}},u={name:"Placement",args:{content:null,children:n.jsx("span",{})},parameters:c(l,`<Popover placement="top" aria-label="Options" content={<p>Options</p>}>
+    <Button variant="secondary">Haut</Button>
+</Popover>`),render:(t,{globals:e})=>{const o=s(p(e.locale));return n.jsxs("div",{className:"mx-auto grid w-max grid-cols-[1fr_auto_1fr] grid-rows-[auto_auto_auto] items-center justify-items-center gap-x-24 gap-y-16 px-8 py-20",children:[n.jsx("div",{className:"col-start-2 row-start-1",children:n.jsx(b,{copy:o,placement:"top"})}),n.jsx("div",{className:"col-start-1 row-start-2",children:n.jsx(b,{copy:o,placement:"left"})}),n.jsx("div",{className:"col-start-3 row-start-2",children:n.jsx(b,{copy:o,placement:"right"})}),n.jsx("div",{className:"col-start-2 row-start-3",children:n.jsx(b,{copy:o,placement:"bottom"})})]})}},d={name:"Alignements",args:{content:null,children:n.jsx("span",{})},parameters:c(l,`<>
+    <Popover placement="top-start" aria-label="Options" content={<p>Aligné au début</p>}>
+        <Button variant="secondary">Haut début</Button>
+    </Popover>
+    <Popover placement="top-end" aria-label="Options" content={<p>Aligné à la fin</p>}>
+        <Button variant="secondary">Haut fin</Button>
+    </Popover>
+</>`),render:(t,{globals:e})=>{const o=s(p(e.locale));return n.jsxs("div",{className:"flex items-end justify-center gap-24 px-8 pb-8 pt-24",children:[n.jsx(a,{placement:"top-start",defaultOpen:!0,"aria-label":o.topStart,content:n.jsx("p",{children:o.alignStart}),children:n.jsx(r,{variant:"secondary",children:o.topStart})}),n.jsx(a,{placement:"top-end",defaultOpen:!0,"aria-label":o.topEnd,content:n.jsx("p",{children:o.alignEnd}),children:n.jsx(r,{variant:"secondary",children:o.topEnd})})]})}},m={name:"Contrôlé",args:{content:null,children:n.jsx("span",{})},parameters:Q(U,`const [open, setOpen] = useState(false);
+return (
+    <Popover
+        open={open}
+        onOpenChange={setOpen}
+        trapFocus
+        aria-label="Options"
+        content={<Button variant="primary">Confirmer</Button>}
+    >
+        <Button variant="secondary">Ouvrir</Button>
+    </Popover>
+);`),render:(t,{globals:e})=>{const o=s(p(e.locale));return n.jsx(X,{openLabel:o.open,action:o.action,options:o.options})}},v={name:"Sans piège de focus",args:{content:null,children:n.jsx("span",{})},parameters:c(l,`<Popover aria-label="Plus d’infos" content={<p>Plus d’infos</p>}>
+    <Button variant="secondary">Ouvrir</Button>
+</Popover>`),render:(t,{globals:e})=>{const o=s(p(e.locale));return n.jsx(a,{"aria-label":o.more,content:n.jsx("p",{children:o.more}),children:n.jsx(r,{variant:"secondary",children:o.open})})}},y={name:"Collision",args:{content:null,children:n.jsx("span",{})},parameters:c(l,`<Popover placement="top" aria-label="Options" content={<p>Options</p>}>
+    <Button variant="secondary">Ouvrir</Button>
+</Popover>`),render:(t,{globals:e})=>{const o=s(p(e.locale));return n.jsx("div",{className:"flex h-40 items-start justify-start",children:n.jsx(a,{placement:"top",defaultOpen:!0,"aria-label":o.options,content:n.jsx("p",{children:o.options}),children:n.jsx(r,{variant:"secondary",children:o.open})})})}},P={name:"Désactivé",args:{content:null,children:n.jsx("span",{})},parameters:c(l,`<Popover disabled aria-label="Options" content={<p>Options</p>}>
+    <Button variant="secondary">Ouvrir</Button>
+</Popover>`),render:(t,{globals:e})=>{const o=s(p(e.locale));return n.jsx(a,{disabled:!0,"aria-label":o.options,content:n.jsx("p",{children:o.options}),children:n.jsx(r,{variant:"secondary",children:o.open})})}};function b({copy:t,placement:e}){return n.jsx(a,{placement:e,defaultOpen:!0,"aria-label":t[e],content:n.jsx("p",{children:t.options}),children:n.jsx(r,{variant:"secondary",children:t[e]})})}function X({openLabel:t,action:e,options:o}){const[G,I]=J.useState(!1);return n.jsx(a,{open:G,onOpenChange:I,trapFocus:!0,"aria-label":o,content:n.jsx(r,{variant:"primary",children:e}),children:n.jsx(r,{variant:"secondary",children:t})})}const g={name:"Arrondi",args:{content:null,children:n.jsx("span",{})},parameters:c(l,`<Popover
+    trapFocus
+    radius="xl"
+    aria-label="Options"
+    content={<Button variant="primary">Confirmer</Button>}
+>
+    <Button variant="secondary">Ouvrir</Button>
+</Popover>`),render:(t,{globals:e})=>{const o=s(p(e.locale));return n.jsx(a,{...t,trapFocus:!0,radius:"xl",defaultOpen:!0,"aria-label":o.options,content:n.jsx(r,{variant:"primary",children:o.action}),children:n.jsx(r,{variant:"secondary",children:o.open})})}};var x,B,f;i.parameters={...i.parameters,docs:{...(x=i.parameters)==null?void 0:x.docs,source:{originalSource:`{
+  name: 'Par défaut',
+  args: {
+    content: null,
+    children: <span />
+  },
+  parameters: componentSource(importPopover, \`<Popover
+    trapFocus
+    aria-label="Options"
+    content={
+        <Button variant="primary">Confirmer</Button>
+    }
+>
+    <Button variant="secondary">Ouvrir</Button>
+</Popover>\`),
+  render: (args, {
+    globals
+  }) => {
+    const copy = overlayCopy(docsLocale(globals.locale));
+    return <Popover {...args} trapFocus aria-label={copy.options} content={<Button variant="primary">{copy.action}</Button>}>
+        <Button variant="secondary">{copy.open}</Button>
+      </Popover>;
+  }
+}`,...(f=(B=i.parameters)==null?void 0:B.docs)==null?void 0:f.source}}};var h,j,O;u.parameters={...u.parameters,docs:{...(h=u.parameters)==null?void 0:h.docs,source:{originalSource:`{
+  name: 'Placement',
+  args: {
+    content: null,
+    children: <span />
+  },
+  parameters: componentSource(importPopover, \`<Popover placement="top" aria-label="Options" content={<p>Options</p>}>
+    <Button variant="secondary">Haut</Button>
+</Popover>\`),
+  render: (_, {
+    globals
+  }) => {
+    const copy = overlayCopy(docsLocale(globals.locale));
+    return <div className="mx-auto grid w-max grid-cols-[1fr_auto_1fr] grid-rows-[auto_auto_auto] items-center justify-items-center gap-x-24 gap-y-16 px-8 py-20">
+        <div className="col-start-2 row-start-1">
+          <DirectedPopover copy={copy} placement="top" />
+        </div>
+        <div className="col-start-1 row-start-2">
+          <DirectedPopover copy={copy} placement="left" />
+        </div>
+        <div className="col-start-3 row-start-2">
+          <DirectedPopover copy={copy} placement="right" />
+        </div>
+        <div className="col-start-2 row-start-3">
+          <DirectedPopover copy={copy} placement="bottom" />
+        </div>
+      </div>;
+  }
+}`,...(O=(j=u.parameters)==null?void 0:j.docs)==null?void 0:O.source}}};var S,C,_;d.parameters={...d.parameters,docs:{...(S=d.parameters)==null?void 0:S.docs,source:{originalSource:`{
+  name: 'Alignements',
+  args: {
+    content: null,
+    children: <span />
+  },
+  parameters: componentSource(importPopover, \`<>
+    <Popover placement="top-start" aria-label="Options" content={<p>Aligné au début</p>}>
+        <Button variant="secondary">Haut début</Button>
+    </Popover>
+    <Popover placement="top-end" aria-label="Options" content={<p>Aligné à la fin</p>}>
+        <Button variant="secondary">Haut fin</Button>
+    </Popover>
+</>\`),
+  render: (_, {
+    globals
+  }) => {
+    const copy = overlayCopy(docsLocale(globals.locale));
+    return <div className="flex items-end justify-center gap-24 px-8 pb-8 pt-24">
+        <Popover placement="top-start" defaultOpen aria-label={copy.topStart} content={<p>{copy.alignStart}</p>}>
+          <Button variant="secondary">{copy.topStart}</Button>
+        </Popover>
+        <Popover placement="top-end" defaultOpen aria-label={copy.topEnd} content={<p>{copy.alignEnd}</p>}>
+          <Button variant="secondary">{copy.topEnd}</Button>
+        </Popover>
+      </div>;
+  }
+}`,...(_=(C=d.parameters)==null?void 0:C.docs)==null?void 0:_.source}}};var F,N,w;m.parameters={...m.parameters,docs:{...(F=m.parameters)==null?void 0:F.docs,source:{originalSource:`{
+  name: 'Contrôlé',
+  args: {
+    content: null,
+    children: <span />
+  },
+  parameters: componentSourceFn(importControlled, \`const [open, setOpen] = useState(false);
+return (
+    <Popover
+        open={open}
+        onOpenChange={setOpen}
+        trapFocus
+        aria-label="Options"
+        content={<Button variant="primary">Confirmer</Button>}
+    >
+        <Button variant="secondary">Ouvrir</Button>
+    </Popover>
+);\`),
+  render: (_, {
+    globals
+  }) => {
+    const copy = overlayCopy(docsLocale(globals.locale));
+    return <ControlledPopover openLabel={copy.open} action={copy.action} options={copy.options} />;
+  }
+}`,...(w=(N=m.parameters)==null?void 0:N.docs)==null?void 0:w.source}}};var A,D,L;v.parameters={...v.parameters,docs:{...(A=v.parameters)==null?void 0:A.docs,source:{originalSource:`{
+  name: 'Sans piège de focus',
+  args: {
+    content: null,
+    children: <span />
+  },
+  parameters: componentSource(importPopover, \`<Popover aria-label="Plus d’infos" content={<p>Plus d’infos</p>}>
+    <Button variant="secondary">Ouvrir</Button>
+</Popover>\`),
+  render: (_, {
+    globals
+  }) => {
+    const copy = overlayCopy(docsLocale(globals.locale));
+    return <Popover aria-label={copy.more} content={<p>{copy.more}</p>}>
+        <Button variant="secondary">{copy.open}</Button>
+      </Popover>;
+  }
+}`,...(L=(D=v.parameters)==null?void 0:D.docs)==null?void 0:L.source}}};var E,H,T;y.parameters={...y.parameters,docs:{...(E=y.parameters)==null?void 0:E.docs,source:{originalSource:`{
+  name: 'Collision',
+  args: {
+    content: null,
+    children: <span />
+  },
+  parameters: componentSource(importPopover, \`<Popover placement="top" aria-label="Options" content={<p>Options</p>}>
+    <Button variant="secondary">Ouvrir</Button>
+</Popover>\`),
+  render: (_, {
+    globals
+  }) => {
+    const copy = overlayCopy(docsLocale(globals.locale));
+    return <div className="flex h-40 items-start justify-start">
+        <Popover placement="top" defaultOpen aria-label={copy.options} content={<p>{copy.options}</p>}>
+          <Button variant="secondary">{copy.open}</Button>
+        </Popover>
+      </div>;
+  }
+}`,...(T=(H=y.parameters)==null?void 0:H.docs)==null?void 0:T.source}}};var R,W,z;P.parameters={...P.parameters,docs:{...(R=P.parameters)==null?void 0:R.docs,source:{originalSource:`{
+  name: 'Désactivé',
+  args: {
+    content: null,
+    children: <span />
+  },
+  parameters: componentSource(importPopover, \`<Popover disabled aria-label="Options" content={<p>Options</p>}>
+    <Button variant="secondary">Ouvrir</Button>
+</Popover>\`),
+  render: (_, {
+    globals
+  }) => {
+    const copy = overlayCopy(docsLocale(globals.locale));
+    return <Popover disabled aria-label={copy.options} content={<p>{copy.options}</p>}>
+        <Button variant="secondary">{copy.open}</Button>
+      </Popover>;
+  }
+}`,...(z=(W=P.parameters)==null?void 0:W.docs)==null?void 0:z.source}}};var M,k,q;g.parameters={...g.parameters,docs:{...(M=g.parameters)==null?void 0:M.docs,source:{originalSource:`{
+  name: 'Arrondi',
+  args: {
+    content: null,
+    children: <span />
+  },
+  parameters: componentSource(importPopover, \`<Popover
+    trapFocus
+    radius="xl"
+    aria-label="Options"
+    content={<Button variant="primary">Confirmer</Button>}
+>
+    <Button variant="secondary">Ouvrir</Button>
+</Popover>\`),
+  render: (args, {
+    globals
+  }) => {
+    const copy = overlayCopy(docsLocale(globals.locale));
+    return <Popover {...args} trapFocus radius="xl" defaultOpen aria-label={copy.options} content={<Button variant="primary">{copy.action}</Button>}>
+        <Button variant="secondary">{copy.open}</Button>
+      </Popover>;
+  }
+}`,...(q=(k=g.parameters)==null?void 0:k.docs)==null?void 0:q.source}}};const Y=["Default","Placement","Alignments","Controlled","WithoutFocusTrap","Collision","Disabled","Radius"],tn=Object.freeze(Object.defineProperty({__proto__:null,Alignments:d,Collision:y,Controlled:m,Default:i,Disabled:P,Placement:u,Radius:g,WithoutFocusTrap:v,__namedExportsOrder:Y,default:V},Symbol.toStringTag,{value:"Module"}));export{d as A,m as C,i as D,tn as P,g as R,v as W,u as a,P as b,y as c};
