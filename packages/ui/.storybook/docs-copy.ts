@@ -2564,9 +2564,14 @@ export const docsCopy = {
       fr: '`dot` ajoute un point de la couleur courante. Il ne remplace pas le libellé.',
       en: '`dot` adds a current-colour dot. It does not replace the label.',
     },
+    dismissible: { fr: 'Fermable', en: 'Dismissible' },
+    dismissibleBody: {
+      fr: '`dismissible` ajoute un vrai `<button>` pour retirer la pastille (filtre, étiquette). Passez `dismissLabel` et `onDismiss`. Pour la garder dans une liste, ne la rendez plus après `onDismiss`.',
+      en: '`dismissible` adds a real `<button>` to remove the pill (filter, tag). Pass `dismissLabel` and `onDismiss`. To keep it in a list, stop rendering it after `onDismiss`.',
+    },
     a11yBody: {
-      fr: '`span` non interactif. Le nom vient du texte (ou `aria-label` si le contenu n’est pas lisible). Icône et point sont `aria-hidden`.',
-      en: 'Non-interactive `span`. The name comes from the text (or `aria-label` if the content is not readable). Icon and dot are `aria-hidden`.',
+      fr: '`span` non interactif, sauf le bouton fermer. Le nom vient du texte (ou `aria-label`). Icône et point sont `aria-hidden`. Fermeture : bouton nommé.',
+      en: 'Non-interactive `span`, except the dismiss button. The name comes from the text (or `aria-label`). Icon and dot are `aria-hidden`. Dismiss: named button.',
     },
     doText: {
       fr: 'Un libellé visible (« Publié », « Brouillon »), pas seulement une couleur',
@@ -2576,17 +2581,21 @@ export const docsCopy = {
       fr: '`success` / `warning` / `danger` / `info` pour un statut ; `neutral` pour une catégorie',
       en: '`success` / `warning` / `danger` / `info` for a status; `neutral` for a category',
     },
+    doDismiss: {
+      fr: '`dismissible` + `dismissLabel` pour retirer une étiquette, pas un `onClick` sur le `span`',
+      en: '`dismissible` + `dismissLabel` to remove a tag, not an `onClick` on the `span`',
+    },
     dontColor: {
       fr: 'Une pastille vide dont le seul indice est la couleur',
       en: 'An empty pill whose only cue is colour',
     },
     dontButton: {
-      fr: 'Un `onClick` sur `Badge` : utilisez `Button` ou `Link`',
-      en: 'An `onClick` on `Badge`: use `Button` or `Link`',
+      fr: 'Un `onClick` sur le `span` : `Button` / `Link` pour une action, `dismissible` pour retirer',
+      en: 'An `onClick` on the `span`: `Button` / `Link` for an action, `dismissible` to remove',
     },
     props: {
-      fr: '`variant`, `appearance`, `size`, `dot`, `icon`. Le texte : `children`. Attributs du `span` transmis.',
-      en: '`variant`, `appearance`, `size`, `dot`, `icon`. Text: `children`. `span` attributes are forwarded.',
+      fr: '`variant`, `appearance`, `size`, `dot`, `icon`, `dismissible`, `dismissLabel`, `onDismiss`. Texte : `children`.',
+      en: '`variant`, `appearance`, `size`, `dot`, `icon`, `dismissible`, `dismissLabel`, `onDismiss`. Text: `children`.',
     },
   },
   avatar: {
@@ -2618,13 +2627,23 @@ export const docsCopy = {
       fr: '`square` arrondit au `radius-md` au lieu du cercle (Tailwind Plus).',
       en: '`square` uses `radius-md` instead of a circle (Tailwind Plus).',
     },
+    presence: { fr: 'Présence', en: 'Presence' },
+    presenceBody: {
+      fr: '`presence` pose un point (`online` / `away` / `busy` / `offline`). Le nom accessible inclut `presenceLabel` : la couleur seule ne suffit pas (1.4.1).',
+      en: '`presence` adds a dot (`online` / `away` / `busy` / `offline`). The accessible name includes `presenceLabel`: colour alone is not enough (1.4.1).',
+    },
+    decorative: { fr: 'À côté d’un nom', en: 'Beside a name' },
+    decorativeBody: {
+      fr: 'Si le nom est déjà visible à côté du portrait, passez `alt=""`. Le canvas ci-dessous le montre : l’image est décorative, le texte porteur du sens reste à côté.',
+      en: 'If the name is already visible next to the portrait, pass `alt=""`. The canvas below shows it: the image is decorative, the neighbouring text carries the name.',
+    },
     groupBody: {
       fr: '`AvatarGroup` chevauche les enfants. `max` masque le surplus derrière « +N ». `label` nomme le groupe ; `overflowLabel` nomme le surplus.',
       en: '`AvatarGroup` overlaps children. `max` hides the rest behind “+N”. `label` names the group; `overflowLabel` names the overflow.',
     },
     a11yBody: {
-      fr: 'Photo : `alt` (défaut `name`). Fallback : `role="img"` + `aria-label` issu de `name` ou `alt`. Groupe : `role="group"`. Image à côté d’un nom visible : `alt=""`.',
-      en: 'Photo: `alt` (defaults to `name`). Fallback: `role="img"` + `aria-label` from `name` or `alt`. Group: `role="group"`. Image next to a visible name: `alt=""`.',
+      fr: 'Photo : `alt` (défaut `name`). Fallback : `role="img"` + `aria-label` issu de `name` ou `alt`. Présence : le libellé entre dans le nom, le point est `aria-hidden`. Groupe : `role="group"`. Image à côté d’un nom visible : `alt=""`.',
+      en: 'Photo: `alt` (defaults to `name`). Fallback: `role="img"` + `aria-label` from `name` or `alt`. Presence: the label joins the name, the dot is `aria-hidden`. Group: `role="group"`. Image next to a visible name: `alt=""`.',
     },
     doName: {
       fr: '`name` sur chaque `Avatar` autonome (initiales et fallback restent nommés)',
@@ -2633,6 +2652,10 @@ export const docsCopy = {
     doAlt: {
       fr: '`alt=""` si le nom est déjà visible à côté du portrait',
       en: '`alt=""` if the name is already visible next to the portrait',
+    },
+    doPresence: {
+      fr: '`presence` + `presenceLabel` (le point reste décoratif)',
+      en: '`presence` + `presenceLabel` (the dot stays decorative)',
     },
     doGroup: {
       fr: '`label` sur `AvatarGroup` et `overflowLabel` pour le « +N »',
@@ -2646,10 +2669,14 @@ export const docsCopy = {
       fr: 'Compter sur `src` sans `name` : l’échec d’image laisserait une silhouette anonyme',
       en: 'Rely on `src` without `name`: an image failure would leave an unnamed silhouette',
     },
+    dontPresenceColor: {
+      fr: 'Un point de présence sans `presenceLabel` ni nom : la couleur seule ne porte pas le statut',
+      en: 'A presence dot without `presenceLabel` or a name: colour alone does not carry status',
+    },
     propsAvatar: { fr: 'Avatar', en: 'Avatar' },
     props: {
-      fr: '`src`, `alt`, `name`, `initials`, `size`, `square`. Attributs du `span` transmis.',
-      en: '`src`, `alt`, `name`, `initials`, `size`, `square`. `span` attributes are forwarded.',
+      fr: '`src`, `alt`, `name`, `initials`, `size`, `square`, `presence`, `presenceLabel`. Attributs du `span` transmis.',
+      en: '`src`, `alt`, `name`, `initials`, `size`, `square`, `presence`, `presenceLabel`. `span` attributes are forwarded.',
     },
     propsGroup: { fr: 'AvatarGroup', en: 'AvatarGroup' },
     propsGroupBody: {
@@ -2687,6 +2714,11 @@ export const docsCopy = {
       fr: '`as="button"` rend un `<button type="button">` natif, clavier et nom issus du contenu. Même règle : pas de contrôle imbriqué.',
       en: '`as="button"` renders a native `<button type="button">`, keyboard and name from the content. Same rule: no nested control.',
     },
+    disabled: { fr: 'Bouton désactivé', en: 'Disabled button' },
+    disabledBody: {
+      fr: '`disabled` s’applique seulement à `as="button"` : attribut natif, plus d’événements pointeur. Ignoré sur `article` et sur un lien.',
+      en: '`disabled` applies only to `as="button"`: native attribute, no pointer events. Ignored on `article` and on a link.',
+    },
     radiusBody: {
       fr: '`radius` (`sm` / `md` / `lg` / `xl`). Défaut : `lg`, comme une surface Tailwind Plus.',
       en: '`radius` (`sm` / `md` / `lg` / `xl`). Default: `lg`, like a Tailwind Plus surface.',
@@ -2697,16 +2729,16 @@ export const docsCopy = {
       en: 'A person card combines `Avatar` + `Badge` + `Card`. Domain (course, LMS) stays in the app.',
     },
     a11yBody: {
-      fr: 'Statique : `article`. Interactive : `<a>` ou `<button>`, jamais un `div` + `onClick`. Le nom vient du `CardTitle` visible. Titre : `h3` par défaut.',
-      en: 'Static: `article`. Interactive: `<a>` or `<button>`, never a `div` + `onClick`. The name comes from the visible `CardTitle`. Heading: `h3` by default.',
+      fr: 'Statique : `article`. Interactive : `<a>` ou `<button>`, jamais un `div` + `onClick`. Carte-bouton indisponible : `disabled` natif. Le nom vient du `CardTitle` visible. Titre : `h3` par défaut.',
+      en: 'Static: `article`. Interactive: `<a>` or `<button>`, never a `div` + `onClick`. Unavailable button card: native `disabled`. The name comes from the visible `CardTitle`. Heading: `h3` by default.',
     },
     doSlots: {
       fr: '`CardHeader` / `CardBody` / `CardFooter` pour structurer, `CardTitle` pour le nom',
       en: '`CardHeader` / `CardBody` / `CardFooter` to structure, `CardTitle` for the name',
     },
     doLink: {
-      fr: '`href` quand toute la carte mène à une ressource ; `as="button"` pour une action',
-      en: '`href` when the whole card goes to a resource; `as="button"` for an action',
+      fr: '`href` quand toute la carte mène à une ressource ; `as="button"` pour une action, `disabled` si elle est indisponible',
+      en: '`href` when the whole card goes to a resource; `as="button"` for an action, `disabled` if it is unavailable',
     },
     doFooter: {
       fr: 'Des `Button` / `Link` dans le pied d’une carte **statique**',
@@ -2725,8 +2757,8 @@ export const docsCopy = {
       en: 'A domain `CourseCard` inside `d-ui`',
     },
     props: {
-      fr: '`href` (lien), `as` (`article` / `div` / `button`), `orientation`, `radius`. Slots : `CardMedia`, `CardHeader`, `CardTitle`, `CardDescription`, `CardBody`, `CardFooter`.',
-      en: '`href` (link), `as` (`article` / `div` / `button`), `orientation`, `radius`. Slots: `CardMedia`, `CardHeader`, `CardTitle`, `CardDescription`, `CardBody`, `CardFooter`.',
+      fr: '`href` (lien), `as` (`article` / `div` / `button`), `disabled` (bouton), `orientation`, `radius`. Slots : `CardMedia`, `CardHeader`, `CardTitle`, `CardDescription`, `CardBody`, `CardFooter`.',
+      en: '`href` (link), `as` (`article` / `div` / `button`), `disabled` (button), `orientation`, `radius`. Slots: `CardMedia`, `CardHeader`, `CardTitle`, `CardDescription`, `CardBody`, `CardFooter`.',
     },
   },
 } as const;

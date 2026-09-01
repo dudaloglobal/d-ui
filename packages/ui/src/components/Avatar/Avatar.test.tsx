@@ -67,4 +67,27 @@ describe('Avatar', () => {
     ).not.toBeInTheDocument();
     expect(screen.getByRole('img', { name: '1 de plus' })).toHaveTextContent('+1');
   });
+
+  it('includes presence in the accessible name, not colour alone', () => {
+    render(<Avatar name="Ada Lovelace" presence="online" />);
+    expect(screen.getByRole('img', { name: 'Ada Lovelace, Online' })).toBeVisible();
+  });
+
+  it('uses presenceLabel instead of the English fallback', () => {
+    render(<Avatar name="Ada Lovelace" presence="busy" presenceLabel="Occupé" />);
+    expect(screen.getByRole('img', { name: 'Ada Lovelace, Occupé' })).toBeVisible();
+  });
+
+  it('keeps a decorative image unnamed when alt is empty beside visible text', () => {
+    render(
+      <div>
+        <Avatar src="/portrait.png" name="Ada Lovelace" alt="" />
+        <p>Ada Lovelace</p>
+      </div>,
+    );
+    expect(screen.getByText('Ada Lovelace', { selector: 'p' })).toBeVisible();
+    const photo = document.querySelector('img');
+    expect(photo).toHaveAttribute('alt', '');
+    expect(screen.queryByRole('img', { name: 'Ada Lovelace' })).not.toBeInTheDocument();
+  });
 });

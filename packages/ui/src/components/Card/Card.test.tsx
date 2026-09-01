@@ -86,4 +86,20 @@ describe('Card', () => {
     await user.click(card);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
+
+  it('does not fire click when the button card is disabled', async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+    render(
+      <Card as="button" disabled onClick={onClick}>
+        <CardHeader>
+          <CardTitle>Choisir</CardTitle>
+        </CardHeader>
+      </Card>,
+    );
+    const card = screen.getByRole('button', { name: 'Choisir' });
+    expect(card).toBeDisabled();
+    await user.click(card);
+    expect(onClick).not.toHaveBeenCalled();
+  });
 });

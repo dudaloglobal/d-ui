@@ -1225,6 +1225,14 @@ export const badgeArgTypes = {
   icon: {
     description: 'Icône décorative. Ne remplace pas le nom accessible.',
   },
+  dismissible: {
+    control: 'boolean' as const,
+    description: 'Affiche un bouton pour retirer la pastille. Passez `dismissLabel`.',
+  },
+  dismissLabel: {
+    control: 'text' as const,
+    description: 'Nom du bouton fermer. Fallback anglais : `Remove`.',
+  },
 };
 
 export const avatarArgTypes = {
@@ -1257,6 +1265,37 @@ export const avatarArgTypes = {
     control: 'boolean' as const,
     description: 'Carré arrondi (`rounded-md`) au lieu du cercle.',
   },
+  presence: {
+    control: 'inline-radio' as const,
+    options: ['online', 'offline', 'busy', 'away'],
+    description:
+      'Point de présence. Le nom accessible inclut `presenceLabel` (couleur seule insuffisante).',
+  },
+  presenceLabel: {
+    control: 'text' as const,
+    description:
+      'Libellé de `presence`. Fallback anglais : `Online` / `Offline` / `Busy` / `Away`.',
+  },
+};
+
+export const avatarGroupArgTypes = {
+  size: {
+    control: 'inline-radio' as const,
+    options: ['xs', 'sm', 'md', 'lg', 'xl'],
+    description: 'Taille descendue sur les enfants sans `size`. `md` par défaut.',
+  },
+  max: {
+    control: { type: 'number' as const, min: 1, max: 12, step: 1 },
+    description: 'Nombre d’avatars visibles. Le reste devient « +N ».',
+  },
+  label: {
+    control: 'text' as const,
+    description: 'Nom accessible du groupe. Fallback anglais : `Avatar group`.',
+  },
+  overflowLabel: {
+    control: { disable: true },
+    description: 'Nom du surplus `(count) => string`. Fallback anglais : `N more`.',
+  },
 };
 
 export const cardArgTypes = {
@@ -1278,4 +1317,9 @@ export const cardArgTypes = {
       '`horizontal` : média à gauche dès `sm`. En dessous, la carte redevient une colonne.',
   },
   radius: cornerRadiusArgType('lg'),
+  disabled: {
+    control: 'boolean' as const,
+    description:
+      'Désactive la carte-bouton (`as="button"`) : plus d’événements pointeur. Ignoré sur `article` / lien.',
+  },
 };

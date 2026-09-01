@@ -223,6 +223,30 @@ export const AsButton: Story = {
   },
 };
 
+export const AsButtonDisabled: Story = {
+  name: 'Bouton désactivé',
+  args: { disabled: true },
+  parameters: componentSource(
+    importCard,
+    `<Card as="button" disabled onClick={() => {}}>
+    <CardHeader>
+        <CardTitle>Algèbre linéaire</CardTitle>
+    </CardHeader>
+</Card>`,
+  ),
+  render: (args, { globals }) => {
+    const copy = cardCopy(docsLocale(globals.locale));
+    return (
+      <Card {...args} as="button" disabled className="max-w-sm">
+        <CardHeader>
+          <CardTitle>{copy.title}</CardTitle>
+          <CardDescription>{copy.subtitle}</CardDescription>
+        </CardHeader>
+      </Card>
+    );
+  },
+};
+
 export const Radius: Story = {
   name: 'Arrondi',
   parameters: componentSource(

@@ -42,6 +42,12 @@ import * as CardStories from './Card.stories';
 
 <Canvas of={CardStories.AsButton} />
 
+<H2 k="card.disabled" />
+
+<P k="card.disabledBody" />
+
+<Canvas of={CardStories.AsButtonDisabled} />
+
 <H2 k="chrome.radius" />
 
 <P k="card.radiusBody" />
@@ -72,4 +78,7 @@ import * as CardStories from './Card.stories';
 
 <P k="card.props" />
 
-<ArgTypes of={CardStories} include={['href', 'as', 'orientation', 'radius']} />
+<ArgTypes
+  of={CardStories}
+  include={['href', 'as', 'disabled', 'orientation', 'radius']}
+/>

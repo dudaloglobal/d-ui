@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import userEvent from '@testing-library/user-event';
+import { describe, expect, it, vi } from 'vitest';
 import { Badge as BadgeFromEntry } from '../../index';
 import { Badge } from './Badge';
 
@@ -41,5 +42,18 @@ describe('Badge', () => {
     );
     const badge = screen.getByText('Brouillon');
     expect(badge.querySelector('[aria-hidden="true"]')).toBeTruthy();
+  });
+
+  it('removes the pill with a named dismiss button', async () => {
+    const user = userEvent.setup();
+    const onDismiss = vi.fn();
+    render(
+      <Badge dismissible dismissLabel="Retirer" onDismiss={onDismiss}>
+        Maths
+      </Badge>,
+    );
+    await user.click(screen.getByRole('button', { name: 'Retirer' }));
+    expect(onDismiss).toHaveBeenCalledTimes(1);
+    expect(screen.queryByText('Maths')).not.toBeInTheDocument();
   });
 });

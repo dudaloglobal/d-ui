@@ -10,6 +10,7 @@ import {
 import { cx } from '../../lib/cx';
 
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type AvatarPresence = 'online' | 'offline' | 'busy' | 'away';
 
 export type AvatarProps = HTMLAttributes<HTMLSpanElement> & {
   /** Photo. Si le chargement échoue, initiales puis icône. */
@@ -29,6 +30,10 @@ export type AvatarProps = HTMLAttributes<HTMLSpanElement> & {
   size?: AvatarSize;
   /** Carré arrondi au lieu du cercle (Tailwind Plus `square`). */
   square?: boolean;
+  /** Point de présence. La couleur seule ne porte pas le sens : le nom l’inclut. */
+  presence?: AvatarPresence;
+  /** Libellé de `presence`. Fallback anglais : `Online` / `Offline` / `Busy` / `Away`. */
+  presenceLabel?: string;
 };
 
 const sizeClass: Record<AvatarSize, string> = {
@@ -37,6 +42,28 @@ const sizeClass: Record<AvatarSize, string> = {
   md: 'size-10 text-sm',
   lg: 'size-12 text-base',
   xl: 'size-14 text-lg',
+};
+
+const presenceDotClass: Record<AvatarPresence, string> = {
+  online: 'bg-success',
+  offline: 'bg-fg-muted',
+  busy: 'bg-danger',
+  away: 'bg-warning',
+};
+
+const presenceDotSize: Record<AvatarSize, string> = {
+  xs: 'size-1.5',
+  sm: 'size-2',
+  md: 'size-2.5',
+  lg: 'size-3',
+  xl: 'size-3.5',
+};
+
+const PRESENCE_FALLBACK: Record<AvatarPresence, string> = {
+  online: 'Online',
+  offline: 'Offline',
+  busy: 'Busy',
+  away: 'Away',
 };
 
 export function initialsFromName(name: string): string {
@@ -71,6 +98,7 @@ function UserFallback() {
  *
  * Le fallback (initiales ou silhouette) reste nommé : `name`, sinon `alt`
  * non vide. Sans les deux, le portrait est décoratif (`aria-hidden`).
+ * `presence` ajoute un point : le libellé (`presenceLabel`) entre dans le nom.
  */
 export function Avatar({
   src,
@@ -79,6 +107,8 @@ export function Avatar({
   initials,
   size = 'md',
   square = false,
+  presence,
+  presenceLabel,
   className,
   ...rest
 }: AvatarProps) {
@@ -87,34 +117,51 @@ export function Avatar({
   const resolvedInitials = (initials ?? (name ? initialsFromName(name) : '')).slice(0, 2);
   const accessibleName = name || (alt ? alt : undefined);
   const imageAlt = alt !== undefined ? alt : (name ?? '');
-  const labelFallback = !showImage && accessibleName;
+  const presenceText = presence
+    ? (presenceLabel ?? PRESENCE_FALLBACK[presence])
+    : undefined;
+  const namedWithPresence = [accessibleName, presenceText].filter(Boolean).join(', ');
+  const labelFallback = !showImage && namedWithPresence;
+  const wrapName = Boolean(presence && namedWithPresence);
 
   return (
     <span
       {...rest}
-      role={labelFallback ? 'img' : undefined}
-      aria-label={labelFallback ? accessibleName : undefined}
-      aria-hidden={!showImage && !accessibleName ? true : undefined}
-      className={cx(
-        'relative inline-flex shrink-0 items-center justify-center overflow-hidden',
-        'bg-surface-muted font-medium text-fg select-none',
-        square ? 'rounded-md' : 'rounded-full',
-        sizeClass[size],
-        className,
-      )}
+      role={labelFallback || wrapName ? 'img' : undefined}
+      aria-label={labelFallback || wrapName ? namedWithPresence : undefined}
+      aria-hidden={!showImage && !namedWithPresence ? true : undefined}
+      className={cx('relative inline-flex shrink-0', sizeClass[size], className)}
     >
-      {showImage ? (
-        <img
-          src={src}
-          alt={imageAlt}
-          className="size-full object-cover"
-          onError={() => setFailed(true)}
+      <span
+        className={cx(
+          'inline-flex size-full items-center justify-center overflow-hidden',
+          'bg-surface-muted font-medium text-fg select-none',
+          square ? 'rounded-md' : 'rounded-full',
+        )}
+      >
+        {showImage ? (
+          <img
+            src={src}
+            alt={wrapName ? '' : imageAlt}
+            className="size-full object-cover"
+            onError={() => setFailed(true)}
+          />
+        ) : resolvedInitials ? (
+          <span aria-hidden="true">{resolvedInitials}</span>
+        ) : (
+          <UserFallback />
+        )}
+      </span>
+      {presence ? (
+        <span
+          className={cx(
+            'absolute end-0 bottom-0 rounded-full ring-2 ring-bg',
+            presenceDotSize[size],
+            presenceDotClass[presence],
+          )}
+          aria-hidden="true"
         />
-      ) : resolvedInitials ? (
-        <span aria-hidden="true">{resolvedInitials}</span>
-      ) : (
-        <UserFallback />
-      )}
+      ) : null}
     </span>
   );
 }

@@ -1,5 +1,6 @@
-import type { HTMLAttributes, ReactNode } from 'react';
+import { useState, type HTMLAttributes, type ReactNode } from 'react';
 import { cx } from '../../lib/cx';
+import { CloseGlyph } from '../feedback/FeedbackIcons';
 
 export type BadgeVariant =
   'default' | 'success' | 'warning' | 'danger' | 'info' | 'neutral';
@@ -19,6 +20,11 @@ export type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
   dot?: boolean;
   /** Icône décorative. Ne remplace pas le nom accessible. */
   icon?: ReactNode;
+  /** Affiche un bouton pour retirer la pastille. */
+  dismissible?: boolean;
+  onDismiss?: () => void;
+  /** Nom du bouton fermer. Fallback anglais : `Remove`. */
+  dismissLabel?: string;
 };
 
 const TOKEN: Record<Exclude<BadgeVariant, 'neutral'>, string> = {
@@ -68,7 +74,7 @@ function IconSlot({ children }: { children: ReactNode }) {
  * Pastille de statut ou de catégorie (Tailwind Plus Badge).
  *
  * Le texte (ou `aria-label`) porte le sens : la couleur seule ne suffit pas
- * (WCAG 1.4.1). Ce n’est pas un bouton.
+ * (WCAG 1.4.1). Ce n’est pas un bouton. `dismissible` ajoute un vrai `<button>`.
  */
 export function Badge({
   variant = 'default',
@@ -76,11 +82,15 @@ export function Badge({
   size = 'md',
   dot = false,
   icon,
+  dismissible = false,
+  onDismiss,
+  dismissLabel = 'Remove',
   className,
   style,
   children,
   ...rest
 }: BadgeProps) {
+  const [open, setOpen] = useState(true);
   const token = variant === 'neutral' ? undefined : TOKEN[variant];
   const softStyle =
     appearance === 'soft' && token
@@ -88,6 +98,8 @@ export function Badge({
           backgroundColor: `color-mix(in srgb, var(${token}) 14%, var(--d-ui-color-bg))`,
         }
       : undefined;
+
+  if (!open) return null;
 
   return (
     <span
@@ -112,6 +124,23 @@ export function Badge({
       ) : null}
       {icon ? <IconSlot>{icon}</IconSlot> : null}
       {children}
+      {dismissible ? (
+        <button
+          type="button"
+          aria-label={dismissLabel}
+          className={cx(
+            '-me-0.5 inline-flex size-[1.15em] shrink-0 items-center justify-center rounded-full',
+            'hover:bg-current/15',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-1 focus-visible:ring-offset-bg',
+          )}
+          onClick={() => {
+            setOpen(false);
+            onDismiss?.();
+          }}
+        >
+          <CloseGlyph />
+        </button>
+      ) : null}
     </span>
   );
 }

@@ -30,6 +30,8 @@ export type CardProps = HTMLAttributes<HTMLElement> & {
   radius?: CardRadius;
   /** `"horizontal"` : média à gauche dès `sm` (Tailwind Plus media object). */
   orientation?: CardOrientation;
+  /** Désactive la carte-bouton (`as="button"`). Ignoré sinon. */
+  disabled?: boolean;
   children?: ReactNode;
 };
 
@@ -47,17 +49,20 @@ export function Card({
   as = 'article',
   radius = 'lg',
   orientation = 'vertical',
+  disabled = false,
   className,
   children,
   ...rest
 }: CardProps) {
   const interactive = Boolean(href) || as === 'button';
+  const buttonDisabled = as === 'button' && disabled;
   const classNames = cx(
     'flex overflow-hidden border border-border-subtle bg-bg text-start text-fg no-underline',
     orientation === 'horizontal' ? 'flex-col sm:flex-row sm:items-stretch' : 'flex-col',
     cornerRadiusClass[radius],
     interactive && interactiveClass,
-    as === 'button' && 'cursor-pointer',
+    as === 'button' && !buttonDisabled && 'cursor-pointer',
+    buttonDisabled && 'cursor-not-allowed opacity-50',
     className,
   );
 
@@ -78,7 +83,12 @@ export function Card({
       type?: 'button' | 'submit' | 'reset';
     };
     return (
-      <button {...buttonRest} type={type} className={classNames}>
+      <button
+        {...buttonRest}
+        type={type}
+        disabled={buttonDisabled}
+        className={classNames}
+      >
         {content}
       </button>
     );

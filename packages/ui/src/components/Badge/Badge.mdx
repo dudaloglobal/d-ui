@@ -42,13 +42,19 @@ import * as BadgeStories from './Badge.stories';
 
 <Canvas of={BadgeStories.WithDot} />
 
+<H2 k="badge.dismissible" />
+
+<P k="badge.dismissibleBody" />
+
+<Canvas of={BadgeStories.Dismissible} />
+
 <H2 k="chrome.accessibility" />
 
 <P k="badge.a11yBody" />
 
 <H3 k="chrome.do" />
 
-<Ul items={['badge.doText', 'badge.doVariant']} />
+<Ul items={['badge.doText', 'badge.doVariant', 'badge.doDismiss']} />
 
 <H3 k="chrome.dont" />
 
@@ -60,4 +66,15 @@ import * as BadgeStories from './Badge.stories';
 
 <P k="badge.props" />
 
-<ArgTypes of={BadgeStories} include={['variant', 'appearance', 'size', 'dot', 'icon']} />
+<ArgTypes
+  of={BadgeStories}
+  include={[
+    'variant',
+    'appearance',
+    'size',
+    'dot',
+    'icon',
+    'dismissible',
+    'dismissLabel',
+  ]}
+/>

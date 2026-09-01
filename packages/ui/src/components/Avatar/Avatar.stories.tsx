@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { avatarArgTypes } from '../../../.storybook/arg-types';
+import { avatarArgTypes, avatarGroupArgTypes } from '../../../.storybook/arg-types';
 import { componentSource } from '../../../.storybook/docs-source';
 import { avatarCopy, docsLocale } from '../../../.storybook/docs-locale';
-import { Avatar, AvatarGroup, type AvatarSize } from './Avatar';
+import { Avatar, AvatarGroup, type AvatarPresence, type AvatarSize } from './Avatar';
 
 const importAvatar = "import { Avatar, AvatarGroup } from 'd-ui';";
 
@@ -21,6 +21,7 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+type GroupStory = StoryObj<typeof AvatarGroup>;
 
 export const Default: Story = {
   name: 'Par défaut',
@@ -115,8 +116,66 @@ export const Square: Story = {
   },
 };
 
-export const Group: Story = {
+export const Presence: Story = {
+  name: 'Présence',
+  parameters: componentSource(
+    importAvatar,
+    `<Avatar name="Ada Lovelace" presence="online" presenceLabel="En ligne" />
+<Avatar name="Grace Hopper" presence="busy" presenceLabel="Occupé" />`,
+  ),
+  render: (args, { globals }) => {
+    const copy = avatarCopy(docsLocale(globals.locale));
+    const states: { presence: AvatarPresence; label: string }[] = [
+      { presence: 'online', label: copy.online },
+      { presence: 'away', label: copy.away },
+      { presence: 'busy', label: copy.busy },
+      { presence: 'offline', label: copy.offline },
+    ];
+    return (
+      <div className="flex flex-wrap items-center gap-3">
+        {states.map(({ presence, label }) => (
+          <Avatar
+            key={presence}
+            {...args}
+            name={copy.ada}
+            presence={presence}
+            presenceLabel={label}
+          />
+        ))}
+      </div>
+    );
+  },
+};
+
+export const Decorative: Story = {
+  name: 'À côté d’un nom',
+  parameters: componentSource(
+    importAvatar,
+    `<div className="flex items-center gap-3">
+    <Avatar name="Ada Lovelace" src="/portrait.png" alt="" />
+    <span>Ada Lovelace</span>
+</div>`,
+  ),
+  render: (args, { globals }) => {
+    const copy = avatarCopy(docsLocale(globals.locale));
+    return (
+      <div className="flex items-center gap-3">
+        <Avatar
+          {...args}
+          name={copy.ada}
+          alt=""
+          src={portraitUri('#0f5c4c', copy.adaInitial)}
+        />
+        <span>{copy.ada}</span>
+      </div>
+    );
+  },
+};
+
+export const Group: GroupStory = {
   name: 'Groupe',
+  argTypes: avatarGroupArgTypes,
+  args: { max: 3, size: 'md' },
   parameters: componentSource(
     importAvatar,
     `<AvatarGroup max={3} label="Équipe">
@@ -128,25 +187,21 @@ export const Group: Story = {
   ),
   render: (args, { globals }) => {
     const copy = avatarCopy(docsLocale(globals.locale));
+    const { overflowLabel, label, max, size } = args;
     return (
       <AvatarGroup
-        max={3}
-        size="md"
-        label={copy.groupLabel}
-        overflowLabel={(count) => copy.overflow(count)}
+        max={max}
+        size={size}
+        label={label ?? copy.groupLabel}
+        overflowLabel={overflowLabel ?? ((count) => copy.overflow(count))}
       >
-        <Avatar {...args} name={copy.ada} src={portraitUri('#0f5c4c', copy.adaInitial)} />
+        <Avatar name={copy.ada} src={portraitUri('#0f5c4c', copy.adaInitial)} />
+        <Avatar name={copy.grace} src={portraitUri('#175cd3', copy.graceInitial)} />
         <Avatar
-          {...args}
-          name={copy.grace}
-          src={portraitUri('#175cd3', copy.graceInitial)}
-        />
-        <Avatar
-          {...args}
           name={copy.katherine}
           src={portraitUri('#6b21a8', copy.katherineInitial)}
         />
-        <Avatar {...args} name={copy.annie} />
+        <Avatar name={copy.annie} />
       </AvatarGroup>
     );
   },

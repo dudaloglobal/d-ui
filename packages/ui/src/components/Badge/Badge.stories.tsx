@@ -170,3 +170,21 @@ export const WithDot: Story = {
     );
   },
 };
+
+export const Dismissible: Story = {
+  name: 'Fermable',
+  parameters: componentSource(
+    importBadge,
+    `<Badge dismissible dismissLabel="Retirer" onDismiss={() => {}}>
+    Nouveau
+</Badge>`,
+  ),
+  render: (args, { globals }) => {
+    const copy = badgeCopy(docsLocale(globals.locale));
+    return (
+      <Badge {...args} dismissible dismissLabel={copy.dismiss} variant="neutral">
+        {copy.defaultLabel}
+      </Badge>
+    );
+  },
+};

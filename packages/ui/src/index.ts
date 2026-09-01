@@ -31,6 +31,7 @@ export type { IconButtonProps } from './components/Button/IconButton';
 export { Avatar, AvatarGroup } from './components/Avatar/Avatar';
 export type {
   AvatarGroupProps,
+  AvatarPresence,
   AvatarProps,
   AvatarSize,
 } from './components/Avatar/Avatar';

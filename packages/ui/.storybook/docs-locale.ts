@@ -154,6 +154,9 @@ export const storyNameEn: Record<string, string> = {
   'Sans image': 'No image',
   Carré: 'Square',
   'Avec point': 'With dot',
+  Présence: 'Presence',
+  'À côté d’un nom': 'Beside a name',
+  'Bouton désactivé': 'Disabled button',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -1403,6 +1406,7 @@ const badgeFr = {
   soft: 'Léger',
   solid: 'Plein',
   outline: 'Contour',
+  dismiss: 'Retirer',
 };
 
 const badgeEn = {
@@ -1415,6 +1419,7 @@ const badgeEn = {
   soft: 'Soft',
   solid: 'Solid',
   outline: 'Outline',
+  dismiss: 'Remove',
 };
 
 export type BadgeDocsCopy = typeof badgeFr;
@@ -1433,6 +1438,10 @@ const avatarFr = {
   annie: 'Annie Easley',
   groupLabel: 'Équipe',
   overflow: (count: number) => `${count} de plus`,
+  online: 'En ligne',
+  offline: 'Hors ligne',
+  busy: 'Occupé',
+  away: 'Absent',
 };
 
 const avatarEn = {
@@ -1445,6 +1454,10 @@ const avatarEn = {
   annie: 'Annie Easley',
   groupLabel: 'Team',
   overflow: (count: number) => `${count} more`,
+  online: 'Online',
+  offline: 'Offline',
+  busy: 'Busy',
+  away: 'Away',
 };
 
 export type AvatarDocsCopy = typeof avatarFr;
