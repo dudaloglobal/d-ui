@@ -1,0 +1,130 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul, Table } from '../../../.storybook/docs-i18n';
+import * as DataTableStories from './DataTable.stories';
+
+<Meta of={DataTableStories} />
+
+# DataTable
+
+<P k="dataTable.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={DataTableStories.Default} />
+
+<H2 k="dataTable.columns" />
+
+<P k="dataTable.columnsBody" />
+
+<Table
+  headers={['dataTable.colKey', 'dataTable.colRole']}
+  rows={[
+    ['dataTable.keyId', 'dataTable.keyIdRole'],
+    ['dataTable.keyValue', 'dataTable.keyValueRole'],
+    ['dataTable.keyCell', 'dataTable.keyCellRole'],
+    ['dataTable.keySortable', 'dataTable.keySortableRole'],
+  ]}
+/>
+
+<H2 k="dataTable.state" />
+
+<P k="dataTable.stateBody" />
+
+<H2 k="dataTable.sorting" />
+
+<P k="dataTable.useSorting" />
+
+<Canvas of={DataTableStories.Sorting} />
+
+<H3 k="dataTable.nonSortable" />
+
+<P k="dataTable.useNonSortable" />
+
+<Canvas of={DataTableStories.NonSortable} />
+
+<H2 k="dataTable.searching" />
+
+<P k="dataTable.useSearching" />
+
+<Canvas of={DataTableStories.Search} />
+
+<H3 k="dataTable.filtering" />
+
+<P k="dataTable.useFiltering" />
+
+<Canvas of={DataTableStories.Filtering} />
+
+<H2 k="dataTable.selection" />
+
+<P k="dataTable.useSelection" />
+
+<Canvas of={DataTableStories.SelectingRows} />
+
+<H3 k="dataTable.locked" />
+
+<P k="dataTable.useLocked" />
+
+<Canvas of={DataTableStories.LockedRows} />
+
+<H2 k="dataTable.exporting" />
+
+<P k="dataTable.useExporting" />
+
+<Canvas of={DataTableStories.Export} />
+
+<H2 k="dataTable.paging" />
+
+<P k="dataTable.usePaging" />
+
+<Canvas of={DataTableStories.TablePagination} />
+
+<H2 k="dataTable.composed" />
+
+<P k="dataTable.useComposed" />
+
+<Canvas of={DataTableStories.WithTabs} />
+
+<Canvas of={DataTableStories.EmptyResults} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="dataTable.a11yBody" />
+
+<P k="dataTable.a11yKeys" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['dataTable.doCaption', 'dataTable.doValue', 'dataTable.doRowLabel']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['dataTable.dontGrid', 'dataTable.dontIndex', 'dataTable.dontColor']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="dataTable.propsBody" />
+
+<ArgTypes
+  of={DataTableStories}
+  include={[
+    'columns',
+    'rows',
+    'rowId',
+    'caption',
+    'hideCaption',
+    'sort',
+    'onSortChange',
+    'search',
+    'selectable',
+    'selectedIds',
+    'rowLabel',
+    'isRowLocked',
+    'pageSize',
+    'toolbar',
+    'footer',
+    'locale',
+    'labels',
+  ]}
+/>

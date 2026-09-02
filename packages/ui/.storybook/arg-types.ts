@@ -1199,6 +1199,89 @@ export const breadcrumbArgTypes = {
   },
 };
 
+export const dataTableArgTypes = {
+  columns: {
+    control: { disable: true },
+    description:
+      'Colonnes `{ id, header, value, cell?, sortable?, align? }`. `value` est la donnée brute — c’est elle qu’on trie et qu’on cherche ; `cell` n’est que le rendu.',
+  },
+  rows: {
+    control: { disable: true },
+    description: 'Les lignes, dans leur ordre d’origine. La table n’y touche pas.',
+  },
+  rowId: {
+    control: { disable: true },
+    description:
+      'Clé stable d’une ligne. Jamais l’index : le tri le déplace, et React réutiliserait la mauvaise ligne.',
+  },
+  caption: {
+    description:
+      'Nom accessible, rendu dans une `<caption>`. Obligatoire : sans lui, le lecteur d’écran annonce « tableau, 8 colonnes » sans dire de quoi.',
+  },
+  hideCaption: {
+    control: 'boolean' as const,
+    description: 'Masque la légende à l’écran. Elle reste lue.',
+  },
+  sort: {
+    control: { disable: true },
+    description:
+      'Tri contrôlé `{ columnId, direction }` ou `null`. Omis, la table gère son propre tri à partir de `defaultSort`.',
+  },
+  onSortChange: {
+    control: { disable: true },
+    description:
+      'Reçoit le tri suivant : ascendant, descendant, puis `null` — trois clics ramènent à l’ordre d’origine.',
+  },
+  search: {
+    control: 'text' as const,
+    description:
+      'Recherche contrôlée. Omise, la barre d’outils la pilote via `setSearch`. Insensible à la casse et aux accents.',
+  },
+  selectable: {
+    control: 'boolean' as const,
+    description:
+      'Ajoute la colonne de cases à cocher. Chaque case est nommée par `rowLabel`, l’en-tête passe en `mixed` en sélection partielle.',
+  },
+  selectedIds: {
+    control: { disable: true },
+    description: 'Sélection contrôlée. Omise, la table garde la sienne.',
+  },
+  rowLabel: {
+    control: { disable: true },
+    description:
+      'Nom lisible d’une ligne, pour nommer sa case. Sans lui, la case est nommée par l’identifiant — illisible à l’oral.',
+  },
+  isRowLocked: {
+    control: { disable: true },
+    description:
+      'Ligne verrouillée : pas de case, un cadenas, et un texte masqué qui dit pourquoi. Exclue de « tout cocher ».',
+  },
+  pageSize: {
+    control: 'number' as const,
+    description:
+      'Pagine la table et rend une `Pagination` sous elle. Omis, toutes les lignes sont rendues.',
+  },
+  toolbar: {
+    control: { disable: true },
+    description:
+      'Barre au-dessus de la table. En fonction, elle reçoit `{ rows, search, setSearch, selectedIds }` : de quoi chercher, filtrer et exporter sans que la table fabrique de fichier.',
+  },
+  footer: {
+    control: { disable: true },
+    description: 'Contenu sous la table, à la place de la pagination automatique.',
+  },
+  locale: {
+    control: 'text' as const,
+    description:
+      'Locale de comparaison du tri (`localeCompare`). Défaut : celle de l’exécution.',
+  },
+  labels: {
+    control: { disable: true },
+    description:
+      'Chaînes annoncées (`selectAll`, `selectRow`, `sortBy`, `locked`, `results`, `empty`). `sortBy` est un indice qui ne répète pas l’en-tête — celui-ci est déjà lu juste avant. Sans elles, fallback anglais : le composant ne devine pas la langue de la page.',
+  },
+};
+
 export const paginationArgTypes = {
   page: {
     control: 'number' as const,

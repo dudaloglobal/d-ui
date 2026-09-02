@@ -328,6 +328,37 @@ export type {
   BreadcrumbProps,
   BreadcrumbSize,
 } from './components/Breadcrumb/Breadcrumb';
+export {
+  PaginationNext,
+  PaginationPages,
+  PaginationPrevious,
+  PaginationStatus,
+} from './components/Pagination/PaginationParts';
+export type {
+  PaginationPagesProps,
+  PaginationStatusProps,
+  PaginationStepProps,
+} from './components/Pagination/PaginationParts';
+export { DataTable } from './components/DataTable/DataTable';
+export type {
+  DataTableAlign,
+  DataTableColumn,
+  DataTableLabels,
+  DataTableProps,
+  DataTableToolbarApi,
+  SortDirection,
+  TableSort,
+} from './components/DataTable/DataTable';
+export {
+  compareValues,
+  isEmptyValue,
+  nextSort,
+  pageCountOf,
+  pageRows,
+  searchRows,
+  sortRows,
+} from './components/DataTable/tableRows';
+export type { SortValue } from './components/DataTable/tableRows';
 export { Pagination } from './components/Pagination/Pagination';
 export type { PaginationProps, PaginationSize } from './components/Pagination/Pagination';
 export {
