@@ -39,6 +39,8 @@ Une exception AA exige un sign-off Accessibilité **et** une décision produit �
 
 29. `Card` / `Badge` / `Avatar` : `Card` statique = `article` ; interactive = vrai `<a href>` ou `<button type="button">`, jamais un `div` cliquable. `as="button"` indisponible = `disabled` natif (ignoré sur `article` / lien). Pas de contrôle imbriqué dans une carte lien/bouton. `CardTitle` = `h3` par défaut. `Badge` = `span` nommé par son texte (couleur seule insuffisante, 1.4.1) ; icône et point `aria-hidden` ; fermeture = vrai `<button>` nommé (`dismissible` + `dismissLabel`). `Avatar` : `alt` / `name` ; fallback initiales ou silhouette toujours nommé ; `presence` dans le nom accessible (`presenceLabel`), point `aria-hidden` ; `alt=""` si un texte voisin porte déjà le nom ; `AvatarGroup` = `role="group"` + pastille « +N » nommée. Pas de `CourseCard` métier dans le package.
 
+30. `List` / `Accordion` : `List` = `<ul>` ou `<ol>` + `<li>`. Ligne interactive = vrai `<a href>` (pas de bouton dans `trailing`). `leading` décoratif. `Accordion` : bouton natif dans un `h3`, `aria-expanded` / `aria-controls`, panneau `region`. Flèches, Début / Fin entre en-têtes ; section `disabled` sautée. `type="single"` | `"multiple"`. Pas de `ChapterList` métier, pas d’arbre ni de liste virtualisée.
+
 ## Overlays — revue de PR
 
 Ces patterns s’appliquent dès qu’un Dialog, Menu, Popover ou Tooltip est proposé. Une PR qui les ignore n’est pas AA.
@@ -58,17 +60,19 @@ Un overlay modal pose `aria-modal="true"` et piège le Tab **à l’intérieur**
 
 ### Clavier (widgets cœur)
 
-| Widget              | Tab                                | Enter / Espace           | Escape | Flèches                                                |
-| ------------------- | ---------------------------------- | ------------------------ | ------ | ------------------------------------------------------ |
-| Button / IconButton | Entre / sort                       | Active                   | —      | —                                                      |
-| Link                | Entre / sort                       | Active (Enter)           | —      | —                                                      |
-| Dialog              | Cycle interne                      | Active le contrôle focus | Ferme  | —                                                      |
-| Menu                | Sort du widget                     | Active l’item            | Ferme  | Haut / bas (et Home / End)                             |
-| Popover             | Vers le contenu s’il est focusable | Selon le contrôle        | Ferme  | —                                                      |
-| Tooltip             | Reste sur le trigger               | —                        | Masque | —                                                      |
-| Tabs                | Vers le panneau                    | Active (manuel)          | —      | Gauche / droite (Haut / bas si vertical) ; Début / Fin |
-| Breadcrumb          | Liens parentes                     | Suit le lien (Enter)     | —      | —                                                      |
-| Pagination          | Boutons de page                    | Va à la page             | —      | —                                                      |
+| Widget              | Tab                                 | Enter / Espace           | Escape | Flèches                                                |
+| ------------------- | ----------------------------------- | ------------------------ | ------ | ------------------------------------------------------ |
+| Button / IconButton | Entre / sort                        | Active                   | —      | —                                                      |
+| Link                | Entre / sort                        | Active (Enter)           | —      | —                                                      |
+| Dialog              | Cycle interne                       | Active le contrôle focus | Ferme  | —                                                      |
+| Menu                | Sort du widget                      | Active l’item            | Ferme  | Haut / bas (et Home / End)                             |
+| Popover             | Vers le contenu s’il est focusable  | Selon le contrôle        | Ferme  | —                                                      |
+| Tooltip             | Reste sur le trigger                | —                        | Masque | —                                                      |
+| Tabs                | Vers le panneau                     | Active (manuel)          | —      | Gauche / droite (Haut / bas si vertical) ; Début / Fin |
+| Accordion           | Entre en-têtes (et dans le panneau) | Bascule                  | —      | Haut / bas ; Début / Fin                               |
+| List                | Lien ou bouton `trailing`           | Suit le lien / active    | —      | —                                                      |
+| Breadcrumb          | Liens parentes                      | Suit le lien (Enter)     | —      | —                                                      |
+| Pagination          | Boutons de page                     | Va à la page             | —      | —                                                      |
 
 Pas de `div` + `onKeyDown` si un élément natif existe (`dialog`, `button`, `a`).
 

@@ -1353,3 +1353,49 @@ export const cardArgTypes = {
       'Désactive la carte-bouton (`as="button"`) : plus d’événements pointeur. Ignoré sur `article` / lien.',
   },
 };
+
+export const accordionArgTypes = {
+  type: {
+    control: 'inline-radio' as const,
+    options: ['single', 'multiple'],
+    description:
+      '`single` (défaut) : une section ouverte à la fois, refermable. `multiple` : plusieurs sections ouvertes.',
+  },
+  value: {
+    description:
+      'Sections ouvertes contrôlées. `string` en `single`, `string[]` en `multiple`.',
+  },
+  defaultValue: {
+    description: 'Sections ouvertes au départ en mode non contrôlé.',
+  },
+  onValueChange: {
+    description:
+      'Appelé avec l’identifiant (`single`) ou le tableau d’identifiants (`multiple`).',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md', 'lg'],
+    description:
+      '`sm` si l’espace est contraint, `md` par défaut, `lg` pour les vues aérées.',
+  },
+  className: classNameArgType,
+};
+
+export const listArgTypes = {
+  as: {
+    control: 'inline-radio' as const,
+    options: ['ul', 'ol'],
+    description: 'Élément de liste. `ul` par défaut. `ol` : liste ordonnée.',
+  },
+  divided: {
+    control: 'boolean' as const,
+    description: 'Filet entre les items (`border-border-subtle`).',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md', 'lg'],
+    description:
+      '`sm` si l’espace est contraint, `md` par défaut, `lg` pour les vues aérées.',
+  },
+  className: classNameArgType,
+};
