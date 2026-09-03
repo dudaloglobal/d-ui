@@ -155,16 +155,16 @@ export type {
   ThemePreference,
   ThemeProviderProps,
 } from './theme/ThemeProvider';
-export { Spinner } from './components/Spinner/Spinner';
-export type { SpinnerProps, SpinnerSize } from './components/Spinner/Spinner';
 export { Skeleton, SkeletonText } from './components/Skeleton/Skeleton';
 export type {
+  SkeletonColor,
   SkeletonProps,
   SkeletonShape,
   SkeletonTextProps,
 } from './components/Skeleton/Skeleton';
 export { Progress } from './components/Progress/Progress';
 export type {
+  ProgressColor,
   ProgressProps,
   ProgressSize,
   ProgressVariant,
@@ -172,8 +172,10 @@ export type {
 export { Stepper } from './components/Stepper/Stepper';
 export type {
   StepStatus,
+  StepperColor,
   StepperOrientation,
   StepperProps,
+  StepperSize,
   StepperStep,
   StepperVariant,
 } from './components/Stepper/Stepper';

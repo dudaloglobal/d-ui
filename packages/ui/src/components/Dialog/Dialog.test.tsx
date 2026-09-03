@@ -296,6 +296,15 @@ describe('Dialog', () => {
 
     await user.click(dialog.parentElement as HTMLElement);
     expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+    /*
+     * L'anneau du calque est décoratif : le panneau porte déjà `aria-busy` et
+     * son nom. Une deuxième annonce pour une seule attente serait du bruit.
+     */
+    const ring = dialog.querySelector('.d-ui-spinner');
+    expect(ring).not.toBeNull();
+    expect(ring).toHaveAttribute('aria-hidden', 'true');
+    expect(ring).not.toHaveAttribute('role');
   });
 
   it('refuses to render a part outside a Dialog', () => {

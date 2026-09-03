@@ -52,7 +52,7 @@ import * as ProgressStories from './Progress.stories';
 
 <H3 k="chrome.dont" />
 
-<Ul items={['progress.dontZero', 'progress.dontSpinner', 'progress.dontDouble']} />
+<Ul items={['progress.dontZero', 'progress.dontRing', 'progress.dontDouble']} />
 
 <P k="chrome.themeLang" />
 
@@ -62,5 +62,14 @@ import * as ProgressStories from './Progress.stories';
 
 <ArgTypes
   of={ProgressStories}
-  include={['variant', 'value', 'label', 'valueText', 'showValue', 'size']}
+  include={[
+    'variant',
+    'value',
+    'label',
+    'valueText',
+    'showValue',
+    'size',
+    'color',
+    'className',
+  ]}
 />

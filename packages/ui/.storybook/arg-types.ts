@@ -5,6 +5,24 @@ const cornerRadiusArgType = (defaultValue: 'md' | 'lg') => ({
   description: `Arrondi des coins. Défaut : \`${defaultValue}\`.`,
 });
 
+const uiSizeArgType = {
+  control: 'inline-radio' as const,
+  options: ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'],
+  description: '`xxs` à `xxl`. `m` par défaut.',
+};
+
+const uiColorArgType = {
+  control: 'inline-radio' as const,
+  options: ['brand', 'success', 'warning', 'danger', 'info', 'neutral'],
+  description:
+    'Couleur sémantique (tokens). La couleur seule ne porte pas le sens (1.4.1).',
+};
+
+const classNameArgType = {
+  control: 'text' as const,
+  description: 'Classes fusionnées en dernier avec `cx`.',
+};
+
 export const buttonArgTypes = {
   variant: {
     control: 'inline-radio' as const,
@@ -372,19 +390,6 @@ export const dialogArgTypes = {
   },
 };
 
-export const spinnerArgTypes = {
-  size: {
-    control: 'select' as const,
-    options: ['xs', 'sm', 'md', 'lg'],
-    description:
-      '`xs` suit la taille du texte courant (`1em`), utile dans un bouton. Défaut : `md`.',
-  },
-  label: {
-    description:
-      'Nom accessible. Avec `label`, le spinner devient une région `status` et l’attente est annoncée. Sans `label`, il est décoratif — le bon choix quand le conteneur porte déjà `aria-busy`.',
-  },
-};
-
 export const skeletonArgTypes = {
   shape: {
     control: 'select' as const,
@@ -399,8 +404,15 @@ export const skeletonArgTypes = {
     description: 'Hauteur CSS. Ignorée pour `text`, qui suit la ligne de base.',
   },
   size: {
-    description: 'Diamètre d’un `circle`. Raccourci pour `width` et `height`.',
+    description:
+      'Diamètre d’un `circle`. Raccourci pour `width` et `height`. Une longueur CSS, pas l’échelle `xxs`–`xxl` : le squelette doit épouser exactement le bloc qu’il remplace.',
   },
+  color: {
+    ...uiColorArgType,
+    description:
+      'Teinte du bloc. Défaut : `neutral`. Décorative : le squelette reste `aria-hidden`.',
+  },
+  className: classNameArgType,
 };
 
 export const skeletonTextArgTypes = {
@@ -419,7 +431,7 @@ export const progressArgTypes = {
     control: 'select' as const,
     options: ['linear', 'circular'],
     description:
-      '`linear` (défaut) ou `circular`. Le circulaire exige une `value` : un anneau qui tourne sans valeur, c’est un `Spinner`.',
+      '`linear` (défaut) ou `circular`. Le circulaire exige une `value` : `linear` seul sait être indéterminé.',
   },
   value: {
     control: 'number' as const,
@@ -440,10 +452,16 @@ export const progressArgTypes = {
       'Affiche la valeur en clair. Le texte reste hors de l’arbre d’accessibilité : `aria-valuenow` le dit déjà.',
   },
   size: {
-    control: 'select' as const,
-    options: ['sm', 'md', 'lg'],
-    description: 'Épaisseur de la barre ou diamètre de l’anneau. Défaut : `md`.',
+    ...uiSizeArgType,
+    description:
+      'Épaisseur de la barre ou diamètre de l’anneau, sur l’échelle partagée `xxs` à `xxl`. Défaut : `m`.',
   },
+  color: {
+    ...uiColorArgType,
+    description:
+      'Teinte du remplissage. Défaut : `brand`. La couleur seule ne porte pas le sens (1.4.1) : un échec se dit dans `label` ou `valueText`.',
+  },
+  className: classNameArgType,
 };
 
 export const stepperArgTypes = {
@@ -459,14 +477,24 @@ export const stepperArgTypes = {
   },
   variant: {
     control: 'select' as const,
-    options: ['circles', 'bullets', 'panels', 'breadcrumb'],
+    options: ['circles', 'bullets', 'panels'],
     description:
-      '`circles` (défaut), `bullets`, `panels` ou `breadcrumb`. La frise verticale est `circles` en `orientation="vertical"`, pas une variante de plus.',
+      '`circles` (défaut), `bullets` ou `panels`. La frise verticale est `circles` en `orientation="vertical"`, pas une variante de plus. Pour la forme à chevrons, le design system a déjà `Breadcrumb`.',
   },
   orientation: {
     control: 'select' as const,
     options: ['horizontal', 'vertical'],
     description: 'Sens de lecture de la liste. Défaut : `horizontal`.',
+  },
+  size: {
+    ...uiSizeArgType,
+    description:
+      'Échelle partagée `xxs` à `xxl`. Défaut : `m`. Elle règle le marqueur et la taille du texte ; le trait de liaison suit.',
+  },
+  color: {
+    ...uiColorArgType,
+    description:
+      'Teinte des étapes terminée et en cours. Défaut : `brand`. Le statut se voit aussi sans percevoir la couleur (1.4.1) : coche, pastille pleine, texte masqué.',
   },
   label: {
     description: 'Nom accessible de la liste d’étapes. Obligatoire.',
@@ -485,6 +513,7 @@ export const stepperArgTypes = {
     description:
       'Les trois statuts annoncés (`complete`, `current`, `upcoming`). Sans eux, le composant retombe sur un fallback anglais : il ne peut pas deviner la langue de la page.',
   },
+  className: classNameArgType,
 };
 
 export const emojiPopoverArgTypes = {
@@ -1313,24 +1342,6 @@ export const sidebarArgTypes = {
     options: ['sm', 'md'],
     description: '`sm` si l’espace est contraint, `md` par défaut.',
   },
-};
-
-const uiSizeArgType = {
-  control: 'inline-radio' as const,
-  options: ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'],
-  description: '`xxs` à `xxl`. `m` par défaut.',
-};
-
-const uiColorArgType = {
-  control: 'inline-radio' as const,
-  options: ['brand', 'success', 'warning', 'danger', 'info', 'neutral'],
-  description:
-    'Couleur sémantique (tokens). La couleur seule ne porte pas le sens (1.4.1).',
-};
-
-const classNameArgType = {
-  control: 'text' as const,
-  description: 'Classes fusionnées en dernier avec `cx`.',
 };
 
 export const badgeArgTypes = {

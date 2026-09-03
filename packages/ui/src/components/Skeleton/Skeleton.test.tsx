@@ -77,4 +77,37 @@ describe('Skeleton', () => {
     expect(screen.getByTestId('b').style.width).toBe('12rem');
     expect(container).toBeTruthy();
   });
+
+  it('tints the block on demand and leaves neutral on the default grey', () => {
+    render(
+      <>
+        <Skeleton color="danger" data-testid="tinted" />
+        <Skeleton data-testid="plain" />
+      </>,
+    );
+    expect(screen.getByTestId('tinted').style.backgroundColor).toContain('color-mix');
+    // `neutral` ne pose aucun style en ligne : la classe `bg-fg/10` reste seule.
+    expect(screen.getByTestId('plain').style.backgroundColor).toBe('');
+  });
+
+  it('lets the caller style win over the tint, as cx and style promise', () => {
+    render(
+      <Skeleton color="danger" style={{ backgroundColor: 'red' }} data-testid="s" />,
+    );
+    expect(screen.getByTestId('s').style.backgroundColor).toBe('red');
+  });
+
+  it('passes the colour down to every line of a SkeletonText', () => {
+    const { container } = render(<SkeletonText lines={3} color="info" />);
+    const lines = [...container.querySelectorAll<HTMLElement>('.d-ui-skeleton')];
+    expect(lines).toHaveLength(3);
+    expect(lines.every((line) => line.style.backgroundColor.includes('color-mix'))).toBe(
+      true,
+    );
+  });
+
+  it('stays out of the accessibility tree whatever the colour', () => {
+    render(<Skeleton color="success" data-testid="s" />);
+    expect(screen.getByTestId('s')).toHaveAttribute('aria-hidden', 'true');
+  });
 });

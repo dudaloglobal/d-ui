@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { progressArgTypes } from '../../../.storybook/arg-types';
 import { docsLocale, loadingCopy } from '../../../.storybook/docs-locale';
 import { componentSource } from '../../../.storybook/docs-source';
+import { UI_COLORS, UI_SIZES } from '../../lib/uiScale';
 import { Text } from '../Text/Text';
 import { Progress } from './Progress';
 
@@ -12,7 +13,7 @@ const meta = {
   component: Progress,
   argTypes: progressArgTypes,
   parameters: {
-    controls: { include: ['variant', 'value', 'showValue', 'size'] },
+    controls: { include: ['variant', 'value', 'showValue', 'size', 'color'] },
   },
 } satisfies Meta<typeof Progress>;
 
@@ -56,16 +57,16 @@ export const Sizes: Story = {
   parameters: componentSource(
     importProgress,
     `<>
-    <Progress size="sm" value={45} label="Téléversement" />
-    <Progress size="md" value={45} label="Téléversement" />
-    <Progress size="lg" value={45} label="Téléversement" />
+    <Progress size="xxs" value={45} label="Téléversement" />
+    <Progress size="m" value={45} label="Téléversement" />
+    <Progress size="xxl" value={45} label="Téléversement" />
 </>`,
   ),
   render: (_, { globals }) => {
     const copy = loadingCopy(docsLocale(globals.locale));
     return (
       <div className="mx-auto flex w-80 flex-col gap-6 p-6">
-        {(['sm', 'md', 'lg'] as const).map((size) => (
+        {UI_SIZES.map((size) => (
           <div key={size} className="flex flex-col gap-2">
             <Text size="body-sm" tone="muted">
               {size}
@@ -123,18 +124,55 @@ export const Circular: Story = {
   parameters: componentSource(
     importProgress,
     `<>
-    <Progress variant="circular" size="sm" value={68} label="Quota" />
+    <Progress variant="circular" size="s" value={68} label="Quota" />
     <Progress variant="circular" value={68} showValue label="Quota" />
-    <Progress variant="circular" size="lg" value={68} showValue label="Quota" />
+    <Progress variant="circular" size="xl" value={68} showValue label="Quota" />
 </>`,
   ),
   render: (_, { globals }) => {
     const copy = loadingCopy(docsLocale(globals.locale));
     return (
       <div className="flex items-center justify-center gap-8 p-6">
-        <Progress variant="circular" size="sm" value={68} label={copy.quota} />
+        <Progress variant="circular" size="s" value={68} label={copy.quota} />
         <Progress variant="circular" value={68} showValue label={copy.quota} />
-        <Progress variant="circular" size="lg" value={68} showValue label={copy.quota} />
+        <Progress variant="circular" size="xl" value={68} showValue label={copy.quota} />
+      </div>
+    );
+  },
+};
+
+export const Colors: Story = {
+  name: 'Couleurs',
+  args: { label: 'Téléversement', value: 60 },
+  parameters: componentSource(
+    importProgress,
+    `<>
+    <Progress color="brand" value={60} label="Téléversement" />
+    <Progress color="success" value={60} label="Téléversement" />
+    <Progress color="danger" value={60} label="Téléversement" />
+</>`,
+  ),
+  render: (_, { globals }) => {
+    const copy = loadingCopy(docsLocale(globals.locale));
+    return (
+      <div className="mx-auto flex w-80 flex-col gap-6 p-6">
+        {UI_COLORS.map((color) => (
+          <div key={color} className="flex flex-col gap-2">
+            <Text size="body-sm" tone="muted">
+              {color}
+            </Text>
+            {/*
+              La couleur ne dit rien à elle seule : le nom accessible porte
+              l'information, ici comme dans une vraie page (1.4.1).
+            */}
+            <Progress
+              color={color}
+              value={60}
+              label={`${copy.upload} (${color})`}
+              showValue
+            />
+          </div>
+        ))}
       </div>
     );
   },

@@ -6,6 +6,7 @@ import {
   type LoadingDocsCopy,
 } from '../../../.storybook/docs-locale';
 import { componentSource } from '../../../.storybook/docs-source';
+import { UI_COLORS, UI_SIZES } from '../../lib/uiScale';
 import { Breadcrumb, BreadcrumbItem } from '../Breadcrumb/Breadcrumb';
 import { Button } from '../Button/Button';
 import { Progress } from '../Progress/Progress';
@@ -21,7 +22,15 @@ const meta = {
   argTypes: stepperArgTypes,
   parameters: {
     controls: {
-      include: ['current', 'variant', 'orientation', 'hideLabels', 'bordered'],
+      include: [
+        'current',
+        'variant',
+        'orientation',
+        'size',
+        'color',
+        'hideLabels',
+        'bordered',
+      ],
     },
   },
 } satisfies Meta<typeof Stepper>;
@@ -76,6 +85,80 @@ export const Default: Story = {
           label={copy.stepsLabel}
           statusLabels={statusLabels(copy)}
         />
+      </div>
+    );
+  },
+};
+
+export const Sizes: Story = {
+  name: 'Tailles',
+  args: { steps: [], current: 1, label: 'Étapes' },
+  parameters: componentSource(
+    importStepper,
+    `<>
+    <Stepper steps={steps} current={1} size="xxs" label="Étapes" />
+    <Stepper steps={steps} current={1} label="Étapes" />
+    <Stepper steps={steps} current={1} size="xxl" label="Étapes" />
+</>`,
+    SHARED,
+  ),
+  render: (_, { globals }) => {
+    const copy = loadingCopy(docsLocale(globals.locale));
+    return (
+      <div className="flex flex-col gap-8 p-6">
+        {UI_SIZES.map((size) => (
+          <div key={size} className="flex flex-col gap-2">
+            <Text size="body-sm" tone="muted">
+              {size}
+            </Text>
+            <Stepper
+              steps={plainSteps(copy)}
+              current={1}
+              size={size}
+              label={`${copy.stepsLabel} (${size})`}
+              statusLabels={statusLabels(copy)}
+            />
+          </div>
+        ))}
+      </div>
+    );
+  },
+};
+
+export const Colors: Story = {
+  name: 'Couleurs',
+  args: { steps: [], current: 1, label: 'Étapes' },
+  parameters: componentSource(
+    importStepper,
+    `<>
+    <Stepper steps={steps} current={1} color="brand" label="Étapes" />
+    <Stepper steps={steps} current={1} color="success" label="Étapes" />
+    <Stepper steps={steps} current={1} color="danger" label="Étapes" />
+</>`,
+    SHARED,
+  ),
+  render: (_, { globals }) => {
+    const copy = loadingCopy(docsLocale(globals.locale));
+    return (
+      <div className="flex flex-col gap-8 p-6">
+        {UI_COLORS.map((color) => (
+          <div key={color} className="flex flex-col gap-2">
+            <Text size="body-sm" tone="muted">
+              {color}
+            </Text>
+            {/*
+              La teinte change, les repères de forme restent : coche sur une
+              étape terminée, contour creux sur une étape à venir (1.4.1).
+            */}
+            <Stepper
+              steps={plainSteps(copy)}
+              current={1}
+              color={color}
+              label={`${copy.stepsLabel} (${color})`}
+              statusLabels={statusLabels(copy)}
+            />
+          </div>
+        ))}
       </div>
     );
   },

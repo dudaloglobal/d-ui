@@ -1,11 +1,20 @@
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import { VisuallyHidden } from '../../a11y/VisuallyHidden';
 import { cx } from '../../lib/cx';
+import {
+  uiColorBorderClass,
+  uiColorInkClass,
+  uiColorSolidClass,
+  type UiColor,
+  type UiSize,
+} from '../../lib/uiScale';
 import { Link } from '../Link/Link';
 
 export type StepperVariant = 'circles' | 'bullets' | 'panels';
 export type StepperOrientation = 'horizontal' | 'vertical';
 export type StepStatus = 'complete' | 'current' | 'upcoming';
+export type StepperSize = UiSize;
+export type StepperColor = UiColor;
 
 export type StepperStep = {
   /** Libellé visible de l'étape. */
@@ -33,6 +42,20 @@ type StepperBase = Omit<HTMLAttributes<HTMLOListElement>, 'children'> & {
    */
   current: number;
   orientation?: StepperOrientation;
+  /**
+   * Échelle partagée du design system. Défaut : `m`.
+   *
+   * Un seul point de réglage : le marqueur et la taille du texte en découlent,
+   * et le trait de liaison suit par `calc()`.
+   */
+  size?: StepperSize;
+  /**
+   * Teinte des étapes terminée et en cours. Défaut : `brand`.
+   *
+   * Elle ne porte jamais le statut à elle seule (1.4.1) : la coche, la pastille
+   * pleine et le `VisuallyHidden` le disent déjà.
+   */
+  color?: StepperColor;
   /** Nom accessible de la liste d'étapes. Obligatoire. */
   label: string;
   /**
@@ -66,16 +89,50 @@ export type StepperProps =
     });
 
 /**
- * Taille de la boîte du marqueur, en `rem`.
+ * Taille de la boîte du marqueur à la taille `m`, en `rem`.
  *
  * Une seule constante par variante : le trait de liaison se positionne ensuite
  * par `calc()` à partir d'elle. Sans ça, chaque décalage serait une valeur
  * résolue à la main, fausse dès qu'on change la taille du marqueur.
  */
-const MARKER_BOX: Record<StepperVariant, string> = {
-  circles: '2rem',
-  bullets: '1.25rem',
-  panels: '0rem',
+const MARKER_REM: Record<StepperVariant, number> = {
+  circles: 2,
+  bullets: 1.25,
+  panels: 0,
+};
+
+/** Facteur appliqué au marqueur. `m` est la référence, donc `1`. */
+const MARKER_FACTOR: Record<StepperSize, number> = {
+  xxs: 0.625,
+  xs: 0.75,
+  s: 0.875,
+  m: 1,
+  l: 1.125,
+  xl: 1.3125,
+  xxl: 1.5,
+};
+
+/*
+ * Taille de police posée sur la `<ol>`, en `rem`. Tout le texte à l'intérieur
+ * est en `em` : une seule valeur à régler, et les proportions tiennent
+ * d'elles-mêmes aux sept crans.
+ *
+ * Elle passe par `style` et non par une classe `text-*` : entre deux
+ * utilitaires Tailwind de même spécificité, c'est l'ordre d'émission de la
+ * feuille qui tranche, pas l'ordre dans l'attribut. Une `className="text-lg"`
+ * de l'appelant gagnerait donc ou perdrait selon le cran demandé — et si elle
+ * gagnait, elle casserait le rapport entre le texte (`em`) et le marqueur
+ * (`rem`). En ligne, la règle est nette : `size` décide, et seul le `style` de
+ * l'appelant peut le reprendre.
+ */
+const TEXT_REM: Record<StepperSize, number> = {
+  xxs: 0.625,
+  xs: 0.75,
+  s: 0.8125,
+  m: 0.875,
+  l: 1,
+  xl: 1.125,
+  xxl: 1.25,
 };
 
 function statusOf(index: number, current: number): StepStatus {
@@ -84,17 +141,21 @@ function statusOf(index: number, current: number): StepStatus {
   return 'upcoming';
 }
 
-const markerColor: Record<StepStatus, string> = {
-  complete: 'bg-brand text-on-brand border-brand',
-  current: 'bg-bg text-brand border-brand',
-  upcoming: 'bg-bg text-fg-muted border-border',
-};
+function markerColor(status: StepStatus, color: StepperColor): string {
+  if (status === 'complete') {
+    return cx(uiColorSolidClass[color], uiColorBorderClass[color]);
+  }
+  if (status === 'current') {
+    return cx('bg-bg', uiColorInkClass[color], uiColorBorderClass[color]);
+  }
+  return 'bg-bg text-fg-muted border-border';
+}
 
-const labelColor: Record<StepStatus, string> = {
-  complete: 'text-fg',
-  current: 'text-brand font-medium',
-  upcoming: 'text-fg-muted',
-};
+function labelColor(status: StepStatus, color: StepperColor): string {
+  if (status === 'complete') return 'text-fg';
+  if (status === 'current') return cx(uiColorInkClass[color], 'font-medium');
+  return 'text-fg-muted';
+}
 
 function CheckGlyph({ className }: { className?: string }) {
   return (
@@ -105,7 +166,7 @@ function CheckGlyph({ className }: { className?: string }) {
       strokeWidth="2.25"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={cx('size-3.5', className)}
+      className={cx('size-[1.1em]', className)}
       aria-hidden="true"
       focusable="false"
     >
@@ -138,6 +199,8 @@ export function Stepper({
   current,
   variant = 'circles',
   orientation = 'horizontal',
+  size = 'm',
+  color = 'brand',
   label,
   hideLabels = false,
   bordered = false,
@@ -158,13 +221,16 @@ export function Stepper({
     Math.max(steps.length - 1, 0),
   );
 
-  const markerVar = { '--d-ui-step-marker': MARKER_BOX[variant] } as CSSProperties;
+  const scale = {
+    '--d-ui-step-marker': `${MARKER_REM[variant] * MARKER_FACTOR[size]}rem`,
+    fontSize: `${TEXT_REM[size]}rem`,
+  } as CSSProperties;
 
   return (
     <ol
       {...rest}
       aria-label={label}
-      style={{ ...markerVar, ...style }}
+      style={{ ...scale, ...style }}
       className={cx(
         'flex',
         vertical ? 'flex-col' : 'flex-row items-start',
@@ -189,11 +255,9 @@ export function Stepper({
          * (WCAG 2.4.7). Le nom vient alors d'un texte masqué à l'intérieur.
          */
         const clickable = step.href ? (
-          <Link href={step.href} className="text-sm">
-            {step.label}
-          </Link>
+          <Link href={step.href}>{step.label}</Link>
         ) : (
-          <span className={cx('text-sm', labelColor[status])}>{step.label}</span>
+          <span className={labelColor(status, color)}>{step.label}</span>
         );
 
         const body = (
@@ -212,9 +276,7 @@ export function Stepper({
             )}
             <VisuallyHidden>{` — ${announced}`}</VisuallyHidden>
             {step.description && variant !== 'bullets' ? (
-              <span className="text-fg-muted mt-0.5 block text-sm">
-                {step.description}
-              </span>
+              <span className="text-fg-muted mt-0.5 block">{step.description}</span>
             ) : null}
           </>
         );
@@ -227,17 +289,17 @@ export function Stepper({
               className={cx(
                 'flex-1 px-4 py-3',
                 bordered ? 'rounded-md border' : 'border-t-4',
-                status === 'upcoming' ? 'border-border' : 'border-brand',
+                status === 'upcoming' ? 'border-border' : uiColorBorderClass[color],
               )}
             >
               <span
                 className={cx(
-                  'flex items-center gap-1.5 text-xs font-medium uppercase',
-                  labelColor[status],
+                  'flex items-center gap-1.5 text-[0.8em] font-medium uppercase',
+                  labelColor(status, color),
                 )}
               >
                 {/* Coche : la complétion ne tient pas qu'à la couleur du filet. */}
-                {status === 'complete' ? <CheckGlyph className="size-3" /> : null}
+                {status === 'complete' ? <CheckGlyph className="size-[0.95em]" /> : null}
                 {`${index + 1}`.padStart(2, '0')}
               </span>
               {body}
@@ -252,14 +314,25 @@ export function Stepper({
               className="grid size-[var(--d-ui-step-marker)] shrink-0 place-items-center"
             >
               {/*
-               * Pleine si terminée, creuse sinon : la forme suffit à distinguer
-               * les deux sans percevoir la couleur.
+               * Trois formes, trois statuts, sans percevoir aucune couleur :
+               * terminée pleine, en cours creuse et **plus grande**, à venir
+               * creuse et petite. Le diamètre porte le repère de l'étape en
+               * cours parce que la teinte ne le peut pas : `success` et
+               * `warning` ont presque la même luminance que `border-border`,
+               * et deux pastilles creuses ne se distingueraient alors que par
+               * la teinte (1.4.1) — d'autant plus qu'en `hideLabels` il ne
+               * reste rien d'autre à l'écran.
                */}
               <span
                 className={cx(
-                  'block size-2.5 rounded-full border-2',
-                  status === 'complete' ? 'bg-brand border-brand' : 'bg-bg',
-                  status === 'current' ? 'border-brand' : null,
+                  'block rounded-full border-2',
+                  status === 'current'
+                    ? 'size-[calc(var(--d-ui-step-marker)/1.5)]'
+                    : 'size-[calc(var(--d-ui-step-marker)/2)]',
+                  status === 'complete'
+                    ? cx('bg-current', uiColorInkClass[color], uiColorBorderClass[color])
+                    : 'bg-bg',
+                  status === 'current' ? uiColorBorderClass[color] : null,
                   status === 'upcoming' ? 'border-border' : null,
                 )}
               />
@@ -268,20 +341,32 @@ export function Stepper({
             <span
               data-d-ui-step-marker=""
               className={cx(
-                'grid size-[var(--d-ui-step-marker)] shrink-0 place-items-center rounded-full border-2 text-sm font-medium',
-                markerColor[status],
+                'grid size-[var(--d-ui-step-marker)] shrink-0 place-items-center rounded-full font-medium',
+                /*
+                 * Trait plus épais sur l'étape en cours : un contour teinté ne
+                 * suffit pas, `success` et `warning` ont presque la luminance
+                 * de `border-border` et resteraient indiscernables d'une étape
+                 * à venir sans percevoir la couleur (1.4.1).
+                 */
+                status === 'current' ? 'border-[3px]' : 'border-2',
+                markerColor(status, color),
               )}
             >
               {status === 'complete' ? <CheckGlyph /> : index + 1}
             </span>
           );
 
-        /* Sous `hideLabels`, la cible cliquable est le marqueur lui-même. */
+        /*
+         * Sous `hideLabels`, la cible cliquable est le marqueur lui-même. Aux
+         * petits crans la pastille descend sous 24 px : la zone cliquable est
+         * donc découplée du dessin (`min-size-6`, centré), pour tenir WCAG 2.2
+         * SC 2.5.8 sans grossir la pastille.
+         */
         const markerNode =
           hidden && step.href ? (
             <Link
               href={step.href}
-              className="inline-flex no-underline"
+              className="inline-flex min-h-6 min-w-6 items-center justify-center no-underline"
               aria-label={step.label}
             >
               {marker}
@@ -310,7 +395,7 @@ export function Stepper({
               <span
                 aria-hidden="true"
                 className={cx(
-                  index < active ? 'bg-brand' : 'bg-border',
+                  index < active ? cx('bg-current', uiColorInkClass[color]) : 'bg-border',
                   'absolute',
                   vertical
                     ? 'top-[var(--d-ui-step-marker)] bottom-0 left-[calc(var(--d-ui-step-marker)/2-1px)] w-0.5'

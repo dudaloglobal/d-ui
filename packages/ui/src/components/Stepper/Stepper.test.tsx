@@ -2,6 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { Stepper as StepperFromEntry } from '../../index';
+import { UI_COLORS, UI_SIZES } from '../../lib/uiScale';
 import { Stepper, type StepperStep } from './Stepper';
 
 const STEPS: StepperStep[] = [
@@ -190,11 +191,17 @@ describe('Stepper', () => {
         statusLabels={STATUS}
       />,
     );
-    // `bullets` : pastille pleine si terminée, creuse sinon.
-    const filled = bullets.container.querySelectorAll(
-      '[data-d-ui-step-marker] span.bg-brand',
-    );
+    /*
+     * `bullets` : pastille pleine si terminée, creuse sinon. L'assertion porte
+     * sur le remplissage (`bg-current` contre `bg-bg`), pas sur une teinte
+     * précise — la couleur est réglable par `color`, la forme non.
+     */
+    const dots = bullets.container.querySelectorAll('[data-d-ui-step-marker] > span');
+    expect(dots).toHaveLength(STEPS.length);
+    const filled = [...dots].filter((dot) => dot.classList.contains('bg-current'));
+    const hollow = [...dots].filter((dot) => dot.classList.contains('bg-bg'));
     expect(filled).toHaveLength(2);
+    expect(hollow).toHaveLength(STEPS.length - 2);
     bullets.unmount();
 
     const panels = render(
@@ -212,5 +219,136 @@ describe('Stepper', () => {
   it('falls back to English status wording when no labels are given', () => {
     render(<Stepper steps={STEPS} current={0} label="Order" />);
     expect(screen.getAllByRole('listitem')[0]).toHaveTextContent('Current step');
+  });
+
+  it('drives the marker box from one variable, strictly growing across the scale', () => {
+    /*
+     * Le trait de liaison se positionne par `calc()` sur cette variable : si
+     * elle ne bouge pas, le marqueur grandit et le trait reste où il était.
+     */
+    const boxes = UI_SIZES.map((size) => {
+      const { container, unmount } = render(
+        <Stepper steps={STEPS} current={1} label="Commande" size={size} />,
+      );
+      const list = container.querySelector<HTMLElement>('ol');
+      const box = list?.style.getPropertyValue('--d-ui-step-marker') ?? '';
+      const font = list?.style.fontSize ?? '';
+      unmount();
+      return { box: Number.parseFloat(box), font: Number.parseFloat(font) };
+    });
+    // Strictement croissant : trié à l'identique, et sans deux crans égaux.
+    const markers = boxes.map((b) => b.box);
+    expect([...markers].sort((a, b) => a - b)).toEqual(markers);
+    expect(new Set(markers).size).toBe(markers.length);
+    /*
+     * La police est posée en ligne, pas par une classe `text-*` : entre deux
+     * utilitaires Tailwind, c'est l'ordre de la feuille qui trancherait, et
+     * `size` cesserait de décider.
+     */
+    const fonts = boxes.map((b) => b.font);
+    expect([...fonts].sort((a, b) => a - b)).toEqual(fonts);
+    expect(new Set(fonts).size).toBe(fonts.length);
+  });
+
+  it('gives panels no marker to position, at any size', () => {
+    const { container } = render(
+      <Stepper steps={STEPS} current={1} variant="panels" label="Commande" size="xxl" />,
+    );
+    // La variante sort avant le marqueur : rien à dimensionner, rien à relier.
+    expect(container.querySelectorAll('[data-d-ui-step-marker]')).toHaveLength(0);
+    const list = container.querySelector<HTMLElement>('ol');
+    expect(
+      Number.parseFloat(list?.style.getPropertyValue('--d-ui-step-marker') ?? ''),
+    ).toBe(0);
+  });
+
+  it('marks the current step by shape, not by hue, on every colour', () => {
+    /*
+     * Deux pièges mesurés dans le navigateur : `neutral`, dont le contour
+     * retombait sur `border-border` — le jeton de l'étape à venir — et
+     * `success` / `warning`, dont la luminance est si proche de ce même jeton
+     * que le contour teinté ne s'en distingue pas sans percevoir la couleur.
+     * Le repère de l'étape en cours est donc une forme : trait plus épais sur
+     * `circles`, pastille plus grande sur `bullets` (1.4.1).
+     */
+    const widthOf = (el?: Element) =>
+      [...(el?.classList ?? [])].find(
+        (c) => c.startsWith('border-[') || c === 'border-2',
+      );
+    const diameterOf = (el?: Element) =>
+      [...(el?.classList ?? [])].find((c) => c.startsWith('size-[calc'));
+
+    for (const color of UI_COLORS) {
+      const circles = render(
+        <Stepper
+          steps={STEPS}
+          current={1}
+          label="Commande"
+          color={color}
+          statusLabels={STATUS}
+        />,
+      );
+      const [, curCircle, nextCircle] = [
+        ...circles.container.querySelectorAll('[data-d-ui-step-marker]'),
+      ];
+      expect(widthOf(curCircle)).toBeDefined();
+      expect(widthOf(curCircle)).not.toBe(widthOf(nextCircle));
+      circles.unmount();
+
+      const bullets = render(
+        <Stepper
+          steps={STEPS}
+          current={1}
+          variant="bullets"
+          hideLabels
+          label="Commande"
+          color={color}
+          statusLabels={STATUS}
+        />,
+      );
+      const [, curDot, nextDot] = [
+        ...bullets.container.querySelectorAll('[data-d-ui-step-marker] > span'),
+      ];
+      expect(diameterOf(curDot)).toBeDefined();
+      expect(diameterOf(curDot)).not.toBe(diameterOf(nextDot));
+      bullets.unmount();
+    }
+  });
+
+  it('recolours the current and completed steps without dropping the shape cues', () => {
+    const { container } = render(
+      <Stepper
+        steps={STEPS}
+        current={1}
+        label="Commande"
+        color="success"
+        statusLabels={STATUS}
+      />,
+    );
+    const [complete, current, upcoming] = [
+      ...container.querySelectorAll('[data-d-ui-step-marker]'),
+    ];
+    expect(complete?.classList.contains('bg-success')).toBe(true);
+    expect(current?.classList.contains('border-success')).toBe(true);
+    // Une étape à venir garde le gris neutre, quelle que soit la couleur choisie.
+    expect(upcoming?.classList.contains('border-border')).toBe(true);
+    // La couleur change, la coche reste : le statut ne tient jamais à la teinte seule.
+    expect(container.querySelectorAll('li svg')).toHaveLength(1);
+  });
+
+  it('still announces every status in words when a colour is set', () => {
+    render(
+      <Stepper
+        steps={STEPS}
+        current={1}
+        label="Commande"
+        color="danger"
+        statusLabels={STATUS}
+      />,
+    );
+    const items = screen.getAllByRole('listitem');
+    expect(items[0]).toHaveTextContent(STATUS.complete);
+    expect(items[1]).toHaveTextContent(STATUS.current);
+    expect(items[2]).toHaveTextContent(STATUS.upcoming);
   });
 });

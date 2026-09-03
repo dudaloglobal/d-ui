@@ -1321,78 +1321,11 @@ export const docsCopy = {
       en: '`children` must be a single React element (the trigger). `content` is the tooltip text.',
     },
   },
-  spinner: {
-    title: { fr: 'Spinner', en: 'Spinner' },
-    intro: {
-      fr: '`Spinner` dit qu’on attend, sans dire combien de temps. Dès qu’une valeur est connue, `Progress` la montre : une barre qui avance dit quelque chose qu’un cercle qui tourne ne dira jamais.',
-      en: '`Spinner` says something is pending, without saying for how long. As soon as a value is known, `Progress` shows it: a bar that advances says something a turning circle never will.',
-    },
-    useSizes: {
-      fr: '`xs` suit la taille du texte courant (`1em`) : c’est la taille utilisée à l’intérieur d’un `Button`. Les autres sont fixes.',
-      en: '`xs` follows the current text size (`1em`): that is the size used inside a `Button`. The others are fixed.',
-    },
-    colors: { fr: 'Couleurs', en: 'Colours' },
-    useColors: {
-      fr: 'Le trait est en `currentColor` : le spinner prend le ton de son contexte. Il n’expose pas de palette à lui — une couleur de plus à tenir en accord dans les deux thèmes n’apporterait rien.',
-      en: 'The stroke is `currentColor`: the spinner takes the tone of its context. It exposes no palette of its own — one more colour to keep in step across both themes would buy nothing.',
-    },
-    alignment: { fr: 'Alignement', en: 'Alignment' },
-    useAlignment: {
-      fr: 'À côté d’un texte, `xs` s’aligne sur la ligne de base. Seul dans une zone, il se centre. Ce sont deux dispositions de la page appelante, pas deux props.',
-      en: 'Next to text, `xs` sits on the baseline. Alone in a region, it centres. Those are two layouts in the calling page, not two props.',
-    },
-    inCard: { fr: 'Dans une carte', en: 'In a card' },
-    useInCard: {
-      fr: 'Le conteneur porte `aria-busy` et un `aria-live="polite"`, et le spinner reste décoratif. **Une attente, une annonce.**',
-      en: 'The container carries `aria-busy` and `aria-live="polite"`, and the spinner stays decorative. **One wait, one announcement.**',
-    },
-    inButton: { fr: 'Dans un bouton', en: 'Inside a button' },
-    useInButton: {
-      fr: 'Rien à faire : `Button` a `loading` depuis DS-021, et il utilise ce même `Spinner`. Un seul spinner dans tout le design system — ne le réimplémentez pas dans votre bouton.',
-      en: 'Nothing to do: `Button` has had `loading` since DS-021, and it uses this very `Spinner`. One spinner across the whole design system — do not reimplement it in your own button.',
-    },
-    a11yBody: {
-      fr: 'Avec `label`, le spinner est une région `status` : le lecteur d’écran annonce l’attente sans interrompre la lecture en cours. Sans `label`, il est `aria-hidden` — c’est le bon choix quand le conteneur porte déjà `aria-busy` et un texte visible.',
-      en: 'With `label`, the spinner is a `status` region: the screen reader announces the wait without interrupting. Without `label`, it is `aria-hidden` — the right choice when the container already carries `aria-busy` and visible text.',
-    },
-    a11yKeys: {
-      fr: 'La rotation est figée sous `prefers-reduced-motion: reduce` : l’indicateur reste visible, il cesse simplement de tourner.',
-      en: 'The rotation freezes under `prefers-reduced-motion: reduce`: the indicator stays visible, it just stops turning.',
-    },
-    doLabel: {
-      fr: 'Un `label` quand le spinner est seul à porter l’attente',
-      en: 'A `label` when the spinner alone carries the wait',
-    },
-    doDecorative: {
-      fr: 'Pas de `label` dans un conteneur déjà `aria-busy` et nommé',
-      en: 'No `label` inside a container that is already `aria-busy` and named',
-    },
-    doProgress: {
-      fr: '`Progress` dès que la valeur est connue, même approximative',
-      en: '`Progress` as soon as the value is known, even roughly',
-    },
-    dontDouble: {
-      fr: 'Un `label` **et** un texte visible « Chargement… » : deux annonces pour une attente',
-      en: 'A `label` **and** visible “Loading…” text: two announcements for one wait',
-    },
-    dontBlank: {
-      fr: 'Un spinner plein écran là où un `Skeleton` montrerait déjà la forme de la page',
-      en: 'A full-screen spinner where a `Skeleton` would already show the page’s shape',
-    },
-    dontColor: {
-      fr: 'Coder une couleur en dur plutôt que laisser `currentColor` faire son travail',
-      en: 'Hard-coding a colour instead of letting `currentColor` do its job',
-    },
-    propsBody: {
-      fr: 'Deux props, et c’est tout. La couleur vient du contexte, la taille de l’échelle.',
-      en: 'Two props, and that is all. Colour comes from context, size from the scale.',
-    },
-  },
   skeleton: {
     title: { fr: 'Skeleton', en: 'Skeleton' },
     intro: {
-      fr: '`Skeleton` tient la place d’un contenu qui arrive. Il ne dit pas ce qui arrive — seulement que ce n’est pas encore là, et quelle forme cela aura. C’est ce qui le distingue d’un `Spinner` : il évite le saut de mise en page à l’arrivée des données.',
-      en: '`Skeleton` holds the place of content on its way. It does not say what is coming — only that it is not here yet, and what shape it will take. That is what sets it apart from a `Spinner`: it avoids the layout jump when the data lands.',
+      fr: '`Skeleton` tient la place d’un contenu qui arrive. Il ne dit pas ce qui arrive — seulement que ce n’est pas encore là, et quelle forme cela aura. C’est ce qui le distingue d’un anneau qui tourne : il évite le saut de mise en page à l’arrivée des données.',
+      en: '`Skeleton` holds the place of content on its way. It does not say what is coming — only that it is not here yet, and what shape it will take. That is what sets it apart from a turning ring: it avoids the layout jump when the data lands.',
     },
     hidden: {
       fr: 'Toujours masqué aux lecteurs d’écran',
@@ -1455,8 +1388,8 @@ export const docsCopy = {
       en: 'Leaving the skeleton forever when the request failed: that is `ErrorState`',
     },
     propsBody: {
-      fr: '`width`, `height` et `size` acceptent un nombre — interprété en pixels — ou une chaîne CSS.',
-      en: '`width`, `height`, and `size` take a number — read as pixels — or a CSS string.',
+      fr: '`width`, `height` et `size` acceptent un nombre — interprété en pixels — ou une chaîne CSS. Volontairement pas l’échelle `xxs`–`xxl` du design system : un squelette doit épouser exactement le bloc qu’il remplace, sinon la page saute à l’arrivée des données. `color` teinte le bloc, `className` se fusionne en dernier.',
+      en: '`width`, `height`, and `size` take a number — read as pixels — or a CSS string. Deliberately not the design system’s `xxs`–`xxl` scale: a skeleton has to match the exact block it stands in for, or the page jumps when the data lands. `color` tints the block, `className` merges last.',
     },
   },
   progress: {
@@ -1482,8 +1415,8 @@ export const docsCopy = {
     },
     circular: { fr: 'Circulaire', en: 'Circular' },
     useCircular: {
-      fr: '`variant="circular"` **exige** une `value`, et le type l’impose. Un anneau qui tourne sans valeur, c’est un `Spinner` — et le design system n’en a qu’un.',
-      en: '`variant="circular"` **requires** a `value`, and the type enforces it. A ring that turns with no value is a `Spinner` — and the design system has only one.',
+      fr: '`variant="circular"` **exige** une `value`, et le type l’impose. Un anneau qui tourne sans valeur n’apprend rien que l’`aria-busy` du conteneur ne dise déjà.',
+      en: '`variant="circular"` **requires** a `value`, and the type enforces it. A ring that turns with no value adds nothing the container’s `aria-busy` does not already say.',
     },
     a11yBody: {
       fr: 'La barre est un `progressbar` nommé, avec `aria-valuemin="0"`, `aria-valuemax="100"` et, si elle est déterminée, `aria-valuenow`. Le nom est obligatoire : une barre sans nom annonce un pourcentage sans dire de quoi. Les valeurs hors bornes sont ramenées dans l’intervalle plutôt qu’annoncées telles quelles.',
@@ -1509,17 +1442,17 @@ export const docsCopy = {
       fr: 'Annoncer `0` pour dire « je ne sais pas » : ce sont deux états différents',
       en: 'Announcing `0` to mean “I don’t know”: those are two different states',
     },
-    dontSpinner: {
-      fr: 'Un anneau circulaire sans valeur : c’est `Spinner`',
-      en: 'A circular ring with no value: that is `Spinner`',
+    dontRing: {
+      fr: 'Un anneau circulaire sans valeur — `linear` sait être indéterminé, pas `circular`',
+      en: 'A circular ring with no value — `linear` can be indeterminate, `circular` cannot',
     },
     dontDouble: {
       fr: 'Un texte visible exposé aux lecteurs d’écran en plus d’`aria-valuenow`',
       en: 'Visible text exposed to screen readers on top of `aria-valuenow`',
     },
     propsBody: {
-      fr: '`ProgressProps` est une union : `circular` sans `value` ne compile pas.',
-      en: '`ProgressProps` is a union: `circular` without `value` does not compile.',
+      fr: '`ProgressProps` est une union : `circular` sans `value` ne compile pas. `size` suit l’échelle partagée `xxs`–`xxl` et `color` la palette sémantique, comme `Avatar`, `Badge` et `Card`.',
+      en: '`ProgressProps` is a union: `circular` without `value` does not compile. `size` follows the shared `xxs`–`xxl` scale and `color` the semantic palette, like `Avatar`, `Badge`, and `Card`.',
     },
   },
   stepper: {
@@ -1613,8 +1546,8 @@ export const docsCopy = {
       en: 'Using a `Stepper` for what is really tab navigation: that is `Tabs`',
     },
     propsBody: {
-      fr: 'Les étapes sont des données (`{ label, description?, href? }`), pas des enfants : la liste vient souvent d’une configuration.',
-      en: 'Steps are data (`{ label, description?, href? }`), not children: the list usually comes from configuration.',
+      fr: 'Les étapes sont des données (`{ label, description?, href? }`), pas des enfants : la liste vient souvent d’une configuration. `size` règle le marqueur **et** la taille du texte en un seul point ; le trait de liaison suit par `calc()`.',
+      en: 'Steps are data (`{ label, description?, href? }`), not children: the list usually comes from configuration. `size` sets the marker **and** the text size from a single point; the connector follows through `calc()`.',
     },
   },
   dialog: {
