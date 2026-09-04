@@ -1,0 +1,33 @@
+import{u as c,j as t,M as d,P as s,C as e,a as o,b as a,U as r,A as m}from"./iframe-CSDJ8R1k.js";import{T as j,D as l,S as k,a as p,W as h,C as f,b as u,c as y}from"./Text.stories-ITN19NuU.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-B_nef0fB.js";import"./docs-source-C_O40UCi.js";import"./Text--B0S1JsQ.js";function i(n){const x={h1:"h1",...c(),...n.components};return t.jsxs(t.Fragment,{children:[t.jsx(d,{of:j}),`
+`,t.jsx(x.h1,{id:"text",children:"Text"}),`
+`,t.jsx(s,{k:"text.intro"}),`
+`,t.jsx(s,{k:"chrome.examplesFollow"}),`
+`,t.jsx(e,{of:l}),`
+`,t.jsx(o,{k:"text.sizes"}),`
+`,t.jsx(s,{k:"text.sizesBody"}),`
+`,t.jsx(e,{of:k}),`
+`,t.jsx(o,{k:"text.tones"}),`
+`,t.jsx(s,{k:"text.tonesBody"}),`
+`,t.jsx(e,{of:p}),`
+`,t.jsx(o,{k:"text.weights"}),`
+`,t.jsx(s,{k:"text.weightsBody"}),`
+`,t.jsx(e,{of:h}),`
+`,t.jsx(o,{k:"text.color"}),`
+`,t.jsx(s,{k:"text.colorBody"}),`
+`,t.jsx(e,{of:f}),`
+`,t.jsx(o,{k:"text.colorVariant"}),`
+`,t.jsx(s,{k:"text.colorVariantBody"}),`
+`,t.jsx(e,{of:u}),`
+`,t.jsx(o,{k:"text.wrap"}),`
+`,t.jsx(s,{k:"text.wrapBody"}),`
+`,t.jsx(e,{of:y}),`
+`,t.jsx(s,{k:"chrome.themeLang"}),`
+`,t.jsx(o,{k:"chrome.accessibility"}),`
+`,t.jsx(s,{k:"text.a11yBody"}),`
+`,t.jsx(a,{k:"chrome.do"}),`
+`,t.jsx(r,{items:["text.doMuted","text.doSpan","text.doColor","text.doTruncate"]}),`
+`,t.jsx(a,{k:"chrome.dont"}),`
+`,t.jsx(r,{items:["text.dontClass","text.dontHeading","text.dontTint","text.dontTruncate"]}),`
+`,t.jsx(o,{k:"chrome.properties"}),`
+`,t.jsx(s,{k:"text.props"}),`
+`,t.jsx(m,{of:j,include:["as","size","tone","weight","color","colorVariant","noWrap","truncate"]})]})}function D(n={}){const{wrapper:x}={...c(),...n.components};return x?t.jsx(x,{...n,children:t.jsx(i,{...n})}):i(n)}export{D as default};

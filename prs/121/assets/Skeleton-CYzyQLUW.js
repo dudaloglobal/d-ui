@@ -1,0 +1,32 @@
+import{u as j,j as e,M as r,P as s,C as n,a as t,b as k,U as x,A as m}from"./iframe-CSDJ8R1k.js";import{S as i,D as d,T as c,M as h,C as p,W as f,L as u,a as y}from"./Skeleton.stories-lEs6WMYH.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-B_nef0fB.js";import"./docs-source-C_O40UCi.js";import"./Skeleton-SKPCUizG.js";import"./uiScale-DBauGOvS.js";function l(o){const a={h1:"h1",...j(),...o.components};return e.jsxs(e.Fragment,{children:[e.jsx(r,{of:i}),`
+`,e.jsx(a.h1,{id:"skeleton",children:"Skeleton"}),`
+`,e.jsx(s,{k:"skeleton.intro"}),`
+`,e.jsx(s,{k:"chrome.examplesFollow"}),`
+`,e.jsx(n,{of:d}),`
+`,e.jsx(t,{k:"skeleton.hidden"}),`
+`,e.jsx(s,{k:"skeleton.hiddenBody"}),`
+`,e.jsx(t,{k:"skeleton.shapes"}),`
+`,e.jsx(s,{k:"skeleton.shapesBody"}),`
+`,e.jsx(k,{k:"skeleton.text"}),`
+`,e.jsx(s,{k:"skeleton.useText"}),`
+`,e.jsx(n,{of:c}),`
+`,e.jsx(k,{k:"skeleton.media"}),`
+`,e.jsx(s,{k:"skeleton.useMedia"}),`
+`,e.jsx(n,{of:h}),`
+`,e.jsx(t,{k:"skeleton.compositions"}),`
+`,e.jsx(s,{k:"skeleton.useCompositions"}),`
+`,e.jsx(n,{of:p}),`
+`,e.jsx(n,{of:f}),`
+`,e.jsx(n,{of:u}),`
+`,e.jsx(n,{of:y}),`
+`,e.jsx(t,{k:"chrome.accessibility"}),`
+`,e.jsx(s,{k:"skeleton.a11yBody"}),`
+`,e.jsx(s,{k:"skeleton.a11yKeys"}),`
+`,e.jsx(k,{k:"chrome.do"}),`
+`,e.jsx(x,{items:["skeleton.doContainer","skeleton.doShape","skeleton.doShort"]}),`
+`,e.jsx(k,{k:"chrome.dont"}),`
+`,e.jsx(x,{items:["skeleton.dontAnnounce","skeleton.dontMismatch","skeleton.dontForever"]}),`
+`,e.jsx(s,{k:"chrome.themeLang"}),`
+`,e.jsx(t,{k:"chrome.properties"}),`
+`,e.jsx(s,{k:"skeleton.propsBody"}),`
+`,e.jsx(m,{of:i,include:["shape","width","height","size","color","className"]})]})}function L(o={}){const{wrapper:a}={...j(),...o.components};return a?e.jsx(a,{...o,children:e.jsx(l,{...o})}):l(o)}export{L as default};
