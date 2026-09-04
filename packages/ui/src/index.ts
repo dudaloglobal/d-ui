@@ -88,6 +88,30 @@ export type {
   ListProps,
   ListSize,
 } from './components/List/List';
+export {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableEmpty,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from './components/Table/Table';
+export type {
+  TableAlign,
+  TableBodyProps,
+  TableCaptionProps,
+  TableCellProps,
+  TableEmptyProps,
+  TableFooterProps,
+  TableHeadProps,
+  TableHeaderProps,
+  TableProps,
+  TableRowProps,
+  TableSize,
+} from './components/Table/Table';
 export { Dialog } from './components/Dialog/Dialog';
 export type { DialogProps, DialogRadius, DialogSize } from './components/Dialog/Dialog';
 export { AlertDialog } from './components/Dialog/AlertDialog';

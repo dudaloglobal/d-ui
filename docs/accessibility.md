@@ -45,6 +45,8 @@ Une exception AA exige un sign-off Accessibilité **et** une décision produit �
 
 32. `SortableList` / `SortableItem` / `DragHandle` : `<ul>` / `<ol>` + `<li>` natifs, liste nommée (`aria-label` / `aria-labelledby`). La poignée est un vrai `<button>`, **seul** activateur (pointeur, tactile, clavier), nommée par `messages.handle(label)` ou `aria-label`, avec `aria-roledescription="sortable"`, `aria-pressed` pendant la saisie et `aria-describedby` vers les instructions. Espace / Entrée saisit et dépose, flèches déplacent, Échap annule ; région live `role="status"` (`pickedUp` / `moved` / `dropped` / `canceled`, fallback anglais) ; focus rendu à la poignée. `disabled` = `disabled` natif sur la poignée. **2.5.7** : offrir une alternative au pointeur simple (boutons Monter / Descendre via `moveSortableItem`). Pas de `div` glissable ; pas de Kanban ni de dépôt de fichiers (`FileUpload`). ADR : `docs/adr/0001-dnd-kit.md`.
 
+33. `Table` : vrai `<table>` (`TableHeader` / `TableBody` / `TableFooter` / `TableRow` / `TableHead` / `TableCell`), pas une grille de `div`. Légende (`caption` ou `TableCaption`) : nom du tableau. `TableHead` pose `scope="col"` dans l’en-tête, `scope="row"` ailleurs. `numeric` : chiffres tabulaires, alignement `end`, pas la couleur seule. Cellule vide : `TableEmpty` + `EmptyState` (titre `h2`). Si le contenu déborde, le conteneur devient tabulable (flèches) et, s’il est nommé, `role="region"` lié à la légende. `stickyHeader` est visuel. Tri / filtre / sélection : Data Table (DS-042).
+
 ## Overlays — revue de PR
 
 Ces patterns s’appliquent dès qu’un Dialog, Menu, Popover ou Tooltip est proposé. Une PR qui les ignore n’est pas AA.
@@ -78,6 +80,7 @@ Un overlay modal pose `aria-modal="true"` et piège le Tab **à l’intérieur**
 | Breadcrumb          | Liens parentes                      | Suit le lien (Enter)     | —      | —                                                      |
 | Pagination          | Boutons de page                     | Va à la page             | —      | —                                                      |
 | SortableList        | Poignées (`DragHandle`)             | Saisit / dépose          | Annule | Déplace l’élément saisi (axe selon `orientation`)      |
+| Table (débordement) | Région défilable si overflow        | —                        | —      | Défile le conteneur                                    |
 
 Pas de `div` + `onKeyDown` si un élément natif existe (`dialog`, `button`, `a`).
 

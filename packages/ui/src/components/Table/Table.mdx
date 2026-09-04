@@ -1,0 +1,87 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as TableStories from './Table.stories';
+
+<Meta of={TableStories} />
+
+# Table
+
+<P k="table.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={TableStories.Default} />
+
+<H2 k="table.numeric" />
+
+<P k="table.numericBody" />
+
+<Canvas of={TableStories.Numeric} />
+
+<H2 k="table.align" />
+
+<P k="table.alignBody" />
+
+<Canvas of={TableStories.Align} />
+
+<H2 k="table.caption" />
+
+<P k="table.captionBody" />
+
+<Canvas of={TableStories.Caption} />
+
+<H2 k="table.overflow" />
+
+<P k="table.overflowBody" />
+
+<Canvas of={TableStories.Overflow} />
+
+<H2 k="table.empty" />
+
+<P k="table.emptyBody" />
+
+<Canvas of={TableStories.Empty} />
+
+<H2 k="table.sticky" />
+
+<P k="table.stickyBody" />
+
+<Canvas of={TableStories.StickyHeader} />
+
+<H2 k="table.footer" />
+
+<P k="table.footerBody" />
+
+<Canvas of={TableStories.Footer} />
+
+<H2 k="table.rowHeader" />
+
+<P k="table.rowHeaderBody" />
+
+<Canvas of={TableStories.RowHeader} />
+
+<H2 k="chrome.sizes" />
+
+<P k="table.sizesBody" />
+
+<Canvas of={TableStories.Sizes} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="table.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['table.doCaption', 'table.doNumeric', 'table.doEmpty']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['table.dontDiv', 'table.dontSort', 'table.dontLms']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="table.props" />
+
+<ArgTypes of={TableStories} include={['caption', 'stickyHeader', 'size', 'className']} />
