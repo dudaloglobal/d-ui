@@ -1203,7 +1203,7 @@ export const dataTableArgTypes = {
   columns: {
     control: { disable: true },
     description:
-      'Colonnes `{ id, header, value, cell?, sortable?, align? }`. `value` est la donnée brute — c’est elle qu’on trie et qu’on cherche ; `cell` n’est que le rendu.',
+      'Colonnes `{ id, header, value, cell?, sortable?, align?, numeric? }`. `value` est la donnée brute — c’est elle qu’on trie et qu’on cherche ; `cell` n’est que le rendu. `align` et `numeric` sont ceux de `Table`.',
   },
   rows: {
     control: { disable: true },
@@ -1220,7 +1220,14 @@ export const dataTableArgTypes = {
   },
   hideCaption: {
     control: 'boolean' as const,
-    description: 'Masque la légende à l’écran. Elle reste lue.',
+    description:
+      'Masque la légende à l’écran. Elle reste lue, et continue de nommer la zone défilable.',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md', 'lg'],
+    description:
+      'Densité des cellules, transmise à `Table`. `sm`, `md` (défaut) ou `lg` — la même échelle qu’un tableau écrit à la main.',
   },
   sort: {
     control: { disable: true },

@@ -4,6 +4,20 @@ import { cx } from '../../lib/cx';
 import { Checkbox } from '../Checkbox/Checkbox';
 import { Pagination } from '../Pagination/Pagination';
 import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableEmpty,
+  TableHead,
+  TableHeader,
+  TableRow,
+  cellAlign,
+  tableCellSizeClass,
+  type TableAlign,
+  type TableSize,
+} from '../Table/Table';
+import {
   nextSort,
   pageCountOf,
   pageRows,
@@ -16,7 +30,9 @@ import {
 
 export type { SortDirection, TableSort } from './tableRows';
 
-export type DataTableAlign = 'start' | 'end';
+/** Même échelle que `Table` : `DataTable` ne redéfinit pas les siennes. */
+export type DataTableAlign = TableAlign;
+export type DataTableSize = TableSize;
 
 export type DataTableColumn<Row> = {
   /** Identifiant stable de la colonne. Sert de clé de tri. */
@@ -34,8 +50,15 @@ export type DataTableColumn<Row> = {
   cell?: (row: Row) => ReactNode;
   /** Colonne non triable : l'en-tête reste un simple `th`, sans bouton. */
   sortable?: boolean;
-  /** `end` pour les nombres, qui s'alignent sur leur unité. */
+  /** Alignement de la colonne. `numeric` aligne à `end` s'il est omis. */
   align?: DataTableAlign;
+  /**
+   * Colonne de chiffres : chiffres tabulaires, sans césure, alignés à la fin.
+   *
+   * C'est `Table` qui l'applique — la même règle qu'un tableau écrit à la main
+   * dans le design system, pas une seconde convention.
+   */
+  numeric?: boolean;
 };
 
 export type DataTableToolbarApi<Row> = {
@@ -79,8 +102,10 @@ export type DataTableProps<Row> = {
    * « tableau, 8 colonnes » sans dire de quoi.
    */
   caption: string;
-  /** Masque la légende à l'écran. Elle reste lue. */
+  /** Masque la légende à l'écran. Elle reste lue, et nomme la zone défilable. */
   hideCaption?: boolean;
+  /** Densité des cellules, transmise à `Table`. Défaut : `md`. */
+  size?: DataTableSize;
 
   /** Tri contrôlé. Sans lui, la table gère son propre tri. */
   sort?: TableSort | null;
@@ -168,8 +193,15 @@ function LockGlyph() {
 /**
  * Table de données triable, cherchable, sélectionnable et paginable.
  *
- * Rend une vraie `<table>` : l'association d'une cellule à son en-tête vient
- * de `scope="col"`, pas d'ARIA. Le tri est un `<button>` dans le `<th>`, et
+ * Le balisage est celui de `Table` : `DataTable` ne dessine pas son propre
+ * tableau, il pose un comportement dessus. La frontière est celle qu'annonce
+ * la doc de `Table` — tri, filtre et sélection de lignes vivent ici. Ce qui
+ * en découle vient gratuitement : la zone défilable devient atteignable au
+ * clavier quand elle déborde vraiment (2.1.1), `size` et `stickyHeader`
+ * suivent l'échelle du composant, et une seule table de paddings existe.
+ *
+ * L'association d'une cellule à son en-tête vient de `scope="col"`, posé par
+ * `TableHead`, pas d'ARIA. Le tri est un `<button>` dans le `<th>`, et
  * `aria-sort` n'est posé que sur la colonne triée — ARIA le veut sur une
  * seule à la fois.
  *
@@ -188,6 +220,7 @@ export function DataTable<Row>({
   rowId,
   caption,
   hideCaption = false,
+  size = 'md',
   sort,
   defaultSort = null,
   onSortChange,
@@ -343,140 +376,159 @@ export function DataTable<Row>({
         {text.results(visible.length)}
       </p>
 
-      <div className="border-border-subtle overflow-x-auto rounded-md border">
-        <table className="w-full border-collapse text-sm">
-          <caption
-            className={cx(
-              hideCaption ? 'd-ui-visually-hidden' : 'text-fg-muted px-4 py-3 text-start',
-            )}
-          >
-            {caption}
-          </caption>
-          <thead>
-            <tr className="border-border-subtle border-b">
-              {selectable ? (
-                <th scope="col" className="w-10 px-4 py-2">
-                  <Checkbox
-                    size="sm"
-                    aria-label={text.selectAll}
-                    checked={allSelected}
-                    indeterminate={selectedCount > 0 && !allSelected}
-                    disabled={selectableRows.length === 0}
-                    onChange={(event) => toggleAll(event.currentTarget.checked)}
-                  />
-                </th>
-              ) : null}
-              {columns.map((column) => {
-                const sorted = activeSort?.columnId === column.id ? activeSort : null;
-                const canSort = column.sortable !== false;
+      {/*
+        `Table` porte le conteneur : c'est lui qui observe le débordement et
+        rend la zone atteignable au clavier, nommée par la légende. La légende
+        passe en enfant plutôt que par la prop `caption`, parce qu'elle seule
+        peut être masquée à l'écran tout en restant le nom de la région.
+      */}
+      <Table size={size} className="border-border-subtle rounded-md border">
+        {/*
+          La légende reprend la géométrie des cellules : sans padding, le texte
+          se collait au trait du conteneur. `tableCellSizeClass` vient de
+          `Table` — une seule échelle, pas une table de marges privée.
+        */}
+        <TableCaption
+          className={
+            hideCaption
+              ? 'd-ui-visually-hidden'
+              : cx('mb-0 font-normal text-fg-muted', tableCellSizeClass[size])
+          }
+        >
+          {caption}
+        </TableCaption>
+        <TableHeader>
+          <TableRow>
+            {selectable ? (
+              <TableHead>
+                <Checkbox
+                  size="sm"
+                  aria-label={text.selectAll}
+                  checked={allSelected}
+                  indeterminate={selectedCount > 0 && !allSelected}
+                  disabled={selectableRows.length === 0}
+                  onChange={(event) => toggleAll(event.currentTarget.checked)}
+                />
+              </TableHead>
+            ) : null}
+            {columns.map((column) => {
+              const sorted = activeSort?.columnId === column.id ? activeSort : null;
+              const canSort = column.sortable !== false;
+              /*
+               * Le chevron passe du côté vers lequel la colonne s'aligne. La
+               * règle vient de `Table` : la réécrire ici, c'est se désynchroniser
+               * au premier changement.
+               */
+              const toEnd = cellAlign(column.align, column.numeric ?? false) === 'end';
 
-                return (
-                  <th
-                    key={column.id}
-                    scope="col"
-                    /* ARIA veut `aria-sort` sur une seule colonne à la fois. */
-                    aria-sort={sorted ? sorted.direction : undefined}
-                    className={cx(
-                      'text-fg px-4 py-2 font-medium',
-                      column.align === 'end' ? 'text-end' : 'text-start',
-                    )}
-                  >
-                    {canSort ? (
-                      <button
-                        type="button"
-                        onClick={() => commitSort(column.id)}
-                        className={cx(
-                          'inline-flex items-center gap-1.5 rounded-sm',
-                          'focus-visible:ring-focus focus-visible:ring-offset-bg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
-                          column.align === 'end' ? 'flex-row-reverse' : null,
-                        )}
-                      >
-                        {column.header}
-                        <SortGlyph direction={sorted ? sorted.direction : null} />
-                        {/*
-                         * Le glyphe est décoratif : sans ce texte, un en-tête
-                         * non trié n'aurait aucun indice de ce que fait le clic.
-                         */}
-                        {/*
-                         * L'indice ne reprend pas l'en-tête : il est déjà lu
-                         * juste avant. Et il ne le stringifie pas — un
-                         * `header` en JSX donnerait « [object Object] ».
-                         */}
-                        <VisuallyHidden>{` — ${text.sortBy}`}</VisuallyHidden>
-                      </button>
-                    ) : (
-                      column.header
-                    )}
-                  </th>
-                );
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            {paginated.length === 0 ? (
-              <tr>
-                <td
-                  colSpan={columnCount}
-                  className="text-fg-muted px-4 py-10 text-center"
+              return (
+                <TableHead
+                  key={column.id}
+                  align={column.align}
+                  numeric={column.numeric}
+                  /* ARIA veut `aria-sort` sur une seule colonne à la fois. */
+                  aria-sort={sorted ? sorted.direction : undefined}
                 >
-                  {text.empty}
-                </td>
-              </tr>
-            ) : (
-              paginated.map((row) => {
-                const id = rowId(row);
-                const locked = isRowLocked?.(row) ?? false;
-                const checked = selectedSet.has(id);
+                  {canSort ? (
+                    <button
+                      type="button"
+                      onClick={() => commitSort(column.id)}
+                      className={cx(
+                        'inline-flex min-h-6 items-center gap-1.5 rounded-sm',
+                        'focus-visible:ring-focus focus-visible:ring-offset-bg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+                        toEnd ? 'flex-row-reverse' : null,
+                      )}
+                    >
+                      {column.header}
+                      <SortGlyph direction={sorted ? sorted.direction : null} />
+                      {/*
+                       * Le glyphe est décoratif : sans ce texte, un en-tête
+                       * non trié n'aurait aucun indice de ce que fait le clic.
+                       *
+                       * L'indice ne reprend pas l'en-tête : il est déjà lu
+                       * juste avant. Et il ne le stringifie pas — un `header`
+                       * en JSX donnerait « [object Object] ».
+                       */}
+                      <VisuallyHidden>{` — ${text.sortBy}`}</VisuallyHidden>
+                    </button>
+                  ) : (
+                    column.header
+                  )}
+                </TableHead>
+              );
+            })}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {paginated.length === 0 ? (
+            <TableEmpty colSpan={columnCount}>
+              <p
+                className={cx(
+                  'text-fg-muted py-10 text-center',
+                  tableCellSizeClass[size],
+                )}
+              >
+                {text.empty}
+              </p>
+            </TableEmpty>
+          ) : (
+            paginated.map((row) => {
+              const id = rowId(row);
+              const locked = isRowLocked?.(row) ?? false;
+              const checked = selectedSet.has(id);
 
-                return (
-                  <tr
-                    key={id}
-                    data-selected={checked ? '' : undefined}
-                    className={cx(
-                      'border-border-subtle border-b last:border-b-0',
-                      checked ? 'bg-surface-muted' : null,
-                    )}
-                  >
-                    {selectable ? (
-                      <td className="px-4 py-2">
-                        {locked ? (
-                          <span className="inline-flex items-center">
-                            <LockGlyph />
-                            <VisuallyHidden>{text.locked}</VisuallyHidden>
-                          </span>
-                        ) : (
-                          <Checkbox
-                            size="sm"
-                            aria-label={text.selectRow(rowLabel?.(row) ?? id)}
-                            checked={checked}
-                            onChange={(event) =>
-                              toggleRow(id, event.currentTarget.checked)
-                            }
-                          />
-                        )}
-                      </td>
-                    ) : null}
-                    {columns.map((column) => (
-                      <td
-                        key={column.id}
-                        className={cx(
-                          'text-fg px-4 py-2',
-                          column.align === 'end' ? 'text-end tabular-nums' : 'text-start',
-                        )}
-                      >
-                        {column.cell
-                          ? column.cell(row)
-                          : /* Même règle qu'à la recherche : pas de chaîne GMT. */
-                            searchText(column.value(row) ?? '')}
-                      </td>
-                    ))}
-                  </tr>
-                );
-              })
-            )}
-          </tbody>
-        </table>
-      </div>
+              return (
+                /*
+                  La sélection ne peut pas réutiliser `surface-muted` : c'est le
+                  survol de `TableRow`, et toute ligne prendrait alors
+                  l'apparence d'une ligne cochée sous le curseur. Un ton plus
+                  marqué, doublé d'un filet d'accent au bord — la couleur seule
+                  ne porte pas l'état (1.4.1), même si la case le dit déjà.
+                */
+                <TableRow
+                  key={id}
+                  data-selected={checked ? '' : undefined}
+                  className={
+                    checked
+                      ? 'bg-surface-hover shadow-[inset_3px_0_0_var(--d-ui-color-brand)]'
+                      : undefined
+                  }
+                >
+                  {selectable ? (
+                    <TableCell>
+                      {locked ? (
+                        <span className="inline-flex items-center">
+                          <LockGlyph />
+                          <VisuallyHidden>{text.locked}</VisuallyHidden>
+                        </span>
+                      ) : (
+                        <Checkbox
+                          size="sm"
+                          aria-label={text.selectRow(rowLabel?.(row) ?? id)}
+                          checked={checked}
+                          onChange={(event) => toggleRow(id, event.currentTarget.checked)}
+                        />
+                      )}
+                    </TableCell>
+                  ) : null}
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      numeric={column.numeric}
+                    >
+                      {column.cell
+                        ? column.cell(row)
+                        : /* Même règle qu'à la recherche : pas de chaîne GMT. */
+                          searchText(column.value(row) ?? '')}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              );
+            })
+          )}
+        </TableBody>
+      </Table>
 
       {footer !== undefined ? (
         footer

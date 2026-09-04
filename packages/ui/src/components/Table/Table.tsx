@@ -35,7 +35,14 @@ function useTableContext(component: string): TableContextValue {
   return context;
 }
 
-const cellSizeClass: Record<TableSize, string> = {
+/**
+ * Géométrie d'une cellule, par cran de densité.
+ *
+ * Exportée pour `DataTable`, qui compose `Table` et doit aligner sa légende
+ * sur la même échelle. Interne au dossier : elle n'est pas re-exportée depuis
+ * `src/index.ts`.
+ */
+export const tableCellSizeClass: Record<TableSize, string> = {
   sm: 'px-2 py-1.5 text-sm',
   md: 'px-3 py-2.5 text-base',
   lg: 'px-4 py-3 text-lg',
@@ -47,7 +54,8 @@ const alignClass: Record<TableAlign, string> = {
   end: 'text-end',
 };
 
-function cellAlign(align: TableAlign | undefined, numeric: boolean): TableAlign {
+/** Règle d'alignement partagée. Une seule implémentation, voir `DataTable`. */
+export function cellAlign(align: TableAlign | undefined, numeric: boolean): TableAlign {
   return align ?? (numeric ? 'end' : 'start');
 }
 
@@ -192,7 +200,11 @@ export function TableBody({ className, children, ...rest }: TableBodyProps) {
   const table = useTableContext('TableBody');
   return (
     <TableContext.Provider value={{ ...table, section: 'body' }}>
-      <tbody {...rest} className={className}>
+      {/*
+        Pas de filet sous la dernière ligne : il ferme déjà le corps, et il
+        doublait le trait de tout conteneur bordé — `DataTable` en pose un.
+      */}
+      <tbody {...rest} className={cx('[&>tr:last-child>td]:border-b-0', className)}>
         {children}
       </tbody>
     </TableContext.Provider>
@@ -224,7 +236,14 @@ export function TableRow({ className, ...rest }: TableRowProps) {
   );
 }
 
-export type TableHeadProps = ThHTMLAttributes<HTMLTableCellElement> & {
+/*
+ * `align` est retiré des attributs natifs avant d'être redéclaré. L'attribut
+ * HTML `align` est typé `"center"` par React : en intersection, il réduisait
+ * `TableAlign` à ce seul cran et rendait `start` / `end` impossibles à passer,
+ * alors que la doc les annonce. Il n'atteint jamais le DOM de toute façon —
+ * il est déstructuré, et l'alignement passe par une classe.
+ */
+export type TableHeadProps = Omit<ThHTMLAttributes<HTMLTableCellElement>, 'align'> & {
   /** Alignement. `numeric` aligne à `end` s’il est omis. */
   align?: TableAlign;
   /** Chiffres tabulaires, sans retour à la ligne, alignés à la fin par défaut. */
@@ -249,7 +268,7 @@ export function TableHead({
       className={cx(
         'border-border text-fg',
         inHead ? 'border-b font-medium' : 'border-border-subtle border-b',
-        cellSizeClass[size],
+        tableCellSizeClass[size],
         alignClass[resolvedAlign],
         numeric && 'tabular-nums whitespace-nowrap',
         inHead && 'whitespace-nowrap',
@@ -260,7 +279,7 @@ export function TableHead({
   );
 }
 
-export type TableCellProps = TdHTMLAttributes<HTMLTableCellElement> & {
+export type TableCellProps = Omit<TdHTMLAttributes<HTMLTableCellElement>, 'align'> & {
   align?: TableAlign;
   numeric?: boolean;
 };
@@ -279,7 +298,7 @@ export function TableCell({
       {...rest}
       className={cx(
         'border-border-subtle border-b text-fg',
-        cellSizeClass[size],
+        tableCellSizeClass[size],
         alignClass[resolvedAlign],
         numeric && 'tabular-nums whitespace-nowrap',
         className,

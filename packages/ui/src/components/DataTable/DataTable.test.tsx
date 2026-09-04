@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { DataTable as DataTableFromEntry } from '../../index';
 import { DataTable, type DataTableColumn } from './DataTable';
 
@@ -324,5 +324,131 @@ describe('DataTable', () => {
       />,
     );
     expect(screen.getByRole('checkbox', { name: 'Select all rows' })).toBeInTheDocument();
+  });
+  it('uses the geometry Table defines, not a private padding table', () => {
+    /*
+     * L'assertion nomme les classes attendues : comparer deux rendus entre eux
+     * passerait même avec une échelle inversée ou fausse.
+     */
+    for (const [size, expected] of [
+      ['sm', 'px-2'],
+      ['md', 'px-3'],
+      ['lg', 'px-4'],
+    ] as const) {
+      const view = render(<Basic size={size} />);
+      expect(view.getAllByRole('cell')[0]?.className).toContain(expected);
+      // La légende suit la même échelle : sans padding elle touchait le cadre.
+      expect(view.container.querySelector('caption')?.className).toContain(expected);
+      view.unmount();
+    }
+  });
+
+  it('keeps a selected row distinct from a merely hovered one', async () => {
+    /*
+     * `TableRow` pose `hover:bg-surface-muted` sur le corps. Si la sélection
+     * reprenait ce jeton, toute ligne survolée aurait l'air cochée.
+     */
+    const user = userEvent.setup();
+    render(<Basic selectable />);
+    await user.click(screen.getByRole('checkbox', { name: 'Sélectionner Bruno' }));
+
+    const rows = screen.getAllByRole('row').slice(1);
+    const selected = rows.find((row) => row.hasAttribute('data-selected'));
+    const plain = rows.find((row) => !row.hasAttribute('data-selected'));
+
+    /*
+     * Sur les jetons, pas sur la chaîne : `hover:bg-surface-muted` contient
+     * `bg-surface-muted` en sous-chaîne, et l'assertion serait fausse.
+     */
+    expect(selected?.classList.contains('bg-surface-muted')).toBe(false);
+    expect(selected?.classList.contains('bg-surface-hover')).toBe(true);
+    // Et le repère ne tient pas qu'à la couleur (1.4.1) : un filet d'accent.
+    expect(selected?.className).toContain('inset_3px');
+    expect(plain?.classList.contains('bg-surface-hover')).toBe(false);
+  });
+
+  it('draws no rule under the last row, which would double the border', () => {
+    const { container } = render(<Basic />);
+    const body = container.querySelector('tbody');
+    expect(body?.className).toContain('[&>tr:last-child>td]:border-b-0');
+  });
+
+  it('leaves align alone: only numeric brings tabular figures', () => {
+    /*
+     * `align` positionne, `numeric` met les chiffres tabulaires. C'est la règle
+     * de `Table`, et elle diffère de celle qu'avait `DataTable` seul — ce test
+     * la fige plutôt que de laisser la bascule passer inaperçue.
+     */
+    const columns: DataTableColumn<Row>[] = [
+      { id: 'name', header: 'Nom', value: (row) => row.name },
+      { id: 'amount', header: 'Montant', value: (row) => row.amount, align: 'end' },
+    ];
+    render(<Basic columns={columns} />);
+    const amount = screen.getAllByRole('cell')[1];
+    expect(amount?.className).toContain('text-end');
+    expect(amount?.className).not.toContain('tabular-nums');
+  });
+
+  it('gives a numeric column tabular figures, through Table', () => {
+    const columns: DataTableColumn<Row>[] = [
+      { id: 'name', header: 'Nom', value: (row) => row.name },
+      { id: 'amount', header: 'Montant', value: (row) => row.amount, numeric: true },
+    ];
+    render(<Basic columns={columns} />);
+    const amount = screen.getAllByRole('cell')[1];
+    expect(amount?.className).toContain('tabular-nums');
+    // `numeric` sans `align` aligne à la fin : c'est la règle de `Table`.
+    expect(amount?.className).toContain('text-end');
+  });
+
+  it('keeps the caption as the accessible name even when hidden on screen', () => {
+    render(<Basic hideCaption />);
+    const table = screen.getByRole('table', { name: 'Commandes' });
+    const caption = table.querySelector('caption');
+    expect(caption).toHaveTextContent('Commandes');
+    expect(caption?.className).toContain('d-ui-visually-hidden');
+  });
+});
+
+describe('DataTable overflow', () => {
+  const descriptors: Array<[string, PropertyDescriptor | undefined]> = [];
+
+  beforeEach(() => {
+    for (const key of ['scrollWidth', 'clientWidth', 'scrollHeight', 'clientHeight']) {
+      descriptors.push([
+        key,
+        Object.getOwnPropertyDescriptor(HTMLElement.prototype, key),
+      ]);
+    }
+    const stub = (key: string, value: number) =>
+      Object.defineProperty(HTMLElement.prototype, key, {
+        configurable: true,
+        get: () => value,
+      });
+    stub('scrollWidth', 640);
+    stub('clientWidth', 200);
+    stub('scrollHeight', 80);
+    stub('clientHeight', 80);
+  });
+
+  afterEach(() => {
+    for (const [key, descriptor] of descriptors.splice(0)) {
+      if (descriptor) {
+        Object.defineProperty(HTMLElement.prototype, key, descriptor);
+      } else {
+        delete (HTMLElement.prototype as unknown as Record<string, unknown>)[key];
+      }
+    }
+  });
+
+  it('makes a table too wide to fit reachable and scrollable by keyboard', () => {
+    /*
+     * C'est le gain de la composition : avant, la zone défilable était un
+     * `div` nu que personne au clavier ne pouvait atteindre (WCAG 2.1.1).
+     */
+    render(<Basic />);
+    const region = screen.getByRole('region', { name: 'Commandes' });
+    expect(region).toHaveAttribute('tabindex', '0');
+    expect(region.querySelector('table')).toBe(screen.getByRole('table'));
   });
 });

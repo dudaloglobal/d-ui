@@ -131,7 +131,8 @@ function columns(copy: DataTableDocsCopy, locale: string): DataTableColumn<Order
     {
       id: 'amount',
       header: copy.amount,
-      align: 'end',
+      // `numeric` aligne à la fin **et** pose les chiffres tabulaires.
+      numeric: true,
       // Trié sur le nombre, affiché formaté : trier sur « 1 250 F » serait faux.
       value: (row) => row.amount,
       cell: (row) => money(row.amount, locale),
@@ -169,12 +170,44 @@ const meta = {
   },
   argTypes: dataTableArgTypes,
   parameters: {
-    controls: { include: ['selectable', 'pageSize', 'hideCaption'] },
+    controls: {
+      include: ['selectable', 'pageSize', 'hideCaption', 'size'],
+    },
   },
 } satisfies Meta<DataTableProps<Order>>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+export const Sizes: Story = {
+  name: 'Tailles',
+  parameters: componentSource(
+    importTable,
+    `<>
+    <DataTable size="sm" caption="Commandes" columns={columns} rows={orders} rowId={(row) => row.id} />
+    <DataTable size="lg" caption="Commandes" columns={columns} rows={orders} rowId={(row) => row.id} />
+</>`,
+  ),
+  render: (_, { globals }) => {
+    const locale = docsLocale(globals.locale);
+    const copy = dataTableCopy(locale);
+    return (
+      <div className="flex flex-col gap-8">
+        {(['sm', 'md', 'lg'] as const).map((size) => (
+          <DataTable
+            key={size}
+            size={size}
+            columns={columns(copy, locale)}
+            rows={ORDERS.slice(0, 3)}
+            rowId={(row) => row.id}
+            caption={`${copy.caption} (${size})`}
+            labels={labels(copy)}
+          />
+        ))}
+      </div>
+    );
+  },
+};
 
 export const Default: Story = {
   name: 'Par défaut',
@@ -188,7 +221,7 @@ export const Default: Story = {
 />`,
     `const columns = [
     { id: 'reference', header: 'Référence', value: (row) => row.reference },
-    { id: 'amount', header: 'Montant', align: 'end', value: (row) => row.amount },
+    { id: 'amount', header: 'Montant', numeric: true, value: (row) => row.amount },
 ];`,
   ),
   render: (args, { globals }) => {

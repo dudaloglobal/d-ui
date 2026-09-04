@@ -1553,8 +1553,8 @@ export const docsCopy = {
   dataTable: {
     title: { fr: 'DataTable', en: 'DataTable' },
     intro: {
-      fr: '`DataTable` rend une vraie `<table>`. Le lien d’une cellule à son en-tête vient de `scope="col"`, pas d’ARIA : le HTML le dit déjà, et un `role="grid"` transformerait la lecture en navigation par cellules — utile pour un tableur, pénible pour une liste de commandes.',
-      en: '`DataTable` renders a real `<table>`. A cell is tied to its header by `scope="col"`, not by ARIA: HTML already says it, and `role="grid"` would turn reading into cell-by-cell navigation — right for a spreadsheet, tiresome for a list of orders.',
+      fr: '`DataTable` ne dessine pas son tableau : il compose `Table` et pose un comportement dessus — tri, recherche, sélection, pagination. La frontière est celle qu’annonce `Table`. Le lien d’une cellule à son en-tête vient donc de `scope="col"`, pas d’ARIA : le HTML le dit déjà, et un `role="grid"` transformerait la lecture en navigation par cellules — utile pour un tableur, pénible pour une liste de commandes.',
+      en: '`DataTable` does not draw its own table: it composes `Table` and lays behaviour on top — sorting, search, selection, pagination. The boundary is the one `Table` announces. A cell is therefore tied to its header by `scope="col"`, not by ARIA: HTML already says it, and `role="grid"` would turn reading into cell-by-cell navigation — right for a spreadsheet, tiresome for a list of orders.',
     },
     columns: { fr: 'Décrire les colonnes', en: 'Describing the columns' },
     columnsBody: {

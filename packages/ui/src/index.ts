@@ -345,6 +345,7 @@ export type {
   DataTableColumn,
   DataTableLabels,
   DataTableProps,
+  DataTableSize,
   DataTableToolbarApi,
   SortDirection,
   TableSort,
