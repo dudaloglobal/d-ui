@@ -1,0 +1,36 @@
+import{u as a,j as s,M as l,P as t,C as o,a as i,b as r,U as d,A as m}from"./iframe-CVN8O8y4.js";import{L as x,D as c,O as k,a as p,W as h,b as f,A as u,S as y,c as D}from"./List.stories-D-kB5kjD.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-D5LRc10N.js";import"./docs-source-C_O40UCi.js";import"./Button-ZDdT4YL0.js";import"./cornerRadius-B4XFh-_5.js";import"./Icon-CZi_DLOz.js";import"./List-DFE1AbtR.js";import"./Text-B2-FHRi5.js";import"./BookOpenIcon-Bj_uY9UV.js";function j(n){const e={h1:"h1",...a(),...n.components};return s.jsxs(s.Fragment,{children:[s.jsx(l,{of:x}),`
+`,s.jsx(e.h1,{id:"list",children:"List"}),`
+`,s.jsx(t,{k:"list.intro"}),`
+`,s.jsx(t,{k:"chrome.examplesFollow"}),`
+`,s.jsx(o,{of:c}),`
+`,s.jsx(i,{k:"list.ordered"}),`
+`,s.jsx(t,{k:"list.orderedBody"}),`
+`,s.jsx(o,{of:k}),`
+`,s.jsx(i,{k:"list.divided"}),`
+`,s.jsx(t,{k:"list.dividedBody"}),`
+`,s.jsx(o,{of:p}),`
+`,s.jsx(i,{k:"list.slots"}),`
+`,s.jsx(t,{k:"list.slotsBody"}),`
+`,s.jsx(o,{of:h}),`
+`,s.jsx(i,{k:"list.description"}),`
+`,s.jsx(t,{k:"list.descriptionBody"}),`
+`,s.jsx(o,{of:f}),`
+`,s.jsx(i,{k:"list.link"}),`
+`,s.jsx(t,{k:"list.linkBody"}),`
+`,s.jsx(o,{of:u}),`
+`,s.jsx(i,{k:"chrome.sizes"}),`
+`,s.jsx(t,{k:"chrome.useSizes"}),`
+`,s.jsx(o,{of:y}),`
+`,s.jsx(i,{k:"chrome.disabled"}),`
+`,s.jsx(t,{k:"list.disabledBody"}),`
+`,s.jsx(o,{of:D}),`
+`,s.jsx(i,{k:"chrome.accessibility"}),`
+`,s.jsx(t,{k:"list.a11yBody"}),`
+`,s.jsx(r,{k:"chrome.do"}),`
+`,s.jsx(d,{items:["list.doNative","list.doSlots"]}),`
+`,s.jsx(r,{k:"chrome.dont"}),`
+`,s.jsx(d,{items:["list.dontNested","list.dontTree"]}),`
+`,s.jsx(t,{k:"chrome.themeLang"}),`
+`,s.jsx(i,{k:"chrome.properties"}),`
+`,s.jsx(t,{k:"list.props"}),`
+`,s.jsx(m,{of:x,include:["as","divided","size","className"]})]})}function W(n={}){const{wrapper:e}={...a(),...n.components};return e?s.jsx(e,{...n,children:s.jsx(j,{...n})}):j(n)}export{W as default};
