@@ -1,0 +1,30 @@
+import{u as x,j as s,M as j,P as t,C as o,a as e,b as a,U as i,A as d}from"./iframe-3cp6bBDu.js";import{A as l,D as c,V as p,W as k,a as h,T as f,b as u}from"./Alert.stories-BkrBebTS.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-Be6NSCGb.js";import"./docs-source-C_O40UCi.js";import"./Button-BYV842b-.js";import"./cornerRadius-B4XFh-_5.js";import"./Icon-BW71siB_.js";import"./IconButton-DVjj3z1i.js";import"./Heading-D6Z8xOpd.js";import"./Text-CfRInTFn.js";import"./FeedbackIcons-BU0f7v9W.js";import"./feedbackSurface-DX-WaKcU.js";import"./ExclamationTriangleIcon-DXa3Jzd3.js";function m(n){const r={h1:"h1",...x(),...n.components};return s.jsxs(s.Fragment,{children:[s.jsx(j,{of:l}),`
+`,s.jsx(r.h1,{id:"alert",children:"Alert"}),`
+`,s.jsx(t,{k:"alert.intro"}),`
+`,s.jsx(t,{k:"chrome.examplesFollow"}),`
+`,s.jsx(o,{of:c}),`
+`,s.jsx(e,{k:"alert.variants"}),`
+`,s.jsx(t,{k:"alert.variantsBody"}),`
+`,s.jsx(o,{of:p}),`
+`,s.jsx(e,{k:"alert.titled"}),`
+`,s.jsx(t,{k:"alert.titledBody"}),`
+`,s.jsx(o,{of:k}),`
+`,s.jsx(e,{k:"alert.dismissible"}),`
+`,s.jsx(t,{k:"alert.dismissibleBody"}),`
+`,s.jsx(o,{of:h}),`
+`,s.jsx(e,{k:"alert.trimmed"}),`
+`,s.jsx(t,{k:"alert.trimmedBody"}),`
+`,s.jsx(o,{of:f}),`
+`,s.jsx(e,{k:"alert.action"}),`
+`,s.jsx(t,{k:"alert.actionBody"}),`
+`,s.jsx(o,{of:u}),`
+`,s.jsx(e,{k:"chrome.accessibility"}),`
+`,s.jsx(t,{k:"alert.a11yBody"}),`
+`,s.jsx(a,{k:"chrome.do"}),`
+`,s.jsx(i,{items:["alert.doInline","alert.doRole"]}),`
+`,s.jsx(a,{k:"chrome.dont"}),`
+`,s.jsx(i,{items:["alert.dontToast","alert.dontColor"]}),`
+`,s.jsx(t,{k:"chrome.themeLang"}),`
+`,s.jsx(e,{k:"chrome.properties"}),`
+`,s.jsx(t,{k:"alert.props"}),`
+`,s.jsx(d,{of:l,include:["variant","hasBackground","title","dismissible","dismissLabel"]})]})}function F(n={}){const{wrapper:r}={...x(),...n.components};return r?s.jsx(r,{...n,children:s.jsx(m,{...n})}):m(n)}export{F as default};

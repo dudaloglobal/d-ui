@@ -1,0 +1,34 @@
+import{u as c,j as s,M as l,P as a,C as e,a as t,b as r,U as i,A as m}from"./iframe-3cp6bBDu.js";import{T as x,D as d,C as b,a as u,M as h,V as k,S as p,b as f}from"./Tabs.stories-CXrd__gV.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-Be6NSCGb.js";import"./docs-source-C_O40UCi.js";import"./Button-BYV842b-.js";import"./cornerRadius-B4XFh-_5.js";import"./Icon-BW71siB_.js";import"./ArrowRightIcon-Bl6BwzGN.js";function j(n){const o={h1:"h1",...c(),...n.components};return s.jsxs(s.Fragment,{children:[s.jsx(l,{of:x}),`
+`,s.jsx(o.h1,{id:"tabs",children:"Tabs"}),`
+`,s.jsx(a,{k:"tabs.intro"}),`
+`,s.jsx(a,{k:"chrome.examplesFollow"}),`
+`,s.jsx(e,{of:d}),`
+`,s.jsx(t,{k:"tabs.cluster"}),`
+`,s.jsx(a,{k:"tabs.clusterBody"}),`
+`,s.jsx(e,{of:b}),`
+`,s.jsx(t,{k:"tabs.detached"}),`
+`,s.jsx(a,{k:"tabs.detachedBody"}),`
+`,s.jsx(e,{of:u}),`
+`,s.jsx(t,{k:"tabs.activation"}),`
+`,s.jsx(a,{k:"tabs.activationBody"}),`
+`,s.jsx(e,{of:h}),`
+`,s.jsx(t,{k:"tabs.vertical"}),`
+`,s.jsx(a,{k:"tabs.verticalBody"}),`
+`,s.jsx(e,{of:k}),`
+`,s.jsx(t,{k:"chrome.sizes"}),`
+`,s.jsx(a,{k:"chrome.useSizes"}),`
+`,s.jsx(e,{of:p}),`
+`,s.jsx(t,{k:"chrome.specialStates"}),`
+`,s.jsx(r,{k:"chrome.disabled"}),`
+`,s.jsx(a,{k:"chrome.useDisabled"}),`
+`,s.jsx(e,{of:f}),`
+`,s.jsx(a,{k:"chrome.themeLang"}),`
+`,s.jsx(t,{k:"chrome.accessibility"}),`
+`,s.jsx(a,{k:"tabs.a11yBody"}),`
+`,s.jsx(r,{k:"chrome.do"}),`
+`,s.jsx(i,{items:["tabs.doPattern","tabs.doLabel"]}),`
+`,s.jsx(r,{k:"chrome.dont"}),`
+`,s.jsx(i,{items:["tabs.dontDisplay","tabs.dontRouter"]}),`
+`,s.jsx(t,{k:"chrome.properties"}),`
+`,s.jsx(a,{k:"tabs.props"}),`
+`,s.jsx(m,{of:x,include:["label","value","defaultValue","onValueChange","activation","orientation","variant","layout","size","disabled"]})]})}function T(n={}){const{wrapper:o}={...c(),...n.components};return o?s.jsx(o,{...n,children:s.jsx(j,{...n})}):j(n)}export{T as default};
