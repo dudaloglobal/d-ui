@@ -3201,6 +3201,83 @@ export const docsCopy = {
       en: '`SortableList`: `items`, `onReorder`, `orientation`, `as`, `disabled`, `messages`, `className`. `SortableItem`: `id`, `label`, `disabled`, `className`. `DragHandle`: `size`, `aria-label`, `disabled`, `className`. Utilities: `moveSortableItem`, `defaultSortableMessages`.',
     },
   },
+  table: {
+    intro: {
+      fr: '`Table` est un **tableau sémantique** (`<table>`, `<thead>`, `<th scope>`) pour des données simples. Ce n’est pas une grille de `div`, ni un `span` habillé. Les parties (`TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`, `TableEmpty`, `TableFooter`) partagent densité, alignement numérique et en-tête collant. Tri, filtre, sélection : **Data Table** (DS-042).',
+      en: '`Table` is a **semantic table** (`<table>`, `<thead>`, `<th scope>`) for simple data. It is not a `div` grid, and not a dressed-up `span`. The parts (`TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`, `TableEmpty`, `TableFooter`) share density, numeric alignment, and a sticky header. Sort, filter, selection: **Data Table** (DS-042).',
+    },
+    numeric: { fr: 'Alignement numérique', en: 'Numeric alignment' },
+    numericBody: {
+      fr: '`numeric` aligne à la fin, pose des chiffres tabulaires (`tabular-nums`) et empêche le retour à la ligne. L’en-tête de colonne doit porter le même `numeric` que les cellules, sinon la colonne « danse ». Ce n’est pas un formatage métier (devise, note) : l’app formate la valeur.',
+      en: '`numeric` aligns to the end, sets tabular figures (`tabular-nums`), and prevents wrapping. The column header must use the same `numeric` as the cells, or the column will wobble. This is not domain formatting (currency, grade): the app formats the value.',
+    },
+    caption: { fr: 'Légende', en: 'Caption' },
+    captionBody: {
+      fr: '`caption` (prop) ou `TableCaption` rend un vrai `<caption>` : c’est le **nom** du tableau (et de la région défilable s’il déborde). Un `aria-label` suffit si la légende ne peut pas être visible. Ne pas dupliquer les deux.',
+      en: '`caption` (prop) or `TableCaption` renders a real `<caption>`: it is the table’s **name** (and the scroll region’s when it overflows). An `aria-label` is enough if the caption cannot be visible. Do not duplicate both.',
+    },
+    overflow: { fr: 'Débordement', en: 'Overflow' },
+    overflowBody: {
+      fr: 'Le conteneur est `overflow: auto`. S’il déborde vraiment (largeur ou hauteur), il devient **tabulable** : les flèches défilent. S’il a un nom (légende ou `aria-label`), il pose `role="region"`. Sans débordement, pas d’arrêt Tab superflu. `className` s’applique au conteneur (`max-w-md`, `max-h-56`).',
+      en: 'The container is `overflow: auto`. When it actually overflows (width or height), it becomes **tabbable**: arrow keys scroll. If it has a name (caption or `aria-label`), it sets `role="region"`. With no overflow, no extra Tab stop. `className` applies to the container (`max-w-md`, `max-h-56`).',
+    },
+    empty: { fr: 'État vide', en: 'Empty state' },
+    emptyBody: {
+      fr: '`TableEmpty` est une ligne qui couvre `colSpan` colonnes. Composez `EmptyState` (titre, description, actions) — `Table` n’importe pas le vide. Le tableau garde sa légende et ses en-têtes : l’utilisateur sait quelle grille est vide.',
+      en: '`TableEmpty` is a row that spans `colSpan` columns. Compose `EmptyState` (title, description, actions) — `Table` does not import emptiness. The table keeps its caption and headers: the user still knows which grid is empty.',
+    },
+    sticky: { fr: 'En-tête collant', en: 'Sticky header' },
+    stickyBody: {
+      fr: '`stickyHeader` fixe les `TableHead` de l’en-tête au défilement **vertical** du conteneur (donnez une `max-h-*` via `className`). Le fond `bg` empêche les lignes de transparaître. Inutile sans débordement vertical.',
+      en: '`stickyHeader` pins header `TableHead` cells during **vertical** scroll of the container (give a `max-h-*` via `className`). The `bg` background stops rows showing through. Useless without vertical overflow.',
+    },
+    footer: { fr: 'Pied de tableau', en: 'Table footer' },
+    footerBody: {
+      fr: '`TableFooter` rend un `<tfoot>` (totaux, moyenne). Les cellules `numeric` s’alignent comme dans le corps. Pas de logique de réduction : l’app calcule la valeur.',
+      en: '`TableFooter` renders a `<tfoot>` (totals, average). `numeric` cells align as in the body. No reduction logic: the app computes the value.',
+    },
+    rowHeader: { fr: 'En-tête de ligne', en: 'Row header' },
+    rowHeaderBody: {
+      fr: '`TableHead` hors `TableHeader` pose `scope="row"` : la première cellule nomme la ligne (jour, catégorie). Dans l’en-tête, `scope="col"` est automatique. Surchargez `scope` seulement si le HTML l’exige.',
+      en: '`TableHead` outside `TableHeader` sets `scope="row"`: the first cell names the row (day, category). In the header, `scope="col"` is automatic. Override `scope` only when HTML requires it.',
+    },
+    sizesBody: {
+      fr: '`size` (`sm` / `md` / `lg`) règle le padding et la taille de texte des cellules. `md` par défaut. La densité descend sur toutes les parties via le contexte.',
+      en: '`size` (`sm` / `md` / `lg`) sets cell padding and text size. `md` by default. Density flows to every part through context.',
+    },
+    a11yBody: {
+      fr: 'Toujours un `<table>` avec `<th scope="col">` (ou `scope="row"` hors en-tête). Nom : `<caption>` ou `aria-label`. Débordement : Tab vers le conteneur, puis flèches. `EmptyState` dans `TableEmpty` garde un titre `h2`. Contraste du texte ≥ 4.5:1. Pas de `div` + `display: grid` à la place du tableau.',
+      en: 'Always a `<table>` with `<th scope="col">` (or `scope="row"` outside the header). Name: `<caption>` or `aria-label`. Overflow: Tab to the container, then arrows. `EmptyState` inside `TableEmpty` keeps an `h2` title. Text contrast ≥ 4.5:1. No `div` + `display: grid` instead of a table.',
+    },
+    doCaption: {
+      fr: '`caption` ou `TableCaption` pour nommer le tableau (et la région s’il déborde)',
+      en: '`caption` or `TableCaption` to name the table (and the region if it overflows)',
+    },
+    doNumeric: {
+      fr: '`numeric` sur l’en-tête **et** les cellules d’une colonne de chiffres',
+      en: '`numeric` on the header **and** the cells of a numeric column',
+    },
+    doEmpty: {
+      fr: '`TableEmpty colSpan={n}` + `EmptyState` (titre, éventuellement action)',
+      en: '`TableEmpty colSpan={n}` + `EmptyState` (title, optional action)',
+    },
+    dontDiv: {
+      fr: 'Une grille de `div` ou des `span` « stylés comme un tableau »',
+      en: 'A `div` grid or `span`s “styled as a table”',
+    },
+    dontSort: {
+      fr: 'Le tri, le filtre ou la sélection de lignes dans `Table` — c’est Data Table (DS-042)',
+      en: 'Sort, filter, or row selection inside `Table` — that is Data Table (DS-042)',
+    },
+    dontLms: {
+      fr: 'Un `GradeTable` métier (colonnes LMS) dans `d-ui`',
+      en: 'A domain `GradeTable` (LMS columns) inside `d-ui`',
+    },
+    props: {
+      fr: '`caption`, `stickyHeader`, `size`, `className` (conteneur). Cellules : `align`, `numeric`. Vide : `colSpan`. Attributs du `<table>` transmis (sauf `aria-label` qui nomme aussi la région).',
+      en: '`caption`, `stickyHeader`, `size`, `className` (container). Cells: `align`, `numeric`. Empty: `colSpan`. `<table>` attributes are forwarded (except `aria-label`, which also names the region).',
+    },
+  },
 } as const;
 
 export type DocsCopy = typeof docsCopy;

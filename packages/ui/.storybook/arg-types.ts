@@ -1561,3 +1561,27 @@ export const sortableListArgTypes = {
   },
   className: classNameArgType,
 };
+
+export const tableArgTypes = {
+  caption: {
+    control: 'text' as const,
+    description:
+      'Légende visible (`<caption>`). Nomme le tableau et, s’il déborde, la région défilable (clavier). Préférez `TableCaption` pour du contenu riche.',
+  },
+  stickyHeader: {
+    control: 'boolean' as const,
+    description:
+      'Garde les `TableHead` de l’en-tête visibles au défilement vertical (`position: sticky`). Fond `bg` pour que les lignes ne transpercent pas.',
+  },
+  size: {
+    control: 'inline-radio' as const,
+    options: ['sm', 'md', 'lg'],
+    description:
+      'Densité des cellules. `sm` si l’espace est contraint, `md` par défaut, `lg` pour les vues aérées.',
+  },
+  className: {
+    ...classNameArgType,
+    description:
+      'Classes du conteneur de défilement (ex. `max-h-56`, `max-w-md`). Fusionnées en dernier avec `cx`.',
+  },
+};
