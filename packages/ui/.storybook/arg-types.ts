@@ -1525,3 +1525,39 @@ export const listArgTypes = {
   },
   className: classNameArgType,
 };
+
+export const sortableListArgTypes = {
+  items: {
+    control: { disable: true },
+    description:
+      'Identifiants dans l’ordre affiché (liste contrôlée). Chaque `SortableItem` enfant reprend un de ces `id`.',
+  },
+  onReorder: {
+    control: { disable: true },
+    description:
+      'Reçoit le nouvel ordre et `{ id, fromIndex, toIndex }` (indices avant déplacement).',
+  },
+  orientation: {
+    control: 'inline-radio' as const,
+    options: ['vertical', 'horizontal', 'grid'],
+    description:
+      '`vertical` (défaut) : colonne, axe vertical seul. `horizontal` : ligne, axe horizontal seul. `grid` : grille, déplacement libre (quatre flèches).',
+  },
+  as: {
+    control: 'inline-radio' as const,
+    options: ['ul', 'ol'],
+    description:
+      '`ul` (défaut) ou `ol` quand l’ordre a un sens. Marqueurs natifs masqués.',
+  },
+  disabled: {
+    control: 'boolean' as const,
+    description:
+      'Fige la liste : poignées désactivées (`disabled` natif), plus d’annonces.',
+  },
+  messages: {
+    control: { disable: true },
+    description:
+      'Textes lecteur d’écran : `handle(label)`, `instructions`, `pickedUp`, `moved`, `dropped`, `canceled`. Fallback anglais.',
+  },
+  className: classNameArgType,
+};

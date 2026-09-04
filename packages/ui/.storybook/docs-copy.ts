@@ -3114,6 +3114,93 @@ export const docsCopy = {
       en: '`as`, `divided`, `size`, `className`. Item: `leading`, `trailing`, `href`, `description`, `disabled`.',
     },
   },
+  sortable: {
+    intro: {
+      fr: '`SortableList` réordonne une liste (chapitres d’un cours, tuiles d’un tableau de bord) au pointeur, au tactile et au clavier. Chaque `SortableItem` est un vrai `<li>` ; la `DragHandle` est un vrai `<button>`, seul point de saisie. Moteur : dnd-kit (ADR 0001). Pas de Kanban, pas de dépôt de fichiers (`FileUpload`), pas d’événements de calendrier.',
+      en: '`SortableList` reorders a list (course chapters, dashboard tiles) with the pointer, touch, and the keyboard. Every `SortableItem` is a real `<li>`; the `DragHandle` is a real `<button>`, the only grab point. Engine: dnd-kit (ADR 0001). No Kanban, no file drop (`FileUpload`), no calendar events.',
+    },
+    controlledBody: {
+      fr: 'Liste **contrôlée** : `items` est l’ordre affiché, `onReorder(items, { id, fromIndex, toIndex })` reçoit le nouvel ordre et le détail du déplacement (indices avant déplacement) pour l’API. Les enfants sont rendus par l’app : chaque `SortableItem` reprend un `id` présent dans `items`.',
+      en: '**Controlled** list: `items` is the displayed order, `onReorder(items, { id, fromIndex, toIndex })` receives the new order and the move detail (indices before the move) for the API. Children are rendered by the app: every `SortableItem` takes an `id` present in `items`.',
+    },
+    keyboard: { fr: 'Clavier et annonces', en: 'Keyboard and announcements' },
+    keyboardBody: {
+      fr: 'Tab jusqu’à la poignée, **Espace** ou **Entrée** pour saisir, **flèches** pour déplacer, Espace ou Entrée pour déposer, **Échap** pour annuler. Une région live (`role="status"`) annonce chaque étape ; le focus revient sur la poignée après le dépôt.',
+      en: 'Tab to the handle, **Space** or **Enter** to pick up, **arrow keys** to move, Space or Enter to drop, **Escape** to cancel. A live region (`role="status"`) announces every step; focus returns to the handle after the drop.',
+    },
+    messagesBody: {
+      fr: '`messages` localise la poignée (`handle(label)`), les instructions (`aria-describedby`) et les annonces `pickedUp` / `moved` / `dropped` / `canceled`. Fallback anglais : `defaultSortableMessages`. Ci-dessous, la dernière annonce est recopiée à l’écran.',
+      en: '`messages` localizes the handle (`handle(label)`), the instructions (`aria-describedby`), and the `pickedUp` / `moved` / `dropped` / `canceled` announcements. English fallback: `defaultSortableMessages`. Below, the last announcement is mirrored on screen.',
+    },
+    handle: { fr: 'Poignée', en: 'Drag handle' },
+    handleBody: {
+      fr: '`DragHandle` est le seul activateur : pointeur, tactile (`touch-action: none` sur la poignée seulement, la page défile ailleurs) et clavier. Nom accessible : `messages.handle(label)` (« Réordonner Introduction ») ou `aria-label`. Sans poignée, l’élément ne bouge pas.',
+      en: '`DragHandle` is the only activator: pointer, touch (`touch-action: none` on the handle only, the page still scrolls elsewhere), and keyboard. Accessible name: `messages.handle(label)` (“Reorder Introduction”) or `aria-label`. Without a handle, the item does not move.',
+    },
+    sizesBody: {
+      fr: '`size` sur `DragHandle` : `sm` (rangs denses), `md` (défaut), `lg` (tuiles). La cible reste ≥ 24 px (2.5.8).',
+      en: '`size` on `DragHandle`: `sm` (dense rows), `md` (default), `lg` (tiles). The target stays ≥ 24 px (2.5.8).',
+    },
+    ordered: { fr: 'Liste ordonnée', en: 'Ordered list' },
+    orderedBody: {
+      fr: '`as="ol"` quand l’ordre porte du sens (chapitres, étapes) : le lecteur d’écran annonce une liste ordonnée. Les marqueurs natifs sont masqués : affichez le rang vous-même s’il compte.',
+      en: '`as="ol"` when the order carries meaning (chapters, steps): the screen reader announces an ordered list. Native markers are hidden: render the rank yourself if it matters.',
+    },
+    horizontalBody: {
+      fr: '`orientation="horizontal"` : ligne (étiquettes, onglets). Le déplacement est limité à l’axe horizontal ; flèches gauche / droite au clavier.',
+      en: '`orientation="horizontal"`: a row (tags, tabs). Movement is restricted to the horizontal axis; left / right arrows on the keyboard.',
+    },
+    gridBody: {
+      fr: '`orientation="grid"` : grille de tuiles (tableau de bord). Déplacement libre, les quatre flèches au clavier. Les colonnes viennent de `className`.',
+      en: '`orientation="grid"`: a grid of tiles (dashboard). Free movement, all four arrows on the keyboard. Columns come from `className`.',
+    },
+    locked: { fr: 'Élément verrouillé', en: 'Locked item' },
+    lockedBody: {
+      fr: '`disabled` sur un `SortableItem` : sa poignée est désactivée (`disabled` natif), les autres passent devant ou derrière lui.',
+      en: '`disabled` on a `SortableItem`: its handle is disabled (native `disabled`), the others still move before or after it.',
+    },
+    disabledBody: {
+      fr: '`disabled` sur la liste fige tout : poignées désactivées, plus d’annonces.',
+      en: '`disabled` on the list freezes everything: handles disabled, no announcements.',
+    },
+    pointerAlternative: { fr: 'Sans glisser-déposer', en: 'Without dragging' },
+    pointerAlternativeBody: {
+      fr: 'WCAG 2.2 **2.5.7** : toute fonction obtenue par glissement doit exister au pointeur simple. Ajoutez des boutons Monter / Descendre (ou un `Menu`) qui appellent `moveSortableItem(items, fromIndex, toIndex)`. Le clavier seul ne suffit pas.',
+      en: 'WCAG 2.2 **2.5.7**: anything done by dragging must also work with a single pointer. Add Move up / Move down buttons (or a `Menu`) that call `moveSortableItem(items, fromIndex, toIndex)`. Keyboard alone is not enough.',
+    },
+    a11yBody: {
+      fr: '`<ul>` / `<ol>` + `<li>` natifs ; nommez la liste (`aria-label` ou `aria-labelledby`). La poignée est un `<button>` avec `aria-roledescription="sortable"`, `aria-pressed` pendant la saisie et `aria-describedby` vers les instructions. Région live `role="status"` à chaque étape. Transitions neutralisées sous `prefers-reduced-motion` (`d-ui-root`). Pas de `div` glissable.',
+      en: 'Native `<ul>` / `<ol>` + `<li>`; name the list (`aria-label` or `aria-labelledby`). The handle is a `<button>` with `aria-roledescription="sortable"`, `aria-pressed` while picked up, and `aria-describedby` pointing to the instructions. `role="status"` live region at every step. Transitions neutralized under `prefers-reduced-motion` (`d-ui-root`). No draggable `div`.',
+    },
+    doHandle: {
+      fr: 'Une `DragHandle` dans chaque `SortableItem`, avec `label`',
+      en: 'A `DragHandle` in every `SortableItem`, with `label`',
+    },
+    doAlternative: {
+      fr: 'Des boutons Monter / Descendre à côté de la poignée (2.5.7)',
+      en: 'Move up / Move down buttons next to the handle (2.5.7)',
+    },
+    doMessages: {
+      fr: '`messages` dans la langue de l’utilisateur',
+      en: '`messages` in the user’s language',
+    },
+    dontDiv: {
+      fr: 'Un `div` avec `draggable` ou `onPointerDown` à la place de la poignée',
+      en: 'A `div` with `draggable` or `onPointerDown` instead of the handle',
+    },
+    dontKanban: {
+      fr: 'Un Kanban ou un dépôt de fichiers avec `SortableList` (voir `FileUpload`)',
+      en: 'A Kanban board or a file drop with `SortableList` (see `FileUpload`)',
+    },
+    dontUncontrolled: {
+      fr: 'Ignorer `onReorder` : la liste ne se réordonne pas toute seule',
+      en: 'Ignoring `onReorder`: the list does not reorder itself',
+    },
+    props: {
+      fr: '`SortableList` : `items`, `onReorder`, `orientation`, `as`, `disabled`, `messages`, `className`. `SortableItem` : `id`, `label`, `disabled`, `className`. `DragHandle` : `size`, `aria-label`, `disabled`, `className`. Utilitaires : `moveSortableItem`, `defaultSortableMessages`.',
+      en: '`SortableList`: `items`, `onReorder`, `orientation`, `as`, `disabled`, `messages`, `className`. `SortableItem`: `id`, `label`, `disabled`, `className`. `DragHandle`: `size`, `aria-label`, `disabled`, `className`. Utilities: `moveSortableItem`, `defaultSortableMessages`.',
+    },
+  },
 } as const;
 
 export type DocsCopy = typeof docsCopy;

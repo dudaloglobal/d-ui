@@ -1,0 +1,96 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as SortableStories from './Sortable.stories';
+
+<Meta of={SortableStories} />
+
+# SortableList
+
+<P k="sortable.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={SortableStories.Default} />
+
+<P k="sortable.controlledBody" />
+
+<H2 k="sortable.keyboard" />
+
+<P k="sortable.keyboardBody" />
+
+<P k="sortable.messagesBody" />
+
+<Canvas of={SortableStories.Keyboard} />
+
+<H2 k="sortable.handle" />
+
+<P k="sortable.handleBody" />
+
+<P k="sortable.sizesBody" />
+
+<Canvas of={SortableStories.Sizes} />
+
+<H2 k="sortable.ordered" />
+
+<P k="sortable.orderedBody" />
+
+<Canvas of={SortableStories.Ordered} />
+
+<H2 k="chrome.layout" />
+
+<P k="sortable.horizontalBody" />
+
+<Canvas of={SortableStories.Horizontal} />
+
+<P k="sortable.gridBody" />
+
+<Canvas of={SortableStories.Grid} />
+
+<H2 k="sortable.locked" />
+
+<P k="sortable.lockedBody" />
+
+<Canvas of={SortableStories.LockedItem} />
+
+<H2 k="chrome.disabled" />
+
+<P k="sortable.disabledBody" />
+
+<Canvas of={SortableStories.Disabled} />
+
+<H2 k="sortable.pointerAlternative" />
+
+<P k="sortable.pointerAlternativeBody" />
+
+<Canvas of={SortableStories.MoveButtons} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="sortable.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['sortable.doHandle', 'sortable.doAlternative', 'sortable.doMessages']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['sortable.dontDiv', 'sortable.dontKanban', 'sortable.dontUncontrolled']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="sortable.props" />
+
+<ArgTypes
+  of={SortableStories}
+  include={[
+    'items',
+    'onReorder',
+    'orientation',
+    'as',
+    'disabled',
+    'messages',
+    'className',
+  ]}
+/>

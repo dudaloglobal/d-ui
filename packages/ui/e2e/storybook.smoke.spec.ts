@@ -125,6 +125,8 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Accordion | Dudalo Design System');
   await page.goto('/?path=/docs/components-list--docs');
   await expect(page).toHaveTitle('List | Dudalo Design System');
+  await page.goto('/?path=/docs/components-sortablelist--docs');
+  await expect(page).toHaveTitle('SortableList | Dudalo Design System');
 });
 
 test('component docs H1 is the component name, like Link', async ({ page }) => {
@@ -151,6 +153,7 @@ test('component docs H1 is the component name, like Link', async ({ page }) => {
     { id: 'components-card--docs', name: 'Card' },
     { id: 'components-accordion--docs', name: 'Accordion' },
     { id: 'components-list--docs', name: 'List' },
+    { id: 'components-sortablelist--docs', name: 'SortableList' },
     { id: 'foundations-typography--docs', name: 'Typography' },
     { id: 'foundations-color--docs', name: 'Color' },
   ]) {
@@ -828,6 +831,11 @@ test('English globals switch example copy on every component canvas', async ({
       id: 'components-sidebar--default',
       en: 'Courses',
       fr: 'Cours',
+    },
+    {
+      id: 'components-sortablelist--default',
+      en: 'Vector spaces',
+      fr: 'Espaces vectoriels',
     },
   ] as const;
   for (const { id, en, fr } of cases) {
