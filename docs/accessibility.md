@@ -43,6 +43,8 @@ Une exception AA exige un sign-off Accessibilité **et** une décision produit �
 
 31. `Skeleton` / `Progress` / `Stepper` : **une attente, une annonce**. L'anneau qui tourne n'est pas un composant : c'est une mécanique de la feuille de styles (`.d-ui-spinner`) que `Button` (`loading`) et `Dialog` (`processing`) rendent en `<span>` décoratif, dans un conteneur qui porte déjà `aria-busy` et son nom — jamais une deuxième annonce. Un anneau seul, sans conteneur qui l'annonce, n'est pas une interface accessible : c'est `Progress` qu'il faut. `Skeleton` est toujours hors de l'arbre d'accessibilité, sans échappatoire : c'est le conteneur qui porte `aria-busy` et le nom. `Progress` est un `progressbar` nommé (`aria-valuemin` / `aria-valuemax`, valeurs bornées) ; **omettre `value` retire `aria-valuenow`** — c'est ce qui distingue « inconnu » de « 0 % ». `valueText` (`aria-valuetext`) dès que le pourcentage seul est opaque. `Stepper` rend une `<ol>` nommée, `aria-current="step"` sur une seule étape, et chaque statut annoncé en toutes lettres via `VisuallyHidden` (1.4.1) ; `statusLabels` doit être fourni dans la langue de la page (3.1.2). Une étape n'est un lien que si elle a un `href`. Toutes les animations sont figées sous `prefers-reduced-motion`.
 
+32. `SortableList` / `SortableItem` / `DragHandle` : `<ul>` / `<ol>` + `<li>` natifs, liste nommée (`aria-label` / `aria-labelledby`). La poignée est un vrai `<button>`, **seul** activateur (pointeur, tactile, clavier), nommée par `messages.handle(label)` ou `aria-label`, avec `aria-roledescription="sortable"`, `aria-pressed` pendant la saisie et `aria-describedby` vers les instructions. Espace / Entrée saisit et dépose, flèches déplacent, Échap annule ; région live `role="status"` (`pickedUp` / `moved` / `dropped` / `canceled`, fallback anglais) ; focus rendu à la poignée. `disabled` = `disabled` natif sur la poignée. **2.5.7** : offrir une alternative au pointeur simple (boutons Monter / Descendre via `moveSortableItem`). Pas de `div` glissable ; pas de Kanban ni de dépôt de fichiers (`FileUpload`). ADR : `docs/adr/0001-dnd-kit.md`.
+
 ## Overlays — revue de PR
 
 Ces patterns s’appliquent dès qu’un Dialog, Menu, Popover ou Tooltip est proposé. Une PR qui les ignore n’est pas AA.
@@ -75,6 +77,7 @@ Un overlay modal pose `aria-modal="true"` et piège le Tab **à l’intérieur**
 | List                | Lien ou bouton `trailing`           | Suit le lien / active    | —      | —                                                      |
 | Breadcrumb          | Liens parentes                      | Suit le lien (Enter)     | —      | —                                                      |
 | Pagination          | Boutons de page                     | Va à la page             | —      | —                                                      |
+| SortableList        | Poignées (`DragHandle`)             | Saisit / dépose          | Annule | Déplace l’élément saisi (axe selon `orientation`)      |
 
 Pas de `div` + `onKeyDown` si un élément natif existe (`dialog`, `button`, `a`).
 

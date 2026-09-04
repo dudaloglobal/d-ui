@@ -1,3 +1,5 @@
+import type { SortableMove } from '../src/components/Sortable/sortableMessages';
+
 export type DocsLocale = 'fr' | 'en';
 
 export function docsLocale(value: unknown): DocsLocale {
@@ -182,6 +184,12 @@ export const storyNameEn: Record<string, string> = {
   'Avec une barre de progression': 'With a progress bar',
   Détaillé: 'Detailed',
   'Étapes cliquables': 'Clickable steps',
+  'Clavier et annonces': 'Keyboard and announcements',
+  'Liste ordonnée': 'Ordered list',
+  'Disposition horizontale': 'Horizontal layout',
+  Grille: 'Grid',
+  'Élément verrouillé': 'Locked item',
+  'Boutons Monter / Descendre': 'Move up / down buttons',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -1655,4 +1663,81 @@ export type ListDocsCopy = typeof listFr;
 
 export function listCopy(locale: DocsLocale): ListDocsCopy {
   return locale === 'en' ? listEn : listFr;
+}
+
+const sortableFr = {
+  listLabel: 'Chapitres du cours',
+  chapters: [
+    'Introduction',
+    'Espaces vectoriels',
+    'Applications linéaires',
+    'Déterminants',
+    'Valeurs propres',
+  ],
+  tagsLabel: 'Étiquettes',
+  tags: ['Algèbre', 'Analyse', 'Géométrie', 'Probabilités', 'Statistiques'],
+  widgetsLabel: 'Tableau de bord',
+  widgets: [
+    'Progression',
+    'Devoirs à rendre',
+    'Notes récentes',
+    'Agenda',
+    'Messages',
+    'Annonces',
+  ],
+  widgetHint: 'Saisissez la poignée pour réorganiser.',
+  moveTag: (label: string) => `Déplacer l’étiquette ${label}`,
+  locked: 'Verrouillé',
+  lastAnnouncement: 'Dernière annonce :',
+  handle: (label?: string) => (label ? `Réordonner ${label}` : 'Réordonner'),
+  instructions:
+    'Espace ou Entrée pour saisir, flèches pour déplacer, Espace ou Entrée pour déposer, Échap pour annuler.',
+  pickedUp: ({ label, from, count }: SortableMove) =>
+    `${label} saisi. Position ${from} sur ${count}.`,
+  moved: ({ label, to, count }: SortableMove) =>
+    `${label} déplacé en position ${to} sur ${count}.`,
+  dropped: ({ label, to, count }: SortableMove) =>
+    `${label} déposé en position ${to} sur ${count}.`,
+  canceled: ({ label, from, count }: SortableMove) =>
+    `Annulé. ${label} reste en position ${from} sur ${count}.`,
+  moveUp: (label: string) => `Monter ${label}`,
+  moveDown: (label: string) => `Descendre ${label}`,
+};
+
+const sortableEn = {
+  listLabel: 'Course chapters',
+  chapters: [
+    'Introduction',
+    'Vector spaces',
+    'Linear maps',
+    'Determinants',
+    'Eigenvalues',
+  ],
+  tagsLabel: 'Tags',
+  tags: ['Algebra', 'Analysis', 'Geometry', 'Probability', 'Statistics'],
+  widgetsLabel: 'Dashboard',
+  widgets: ['Progress', 'Assignments due', 'Recent grades', 'Agenda', 'Messages', 'News'],
+  widgetHint: 'Grab the handle to rearrange.',
+  moveTag: (label: string) => `Move the ${label} tag`,
+  locked: 'Locked',
+  lastAnnouncement: 'Last announcement:',
+  handle: (label?: string) => (label ? `Reorder ${label}` : 'Reorder'),
+  instructions:
+    'Space or Enter to pick up, arrow keys to move, Space or Enter to drop, Escape to cancel.',
+  pickedUp: ({ label, from, count }: SortableMove) =>
+    `${label} picked up. Position ${from} of ${count}.`,
+  moved: ({ label, to, count }: SortableMove) =>
+    `${label} moved to position ${to} of ${count}.`,
+  dropped: ({ label, to, count }: SortableMove) =>
+    `${label} dropped at position ${to} of ${count}.`,
+  canceled: ({ label, from, count }: SortableMove) =>
+    `Canceled. ${label} stays at position ${from} of ${count}.`,
+  moveUp: (label: string) => `Move ${label} up`,
+  moveDown: (label: string) => `Move ${label} down`,
+};
+
+export type SortableDocsCopy = typeof sortableFr;
+
+export function sortableCopy(locale: DocsLocale): SortableDocsCopy {
+  return locale === 'en' ? sortableEn : sortableFr;
 }

@@ -321,5 +321,24 @@ export type {
   SidebarProps,
   SidebarSize,
 } from './components/Sidebar/Sidebar';
+export { SortableItem, SortableList } from './components/Sortable/Sortable';
+export type {
+  SortableItemProps,
+  SortableListElement,
+  SortableListProps,
+  SortableOrientation,
+  SortableReorder,
+} from './components/Sortable/Sortable';
+export { DragHandle } from './components/Sortable/DragHandle';
+export type { DragHandleProps, DragHandleSize } from './components/Sortable/DragHandle';
+export {
+  defaultSortableMessages,
+  moveSortableItem,
+} from './components/Sortable/sortableMessages';
+export type {
+  SortableId,
+  SortableMessages,
+  SortableMove,
+} from './components/Sortable/sortableMessages';
 export { brandTokensToStyle, tokenNames } from './tokens/names';
 export type { BrandTokens, TokenName } from './tokens/names';

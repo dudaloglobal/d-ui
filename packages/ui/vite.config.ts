@@ -40,7 +40,16 @@ export default defineConfig({
           cssFileName: 'd-ui',
         },
         rollupOptions: {
-          external: ['react', 'react-dom', 'react/jsx-runtime', '@floating-ui/react'],
+          external: [
+            'react',
+            'react-dom',
+            'react/jsx-runtime',
+            '@floating-ui/react',
+            '@dnd-kit/core',
+            '@dnd-kit/modifiers',
+            '@dnd-kit/sortable',
+            '@dnd-kit/utilities',
+          ],
         },
         sourcemap: true,
         emptyOutDir: true,
