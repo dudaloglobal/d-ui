@@ -1550,6 +1550,126 @@ export const docsCopy = {
       en: 'Steps are data (`{ label, description?, href? }`), not children: the list usually comes from configuration. `size` sets the marker **and** the text size from a single point; the connector follows through `calc()`.',
     },
   },
+  dataTable: {
+    title: { fr: 'DataTable', en: 'DataTable' },
+    intro: {
+      fr: '`DataTable` ne dessine pas son tableau : il compose `Table` et pose un comportement dessus — tri, recherche, sélection, pagination. La frontière est celle qu’annonce `Table`. Le lien d’une cellule à son en-tête vient donc de `scope="col"`, pas d’ARIA : le HTML le dit déjà, et un `role="grid"` transformerait la lecture en navigation par cellules — utile pour un tableur, pénible pour une liste de commandes.',
+      en: '`DataTable` does not draw its own table: it composes `Table` and lays behaviour on top — sorting, search, selection, pagination. The boundary is the one `Table` announces. A cell is therefore tied to its header by `scope="col"`, not by ARIA: HTML already says it, and `role="grid"` would turn reading into cell-by-cell navigation — right for a spreadsheet, tiresome for a list of orders.',
+    },
+    columns: { fr: 'Décrire les colonnes', en: 'Describing the columns' },
+    columnsBody: {
+      fr: 'Une colonne sépare **la donnée** de **son rendu**. C’est ce qui permet de trier un montant sur son nombre tout en l’affichant formaté, et de chercher un statut sur son mot plutôt que sur le JSX de son badge.',
+      en: 'A column separates **the data** from **its rendering**. That is what lets an amount sort on its number while displaying formatted, and a status be searched by its word rather than by its badge’s JSX.',
+    },
+    colKey: { fr: 'Clé', en: 'Key' },
+    colRole: { fr: 'Rôle', en: 'Role' },
+    keyId: { fr: '`id`', en: '`id`' },
+    keyIdRole: {
+      fr: 'Identifiant stable de la colonne, et clé de tri.',
+      en: 'Stable column identifier, and sort key.',
+    },
+    keyValue: { fr: '`value`', en: '`value`' },
+    keyValueRole: {
+      fr: 'La donnée brute : ce qui est trié et cherché.',
+      en: 'The raw data: what gets sorted and searched.',
+    },
+    keyCell: { fr: '`cell`', en: '`cell`' },
+    keyCellRole: {
+      fr: 'Le rendu. Absent, `value` est affichée telle quelle.',
+      en: 'The rendering. When absent, `value` is shown as is.',
+    },
+    keySortable: { fr: '`sortable`', en: '`sortable`' },
+    keySortableRole: {
+      fr: '`false` retire le bouton de tri de l’en-tête.',
+      en: '`false` removes the sort button from the header.',
+    },
+    state: { fr: 'Qui tient l’état', en: 'Who owns the state' },
+    stateBody: {
+      fr: 'Tri, recherche, page et sélection acceptent chacun une prop contrôlée et retombent sinon sur un état interne — la même mécanique que `Tabs`. Une table locale marche sans câblage ; dès que la pagination est côté serveur, la page reprend la main sur la seule chose qui la concerne, sans avoir à tout reprendre.',
+      en: 'Sort, search, page, and selection each take a controlled prop and otherwise fall back to internal state — the same mechanism as `Tabs`. A local table works with no wiring; as soon as paging moves to the server, the page takes back only the piece it needs, without having to own everything.',
+    },
+    sorting: { fr: 'Tri', en: 'Sorting' },
+    useSorting: {
+      fr: 'L’en-tête triable est un vrai `<button>`, et trois clics font le tour : ascendant, descendant, plus de tri. `aria-sort` n’est posé que sur la colonne triée — ARIA n’en veut qu’une à la fois. Les cellules vides se rangent **toujours** en dernier, y compris en descendant : une case vide n’est pas une petite valeur, elle n’en a pas.',
+      en: 'A sortable header is a real `<button>`, and three clicks come full circle: ascending, descending, no sort. `aria-sort` is set only on the sorted column — ARIA wants one at a time. Empty cells **always** sort last, descending included: an empty cell is not a small value, it has none.',
+    },
+    nonSortable: { fr: 'Colonne non triable', en: 'Non-sortable column' },
+    useNonSortable: {
+      fr: '`sortable: false` laisse l’en-tête en simple `th` : ni bouton, ni `aria-sort`. Une colonne d’actions n’a rien à trier, et un bouton qui ne fait rien est pire qu’absent.',
+      en: '`sortable: false` leaves the header a plain `th`: no button, no `aria-sort`. An actions column has nothing to sort, and a button that does nothing is worse than none.',
+    },
+    searching: { fr: 'Recherche', en: 'Search' },
+    useSearching: {
+      fr: 'La barre d’outils reçoit `search` et `setSearch` : le champ est à vous, la recherche est ici. Elle ignore la casse et les accents — « eleonore » trouve « Éléonore » — et ramène à la première page, sinon on chercherait dans le vide.',
+      en: 'The toolbar receives `search` and `setSearch`: the field is yours, the searching is here. It ignores case and accents — “eleonore” finds “Éléonore” — and returns to the first page, otherwise you would be searching an empty one.',
+    },
+    filtering: { fr: 'Filtres', en: 'Filtering' },
+    useFiltering: {
+      fr: 'Les filtres vivent dans la page : vous passez les lignes déjà filtrées. Une prop `filters` générique finirait en langage de requête miniature, et chaque produit a ses critères.',
+      en: 'Filters live in the page: you pass rows already filtered. A generic `filters` prop would end up a miniature query language, and every product has its own criteria.',
+    },
+    selection: { fr: 'Sélection', en: 'Selection' },
+    useSelection: {
+      fr: 'Chaque case est nommée par `rowLabel` — « Sélectionner CMD-1043 » et non « Sélectionner 2 ». La case d’en-tête passe en `mixed` en sélection partielle, ce qui distingue « rien de coché » de « une partie ».',
+      en: 'Each checkbox is named by `rowLabel` — “Select CMD-1043”, not “Select 2”. The header checkbox goes `mixed` on a partial selection, which tells “nothing checked” apart from “some”.',
+    },
+    locked: { fr: 'Lignes verrouillées', en: 'Locked rows' },
+    useLocked: {
+      fr: 'Une ligne verrouillée n’a pas de case : un contrôle désactivé se remarque mal et ne dit pas pourquoi. Elle porte un cadenas et un texte masqué qui l’explique, et « tout cocher » l’ignore.',
+      en: 'A locked row has no checkbox: a disabled control is easy to miss and says nothing about why. It carries a padlock and hidden text that explains it, and “select all” skips it.',
+    },
+    exporting: { fr: 'Export', en: 'Export' },
+    useExporting: {
+      fr: 'Le composant **ne fabrique aucun fichier**. La barre d’outils reçoit les lignes visibles — filtrées et triées, dans l’ordre affiché — et les identifiants cochés. L’encodage, le séparateur et le format des dates sont des règles produit : un design system qui les choisit se trompe pour la moitié de ses consommateurs.',
+      en: 'The component **builds no file**. The toolbar receives the visible rows — filtered and sorted, in display order — and the checked ids. Encoding, separator, and date format are product rules: a design system that picks them is wrong for half its consumers.',
+    },
+    paging: { fr: 'Pagination', en: 'Paging' },
+    usePaging: {
+      fr: '`pageSize` découpe la table et rend une `Pagination` sous elle, nommée d’après la légende. Pour une autre disposition, `footer` la remplace : c’est là qu’on met un pied de carte.',
+      en: '`pageSize` slices the table and renders a `Pagination` beneath it, named after the caption. For another layout, `footer` replaces it: that is where a card footer goes.',
+    },
+    composed: { fr: 'Compositions', en: 'Compositions' },
+    useComposed: {
+      fr: 'Onglets, cartes, menus par ligne : ce sont des compositions, pas des props. Chaque table gardée sous un onglet a sa propre légende, masquée à l’écran mais lue — sinon trois tables se présentent toutes comme « Commandes ».',
+      en: 'Tabs, cards, per-row menus: these are compositions, not props. Each table under a tab keeps its own caption, hidden on screen but read — otherwise three tables all introduce themselves as “Orders”.',
+    },
+    a11yBody: {
+      fr: 'La table est nommée par sa `<caption>`, obligatoire : sans elle, le lecteur d’écran annonce « tableau, 5 colonnes » sans dire de quoi. Chaque en-tête porte `scope="col"`. Le tri passe par un `<button>` dans le `th`, et l’intitulé du tri est ajouté en texte masqué : le chevron seul ne dit pas ce que fait le clic.',
+      en: 'The table is named by its `<caption>`, which is required: without it a screen reader announces “table, 5 columns” without saying of what. Every header carries `scope="col"`. Sorting goes through a `<button>` inside the `th`, and the sort wording is added as hidden text: the chevron alone does not say what the click does.',
+    },
+    a11yKeys: {
+      fr: 'Le nombre de résultats est annoncé dans une région `status` après chaque recherche. Tab parcourt les en-têtes triables, les cases et les actions, dans l’ordre visuel. `labels` doit être fourni dans la langue de la page (3.1.2) ; sans lui, le composant retombe sur un fallback anglais.',
+      en: 'The result count is announced in a `status` region after each search. Tab moves through sortable headers, checkboxes, and actions, in visual order. `labels` must be supplied in the page’s language (3.1.2); without it the component falls back to English.',
+    },
+    doCaption: {
+      fr: 'Une `caption` qui dit ce que la table contient, pas « Tableau »',
+      en: 'A `caption` that says what the table holds, not “Table”',
+    },
+    doValue: {
+      fr: 'Une `value` brute, distincte du `cell` : on trie une date, pas son texte',
+      en: 'A raw `value`, distinct from `cell`: you sort a date, not its text',
+    },
+    doRowLabel: {
+      fr: 'Un `rowLabel` lisible : « Sélectionner CMD-1043 », jamais un identifiant',
+      en: 'A readable `rowLabel`: “Select CMD-1043”, never a bare id',
+    },
+    dontGrid: {
+      fr: 'Un `role="grid"` sur une liste : la navigation cellule par cellule est un coût, pas un bonus',
+      en: 'A `role="grid"` on a list: cell-by-cell navigation is a cost, not a bonus',
+    },
+    dontIndex: {
+      fr: 'Un `rowId` basé sur l’index : le tri le déplace, React réutilise la mauvaise ligne',
+      en: 'A `rowId` based on the index: sorting moves it, and React reuses the wrong row',
+    },
+    dontColor: {
+      fr: 'Un statut porté par la seule couleur d’une pastille, sans son mot (1.4.1)',
+      en: 'A status carried by a dot’s colour alone, without its word (1.4.1)',
+    },
+    propsBody: {
+      fr: 'Le composant est générique sur la ligne : `columns`, `rows` et `rowId` partagent le même type, et TypeScript vérifie que `value` lit un champ qui existe.',
+      en: 'The component is generic over the row: `columns`, `rows`, and `rowId` share one type, and TypeScript checks that `value` reads a field that exists.',
+    },
+  },
   dialog: {
     title: { fr: 'Dialog', en: 'Dialog' },
     intro: {

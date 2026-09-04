@@ -27,6 +27,8 @@ import {
   tabsCopy,
   breadcrumbCopy,
   paginationCopy,
+  dataTableCopy,
+  tableCopy,
   menuCopy,
   dialogCopy,
   loadingCopy,
@@ -44,7 +46,6 @@ import {
   accordionCopy,
   listCopy,
   sortableCopy,
-  tableCopy,
 } from '../.storybook/docs-locale';
 
 /** English MDX headings that must not appear: docs default language is French. */
@@ -208,6 +209,7 @@ describe('docs locale', () => {
     expect(keysOf(tabsCopy('fr'))).toEqual(keysOf(tabsCopy('en')));
     expect(keysOf(breadcrumbCopy('fr'))).toEqual(keysOf(breadcrumbCopy('en')));
     expect(keysOf(paginationCopy('fr'))).toEqual(keysOf(paginationCopy('en')));
+    expect(keysOf(dataTableCopy('fr'))).toEqual(keysOf(dataTableCopy('en')));
     expect(keysOf(menuCopy('fr'))).toEqual(keysOf(menuCopy('en')));
     expect(keysOf(dialogCopy('fr'))).toEqual(keysOf(dialogCopy('en')));
     expect(keysOf(loadingCopy('fr'))).toEqual(keysOf(loadingCopy('en')));

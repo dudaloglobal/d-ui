@@ -47,6 +47,8 @@ Une exception AA exige un sign-off Accessibilité **et** une décision produit �
 
 33. `Table` : vrai `<table>` (`TableHeader` / `TableBody` / `TableFooter` / `TableRow` / `TableHead` / `TableCell`), pas une grille de `div`. Légende (`caption` ou `TableCaption`) : nom du tableau. `TableHead` pose `scope="col"` dans l’en-tête, `scope="row"` ailleurs. `numeric` : chiffres tabulaires, alignement `end`, pas la couleur seule. Cellule vide : `TableEmpty` + `EmptyState` (titre `h2`). Si le contenu déborde, le conteneur devient tabulable (flèches) et, s’il est nommé, `role="region"` lié à la légende. `stickyHeader` est visuel. Tri / filtre / sélection : Data Table (DS-042).
 
+34. `DataTable` : **compose `Table`**, il ne redessine pas de tableau. Il en hérite donc la zone défilable qui devient un `region` nommé et atteignable au clavier dès qu'elle déborde (2.1.1), `size`, `stickyHeader` et le couple `align` / `numeric` sur les colonnes. Une vraie `<table>` nommée par sa `<caption>` (obligatoire ; `hideCaption` la masque sans la retirer — elle nomme encore la région). En-têtes en `th scope="col"` — l'association cellule/en-tête vient du HTML, pas d'ARIA. Pas de `role="grid"` sur une liste : la navigation cellule par cellule est un coût. Tri : un vrai `<button>` dans le `th`, cycle ascendant → descendant → aucun, `aria-sort` sur **une seule** colonne, et l'intitulé du tri en texte masqué (le chevron seul ne dit pas ce que fait le clic). `sortable: false` ne rend ni bouton ni `aria-sort`. Les cellules vides se rangent toujours en dernier, quel que soit le sens. Sélection : `Checkbox` nommée par `rowLabel` (jamais l'identifiant), en-tête en `aria-checked="mixed"` si partielle. Ligne verrouillée : pas de case du tout, un cadenas décoratif et un texte masqué qui dit pourquoi, exclue de « tout cocher ». Le nombre de résultats est annoncé dans une région `status`. `labels` dans la langue de la page (3.1.2), sinon fallback anglais. Le composant ne fabrique aucun fichier : `toolbar` reçoit les lignes visibles.
+
 ## Overlays — revue de PR
 
 Ces patterns s’appliquent dès qu’un Dialog, Menu, Popover ou Tooltip est proposé. Une PR qui les ignore n’est pas AA.
@@ -81,6 +83,7 @@ Un overlay modal pose `aria-modal="true"` et piège le Tab **à l’intérieur**
 | Pagination          | Boutons de page                     | Va à la page             | —      | —                                                      |
 | SortableList        | Poignées (`DragHandle`)             | Saisit / dépose          | Annule | Déplace l’élément saisi (axe selon `orientation`)      |
 | Table (débordement) | Région défilable si overflow        | —                        | —      | Défile le conteneur                                    |
+| DataTable           | En-têtes triables, cases, actions   | Trie / coche / active    | —      | —                                                      |
 
 Pas de `div` + `onKeyDown` si un élément natif existe (`dialog`, `button`, `a`).
 
