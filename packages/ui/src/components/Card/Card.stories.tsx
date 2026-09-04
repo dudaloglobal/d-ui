@@ -4,7 +4,7 @@ import { componentSource } from '../../../.storybook/docs-source';
 import { cardCopy, docsLocale } from '../../../.storybook/docs-locale';
 import { UI_COLORS, UI_SIZES } from '../../lib/uiScale';
 import { Avatar } from '../Avatar/Avatar';
-import { Badge } from '../Badge/Badge';
+import { Tag } from '../Tag/Tag';
 import { Button } from '../Button/Button';
 import {
   Card,
@@ -19,7 +19,7 @@ import {
 
 const importCard = `import {
     Avatar,
-    Badge,
+    Tag,
     Button,
     Card,
     CardBody,
@@ -341,7 +341,7 @@ export const Composition: Story = {
                 <CardTitle>Ada Lovelace</CardTitle>
                 <CardDescription>Mathématicienne</CardDescription>
             </div>
-            <Badge variant="success">Actif</Badge>
+            <Tag variant="success">Actif</Tag>
         </div>
     </CardHeader>
     <CardBody>Notes de lecture sur le moteur analytique.</CardBody>
@@ -361,7 +361,7 @@ export const Composition: Story = {
               <CardTitle>{copy.person}</CardTitle>
               <CardDescription>{copy.role}</CardDescription>
             </div>
-            <Badge variant="success">{copy.status}</Badge>
+            <Tag variant="success">{copy.status}</Tag>
           </div>
         </CardHeader>
         <CardBody>{copy.personBody}</CardBody>

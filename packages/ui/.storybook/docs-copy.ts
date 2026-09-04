@@ -92,8 +92,8 @@ export const docsCopy = {
       en: 'Consuming apps use:',
     },
     itemComponents: {
-      fr: 'les composants React (`Avatar`, `Badge`, `Button`, `Card`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Calendar`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
-      en: 'the React components (`Avatar`, `Badge`, `Button`, `Card`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Calendar`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      fr: 'les composants React (`Avatar`, `Badge`, `Tag`, `Button`, `Card`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Calendar`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
+      en: 'the React components (`Avatar`, `Badge`, `Tag`, `Button`, `Card`, `Text`, `Heading`, `Link`, `Icon`, `Field`, `TextInput`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Select`, `Combobox`, `Calendar`, `Tooltip`, `Popover`, `EmojiPopover`, `TimeAgo`, `ThemeProvider`, `SkipLink`, …)',
     },
     itemCssVars: {
       fr: 'les **variables CSS** `--d-ui-*`',
@@ -2767,8 +2767,76 @@ export const docsCopy = {
   },
   badge: {
     intro: {
-      fr: '`Badge` est une pastille de statut ou de catégorie (Tailwind Plus). Variantes `default`, `success`, `warning`, `danger`, `info`, `neutral`. Ce n’est pas un bouton, ni un `Alert`.',
-      en: '`Badge` is a status or category pill (Tailwind Plus). Variants `default`, `success`, `warning`, `danger`, `info`, `neutral`. It is not a button, and not an `Alert`.',
+      fr: '`Badge` pose un **compteur** ou un **point** sur un contrôle (`IconButton`, `Avatar`, `Button`). Ce n’est pas une pastille de libellé : « Publié » / « Brouillon » = `Tag`. L’incrustation compose `Tag` ; le nom passe par `label` sur l’hôte.',
+      en: '`Badge` puts a **count** or a **dot** on a control (`IconButton`, `Avatar`, `Button`). It is not a labelled pill: “Published” / “Draft” = `Tag`. The overlay composes `Tag`; the name is `label` on the host.',
+    },
+    capped: { fr: 'Plafond', en: 'Capped count' },
+    cappedBody: {
+      fr: '`max` (défaut `99`) affiche `99+` au-delà. Le `label` doit dire le vrai total (« 120 non lus »), pas seulement le texte visible.',
+      en: '`max` (default `99`) shows `99+` beyond that. `label` must say the real total (“120 unread”), not only the visible text.',
+    },
+    avatar: { fr: 'Sur un avatar', en: 'On an avatar' },
+    avatarBody: {
+      fr: 'Composez `Badge` autour d’un `Avatar` pour un compteur de messages. Le portrait garde son `name` ; `label` s’ajoute en description.',
+      en: 'Wrap `Badge` around an `Avatar` for a message count. The portrait keeps its `name`; `label` is added as a description.',
+    },
+    dot: { fr: 'Avec point', en: 'With a dot' },
+    dotBody: {
+      fr: '`dot` est un point de statut, sans chiffre. La couleur seule ne porte pas le sens : passez `label` (« En ligne »).',
+      en: '`dot` is a status dot, with no figure. Colour alone does not carry meaning: pass `label` (“Online”).',
+    },
+    zero: { fr: 'Zéro', en: 'Zero' },
+    zeroBody: {
+      fr: 'Un compteur à `0` est masqué. `showZero` l’affiche quand « aucun » doit rester visible.',
+      en: 'A `0` count is hidden. `showZero` displays it when “none” must stay visible.',
+    },
+    placement: { fr: 'Position', en: 'Placement' },
+    placementBody: {
+      fr: '`placement` pose l’incrustation sur un coin. `top-end` par défaut. `start` / `end` suivent `dir` (pas `left` / `right`).',
+      en: '`placement` pins the overlay to a corner. `top-end` by default. `start` / `end` follow `dir` (not `left` / `right`).',
+    },
+    content: { fr: 'Contenu', en: 'Content' },
+    contentBody: {
+      fr: '`content` remplace le chiffre (icône, « N », …). Un nombre est traité comme `count` (`max` s’applique). `label` reste obligatoire pour le nom.',
+      en: '`content` replaces the figure (icon, “N”, …). A number is treated as `count` (`max` applies). `label` is still required for the name.',
+    },
+    a11yBody: {
+      fr: 'L’hôte reste le contrôle (bouton, portrait). L’incrustation est `aria-hidden`. `label` est relié par `aria-describedby`. Pas de `role="status"` : un compteur n’est pas une alerte. Contraste de l’incrustation ≥ 4.5:1.',
+      en: 'The host stays the control (button, portrait). The overlay is `aria-hidden`. `label` is wired with `aria-describedby`. No `role="status"`: a count is not an alert. Overlay contrast ≥ 4.5:1.',
+    },
+    doHost: {
+      fr: 'Un seul hôte interactif ou nommé (`IconButton`, `Avatar`)',
+      en: 'A single interactive or named host (`IconButton`, `Avatar`)',
+    },
+    doLabel: {
+      fr: '`label` qui dit le compteur (« 5 non lus »), surtout si `max` tronque l’affichage',
+      en: '`label` that states the count (“5 unread”), especially when `max` truncates the display',
+    },
+    doTag: {
+      fr: '`Tag` pour un libellé de statut (« Publié »), `Badge` pour un compteur sur un contrôle',
+      en: '`Tag` for a status label (“Published”), `Badge` for a count on a control',
+    },
+    dontSpan: {
+      fr: 'Un `span` coloré tout seul : ce n’est pas un composant du design system',
+      en: 'A coloured `span` on its own: that is not a design-system component',
+    },
+    dontColor: {
+      fr: 'Un point ou un chiffre sans `label` ni nom d’hôte',
+      en: 'A dot or figure with no `label` and no host name',
+    },
+    dontPresence: {
+      fr: '`Badge dot` sur un `Avatar` qui a déjà `presence` : deux points',
+      en: '`Badge dot` on an `Avatar` that already has `presence`: two dots',
+    },
+    props: {
+      fr: '`count`, `content`, `max`, `showZero`, `dot`, `label`, `variant`, `color`, `appearance`, `size`, `placement`, `className`. Hôte : `children` (un élément).',
+      en: '`count`, `content`, `max`, `showZero`, `dot`, `label`, `variant`, `color`, `appearance`, `size`, `placement`, `className`. Host: `children` (one element).',
+    },
+  },
+  tag: {
+    intro: {
+      fr: '`Tag` est une **étiquette** de statut ou de catégorie (libellé visible). Variantes `default`, `success`, `warning`, `danger`, `info`, `neutral`. Ce n’est pas un bouton, ni un `Alert`, ni un `Badge` (compteur sur un contrôle).',
+      en: '`Tag` is a status or category **label** (visible text). Variants `default`, `success`, `warning`, `danger`, `info`, `neutral`. It is not a button, not an `Alert`, and not a `Badge` (count on a control).',
     },
     variants: { fr: 'Variantes', en: 'Variants' },
     variantsBody: {
@@ -2801,12 +2869,17 @@ export const docsCopy = {
     },
     dismissible: { fr: 'Fermable', en: 'Dismissible' },
     dismissibleBody: {
-      fr: '`dismissible` ajoute un vrai `<button>` pour retirer la pastille (filtre, étiquette). Passez `dismissLabel` et `onDismiss`. Pour la garder dans une liste, ne la rendez plus après `onDismiss`.',
-      en: '`dismissible` adds a real `<button>` to remove the pill (filter, tag). Pass `dismissLabel` and `onDismiss`. To keep it in a list, stop rendering it after `onDismiss`.',
+      fr: '`dismissible` ajoute un vrai `<button>`. `onDismiss` prévient l’app : **démontez** le `Tag` (liste filtrée). Le composant ne se cache pas tout seul.',
+      en: '`dismissible` adds a real `<button>`. `onDismiss` notifies the app: **unmount** the `Tag` (filtered list). The component does not hide itself.',
+    },
+    group: { fr: 'Groupe', en: 'Group' },
+    groupBody: {
+      fr: '`TagGroup` est un `role="group"` nommé. `max` masque le surplus derrière « +N » (`overflowLabel`).',
+      en: '`TagGroup` is a named `role="group"`. `max` hides the rest behind “+N” (`overflowLabel`).',
     },
     a11yBody: {
-      fr: '`span` non interactif, sauf le bouton fermer. Le nom vient du texte (ou `aria-label`). Icône et point sont `aria-hidden`. Fermeture : bouton nommé.',
-      en: 'Non-interactive `span`, except the dismiss button. The name comes from the text (or `aria-label`). Icon and dot are `aria-hidden`. Dismiss: named button.',
+      fr: '`span` non interactif, sauf le bouton fermer. Le nom vient du texte (ou `aria-label`). Icône et point sont `aria-hidden`. Fermeture : bouton nommé ; l’app retire le `Tag`.',
+      en: 'Non-interactive `span`, except the dismiss button. The name comes from the text (or `aria-label`). Icon and dot are `aria-hidden`. Dismiss: named button; the app removes the `Tag`.',
     },
     doText: {
       fr: 'Un libellé visible (« Publié », « Brouillon »), pas seulement une couleur',
@@ -2817,26 +2890,30 @@ export const docsCopy = {
       en: '`success` / `warning` / `danger` / `info` for a status; `neutral` for a category',
     },
     doDismiss: {
-      fr: '`dismissible` + `dismissLabel` pour retirer une étiquette, pas un `onClick` sur le `span`',
-      en: '`dismissible` + `dismissLabel` to remove a tag, not an `onClick` on the `span`',
+      fr: '`dismissible` + `dismissLabel` + retirer le `Tag` dans `onDismiss`',
+      en: '`dismissible` + `dismissLabel` + remove the `Tag` in `onDismiss`',
     },
     dontColor: {
       fr: 'Une pastille vide dont le seul indice est la couleur',
       en: 'An empty pill whose only cue is colour',
+    },
+    dontBadge: {
+      fr: '`Tag` pour un compteur sur une cloche : c’est `Badge`',
+      en: '`Tag` for a count on a bell: that is `Badge`',
     },
     dontButton: {
       fr: 'Un `onClick` sur le `span` : `Button` / `Link` pour une action, `dismissible` pour retirer',
       en: 'An `onClick` on the `span`: `Button` / `Link` for an action, `dismissible` to remove',
     },
     props: {
-      fr: '`variant`, `color`, `appearance`, `size`, `dot`, `icon`, `dismissible`, `dismissLabel`, `onDismiss`, `className`. Texte : `children`.',
-      en: '`variant`, `color`, `appearance`, `size`, `dot`, `icon`, `dismissible`, `dismissLabel`, `onDismiss`, `className`. Text: `children`.',
+      fr: '`variant`, `color`, `appearance`, `size`, `dot`, `icon`, `dismissible`, `dismissLabel`, `onDismiss`, `className`. Groupe : `max`, `label`, `overflowLabel`.',
+      en: '`variant`, `color`, `appearance`, `size`, `dot`, `icon`, `dismissible`, `dismissLabel`, `onDismiss`, `className`. Group: `max`, `label`, `overflowLabel`.',
     },
   },
   avatar: {
     intro: {
-      fr: '`Avatar` affiche une personne : photo, initiales, ou silhouette (Tailwind Plus). `AvatarGroup` empile les portraits. Pas de fiche LMS : composez avec `Card` et `Badge` dans l’app.',
-      en: '`Avatar` shows a person: photo, initials, or silhouette (Tailwind Plus). `AvatarGroup` stacks portraits. Not an LMS profile: compose with `Card` and `Badge` in the app.',
+      fr: '`Avatar` affiche une personne : photo, initiales, ou silhouette (Tailwind Plus). `AvatarGroup` empile les portraits. Pas de fiche LMS : composez avec `Card` et `Tag` dans l’app.',
+      en: '`Avatar` shows a person: photo, initials, or silhouette (Tailwind Plus). `AvatarGroup` stacks portraits. Not an LMS profile: compose with `Card` and `Tag` in the app.',
     },
     image: { fr: 'Photo', en: 'Photo' },
     imageBody: {
@@ -2974,8 +3051,8 @@ export const docsCopy = {
     },
     composition: { fr: 'Composition', en: 'Composition' },
     compositionBody: {
-      fr: 'Une carte personne combine `Avatar` + `Badge` + `Card`. Le domaine (cours, LMS) reste dans l’app.',
-      en: 'A person card combines `Avatar` + `Badge` + `Card`. Domain (course, LMS) stays in the app.',
+      fr: 'Une carte personne combine `Avatar` + `Tag` + `Card`. Le domaine (cours, LMS) reste dans l’app.',
+      en: 'A person card combines `Avatar` + `Tag` + `Card`. Domain (course, LMS) stays in the app.',
     },
     a11yBody: {
       fr: 'Statique : `article`. Interactive : `<a>` ou `<button>`, jamais un `div` + `onClick`. Carte-bouton indisponible : `disabled` natif. Le nom vient du `CardTitle` visible. Titre : `h3` par défaut.',

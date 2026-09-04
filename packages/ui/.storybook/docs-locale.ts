@@ -34,6 +34,11 @@ export const storyNameEn: Record<string, string> = {
   Indéterminé: 'Indeterminate',
   Tailles: 'Sizes',
   Groupe: 'Group',
+  Plafond: 'Capped count',
+  Position: 'Placement',
+  Contenu: 'Content',
+  'Sur un avatar': 'On an avatar',
+  Zéro: 'Zero',
   'Groupe horizontal': 'Horizontal group',
   Valide: 'Valid',
   'Texte de substitution': 'Placeholder',
@@ -1502,6 +1507,34 @@ export function errorStateCopy(locale: DocsLocale): ErrorStateDocsCopy {
 }
 
 const badgeFr = {
+  unread: '5 non lus',
+  unreadMany: '120 non lus',
+  unreadZero: '0 non lus',
+  notifications: 'Notifications',
+  messages: '3 messages',
+  ada: 'Ada Lovelace',
+  online: 'En ligne',
+  newMark: 'Nouveau',
+};
+
+const badgeEn = {
+  unread: '5 unread',
+  unreadMany: '120 unread',
+  unreadZero: '0 unread',
+  notifications: 'Notifications',
+  messages: '3 messages',
+  ada: 'Ada Lovelace',
+  online: 'Online',
+  newMark: 'New',
+};
+
+export type BadgeDocsCopy = typeof badgeFr;
+
+export function badgeCopy(locale: DocsLocale): BadgeDocsCopy {
+  return locale === 'en' ? badgeEn : badgeFr;
+}
+
+const tagFr = {
   defaultLabel: 'Nouveau',
   success: 'Publié',
   warning: 'Brouillon',
@@ -1512,9 +1545,14 @@ const badgeFr = {
   solid: 'Plein',
   outline: 'Contour',
   dismiss: 'Retirer',
+  groupLabel: 'Filtres',
+  algebra: 'Algèbre',
+  geometry: 'Géométrie',
+  analysis: 'Analyse',
+  probability: 'Probabilités',
 };
 
-const badgeEn = {
+const tagEn = {
   defaultLabel: 'New',
   success: 'Published',
   warning: 'Draft',
@@ -1525,12 +1563,17 @@ const badgeEn = {
   solid: 'Solid',
   outline: 'Outline',
   dismiss: 'Remove',
+  groupLabel: 'Filters',
+  algebra: 'Algebra',
+  geometry: 'Geometry',
+  analysis: 'Analysis',
+  probability: 'Probability',
 };
 
-export type BadgeDocsCopy = typeof badgeFr;
+export type TagDocsCopy = typeof tagFr;
 
-export function badgeCopy(locale: DocsLocale): BadgeDocsCopy {
-  return locale === 'en' ? badgeEn : badgeFr;
+export function tagCopy(locale: DocsLocale): TagDocsCopy {
+  return locale === 'en' ? tagEn : tagFr;
 }
 
 const avatarFr = {

@@ -12,47 +12,41 @@ import * as BadgeStories from './Badge.stories';
 
 <Canvas of={BadgeStories.Default} />
 
-<H2 k="badge.variants" />
+<H2 k="badge.capped" />
 
-<P k="badge.variantsBody" />
+<P k="badge.cappedBody" />
 
-<Canvas of={BadgeStories.Variants} />
+<Canvas of={BadgeStories.Capped} />
 
-<H2 k="badge.appearances" />
+<H2 k="badge.avatar" />
 
-<P k="badge.appearancesBody" />
+<P k="badge.avatarBody" />
 
-<Canvas of={BadgeStories.Appearances} />
-
-<H2 k="chrome.sizes" />
-
-<P k="badge.sizesBody" />
-
-<Canvas of={BadgeStories.Sizes} />
-
-<H2 k="badge.color" />
-
-<P k="badge.colorBody" />
-
-<Canvas of={BadgeStories.Colors} />
-
-<H2 k="badge.icon" />
-
-<P k="badge.iconBody" />
-
-<Canvas of={BadgeStories.WithIcon} />
+<Canvas of={BadgeStories.OnAvatar} />
 
 <H2 k="badge.dot" />
 
 <P k="badge.dotBody" />
 
-<Canvas of={BadgeStories.WithDot} />
+<Canvas of={BadgeStories.Dot} />
 
-<H2 k="badge.dismissible" />
+<H2 k="badge.zero" />
 
-<P k="badge.dismissibleBody" />
+<P k="badge.zeroBody" />
 
-<Canvas of={BadgeStories.Dismissible} />
+<Canvas of={BadgeStories.Zero} />
+
+<H2 k="badge.placement" />
+
+<P k="badge.placementBody" />
+
+<Canvas of={BadgeStories.Placement} />
+
+<H2 k="badge.content" />
+
+<P k="badge.contentBody" />
+
+<Canvas of={BadgeStories.Content} />
 
 <H2 k="chrome.accessibility" />
 
@@ -60,11 +54,11 @@ import * as BadgeStories from './Badge.stories';
 
 <H3 k="chrome.do" />
 
-<Ul items={['badge.doText', 'badge.doVariant', 'badge.doDismiss']} />
+<Ul items={['badge.doHost', 'badge.doLabel', 'badge.doTag']} />
 
 <H3 k="chrome.dont" />
 
-<Ul items={['badge.dontColor', 'badge.dontButton']} />
+<Ul items={['badge.dontSpan', 'badge.dontColor', 'badge.dontPresence']} />
 
 <P k="chrome.themeLang" />
 
@@ -75,14 +69,17 @@ import * as BadgeStories from './Badge.stories';
 <ArgTypes
   of={BadgeStories}
   include={[
+    'count',
+    'content',
+    'max',
+    'showZero',
+    'dot',
+    'label',
     'variant',
     'color',
     'appearance',
     'size',
+    'placement',
     'className',
-    'dot',
-    'icon',
-    'dismissible',
-    'dismissLabel',
   ]}
 />
