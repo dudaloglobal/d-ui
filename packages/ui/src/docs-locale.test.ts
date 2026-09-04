@@ -38,6 +38,7 @@ import {
   navbarCopy,
   sidebarCopy,
   badgeCopy,
+  tagCopy,
   avatarCopy,
   cardCopy,
   accordionCopy,
@@ -164,6 +165,11 @@ const ENGLISH_HEADINGS = [
   'Sticky header',
   'Table footer',
   'Row header',
+  'Capped count',
+  'On an avatar',
+  'Zero',
+  'Placement',
+  'Content',
 ];
 
 function collectMdx(dir: string): string[] {
@@ -213,6 +219,7 @@ describe('docs locale', () => {
     expect(keysOf(navbarCopy('fr'))).toEqual(keysOf(navbarCopy('en')));
     expect(keysOf(sidebarCopy('fr'))).toEqual(keysOf(sidebarCopy('en')));
     expect(keysOf(badgeCopy('fr'))).toEqual(keysOf(badgeCopy('en')));
+    expect(keysOf(tagCopy('fr'))).toEqual(keysOf(tagCopy('en')));
     expect(keysOf(avatarCopy('fr'))).toEqual(keysOf(avatarCopy('en')));
     expect(keysOf(cardCopy('fr'))).toEqual(keysOf(cardCopy('en')));
     expect(keysOf(accordionCopy('fr'))).toEqual(keysOf(accordionCopy('en')));

@@ -1,0 +1,95 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as TagStories from './Tag.stories';
+
+<Meta of={TagStories} />
+
+# Tag
+
+<P k="tag.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={TagStories.Default} />
+
+<H2 k="tag.variants" />
+
+<P k="tag.variantsBody" />
+
+<Canvas of={TagStories.Variants} />
+
+<H2 k="tag.appearances" />
+
+<P k="tag.appearancesBody" />
+
+<Canvas of={TagStories.Appearances} />
+
+<H2 k="chrome.sizes" />
+
+<P k="tag.sizesBody" />
+
+<Canvas of={TagStories.Sizes} />
+
+<H2 k="tag.color" />
+
+<P k="tag.colorBody" />
+
+<Canvas of={TagStories.Colors} />
+
+<H2 k="tag.icon" />
+
+<P k="tag.iconBody" />
+
+<Canvas of={TagStories.WithIcon} />
+
+<H2 k="tag.dot" />
+
+<P k="tag.dotBody" />
+
+<Canvas of={TagStories.WithDot} />
+
+<H2 k="tag.dismissible" />
+
+<P k="tag.dismissibleBody" />
+
+<Canvas of={TagStories.Dismissible} />
+
+<H2 k="tag.group" />
+
+<P k="tag.groupBody" />
+
+<Canvas of={TagStories.Group} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="tag.a11yBody" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['tag.doText', 'tag.doVariant', 'tag.doDismiss']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['tag.dontColor', 'tag.dontBadge', 'tag.dontButton']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="tag.props" />
+
+<ArgTypes
+  of={TagStories}
+  include={[
+    'variant',
+    'color',
+    'appearance',
+    'size',
+    'className',
+    'dot',
+    'icon',
+    'dismissible',
+    'dismissLabel',
+    'onDismiss',
+  ]}
+/>

@@ -119,6 +119,8 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('Avatar | Dudalo Design System');
   await page.goto('/?path=/docs/components-badge--docs');
   await expect(page).toHaveTitle('Badge | Dudalo Design System');
+  await page.goto('/?path=/docs/components-tag--docs');
+  await expect(page).toHaveTitle('Tag | Dudalo Design System');
   await page.goto('/?path=/docs/components-card--docs');
   await expect(page).toHaveTitle('Card | Dudalo Design System');
   await page.goto('/?path=/docs/components-accordion--docs');
@@ -152,6 +154,7 @@ test('component docs H1 is the component name, like Link', async ({ page }) => {
     { id: 'components-sidebar--docs', name: 'Sidebar' },
     { id: 'components-avatar--docs', name: 'Avatar' },
     { id: 'components-badge--docs', name: 'Badge' },
+    { id: 'components-tag--docs', name: 'Tag' },
     { id: 'components-card--docs', name: 'Card' },
     { id: 'components-accordion--docs', name: 'Accordion' },
     { id: 'components-list--docs', name: 'List' },

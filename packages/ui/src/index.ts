@@ -36,10 +36,20 @@ export type {
   AvatarProps,
   AvatarSize,
 } from './components/Avatar/Avatar';
+export { Tag, TagGroup } from './components/Tag/Tag';
+export type {
+  TagAppearance,
+  TagColor,
+  TagGroupProps,
+  TagProps,
+  TagSize,
+  TagVariant,
+} from './components/Tag/Tag';
 export { Badge } from './components/Badge/Badge';
 export type {
   BadgeAppearance,
   BadgeColor,
+  BadgePlacement,
   BadgeProps,
   BadgeSize,
   BadgeVariant,

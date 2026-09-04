@@ -1344,7 +1344,7 @@ export const sidebarArgTypes = {
   },
 };
 
-export const badgeArgTypes = {
+export const tagArgTypes = {
   variant: {
     control: 'inline-radio' as const,
     options: ['default', 'success', 'warning', 'danger', 'info', 'neutral'],
@@ -1373,12 +1373,66 @@ export const badgeArgTypes = {
   },
   dismissible: {
     control: 'boolean' as const,
-    description: 'Affiche un bouton pour retirer la pastille. Passez `dismissLabel`.',
+    description:
+      'Affiche un bouton pour retirer l’étiquette. L’app démonte le `Tag` après `onDismiss`.',
   },
   dismissLabel: {
     control: 'text' as const,
     description: 'Nom du bouton fermer. Fallback anglais : `Remove`.',
   },
+  onDismiss: {
+    description:
+      'Appelé au clic sur fermer. L’app démonte le `Tag` ; le composant ne se cache pas.',
+  },
+};
+
+export const badgeArgTypes = {
+  count: {
+    control: 'number' as const,
+    description:
+      'Compteur posé sur l’hôte. Masqué si `0` sauf `showZero`. Plafonné par `max` (`99+`).',
+  },
+  content: {
+    description: 'Contenu d’incrustation. Un nombre est traité comme `count`.',
+  },
+  max: {
+    control: 'number' as const,
+    description: 'Plafond affiché. Défaut : `99` (`99+` au-delà).',
+  },
+  showZero: {
+    control: 'boolean' as const,
+    description: 'Affiche le compteur même à `0`.',
+  },
+  dot: {
+    control: 'boolean' as const,
+    description: 'Point de statut, sans chiffre. `label` porte le sens (1.4.1).',
+  },
+  label: {
+    control: 'text' as const,
+    description:
+      'Annoncé via `aria-describedby` sur l’hôte. Fallback : le chiffre visible.',
+  },
+  variant: {
+    control: 'inline-radio' as const,
+    options: ['default', 'success', 'warning', 'danger', 'info', 'neutral'],
+    description: 'Couleur de l’incrustation. `danger` par défaut (compteur).',
+  },
+  color: {
+    ...uiColorArgType,
+    description: 'Teinte de l’incrustation. Si absente, dérivée de `variant`.',
+  },
+  appearance: {
+    control: 'inline-radio' as const,
+    options: ['soft', 'solid', 'outline'],
+    description: 'Chrome de l’incrustation. `solid` par défaut.',
+  },
+  size: uiSizeArgType,
+  placement: {
+    control: 'select' as const,
+    options: ['top-end', 'top-start', 'bottom-end', 'bottom-start'],
+    description: 'Coin de l’hôte. `top-end` par défaut (logique : suit `dir`).',
+  },
+  className: classNameArgType,
 };
 
 export const avatarArgTypes = {

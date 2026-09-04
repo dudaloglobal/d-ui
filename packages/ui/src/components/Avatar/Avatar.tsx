@@ -153,6 +153,7 @@ export function Avatar({
           <img
             src={src}
             alt={wrapName ? '' : imageAlt}
+            aria-describedby={wrapName ? undefined : rest['aria-describedby']}
             className="size-full object-cover"
             onError={() => setFailed(true)}
           />
