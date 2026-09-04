@@ -1,0 +1,36 @@
+import{u as j,j as s,M as m,P as e,C as a,a as o,b as i,U as d,A as c}from"./iframe-CwN-tBdP.js";import{B as r,D as b,V as g,A as p,S as k,C as l,W as f,a as h,b as u}from"./Badge.stories-Dv4VBRSF.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-OipRHc-K.js";import"./docs-source-C_O40UCi.js";import"./Icon-Ce-yi8vw.js";import"./Badge-CuNrIRvR.js";import"./uiScale-XvgKbea-.js";import"./FeedbackIcons-C46FFFN0.js";import"./CheckIcon-CXcyIWOT.js";function x(n){const t={h1:"h1",...j(),...n.components};return s.jsxs(s.Fragment,{children:[s.jsx(m,{of:r}),`
+`,s.jsx(t.h1,{id:"badge",children:"Badge"}),`
+`,s.jsx(e,{k:"badge.intro"}),`
+`,s.jsx(e,{k:"chrome.examplesFollow"}),`
+`,s.jsx(a,{of:b}),`
+`,s.jsx(o,{k:"badge.variants"}),`
+`,s.jsx(e,{k:"badge.variantsBody"}),`
+`,s.jsx(a,{of:g}),`
+`,s.jsx(o,{k:"badge.appearances"}),`
+`,s.jsx(e,{k:"badge.appearancesBody"}),`
+`,s.jsx(a,{of:p}),`
+`,s.jsx(o,{k:"chrome.sizes"}),`
+`,s.jsx(e,{k:"badge.sizesBody"}),`
+`,s.jsx(a,{of:k}),`
+`,s.jsx(o,{k:"badge.color"}),`
+`,s.jsx(e,{k:"badge.colorBody"}),`
+`,s.jsx(a,{of:l}),`
+`,s.jsx(o,{k:"badge.icon"}),`
+`,s.jsx(e,{k:"badge.iconBody"}),`
+`,s.jsx(a,{of:f}),`
+`,s.jsx(o,{k:"badge.dot"}),`
+`,s.jsx(e,{k:"badge.dotBody"}),`
+`,s.jsx(a,{of:h}),`
+`,s.jsx(o,{k:"badge.dismissible"}),`
+`,s.jsx(e,{k:"badge.dismissibleBody"}),`
+`,s.jsx(a,{of:u}),`
+`,s.jsx(o,{k:"chrome.accessibility"}),`
+`,s.jsx(e,{k:"badge.a11yBody"}),`
+`,s.jsx(i,{k:"chrome.do"}),`
+`,s.jsx(d,{items:["badge.doText","badge.doVariant","badge.doDismiss"]}),`
+`,s.jsx(i,{k:"chrome.dont"}),`
+`,s.jsx(d,{items:["badge.dontColor","badge.dontButton"]}),`
+`,s.jsx(e,{k:"chrome.themeLang"}),`
+`,s.jsx(o,{k:"chrome.properties"}),`
+`,s.jsx(e,{k:"badge.props"}),`
+`,s.jsx(c,{of:r,include:["variant","color","appearance","size","className","dot","icon","dismissible","dismissLabel"]})]})}function V(n={}){const{wrapper:t}={...j(),...n.components};return t?s.jsx(t,{...n,children:s.jsx(x,{...n})}):x(n)}export{V as default};
