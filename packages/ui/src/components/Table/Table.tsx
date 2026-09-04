@@ -107,11 +107,7 @@ export function Table({
 
     const observer = new ResizeObserver(update);
     observer.observe(node);
-    window.addEventListener('resize', update);
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('resize', update);
-    };
+    return () => observer.disconnect();
   }, [children, caption, size, stickyHeader]);
 
   const named = hasCaption || Boolean(ariaLabel);
@@ -157,7 +153,7 @@ export function Table({
 export type TableCaptionProps = HTMLAttributes<HTMLTableCaptionElement>;
 
 /** Légende native. Premier enfant du `<table>` ; porte le nom accessible. */
-export function TableCaption({ className, id, children, ...rest }: TableCaptionProps) {
+export function TableCaption({ className, children, ...rest }: TableCaptionProps) {
   const table = useTableContext('TableCaption');
   const { setHasCaption, captionId } = table;
 
@@ -169,7 +165,7 @@ export function TableCaption({ className, id, children, ...rest }: TableCaptionP
   return (
     <caption
       {...rest}
-      id={id ?? captionId}
+      id={captionId}
       className={cx('caption-top mb-2 text-start text-sm font-medium text-fg', className)}
     >
       {children}

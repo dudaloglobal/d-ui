@@ -3211,6 +3211,11 @@ export const docsCopy = {
       fr: '`numeric` aligne à la fin, pose des chiffres tabulaires (`tabular-nums`) et empêche le retour à la ligne. L’en-tête de colonne doit porter le même `numeric` que les cellules, sinon la colonne « danse ». Ce n’est pas un formatage métier (devise, note) : l’app formate la valeur.',
       en: '`numeric` aligns to the end, sets tabular figures (`tabular-nums`), and prevents wrapping. The column header must use the same `numeric` as the cells, or the column will wobble. This is not domain formatting (currency, grade): the app formats the value.',
     },
+    align: { fr: 'Alignements', en: 'Alignments' },
+    alignBody: {
+      fr: '`align` (`start` / `center` / `end`) sur `TableHead` et `TableCell`. `numeric` force `end` si `align` est omis ; passez `align="start"` pour garder des chiffres à gauche. `start` / `end` suivent `dir`.',
+      en: '`align` (`start` / `center` / `end`) on `TableHead` and `TableCell`. `numeric` forces `end` when `align` is omitted; pass `align="start"` to keep figures on the left. `start` / `end` follow `dir`.',
+    },
     caption: { fr: 'Légende', en: 'Caption' },
     captionBody: {
       fr: '`caption` (prop) ou `TableCaption` rend un vrai `<caption>` : c’est le **nom** du tableau (et de la région défilable s’il déborde). Un `aria-label` suffit si la légende ne peut pas être visible. Ne pas dupliquer les deux.',

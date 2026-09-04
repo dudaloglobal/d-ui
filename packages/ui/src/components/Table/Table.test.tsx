@@ -134,6 +134,29 @@ describe('Table', () => {
     expect(averageCell.className).toContain('text-end');
   });
 
+  it('honours an explicit align on header and cell', () => {
+    render(
+      <Table caption="Notes">
+        <TableHeader>
+          <TableRow>
+            <TableHead align="center">Statut</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell align="center">Admise</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    expect(screen.getByRole('columnheader', { name: 'Statut' }).className).toContain(
+      'text-center',
+    );
+    expect(screen.getByRole('cell', { name: 'Admise' }).className).toContain(
+      'text-center',
+    );
+  });
+
   it('renders a footer row for totals', () => {
     const { container } = render(<Grades footer numeric />);
     expect(container.querySelector('tfoot')).toBeInTheDocument();

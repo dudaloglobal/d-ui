@@ -163,6 +163,55 @@ export const Numeric: Story = {
   },
 };
 
+export const Align: Story = {
+  name: 'Alignements',
+  parameters: componentSource(
+    importTable,
+    `<Table caption="Notes du trimestre">
+    <TableHeader>
+        <TableRow>
+            <TableHead>Élève</TableHead>
+            <TableHead align="center">Statut</TableHead>
+            <TableHead numeric>Moyenne</TableHead>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        <TableRow>
+            <TableCell>Ada Lovelace</TableCell>
+            <TableCell align="center">Admise</TableCell>
+            <TableCell numeric>18,5</TableCell>
+        </TableRow>
+    </TableBody>
+</Table>`,
+  ),
+  render: (args, { globals }) => {
+    const copy = tableCopy(docsLocale(globals.locale));
+    return (
+      <Table {...args} caption={copy.caption}>
+        <TableHeader>
+          <TableRow>
+            <TableHead>{copy.student}</TableHead>
+            <TableHead align="center">{copy.status}</TableHead>
+            <TableHead numeric>{copy.average}</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>{copy.ada}</TableCell>
+            <TableCell align="center">{copy.admitted}</TableCell>
+            <TableCell numeric>{copy.averageAda}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>{copy.grace}</TableCell>
+            <TableCell align="center">{copy.admitted}</TableCell>
+            <TableCell numeric>{copy.averageGrace}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+  },
+};
+
 export const Caption: Story = {
   name: 'Légende',
   parameters: componentSource(
