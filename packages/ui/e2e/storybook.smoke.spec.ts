@@ -476,7 +476,7 @@ test('Button high emphasis covers Default, Disabled, Loading, With Icon, Dropdow
   const loading = page.getByRole('button', { name: 'Enregistrement' });
   await expect(loading).toBeDisabled();
   await expect(loading).toHaveAttribute('aria-busy', 'true');
-  await expect(loading.locator('.d-ui-button-spinner')).toBeVisible();
+  await expect(loading.locator('.d-ui-spinner')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Avec icône' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Menu' })).toHaveAttribute(
     'aria-haspopup',
@@ -508,15 +508,15 @@ test('Button loading story shows spinner and bounce on each emphasis and IconBut
     await expect(button).toHaveAttribute('aria-busy', 'true');
     await expect(button).toBeDisabled();
   }
-  await expect(page.locator('.d-ui-button-spinner')).toHaveCount(4);
+  await expect(page.locator('.d-ui-spinner')).toHaveCount(4);
   await expect(page.locator('.d-ui-button-bounce')).toHaveCount(4);
   const iconOnly = page.getByRole('button', { name: 'Ajouter' });
   await expect(iconOnly).toHaveCount(2);
-  await expect(iconOnly.nth(0).locator('.d-ui-button-spinner')).toBeVisible();
+  await expect(iconOnly.nth(0).locator('.d-ui-spinner')).toBeVisible();
   await expect(iconOnly.nth(1).locator('.d-ui-button-bounce')).toBeVisible();
   await expect(page.locator('.d-ui-button-bounce > span')).toHaveCount(12);
   const spinnerDuration = await page
-    .locator('.d-ui-button-spinner')
+    .locator('.d-ui-spinner')
     .first()
     .evaluate((el) => getComputedStyle(el).animationDuration);
   expect(spinnerDuration === '0.9s' || spinnerDuration === '900ms').toBeTruthy();

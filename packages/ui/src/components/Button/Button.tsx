@@ -47,8 +47,19 @@ const sizeClass: Record<ButtonSize, string> = {
   lg: 'h-12 px-5 text-lg',
 };
 
-function Spinner() {
-  return <span className="d-ui-button-spinner" aria-hidden="true" />;
+/*
+ * Les deux indicateurs sont décoratifs et symétriques : la mécanique
+ * d'animation vit dans la feuille de styles (`.d-ui-spinner`,
+ * `.d-ui-button-bounce`), pas dans un composant exporté. L'anneau se dimensionne
+ * en `1em` pour suivre la taille du bouton sans table de correspondance.
+ */
+function Ring() {
+  return (
+    <span
+      className="d-ui-spinner inline-block size-[1em] shrink-0 border-2"
+      aria-hidden="true"
+    />
+  );
 }
 
 function Bounce() {
@@ -114,7 +125,8 @@ export function Button({
         className,
       )}
     >
-      {loading ? loadingIndicator === 'bounce' ? <Bounce /> : <Spinner /> : null}
+      {/* Sans `label` : décoratif. Le bouton porte déjà `aria-busy` et son libellé. */}
+      {loading ? loadingIndicator === 'bounce' ? <Bounce /> : <Ring /> : null}
       {showStartIcon ? <IconSlot>{icon}</IconSlot> : null}
       {children}
       {showEndIcon ? <IconSlot>{icon}</IconSlot> : null}

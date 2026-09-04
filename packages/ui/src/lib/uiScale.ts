@@ -39,11 +39,37 @@ export const uiColorInkClass: Record<UiColor, string> = {
   neutral: 'text-fg',
 };
 
+/**
+ * Contour de la même teinte.
+ *
+ * `neutral` suit `uiColorInkClass` et prend l'encre du texte, **pas**
+ * `border-border` : ce jeton est celui des éléments inertes, et un composant
+ * qui l'emploierait pour marquer un état actif rendrait cet état indiscernable
+ * de son voisin au repos.
+ */
+export const uiColorBorderClass: Record<UiColor, string> = {
+  brand: 'border-brand',
+  success: 'border-success',
+  warning: 'border-warning',
+  danger: 'border-danger',
+  info: 'border-info',
+  neutral: 'border-fg',
+};
+
+/**
+ * Fond teinté discret. `neutral` ne rend rien : c'est au fond par défaut de
+ * s'appliquer.
+ *
+ * `percent` est le poids de la teinte dans le mélange. 14 % suffit derrière du
+ * texte, qu'il ne faut pas gêner ; un aplat sans texte a besoin de plus pour
+ * qu'on voie qu'il est teinté du tout.
+ */
 export function uiColorSoftStyle(
   color: UiColor,
+  percent = 14,
 ): { backgroundColor: string } | undefined {
   if (color === 'neutral') return undefined;
   return {
-    backgroundColor: `color-mix(in srgb, var(${uiColorToken[color]}) 14%, var(--d-ui-color-bg))`,
+    backgroundColor: `color-mix(in srgb, var(${uiColorToken[color]}) ${percent}%, var(--d-ui-color-bg))`,
   };
 }

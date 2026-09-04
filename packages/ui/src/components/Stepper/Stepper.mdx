@@ -1,0 +1,110 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as StepperStories from './Stepper.stories';
+
+<Meta of={StepperStories} />
+
+# Stepper
+
+<P k="stepper.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={StepperStories.Default} />
+
+<P k="stepper.statusBody" />
+
+<H2 k="stepper.variants" />
+
+<P k="stepper.variantsBody" />
+
+<H3 k="stepper.detailed" />
+
+<P k="stepper.useDetailed" />
+
+<Canvas of={StepperStories.Detailed} />
+
+<H3 k="stepper.compact" />
+
+<P k="stepper.useBullets" />
+
+<Canvas of={StepperStories.Bullets} />
+
+<Canvas of={StepperStories.BulletsWithText} />
+
+<H3 k="stepper.boxed" />
+
+<P k="stepper.usePanels" />
+
+<Canvas of={StepperStories.Panels} />
+
+<Canvas of={StepperStories.PanelsBordered} />
+
+<P k="stepper.useBreadcrumb" />
+
+<Canvas of={StepperStories.BreadcrumbForm} />
+
+<H3 k="stepper.verticalHeading" />
+
+<P k="stepper.useVertical" />
+
+<Canvas of={StepperStories.Vertical} />
+
+<P k="stepper.useTimeline" />
+
+<Canvas of={StepperStories.Timeline} />
+
+<H2 k="stepper.links" />
+
+<P k="stepper.useLinks" />
+
+<Canvas of={StepperStories.Links} />
+
+<H2 k="stepper.withProgress" />
+
+<P k="stepper.useWithProgress" />
+
+<Canvas of={StepperStories.WithProgress} />
+
+<H2 k="stepper.withForm" />
+
+<P k="stepper.useWithForm" />
+
+<Canvas of={StepperStories.WithForm} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="stepper.a11yBody" />
+
+<P k="stepper.a11yKeys" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['stepper.doStatus', 'stepper.doNav', 'stepper.doDerive']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['stepper.dontColor', 'stepper.dontLink', 'stepper.dontTabs']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="stepper.propsBody" />
+
+<ArgTypes
+  of={StepperStories}
+  include={[
+    'steps',
+    'current',
+    'variant',
+    'orientation',
+    'size',
+    'color',
+    'label',
+    'hideLabels',
+    'bordered',
+    'statusLabels',
+    'className',
+  ]}
+/>

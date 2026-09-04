@@ -46,7 +46,7 @@ describe('Button', () => {
     const button = screen.getByRole('button', { name: 'Enregistrer' });
     expect(button).toHaveAttribute('aria-busy', 'true');
     expect(button).toBeDisabled();
-    expect(button.querySelector('.d-ui-button-spinner')).not.toBeNull();
+    expect(button.querySelector('.d-ui-spinner')).not.toBeNull();
     await user.click(button);
     expect(onClick).not.toHaveBeenCalled();
   });
@@ -64,7 +64,7 @@ describe('Button', () => {
     expect(bounce).not.toBeNull();
     expect(bounce).toHaveAttribute('aria-hidden', 'true');
     expect(bounce?.children).toHaveLength(3);
-    expect(button.querySelector('.d-ui-button-spinner')).toBeNull();
+    expect(button.querySelector('.d-ui-spinner')).toBeNull();
     expect(button).not.toHaveAttribute('loadingindicator');
   });
 
@@ -85,7 +85,7 @@ describe('Button', () => {
     );
     const button = screen.getByRole('button', { name: 'Ajouter' });
     expect(button.querySelector('svg')).toBeNull();
-    expect(button.querySelector('.d-ui-button-spinner')).not.toBeNull();
+    expect(button.querySelector('.d-ui-spinner')).not.toBeNull();
   });
 
   it('keeps the text name when an icon is present', () => {

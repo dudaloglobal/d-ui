@@ -252,7 +252,11 @@ export function Dialog({
                       )}
                       aria-hidden="true"
                     >
-                      <span className="d-ui-button-spinner text-brand size-8" />
+                      {/* Décoratif : le panneau porte déjà `aria-busy`. */}
+                      <span
+                        className="d-ui-spinner text-brand inline-block size-8 shrink-0 border-[3px]"
+                        aria-hidden="true"
+                      />
                     </div>
                   ) : null}
                 </DialogContext.Provider>

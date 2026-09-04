@@ -6,6 +6,7 @@ import {
   isValidElement,
 } from 'react';
 import { cx } from '../../lib/cx';
+import { SkeletonText } from '../Skeleton/Skeleton';
 import {
   flattenSelectItems,
   isSelectGroup,
@@ -87,7 +88,9 @@ export function SelectListbox({
       {beforeOptions && showOptions ? (
         <div className="border-b border-border py-1">{beforeOptions}</div>
       ) : null}
-      {loading ? <ListSkeleton count={4} /> : null}
+      {loading ? (
+        <SkeletonText lines={4} lastLineWidth="100%" className="px-3 py-2" />
+      ) : null}
       {error ? (
         <div className="px-3 py-3 text-sm" role="alert">
           <p className="font-medium text-danger">{listErrorMessage}</p>
@@ -148,17 +151,9 @@ export function SelectListbox({
             );
           })
         : null}
-      {listStatus === 'loadingMore' ? <ListSkeleton count={1} /> : null}
-    </div>
-  );
-}
-
-function ListSkeleton({ count }: { count: number }) {
-  return (
-    <div className="flex flex-col gap-2 px-3 py-2" aria-hidden="true">
-      {Array.from({ length: count }, (_, index) => (
-        <div key={index} className="h-4 animate-pulse rounded bg-fg/15" />
-      ))}
+      {listStatus === 'loadingMore' ? (
+        <SkeletonText lines={1} className="px-3 py-2" />
+      ) : null}
     </div>
   );
 }

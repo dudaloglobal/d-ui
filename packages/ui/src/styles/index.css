@@ -51,14 +51,56 @@
   }
 }
 
-.d-ui-button-spinner {
+/*
+ * Un seul anneau d'attente dans le design system, et ce n'est pas un composant :
+ * cette classe porte toute la mécanique de rotation, et rien d'autre.
+ *
+ * Elle ne pose ni taille ni épaisseur de trait — volontairement. Les poser ici
+ * les rendrait impossibles à reprendre : une règle hors `@layer` bat les
+ * utilitaires Tailwind, et `size-*` / `border-*` sur l'appelant ne pourraient
+ * plus rien. L'appelant donne donc les deux (`Button` : `size-[1em] border-2`,
+ * `Dialog` : `size-8 border-[3px]`), qui sont ses mesures à lui, pas une table
+ * partagée recopiée.
+ */
+.d-ui-spinner {
   box-sizing: border-box;
-  width: 1em;
-  height: 1em;
-  border: 2px solid currentColor;
+  border-style: solid;
+  border-color: currentColor;
   border-right-color: transparent;
   border-radius: 9999px;
   animation: d-ui-spin 0.9s linear infinite;
+}
+
+/*
+ * Squelette : pulsation d'opacité seulement. Pas de dégradé qui balaie — un
+ * mouvement horizontal sur toute la page fatigue, et le garde
+ * `prefers-reduced-motion` en bas de fichier le fige de toute façon.
+ */
+@keyframes d-ui-skeleton-pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.d-ui-skeleton {
+  animation: d-ui-skeleton-pulse 1.6s ease-in-out infinite;
+}
+
+/*
+ * Barre indéterminée : le remplissage fait l'aller-retour sur sa piste.
+ * `inset-inline` plutôt que `left`, pour suivre `dir="rtl"`.
+ */
+@keyframes d-ui-progress-slide {
+  from {
+    margin-inline-start: -35%;
+  }
+  to {
+    margin-inline-start: 100%;
+  }
+}
+
+.d-ui-progress-indeterminate {
+  animation: d-ui-progress-slide 1.4s ease-in-out infinite;
 }
 
 @keyframes d-ui-bounce {

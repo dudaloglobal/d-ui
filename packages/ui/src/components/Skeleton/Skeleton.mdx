@@ -1,0 +1,70 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as SkeletonStories from './Skeleton.stories';
+
+<Meta of={SkeletonStories} />
+
+# Skeleton
+
+<P k="skeleton.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={SkeletonStories.Default} />
+
+<H2 k="skeleton.hidden" />
+
+<P k="skeleton.hiddenBody" />
+
+<H2 k="skeleton.shapes" />
+
+<P k="skeleton.shapesBody" />
+
+<H3 k="skeleton.text" />
+
+<P k="skeleton.useText" />
+
+<Canvas of={SkeletonStories.TextBlock} />
+
+<H3 k="skeleton.media" />
+
+<P k="skeleton.useMedia" />
+
+<Canvas of={SkeletonStories.Media} />
+
+<H2 k="skeleton.compositions" />
+
+<P k="skeleton.useCompositions" />
+
+<Canvas of={SkeletonStories.Card} />
+
+<Canvas of={SkeletonStories.Widget} />
+
+<Canvas of={SkeletonStories.List} />
+
+<Canvas of={SkeletonStories.Testimonial} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="skeleton.a11yBody" />
+
+<P k="skeleton.a11yKeys" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['skeleton.doContainer', 'skeleton.doShape', 'skeleton.doShort']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['skeleton.dontAnnounce', 'skeleton.dontMismatch', 'skeleton.dontForever']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="skeleton.propsBody" />
+
+<ArgTypes
+  of={SkeletonStories}
+  include={['shape', 'width', 'height', 'size', 'color', 'className']}
+/>

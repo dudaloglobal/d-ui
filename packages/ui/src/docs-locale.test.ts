@@ -29,6 +29,7 @@ import {
   paginationCopy,
   menuCopy,
   dialogCopy,
+  loadingCopy,
   alertCopy,
   notificationCopy,
   toastCopy,
@@ -190,6 +191,7 @@ describe('docs locale', () => {
     expect(keysOf(paginationCopy('fr'))).toEqual(keysOf(paginationCopy('en')));
     expect(keysOf(menuCopy('fr'))).toEqual(keysOf(menuCopy('en')));
     expect(keysOf(dialogCopy('fr'))).toEqual(keysOf(dialogCopy('en')));
+    expect(keysOf(loadingCopy('fr'))).toEqual(keysOf(loadingCopy('en')));
     expect(keysOf(alertCopy('fr'))).toEqual(keysOf(alertCopy('en')));
     expect(keysOf(notificationCopy('fr'))).toEqual(keysOf(notificationCopy('en')));
     expect(keysOf(toastCopy('fr'))).toEqual(keysOf(toastCopy('en')));
@@ -207,8 +209,15 @@ describe('docs locale', () => {
   it('writes MDX section headings in French', () => {
     const files = collectMdx(join(process.cwd(), 'src'));
     expect(files.length).toBeGreaterThan(0);
+    /*
+     * `#{2,6}` et non `#{1,6}` : le `#` de tête est le **nom du composant**,
+     * qui reste l'identifiant anglais de l'API (`# Popover`, `# Progress`).
+     * Seules les sections doivent être en français. Sans cette borne, un
+     * composant dont le nom figure dans la liste ci-dessus serait interdit de
+     * titre.
+     */
     const heading = new RegExp(
-      `^#{1,6}\\s+(?:${ENGLISH_HEADINGS.map((h) => h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\s*$`,
+      `^#{2,6}\\s+(?:${ENGLISH_HEADINGS.map((h) => h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\s*$`,
       'm',
     );
     for (const file of files) {

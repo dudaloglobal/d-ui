@@ -1,0 +1,75 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { H2, H3, P, Ul } from '../../../.storybook/docs-i18n';
+import * as ProgressStories from './Progress.stories';
+
+<Meta of={ProgressStories} />
+
+# Progress
+
+<P k="progress.intro" />
+
+<P k="chrome.examplesFollow" />
+
+<Canvas of={ProgressStories.Default} />
+
+<H2 k="progress.indeterminate" />
+
+<P k="progress.useIndeterminate" />
+
+<Canvas of={ProgressStories.Indeterminate} />
+
+<H2 k="chrome.sizes" />
+
+<Canvas of={ProgressStories.Sizes} />
+
+<H2 k="progress.withValue" />
+
+<P k="progress.useWithValue" />
+
+<Canvas of={ProgressStories.WithValue} />
+
+<H2 k="progress.announced" />
+
+<P k="progress.useAnnounced" />
+
+<Canvas of={ProgressStories.AnnouncedText} />
+
+<H2 k="progress.circular" />
+
+<P k="progress.useCircular" />
+
+<Canvas of={ProgressStories.Circular} />
+
+<H2 k="chrome.accessibility" />
+
+<P k="progress.a11yBody" />
+
+<P k="progress.a11yKeys" />
+
+<H3 k="chrome.do" />
+
+<Ul items={['progress.doName', 'progress.doValueText', 'progress.doIndeterminate']} />
+
+<H3 k="chrome.dont" />
+
+<Ul items={['progress.dontZero', 'progress.dontRing', 'progress.dontDouble']} />
+
+<P k="chrome.themeLang" />
+
+<H2 k="chrome.properties" />
+
+<P k="progress.propsBody" />
+
+<ArgTypes
+  of={ProgressStories}
+  include={[
+    'variant',
+    'value',
+    'label',
+    'valueText',
+    'showValue',
+    'size',
+    'color',
+    'className',
+  ]}
+/>

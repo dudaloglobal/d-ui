@@ -163,6 +163,25 @@ export const storyNameEn: Record<string, string> = {
   Filets: 'Dividers',
   Emplacements: 'Slots',
   'Avec description': 'With description',
+  'Image et vidéo': 'Image and video',
+  Paragraphe: 'Paragraph',
+  Carte: 'Card',
+  Widget: 'Widget',
+  Liste: 'List',
+  Témoignage: 'Testimonial',
+  Indéterminée: 'Indeterminate',
+  'Avec la valeur': 'With the value',
+  Circulaire: 'Circular',
+  'Texte annoncé': 'Announced text',
+  Pastilles: 'Bullets',
+  'Pastilles et texte': 'Bullets and text',
+  Panneaux: 'Panels',
+  'Panneaux encadrés': 'Panels with border',
+  'Fil d’Ariane': 'Breadcrumb',
+  'Frise verticale': 'Timeline',
+  'Avec une barre de progression': 'With a progress bar',
+  Détaillé: 'Detailed',
+  'Étapes cliquables': 'Clickable steps',
 };
 
 const storyNameFr: Record<string, string> = Object.fromEntries(
@@ -1200,6 +1219,72 @@ export type DialogDocsCopy = typeof dialogFr;
 
 export function dialogCopy(locale: DocsLocale): DialogDocsCopy {
   return locale === 'en' ? dialogEn : dialogFr;
+}
+
+const loadingFr = {
+  loading: 'Chargement…',
+  loadingResults: 'Chargement des résultats',
+  save: 'Enregistrer',
+  cardBody: 'Les chiffres se consolident, la page se remplit dès qu’ils arrivent.',
+  upload: 'Téléversement du fichier',
+  uploadValue: '12 Mo sur 40',
+  quota: 'Quota de stockage',
+  storage: 'Stockage utilisé',
+  stepsLabel: 'Étapes de la commande',
+  stepDone: 'Terminé',
+  stepCurrent: 'Étape en cours',
+  stepUpcoming: 'À venir',
+  stepCart: 'Panier',
+  stepCartHint: 'Vérifier les articles',
+  stepShipping: 'Livraison',
+  stepShippingHint: 'Adresse et transporteur',
+  stepPayment: 'Paiement',
+  stepPaymentHint: 'Carte ou virement',
+  stepReview: 'Récapitulatif',
+  stepReviewHint: 'Relire avant de valider',
+  stepOf: 'Étape 2 sur 4',
+  back: 'Retour',
+  next: 'Continuer',
+  addressLabel: 'Adresse de livraison',
+  addressPlaceholder: '12 rue des Lilas, Cotonou',
+  authorName: 'Amina Doumbouya',
+  authorRole: 'Responsable produit',
+};
+
+const loadingEn = {
+  loading: 'Loading…',
+  loadingResults: 'Loading results',
+  save: 'Save',
+  cardBody: 'The figures are being consolidated; the page fills in as they arrive.',
+  upload: 'File upload',
+  uploadValue: '12 MB of 40',
+  quota: 'Storage quota',
+  storage: 'Storage used',
+  stepsLabel: 'Order steps',
+  stepDone: 'Completed',
+  stepCurrent: 'Current step',
+  stepUpcoming: 'Upcoming',
+  stepCart: 'Cart',
+  stepCartHint: 'Check the items',
+  stepShipping: 'Shipping',
+  stepShippingHint: 'Address and carrier',
+  stepPayment: 'Payment',
+  stepPaymentHint: 'Card or transfer',
+  stepReview: 'Review',
+  stepReviewHint: 'Read it over before confirming',
+  stepOf: 'Step 2 of 4',
+  back: 'Back',
+  next: 'Continue',
+  addressLabel: 'Delivery address',
+  addressPlaceholder: '12 Lilac Street, Cotonou',
+  authorName: 'Amina Doumbouya',
+  authorRole: 'Product lead',
+};
+
+export type LoadingDocsCopy = typeof loadingFr;
+
+export function loadingCopy(locale: DocsLocale): LoadingDocsCopy {
+  return locale === 'en' ? loadingEn : loadingFr;
 }
 
 const navbarFr = {
