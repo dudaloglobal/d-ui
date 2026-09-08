@@ -1,0 +1,1 @@
+import{j as i,h as a}from"./iframe-3cp6bBDu.js";function n({className:e,...s}){return i.jsx("span",{className:a("d-ui-visually-hidden",e),...s})}n.__docgenInfo={description:"Texte destiné aux lecteurs d’écran, masqué visuellement.",methods:[],displayName:"VisuallyHidden"};export{n as V};

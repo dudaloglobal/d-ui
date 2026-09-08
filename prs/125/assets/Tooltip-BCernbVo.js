@@ -1,0 +1,35 @@
+import{u as p,j as o,M as c,P as s,C as t,a as n,b as i,U as a,A as j}from"./iframe-3cp6bBDu.js";import{T as r,D as m,P as d,C as k,a as u,b as h,c as f,R as C}from"./Tooltip.stories-tg50f7oF.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-Be6NSCGb.js";import"./docs-source-C_O40UCi.js";import"./Button-BYV842b-.js";import"./cornerRadius-B4XFh-_5.js";import"./floating-BOjOHDN8.js";function x(e){const l={h1:"h1",...p(),...e.components};return o.jsxs(o.Fragment,{children:[o.jsx(c,{of:r}),`
+`,o.jsx(l.h1,{id:"tooltip",children:"Tooltip"}),`
+`,o.jsx(s,{k:"tooltip.intro"}),`
+`,o.jsx(s,{k:"chrome.examplesFollow"}),`
+`,o.jsx(t,{of:m}),`
+`,o.jsx(n,{k:"chrome.placement"}),`
+`,o.jsx(s,{k:"tooltip.usePlacement"}),`
+`,o.jsx(t,{of:d}),`
+`,o.jsx(n,{k:"chrome.controlled"}),`
+`,o.jsx(s,{k:"tooltip.useControlled"}),`
+`,o.jsx(t,{of:k}),`
+`,o.jsx(n,{k:"chrome.specialStates"}),`
+`,o.jsx(i,{k:"chrome.disabled"}),`
+`,o.jsx(s,{k:"chrome.useDisabled"}),`
+`,o.jsx(t,{of:u}),`
+`,o.jsx(i,{k:"chrome.collision"}),`
+`,o.jsx(s,{k:"tooltip.useCollision"}),`
+`,o.jsx(t,{of:h}),`
+`,o.jsx(i,{k:"chrome.portal"}),`
+`,o.jsx(s,{k:"tooltip.usePortal"}),`
+`,o.jsx(t,{of:f}),`
+`,o.jsx(n,{k:"chrome.radius"}),`
+`,o.jsx(s,{k:"tooltip.useRadius"}),`
+`,o.jsx(t,{of:C}),`
+`,o.jsx(n,{k:"chrome.accessibility"}),`
+`,o.jsx(s,{k:"tooltip.a11yBody"}),`
+`,o.jsx(s,{k:"tooltip.a11yKeys"}),`
+`,o.jsx(i,{k:"chrome.do"}),`
+`,o.jsx(a,{items:["tooltip.doHover","tooltip.doDescribed","tooltip.doEscape"]}),`
+`,o.jsx(i,{k:"chrome.dont"}),`
+`,o.jsx(a,{items:["tooltip.dontInteractive","tooltip.dontEssential","tooltip.dontTitle"]}),`
+`,o.jsx(s,{k:"chrome.themeLang"}),`
+`,o.jsx(n,{k:"chrome.properties"}),`
+`,o.jsx(s,{k:"tooltip.propsBody"}),`
+`,o.jsx(j,{of:r,include:["content","placement","open","defaultOpen","delayMs","disabled","radius"]})]})}function v(e={}){const{wrapper:l}={...p(),...e.components};return l?o.jsx(l,{...e,children:o.jsx(x,{...e})}):x(e)}export{v as default};
