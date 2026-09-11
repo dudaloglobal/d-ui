@@ -139,6 +139,8 @@ test('component docs use Component | Dudalo Design System titles', async ({ page
   await expect(page).toHaveTitle('CommandMenu | Dudalo Design System');
   await page.goto('/?path=/docs/components-drawer--docs');
   await expect(page).toHaveTitle('Drawer | Dudalo Design System');
+  await page.goto('/?path=/docs/patterns-notifications--docs');
+  await expect(page).toHaveTitle('Notifications | Dudalo Design System');
 });
 
 test('component docs H1 is the component name, like Link', async ({ page }) => {
@@ -174,6 +176,7 @@ test('component docs H1 is the component name, like Link', async ({ page }) => {
     { id: 'components-drawer--docs', name: 'Drawer' },
     { id: 'foundations-typography--docs', name: 'Typography' },
     { id: 'foundations-color--docs', name: 'Color' },
+    { id: 'patterns-notifications--docs', name: 'Notifications' },
   ]) {
     await page.goto(`/?path=/docs/${id}`);
     const heading = page
