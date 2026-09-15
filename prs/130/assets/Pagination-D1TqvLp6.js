@@ -1,0 +1,33 @@
+import{u as x,j as n,M as j,P as o,C as s,a,b as i,U as r,A as c}from"./iframe-DuUAVHwV.js";import{P as p,D as g,M as d,S as l,a as k,C as h,b as u,c as f}from"./Pagination.stories-f8BV765j.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-CGfSQUbN.js";import"./docs-source-C_O40UCi.js";import"./Card-CNpCHBGy.js";import"./cornerRadius-B4XFh-_5.js";import"./uiScale-DBauGOvS.js";import"./Heading-Bv8mWHTb.js";import"./Text-B8J60xag.js";import"./Pagination-FcvRWltu.js";import"./Chevron-DkIB0wjb.js";import"./Button-2tN7Wiju.js";import"./IconButton-BFkWcZFM.js";function m(e){const t={h1:"h1",...x(),...e.components};return n.jsxs(n.Fragment,{children:[n.jsx(j,{of:p}),`
+`,n.jsx(t.h1,{id:"pagination",children:"Pagination"}),`
+`,n.jsx(o,{k:"pagination.intro"}),`
+`,n.jsx(o,{k:"chrome.examplesFollow"}),`
+`,n.jsx(s,{of:g}),`
+`,n.jsx(a,{k:"pagination.many"}),`
+`,n.jsx(o,{k:"pagination.manyBody"}),`
+`,n.jsx(s,{of:d}),`
+`,n.jsx(a,{k:"chrome.sizes"}),`
+`,n.jsx(o,{k:"chrome.useSizes"}),`
+`,n.jsx(s,{of:l}),`
+`,n.jsx(a,{k:"chrome.specialStates"}),`
+`,n.jsx(i,{k:"chrome.disabled"}),`
+`,n.jsx(o,{k:"chrome.useDisabled"}),`
+`,n.jsx(s,{of:k}),`
+`,n.jsx(a,{k:"pagination.compose"}),`
+`,n.jsx(o,{k:"pagination.composeBody"}),`
+`,n.jsx(s,{of:h}),`
+`,n.jsx(i,{k:"pagination.centered"}),`
+`,n.jsx(s,{of:u}),`
+`,n.jsx(i,{k:"pagination.simpleFooter"}),`
+`,n.jsx(o,{k:"pagination.useSimpleFooter"}),`
+`,n.jsx(s,{of:f}),`
+`,n.jsx(o,{k:"chrome.themeLang"}),`
+`,n.jsx(a,{k:"chrome.accessibility"}),`
+`,n.jsx(o,{k:"pagination.a11yBody"}),`
+`,n.jsx(i,{k:"chrome.do"}),`
+`,n.jsx(r,{items:["pagination.doCurrent","pagination.doLabels"]}),`
+`,n.jsx(i,{k:"chrome.dont"}),`
+`,n.jsx(r,{items:["pagination.dontInfinite","pagination.dontRouter"]}),`
+`,n.jsx(a,{k:"chrome.properties"}),`
+`,n.jsx(o,{k:"pagination.props"}),`
+`,n.jsx(c,{of:p,include:["page","pageCount","onPageChange","siblingCount","label","previousLabel","nextLabel","pageLabel","size","disabled","children"]})]})}function A(e={}){const{wrapper:t}={...x(),...e.components};return t?n.jsx(t,{...e,children:n.jsx(m,{...e})}):m(e)}export{A as default};
