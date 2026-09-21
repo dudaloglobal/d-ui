@@ -23,3 +23,7 @@ blob-report
 __pycache__/
 *.pyc
 
+
+.kilo/
+_patches/
+Claude outputs/
