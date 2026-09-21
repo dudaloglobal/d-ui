@@ -1,0 +1,33 @@
+import{u as j,j as e,M as p,P as o,C as n,a,b as d,U as r,A as c}from"./iframe-DuUAVHwV.js";import{B as x,D as i,C as g,O as b,a as k,Z as l,P as f,b as h}from"./Badge.stories-Bj1WmnDQ.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-CGfSQUbN.js";import"./docs-source-C_O40UCi.js";import"./Avatar-SrcmpeM4.js";import"./uiScale-DBauGOvS.js";import"./IconButton-BFkWcZFM.js";import"./Button-2tN7Wiju.js";import"./cornerRadius-B4XFh-_5.js";import"./Icon-BHNd7lTx.js";import"./VisuallyHidden-Ke44Yr13.js";import"./Tag-1JNwHn6F.js";import"./FeedbackIcons-BKKShpvh.js";import"./BellIcon-Cb5dvQM3.js";function m(s){const t={h1:"h1",...j(),...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(p,{of:x}),`
+`,e.jsx(t.h1,{id:"badge",children:"Badge"}),`
+`,e.jsx(o,{k:"badge.intro"}),`
+`,e.jsx(o,{k:"chrome.examplesFollow"}),`
+`,e.jsx(n,{of:i}),`
+`,e.jsx(a,{k:"badge.capped"}),`
+`,e.jsx(o,{k:"badge.cappedBody"}),`
+`,e.jsx(n,{of:g}),`
+`,e.jsx(a,{k:"badge.avatar"}),`
+`,e.jsx(o,{k:"badge.avatarBody"}),`
+`,e.jsx(n,{of:b}),`
+`,e.jsx(a,{k:"badge.dot"}),`
+`,e.jsx(o,{k:"badge.dotBody"}),`
+`,e.jsx(n,{of:k}),`
+`,e.jsx(a,{k:"badge.zero"}),`
+`,e.jsx(o,{k:"badge.zeroBody"}),`
+`,e.jsx(n,{of:l}),`
+`,e.jsx(a,{k:"badge.placement"}),`
+`,e.jsx(o,{k:"badge.placementBody"}),`
+`,e.jsx(n,{of:f}),`
+`,e.jsx(a,{k:"badge.content"}),`
+`,e.jsx(o,{k:"badge.contentBody"}),`
+`,e.jsx(n,{of:h}),`
+`,e.jsx(a,{k:"chrome.accessibility"}),`
+`,e.jsx(o,{k:"badge.a11yBody"}),`
+`,e.jsx(d,{k:"chrome.do"}),`
+`,e.jsx(r,{items:["badge.doHost","badge.doLabel","badge.doTag"]}),`
+`,e.jsx(d,{k:"chrome.dont"}),`
+`,e.jsx(r,{items:["badge.dontSpan","badge.dontColor","badge.dontPresence"]}),`
+`,e.jsx(o,{k:"chrome.themeLang"}),`
+`,e.jsx(a,{k:"chrome.properties"}),`
+`,e.jsx(o,{k:"badge.props"}),`
+`,e.jsx(c,{of:x,include:["count","content","max","showZero","dot","label","variant","color","appearance","size","placement","className"]})]})}function F(s={}){const{wrapper:t}={...j(),...s.components};return t?e.jsx(t,{...s,children:e.jsx(m,{...s})}):m(s)}export{F as default};
