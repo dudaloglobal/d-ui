@@ -1,0 +1,37 @@
+import{u as l,j as n,M as x,P as e,C as s,a,b as r,U as i,A as j}from"./iframe-BTNaxqGu.js";import{C as d,D as m,T as k,a as p,M as v,W as E,S as y,b as h,c as f}from"./CalendarEvent.stories-CUz_nDJT.js";import"./preload-helper-Dp1pzeXC.js";import"./Heading-CIPfOqfd.js";import"./Link-_E_HUw5G.js";import"./VisuallyHidden-CNBpfitW.js";import"./Text-Djd8TKif.js";import"./Calendar-CuRA7p5V.js";import"./IconButton-6J1MfvaL.js";import"./Button-CjHht5f9.js";import"./cornerRadius-B4XFh-_5.js";import"./Chevron-BIeP8Z76.js";import"./calendarDate-jCkUcsyL.js";import"./arg-types-CcAGxubR.js";import"./docs-source-C_O40UCi.js";function c(t){const o={h1:"h1",...l(),...t.components};return n.jsxs(n.Fragment,{children:[n.jsx(x,{of:d}),`
+`,n.jsx(o.h1,{id:"calendarevent",children:"CalendarEvent"}),`
+`,n.jsx(e,{k:"calendarEvent.intro"}),`
+`,n.jsx(e,{k:"calendarEvent.install"}),`
+`,n.jsx(e,{k:"chrome.examplesFollow"}),`
+`,n.jsx(s,{of:m}),`
+`,n.jsx(a,{k:"calendarEvent.types"}),`
+`,n.jsx(e,{k:"calendarEvent.typesBody"}),`
+`,n.jsx(s,{of:k}),`
+`,n.jsx(a,{k:"calendarEvent.tokens"}),`
+`,n.jsx(e,{k:"calendarEvent.tokensBody"}),`
+`,n.jsx(s,{of:p}),`
+`,n.jsx(a,{k:"calendarEvent.minimal"}),`
+`,n.jsx(e,{k:"calendarEvent.minimalBody"}),`
+`,n.jsx(s,{of:v}),`
+`,n.jsx(a,{k:"calendarEvent.withLink"}),`
+`,n.jsx(e,{k:"calendarEvent.withLinkBody"}),`
+`,n.jsx(s,{of:E}),`
+`,n.jsx(a,{k:"chrome.sizes"}),`
+`,n.jsx(e,{k:"calendarEvent.sizesBody"}),`
+`,n.jsx(s,{of:y}),`
+`,n.jsx(a,{k:"calendarEvent.dayView"}),`
+`,n.jsx(e,{k:"calendarEvent.dayViewBody"}),`
+`,n.jsx(s,{of:h}),`
+`,n.jsx(a,{k:"calendarEvent.weekView"}),`
+`,n.jsx(e,{k:"calendarEvent.weekViewBody"}),`
+`,n.jsx(s,{of:f}),`
+`,n.jsx(a,{k:"chrome.accessibility"}),`
+`,n.jsx(e,{k:"calendarEvent.a11yBody"}),`
+`,n.jsx(r,{k:"chrome.do"}),`
+`,n.jsx(i,{items:["calendarEvent.doList","calendarEvent.doLabel","calendarEvent.doToken"]}),`
+`,n.jsx(r,{k:"chrome.dont"}),`
+`,n.jsx(i,{items:["calendarEvent.dontColor","calendarEvent.dontCalendar","calendarEvent.dontScheduler"]}),`
+`,n.jsx(e,{k:"chrome.themeLang"}),`
+`,n.jsx(a,{k:"chrome.properties"}),`
+`,n.jsx(e,{k:"calendarEvent.propsBody"}),`
+`,n.jsx(j,{of:d,include:["title","course","location","type","typeLabel","start","end","size","className"]})]})}function A(t={}){const{wrapper:o}={...l(),...t.components};return o?n.jsx(o,{...t,children:n.jsx(c,{...t})}):c(t)}export{A as default};
