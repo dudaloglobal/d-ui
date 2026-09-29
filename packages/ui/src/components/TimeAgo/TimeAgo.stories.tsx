@@ -55,7 +55,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: 'Par défaut',
   parameters: componentSource(
-    "import { TimeAgo } from 'd-ui';",
+    "import { TimeAgo } from '@dudaloglobal/d-ui';",
     '<TimeAgo date={submission.createdAt} locale="fr" />',
   ),
   render: (args, { globals }) => {
@@ -72,7 +72,7 @@ export const Default: Story = {
 export const Locale: Story = {
   name: 'Langue',
   parameters: componentSource(
-    "import { TimeAgo } from 'd-ui';",
+    "import { TimeAgo } from '@dudaloglobal/d-ui';",
     `<TimeAgo date={createdAt} locale="en" />
 <TimeAgo date={createdAt} locale="fr" />`,
   ),
@@ -94,7 +94,7 @@ export const Locale: Story = {
 export const Live: Story = {
   name: 'Mises à jour en direct',
   parameters: componentSource(
-    "import { TimeAgo } from 'd-ui';",
+    "import { TimeAgo } from '@dudaloglobal/d-ui';",
     '<TimeAgo date={lastSeenAt} locale="fr" live />',
   ),
   render: (args, { globals }) => {
@@ -111,7 +111,7 @@ export const Live: Story = {
 export const Sizes: Story = {
   name: 'Taille',
   parameters: componentSource(
-    "import { TimeAgo } from 'd-ui';",
+    "import { TimeAgo } from '@dudaloglobal/d-ui';",
     `<TimeAgo date={createdAt} locale="fr" size="sm" />
 <TimeAgo date={createdAt} locale="fr" size="md" />`,
   ),
@@ -134,7 +134,7 @@ export const Sizes: Story = {
 export const PastAndFuture: Story = {
   name: 'Passé et futur',
   parameters: componentSource(
-    "import { TimeAgo } from 'd-ui';",
+    "import { TimeAgo } from '@dudaloglobal/d-ui';",
     `<TimeAgo date={fiveHoursAgo} locale="fr" />
 <TimeAgo date={inThreeHours} locale="fr" />`,
   ),

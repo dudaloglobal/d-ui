@@ -20,9 +20,10 @@ import { Icon } from '../Icon/Icon';
 import { Navbar } from '../Navbar/Navbar';
 import { Sidebar, SidebarGroup, SidebarItem } from './Sidebar';
 
-const importSidebar = "import { Icon, Sidebar, SidebarGroup, SidebarItem } from 'd-ui';";
+const importSidebar =
+  "import { Icon, Sidebar, SidebarGroup, SidebarItem } from '@dudaloglobal/d-ui';";
 const importOverlay = `import { useState } from 'react';
-import { Icon, Navbar, Sidebar, SidebarItem, SkipLink } from 'd-ui';`;
+import { Icon, Navbar, Sidebar, SidebarItem, SkipLink } from '@dudaloglobal/d-ui';`;
 
 const meta = {
   title: 'Components/Sidebar',

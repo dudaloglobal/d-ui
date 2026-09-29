@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: 'Par défaut',
   parameters: componentSource(
-    "import { Heading } from 'd-ui';",
+    "import { Heading } from '@dudaloglobal/d-ui';",
     '<Heading level={2}>Parcours d’apprentissage</Heading>',
   ),
   render: (args, { globals }) => {
@@ -32,7 +32,7 @@ export const Default: Story = {
 export const Levels: Story = {
   name: 'Niveaux',
   parameters: componentSource(
-    "import { Heading } from 'd-ui';",
+    "import { Heading } from '@dudaloglobal/d-ui';",
     `<Heading level={1}>Niveau 1</Heading>
 <Heading level={2}>Niveau 2</Heading>
 <Heading level={3}>Niveau 3</Heading>`,
@@ -53,7 +53,7 @@ export const Levels: Story = {
 export const SizeDecoupledFromLevel: Story = {
   name: 'Taille découplée',
   parameters: componentSource(
-    "import { Heading } from 'd-ui';",
+    "import { Heading } from '@dudaloglobal/d-ui';",
     `<Heading level={2} size="display">
   Titre visuellement large
 </Heading>`,
@@ -76,7 +76,7 @@ export const SizeDecoupledFromLevel: Story = {
 export const Bold: Story = {
   name: 'Gras',
   parameters: componentSource(
-    "import { Heading } from 'd-ui';",
+    "import { Heading } from '@dudaloglobal/d-ui';",
     '<Heading level={2} bold>Parcours d’apprentissage</Heading>',
   ),
   render: (_, { globals }) => {

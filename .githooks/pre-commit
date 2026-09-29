@@ -33,7 +33,7 @@ fi
 reviewable=0
 while IFS= read -r path; do
   case "$path" in
-    pnpm-lock.yaml | package-lock.json | yarn.lock) continue ;;
+    bun.lock | package-lock.json | yarn.lock) continue ;;
     .changeset/*) continue ;;
     *.png | *.jpg | *.jpeg | *.gif | *.webp | *.ico | *.woff | *.woff2 | *.ttf) continue ;;
     *)

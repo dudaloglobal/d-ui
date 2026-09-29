@@ -99,7 +99,7 @@ export const Default: Story = {
   name: 'Par défaut',
   args: closed,
   parameters: componentSourceFn(
-    `${reactImport}\nimport { Button, Drawer, DrawerBody, DrawerDescription, DrawerTitle } from 'd-ui';`,
+    `${reactImport}\nimport { Button, Drawer, DrawerBody, DrawerDescription, DrawerTitle } from '@dudaloglobal/d-ui';`,
     `const [open, setOpen] = useState(false);
 
 return (
@@ -158,7 +158,7 @@ export const Sides: Story = {
   name: 'Bord d’ancrage',
   args: closed,
   parameters: componentSourceFn(
-    `${reactImport}\nimport { Button, Drawer, DrawerDescription, DrawerTitle, type DrawerSide } from 'd-ui';`,
+    `${reactImport}\nimport { Button, Drawer, DrawerDescription, DrawerTitle, type DrawerSide } from '@dudaloglobal/d-ui';`,
     `const [side, setSide] = useState<DrawerSide | null>(null);
 
 return (
@@ -207,7 +207,7 @@ export const Sizes: Story = {
   name: 'Tailles',
   args: closed,
   parameters: componentSourceFn(
-    `${reactImport}\nimport { Button, Drawer, DrawerDescription, DrawerTitle, type DrawerSize } from 'd-ui';`,
+    `${reactImport}\nimport { Button, Drawer, DrawerDescription, DrawerTitle, type DrawerSize } from '@dudaloglobal/d-ui';`,
     `const [size, setSize] = useState<DrawerSize | null>(null);
 
 return (
@@ -254,7 +254,7 @@ import {
     DrawerTitle,
     Select,
     TextInput,
-} from 'd-ui';`,
+} from '@dudaloglobal/d-ui';`,
     `const [open, setOpen] = useState(false);
 
 return (
@@ -350,7 +350,7 @@ export const WithoutDismiss: Story = {
   name: 'Sans croix de fermeture',
   args: closed,
   parameters: componentSourceFn(
-    `${reactImport}\nimport { Button, Drawer, DrawerActions, DrawerBody, DrawerTitle, TextInput } from 'd-ui';`,
+    `${reactImport}\nimport { Button, Drawer, DrawerActions, DrawerBody, DrawerTitle, TextInput } from '@dudaloglobal/d-ui';`,
     `const [open, setOpen] = useState(false);
 
 return (
@@ -471,7 +471,7 @@ export const InitialFocus: Story = {
   args: closed,
   parameters: componentSourceFn(
     `import { useRef, useState } from 'react';
-import { Button, Drawer, DrawerActions, DrawerBody, DrawerTitle, Select, Textarea } from 'd-ui';`,
+import { Button, Drawer, DrawerActions, DrawerBody, DrawerTitle, Select, Textarea } from '@dudaloglobal/d-ui';`,
     `const [open, setOpen] = useState(false);
 const noteRef = useRef<HTMLTextAreaElement | null>(null);
 
@@ -567,7 +567,7 @@ export const MobileNavigation: Story = {
   args: closed,
   parameters: componentSourceFn(
     `${reactImport}
-import { Drawer, DrawerBody, DrawerHeader, DrawerTitle, List, ListItem, Navbar } from 'd-ui';`,
+import { Drawer, DrawerBody, DrawerHeader, DrawerTitle, List, ListItem, Navbar } from '@dudaloglobal/d-ui';`,
     `const [open, setOpen] = useState(false);
 
 return (

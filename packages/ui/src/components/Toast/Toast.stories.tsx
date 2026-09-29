@@ -6,7 +6,8 @@ import { docsLocale, toastCopy } from '../../../.storybook/docs-locale';
 import { Button } from '../Button/Button';
 import { ToastProvider, useToast } from './ToastProvider';
 
-const importToast = "import { Button, ToastProvider, useToast } from 'd-ui';";
+const importToast =
+  "import { Button, ToastProvider, useToast } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/Toast',

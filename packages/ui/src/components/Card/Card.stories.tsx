@@ -28,7 +28,7 @@ const importCard = `import {
     CardHeader,
     CardMedia,
     CardTitle,
-} from 'd-ui';`;
+} from '@dudaloglobal/d-ui';`;
 
 function coverUri() {
   const svg =

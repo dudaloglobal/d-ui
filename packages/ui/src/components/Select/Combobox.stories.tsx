@@ -11,9 +11,9 @@ import { Combobox, type ComboboxProps } from './Combobox';
 import type { SelectItem } from './Select';
 import { flattenSelectItems } from './selectOptions';
 
-const importCombobox = "import { Combobox } from 'd-ui';";
+const importCombobox = "import { Combobox } from '@dudaloglobal/d-ui';";
 const importControlled =
-  "import { useState } from 'react';\nimport { Combobox } from 'd-ui';";
+  "import { useState } from 'react';\nimport { Combobox } from '@dudaloglobal/d-ui';";
 
 function cities(copy: SelectDocsCopy, disabledLast = false): SelectItem[] {
   return [

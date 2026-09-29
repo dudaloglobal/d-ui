@@ -5,7 +5,7 @@ import { componentSource } from '../../../.storybook/docs-source';
 import { Progress } from '../Progress/Progress';
 import { FilePreview } from './FilePreview';
 
-const importFilePreview = "import { FilePreview } from 'd-ui';";
+const importFilePreview = "import { FilePreview } from '@dudaloglobal/d-ui';";
 
 /*
  * Des `File` fabriqués sur place : la story ne dépend d'aucun fichier réel, et

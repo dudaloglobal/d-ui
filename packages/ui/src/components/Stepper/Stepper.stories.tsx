@@ -14,7 +14,7 @@ import { Text } from '../Text/Text';
 import { TextInput } from '../TextInput/TextInput';
 import { Stepper, type StepperStep, type StepStatus } from './Stepper';
 
-const importStepper = "import { Stepper } from 'd-ui';";
+const importStepper = "import { Stepper } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/Stepper',
@@ -266,7 +266,7 @@ export const BreadcrumbForm: Story = {
   name: 'Fil d’Ariane',
   args: { steps: [], current: 1, label: 'Étapes' },
   parameters: componentSource(
-    "import { Breadcrumb, BreadcrumbItem } from 'd-ui';",
+    "import { Breadcrumb, BreadcrumbItem } from '@dudaloglobal/d-ui';",
     `<Breadcrumb aria-label="Étapes de la commande">
     <BreadcrumbItem href="#panier">Panier</BreadcrumbItem>
     <BreadcrumbItem>Livraison</BreadcrumbItem>
@@ -405,7 +405,7 @@ export const WithProgress: Story = {
   name: 'Avec une barre de progression',
   args: { steps: [], current: 1, label: 'Étapes' },
   parameters: componentSource(
-    "import { Progress } from 'd-ui';",
+    "import { Progress } from '@dudaloglobal/d-ui';",
     `<Progress value={50} label="Étapes de la commande" valueText="Étape 2 sur 4" />`,
   ),
   render: (_, { globals }) => {

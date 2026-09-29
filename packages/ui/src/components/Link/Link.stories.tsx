@@ -7,9 +7,9 @@ import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
 import { Link } from './Link';
 
-const importLink = "import { Link } from 'd-ui';";
+const importLink = "import { Link } from '@dudaloglobal/d-ui';";
 const importIconLink = `import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
-import { Icon, Link } from 'd-ui';`;
+import { Icon, Link } from '@dudaloglobal/d-ui';`;
 
 const meta = {
   title: 'Components/Link',
@@ -132,7 +132,7 @@ export const External: Story = {
 export const InRunningText: Story = {
   name: 'Dans un paragraphe',
   parameters: componentSource(
-    "import { Link, Text } from 'd-ui';",
+    "import { Link, Text } from '@dudaloglobal/d-ui';",
     `<Text>
     Consultez le <Link href="/catalogue">catalogue</Link> pour choisir un module.
 </Text>`,

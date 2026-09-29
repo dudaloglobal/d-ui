@@ -25,9 +25,9 @@ while read -r local_ref local_sha remote_ref remote_sha; do
   fi
 done
 
-if ! pnpm format:check; then
-  echo "pre-push: refused — pnpm format:check failed (CI quality job)." >&2
-  echo "Run: pnpm format" >&2
+if ! bun run format:check; then
+  echo "pre-push: refused — bun run format:check failed (CI quality job)." >&2
+  echo "Run: bun run format" >&2
   echo "Commit the result, then push again. Do not use --no-verify." >&2
   exit 1
 fi

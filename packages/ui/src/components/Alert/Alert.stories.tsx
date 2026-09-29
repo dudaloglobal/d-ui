@@ -12,7 +12,7 @@ import { Button } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 import { Alert } from './Alert';
 
-const importAlert = "import { Alert, Icon } from 'd-ui';";
+const importAlert = "import { Alert, Icon } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/Alert',

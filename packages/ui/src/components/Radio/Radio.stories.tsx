@@ -6,7 +6,7 @@ import { componentSource, componentSourceFn } from '../../../.storybook/docs-sou
 import { Radio, RadioGroup } from './Radio';
 
 const importGroup =
-  "import { useState } from 'react';\nimport { Radio, RadioGroup } from 'd-ui';";
+  "import { useState } from 'react';\nimport { Radio, RadioGroup } from '@dudaloglobal/d-ui';";
 
 function radioGroupSource(
   jsx: string,
@@ -143,7 +143,7 @@ export const Helper: Story = {
 export const Sizes: Story = {
   name: 'Tailles',
   parameters: componentSource(
-    "import { Radio, RadioGroup } from 'd-ui';",
+    "import { Radio, RadioGroup } from '@dudaloglobal/d-ui';",
     `<>
     <RadioGroup label="Petite" name="plan-sm" defaultValue="monthly" size="sm">
         <Radio value="monthly" label="Mensuel" />

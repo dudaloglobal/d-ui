@@ -6,9 +6,9 @@ import { componentSource, componentSourceFn } from '../../../.storybook/docs-sou
 import { Button } from '../Button/Button';
 import { Tooltip } from './Tooltip';
 
-const importTooltip = "import { Button, Tooltip } from 'd-ui';";
+const importTooltip = "import { Button, Tooltip } from '@dudaloglobal/d-ui';";
 const importControlled =
-  "import { useState } from 'react';\nimport { Button, Tooltip } from 'd-ui';";
+  "import { useState } from 'react';\nimport { Button, Tooltip } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/Tooltip',

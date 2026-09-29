@@ -4,7 +4,8 @@ import { breadcrumbCopy, docsLocale } from '../../../.storybook/docs-locale';
 import { componentSource } from '../../../.storybook/docs-source';
 import { Breadcrumb, BreadcrumbItem } from './Breadcrumb';
 
-const importBreadcrumb = "import { Breadcrumb, BreadcrumbItem } from 'd-ui';";
+const importBreadcrumb =
+  "import { Breadcrumb, BreadcrumbItem } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/Breadcrumb',

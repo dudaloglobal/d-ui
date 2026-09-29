@@ -1,5 +1,5 @@
 ---
-'d-ui': minor
+'@dudaloglobal/d-ui': minor
 ---
 
 Add Image and FilePreview, and give FileUpload a `preview` shape.

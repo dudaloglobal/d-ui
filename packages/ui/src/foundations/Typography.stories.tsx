@@ -14,7 +14,7 @@ type Story = StoryObj;
 export const BasicStyles: Story = {
   name: 'Styles de base',
   parameters: componentSource(
-    "import { Heading, Text } from 'd-ui';",
+    "import { Heading, Text } from '@dudaloglobal/d-ui';",
     `<Heading level={1} size="display">
   Display
 </Heading>
@@ -52,7 +52,7 @@ export const BasicStyles: Story = {
 export const CustomStyles: Story = {
   name: 'Styles personnalisés',
   parameters: componentSource(
-    "import { Heading, Text } from 'd-ui';",
+    "import { Heading, Text } from '@dudaloglobal/d-ui';",
     `<Heading level={1} size="display">
   Title1
 </Heading>

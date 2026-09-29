@@ -1,5 +1,5 @@
 ---
-'d-ui': minor
+'@dudaloglobal/d-ui': minor
 ---
 
 Add Skeleton (+ SkeletonText), Progress, and Stepper, the loading and progress primitives.

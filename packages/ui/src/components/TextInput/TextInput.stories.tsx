@@ -16,7 +16,7 @@ import { SearchIcon, stringifyValue } from '../textControl';
 import { TextInput, type TextInputProps } from './TextInput';
 
 const importTextInput =
-  "import { useState } from 'react';\nimport { TextInput } from 'd-ui';";
+  "import { useState } from 'react';\nimport { TextInput } from '@dudaloglobal/d-ui';";
 
 function remainingMessage(copy: InputDocsCopy) {
   return (count: number, maxLength?: number) =>
@@ -296,7 +296,7 @@ export const MaxLength: Story = {
 export const PrefixSuffix: Story = {
   name: 'Préfixe et suffixe',
   parameters: componentSource(
-    "import { TextInput } from 'd-ui';",
+    "import { TextInput } from '@dudaloglobal/d-ui';",
     '<TextInput label="Site" prefix="https://" suffix=".com" />',
   ),
   render: (_, { globals }) => {
@@ -315,7 +315,7 @@ export const PrefixSuffix: Story = {
 export const Sizes: Story = {
   name: 'Tailles',
   parameters: componentSource(
-    "import { TextInput } from 'd-ui';",
+    "import { TextInput } from '@dudaloglobal/d-ui';",
     `<TextInput size="sm" label="Libellé du champ" />
 <TextInput size="md" label="Libellé du champ" />
 <TextInput size="lg" label="Libellé du champ" />`,

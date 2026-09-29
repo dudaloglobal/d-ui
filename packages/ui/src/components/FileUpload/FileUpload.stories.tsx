@@ -8,7 +8,7 @@ import { Button } from '../Button/Button';
 import { Text } from '../Text/Text';
 import { FileUpload } from './FileUpload';
 
-const importFileUpload = "import { FileUpload } from 'd-ui';";
+const importFileUpload = "import { FileUpload } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/FileUpload',

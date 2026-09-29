@@ -82,7 +82,7 @@ Do **not** title sections in English (`Special states`, `Properties`, `Do` / `Do
 3. `name: 'Par défaut'` (French) for the sidebar/canvas label.
 4. Canvas strings go through `docs-locale.ts` (`fr` **and** `en`, same keys). Add a `*Copy()` helper per component family.
 5. `argTypes` imported from `.storybook/arg-types.ts` (French `description`).
-6. `parameters: componentSource("import { Name } from 'd-ui';", '<Name … />')` so **Show code** shows the public package, not the story wrapper. Snippet copy is French.
+6. `parameters: componentSource("import { Name } from '@dudaloglobal/d-ui';", '<Name … />')` so **Show code** shows the public package, not the story wrapper. Snippet copy is French.
 7. Cover the states the MDX talks about. If the MDX has a section, there is a story for it.
 
 ## ArgTypes
@@ -96,7 +96,7 @@ In `packages/ui/.storybook/arg-types.ts`:
 ## Tests that must stay green
 
 ```bash
-pnpm --filter d-ui test
+bun run --filter @dudaloglobal/d-ui test
 ```
 
 Includes `src/docs-locale.test.ts`:

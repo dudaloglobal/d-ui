@@ -6,9 +6,9 @@ import { componentSource, componentSourceFn } from '../../../.storybook/docs-sou
 import { Button } from '../Button/Button';
 import { Popover } from './Popover';
 
-const importPopover = "import { Button, Popover } from 'd-ui';";
+const importPopover = "import { Button, Popover } from '@dudaloglobal/d-ui';";
 const importControlled =
-  "import { useState } from 'react';\nimport { Button, Popover } from 'd-ui';";
+  "import { useState } from 'react';\nimport { Button, Popover } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/Popover',

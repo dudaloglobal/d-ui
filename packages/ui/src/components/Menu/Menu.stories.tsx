@@ -17,18 +17,18 @@ import { Link } from '../Link/Link';
 import { ContextMenu, Menu, MenuItem, MenuSeparator, MenuSub } from './Menu';
 
 const importMenu =
-  "import { Button, Menu, MenuItem, MenuSeparator, MenuSub } from 'd-ui';";
+  "import { Button, Menu, MenuItem, MenuSeparator, MenuSub } from '@dudaloglobal/d-ui';";
 const importTriggers = `import { ChevronDownIcon, EllipsisVerticalIcon } from '@heroicons/react/24/outline';
-import { Button, Icon, IconButton, Link, Menu, MenuItem } from 'd-ui';`;
+import { Button, Icon, IconButton, Link, Menu, MenuItem } from '@dudaloglobal/d-ui';`;
 const importItems = `import {
     ArrowTopRightOnSquareIcon,
     DocumentDuplicateIcon,
     PencilSquareIcon,
     TrashIcon,
 } from '@heroicons/react/24/outline';
-import { Button, Icon, Menu, MenuItem, MenuSeparator } from 'd-ui';`;
+import { Button, Icon, Menu, MenuItem, MenuSeparator } from '@dudaloglobal/d-ui';`;
 const importContext =
-  "import { Button, ContextMenu, Menu, MenuItem, MenuSeparator } from 'd-ui';";
+  "import { Button, ContextMenu, Menu, MenuItem, MenuSeparator } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/Menu',

@@ -38,7 +38,7 @@ const importTable = `import {
     TableHead,
     TableHeader,
     TableRow,
-} from 'd-ui';`;
+} from '@dudaloglobal/d-ui';`;
 const importCaption = `import {
     Table,
     TableBody,
@@ -47,7 +47,7 @@ const importCaption = `import {
     TableHead,
     TableHeader,
     TableRow,
-} from 'd-ui';`;
+} from '@dudaloglobal/d-ui';`;
 const importEmpty = `import {
     EmptyState,
     Table,
@@ -57,7 +57,7 @@ const importEmpty = `import {
     TableHead,
     TableHeader,
     TableRow,
-} from 'd-ui';`;
+} from '@dudaloglobal/d-ui';`;
 const importFooter = `import {
     Table,
     TableBody,
@@ -66,7 +66,7 @@ const importFooter = `import {
     TableHead,
     TableHeader,
     TableRow,
-} from 'd-ui';`;
+} from '@dudaloglobal/d-ui';`;
 
 const meta = {
   title: 'Components/Table',
@@ -583,7 +583,7 @@ export const Sizes: Story = {
   },
 };
 
-const importColumns = "import { Table } from 'd-ui';";
+const importColumns = "import { Table } from '@dudaloglobal/d-ui';";
 
 export const DataColumns: Story = {
   name: 'Colonnes et lignes',
@@ -1092,7 +1092,7 @@ export const TablePagination: Story = {
 export const WithTabs: Story = {
   name: 'Avec onglets',
   parameters: componentSource(
-    "import { Tab, TabList, TabPanel, Table, Tabs } from 'd-ui';",
+    "import { Tab, TabList, TabPanel, Table, Tabs } from '@dudaloglobal/d-ui';",
     `<Tabs defaultValue="all">
     <TabList>
         <Tab value="all">Toutes</Tab>
@@ -1149,7 +1149,7 @@ export const WithTabs: Story = {
 export const EmptyResults: Story = {
   name: 'Aucun résultat',
   parameters: componentSource(
-    "import { EmptyState, Table } from 'd-ui';",
+    "import { EmptyState, Table } from '@dudaloglobal/d-ui';",
     `<Table
     caption="Commandes"
     columns={columns}

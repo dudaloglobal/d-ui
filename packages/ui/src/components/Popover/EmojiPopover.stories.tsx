@@ -5,7 +5,7 @@ import { componentSource } from '../../../.storybook/docs-source';
 import { IconButton } from '../Button/IconButton';
 import { EmojiPopover, type ReactionEmoji } from './EmojiPopover';
 
-const importEmoji = "import { Button, EmojiPopover } from 'd-ui';";
+const importEmoji = "import { Button, EmojiPopover } from '@dudaloglobal/d-ui';";
 
 function SmileIcon() {
   return (

@@ -1,5 +1,5 @@
 ---
-'d-ui': minor
+'@dudaloglobal/d-ui': minor
 ---
 
 Add data-table behaviour as props on `Table`, and open Pagination to composition.

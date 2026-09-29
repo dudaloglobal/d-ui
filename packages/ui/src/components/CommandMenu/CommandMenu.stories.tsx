@@ -131,7 +131,7 @@ function importsSource(specs: readonly EntrySpec[], hooks = 'useState'): string 
     names.length
       ? `import { ${names.join(', ')} } from '@heroicons/react/24/outline';`
       : null,
-    `import { Button, CommandMenu${names.length ? ', Icon' : ''} } from 'd-ui';`,
+    `import { Button, CommandMenu${names.length ? ', Icon' : ''} } from '@dudaloglobal/d-ui';`,
   ]
     .filter(Boolean)
     .join('\n');

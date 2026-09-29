@@ -5,7 +5,7 @@ import { componentSource } from '../../../.storybook/docs-source';
 import type { CalendarDate } from '../Calendar/calendarDate';
 import { DatePicker } from './DatePicker';
 
-const importDatePicker = "import { DatePicker } from 'd-ui';";
+const importDatePicker = "import { DatePicker } from '@dudaloglobal/d-ui';";
 const today: CalendarDate = { year: 2026, month: 3, day: 18 };
 const selected: CalendarDate = { year: 2026, month: 3, day: 12 };
 

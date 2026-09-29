@@ -1,6 +1,6 @@
 # Protection de `main` (checklist admin)
 
-La CI PR exécute déjà : lint, Prettier, types, tests, `pnpm build`, `pnpm build-storybook`.  
+La CI PR exécute déjà : lint, Prettier, types, tests, `bun run build`, `bun run build-storybook`.
 Preview Storybook : `.github/workflows/preview.yml` → GitHub Pages `prs/<n>/`.  
 CODEOWNERS : `.github/CODEOWNERS`.
 

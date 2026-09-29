@@ -100,8 +100,8 @@ export const docsCopy = {
       en: 'the **CSS variables** `--d-ui-*`',
     },
     itemStyles: {
-      fr: 'la feuille `d-ui/styles.css`',
-      en: 'the `d-ui/styles.css` stylesheet',
+      fr: 'la feuille `@dudaloglobal/d-ui/styles.css`',
+      en: 'the `@dudaloglobal/d-ui/styles.css` stylesheet',
     },
     noTailwind: {
       fr: 'Ne pas dépendre des classes Tailwind internes du package.',
@@ -253,8 +253,8 @@ export const docsCopy = {
   },
   tokens: {
     intro: {
-      fr: "Les couleurs sémantiques vivent dans `packages/ui/src/styles/tokens.css`. Les hex n’existent **que là**. Les composants consomment `var(--d-ui-*)` via le pont Tailwind `@theme inline` dans `styles/index.css` — `inline` est obligatoire pour que le thème sombre suive `data-d-ui-theme` et ne fige pas les valeurs du thème clair. Les noms TypeScript publics sont `tokenNames` (`import { tokenNames } from 'd-ui'`).",
-      en: "Semantic colours live in `packages/ui/src/styles/tokens.css`. Hex values exist **only there**. Components consume `var(--d-ui-*)` through the Tailwind `@theme inline` bridge in `styles/index.css` — `inline` is required so dark theme follows `data-d-ui-theme` and does not freeze light values. Public TypeScript names are `tokenNames` (`import { tokenNames } from 'd-ui'`).",
+      fr: "Les couleurs sémantiques vivent dans `packages/ui/src/styles/tokens.css`. Les hex n’existent **que là**. Les composants consomment `var(--d-ui-*)` via le pont Tailwind `@theme inline` dans `styles/index.css` — `inline` est obligatoire pour que le thème sombre suive `data-d-ui-theme` et ne fige pas les valeurs du thème clair. Les noms TypeScript publics sont `tokenNames` (`import { tokenNames } from '@dudaloglobal/d-ui'`).",
+      en: "Semantic colours live in `packages/ui/src/styles/tokens.css`. Hex values exist **only there**. Components consume `var(--d-ui-*)` through the Tailwind `@theme inline` bridge in `styles/index.css` — `inline` is required so dark theme follows `data-d-ui-theme` and does not freeze light values. Public TypeScript names are `tokenNames` (`import { tokenNames } from '@dudaloglobal/d-ui'`).",
     },
     contract: { fr: 'Contrat', en: 'Contract' },
     contractBody: {

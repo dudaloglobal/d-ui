@@ -10,7 +10,7 @@ const importAccordion = `import {
     AccordionItem,
     AccordionPanel,
     AccordionTrigger,
-} from 'd-ui';`;
+} from '@dudaloglobal/d-ui';`;
 
 const importComposition = `import {
     Accordion,
@@ -19,7 +19,7 @@ const importComposition = `import {
     AccordionTrigger,
     List,
     ListItem,
-} from 'd-ui';`;
+} from '@dudaloglobal/d-ui';`;
 
 const meta = {
   title: 'Components/Accordion',

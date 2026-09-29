@@ -21,7 +21,7 @@ type Story = StoryObj<typeof meta>;
 export const Keyboard: Story = {
   name: 'Clavier',
   parameters: componentSource(
-    "import { SkipLink } from 'd-ui';",
+    "import { SkipLink } from '@dudaloglobal/d-ui';",
     `<SkipLink>Aller au contenu principal</SkipLink>
 <main id="main" tabIndex={-1}>
   Contenu principal
@@ -49,7 +49,7 @@ export const CustomHref: Story = {
   name: 'Cible personnalisée',
   args: { href: '#content' },
   parameters: componentSource(
-    "import { SkipLink } from 'd-ui';",
+    "import { SkipLink } from '@dudaloglobal/d-ui';",
     `<SkipLink href="#content">Aller au contenu</SkipLink>
 <main id="content" tabIndex={-1}>
   Zone de contenu

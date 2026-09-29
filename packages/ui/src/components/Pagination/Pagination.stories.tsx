@@ -18,7 +18,7 @@ import {
 } from './PaginationParts';
 
 const importPagination =
-  "import { useState } from 'react';\nimport { Pagination } from 'd-ui';";
+  "import { useState } from 'react';\nimport { Pagination } from '@dudaloglobal/d-ui';";
 
 function paginationSource(
   jsx: string,
@@ -118,7 +118,7 @@ export const ManyPages: Story = {
 export const Disabled: Story = {
   name: 'Désactivé',
   parameters: componentSource(
-    "import { Pagination } from 'd-ui';",
+    "import { Pagination } from '@dudaloglobal/d-ui';",
     `<Pagination
     page={3}
     pageCount={8}
@@ -136,7 +136,7 @@ export const Disabled: Story = {
 export const Sizes: Story = {
   name: 'Tailles',
   parameters: componentSource(
-    "import { Pagination } from 'd-ui';",
+    "import { Pagination } from '@dudaloglobal/d-ui';",
     `<>
     <Pagination size="sm" page={2} pageCount={5} onPageChange={() => {}} />
     <Pagination size="md" page={2} pageCount={5} onPageChange={() => {}} />

@@ -1,5 +1,5 @@
 ---
-'d-ui': minor
+'@dudaloglobal/d-ui': minor
 ---
 
 Add Drawer, a Dialog anchored to a screen edge.

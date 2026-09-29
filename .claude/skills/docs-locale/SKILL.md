@@ -20,7 +20,7 @@ Storybook documentation language is **French** by default. The **Langue** toolba
 
 ## After changing docs
 
-Run `pnpm --filter d-ui test` (includes `src/docs-locale.test.ts`). It fails if an English markdown heading comes back, if `fr`/`en` copy keys diverge, or if a story name has no English mapping.
+Run `bun run --filter @dudaloglobal/d-ui test` (includes `src/docs-locale.test.ts`). It fails if an English markdown heading comes back, if `fr`/`en` copy keys diverge, or if a story name has no English mapping.
 
 ## Out of scope
 

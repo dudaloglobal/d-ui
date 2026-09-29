@@ -453,7 +453,9 @@ test('Docs source stays hidden until Show code is clicked', async ({ page }) => 
 test('Button docs Show code imports Button from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-button--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { Button, IconButton } from 'd-ui'");
+  await expect(source).toContainText(
+    "import { Button, IconButton } from '@dudaloglobal/d-ui'",
+  );
   await expect(source).toContainText('export default () =>');
   await expect(source).toContainText('<Button');
   await expect(source).not.toContainText('EmphasisUseCases');
@@ -463,7 +465,7 @@ test('Button docs Show code imports Button from d-ui', async ({ page }) => {
 test('TextInput docs Show code imports TextInput from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-textinput--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { TextInput } from 'd-ui'");
+  await expect(source).toContainText("import { TextInput } from '@dudaloglobal/d-ui'");
   await expect(source).toContainText('export default () =>');
   await expect(source).toContainText('<TextInput');
   await expect(source).not.toContainText('DefaultDemo');
@@ -473,7 +475,7 @@ test('TextInput docs Show code imports TextInput from d-ui', async ({ page }) =>
 test('Textarea docs Show code imports Textarea from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-textarea--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { Textarea } from 'd-ui'");
+  await expect(source).toContainText("import { Textarea } from '@dudaloglobal/d-ui'");
   await expect(source).toContainText('export default () =>');
   await expect(source).toContainText('<Textarea');
   await expect(source).not.toContainText('ControlledTextarea');
@@ -482,7 +484,7 @@ test('Textarea docs Show code imports Textarea from d-ui', async ({ page }) => {
 test('TimeAgo docs Show code imports TimeAgo from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-timeago--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { TimeAgo } from 'd-ui'");
+  await expect(source).toContainText("import { TimeAgo } from '@dudaloglobal/d-ui'");
   await expect(source).toContainText('<TimeAgo');
   await expect(source).not.toContainText('Example');
 });
@@ -744,7 +746,7 @@ test('French Checkbox docs do not leak English headings', async ({ page }) => {
 test('Checkbox docs Show code imports Checkbox from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-checkbox--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { Checkbox } from 'd-ui'");
+  await expect(source).toContainText("import { Checkbox } from '@dudaloglobal/d-ui'");
   await expect(source).toContainText('<Checkbox');
   await expect(source).not.toContainText('ChannelsGroup');
 });
@@ -752,7 +754,9 @@ test('Checkbox docs Show code imports Checkbox from d-ui', async ({ page }) => {
 test('Radio docs Show code imports Radio from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-radio--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { Radio, RadioGroup } from 'd-ui'");
+  await expect(source).toContainText(
+    "import { Radio, RadioGroup } from '@dudaloglobal/d-ui'",
+  );
   await expect(source).toContainText('<RadioGroup');
   await expect(source).not.toContainText('PlanGroup');
 });
@@ -760,7 +764,7 @@ test('Radio docs Show code imports Radio from d-ui', async ({ page }) => {
 test('Switch docs Show code imports Switch from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-switch--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { Switch } from 'd-ui'");
+  await expect(source).toContainText("import { Switch } from '@dudaloglobal/d-ui'");
   await expect(source).toContainText('<Switch');
   await expect(source).not.toContainText('ControlledSwitch');
 });
@@ -967,7 +971,9 @@ test('French Tooltip docs do not leak English headings', async ({ page }) => {
 test('Tooltip docs Show code imports Tooltip from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-tooltip--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { Button, Tooltip } from 'd-ui'");
+  await expect(source).toContainText(
+    "import { Button, Tooltip } from '@dudaloglobal/d-ui'",
+  );
   await expect(source).toContainText('<Tooltip');
   await expect(source).not.toContainText('ControlledTooltip');
 });
@@ -975,7 +981,9 @@ test('Tooltip docs Show code imports Tooltip from d-ui', async ({ page }) => {
 test('Popover docs Show code imports Popover from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-popover--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { Button, Popover } from 'd-ui'");
+  await expect(source).toContainText(
+    "import { Button, Popover } from '@dudaloglobal/d-ui'",
+  );
   await expect(source).toContainText('<Popover');
   await expect(source).not.toContainText('ControlledPopover');
   await expect(source).not.toContainText('DirectedPopover');
@@ -1002,7 +1010,9 @@ test('French EmojiPopover docs do not leak English reaction names', async ({ pag
 test('EmojiPopover docs Show code imports EmojiPopover from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-emojipopover--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { Button, EmojiPopover } from 'd-ui'");
+  await expect(source).toContainText(
+    "import { Button, EmojiPopover } from '@dudaloglobal/d-ui'",
+  );
   await expect(source).toContainText('<EmojiPopover');
   await expect(source).not.toContainText('SmileIcon');
 });
@@ -1177,7 +1187,7 @@ test('French FileUpload docs do not leak English headings', async ({ page }) => 
 test('FileUpload docs Show code imports FileUpload from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-fileupload--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { FileUpload } from 'd-ui'");
+  await expect(source).toContainText("import { FileUpload } from '@dudaloglobal/d-ui'");
   await expect(source).toContainText('<FileUpload');
 });
 
@@ -1201,7 +1211,7 @@ test('French DatePicker docs do not leak English headings', async ({ page }) => 
 test('DatePicker docs Show code imports DatePicker from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-datepicker--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { DatePicker } from 'd-ui'");
+  await expect(source).toContainText("import { DatePicker } from '@dudaloglobal/d-ui'");
   await expect(source).toContainText('<DatePicker');
 });
 
@@ -1243,7 +1253,7 @@ test('Tabs docs Show code imports Tabs from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-tabs--docs');
   const { source } = await docsSource(page);
   await expect(source).toContainText(
-    "import { Tab, TabList, TabPanel, Tabs } from 'd-ui'",
+    "import { Tab, TabList, TabPanel, Tabs } from '@dudaloglobal/d-ui'",
   );
   await expect(source).toContainText('<Tabs');
 });
@@ -1266,7 +1276,9 @@ test('French Breadcrumb docs do not leak English headings', async ({ page }) => 
 test('Breadcrumb docs Show code imports Breadcrumb from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-breadcrumb--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { Breadcrumb, BreadcrumbItem } from 'd-ui'");
+  await expect(source).toContainText(
+    "import { Breadcrumb, BreadcrumbItem } from '@dudaloglobal/d-ui'",
+  );
   await expect(source).toContainText('<Breadcrumb');
 });
 
@@ -1294,7 +1306,7 @@ test('French Pagination docs do not leak English headings', async ({ page }) => 
 test('Pagination docs Show code imports Pagination from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-pagination--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { Pagination } from 'd-ui'");
+  await expect(source).toContainText("import { Pagination } from '@dudaloglobal/d-ui'");
   await expect(source).toContainText('<Pagination');
 });
 
@@ -1323,7 +1335,7 @@ test('Menu docs Show code imports Menu from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-menu--docs');
   const { source } = await docsSource(page);
   await expect(source).toContainText(
-    "import { Button, Menu, MenuItem, MenuSeparator, MenuSub } from 'd-ui'",
+    "import { Button, Menu, MenuItem, MenuSeparator, MenuSub } from '@dudaloglobal/d-ui'",
   );
   await expect(source).toContainText('<Menu');
 });
@@ -1387,7 +1399,7 @@ test('French Alert docs do not leak English headings', async ({ page }) => {
 test('Alert docs Show code imports Alert from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-alert--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { Alert, Icon } from 'd-ui'");
+  await expect(source).toContainText("import { Alert, Icon } from '@dudaloglobal/d-ui'");
   await expect(source).toContainText('<Alert');
 });
 
@@ -1411,7 +1423,7 @@ test('Navbar docs Show code imports Navbar from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-navbar--docs');
   const { source } = await docsSource(page);
   await expect(source).toContainText(
-    "import { Button, Icon, IconButton, Navbar } from 'd-ui'",
+    "import { Button, Icon, IconButton, Navbar } from '@dudaloglobal/d-ui'",
   );
   await expect(source).toContainText('<Navbar');
 });
@@ -1438,7 +1450,7 @@ test('Sidebar docs Show code imports Sidebar from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-sidebar--docs');
   const { source } = await docsSource(page);
   await expect(source).toContainText(
-    "import { Icon, Sidebar, SidebarGroup, SidebarItem } from 'd-ui'",
+    "import { Icon, Sidebar, SidebarGroup, SidebarItem } from '@dudaloglobal/d-ui'",
   );
   await expect(source).toContainText('<Sidebar');
 });
@@ -1506,7 +1518,9 @@ test('French Typography docs do not leak English headings', async ({ page }) => 
 test('Typography docs Show code imports Heading and Text from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/foundations-typography--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { Heading, Text } from 'd-ui'");
+  await expect(source).toContainText(
+    "import { Heading, Text } from '@dudaloglobal/d-ui'",
+  );
   await expect(source).toContainText('<Heading');
   await expect(source).toContainText('<Text');
 });
@@ -1514,7 +1528,7 @@ test('Typography docs Show code imports Heading and Text from d-ui', async ({ pa
 test('Combobox docs Show code imports Combobox from d-ui', async ({ page }) => {
   await page.goto('/?path=/docs/components-combobox--docs');
   const { source } = await docsSource(page);
-  await expect(source).toContainText("import { Combobox } from 'd-ui'");
+  await expect(source).toContainText("import { Combobox } from '@dudaloglobal/d-ui'");
   await expect(source).toContainText('<Combobox');
   await expect(source).not.toContainText('ControlledCombobox');
 });

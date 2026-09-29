@@ -16,7 +16,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   name: 'Horizontal',
-  parameters: componentSource("import { Divider } from 'd-ui';", '<Divider />'),
+  parameters: componentSource(
+    "import { Divider } from '@dudaloglobal/d-ui';",
+    '<Divider />',
+  ),
   render: (args, { globals }) => {
     const copy = typographyCopy(docsLocale(globals.locale));
     return (
@@ -33,7 +36,7 @@ export const Vertical: Story = {
   name: 'Vertical',
   args: { orientation: 'vertical' },
   parameters: componentSource(
-    "import { Divider } from 'd-ui';",
+    "import { Divider } from '@dudaloglobal/d-ui';",
     '<Divider orientation="vertical" />',
   ),
   render: (args, { globals }) => {
@@ -52,7 +55,7 @@ export const Labelled: Story = {
   name: 'Labellisé',
   args: { label: 'Fin des résultats pertinents' },
   parameters: componentSource(
-    "import { Divider } from 'd-ui';",
+    "import { Divider } from '@dudaloglobal/d-ui';",
     '<Divider label="Fin des résultats pertinents" />',
   ),
   render: (args, { globals }) => {

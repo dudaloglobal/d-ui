@@ -4,7 +4,10 @@
   "type": "module",
   "version": "0.0.0",
   "description": "Dudalo Design System (DudaX) — package d-ui",
-  "packageManager": "pnpm@9.15.0",
+  "packageManager": "bun@1.4.2",
+  "workspaces": [
+    "packages/*"
+  ],
   "engines": {
     "node": ">=22.12"
   },
@@ -13,14 +16,15 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "pnpm --filter d-ui typecheck",
-    "test": "pnpm --filter d-ui test",
-    "test:e2e": "pnpm --filter d-ui test:e2e",
-    "build": "pnpm --filter d-ui build",
-    "build-storybook": "pnpm --filter d-ui build-storybook",
-    "storybook": "pnpm --filter d-ui storybook",
+    "typecheck": "bun run --filter @dudaloglobal/d-ui typecheck",
+    "test": "bun run --filter @dudaloglobal/d-ui test",
+    "test:e2e": "bun run --filter @dudaloglobal/d-ui test:e2e",
+    "build": "bun run --filter @dudaloglobal/d-ui build",
+    "build-storybook": "bun run --filter @dudaloglobal/d-ui build-storybook",
+    "storybook": "bun run --filter @dudaloglobal/d-ui storybook",
     "changeset": "changeset",
-    "prepare": "sh .githooks/install.sh"
+    "prepare": "sh .githooks/install.sh",
+    "version-packages": "changeset version && bun install --lockfile-only --ignore-scripts"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.0",
