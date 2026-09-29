@@ -34,6 +34,7 @@ Les sources, tests, Storybook et node_modules ne sont pas publiés. React et
 React DOM restent des peer dependencies, externalisées du build.
 
 Le lockfile Bun a été créé par une installation neuve, sans conversion pnpm.
+Vitest passe en version 4 pour intégrer le correctif de sécurité de son mocker.
 La CI exécute `bun audit --audit-level=high` avant les contrôles de qualité et la
 publication : seuls les avis `high` et `critical` bloquent. Lancer `bun audit`
 sans seuil en local pour voir aussi les avis `low` et `moderate`.
