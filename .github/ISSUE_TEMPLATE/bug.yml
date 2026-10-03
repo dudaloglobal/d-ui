@@ -1,0 +1,63 @@
+name: Signaler un bug
+description: Signaler un comportement incorrect ou une régression de d-ui.
+title: 'bug: '
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Merci de ne jamais publier de vulnérabilité ici. Utilisez le signalement privé proposé dans « Liens utiles ».
+  - type: input
+    id: version
+    attributes:
+      label: Version de d-ui
+      description: Version exacte du paquet concerné.
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Comportement observé
+      description: Décrivez clairement ce qui se passe.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportement attendu
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction minimale
+      description: Ajoutez un lien ou les étapes permettant de reproduire le problème.
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Navigateur concerné
+      multiple: true
+      options:
+        - Chrome ou Chromium
+        - Firefox
+        - Safari
+        - Non applicable
+        - Autre
+    validations:
+      required: true
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Impact sur l’accessibilité
+      description: Précisez l’usage clavier, lecteur d’écran ou autre technologie d’assistance concernée.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Vérifications
+      options:
+        - label: J’ai vérifié qu’aucune issue ouverte ne décrit déjà ce problème.
+          required: true
+        - label: Ce rapport ne contient ni secret ni vulnérabilité exploitable.
+          required: true
