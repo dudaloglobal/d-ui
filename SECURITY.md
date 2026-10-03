@@ -54,4 +54,8 @@ constitue jamais un contrôle d’accès.
 - Les chaînes fournies par les applications sont considérées comme non fiables.
 - Aucun `eval` ni `dangerouslySetInnerHTML` dans les primitives publiques.
 - Les Actions GitHub utilisent les permissions minimales nécessaires.
+- Les workflows de PR ne reçoivent aucun secret et restent en lecture seule ;
+  la publication d’un preview traite son artefact comme une donnée sans jamais
+  checkout ni exécuter le code de la PR dans le workflow privilégié.
+- Toutes les Actions distantes sont épinglées à un SHA complet.
 - Dependabot surveille les dépendances npm et les Actions GitHub.
