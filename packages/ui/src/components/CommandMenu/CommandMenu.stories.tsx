@@ -17,6 +17,7 @@ import {
   type CommandMenuDocsCopy,
 } from '../../../.storybook/docs-locale';
 import { componentSourceFn } from '../../../.storybook/docs-source';
+import { javascriptStringLiteral } from '../../lib/javascriptLiteral';
 import { Button } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
@@ -71,7 +72,7 @@ function toEntries(specs: readonly EntrySpec[]): CommandMenuEntry[] {
   );
 }
 
-const quote = (text: string) => `'${text.replace(/'/g, "\\'")}'`;
+const quote = javascriptStringLiteral;
 
 function fieldsSource(spec: CommandSpec): string[] {
   return [

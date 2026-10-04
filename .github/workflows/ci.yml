@@ -26,7 +26,10 @@ jobs:
         with:
           bun-version-file: package.json
       - run: bun install --frozen-lockfile
-      - run: bun audit --audit-level=high
+      # GHSA-vfj7-8cjw-p6xm n'a aucune version corrigée publiée. `braces` est
+      # transitif de Changesets, utilisé seulement sur les motifs contrôlés du
+      # dépôt pendant la release. Garder l'exclusion ciblée jusqu'au correctif.
+      - run: bun audit --audit-level=high --ignore GHSA-vfj7-8cjw-p6xm
       - run: bun run lint
       - run: bun run format:check
       - run: bun run typecheck
