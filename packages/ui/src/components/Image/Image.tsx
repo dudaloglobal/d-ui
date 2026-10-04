@@ -120,7 +120,7 @@ function length(value: number | string | undefined): string | undefined {
 
 function safeImageSource(src: string): string | undefined {
   try {
-    const encoded = encodeURI(src);
+    const encoded = encodeURI(src).replace(/%25(?=[\da-f]{2})/gi, '%');
     const scheme = /^([a-z][a-z\d+.-]*):/i.exec(encoded)?.[1]?.toLowerCase();
     if (!scheme) return encoded;
     if (scheme === 'data')

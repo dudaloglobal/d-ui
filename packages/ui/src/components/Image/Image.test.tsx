@@ -25,6 +25,15 @@ describe('Image', () => {
     );
   });
 
+  it.each([
+    '/photo%20classe.jpg',
+    'https://cdn.example/photo%20classe.jpg?sig=a%2Fb%3D',
+    'https://cdn.example/photo%2520classe.jpg?sig=a%2fb%3d',
+  ])('preserves the encoded path and signature of %s', (src) => {
+    render(<Image src={src} alt="Photo" />);
+    expect(screen.getByRole('img', { name: 'Photo' })).toHaveAttribute('src', src);
+  });
+
   it('rejects active protocols and malformed Unicode sources', () => {
     const { rerender } = render(<Image src="javascript:alert(1)" alt="Photo" />);
     expect(screen.getByRole('img', { name: 'Photo (image unavailable)' })).toBeVisible();
