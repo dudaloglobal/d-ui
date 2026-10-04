@@ -118,6 +118,19 @@ function length(value: number | string | undefined): string | undefined {
   return typeof value === 'number' ? `${value}px` : value;
 }
 
+function safeImageSource(src: string): string | undefined {
+  try {
+    const encoded = encodeURI(src).replace(/%25(?=[\da-f]{2})/gi, '%');
+    const scheme = /^([a-z][a-z\d+.-]*):/i.exec(encoded)?.[1]?.toLowerCase();
+    if (!scheme) return encoded;
+    if (scheme === 'data')
+      return encoded.toLowerCase().startsWith('data:image/') ? encoded : undefined;
+    return ['http', 'https', 'blob'].includes(scheme) ? encoded : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 /**
  * Image encadrée : rapport d'aspect réservé, cadrage, arrondi, et deux états
  * que tout appelant réécrit sinon — le chargement et l'échec.
@@ -156,6 +169,7 @@ export function Image({
   ...rest
 }: ImageProps) {
   const [status, setStatus] = useState<'loading' | 'loaded' | 'failed'>('loading');
+  const encodedSrc = safeImageSource(src);
 
   /*
    * Une nouvelle `src` repart de zéro, **pendant le rendu**. Dans un effet, la
@@ -187,7 +201,7 @@ export function Image({
   };
 
   const decorative = alt === '';
-  const failed = status === 'failed';
+  const failed = status === 'failed' || encodedSrc === undefined;
 
   return (
     <span
@@ -233,7 +247,7 @@ export function Image({
       ) : (
         <img
           ref={attach}
-          src={src}
+          src={encodedSrc}
           srcSet={srcSet}
           sizes={sizes}
           crossOrigin={crossOrigin}
