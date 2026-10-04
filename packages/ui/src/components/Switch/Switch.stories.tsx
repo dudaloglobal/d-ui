@@ -5,9 +5,9 @@ import { docsLocale, selectionCopy } from '../../../.storybook/docs-locale';
 import { componentSource, componentSourceFn } from '../../../.storybook/docs-source';
 import { Switch } from './Switch';
 
-const importSwitch = "import { Switch } from 'd-ui';";
+const importSwitch = "import { Switch } from '@dudaloglobal/d-ui';";
 const importControlled =
-  "import { useState } from 'react';\nimport { Switch } from 'd-ui';";
+  "import { useState } from 'react';\nimport { Switch } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/Switch',

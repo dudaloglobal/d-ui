@@ -43,7 +43,7 @@ to the author, put it on the project board, and set **En cours** / **En revue** 
 This must **not** run on GitHub Actions (no cloud AI token). The hook exits 0
 when `CI` is set.
 
-Install hooks (also run by `pnpm install`):
+Install hooks (also run by `bun install`):
 
 ```bash
 sh .githooks/install.sh

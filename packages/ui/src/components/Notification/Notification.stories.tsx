@@ -5,7 +5,7 @@ import { componentSource } from '../../../.storybook/docs-source';
 import { docsLocale, notificationCopy } from '../../../.storybook/docs-locale';
 import { Notification } from './Notification';
 
-const importNotification = "import { Notification } from 'd-ui';";
+const importNotification = "import { Notification } from '@dudaloglobal/d-ui';";
 
 function NotificationCorner({ children }: { children: ReactNode }) {
   return (

@@ -37,10 +37,10 @@ URL du preview : https://dudaloglobal.github.io/d-ui/prs/<numéro-de-PR>/
 
 ## Tests
 
-- [ ] `pnpm lint`
-- [ ] `pnpm typecheck`
-- [ ] `pnpm test`
-- [ ] `pnpm build`
+- [ ] `bun run lint`
+- [ ] `bun run typecheck`
+- [ ] `bun run test`
+- [ ] `bun run build`
 
 ## Accessibilité
 

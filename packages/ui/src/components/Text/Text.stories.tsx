@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   name: 'Par défaut',
   parameters: componentSource(
-    "import { Text } from 'd-ui';",
+    "import { Text } from '@dudaloglobal/d-ui';",
     '<Text>Le design system fournit les primitives typographiques.</Text>',
   ),
   render: (args, { globals }) => {
@@ -32,7 +32,7 @@ export const Default: Story = {
 export const Sizes: Story = {
   name: 'Tailles',
   parameters: componentSource(
-    "import { Text } from 'd-ui';",
+    "import { Text } from '@dudaloglobal/d-ui';",
     `<Text size="body">texte courant</Text>
 <Text size="body-sm">texte secondaire</Text>
 <Text size="caption">légende</Text>`,
@@ -52,7 +52,7 @@ export const Sizes: Story = {
 export const Tones: Story = {
   name: 'Tons',
   parameters: componentSource(
-    "import { Text } from 'd-ui';",
+    "import { Text } from '@dudaloglobal/d-ui';",
     `<Text>contraste maximal</Text>
 <Text tone="muted">hiérarchie, ≥ 4.5:1</Text>
 <Text tone="danger">message d’erreur</Text>`,
@@ -72,7 +72,7 @@ export const Tones: Story = {
 export const Weights: Story = {
   name: 'Graisses',
   parameters: componentSource(
-    "import { Text } from 'd-ui';",
+    "import { Text } from '@dudaloglobal/d-ui';",
     `<Text weight="regular">regular</Text>
 <Text weight="medium">medium</Text>
 <Text weight="semibold">semibold</Text>`,
@@ -92,7 +92,7 @@ export const Weights: Story = {
 export const Colors: Story = {
   name: 'Couleurs',
   parameters: componentSource(
-    "import { Text } from 'd-ui';",
+    "import { Text } from '@dudaloglobal/d-ui';",
     `<Text>
     Voici un mot <Text as="span" color="brand">coloré</Text> dans la phrase.
 </Text>
@@ -137,7 +137,7 @@ export const Colors: Story = {
 export const ColorVariants: Story = {
   name: 'Variantes de couleur',
   parameters: componentSource(
-    "import { Text } from 'd-ui';",
+    "import { Text } from '@dudaloglobal/d-ui';",
     `<Text color="brand" colorVariant="D2">D2</Text>
 <Text color="brand">N</Text>
 <Text color="brand" colorVariant="L2">L2</Text>`,
@@ -156,7 +156,7 @@ export const ColorVariants: Story = {
 export const WrapAndOverflow: Story = {
   name: 'Retour à la ligne et débordement',
   parameters: componentSource(
-    "import { Text } from 'd-ui';",
+    "import { Text } from '@dudaloglobal/d-ui';",
     `<div className="max-w-[180px] overflow-hidden">
     <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
 </div>

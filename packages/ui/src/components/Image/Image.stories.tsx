@@ -5,7 +5,7 @@ import { componentSource } from '../../../.storybook/docs-source';
 import { Text } from '../Text/Text';
 import { Image } from './Image';
 
-const importImage = "import { Image } from 'd-ui';";
+const importImage = "import { Image } from '@dudaloglobal/d-ui';";
 
 /*
  * Les images sont des SVG en `data:` : les stories doivent rendre la même

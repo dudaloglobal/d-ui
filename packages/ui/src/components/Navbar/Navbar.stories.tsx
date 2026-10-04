@@ -8,7 +8,8 @@ import { IconButton } from '../Button/IconButton';
 import { Icon } from '../Icon/Icon';
 import { Navbar } from './Navbar';
 
-const importNavbar = "import { Button, Icon, IconButton, Navbar } from 'd-ui';";
+const importNavbar =
+  "import { Button, Icon, IconButton, Navbar } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/Navbar',

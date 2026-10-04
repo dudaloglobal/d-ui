@@ -11,7 +11,7 @@ L’auteur de la PR est assigné automatiquement. L’issue liée (`Closes #N`) 
 
 Messages de commit en **anglais**, style conventional : `feat(button): …`, `fix(a11y): …`, `chore(ci): …`.
 
-Ne pas ajouter de trailer `Co-authored-by` (ni attribution d’outil). Les hooks s’installent avec `pnpm install` (ou `sh .githooks/install.sh`).
+Ne pas ajouter de trailer `Co-authored-by` (ni attribution d’outil). Les hooks s’installent avec `bun install` (ou `sh .githooks/install.sh`).
 
 ## Agents (Cursor et Claude Code)
 
@@ -70,4 +70,4 @@ Pour un composant interactif : test Testing Library (rôle, nom accessible, clav
 
 ## Release
 
-Changesets (`pnpm changeset`). Détail : [docs/release.md](./docs/release.md).
+Changesets (`bun run changeset`). Détail : [docs/release.md](./docs/release.md).

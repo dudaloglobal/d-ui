@@ -37,7 +37,7 @@ const config: StorybookConfig & { title: string } = {
       ...config.resolve,
       alias: {
         ...(config.resolve?.alias as Record<string, string> | undefined),
-        'd-ui': resolve(storybookDir, '../src/index.ts'),
+        '@dudaloglobal/d-ui': resolve(storybookDir, '../src/index.ts'),
       },
     };
     return config;

@@ -92,12 +92,12 @@ Pas de `div` + `onKeyDown` si un élément natif existe (`dialog`, `button`, `a`
 
 ## Outils
 
-| Outil                         | Quand                |
-| ----------------------------- | -------------------- |
-| `eslint-plugin-jsx-a11y`      | à chaque `pnpm lint` |
-| Storybook addon a11y          | sur chaque story     |
-| Testing Library (`getByRole`) | tests unitaires      |
-| Checklist PR                  | avant review         |
+| Outil                         | Quand                   |
+| ----------------------------- | ----------------------- |
+| `eslint-plugin-jsx-a11y`      | à chaque `bun run lint` |
+| Storybook addon a11y          | sur chaque story        |
+| Testing Library (`getByRole`) | tests unitaires         |
+| Checklist PR                  | avant review            |
 
 ## Thème
 

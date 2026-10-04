@@ -5,7 +5,7 @@ import { docsLocale, loadingCopy } from '../../../.storybook/docs-locale';
 import { componentSource } from '../../../.storybook/docs-source';
 import { Skeleton, SkeletonText } from './Skeleton';
 
-const importSkeleton = "import { Skeleton, SkeletonText } from 'd-ui';";
+const importSkeleton = "import { Skeleton, SkeletonText } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/Skeleton',

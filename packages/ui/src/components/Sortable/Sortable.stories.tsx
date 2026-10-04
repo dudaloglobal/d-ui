@@ -19,7 +19,7 @@ import {
 import { moveSortableItem, type SortableMessages } from './sortableMessages';
 
 const importSortable =
-  "import { useState } from 'react';\nimport { DragHandle, SortableItem, SortableList } from 'd-ui';";
+  "import { useState } from 'react';\nimport { DragHandle, SortableItem, SortableList } from '@dudaloglobal/d-ui';";
 
 const messagesSource = [
   'const messages = {',
@@ -436,7 +436,7 @@ export const MoveButtons: Story = {
     ))}
 </SortableList>`,
     `${chaptersSource}\n${messagesNote}`,
-    "import { useState } from 'react';\nimport { DragHandle, IconButton, SortableItem, SortableList, moveSortableItem } from 'd-ui';",
+    "import { useState } from 'react';\nimport { DragHandle, IconButton, SortableItem, SortableList, moveSortableItem } from '@dudaloglobal/d-ui';",
   ),
   render: (_, { globals }) => (
     <ChapterList copy={sortableCopy(docsLocale(globals.locale))} moveButtons />

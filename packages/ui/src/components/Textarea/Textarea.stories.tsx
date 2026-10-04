@@ -12,7 +12,7 @@ import { stringifyValue } from '../textControl';
 import { Textarea, type TextareaProps } from './Textarea';
 
 const importTextarea =
-  "import { useState } from 'react';\nimport { Textarea } from 'd-ui';";
+  "import { useState } from 'react';\nimport { Textarea } from '@dudaloglobal/d-ui';";
 
 function remainingMessage(copy: InputDocsCopy) {
   return (count: number, maxLength?: number) =>

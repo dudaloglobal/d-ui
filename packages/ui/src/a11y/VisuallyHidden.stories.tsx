@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const IconOnlyName: Story = {
   name: 'Nom d’un bouton icône',
   parameters: componentSource(
-    "import { VisuallyHidden } from 'd-ui';",
+    "import { VisuallyHidden } from '@dudaloglobal/d-ui';",
     `<button type="button">
   <span aria-hidden="true">×</span>
   <VisuallyHidden>Fermer</VisuallyHidden>

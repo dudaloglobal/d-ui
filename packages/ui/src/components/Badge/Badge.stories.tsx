@@ -8,7 +8,8 @@ import { IconButton } from '../Button/IconButton';
 import { Icon } from '../Icon/Icon';
 import { Badge } from './Badge';
 
-const importBadge = "import { Avatar, Badge, Icon, IconButton } from 'd-ui';";
+const importBadge =
+  "import { Avatar, Badge, Icon, IconButton } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/Badge',

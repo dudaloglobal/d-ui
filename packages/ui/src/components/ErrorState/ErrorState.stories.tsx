@@ -5,7 +5,7 @@ import { docsLocale, errorStateCopy } from '../../../.storybook/docs-locale';
 import { Button } from '../Button/Button';
 import { ErrorState } from './ErrorState';
 
-const importErrorState = "import { Button, ErrorState } from 'd-ui';";
+const importErrorState = "import { Button, ErrorState } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/ErrorState',

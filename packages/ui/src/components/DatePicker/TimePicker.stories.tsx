@@ -4,7 +4,7 @@ import { docsLocale, timePickerCopy } from '../../../.storybook/docs-locale';
 import { componentSource } from '../../../.storybook/docs-source';
 import { TimePicker } from './TimePicker';
 
-const importTimePicker = "import { TimePicker } from 'd-ui';";
+const importTimePicker = "import { TimePicker } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/TimePicker',

@@ -5,7 +5,7 @@ import { componentSource } from '../../../.storybook/docs-source';
 import { Calendar } from './Calendar';
 import { weekdayIndex, type CalendarDate } from './calendarDate';
 
-const importCalendar = "import { Calendar } from 'd-ui';";
+const importCalendar = "import { Calendar } from '@dudaloglobal/d-ui';";
 
 const today: CalendarDate = { year: 2026, month: 3, day: 18 };
 const selected: CalendarDate = { year: 2026, month: 3, day: 12 };

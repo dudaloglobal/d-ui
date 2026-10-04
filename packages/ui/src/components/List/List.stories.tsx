@@ -7,9 +7,9 @@ import { Button } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 import { List, ListItem } from './List';
 
-const importList = "import { List, ListItem } from 'd-ui';";
+const importList = "import { List, ListItem } from '@dudaloglobal/d-ui';";
 const importSlots = `import { BookOpenIcon } from '@heroicons/react/24/outline';
-import { Button, Icon, List, ListItem } from 'd-ui';`;
+import { Button, Icon, List, ListItem } from '@dudaloglobal/d-ui';`;
 
 const meta = {
   title: 'Components/List',

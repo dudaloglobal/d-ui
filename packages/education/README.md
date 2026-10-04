@@ -7,9 +7,9 @@ Package minimal ouvert par DS-050. Publication, CI dédiée et règles du
 package : DS-047.
 
 ```ts
-import 'd-ui/styles.css';
-import 'd-ui-education/styles.css';
-import { CalendarEvent } from 'd-ui-education';
+import '@dudaloglobal/d-ui/styles.css';
+import '@dudaloglobal/d-ui-education/styles.css';
+import { CalendarEvent } from '@dudaloglobal/d-ui-education';
 ```
 
 | Composant       | Rôle                                                          |

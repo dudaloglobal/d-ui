@@ -25,7 +25,7 @@ type Story = StoryObj<typeof meta>;
 export const BrandOverride: Story = {
   name: 'Surcharge de marque',
   parameters: componentSource(
-    "import { Button, ThemeProvider } from 'd-ui';",
+    "import { Button, ThemeProvider } from '@dudaloglobal/d-ui';",
     `<ThemeProvider
   tokens={{
     brand: '#7c3aed',
@@ -57,7 +57,7 @@ export const BrandOverride: Story = {
 export const System: Story = {
   name: 'Système',
   parameters: componentSource(
-    "import { Button, ThemeProvider } from 'd-ui';",
+    "import { Button, ThemeProvider } from '@dudaloglobal/d-ui';",
     `<ThemeProvider mode="system">
   <Button>Continuer</Button>
 </ThemeProvider>`,

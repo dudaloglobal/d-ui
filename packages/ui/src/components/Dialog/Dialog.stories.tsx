@@ -23,10 +23,10 @@ import {
 } from './DialogParts';
 
 const importDialog =
-  "import { useState } from 'react';\nimport { Button, Dialog, DialogActions, DialogDescription, DialogTitle } from 'd-ui';";
+  "import { useState } from 'react';\nimport { Button, Dialog, DialogActions, DialogDescription, DialogTitle } from '@dudaloglobal/d-ui';";
 
 const importAlertDialog =
-  "import { useState } from 'react';\nimport { AlertDialog, Button } from 'd-ui';";
+  "import { useState } from 'react';\nimport { AlertDialog, Button } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/Dialog',

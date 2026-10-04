@@ -5,7 +5,7 @@ import { avatarCopy, docsLocale } from '../../../.storybook/docs-locale';
 import { Avatar, AvatarGroup, type AvatarPresence } from './Avatar';
 import { UI_COLORS, UI_SIZES } from '../../lib/uiScale';
 
-const importAvatar = "import { Avatar, AvatarGroup } from 'd-ui';";
+const importAvatar = "import { Avatar, AvatarGroup } from '@dudaloglobal/d-ui';";
 
 function portraitUri(fill: string, letter: string) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96"><rect fill="${fill}" width="96" height="96"/><text x="50%" y="54%" fill="#fff" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="36">${letter}</text></svg>`;

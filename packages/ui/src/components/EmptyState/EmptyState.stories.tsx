@@ -7,7 +7,7 @@ import { Button } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 import { EmptyState } from './EmptyState';
 
-const importEmptyState = "import { Button, EmptyState, Icon } from 'd-ui';";
+const importEmptyState = "import { Button, EmptyState, Icon } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/EmptyState',

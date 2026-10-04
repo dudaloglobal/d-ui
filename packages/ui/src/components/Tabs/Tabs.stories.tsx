@@ -15,7 +15,7 @@ import { Button } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 import { Tab, TabList, TabPanel, Tabs } from './Tabs';
 
-const importTabs = "import { Tab, TabList, TabPanel, Tabs } from 'd-ui';";
+const importTabs = "import { Tab, TabList, TabPanel, Tabs } from '@dudaloglobal/d-ui';";
 
 const importDetachedTabs = `import {
     DevicePhoneMobileIcon,
@@ -23,7 +23,7 @@ const importDetachedTabs = `import {
     Squares2X2Icon,
     UserGroupIcon,
 } from '@heroicons/react/24/outline';
-import { Icon, Tab, TabList, TabPanel, Tabs } from 'd-ui';`;
+import { Icon, Tab, TabList, TabPanel, Tabs } from '@dudaloglobal/d-ui';`;
 
 function DetachedPanel({
   copy,

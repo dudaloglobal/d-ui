@@ -29,7 +29,7 @@ export default defineConfig({
       cssFileName: 'd-ui-education',
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime', 'd-ui'],
+      external: ['react', 'react-dom', 'react/jsx-runtime', '@dudaloglobal/d-ui'],
     },
     sourcemap: true,
     emptyOutDir: true,

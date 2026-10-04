@@ -184,7 +184,7 @@ export const Primary: Story = {
 export const HighEmphasis: Story = {
   name: 'Forte emphase',
   parameters: componentSource(
-    "import { Button, IconButton } from 'd-ui';",
+    "import { Button, IconButton } from '@dudaloglobal/d-ui';",
     `<Button>Par défaut</Button>
 <Button disabled>Désactivé</Button>
 <Button loading>Enregistrement</Button>
@@ -205,7 +205,7 @@ export const HighEmphasis: Story = {
 export const MediumEmphasis: Story = {
   name: 'Emphase moyenne',
   parameters: componentSource(
-    "import { Button } from 'd-ui';",
+    "import { Button } from '@dudaloglobal/d-ui';",
     `<Button variant="secondary">Par défaut</Button>
 <Button variant="secondary" disabled>
   Désactivé
@@ -226,7 +226,7 @@ export const MediumEmphasis: Story = {
 export const Toggled: Story = {
   name: 'Bouton bascule',
   parameters: componentSource(
-    "import { Button } from 'd-ui';",
+    "import { Button } from '@dudaloglobal/d-ui';",
     `<Button variant="secondary">S'abonner</Button>
 <Button variant="secondary" isSelected>
   Abonné
@@ -248,7 +248,7 @@ export const Toggled: Story = {
 export const LowEmphasis: Story = {
   name: 'Faible emphase',
   parameters: componentSource(
-    "import { Button } from 'd-ui';",
+    "import { Button } from '@dudaloglobal/d-ui';",
     `<Button variant="ghost">Par défaut</Button>
 <Button variant="ghost" disabled>
   Désactivé
@@ -273,7 +273,7 @@ export const LowEmphasis: Story = {
 export const SmallSize: Story = {
   name: 'Petite taille',
   parameters: componentSource(
-    "import { Button } from 'd-ui';",
+    "import { Button } from '@dudaloglobal/d-ui';",
     `<Button size="sm">Par défaut</Button>
 <Button size="sm" variant="secondary">
   Par défaut
@@ -297,7 +297,7 @@ export const SmallSize: Story = {
 export const FullWidth: Story = {
   name: 'Pleine largeur',
   parameters: componentSource(
-    "import { Button } from 'd-ui';",
+    "import { Button } from '@dudaloglobal/d-ui';",
     `<Button fullWidth>Bouton pleine largeur</Button>
 <Button fullWidth variant="secondary">
   Deux boutons pleine largeur
@@ -333,7 +333,7 @@ export const FullWidth: Story = {
 export const Loading: Story = {
   name: 'Chargement',
   parameters: componentSource(
-    "import { Button, IconButton } from 'd-ui';",
+    "import { Button, IconButton } from '@dudaloglobal/d-ui';",
     `<Button loading>Enregistrement</Button>
 <Button loading variant="secondary">
   Enregistrement
@@ -393,7 +393,7 @@ export const Loading: Story = {
 export const IconOnly: Story = {
   name: 'Icône seule',
   parameters: componentSource(
-    "import { IconButton } from 'd-ui';",
+    "import { IconButton } from '@dudaloglobal/d-ui';",
     '<IconButton icon={plus} aria-label="Ajouter" />',
     plusIconSource,
   ),
@@ -408,7 +408,7 @@ const RADII: ButtonRadius[] = ['none', 'sm', 'md', 'lg', 'xl'];
 export const Radius: Story = {
   name: 'Arrondi',
   parameters: componentSource(
-    "import { Button } from 'd-ui';",
+    "import { Button } from '@dudaloglobal/d-ui';",
     `<Button radius="lg">Continuer</Button>`,
   ),
   render: (_, { globals }) => {

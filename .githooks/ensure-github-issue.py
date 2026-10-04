@@ -112,7 +112,7 @@ if re.search(r"(?i)follow-?up|rebase|deps|dependabot", branch):
 paths = [p.strip() for p in changed.splitlines() if p.strip()]
 if paths:
     trivial = all(
-        p.endswith(("pnpm-lock.yaml", "package-lock.json", "yarn.lock"))
+        p.endswith(("bun.lock", "package-lock.json", "yarn.lock"))
         or "/.changeset/" in f"/{p}"
         or p.startswith(".changeset/")
         for p in paths

@@ -5,9 +5,9 @@ import { docsLocale, selectionCopy } from '../../../.storybook/docs-locale';
 import { componentSource, componentSourceFn } from '../../../.storybook/docs-source';
 import { Checkbox, CheckboxGroup } from './Checkbox';
 
-const importCheckbox = "import { Checkbox } from 'd-ui';";
+const importCheckbox = "import { Checkbox } from '@dudaloglobal/d-ui';";
 const importGroup =
-  "import { useState } from 'react';\nimport { Checkbox, CheckboxGroup } from 'd-ui';";
+  "import { useState } from 'react';\nimport { Checkbox, CheckboxGroup } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/Checkbox',

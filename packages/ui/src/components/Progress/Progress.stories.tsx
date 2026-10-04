@@ -6,7 +6,7 @@ import { UI_COLORS, UI_SIZES } from '../../lib/uiScale';
 import { Text } from '../Text/Text';
 import { Progress } from './Progress';
 
-const importProgress = "import { Progress } from 'd-ui';";
+const importProgress = "import { Progress } from '@dudaloglobal/d-ui';";
 
 const meta = {
   title: 'Components/Progress',

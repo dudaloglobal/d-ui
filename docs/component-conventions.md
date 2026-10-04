@@ -25,7 +25,7 @@ La page docs n’est pas de l’autodocs seul. Suivre `Button.mdx` / `TextInput.
 - MDX en **français** (titre de composant = nom d’API anglais).
 - Une section = une capacité, avec `<Canvas of={Stories.X} />`.
 - `Accessibilité` + `À faire` / `À éviter` + `Propriétés` (`ArgTypes` avec `include`).
-- Stories : `name` français, id d’export anglais, copy via `docs-locale.ts`, snippet **Show code** via `componentSource` (`import { Name } from 'd-ui'`).
+- Stories : `name` français, id d’export anglais, copy via `docs-locale.ts`, snippet **Show code** via `componentSource` (`import { Name } from '@dudaloglobal/d-ui'`).
 - Descriptions d’ArgTypes en français dans `.storybook/arg-types.ts`.
 
 Détail agent : `.cursor/skills/storybook-docs/SKILL.md` et `.cursor/skills/docs-locale/SKILL.md`.
@@ -65,4 +65,4 @@ Chaque prop / état public a une story et un canvas MDX. Un Button « label seul
 2. Couleurs via tokens, jamais un hex dans le TSX.
 3. Tests Testing Library (`getByRole`) + story + MDX (pas autodocs seul).
 4. Options publiques toutes démontrées (pas seulement `Default`).
-5. `pnpm lint` / `format:check` / `typecheck` / `test`.
+5. `bun run lint` / `format:check` / `typecheck` / `test`.

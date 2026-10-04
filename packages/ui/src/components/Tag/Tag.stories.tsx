@@ -8,7 +8,7 @@ import { UI_COLORS, UI_SIZES } from '../../lib/uiScale';
 import { Icon } from '../Icon/Icon';
 import { Tag, TagGroup, type TagAppearance, type TagVariant } from './Tag';
 
-const importTag = "import { Icon, Tag, TagGroup } from 'd-ui';";
+const importTag = "import { Icon, Tag, TagGroup } from '@dudaloglobal/d-ui';";
 
 const VARIANTS: TagVariant[] = [
   'default',

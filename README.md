@@ -8,7 +8,7 @@ Les apps consommatrices dépendent de :
 
 1. l’API React (`Button`, `ThemeProvider`, `SkipLink`, …)
 2. les variables CSS `--d-ui-*`
-3. `import 'd-ui/styles.css'`
+3. `import '@dudaloglobal/d-ui/styles.css'`
 
 Les classes Tailwind internes ne font **pas** partie du contrat.
 
@@ -17,24 +17,24 @@ Usage : [docs/consume.md](./docs/consume.md). Tokens : [docs/tokens.md](./docs/t
 ## Prérequis
 
 - Node 22.12+ (`nvm use` — pin `.nvmrc` : 22.23.2)
-- pnpm 9
+- Bun 1.4.2 (version épinglée dans `package.json`)
 
 ```bash
-pnpm install
-pnpm storybook
+bun install
+bun run storybook
 ```
 
 ## Scripts
 
-| Commande               | Rôle                         |
-| ---------------------- | ---------------------------- |
-| `pnpm lint`            | ESLint + jsx-a11y            |
-| `pnpm format:check`    | Prettier                     |
-| `pnpm typecheck`       | TypeScript                   |
-| `pnpm test`            | Vitest                       |
-| `pnpm build`           | Build lib `d-ui`             |
-| `pnpm storybook`       | Storybook local              |
-| `pnpm build-storybook` | Build Storybook (CI preview) |
+| Commande                  | Rôle                           |
+| ------------------------- | ------------------------------ |
+| `bun run lint`            | ESLint + jsx-a11y              |
+| `bun run format:check`    | Prettier                       |
+| `bun run typecheck`       | TypeScript                     |
+| `bun run test`            | Vitest                         |
+| `bun run build`           | Build lib `@dudaloglobal/d-ui` |
+| `bun run storybook`       | Storybook local                |
+| `bun run build-storybook` | Build Storybook (CI preview)   |
 
 ## Contribution
 

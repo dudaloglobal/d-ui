@@ -13,7 +13,7 @@ import { IconButton } from '../Button/IconButton';
 import { Icon } from './Icon';
 
 const heroImport = `import { BellIcon } from '@heroicons/react/24/outline';
-import { Icon } from 'd-ui';`;
+import { Icon } from '@dudaloglobal/d-ui';`;
 
 const meta = {
   title: 'Components/Icon',
@@ -97,7 +97,7 @@ export const Labelled: Story = {
   args: { as: TrashIcon, label: 'Supprimer définitivement' },
   parameters: componentSource(
     `import { TrashIcon } from '@heroicons/react/24/outline';
-import { Icon } from 'd-ui';`,
+import { Icon } from '@dudaloglobal/d-ui';`,
     '<Icon as={TrashIcon} label="Supprimer définitivement" />',
   ),
   render: (args, { globals }) => {
@@ -110,7 +110,7 @@ export const InsideButtons: Story = {
   name: 'Dans un bouton',
   parameters: componentSource(
     `import { ArrowRightIcon, ChevronDownIcon, TrashIcon } from '@heroicons/react/24/outline';
-import { Button, Icon, IconButton } from 'd-ui';`,
+import { Button, Icon, IconButton } from '@dudaloglobal/d-ui';`,
     `<>
   <Button icon={<Icon as={ArrowRightIcon} size="sm" />} iconPosition="end">
     Continuer

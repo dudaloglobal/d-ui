@@ -1,7 +1,7 @@
 dist
 storybook-static
 coverage
-pnpm-lock.yaml
+bun.lock
 node_modules
 playwright-report
 test-results

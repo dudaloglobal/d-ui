@@ -7,7 +7,7 @@ import {
   Text,
   calendarDateToIso,
   type CalendarDate,
-} from 'd-ui';
+} from '@dudaloglobal/d-ui';
 import { calendarEventArgTypes } from '../../../../ui/.storybook/arg-types';
 import {
   componentSource,
@@ -34,9 +34,9 @@ function stack(gap: string, extra?: CSSProperties): CSSProperties {
 
 const bareList: CSSProperties = { listStyle: 'none', margin: 0, padding: 0 };
 
-const importEvent = "import { CalendarEvent } from 'd-ui-education';";
+const importEvent = "import { CalendarEvent } from '@dudaloglobal/d-ui-education';";
 const importComposition =
-  "import { Calendar, calendarDateToIso } from 'd-ui';\nimport { CalendarEvent } from 'd-ui-education';";
+  "import { Calendar, calendarDateToIso } from '@dudaloglobal/d-ui';\nimport { CalendarEvent } from '@dudaloglobal/d-ui-education';";
 
 const DAY_MS = 86_400_000;
 const today: CalendarDate = { year: 2026, month: 3, day: 18 };
@@ -291,7 +291,7 @@ export const Minimal: Story = {
 export const WithLink: Story = {
   name: 'Avec lien',
   parameters: componentSource(
-    "import { Link } from 'd-ui';\nimport { CalendarEvent } from 'd-ui-education';",
+    "import { Link } from '@dudaloglobal/d-ui';\nimport { CalendarEvent } from '@dudaloglobal/d-ui-education';",
     `<CalendarEvent
     title={<Link href="/seances/inf-201-2026-03-18">Algorithmique</Link>}
     course="INF-201 · L2 Informatique"
