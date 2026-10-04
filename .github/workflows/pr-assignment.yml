@@ -1,10 +1,6 @@
 name: PR assignment
 
-# Reviewers are the other two of fruitizz, Angelo-Cosme, and noukpoherve:
-#   fruitizz      → Angelo-Cosme + noukpoherve
-#   Angelo-Cosme  → fruitizz + noukpoherve
-#   noukpoherve   → fruitizz + Angelo-Cosme
-# Assignee comes from the PR, then the linked ticket, then the author.
+# Reviewers are fruitizz and kplaricos, except when either is the PR author.
 
 on:
   pull_request:
@@ -30,79 +26,15 @@ jobs:
       - uses: actions/github-script@v9
         with:
           script: |
-            const TEAM = ['fruitizz', 'Angelo-Cosme', 'noukpoherve'];
+            const REVIEWERS = ['fruitizz', 'kplaricos'];
             const { owner, repo } = context.repo;
             const pull_number = context.issue.number;
             const pr = context.payload.pull_request;
             const author = pr.user.login;
 
-            const teamLogin = (login) =>
-              TEAM.find((member) => member.toLowerCase() === login.toLowerCase()) ?? null;
-
-            const firstTeamLogin = (logins) => {
-              for (const login of logins) {
-                const member = teamLogin(login);
-                if (member) return member;
-              }
-              return null;
-            };
-
-            const linkedIssueAssignees = async () => {
-              try {
-                const data = await github.graphql(
-                  `query ($owner: String!, $repo: String!, $number: Int!) {
-                    repository(owner: $owner, name: $repo) {
-                      pullRequest(number: $number) {
-                        closingIssuesReferences(first: 20) {
-                          nodes {
-                            assignees(first: 10) {
-                              nodes { login }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }`,
-                  { owner, repo, number: pull_number },
-                );
-                return (
-                  data.repository?.pullRequest?.closingIssuesReferences?.nodes ?? []
-                ).flatMap((node) =>
-                  (node.assignees?.nodes ?? []).map((assignee) => assignee.login),
-                );
-              } catch {
-                const nums = [
-                  ...(pr.body ?? '').matchAll(
-                    /(?:closes|fixes|resolves)\s+#(\d+)/gi,
-                  ),
-                ].map((match) => Number(match[1]));
-                const logins = [];
-                for (const issue_number of nums) {
-                  const { data: issue } = await github.rest.issues.get({
-                    owner,
-                    repo,
-                    issue_number,
-                  });
-                  for (const assignee of issue.assignees ?? []) {
-                    logins.push(assignee.login);
-                  }
-                }
-                return logins;
-              }
-            };
-
-            const prAssignees = (pr.assignees ?? []).map((assignee) => assignee.login);
-            const assignee =
-              firstTeamLogin(prAssignees) ??
-              firstTeamLogin(await linkedIssueAssignees()) ??
-              teamLogin(author);
-
-            const desired = TEAM.filter((member) => {
-              const login = member.toLowerCase();
-              if (login === author.toLowerCase()) return false;
-              if (assignee && login === assignee.toLowerCase()) return false;
-              return true;
-            });
+            const desired = REVIEWERS.filter(
+              (reviewer) => reviewer.toLowerCase() !== author.toLowerCase(),
+            );
 
             await github.rest.issues.addAssignees({
               owner,
@@ -120,10 +52,12 @@ jobs:
                   (login) => login.toLowerCase() === member.toLowerCase(),
                 ),
             );
-            const toRemove = requested.filter((login) => {
-              const member = teamLogin(login);
-              return member && !desired.includes(member);
-            });
+            const toRemove = requested.filter(
+              (login) =>
+                !desired.some(
+                  (reviewer) => reviewer.toLowerCase() === login.toLowerCase(),
+                ),
+            );
 
             if (toRemove.length > 0) {
               await github.rest.pulls.removeRequestedReviewers({
