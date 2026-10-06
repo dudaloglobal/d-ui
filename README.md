@@ -43,3 +43,7 @@ Voir [CONTRIBUTING.md](./CONTRIBUTING.md), [AGENTS.md](./AGENTS.md) (skills Curs
 ## Roadmap
 
 Backlog GitHub : [issues](https://github.com/dudaloglobal/design-system/issues) · projet [Design System DudaX](https://github.com/orgs/dudaloglobal/projects/2).
+
+## Licence
+
+Ce projet est distribué sous la licence [Apache-2.0](./LICENSE).
