@@ -51,6 +51,7 @@ export const storyNameEn: Record<string, string> = {
   'Mot de passe': 'Password',
   Activé: 'On',
   Langue: 'Locale',
+  'Fuseau horaire': 'Time zone',
   'Mises à jour en direct': 'Live updates',
   Taille: 'Size',
   'Passé et futur': 'Past and future',
@@ -322,6 +323,10 @@ const timeAgoFr = {
   yesterday: 'Hier',
   pastHint: 'Il y a cinq heures',
   futureHint: 'Dans trois heures',
+  utc: 'UTC',
+  niamey: 'Niamey',
+  utcHint: 'timeZone="UTC" — survolez : 26 août 2026, 23:30',
+  niameyHint: 'timeZone="Africa/Niamey" — survolez : 27 août 2026, 00:30',
 };
 
 const timeAgoEn = {
@@ -340,6 +345,10 @@ const timeAgoEn = {
   yesterday: 'Yesterday',
   pastHint: 'Five hours ago',
   futureHint: 'In three hours',
+  utc: 'UTC',
+  niamey: 'Niamey',
+  utcHint: 'timeZone="UTC" — hover: August 26, 2026, 23:30',
+  niameyHint: 'timeZone="Africa/Niamey" — hover: August 27, 2026, 00:30',
 };
 
 export type TimeAgoDocsCopy = typeof timeAgoFr;
