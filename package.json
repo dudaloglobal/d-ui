@@ -27,7 +27,7 @@
     "version-packages": "changeset version && bun install --lockfile-only --ignore-scripts"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.0",
+    "@changesets/cli": "^3.0.3",
     "@eslint/js": "^9.20.0",
     "eslint": "^9.20.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
