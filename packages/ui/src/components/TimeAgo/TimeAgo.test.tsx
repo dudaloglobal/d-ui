@@ -40,6 +40,18 @@ describe('TimeAgo', () => {
     expect(time).toHaveTextContent(/1 hour ago/);
   });
 
+  it('formats the absolute time in the given time zone', () => {
+    const date = new Date('2026-08-26T23:30:00.000Z');
+    const { rerender } = render(<TimeAgo date={date} locale="en" timeZone="UTC" />);
+    expect(getTime().getAttribute('title')).toMatch(/^August 26, 2026 at 11:30\sPM$/);
+
+    rerender(<TimeAgo date={date} locale="en" timeZone="Africa/Niamey" />);
+    expect(getTime().getAttribute('title')).toMatch(/^August 27, 2026 at 12:30\sAM$/);
+    expect(getTime().querySelector('.d-ui-visually-hidden')).toHaveTextContent(
+      /August 27, 2026 at 12:30\sAM/,
+    );
+  });
+
   it('lets a custom title override the absolute tooltip', () => {
     render(
       <TimeAgo

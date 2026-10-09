@@ -84,6 +84,11 @@ export const timeAgoArgTypes = {
     description:
       'Locale BCP 47 transmise à `Intl` et à l’attribut `lang` (WCAG 3.1.2). Défaut : locale d’exécution.',
   },
+  timeZone: {
+    control: 'text' as const,
+    description:
+      'Fuseau IANA de l’heure absolue (`Africa/Niamey`, `UTC`, …). Défaut : fuseau d’exécution. À fixer en rendu serveur.',
+  },
   live: {
     control: 'boolean' as const,
     description:

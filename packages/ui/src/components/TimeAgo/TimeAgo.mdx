@@ -20,6 +20,14 @@ import * as TimeAgoStories from './TimeAgo.stories';
 
 <Canvas of={TimeAgoStories.Locale} />
 
+<H2 k="timeAgo.timeZone" />
+
+<P k="timeAgo.timeZoneBody" />
+
+<P k="timeAgo.timeZoneSsr" />
+
+<Canvas of={TimeAgoStories.TimeZone} />
+
 <H2 k="timeAgo.live" />
 
 <P k="timeAgo.liveBody" />
@@ -79,4 +87,7 @@ import * as TimeAgoStories from './TimeAgo.stories';
 
 <P k="timeAgo.propsBody" />
 
-<ArgTypes of={TimeAgoStories} include={['date', 'locale', 'live', 'size', 'title']} />
+<ArgTypes
+  of={TimeAgoStories}
+  include={['date', 'locale', 'timeZone', 'live', 'size', 'title']}
+/>
