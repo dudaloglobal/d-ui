@@ -19,6 +19,13 @@ export type TimeAgoProps = Omit<
    */
   locale?: Intl.LocalesArgument;
   /**
+   * Fuseau IANA de l’heure absolue (`Africa/Niamey`, `UTC`, …). Doit être un
+   * nom valide : `Intl` lève une `RangeError` sinon. Défaut : fuseau d’exécution. Fixez-le dès que le composant est rendu côté
+   * serveur : sinon le serveur et le navigateur formatent l’heure absolue
+   * chacun dans son fuseau et l’hydratation échoue.
+   */
+  timeZone?: string;
+  /**
    * Si `true`, rafraîchit le texte relatif sur un intervalle grossier.
    * Visuel uniquement — pas d’`aria-live`. Passez `aria-live="polite"` pour opt-in.
    */
@@ -62,6 +69,7 @@ function formatTimeAgo(
   date: Date,
   now: Date,
   locale?: Intl.LocalesArgument,
+  timeZone?: string,
 ): { iso: string; relative: string; absolute: string } {
   const { value, unit } = pickUnit(date.getTime() - now.getTime());
   return {
@@ -73,6 +81,7 @@ function formatTimeAgo(
     absolute: new Intl.DateTimeFormat(locale, {
       dateStyle: 'long',
       timeStyle: 'short',
+      timeZone,
     }).format(date),
   };
 }
@@ -99,6 +108,7 @@ function langFromLocale(locale?: Intl.LocalesArgument): string | undefined {
 export function TimeAgo({
   date,
   locale,
+  timeZone,
   live = false,
   size = 'md',
   className,
@@ -134,7 +144,7 @@ export function TimeAgo({
     );
   }
 
-  const { iso, relative, absolute } = formatTimeAgo(resolved, now, locale);
+  const { iso, relative, absolute } = formatTimeAgo(resolved, now, locale, timeZone);
 
   return (
     <time
