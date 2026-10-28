@@ -44,7 +44,7 @@ const meta = {
   argTypes: timeAgoArgTypes,
   parameters: {
     controls: {
-      include: ['date', 'locale', 'live', 'size', 'title', 'className'],
+      include: ['date', 'locale', 'timeZone', 'live', 'size', 'title', 'className'],
     },
   },
 } satisfies Meta<typeof TimeAgo>;
@@ -85,6 +85,31 @@ export const Locale: Story = {
         </Example>
         <Example label={copy.french} hint={copy.frenchHint}>
           <TimeAgo date={fromNow(-3 * minute)} locale="fr" />
+        </Example>
+      </div>
+    );
+  },
+};
+
+const lateEvening = new Date('2026-08-26T23:30:00.000Z');
+
+export const TimeZone: Story = {
+  name: 'Fuseau horaire',
+  parameters: componentSource(
+    "import { TimeAgo } from '@dudaloglobal/d-ui';",
+    `<TimeAgo date={createdAt} locale="fr" timeZone="UTC" />
+<TimeAgo date={createdAt} locale="fr" timeZone="Africa/Niamey" />`,
+  ),
+  render: (_, { globals }) => {
+    const locale = docsLocale(globals.locale);
+    const copy = timeAgoCopy(locale);
+    return (
+      <div className="flex flex-col gap-6">
+        <Example label={copy.utc} hint={copy.utcHint}>
+          <TimeAgo date={lateEvening} locale={locale} timeZone="UTC" />
+        </Example>
+        <Example label={copy.niamey} hint={copy.niameyHint}>
+          <TimeAgo date={lateEvening} locale={locale} timeZone="Africa/Niamey" />
         </Example>
       </div>
     );

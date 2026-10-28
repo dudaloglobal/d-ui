@@ -1168,6 +1168,15 @@ export const docsCopy = {
       fr: 'Sans `locale`, c’est la locale d’exécution. Injectez la langue de l’app (`locale={i18n.language}`) plutôt que de figer une valeur dans le design system.',
       en: 'Without `locale`, the runtime locale is used. Inject the app language (`locale={i18n.language}`) rather than hard-coding a value in the design system.',
     },
+    timeZone: { fr: 'Fuseau horaire', en: 'Time zone' },
+    timeZoneBody: {
+      fr: 'L’heure absolue (infobulle et phrase masquée) est formatée dans le fuseau d’exécution, sauf si vous passez un fuseau IANA `timeZone` (`Africa/Niamey`, `UTC`, …). Le texte relatif, lui, ne dépend pas du fuseau.',
+      en: 'The absolute time (tooltip and hidden phrase) is formatted in the runtime time zone, unless you pass an IANA `timeZone` (`Africa/Niamey`, `UTC`, …). The relative text does not depend on the time zone.',
+    },
+    timeZoneSsr: {
+      fr: 'En rendu serveur (Next.js, Remix…), fixez toujours `timeZone` : le serveur et le navigateur ne sont pas forcément dans le même fuseau, et l’heure absolue différerait à l’hydratation.',
+      en: 'With server rendering (Next.js, Remix…), always set `timeZone`: the server and the browser are not necessarily in the same time zone, and the absolute time would differ at hydration.',
+    },
     live: { fr: 'Mises à jour en direct', en: 'Live updates' },
     liveBody: {
       fr: 'La prop `live` rafraîchit le texte relatif visible sur un intervalle **grossier** pour que le libellé reste pertinent tant que la vue est ouverte :',
@@ -1249,8 +1258,8 @@ export const docsCopy = {
       en: 'Opt-in announcements: `aria-live="polite"` on the component. Keep the coarse interval.',
     },
     a11yHydration: {
-      fr: 'Le texte relatif dépend de « maintenant » : l’élément pose `suppressHydrationWarning` pour que SSR et client puissent différer d’une unité sans casser l’hydratation.',
-      en: 'Relative text depends on “now”: the element sets `suppressHydrationWarning` so SSR and client can differ by one unit without breaking hydration.',
+      fr: 'Le texte relatif dépend de « maintenant » : l’élément pose `suppressHydrationWarning` pour que SSR et client puissent différer d’une unité sans casser l’hydratation. L’heure absolue, elle, doit être identique des deux côtés : passez `timeZone`.',
+      en: 'Relative text depends on “now”: the element sets `suppressHydrationWarning` so SSR and client can differ by one unit without breaking hydration. The absolute time must match on both sides: pass `timeZone`.',
     },
     propsTitle: { fr: 'TimeAgo', en: 'TimeAgo' },
     propsBody: {
