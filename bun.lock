@@ -18,6 +18,33 @@
         "typescript-eslint": "^8.68.0",
       },
     },
+    "packages/education": {
+      "name": "@dudaloglobal/d-ui-education",
+      "version": "0.0.0",
+      "devDependencies": {
+        "@dudaloglobal/d-ui": "workspace:*",
+        "@storybook/addon-docs": "10.6.2",
+        "@storybook/react-vite": "10.6.2",
+        "@testing-library/jest-dom": "^7.0.1",
+        "@testing-library/react": "^16.2.0",
+        "@types/react": "^19.0.10",
+        "@types/react-dom": "^19.2.5",
+        "@vitejs/plugin-react": "^4.3.4",
+        "jsdom": "^26.0.0",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "storybook": "10.6.2",
+        "typescript": "^5.7.3",
+        "vite": "^6.1.1",
+        "vite-plugin-dts": "^4.5.0",
+        "vitest": "^4.1.11",
+      },
+      "peerDependencies": {
+        "@dudaloglobal/d-ui": "workspace:*",
+        "react": ">=18",
+        "react-dom": ">=18",
+      },
+    },
     "packages/ui": {
       "name": "@dudaloglobal/d-ui",
       "version": "0.1.0",
@@ -159,6 +186,8 @@
     "@dnd-kit/utilities": ["@dnd-kit/utilities@3.2.2", "", { "dependencies": { "tslib": "^2.0.0" }, "peerDependencies": { "react": ">=16.8.0" } }, "sha512-+MKAJEOfaBe5SmV6t34p80MMKhjvUz0vRrvVJbPT0WElzaOJ/1xs+D+KDv+tD/NE5ujfrChEcshd4fLn0wpiqg=="],
 
     "@dudaloglobal/d-ui": ["@dudaloglobal/d-ui@workspace:packages/ui"],
+
+    "@dudaloglobal/d-ui-education": ["@dudaloglobal/d-ui-education@workspace:packages/education"],
 
     "@emnapi/core": ["@emnapi/core@1.9.2", "", { "dependencies": { "@emnapi/wasi-threads": "1.2.1", "tslib": "^2.4.0" } }, "sha512-UC+ZhH3XtczQYfOlu3lNEkdW/p4dsJ1r/bP7H8+rhao3TTTMO1ATq/4DdIi23XuGoFY+Cz0JmCbdVl0hz9jZcA=="],
 
