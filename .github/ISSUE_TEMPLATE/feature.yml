@@ -1,0 +1,44 @@
+name: Proposer une évolution
+description: Proposer un composant, une option ou une amélioration de d-ui.
+title: 'feat: '
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Besoin utilisateur
+      description: Quel problème concret cette évolution doit-elle résoudre ?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposition
+      description: Décrivez l’API ou le comportement souhaité.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Solutions déjà envisagées
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibilité
+      description: Décrivez les interactions clavier, le nom accessible, les états et les annonces attendues.
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Exemples ou références
+      description: Liens, captures ou composants comparables.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Vérifications
+      options:
+        - label: Cette proposition reste générique et ne contient pas de logique métier propre à une application.
+          required: true
+        - label: J’ai vérifié qu’aucune issue ouverte ne couvre déjà ce besoin.
+          required: true

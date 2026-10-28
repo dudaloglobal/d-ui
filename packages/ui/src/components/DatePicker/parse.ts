@@ -75,10 +75,16 @@ export function parseDateTime(
 ): DateTimeValue | null | undefined {
   const trimmed = text.trim();
   if (!trimmed) return null;
-  const match = /^(.+?)\s+(\d{1,2}[:hH]\d{2})$/.exec(trimmed);
-  if (!match?.[1] || !match[2]) return undefined;
-  const date = parseCalendarDate(match[1], locale);
-  const time = parseClockTime(match[2]);
+  if (trimmed.length > 64) return undefined;
+
+  const separator = trimmed.lastIndexOf(' ');
+  if (separator < 1) return undefined;
+  const dateText = trimmed.slice(0, separator).trimEnd();
+  const timeText = trimmed.slice(separator + 1);
+  if (!dateText || !timeText) return undefined;
+
+  const date = parseCalendarDate(dateText, locale);
+  const time = parseClockTime(timeText);
   if (!date || !time) return undefined;
   return { date, time };
 }

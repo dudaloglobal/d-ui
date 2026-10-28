@@ -65,6 +65,10 @@ describe('parseDateTime', () => {
     ).toBe('12/03/2026 14:30');
     expect(parseDateTime('hier')).toBeUndefined();
   });
+
+  it('rejects oversized input without evaluating an ambiguous expression', () => {
+    expect(parseDateTime(`12/03/2026${' '.repeat(10_000)}x`)).toBeUndefined();
+  });
 });
 
 describe('compareDateTimes', () => {

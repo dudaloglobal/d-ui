@@ -22,7 +22,7 @@ When you edit a skill, update **all three** copies (or run
 plus those rules as standing instructions. In particular:
 
 - French PR body (`.cursor/skills/create-pr/SKILL.md`); English conventional-commit title
-- Reviewers: `fruitizz`, `Angelo-Cosme`, `noukpoherve` (`.cursor/skills/pr-reviewers/SKILL.md`)
+- Reviewers: `fruitizz` and `kplaricos` (`.cursor/skills/pr-reviewers/SKILL.md`)
 - No `Co-authored-by` / tooling attribution
 - Storybook docs: `storybook-docs` + `docs-locale`
 - Before push: `.cursor/skills/pre-push-ci/SKILL.md`, `.cursor/skills/ensure-issue/SKILL.md`, and `.cursor/skills/project-status/SKILL.md` (link issue, assign, En cours / En revue / Terminé)

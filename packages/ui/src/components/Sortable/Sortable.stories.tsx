@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 import { sortableListArgTypes } from '../../../.storybook/arg-types';
 import { componentSourceFn } from '../../../.storybook/docs-source';
+import { javascriptStringLiteral } from '../../lib/javascriptLiteral';
 import {
   docsLocale,
   sortableCopy,
@@ -40,7 +41,7 @@ const WIDGET_IDS = ['progress', 'assignments', 'grades', 'agenda', 'messages', '
 const frCopy = sortableCopy('fr');
 
 function quote(value: string): string {
-  return `'${value.replace(/'/g, "\\'")}'`;
+  return javascriptStringLiteral(value);
 }
 
 function arraySource(values: readonly string[]): string {

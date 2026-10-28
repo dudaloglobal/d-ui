@@ -17,6 +17,33 @@ describe('Image', () => {
     expect(img).toHaveAttribute('src', SRC);
   });
 
+  it('encodes markup characters in an untrusted source URL', () => {
+    render(<Image src={'/photo"><svg onload=alert(1)>.jpg'} alt="Photo" />);
+    expect(screen.getByRole('img', { name: 'Photo' })).toHaveAttribute(
+      'src',
+      '/photo%22%3E%3Csvg%20onload=alert(1)%3E.jpg',
+    );
+  });
+
+  it.each([
+    '/photo%20classe.jpg',
+    'https://cdn.example/photo%20classe.jpg?sig=a%2Fb%3D',
+    'https://cdn.example/photo%2520classe.jpg?sig=a%2fb%3d',
+  ])('preserves the encoded path and signature of %s', (src) => {
+    render(<Image src={src} alt="Photo" />);
+    expect(screen.getByRole('img', { name: 'Photo' })).toHaveAttribute('src', src);
+  });
+
+  it('rejects active protocols and malformed Unicode sources', () => {
+    const { rerender } = render(<Image src="javascript:alert(1)" alt="Photo" />);
+    expect(screen.getByRole('img', { name: 'Photo (image unavailable)' })).toBeVisible();
+    expect(document.querySelector('img')).toBeNull();
+
+    rerender(<Image src={'\ud800'} alt="Photo" />);
+    expect(screen.getByRole('img', { name: 'Photo (image unavailable)' })).toBeVisible();
+    expect(document.querySelector('img')).toBeNull();
+  });
+
   it('treats an empty alt as decorative, not as a missing name', () => {
     // `alt=""` suffit : il mappe déjà l'image sur `presentation`.
     render(<Image src={SRC} alt="" data-testid="frame" />);

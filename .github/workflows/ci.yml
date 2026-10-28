@@ -18,15 +18,18 @@ jobs:
     name: Lint, types, tests, build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .nvmrc
-      - uses: oven-sh/setup-bun@v2
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
           bun-version-file: package.json
       - run: bun install --frozen-lockfile
-      - run: bun audit --audit-level=high
+      # GHSA-vfj7-8cjw-p6xm n'a aucune version corrigée publiée. `braces` est
+      # transitif de Changesets, utilisé seulement sur les motifs contrôlés du
+      # dépôt pendant la release. Garder l'exclusion ciblée jusqu'au correctif.
+      - run: bun audit --audit-level=high --ignore GHSA-vfj7-8cjw-p6xm
       - run: bun run lint
       - run: bun run format:check
       - run: bun run typecheck
