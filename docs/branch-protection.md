@@ -14,4 +14,4 @@ GitHub **Free** + dépôt privé : les rulesets / branch protection peuvent êtr
   - `Lint, types, tests, build` (workflow **CI**)
   - `Build, deploy, require preview URL` (workflow **Preview Storybook**) — seulement si Pages est fiable ; sinon le laisser non-required
 
-CODEOWNERS demande déjà une revue de `@Angelo-Cosme` et `@fruitizz` quand la protection « require review from CODEOWNERS » est cochée.
+CODEOWNERS demande déjà une revue de `@fruitizz` et `@kplaricos` quand la protection « require review from CODEOWNERS » est cochée.

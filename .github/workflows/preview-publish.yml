@@ -1,0 +1,105 @@
+name: Preview Storybook publish
+
+on:
+  workflow_run:
+    workflows: [Preview Storybook build]
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: preview-publish-${{ github.event.workflow_run.id }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    name: Deploy preview artifact
+    runs-on: ubuntu-latest
+    steps:
+      # Ce workflow privilégié ne checkout et n'exécute jamais le code de la PR.
+      - name: Read pull request metadata
+        id: pr
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const pullRequests = context.payload.workflow_run.pull_requests ?? [];
+            if (pullRequests.length !== 1) {
+              core.setFailed('Le workflow de build doit être associé à une unique pull request.');
+              return;
+            }
+            core.setOutput('number', pullRequests[0].number);
+
+      - name: Download preview artifact
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: storybook-preview-${{ steps.pr.outputs.number }}
+          path: preview
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Deploy preview
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: preview
+          destination_dir: prs/${{ steps.pr.outputs.number }}
+          keep_files: true
+          commit_message: 'docs(preview): storybook PR ${{ steps.pr.outputs.number }}'
+
+      - name: Publish preview URL
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+        with:
+          script: |
+            const number = Number(process.env.PR_NUMBER);
+            const url = `https://${context.repo.owner}.github.io/${context.repo.repo}/prs/${number}/`;
+            const marker = '<!-- d-ui-storybook-preview -->';
+            const commentBody = [marker, '## Preview Storybook', '', `URL : ${url}`].join('\n');
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: number,
+            });
+            const existing = comments.find((comment) => comment.body?.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body: commentBody,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: number,
+                body: commentBody,
+              });
+            }
+
+            const pull = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: number,
+            });
+            let body = pull.data.body ?? '';
+            if (!/## Preview Storybook/i.test(body)) {
+              body += `\n\n## Preview Storybook\n\nURL du preview : ${url}\n`;
+            } else if (/URL du preview :\s*$/im.test(body)) {
+              body = body.replace(/URL du preview :\s*/i, `URL du preview : ${url}\n`);
+            } else if (!/URL du preview :\s*https?:\/\//i.test(body)) {
+              body = body.replace(/URL du preview :.*/i, `URL du preview : ${url}`);
+            }
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: number,
+              body,
+            });
