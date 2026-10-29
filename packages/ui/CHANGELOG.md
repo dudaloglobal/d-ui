@@ -1,5 +1,11 @@
 # @dudaloglobal/d-ui
 
+## 0.2.0
+
+### Minor Changes
+
+- 695f59a: Add TimeAgo `timeZone` (IANA name) for the absolute time, so a server-rendered TimeAgo hydrates without a text mismatch when the server and the browser sit in different time zones.
+
 ## 0.1.0
 
 ### Minor Changes
