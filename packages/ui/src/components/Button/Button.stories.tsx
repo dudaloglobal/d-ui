@@ -289,10 +289,16 @@ export const Destructive: Story = {
 <Button variant="destructive" icon={plus}>
   Avec icône
 </Button>
+<Button variant="destructive" icon={plus} iconPosition="end">
+  Avec icône
+</Button>
 <Button variant="destructive" size="sm">
   Supprimer
 </Button>
 <Button variant="destructive" size="lg">
+  Supprimer
+</Button>
+<Button variant="destructive" fullWidth>
   Supprimer
 </Button>
 <IconButton variant="destructive" icon={plus} aria-label="Supprimer" />`,
@@ -364,7 +370,13 @@ export const AsLink: Story = {
 >
   Ouvrir le cours
 </Button>
-<IconButton href="https://example.com" external icon={plus} aria-label="Ouvrir le cours" />
+<IconButton
+  href="https://example.com"
+  external
+  externalLabel="(ouvre dans un nouvel onglet)"
+  icon={plus}
+  aria-label="Ouvrir le cours"
+/>
 <Button href="/cours" variant="secondary">Retour</Button>
 <Button href="/cours" variant="ghost">Retour</Button>
 <Button href="/cours" size="sm">Retour</Button>
