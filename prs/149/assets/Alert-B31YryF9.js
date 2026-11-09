@@ -1,0 +1,30 @@
+import{u as x,j as t,M as j,P as s,C as o,a as e,b as a,U as i,A as d}from"./iframe-BgAAkhia.js";import{A as m,D as c,V as p,W as k,a as h,T as f,b as u}from"./Alert.stories-sUPYw5fm.js";import"./preload-helper-Dp1pzeXC.js";import"./arg-types-DAn3E37r.js";import"./docs-source-C_O40UCi.js";import"./Button-BpOZjla9.js";import"./VisuallyHidden-DKbPrj_9.js";import"./cornerRadius-B4XFh-_5.js";import"./Icon-C2FZBqt3.js";import"./IconButton-BM9_17qI.js";import"./Heading-BwiRBwx-.js";import"./Text-Dy_-3U0T.js";import"./FeedbackIcons-CJOTU8l8.js";import"./feedbackSurface-uixTcfkN.js";import"./ExclamationTriangleIcon-Bt_FzP_l.js";function l(n){const r={h1:"h1",...x(),...n.components};return t.jsxs(t.Fragment,{children:[t.jsx(j,{of:m}),`
+`,t.jsx(r.h1,{id:"alert",children:"Alert"}),`
+`,t.jsx(s,{k:"alert.intro"}),`
+`,t.jsx(s,{k:"chrome.examplesFollow"}),`
+`,t.jsx(o,{of:c}),`
+`,t.jsx(e,{k:"alert.variants"}),`
+`,t.jsx(s,{k:"alert.variantsBody"}),`
+`,t.jsx(o,{of:p}),`
+`,t.jsx(e,{k:"alert.titled"}),`
+`,t.jsx(s,{k:"alert.titledBody"}),`
+`,t.jsx(o,{of:k}),`
+`,t.jsx(e,{k:"alert.dismissible"}),`
+`,t.jsx(s,{k:"alert.dismissibleBody"}),`
+`,t.jsx(o,{of:h}),`
+`,t.jsx(e,{k:"alert.trimmed"}),`
+`,t.jsx(s,{k:"alert.trimmedBody"}),`
+`,t.jsx(o,{of:f}),`
+`,t.jsx(e,{k:"alert.action"}),`
+`,t.jsx(s,{k:"alert.actionBody"}),`
+`,t.jsx(o,{of:u}),`
+`,t.jsx(e,{k:"chrome.accessibility"}),`
+`,t.jsx(s,{k:"alert.a11yBody"}),`
+`,t.jsx(a,{k:"chrome.do"}),`
+`,t.jsx(i,{items:["alert.doInline","alert.doRole"]}),`
+`,t.jsx(a,{k:"chrome.dont"}),`
+`,t.jsx(i,{items:["alert.dontToast","alert.dontColor"]}),`
+`,t.jsx(s,{k:"chrome.themeLang"}),`
+`,t.jsx(e,{k:"chrome.properties"}),`
+`,t.jsx(s,{k:"alert.props"}),`
+`,t.jsx(d,{of:m,include:["variant","hasBackground","title","dismissible","dismissLabel"]})]})}function H(n={}){const{wrapper:r}={...x(),...n.components};return r?t.jsx(r,{...n,children:t.jsx(l,{...n})}):l(n)}export{H as default};
