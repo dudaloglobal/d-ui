@@ -23,6 +23,8 @@ export const storyNameEn: Record<string, string> = {
   'Emphase moyenne': 'Medium emphasis',
   'Bouton bascule': 'Toggle button',
   'Faible emphase': 'Low emphasis',
+  'Action irréversible': 'Irreversible action',
+  'Lien habillé en bouton': 'Link dressed as a button',
   'Petite taille': 'Small size',
   'Pleine largeur': 'Full width',
   Chargement: 'Loading',
@@ -286,6 +288,10 @@ const fr = {
   openMenu: 'Ouvrir le menu',
   continue: 'Continuer',
   saving: 'Enregistrement',
+  remove: 'Supprimer',
+  back: 'Retour',
+  openCourse: 'Ouvrir le cours',
+  externalLabel: '(ouvre dans un nouvel onglet)',
 };
 
 const en = {
@@ -304,6 +310,10 @@ const en = {
   openMenu: 'Open menu',
   continue: 'Continue',
   saving: 'Saving',
+  remove: 'Delete',
+  back: 'Back',
+  openCourse: 'Open the course',
+  externalLabel: '(opens in a new tab)',
 };
 
 export type ButtonDocsCopy = typeof fr;

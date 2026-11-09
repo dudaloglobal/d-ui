@@ -526,8 +526,8 @@ export const docsCopy = {
       en: '`target="_blank"` without `rel`',
     },
     dontButton: {
-      fr: 'Un `Button` pour de la navigation, ou un `Link` pour soumettre un formulaire',
-      en: 'A `Button` for navigation, or a `Link` to submit a form',
+      fr: 'Un `Button` sans `href` pour naviguer, ou un `Link` pour soumettre un formulaire',
+      en: 'A `Button` without `href` for navigation, or a `Link` to submit a form',
     },
     dontDarkInText: {
       fr: '`color="dark"` dans un paragraphe de la même encre — le lien n’est plus distinguable par la couleur',
@@ -731,8 +731,8 @@ export const docsCopy = {
   button: {
     title: { fr: 'Button', en: 'Button' },
     intro: {
-      fr: 'Les boutons déclenchent une action en un clic.',
-      en: 'Buttons trigger an action in a single click.',
+      fr: 'Les boutons déclenchent une action en un clic. Avec `href`, le même habillage mène vers une page.',
+      en: 'Buttons trigger an action in a single click. With `href`, the same appearance navigates to a page.',
     },
     high: { fr: 'Forte emphase', en: 'High emphasis' },
     highBody: {
@@ -761,6 +761,36 @@ export const docsCopy = {
     lowUse: {
       fr: 'Cas d’usage : Par défaut, Désactivé, Chargement, Avec icône, Menu (pas de fractionné).',
       en: 'Use cases: Default, Disabled, Loading, With icon, Menu (no split).',
+    },
+    destructive: { fr: 'Action irréversible', en: 'Irreversible action' },
+    destructiveBody: {
+      fr: '`variant="destructive"` sert à supprimer ou suspendre. Le texte repose sur `--d-ui-color-on-danger`, le fond sur `--d-ui-color-danger`. Une seule action de ce poids par vue.',
+      en: '`variant="destructive"` is for delete or suspend. Text uses `--d-ui-color-on-danger`, background uses `--d-ui-color-danger`. One action of this weight per view.',
+    },
+    doHref: {
+      fr: '`<Button href="/cours">Retour au cours</Button>` pour une action isolée qui navigue.',
+      en: '`<Button href="/cours">Back to the course</Button>` for a standalone action that navigates.',
+    },
+    doDestructive: {
+      fr: '`<Button variant="destructive">Supprimer</Button>` pour une seule action irréversible.',
+      en: '`<Button variant="destructive">Delete</Button>` for a single irreversible action.',
+    },
+    dontHrefAction: {
+      fr: '`<Button href="/supprimer">Supprimer</Button>` : un lien ne doit pas modifier des données.',
+      en: '`<Button href="/delete">Delete</Button>`: a link must not change data.',
+    },
+    dontInline: {
+      fr: 'Un `Button href` dans une phrase. Pour un lien dans le texte, utilisez `Link`.',
+      en: 'A `Button href` inside a sentence. For a link in text, use `Link`.',
+    },
+    dontManyDestructive: {
+      fr: 'Plusieurs `variant="destructive"` dans la même vue.',
+      en: 'Several `variant="destructive"` buttons in the same view.',
+    },
+    link: { fr: 'Lien habillé en bouton', en: 'Link dressed as a button' },
+    linkBody: {
+      fr: 'Avec `href`, `Button` rend un `<a>` et garde l’apparence du bouton. `Link` reste le lien de texte souligné. `external` ouvre un nouvel onglet.',
+      en: 'With `href`, `Button` renders an `<a>` and keeps the button appearance. `Link` stays the underlined text link. `external` opens a new tab.',
     },
     loading: { fr: 'Chargement', en: 'Loading' },
     loadingBody: {
@@ -795,8 +825,8 @@ export const docsCopy = {
       en: 'Accessibility use cases:',
     },
     a11yNative: {
-      fr: '**Bouton natif** — `Button` rend un `<button type="button">`. Pour la navigation, utilisez un lien (`Link`, DS-019).',
-      en: '**Native button** — `Button` renders a `<button type="button">`. For navigation, use a link (`Link`, DS-019).',
+      fr: '**Élément natif** — sans `href`, `Button` rend un `<button type="button">`. Avec `href`, il rend un `<a>` habillé en bouton. Un lien désactivé reste focusable (`aria-disabled`) et le clic ne part pas. `external` annonce l’ouverture d’un nouvel onglet. Le lien de texte souligné reste `Link`.',
+      en: '**Native element** — without `href`, `Button` renders a `<button type="button">`. With `href`, it renders an `<a>` dressed as a button. A disabled link stays focusable (`aria-disabled`) and the click does not go through. `external` announces that a new tab opens. The underlined text link stays `Link`.',
     },
     a11yToggle: {
       fr: "**Bascule** — état actif/inactif via `isSelected`. Si le libellé change selon l’état (`S'abonner` / `Abonné`), ce nom suffit. Si le libellé ne change pas, `aria-pressed` est posé depuis `isSelected`.",
@@ -817,13 +847,13 @@ export const docsCopy = {
     },
     propsButton: { fr: 'Button', en: 'Button' },
     propsButtonBody: {
-      fr: 'Les attributs natifs `<button>` (`disabled`, `type`, `className`, `aria-haspopup`, …) sont transmis.',
-      en: 'Native `<button>` attributes (`disabled`, `type`, `className`, `aria-haspopup`, …) are forwarded.',
+      fr: 'Sans `href`, les attributs natifs `<button>` (`disabled`, `type`, `className`, …) sont transmis. `href`, `target` et `rel` habillent un lien. `download` et `hrefLang` ne font pas partie du type.',
+      en: 'Without `href`, native `<button>` attributes (`disabled`, `type`, `className`, …) are forwarded. `href`, `target`, and `rel` dress a link. `download` and `hrefLang` are not part of the type.',
     },
     propsIcon: { fr: 'IconButton', en: 'IconButton' },
     propsIconBody: {
-      fr: '`IconButton` exige `aria-label`. `icon`, `variant`, `size`, `radius`, `loading`, `loadingIndicator`, `fullWidth` et `isSelected` sont les mêmes que `Button`.',
-      en: '`IconButton` requires `aria-label`. `icon`, `variant`, `size`, `radius`, `loading`, `loadingIndicator`, `fullWidth`, and `isSelected` match `Button`.',
+      fr: '`IconButton` exige `aria-label`. `icon`, `variant`, `size`, `radius`, `loading`, `loadingIndicator`, `fullWidth`, `isSelected`, `href` et `external` sont les mêmes que `Button`. Avec `external`, l’annonce du nouvel onglet est ajoutée à `aria-label`.',
+      en: '`IconButton` requires `aria-label`. `icon`, `variant`, `size`, `radius`, `loading`, `loadingIndicator`, `fullWidth`, `isSelected`, `href`, and `external` match `Button`. With `external`, the new-tab announcement is added to `aria-label`.',
     },
   },
   checkbox: {

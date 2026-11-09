@@ -41,7 +41,7 @@ Détail agent : `.cursor/skills/storybook-docs/SKILL.md` et `.cursor/skills/docs
 | `style`     | Autorisé ; ne pas s’en servir pour injecter une couleur sémantique (tokens) |
 | `data-*`    | Autorisé, transmis au nœud DOM racine                                       |
 
-Pas de `asChild` tant qu’un cas réel l’exige (YAGNI). Button n’est pas un lien : `Link` est DS-019.
+Pas de `asChild` tant qu’un cas réel l’exige (YAGNI). `variant="destructive"` est DS-147. Sans `href`, `Button` est un `<button>`. Avec `href`, il est un `<a>` habillé en bouton (DS-148). `Link` reste le lien de texte souligné.
 
 Chaînes visibles : aucune copie figée dans le composant sauf fallback a11y en **anglais** (`Skip to main content`). Les stories passent par `docs-locale.ts` (français par défaut, anglais via la barre Langue).
 
