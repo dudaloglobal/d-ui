@@ -163,6 +163,11 @@ const meta = {
         'loadingIndicator',
         'iconPosition',
         'fullWidth',
+        'href',
+        'external',
+        'externalLabel',
+        'target',
+        'rel',
         'isSelected',
         'radius',
       ],
@@ -268,6 +273,174 @@ export const LowEmphasis: Story = {
       includeSplit={false}
     />
   ),
+};
+
+export const Destructive: Story = {
+  name: 'Action irréversible',
+  parameters: componentSource(
+    "import { Button, IconButton } from '@dudaloglobal/d-ui';",
+    `<Button variant="destructive">Supprimer</Button>
+<Button variant="destructive" disabled>
+  Désactivé
+</Button>
+<Button variant="destructive" loading>
+  Enregistrement
+</Button>
+<Button variant="destructive" icon={plus}>
+  Avec icône
+</Button>
+<Button variant="destructive" icon={plus} iconPosition="end">
+  Avec icône
+</Button>
+<Button variant="destructive" size="sm">
+  Supprimer
+</Button>
+<Button variant="destructive" size="lg">
+  Supprimer
+</Button>
+<Button variant="destructive" fullWidth>
+  Supprimer
+</Button>
+<IconButton variant="destructive" icon={plus} aria-label="Supprimer" />`,
+    plusIconSource,
+  ),
+  render: (_, { globals }) => {
+    const copy = buttonCopy(docsLocale(globals.locale));
+    return (
+      <div className="flex flex-col gap-4">
+        <UseCaseRow>
+          <Button variant="destructive">{copy.remove}</Button>
+          <Button variant="destructive" disabled>
+            {copy.disabled}
+          </Button>
+          <Button variant="destructive" loading>
+            {copy.saving}
+          </Button>
+          <Button variant="destructive" icon={<PlusIcon />}>
+            {copy.withIcon}
+          </Button>
+          <Button variant="destructive" icon={<PlusIcon />} iconPosition="end">
+            {copy.withIcon}
+          </Button>
+        </UseCaseRow>
+        <UseCaseRow>
+          <Button variant="destructive" size="sm">
+            {copy.remove}
+          </Button>
+          <Button variant="destructive" size="lg">
+            {copy.remove}
+          </Button>
+          <Button variant="destructive" fullWidth>
+            {copy.remove}
+          </Button>
+          <IconButton
+            variant="destructive"
+            icon={<PlusIcon />}
+            aria-label={copy.remove}
+          />
+        </UseCaseRow>
+      </div>
+    );
+  },
+};
+
+export const AsLink: Story = {
+  name: 'Lien habillé en bouton',
+  parameters: componentSource(
+    "import { Button, IconButton } from '@dudaloglobal/d-ui';",
+    `<Button href="/cours">Retour</Button>
+<Button href="/cours" disabled>
+  Désactivé
+</Button>
+<Button href="/cours" loading>
+  Enregistrement
+</Button>
+<Button href="/cours" icon={plus}>
+  Avec icône
+</Button>
+<Button href="/cours" icon={plus} iconPosition="end">
+  Avec icône
+</Button>
+<Button
+  href="https://example.com"
+  external
+  target="_blank"
+  rel="noopener noreferrer"
+  externalLabel="(ouvre dans un nouvel onglet)"
+>
+  Ouvrir le cours
+</Button>
+<IconButton
+  href="https://example.com"
+  external
+  externalLabel="(ouvre dans un nouvel onglet)"
+  icon={plus}
+  aria-label="Ouvrir le cours"
+/>
+<Button href="/cours" variant="secondary">Retour</Button>
+<Button href="/cours" variant="ghost">Retour</Button>
+<Button href="/cours" size="sm">Retour</Button>
+<Button href="/cours" size="lg">Retour</Button>
+<Button href="/cours" fullWidth>Retour</Button>`,
+    plusIconSource,
+  ),
+  render: (_, { globals }) => {
+    const copy = buttonCopy(docsLocale(globals.locale));
+    return (
+      <div className="flex w-full flex-col gap-4">
+        <UseCaseRow>
+          <Button href="/cours">{copy.back}</Button>
+          <Button href="/cours" disabled>
+            {copy.disabled}
+          </Button>
+          <Button href="/cours" loading>
+            {copy.saving}
+          </Button>
+          <Button href="/cours" icon={<PlusIcon />}>
+            {copy.withIcon}
+          </Button>
+          <Button href="/cours" icon={<PlusIcon />} iconPosition="end">
+            {copy.withIcon}
+          </Button>
+          <Button
+            href="https://example.com"
+            external
+            target="_blank"
+            rel="noopener noreferrer"
+            externalLabel={copy.externalLabel}
+          >
+            {copy.openCourse}
+          </Button>
+          <IconButton
+            href="https://example.com"
+            external
+            externalLabel={copy.externalLabel}
+            icon={<PlusIcon />}
+            aria-label={copy.openCourse}
+          />
+        </UseCaseRow>
+        <UseCaseRow>
+          <Button href="/cours" variant="secondary">
+            {copy.back}
+          </Button>
+          <Button href="/cours" variant="ghost">
+            {copy.back}
+          </Button>
+          <Button href="/cours" size="sm">
+            {copy.back}
+          </Button>
+          <Button href="/cours" size="lg">
+            {copy.back}
+          </Button>
+        </UseCaseRow>
+        <FillRow>
+          <Button href="/cours" fullWidth>
+            {copy.back}
+          </Button>
+        </FillRow>
+      </div>
+    );
+  },
 };
 
 export const SmallSize: Story = {
@@ -394,12 +567,20 @@ export const IconOnly: Story = {
   name: 'Icône seule',
   parameters: componentSource(
     "import { IconButton } from '@dudaloglobal/d-ui';",
-    '<IconButton icon={plus} aria-label="Ajouter" />',
+    `<IconButton icon={plus} aria-label="Ajouter" />
+<IconButton variant="destructive" icon={plus} aria-label="Supprimer" />
+<IconButton href="/cours" icon={plus} aria-label="Retour" />`,
     plusIconSource,
   ),
   render: (_, { globals }) => {
     const copy = buttonCopy(docsLocale(globals.locale));
-    return <IconButton icon={<PlusIcon />} aria-label={copy.add} />;
+    return (
+      <UseCaseRow>
+        <IconButton icon={<PlusIcon />} aria-label={copy.add} />
+        <IconButton variant="destructive" icon={<PlusIcon />} aria-label={copy.remove} />
+        <IconButton href="/cours" icon={<PlusIcon />} aria-label={copy.back} />
+      </UseCaseRow>
+    );
   },
 };
 

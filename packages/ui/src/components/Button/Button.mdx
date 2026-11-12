@@ -38,6 +38,18 @@ import * as ButtonStories from './Button.stories';
 
 <Canvas of={ButtonStories.LowEmphasis} />
 
+<H2 k="button.destructive" />
+
+<P k="button.destructiveBody" />
+
+<Canvas of={ButtonStories.Destructive} />
+
+<H2 k="button.link" />
+
+<P k="button.linkBody" />
+
+<Canvas of={ButtonStories.AsLink} />
+
 <H2 k="button.loading" />
 
 <P k="button.loadingBody" />
@@ -87,6 +99,16 @@ import * as ButtonStories from './Button.stories';
 
 <Canvas of={ButtonStories.IconOnly} />
 
+<H3 k="chrome.do" />
+
+<Ul items={['button.doHref', 'button.doDestructive']} />
+
+<H3 k="chrome.dont" />
+
+<Ul
+  items={['button.dontHrefAction', 'button.dontInline', 'button.dontManyDestructive']}
+/>
+
 <P k="chrome.themeLang" />
 
 <H2 k="chrome.properties" />
@@ -105,6 +127,11 @@ import * as ButtonStories from './Button.stories';
     'icon',
     'iconPosition',
     'fullWidth',
+    'href',
+    'external',
+    'externalLabel',
+    'target',
+    'rel',
     'isSelected',
     'radius',
     'disabled',
@@ -126,6 +153,9 @@ import * as ButtonStories from './Button.stories';
     'loading',
     'loadingIndicator',
     'fullWidth',
+    'href',
+    'external',
+    'externalLabel',
     'isSelected',
     'radius',
   ]}

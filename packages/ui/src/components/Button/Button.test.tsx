@@ -122,9 +122,84 @@ describe('Button', () => {
       'min-w-0',
     );
   });
+
+  it('names a destructive action as a button', () => {
+    render(<Button variant="destructive">Supprimer</Button>);
+    expect(screen.getByRole('button', { name: 'Supprimer' })).toBeEnabled();
+  });
+
+  it('renders an anchor when href is set', () => {
+    render(<Button href="/cours">Retour</Button>);
+    const link = screen.getByRole('link', { name: 'Retour' });
+    expect(link).toHaveAttribute('href', '/cours');
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+  });
+
+  it('does not follow a disabled link', async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+    render(
+      <Button href="/cours" disabled onClick={onClick}>
+        Retour
+      </Button>,
+    );
+    const link = screen.getByRole('link', { name: 'Retour' });
+    expect(link).toHaveAttribute('aria-disabled', 'true');
+    expect(link).toHaveAttribute('href', '/cours');
+    await user.click(link);
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  it('ignores external on a button without href', () => {
+    render(<Button external>Supprimer</Button>);
+    expect(screen.getByRole('button', { name: 'Supprimer' })).toBeInTheDocument();
+  });
+
+  it('does not expose a toggle state on a link', () => {
+    render(
+      <Button href="/cours" variant="secondary" isSelected>
+        Retour
+      </Button>,
+    );
+    const link = screen.getByRole('link', { name: 'Retour' });
+    expect(link).not.toHaveAttribute('aria-pressed');
+    expect(link).not.toHaveClass('border-brand');
+  });
+
+  it('marks an external link and announces the new tab', () => {
+    render(
+      <Button href="https://example.com" external>
+        Continuer
+      </Button>,
+    );
+    const link = screen.getByRole('link', { name: 'Continuer (opens in a new tab)' });
+    expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  });
 });
 
 describe('IconButton', () => {
+  it('renders a destructive icon button', () => {
+    render(
+      <IconButton variant="destructive" icon={<PlusIcon />} aria-label="Supprimer" />,
+    );
+    expect(screen.getByRole('button', { name: 'Supprimer' })).toBeEnabled();
+  });
+
+  it('renders an icon link and announces an external tab', () => {
+    render(
+      <IconButton
+        href="https://example.com"
+        external
+        icon={<PlusIcon />}
+        aria-label="Ajouter"
+      />,
+    );
+    const link = screen.getByRole('link', { name: 'Ajouter (opens in a new tab)' });
+    expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  });
+
   it('requires an accessible name via aria-label', () => {
     render(<IconButton icon={<PlusIcon />} aria-label="Ajouter" />);
     expect(screen.getByRole('button', { name: 'Ajouter' })).toBeInTheDocument();

@@ -26,9 +26,9 @@ const classNameArgType = {
 export const buttonArgTypes = {
   variant: {
     control: 'inline-radio' as const,
-    options: ['primary', 'secondary', 'ghost'],
+    options: ['primary', 'secondary', 'ghost', 'destructive'],
     description:
-      'Emphase : `primary` (forte), `secondary` (moyenne), `ghost` (faible). Une seule action forte par vue.',
+      'Emphase : `primary` (forte), `secondary` (moyenne), `ghost` (faible), `destructive` (irréversible). Une seule action forte par vue.',
   },
   size: {
     control: 'inline-radio' as const,
@@ -60,10 +60,33 @@ export const buttonArgTypes = {
     description: 'Étend le contrôle à la largeur du conteneur.',
   },
   radius: cornerRadiusArgType('md'),
+  href: {
+    control: 'text' as const,
+    description:
+      'Si présent, le contrôle est un lien `<a>` habillé en bouton. Sans `href`, il reste un `<button>`.',
+  },
+  external: {
+    control: 'boolean' as const,
+    description:
+      'Avec `href`, ouvre un nouvel onglet, pose `rel="noopener noreferrer"` et annonce l’ouverture. Ignoré sans `href`.',
+  },
+  externalLabel: {
+    control: 'text' as const,
+    description:
+      'Texte ajouté au nom accessible d’un lien externe. Défaut anglais : `(opens in a new tab)`.',
+  },
+  target: {
+    control: 'text' as const,
+    description: 'Attribut `target` du lien. Avec `external`, défaut `_blank`.',
+  },
+  rel: {
+    control: 'text' as const,
+    description: 'Attribut `rel` du lien. Avec `external`, défaut `noopener noreferrer`.',
+  },
   isSelected: {
     control: 'boolean' as const,
     description:
-      'État bascule (emphase moyenne/faible). Pose `aria-pressed` si le libellé ne change pas.',
+      'État bascule (emphase moyenne/faible). Pose `aria-pressed` si le libellé ne change pas. Ignoré avec `href`.',
   },
   disabled: {
     control: 'boolean' as const,
