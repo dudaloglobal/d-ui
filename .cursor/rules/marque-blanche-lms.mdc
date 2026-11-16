@@ -1,0 +1,23 @@
+---
+description: Never name the underlying LMS product brand in any visible Dudalo surface. Always apply.
+alwaysApply: true
+---
+
+## Règle obligatoire — marque blanche du LMS
+
+Le LMS sous-jacent n'est jamais nommé dans ce qui est visible : interfaces,
+messages d'erreur renvoyés au client, e-mails, notifications, documentation,
+rapports, maquettes, messages de commit, titres et descriptions de PR, issues,
+noms de branche, captures.
+
+Termes à employer : « la plateforme d'apprentissage », « l'espace de cours »,
+« synchronisé / non synchronisé ». Dans les rapports d'agents, désigner le
+système par « LMS ».
+
+Le code interne existant (noms de classes, colonnes, fonctions de service web,
+variables d'environnement) n'est pas renommé. Pour tout nouvel identifiant,
+préférer un nom neutre (`Lms…`, `lms_…`). Ne jamais relayer tel quel un message
+d'erreur provenant du LMS.
+
+Tous les modèles et agents IA doivent lire `.agents/skills/marque-blanche-lms/SKILL.md`
+avant de produire un texte visible ou un artefact GitHub.
