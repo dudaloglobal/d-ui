@@ -20,7 +20,7 @@
     },
     "packages/education": {
       "name": "@dudaloglobal/d-ui-education",
-      "version": "0.0.0",
+      "version": "0.1.0",
       "devDependencies": {
         "@dudaloglobal/d-ui": "workspace:*",
         "@storybook/addon-docs": "10.6.2",
