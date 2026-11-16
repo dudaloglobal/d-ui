@@ -1,6 +1,6 @@
 {
   "name": "@dudaloglobal/d-ui-education",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "Dudalo Design System — composants du domaine Education, au-dessus de d-ui",
   "type": "module",
