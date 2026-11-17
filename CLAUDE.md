@@ -1,4 +1,5 @@
 <!-- DUDALO LMS WHITE-LABEL POLICY -->
+
 ## Règle obligatoire — marque blanche du LMS
 
 Tous les modèles et agents IA, sans exception, doivent lire
@@ -12,7 +13,6 @@ renommé ; nouveaux identifiants neutres (`Lms…`, `lms_…`). Ne jamais relaye
 quel un message d'erreur provenant du LMS.
 
 <!-- END DUDALO LMS WHITE-LABEL POLICY -->
-
 
 @AGENTS.md
 
